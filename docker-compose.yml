@@ -6,6 +6,9 @@
 # MAILPIT_SMTP_PORT, MATOMO_PORT) when the machine already runs something
 # on it.  Nothing inside the network changes: the containers always talk to
 # db:5432, redis:6379 and mailpit:1025.
+#
+# web, tailwind, worker and beat are the same image with different arguments,
+# so they share one `image:` name and Docker builds it once.
 name: arer
 
 services:
@@ -52,6 +55,7 @@ services:
     build:
       context: .
       target: runtime
+    image: arer-app:dev
     command: ["web"]
     env_file: .env
     environment:
@@ -80,6 +84,7 @@ services:
     build:
       context: .
       target: runtime
+    image: arer-app:dev
     command: ["tailwind"]
     env_file: .env
     environment:
@@ -96,6 +101,7 @@ services:
     build:
       context: .
       target: runtime
+    image: arer-app:dev
     command: ["worker"]
     env_file: .env
     environment:
@@ -120,6 +126,7 @@ services:
     build:
       context: .
       target: runtime
+    image: arer-app:dev
     command: ["beat"]
     env_file: .env
     environment:

@@ -47,6 +47,12 @@ docker compose --profile analytics up -d matomo matomo-db   # http://localhost:8
 `make dev` wraps the whole sequence (build, `compilemessages`, `migrate`,
 `seed_demo`, `up`).
 
+If your machine already listens on one of those ports, move the published side
+in `.env` — `WEB_PORT`, `POSTGRES_HOST_PORT`, `REDIS_HOST_PORT`,
+`MAILPIT_UI_PORT`, `MAILPIT_SMTP_PORT`, `MATOMO_PORT`. Nothing inside the
+network changes; the containers always talk to `db:5432`, `redis:6379` and
+`mailpit:1025`.
+
 ## Demo accounts
 
 Created by `manage.py seed_demo`. **Password for every account:
