@@ -183,7 +183,7 @@ produced for issue 1.
 
 ## Test suite
 
-359 tests, all passing:
+360 tests, all passing:
 
 | Module | Covers |
 |---|---|

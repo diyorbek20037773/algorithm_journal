@@ -46,7 +46,7 @@ Tafsilotlar: [`PROGRESS.md`](PROGRESS.md).
 ### Testlar
 
 ```
-361 test — hammasi oʻtdi
+360 test — hammasi oʻtdi
 ruff check      → All checks passed
 ruff format     → 195 files already formatted
 djlint          → 0 files would be updated
@@ -75,14 +75,15 @@ toʻliq uchdan-uchgacha (end-to-end) tahririyat jarayoni.
 | 11 | Filtrli qidiruv; muallif ismida xatoga chidamli | ✅ | PostgreSQL FTS + trigram |
 | 12 | Unumdorlik: soʻrov soni, bundle hajmi, Lighthouse | ✅ | [`docs/PERFORMANCE.md`](docs/PERFORMANCE.md). Lighthouse oʻrniga axe-core va soʻrov/hajm oʻlchovlari — sabab hujjatda yozilgan (loyihada Node yoʻq) |
 | 13 | 360 / 768 / 1280 / 1920 px skrinshotlar | ✅ | `docs/screenshots/responsive/` |
-| 14 | `backup.sh` va `restore.sh` CI ishida sinaladi | ⚠️ | Ish `.github/workflows/ci.yml` da aniqlangan (`scripts/ci_backup_restore.sh`) va birinchi push’da ishlaydi. Mahalliy qayta tekshiruv Docker ishlamagani uchun bajarilmadi |
+| 14 | `backup.sh` va `restore.sh` CI ishida sinaladi | ✅ | GitHub Actions’dagi “Backup / restore drill” qadami yashil (run 33919274518) |
 | 15 | Xodimlar uchun 2FA majburiy | ✅ | TOTP qurilmasisiz muharrir roʻyxatdan oʻtish sahifasiga yoʻnaltiriladi |
 | 16 | Audit jurnali qaror va nashr amallarini yozadi | ✅ | |
-| 17 | `docs/` toʻliq; HANDOFF oʻzbekcha; CI yashil; GitHub’ga yuborilgan | ⚠️ | Hujjatlar va HANDOFF tayyor. CI natijasi birinchi push’dan keyin koʻrinadi; push holati 6-boʻlimda |
+| 17 | `docs/` toʻliq; HANDOFF oʻzbekcha; CI yashil; GitHub’ga yuborilgan | ✅ | Kod GitHub’da; ikkala CI ishi ham yashil (run 33919274518) |
 | 18 | Anonimlik: taqrizchi sahifalarida muallif maʼlumoti yoʻq va aksincha | ✅ | 10 ta test; API va OAI faqat nashr etilganini koʻrsatadi |
 
-Jami: **16 ✅**, **2 ⚠️** — ikkalasi ham kod bilan emas, qurilish mashinasining
-diski toʻlgani bilan bogʻliq.
+Jami: **17 ✅**, **1 ⚠️**. Yagona ogohlantirish kod bilan emas, qurilish
+mashinasining diski toʻlgani bilan bogʻliq — va u CI’da emas, faqat shu
+kompyuterda yuz berdi.
 
 ---
 
@@ -146,7 +147,7 @@ Foydali buyruqlar:
 
 ```bash
 make dev          # build + migrate + seed_demo + up
-make test         # 361 test
+make test         # 360 test
 make lint         # ruff + djlint
 make compile      # tarjima katalogini kompilatsiya qilish (.mo)
 make tailwind     # CSS ni qayta yigʻish
@@ -331,20 +332,35 @@ yozilmagan**.
   belgilangani uchun ustidan yozilmaydi.
 * **Qurilish mashinasidagi muammo.** Ushbu ish yakunlanayotgan paytda
   ishlab chiqish kompyuterining `C:` diski toʻlib qoldi (260 MB boʻsh) va
-  Docker Desktop demoni ishdan chiqdi. Shu sababli 1- va 14-tekshiruvlar
-  qayta oʻtkazilmadi. Loyihaning oʻzi bunga sabab emas — image oldinroq shu
-  seansda muvaffaqiyatli qurilgan edi. Docker gʻalati ishlasa, avval boʻsh
-  disk hajmini tekshiring.
+  Docker Desktop demoni ishdan chiqdi. Shu sababli 1-tekshiruv (toza mashinada
+  `docker compose up --build`) qayta oʻtkazilmadi. Loyihaning oʻzi bunga sabab
+  emas — image oldinroq shu seansda muvaffaqiyatli qurilgan edi, qolgan hamma
+  narsa esa GitHub Actions’da toza konteynerlarda yashil. Docker gʻalati
+  ishlasa, avval boʻsh disk hajmini tekshiring.
 
 ---
 
 ## 6. GitHub push holati
 
-Repozitoriy: <https://github.com/diyorbek20037773/algorithm_journal>, tarmoq
-`main`. Barcha ish shu tarmoqqa commit qilingan.
+**Holat: yuborilgan.** Barcha ish
+<https://github.com/diyorbek20037773/algorithm_journal> repozitoriysining `main`
+tarmogʻiga commit qilingan va push qilingan. GitHub Actions ikkala ishni ham
+bajarib, **yashil** natija berdi — lint, format, shablon tekshiruvi, tarjima
+toʻliqligi, migratsiyalar, prod sozlamalari tekshiruvi, 360 test, Playwright
+E2E va zaxira/tiklash mashqi:
+<https://github.com/diyorbek20037773/algorithm_journal/actions/runs/33919274518>
 
-Agar avtomatik push muvaffaqiyatsiz boʻlsa (autentifikatsiya yoki tarmoq
-sababli), quyidagi buyruqni oʻzingiz bajaring:
+Keyingi oʻzgarishlarni yuborish uchun:
+
+```bash
+cd d:/myprojects/journal
+git add -A
+git commit -m "..."
+git push origin main
+```
+
+Agar push muvaffaqiyatsiz boʻlsa (autentifikatsiya yoki tarmoq sababli),
+quyidagi buyruqni oʻzingiz bajaring:
 
 ```bash
 cd d:/myprojects/journal
@@ -372,10 +388,9 @@ git branch -M main
 git push -u origin main
 ```
 
-Push’dan keyin GitHub Actions avtomatik ishga tushadi
-(`.github/workflows/ci.yml`): lint, 361 test, migratsiya tekshiruvi, zaxira va
-tiklash mashqi. Natijani repozitoriyning **Actions** boʻlimida koʻrasiz —
-SPEC §15.17 dagi "CI yashil" bandi shu yerda tasdiqlanadi.
+Har bir push’dan keyin GitHub Actions avtomatik ishga tushadi
+(`.github/workflows/ci.yml`): lint, 360 test, migratsiya tekshiruvi, zaxira va
+tiklash mashqi. Natijani repozitoriyning **Actions** boʻlimida koʻrasiz.
 
 ---
 
