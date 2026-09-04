@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "Review invitation" %} · {{ site_settings.journal_name }}{% endblock %}
+
+{% block content %}
+  <div class="container-page max-w-[640px] py-12">
+    {% if already %}
+      <h1 class="text-2xl mb-3">{% translate "You have already responded" %}</h1>
+      <p class="muted">{% translate "This invitation has already been answered. Open your dashboard to see the details." %}</p>
+    {% elif answer == "accept" %}
+      <h1 class="text-2xl mb-3">{% translate "Thank you for accepting" %}</h1>
+      <p class="muted">{% translate "Sign in to read the manuscript and complete the review form." %}</p>
+    {% else %}
+      <h1 class="text-2xl mb-3">{% translate "Invitation declined" %}</h1>
+      <p class="muted">{% translate "Thank you for letting us know. We will approach another reviewer." %}</p>
+    {% endif %}
+    <a class="btn btn-primary mt-6" href="{% url 'review:dashboard' %}">{% translate "Go to my reviews" %}</a>
+  </div>
+{% endblock %}

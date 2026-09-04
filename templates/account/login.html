@@ -1,0 +1,30 @@
+{% extends "account/base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "Sign in" %} · {{ site_settings.journal_name }}{% endblock %}
+
+{% block auth_content %}
+  <h1 class="text-2xl mb-1">{% translate "Sign in" %}</h1>
+  <p class="muted text-sm mb-6">{% translate "Use the e-mail address you registered with." %}</p>
+
+  <form method="post" action="{% url 'account_login' %}" novalidate>
+    {% csrf_token %}
+    {% for error in form.non_field_errors %}<p class="field-error mb-3">{{ error }}</p>{% endfor %}
+    {% for field in form %}{% include "includes/form_field.html" with field=field %}{% endfor %}
+    {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
+    {% endif %}
+    <button type="submit" class="btn btn-primary w-full">{% translate "Sign in" %}</button>
+  </form>
+
+  <a class="btn btn-secondary w-full mt-3" href="{% url 'orcid_login' %}?process=login"
+     style="border-color: var(--color-orcid)">
+    <span aria-hidden="true" style="color:var(--color-orcid);font-weight:700">iD</span>
+    {% translate "Sign in with ORCID" %}
+  </a>
+
+  <div class="rule mt-6 pt-4 text-sm flex flex-col gap-2">
+    <a href="{% url 'account_reset_password' %}">{% translate "Forgot your password?" %}</a>
+    <a href="{% url 'account_signup' %}">{% translate "Create an account" %}</a>
+  </div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% load i18n %}
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
+     x-data="{ open: true, copied: false }" x-show="open" @keydown.escape.window="open = false"
+     role="dialog" aria-modal="true" aria-labelledby="cite-title">
+  <div class="w-full max-w-2xl bg-[--color-paper] rounded-[--radius-card] border border-[--color-line] shadow-lg"
+       @click.outside="open = false">
+    <div class="flex items-center justify-between p-5 border-b border-[--color-line]">
+      <h2 id="cite-title" class="text-lg">{% translate "Cite this article" %}</h2>
+      <button type="button" class="btn btn-ghost btn-sm" @click="open = false" aria-label="{% translate 'Close' %}">&times;</button>
+    </div>
+
+    <div class="p-5">
+      <div class="flex flex-wrap gap-1.5 mb-4" role="tablist">
+        {% for item in citation_styles %}
+          <a class="chip {% if item.code == style %}chip-jel{% endif %}"
+             href="{% url 'journal:article_cite' article.pk %}?style={{ item.code }}"
+             hx-get="{% url 'journal:article_cite' article.pk %}?style={{ item.code }}"
+             hx-target="#modal-root" hx-swap="innerHTML">{{ item.label }}</a>
+        {% endfor %}
+      </div>
+
+      <div class="card-muted">
+        <p class="text-sm leading-relaxed" id="citation-text">{{ citation }}</p>
+      </div>
+
+      <div class="flex flex-wrap gap-2 mt-4">
+        <button type="button" class="btn btn-secondary btn-sm"
+                @click="navigator.clipboard.writeText(document.getElementById('citation-text').innerText); copied = true; setTimeout(() => copied = false, 2000)">
+          <span x-show="!copied">{% translate "Copy citation" %}</span>
+          <span x-show="copied" x-cloak>{% translate "Copied" %}</span>
+        </button>
+        <a class="btn btn-secondary btn-sm" href="{% url 'journal:article_export' article.pk 'bibtex' %}">BibTeX</a>
+        <a class="btn btn-secondary btn-sm" href="{% url 'journal:article_export' article.pk 'ris' %}">RIS</a>
+        <a class="btn btn-secondary btn-sm" href="{% url 'journal:article_export' article.pk 'enw' %}">EndNote</a>
+        <a class="btn btn-secondary btn-sm" href="{% url 'journal:article_export' article.pk 'json' %}">CSL-JSON</a>
+      </div>
+    </div>
+  </div>
+</div>

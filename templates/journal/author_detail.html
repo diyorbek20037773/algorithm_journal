@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ author.full_name }} · {{ site_settings.journal_name }}{% endblock %}
+
+{% block content %}
+  <div class="container-page">
+    <p class="eyebrow">{% translate "Author" %}</p>
+    <h1 class="text-3xl mt-1">{{ author.full_name }}</h1>
+    <p class="muted mt-1">{{ author.affiliation_display }}</p>
+    {% if author.orcid %}
+      <p class="meta mt-1"><a href="{{ author.orcid_url }}" rel="noopener">ORCID {{ author.orcid }}</a></p>
+    {% endif %}
+    <div class="section-heading mt-8"><h2>{% translate "Published articles" %}</h2></div>
+    {% for article in articles %}
+      {% include "journal/partials/article_card.html" with article=article %}
+    {% empty %}
+      <div class="empty-state"><p>{% translate "No published articles yet." %}</p></div>
+    {% endfor %}
+    {% include "journal/partials/pagination.html" %}
+  </div>
+{% endblock %}

@@ -1,0 +1,4 @@
+Contact: mailto:{{ site_settings.contact_email }}
+Expires: {{ current_year|add:1 }}-01-01T00:00:00.000Z
+Preferred-Languages: en, uz, ru
+Canonical: {{ site_url }}/.well-known/security.txt

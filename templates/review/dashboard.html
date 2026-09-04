@@ -1,0 +1,67 @@
+{% extends "dashboard/_base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "My reviews" %} · {{ site_settings.journal_name }}{% endblock %}
+
+{% block dashboard_content %}
+  <div class="flex items-center justify-between mb-6">
+    <h1 class="text-2xl">{% translate "My reviews" %}</h1>
+    <a class="btn btn-secondary btn-sm" href="{% url 'review:certificate' %}">{% translate "Download certificate" %}</a>
+  </div>
+
+  <section class="mb-10">
+    <div class="section-heading"><h2>{% translate "Invitations" %}</h2></div>
+    {% for assignment in invitations %}
+      <div class="card mb-3">
+        <p class="font-medium">{{ assignment.round.submission.title }}</p>
+        <p class="meta">{{ assignment.round.submission.section.name }} · {% translate "Due" %} {{ assignment.due_at|date:"j F Y" }}</p>
+        <form method="post" action="{% url 'review:respond_dashboard' assignment.pk %}" class="flex flex-wrap items-center gap-2 mt-3">
+          {% csrf_token %}
+          <a class="btn btn-ghost btn-sm" href="{% url 'review:assignment_detail' assignment.pk %}">{% translate "View the manuscript" %}</a>
+          <button type="submit" name="answer" value="accept" class="btn btn-primary btn-sm">{% translate "Accept" %}</button>
+          <button type="submit" name="answer" value="decline" class="btn btn-secondary btn-sm">{% translate "Decline" %}</button>
+        </form>
+      </div>
+    {% empty %}
+      <div class="empty-state">{% translate "No open invitations." %}</div>
+    {% endfor %}
+  </section>
+
+  <section class="mb-10">
+    <div class="section-heading"><h2>{% translate "Active reviews" %}</h2></div>
+    {% for assignment in active %}
+      <div class="card mb-3">
+        <p class="font-medium">{{ assignment.round.submission.title }}</p>
+        <p class="meta">
+          {% translate "Due" %} {{ assignment.due_at|date:"j F Y" }} —
+          {% if assignment.days_remaining >= 0 %}
+            {% blocktranslate count counter=assignment.days_remaining %}{{ counter }} day left{% plural %}{{ counter }} days left{% endblocktranslate %}
+          {% else %}
+            <span style="color:var(--color-danger)">{% translate "overdue" %}</span>
+          {% endif %}
+        </p>
+        <a class="btn btn-primary btn-sm mt-3" href="{% url 'review:review_form' assignment.pk %}">{% translate "Open the review form" %}</a>
+      </div>
+    {% empty %}
+      <div class="empty-state">{% translate "No active reviews." %}</div>
+    {% endfor %}
+  </section>
+
+  <section>
+    <div class="section-heading"><h2>{% translate "Completed" %}</h2></div>
+    <table class="table">
+      <thead><tr><th>{% translate "Manuscript" %}</th><th>{% translate "Recommendation" %}</th><th>{% translate "Submitted" %}</th></tr></thead>
+      <tbody>
+        {% for assignment in completed %}
+          <tr>
+            <td>{{ assignment.round.submission.title|truncatechars:60 }}</td>
+            <td class="meta">{% if assignment.review %}{{ assignment.review.get_recommendation_display }}{% endif %}</td>
+            <td class="meta">{{ assignment.completed_at|date:"j M Y" }}</td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="3"><div class="empty-state">{% translate "No completed reviews yet." %}</div></td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+{% endblock %}

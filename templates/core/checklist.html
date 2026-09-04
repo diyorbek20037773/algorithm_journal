@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ page.title }} · {{ site_settings.journal_name }}{% endblock %}
+
+{% block content %}
+  <div class="container-page max-w-[820px]">
+    <h1 class="text-3xl mb-2">{{ page.title }}</h1>
+    <p class="muted mb-8">{% translate "Tick every item before you open the submission wizard. Nothing is stored on the server." %}</p>
+
+    <div x-data="{ items: {}, get done() { return Object.values(this.items).filter(Boolean).length } }">
+      <div class="card mb-6">
+        <p class="footer-heading">{% translate "Progress" %}</p>
+        <p class="text-2xl font-serif" x-text="done + ' / 12'">0 / 12</p>
+      </div>
+
+      <ul class="space-y-1">
+        {% for item in checklist_items %}
+          <li class="checkbox-row card">
+            <input type="checkbox" id="check-{{ forloop.counter }}" x-model="items[{{ forloop.counter }}]"
+                   class="mt-1 w-5 h-5">
+            <label for="check-{{ forloop.counter }}">{{ item }}</label>
+          </li>
+        {% endfor %}
+      </ul>
+
+      <a class="btn btn-primary mt-8" href="{% url 'submissions:wizard_start' %}">{% translate "Go to the submission wizard" %}</a>
+    </div>
+
+    <div class="prose-journal mt-12">{{ page.body_html|safe }}</div>
+  </div>
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends "dashboard/_base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "Article production" %} — #{{ article.pk }}{% endblock %}
+
+{% block dashboard_content %}
+  <p class="meta">#{{ article.pk }} · {{ article.get_status_display }}</p>
+  <h1 class="text-2xl mt-1 mb-6">{{ article.title }}</h1>
+
+  <section class="mb-8">
+    <div class="section-heading"><h2>{% translate "Metadata completeness" %}</h2></div>
+    <ul class="grid gap-1 sm:grid-cols-2">
+      {% for check in completeness %}
+        <li class="flex items-center gap-2 text-sm">
+          <span class="dot" style="background: var(--color-{% if check.ok %}success{% elif check.level == 'warning' %}warning{% else %}danger{% endif %})"></span>
+          {{ check.label }}
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section class="mb-8">
+    <div class="section-heading"><h2>{% translate "Galleys" %}</h2></div>
+    <form method="post" action="{% url 'production:upload_galley' article.pk %}" enctype="multipart/form-data"
+          class="card grid gap-3 sm:grid-cols-[1fr_1fr_auto] items-end">
+      {% csrf_token %}
+      <div>
+        <label class="field-label" for="galley-label">{% translate "Label" %}</label>
+        <select class="select" id="galley-label" name="label">
+          <option value="PDF">PDF</option>
+          <option value="PDF-UZ">PDF (Uzbek)</option>
+          <option value="PDF-RU">PDF (Russian)</option>
+          <option value="XML">JATS XML</option>
+          <option value="SUPP">{% translate "Supplementary" %}</option>
+        </select>
+      </div>
+      <div>
+        <label class="field-label" for="galley-file">{% translate "File" %}</label>
+        <input class="input" id="galley-file" type="file" name="file" required>
+      </div>
+      <button type="submit" class="btn btn-secondary">{% translate "Upload galley" %}</button>
+    </form>
+    <ul class="mt-4 space-y-1">
+      {% for galley in galleys %}
+        <li class="meta">{{ galley.get_label_display }} — {{ galley.size_display }}{% if galley.is_primary %} · {% translate "primary" %}{% endif %}</li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section class="mb-8">
+    <div class="section-heading"><h2>DOI</h2></div>
+    <p class="meta mb-3">{{ article.doi|default:_("not assigned") }} — {{ article.get_doi_status_display }}</p>
+    <form method="post" action="{% url 'production:assign_doi' article.pk %}">
+      {% csrf_token %}<button type="submit" class="btn btn-secondary">{% translate "Reserve the DOI" %}</button>
+    </form>
+  </section>
+
+  <section class="mb-8">
+    <div class="section-heading"><h2>{% translate "Publication" %}</h2></div>
+    {% if blockers %}
+      <div class="alert alert-warning mb-3">
+        <p class="font-medium">{% translate "Publication is blocked by:" %}</p>
+        <ul class="text-sm mt-1">{% for item in blockers %}<li>• {{ item }}</li>{% endfor %}</ul>
+      </div>
+    {% endif %}
+    <div class="flex flex-wrap gap-2">
+      <form method="post" action="{% url 'production:publish_online_first' article.pk %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary" {% if blockers %}disabled{% endif %}>{% translate "Publish Online First" %}</button>
+      </form>
+    </div>
+
+    <form method="post" action="{% url 'production:schedule' article.pk %}" class="card mt-4 grid gap-3 sm:grid-cols-4 items-end">
+      {% csrf_token %}
+      <div>
+        <label class="field-label" for="schedule-issue">{% translate "Issue" %}</label>
+        <select class="select" id="schedule-issue" name="issue">
+          {% for issue in issues %}<option value="{{ issue.pk }}">{{ issue.label }}</option>{% endfor %}
+        </select>
+      </div>
+      <div><label class="field-label" for="pages-start">{% translate "First page" %}</label><input class="input" id="pages-start" name="pages_start" value="{{ article.pages_start }}"></div>
+      <div><label class="field-label" for="pages-end">{% translate "Last page" %}</label><input class="input" id="pages-end" name="pages_end" value="{{ article.pages_end }}"></div>
+      <button type="submit" class="btn btn-secondary">{% translate "Schedule into the issue" %}</button>
+    </form>
+  </section>
+{% endblock %}

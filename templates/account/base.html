@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+  <div class="container-page max-w-[440px] py-10">
+    <div class="card">
+      {% block auth_content %}{% endblock %}
+    </div>
+  </div>
+{% endblock %}

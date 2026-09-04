@@ -1,0 +1,36 @@
+{% load i18n %}
+<table class="table">
+  <thead>
+    <tr>
+      <th>{% translate "Reviewer" %}</th>
+      <th>{% translate "Expertise" %}</th>
+      <th>{% translate "Active" %}</th>
+      <th>{% translate "Completed" %}</th>
+      <th>{% translate "Quality" %}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for candidate in candidates %}
+      <tr>
+        <td>
+          {{ candidate.user.get_full_name }}<br>
+          <span class="meta">{{ candidate.user.email }}</span>
+        </td>
+        <td class="muted text-sm">{{ candidate.expertise|join:", "|truncatechars:60 }}</td>
+        <td class="meta">{{ candidate.active_reviews }}</td>
+        <td class="meta">{{ candidate.completed_reviews }}</td>
+        <td class="meta">{{ candidate.quality|default:"—" }}</td>
+        <td>
+          <form method="post" action="{% url 'dashboard:invite_reviewer' submission.pk %}">
+            {% csrf_token %}
+            <input type="hidden" name="reviewer_id" value="{{ candidate.user.pk }}">
+            <button type="submit" class="btn btn-secondary btn-sm">{% translate "Invite" %}</button>
+          </form>
+        </td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="6"><div class="empty-state">{% translate "No matching reviewers. Invite someone by e-mail below." %}</div></td></tr>
+    {% endfor %}
+  </tbody>
+</table>

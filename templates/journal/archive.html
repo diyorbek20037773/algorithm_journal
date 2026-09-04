@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "Archive" %} · {{ site_settings.journal_name }}{% endblock %}
+
+{% block content %}
+  <div class="container-page">
+    <h1 class="text-3xl mb-2">{% translate "Archive" %}</h1>
+    <p class="muted mb-8">{% translate "Every issue published by the journal, newest first." %}</p>
+
+    {% if years %}
+      <div class="flex flex-wrap gap-2 mb-8">
+        <a class="chip {% if not selected_year %}chip-jel{% endif %}" href="{% url 'journal:archive' %}">{% translate "All years" %}</a>
+        {% for year in years %}
+          <a class="chip {% if selected_year == year %}chip-jel{% endif %}" href="?year={{ year }}">{{ year }}</a>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% for volume in volumes %}
+      <section class="mb-12">
+        <div class="section-heading">
+          <h2>{% translate "Volume" %} {{ volume.number }} ({{ volume.year }})</h2>
+          <span class="meta">{{ volume.issues.all|length }} {% translate "issues" %}</span>
+        </div>
+        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {% for issue in volume.issues.all %}
+            <a class="block" href="{{ issue.get_absolute_url }}">
+              <div class="issue-cover">
+                <p class="meta">{{ site_settings.short_code }}</p>
+                <div>
+                  <p class="issue-cover-vol">Vol. {{ issue.volume.number }}</p>
+                  <p class="issue-cover-vol">No. {{ issue.number }}</p>
+                </div>
+                <p class="meta">{{ issue.published_at|date:"F Y" }}</p>
+              </div>
+              <p class="font-medium mt-3">{% translate "Issue" %} {{ issue.number }}{% if issue.title %} — {{ issue.title }}{% endif %}</p>
+              <p class="meta">{% blocktranslate count counter=issue.article_count %}{{ counter }} article{% plural %}{{ counter }} articles{% endblocktranslate %}</p>
+            </a>
+          {% endfor %}
+        </div>
+      </section>
+    {% empty %}
+      <div class="empty-state">
+        <p>{% translate "No issues have been published yet." %}</p>
+        <a class="btn btn-secondary mt-4" href="{% url 'journal:online_first' %}">{% translate "See Online First articles" %}</a>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

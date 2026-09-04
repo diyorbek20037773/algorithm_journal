@@ -1,0 +1,12 @@
+{% extends "core/_page_shell.html" %}
+{% load i18n %}
+
+{% block page_aside %}
+  <div class="card">
+    <p class="footer-heading">{% translate "Reviewer resources" %}</p>
+    {% for item in reviewer_pages %}
+      <a class="footer-link" href="{{ item.get_absolute_url }}">{{ item.title }}</a>
+    {% endfor %}
+    <a class="btn btn-secondary w-full mt-4" href="{% url 'review:dashboard' %}">{% translate "Reviewer dashboard" %}</a>
+  </div>
+{% endblock %}

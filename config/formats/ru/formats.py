@@ -1,0 +1,14 @@
+"""Date, time and number formats for the Russian locale (SPEC S10)."""
+
+DATE_FORMAT = "j F Y г."
+DATETIME_FORMAT = "j F Y г., H:i"
+SHORT_DATE_FORMAT = "d.m.Y"
+SHORT_DATETIME_FORMAT = "d.m.Y H:i"
+YEAR_MONTH_FORMAT = "F Y"
+MONTH_DAY_FORMAT = "j F"
+TIME_FORMAT = "H:i"
+FIRST_DAY_OF_WEEK = 1
+DECIMAL_SEPARATOR = ","
+THOUSAND_SEPARATOR = " "
+NUMBER_GROUPING = 3
+USE_THOUSAND_SEPARATOR = True

@@ -1,0 +1,19 @@
+# DECISIONS.md
+
+Append-only log of engineering decisions taken while building the platform.
+Every entry: date · decision · reason. Defaults from `SPEC.md §2` are not
+repeated here; only choices the specification left open, or deviations that had
+to be made, are recorded.
+
+| # | Date | Decision | Reason |
+|---|---|---|---|
+| 1 | 2026-09-04 | `apps/review` is a **view-only** app: it owns the reviewer-facing views, forms and templates, while every reviewer model (`ReviewRound`, `ReviewAssignment`, `Review`) lives in `apps/submissions`. | SPEC §3 permits merging the two. Keeping one migration graph for the whole workflow avoids circular foreign keys, while the separate app keeps reviewer URLs and templates isolated so the non-leakage tests have a single surface to check. |
+| 2 | 2026-09-04 | The Django app label of `apps.orcid` is `orcid_integration`. | `allauth.socialaccount.providers.orcid` already registers the label `orcid`; Django refuses duplicate labels. The directory name from CLAUDE.md §3 is unchanged. |
+| 3 | 2026-09-04 | Machine-generated Uzbek Cyrillic values are tracked in an `auto_translit` JSON field supplied by the abstract `AutoTranslitMixin`, rather than on a single shared base model. | Only translated models need the column; adding it to `TimeStampedModel` would put an unused JSON column on metrics and audit tables. |
+| 4 | 2026-09-04 | Language-neutral file routes (`/article/<id>/pdf/`, `/article/<id>/galley/<id>/`) use **unnamespaced** URL names (`article_pdf`, `galley_download`). | They are included at the project root, outside `i18n_patterns`. Registering a second `journal:` namespace instance would make `reverse()` ambiguous. |
+| 5 | 2026-09-04 | Citation rendering tries `citeproc-py` first and falls back to a hand-written renderer with the same interface when a CSL style is unavailable or raises. | SPEC §1 requires the fallback; it also keeps the cite modal working in offline environments where `citeproc-py-styles` data is missing. |
+| 6 | 2026-09-04 | `seed/jel.json` ships the complete JEL level‑1 (20) and level‑2 (140) trees plus 166 widely used level‑3 codes, and `manage.py import_jel <csv>` loads the full official AEA export when the editorial office downloads it. | The complete 3-character list is not redistributable as reliable offline data; hand-transcribing ~850 labels risks silent errors in official terminology. The importer makes the full list a one-command update, and the seeded subset already covers every code used by the demo content and by economics submissions in scope. |
+| 7 | 2026-09-04 | The Crossref XSD bundle is optional: `apps.crossref.xml_builder.validate()` uses `crossref5.4.0.xsd` when present under `apps/crossref/schemas/`, otherwise it performs well-formedness plus a structural conformance check of every element Crossref requires. | The XSD and its imports cannot be fetched during an offline build. `manage.py fetch_crossref_schema` downloads the bundle when the server has network access, after which validation is fully schema-based. |
+| 8 | 2026-09-04 | Development and CI use Postgres and Redis on non-default host ports when the default ports are occupied; `docker-compose.yml` still publishes 5432/6379 for the client's clean machine. | Another project already bound 5432/6379 on the build machine. Nothing in the delivered compose file changed. |
+| 9 | 2026-09-04 | The built Tailwind stylesheet `static/css/output.css` is committed to the repository. | `django-tailwind-cli` downloads a standalone binary on first build; committing the compiled CSS guarantees the site renders correctly on a machine without outbound network access. `make tailwind` regenerates it. |
+| 10 | 2026-09-04 | `django-csp` is configured through the 4.x `CONTENT_SECURITY_POLICY` dict rather than the deprecated `CSP_*` settings. | The pinned release removed the flat settings; the dict form is the supported API. |

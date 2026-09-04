@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "JEL classification" %} · {{ site_settings.journal_name }}{% endblock %}
+
+{% block content %}
+  <div class="container-page">
+    <h1 class="text-3xl mb-2">{% translate "JEL classification" %}</h1>
+    <p class="muted mb-8 max-w-[70ch]">
+      {% translate "Browse published research by the Journal of Economic Literature classification system." %}
+    </p>
+    <div class="grid gap-6 md:grid-cols-2">
+      {% for jel in jel_top_level %}
+        <section class="card">
+          <h2 class="text-lg">
+            <a href="{{ jel.get_absolute_url }}"><span class="meta">{{ jel.code }}</span> {{ jel.label }}</a>
+            <span class="meta">({{ jel.article_total }})</span>
+          </h2>
+          <div class="flex flex-wrap gap-1.5 mt-3">
+            {% for child in jel.children.all %}
+              <a class="chip chip-jel" href="{{ child.get_absolute_url }}" title="{{ child.label }}">{{ child.code }}</a>
+            {% endfor %}
+          </div>
+        </section>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

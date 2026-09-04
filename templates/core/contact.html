@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ page.title }} · {{ site_settings.journal_name }}{% endblock %}
+
+{% block content %}
+  <div class="container-page grid gap-10 lg:grid-cols-2 items-start">
+    <div>
+      <h1 class="text-3xl mb-6">{{ page.title }}</h1>
+      <div class="prose-journal">{{ page.body_html|safe }}</div>
+      <dl class="dl-meta card-muted mt-8">
+        <dt>{% translate "Publisher" %}</dt><dd>{{ site_settings.publisher_name }}</dd>
+        {% if site_settings.contact_address %}
+          <dt>{% translate "Address" %}</dt><dd>{{ site_settings.contact_address|linebreaksbr }}</dd>
+        {% endif %}
+        <dt>{% translate "E-mail" %}</dt>
+        <dd><a href="mailto:{{ site_settings.contact_email }}">{{ site_settings.contact_email }}</a></dd>
+        {% if site_settings.contact_phone %}
+          <dt>{% translate "Telephone" %}</dt><dd class="meta">{{ site_settings.contact_phone }}</dd>
+        {% endif %}
+      </dl>
+    </div>
+
+    <div class="card">
+      <h2 class="text-lg mb-4">{% translate "Write to the editorial office" %}</h2>
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {% for field in form %}
+          {% if field.name == "website" %}
+            <div class="visually-hidden" aria-hidden="true">{{ field }}</div>
+          {% else %}
+            <div class="mb-4">
+              <label class="field-label" for="{{ field.id_for_label }}">
+                {{ field.label }}{% if field.field.required %}<span class="required-star">*</span>{% endif %}
+              </label>
+              {{ field }}
+              {% if field.help_text %}<p class="field-help">{{ field.help_text }}</p>{% endif %}
+              {% for error in field.errors %}<p class="field-error">{{ error }}</p>{% endfor %}
+            </div>
+          {% endif %}
+        {% endfor %}
+        <button type="submit" class="btn btn-primary w-full">{% translate "Send message" %}</button>
+        <p class="field-help mt-3">{% translate "We usually reply within three working days." %}</p>
+      </form>
+    </div>
+  </div>
+{% endblock %}

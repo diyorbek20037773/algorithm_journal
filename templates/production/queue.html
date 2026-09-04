@@ -1,0 +1,62 @@
+{% extends "dashboard/_base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "Production" %} · {{ site_settings.journal_name }}{% endblock %}
+
+{% block dashboard_content %}
+  <h1 class="text-2xl mb-6">{% translate "Production" %}</h1>
+
+  {% for queue in queues %}
+    <section class="mb-8">
+      <div class="section-heading"><h2>{{ queue.label }}</h2><span class="meta">{{ queue.items|length }}</span></div>
+      <table class="table">
+        <tbody>
+          {% for submission in queue.items %}
+            <tr>
+              <td class="meta">{{ submission.reference }}</td>
+              <td><a href="{% url 'production:submission' submission.pk %}">{{ submission.title|truncatechars:70 }}</a></td>
+              <td class="meta">{{ submission.section.name }}</td>
+            </tr>
+          {% empty %}
+            <tr><td><span class="muted text-sm">{% translate "Empty." %}</span></td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+  {% endfor %}
+
+  <section class="mb-8">
+    <div class="section-heading"><h2>{% translate "Issues in preparation" %}</h2></div>
+    <ul class="space-y-2">
+      {% for issue in draft_issues %}
+        <li class="card flex items-center justify-between">
+          <span>{{ issue.label }}</span>
+          <a class="btn btn-secondary btn-sm" href="{% url 'production:issue_builder' issue.pk %}">{% translate "Open the issue builder" %}</a>
+        </li>
+      {% empty %}
+        <li class="muted text-sm">{% translate "No unpublished issues." %}</li>
+      {% endfor %}
+    </ul>
+    <form method="post" action="{% url 'production:create_issue' %}" class="card mt-4 grid gap-3 sm:grid-cols-4 items-end">
+      {% csrf_token %}
+      <div><label class="field-label" for="new-volume">{% translate "Volume" %}</label><input class="input" id="new-volume" type="number" name="volume" value="1" min="1"></div>
+      <div><label class="field-label" for="new-year">{% translate "Year" %}</label><input class="input" id="new-year" type="number" name="year" value="{{ current_year }}"></div>
+      <div><label class="field-label" for="new-number">{% translate "Issue" %}</label><input class="input" id="new-number" type="number" name="number" value="1" min="1" max="12"></div>
+      <button type="submit" class="btn btn-secondary">{% translate "Create issue" %}</button>
+    </form>
+  </section>
+
+  <section>
+    <div class="section-heading"><h2>{% translate "Online First" %}</h2></div>
+    <ul class="space-y-2">
+      {% for article in online_first %}
+        <li class="card flex items-center justify-between gap-4">
+          <span class="min-w-0">{{ article.title|truncatechars:70 }}<br><span class="meta">{{ article.doi }}</span></span>
+          <a class="btn btn-secondary btn-sm" href="{% url 'production:article' article.pk %}">{% translate "Open" %}</a>
+        </li>
+      {% empty %}
+        <li class="muted text-sm">{% translate "No Online First articles." %}</li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endblock %}

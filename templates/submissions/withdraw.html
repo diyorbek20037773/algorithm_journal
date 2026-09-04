@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "Withdraw the manuscript" %} · {{ site_settings.journal_name }}{% endblock %}
+
+{% block content %}
+  <div class="container-page max-w-[640px]">
+    <h1 class="text-3xl mb-2">{% translate "Withdraw the manuscript" %}</h1>
+    <p class="muted mb-6">{{ submission.reference }} — {{ submission.title }}</p>
+    <div class="alert alert-warning mb-6">
+      {% translate "Withdrawing ends the editorial process. Reviewers who have accepted the invitation will be informed." %}
+    </div>
+    <form method="post" novalidate>
+      {% csrf_token %}
+      {% for field in form %}{% include "includes/form_field.html" with field=field %}{% endfor %}
+      <div class="flex gap-3 mt-4">
+        <button type="submit" class="btn btn-danger">{% translate "Withdraw" %}</button>
+        <a class="btn btn-secondary" href="{% url 'dashboard:home' %}">{% translate "Cancel" %}</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}

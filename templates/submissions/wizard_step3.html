@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "Submission — step 3" %} · {{ site_settings.journal_name }}{% endblock %}
+
+{% block content %}
+  <div class="container-page max-w-[960px]">
+    <h1 class="text-3xl mb-6">{% translate "Metadata" %}</h1>
+    {% include "includes/wizard_steps.html" %}
+
+    <form method="post" novalidate x-data="{ lang: 'en' }">
+      {% csrf_token %}
+
+      <div class="flex gap-1 mb-4" role="tablist">
+        <button type="button" class="btn btn-ghost btn-sm" :class="lang === 'en' ? 'font-semibold underline' : ''" @click="lang = 'en'">{% translate "English" %}</button>
+        <button type="button" class="btn btn-ghost btn-sm" :class="lang === 'uz' ? 'font-semibold underline' : ''" @click="lang = 'uz'">{% translate "Uzbek" %}</button>
+        <button type="button" class="btn btn-ghost btn-sm" :class="lang === 'ru' ? 'font-semibold underline' : ''" @click="lang = 'ru'">{% translate "Russian" %}</button>
+        <span class="meta ml-auto self-center">{% translate "The Uzbek Cyrillic version is generated automatically." %}</span>
+      </div>
+
+      {% for code in "en,uz,ru"|slice:":0" %}{% endfor %}
+      <div x-show="lang === 'en'">
+        {% include "includes/form_field.html" with field=form.title_en %}
+        {% include "includes/form_field.html" with field=form.abstract_en %}
+        {% include "includes/form_field.html" with field=form.keywords_en %}
+      </div>
+      <div x-show="lang === 'uz'" x-cloak>
+        {% include "includes/form_field.html" with field=form.title_uz %}
+        {% include "includes/form_field.html" with field=form.abstract_uz %}
+        {% include "includes/form_field.html" with field=form.keywords_uz %}
+      </div>
+      <div x-show="lang === 'ru'" x-cloak>
+        {% include "includes/form_field.html" with field=form.title_ru %}
+        {% include "includes/form_field.html" with field=form.abstract_ru %}
+        {% include "includes/form_field.html" with field=form.keywords_ru %}
+      </div>
+
+      {% include "includes/form_field.html" with field=form.jel_codes %}
+
+      <fieldset class="card mt-6">
+        <legend class="footer-heading px-1">{% translate "Authors" %}</legend>
+        {{ formset.management_form }}
+        {% for author_form in formset %}
+          <div class="rule pt-4 mt-4 first:border-0 first:pt-0 first:mt-0">
+            {{ author_form.id }}
+            <div class="grid gap-3 sm:grid-cols-2">
+              {% for field in author_form.visible_fields %}
+                {% include "includes/form_field.html" with field=field %}
+              {% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+        <p class="field-help mt-3">
+          {% translate "Add more authors by saving and returning to this step; mark exactly one corresponding author." %}
+        </p>
+      </fieldset>
+
+      <fieldset class="card mt-6">
+        <legend class="footer-heading px-1">{% translate "Statements and references" %}</legend>
+        {% include "includes/form_field.html" with field=form.funding_statement %}
+        {% include "includes/form_field.html" with field=form.conflict_of_interest_statement %}
+        {% include "includes/form_field.html" with field=form.data_availability_statement %}
+        {% include "includes/form_field.html" with field=form.references %}
+      </fieldset>
+
+      <div class="flex gap-3 mt-8">
+        <a class="btn btn-secondary" href="{% url 'submissions:wizard_step2' submission.pk %}">{% translate "Back" %}</a>
+        <button type="submit" class="btn btn-primary">{% translate "Save and continue" %}</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}

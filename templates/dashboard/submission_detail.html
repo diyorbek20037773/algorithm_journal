@@ -1,0 +1,256 @@
+{% extends "dashboard/_base.html" %}
+{% load i18n %}
+
+{% block title %}{{ submission.reference|default:submission.title }} · {% translate "Dashboard" %}{% endblock %}
+
+{% block dashboard_content %}
+  <div class="flex flex-wrap items-start justify-between gap-4 mb-6">
+    <div class="min-w-0">
+      <p class="meta">{{ submission.reference|default:"—" }}</p>
+      <h1 class="text-2xl mt-1">{{ submission.title }}</h1>
+      <p class="muted mt-1">
+        {{ submission.section.name }} · {{ submission.get_article_type_display }} ·
+        {% translate "Submitted" %} {{ submission.submitted_at|date:"j F Y"|default:"—" }}
+      </p>
+    </div>
+    {% include "includes/status_chip.html" with label=submission.get_status_display tone=submission.status_display_class %}
+  </div>
+
+  <nav class="flex flex-wrap gap-1 border-b border-[--color-line] mb-6" role="tablist">
+    {% for key, label in tabs %}{% endfor %}
+    <a class="nav-link {% if active_tab == 'summary' %}font-semibold text-[--color-accent]{% endif %}" href="?tab=summary">{% translate "Summary" %}</a>
+    <a class="nav-link {% if active_tab == 'files' %}font-semibold text-[--color-accent]{% endif %}" href="?tab=files">{% translate "Files" %}</a>
+    {% if is_editor %}
+      <a class="nav-link {% if active_tab == 'reviewers' %}font-semibold text-[--color-accent]{% endif %}" href="?tab=reviewers">{% translate "Reviewers" %}</a>
+      <a class="nav-link {% if active_tab == 'reviews' %}font-semibold text-[--color-accent]{% endif %}" href="?tab=reviews">{% translate "Reviews" %}</a>
+      <a class="nav-link {% if active_tab == 'decision' %}font-semibold text-[--color-accent]{% endif %}" href="?tab=decision">{% translate "Decision" %}</a>
+    {% endif %}
+    <a class="nav-link {% if active_tab == 'discussion' %}font-semibold text-[--color-accent]{% endif %}" href="?tab=discussion">{% translate "Discussion" %}</a>
+    <a class="nav-link {% if active_tab == 'history' %}font-semibold text-[--color-accent]{% endif %}" href="?tab=history">{% translate "History" %}</a>
+  </nav>
+
+  {% if active_tab == "summary" %}
+    <dl class="dl-meta card-muted">
+      <dt>{% translate "Handling editor" %}</dt><dd>{{ submission.assigned_editor|default:_("not assigned") }}</dd>
+      <dt>{% translate "Language" %}</dt><dd>{{ submission.get_language_display }}</dd>
+      <dt>{% translate "Word count" %}</dt><dd class="meta">{{ submission.word_count }}</dd>
+      <dt>{% translate "Similarity" %}</dt>
+      <dd class="meta">
+        {% if submission.similarity_percent is not None %}
+          {{ submission.similarity_percent }}%
+          {% if submission.similarity_ok %}<span class="chip">{% translate "within threshold" %}</span>
+          {% else %}<span class="chip" style="color:var(--color-danger)">{% translate "above threshold" %}</span>{% endif %}
+        {% else %}{% translate "not checked" %}{% endif %}
+      </dd>
+      <dt>{% translate "Rounds" %}</dt><dd class="meta">{{ submission.current_round }}</dd>
+      <dt>{% translate "JEL codes" %}</dt>
+      <dd class="flex flex-wrap gap-1.5">{% for jel in submission.jel_codes.all %}<span class="chip chip-jel">{{ jel.code }}</span>{% endfor %}</dd>
+    </dl>
+
+    <section class="mt-6">
+      <div class="section-heading"><h2>{% translate "Abstract" %}</h2></div>
+      <div class="prose-journal text-sm">{{ submission.abstract|linebreaks }}</div>
+    </section>
+
+    {% if is_editor %}
+      <section class="mt-8">
+        <div class="section-heading"><h2>{% translate "Authors" %}</h2></div>
+        <table class="table">
+          <thead><tr><th>{% translate "Name" %}</th><th>{% translate "Affiliation" %}</th><th>ORCID</th><th>{% translate "E-mail" %}</th></tr></thead>
+          <tbody>
+            {% for author in authors %}
+              <tr>
+                <td>{{ author.full_name }}{% if author.is_corresponding %} ✉{% endif %}</td>
+                <td class="muted">{{ author.affiliation }}{% if author.country %}, {{ author.country.name }}{% endif %}</td>
+                <td class="meta">{{ author.orcid|default:"—" }}</td>
+                <td class="meta">{{ author.email }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </section>
+
+      <section class="mt-8">
+        <div class="section-heading"><h2>{% translate "Similarity check" %}</h2></div>
+        <form method="post" action="{% url 'dashboard:record_similarity' submission.pk %}" enctype="multipart/form-data">
+          {% csrf_token %}
+          {% for field in similarity_form %}{% include "includes/form_field.html" with field=field %}{% endfor %}
+          <button type="submit" class="btn btn-secondary">{% translate "Save the similarity result" %}</button>
+        </form>
+      </section>
+
+      <section class="mt-8">
+        <div class="section-heading"><h2>{% translate "Actions" %}</h2></div>
+        <div class="flex flex-wrap gap-2">
+          {% for transition in transitions %}
+            <form method="post" action="{% url 'dashboard:run_transition' submission.pk %}">
+              {% csrf_token %}
+              <input type="hidden" name="transition" value="{{ transition.name }}">
+              <button type="submit" class="btn btn-secondary btn-sm">{{ transition.label }}</button>
+            </form>
+          {% endfor %}
+          <a class="btn btn-primary btn-sm" href="{% url 'dashboard:decide' submission.pk %}">{% translate "Record a decision" %}</a>
+        </div>
+      </section>
+
+      <section class="mt-8">
+        <div class="section-heading"><h2>{% translate "Private notes" %}</h2></div>
+        <form method="post" action="{% url 'dashboard:add_note' submission.pk %}" class="mb-4">
+          {% csrf_token %}
+          <textarea class="textarea" name="body" rows="3" placeholder="{% translate 'Visible to editors only' %}"></textarea>
+          <button type="submit" class="btn btn-secondary btn-sm mt-2">{% translate "Add note" %}</button>
+        </form>
+        {% for note in notes %}
+          <div class="card mb-2">
+            <p class="meta">{{ note.author }} · {{ note.created_at|date:"j M Y, H:i" }}</p>
+            <p class="text-sm mt-1">{{ note.body }}</p>
+          </div>
+        {% endfor %}
+      </section>
+    {% endif %}
+
+  {% elif active_tab == "files" %}
+    <table class="table">
+      <thead><tr><th>{% translate "Kind" %}</th><th>{% translate "Version" %}</th><th>{% translate "Uploaded" %}</th><th></th></tr></thead>
+      <tbody>
+        {% for item in files %}
+          <tr>
+            <td>{{ item.get_kind_display }}</td>
+            <td class="meta">v{{ item.version }}</td>
+            <td class="meta">{{ item.created_at|date:"j M Y" }}</td>
+            <td><a class="btn btn-ghost btn-sm" href="{% url 'dashboard:submission_file' item.pk %}">{% translate "Download" %}</a></td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="4"><div class="empty-state">{% translate "No files." %}</div></td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+  {% elif active_tab == "reviewers" and is_editor %}
+    <a class="btn btn-primary mb-6" href="{% url 'dashboard:reviewer_finder' submission.pk %}">{% translate "Find reviewers" %}</a>
+    {% for round in rounds %}
+      <section class="mb-8">
+        <div class="section-heading"><h2>{% translate "Round" %} {{ round.number }}</h2></div>
+        <table class="table">
+          <thead>
+            <tr><th>{% translate "Reviewer" %}</th><th>{% translate "Status" %}</th><th>{% translate "Due" %}</th><th>{% translate "Reminders" %}</th><th></th></tr>
+          </thead>
+          <tbody>
+            {% for assignment in round.assignments.all %}
+              <tr>
+                <td>{{ assignment.reviewer.get_full_name }}<br><span class="meta">{{ assignment.reviewer.email }}</span></td>
+                <td>{{ assignment.get_status_display }}</td>
+                <td class="meta">{{ assignment.due_at|date:"j M Y" }}</td>
+                <td class="meta">{{ assignment.reminders_sent }}</td>
+                <td class="flex gap-2">
+                  <form method="post" action="{% url 'dashboard:remind_reviewer' assignment.pk %}">
+                    {% csrf_token %}<button class="btn btn-ghost btn-sm" type="submit">{% translate "Remind" %}</button>
+                  </form>
+                  <form method="post" action="{% url 'dashboard:cancel_assignment' assignment.pk %}">
+                    {% csrf_token %}<button class="btn btn-ghost btn-sm" type="submit">{% translate "Cancel" %}</button>
+                  </form>
+                </td>
+              </tr>
+            {% empty %}
+              <tr><td colspan="5"><div class="empty-state">{% translate "No reviewers have been invited yet." %}</div></td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </section>
+    {% endfor %}
+
+  {% elif active_tab == "reviews" and is_editor %}
+    {% for round in rounds %}
+      <section class="mb-8">
+        <div class="section-heading"><h2>{% translate "Round" %} {{ round.number }}</h2></div>
+        {% for assignment in round.assignments.all %}
+          {% if assignment.review and not assignment.review.is_draft %}
+            <article class="card mb-4">
+              <p class="eyebrow">{% translate "Reviewer" %} {{ forloop.counter }}</p>
+              <p class="meta">{{ assignment.reviewer.get_full_name }} · {{ assignment.review.submitted_at|date:"j M Y" }}</p>
+              <p class="font-medium mt-2">{{ assignment.review.get_recommendation_display }}</p>
+              <dl class="dl-meta mt-3">
+                {% for row in assignment.review.score_rows %}
+                  <dt>{{ row.label }}</dt><dd class="meta">{{ row.value }}/5</dd>
+                {% endfor %}
+              </dl>
+              <p class="footer-heading mt-4">{% translate "To the authors" %}</p>
+              <div class="prose-journal text-sm">{{ assignment.review.comments_to_authors|linebreaks }}</div>
+              {% if assignment.review.comments_to_editor %}
+                <p class="footer-heading mt-4">{% translate "Confidential to the editor" %}</p>
+                <div class="prose-journal text-sm">{{ assignment.review.comments_to_editor|linebreaks }}</div>
+              {% endif %}
+              <form method="post" action="{% url 'dashboard:rate_review' assignment.review.pk %}" class="flex items-center gap-2 mt-4">
+                {% csrf_token %}
+                <label class="meta" for="rating-{{ assignment.review.pk }}">{% translate "Review quality" %}</label>
+                <select class="select w-24" id="rating-{{ assignment.review.pk }}" name="rating">
+                  {% for value in "12345" %}
+                    <option value="{{ value }}" {% if assignment.review.quality_rating|stringformat:"s" == value %}selected{% endif %}>{{ value }}</option>
+                  {% endfor %}
+                </select>
+                <button type="submit" class="btn btn-ghost btn-sm">{% translate "Save" %}</button>
+              </form>
+            </article>
+          {% endif %}
+        {% endfor %}
+      </section>
+    {% empty %}
+      <div class="empty-state">{% translate "No reviews yet." %}</div>
+    {% endfor %}
+
+  {% elif active_tab == "decision" and is_editor %}
+    <a class="btn btn-primary mb-6" href="{% url 'dashboard:decide' submission.pk %}">{% translate "Record a decision" %}</a>
+    {% for decision in decisions %}
+      <article class="card mb-3">
+        <p class="font-medium">{{ decision.get_decision_display }}</p>
+        <p class="meta">{{ decision.decided_by }} · {{ decision.decided_at|date:"j F Y, H:i" }}</p>
+        <div class="prose-journal text-sm mt-2">{{ decision.letter|linebreaks }}</div>
+      </article>
+    {% empty %}
+      <div class="empty-state">{% translate "No decisions have been recorded." %}</div>
+    {% endfor %}
+
+  {% elif active_tab == "discussion" %}
+    <form method="post" action="{% url 'dashboard:post_message' submission.pk %}" class="card mb-6">
+      {% csrf_token %}
+      {% for field in message_form %}{% include "includes/form_field.html" with field=field %}{% endfor %}
+      {% if is_editor %}
+        <div class="checkbox-row">
+          <input type="checkbox" id="visibility" name="visibility" value="editors">
+          <label for="visibility" class="text-sm">{% translate "Editors only" %}</label>
+        </div>
+      {% endif %}
+      <button type="submit" class="btn btn-secondary btn-sm">{% translate "Post message" %}</button>
+    </form>
+    {% for discussion in discussions %}
+      {% if is_editor or discussion.visibility == "author_editor" %}
+        <section class="mb-6">
+          <p class="footer-heading">{{ discussion.subject }} — {{ discussion.get_visibility_display }}</p>
+          {% for message in discussion.messages.all %}
+            <div class="card mb-2 {% if message.is_system %}card-muted{% endif %}">
+              <p class="meta">{{ message.author|default:_("System") }} · {{ message.created_at|date:"j M Y, H:i" }}</p>
+              <p class="text-sm mt-1">{{ message.body }}</p>
+            </div>
+          {% endfor %}
+        </section>
+      {% endif %}
+    {% empty %}
+      <div class="empty-state">{% translate "No messages yet." %}</div>
+    {% endfor %}
+
+  {% else %}
+    <section>
+      <div class="section-heading"><h2>{% translate "History" %}</h2></div>
+      {% for discussion in discussions %}
+        {% for message in discussion.messages.all %}
+          {% if message.is_system %}
+            <div class="timeline-step is-done ml-6">
+              <p class="text-sm">{{ message.body }}</p>
+              <p class="meta">{{ message.created_at|date:"j M Y, H:i" }}</p>
+            </div>
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+    </section>
+  {% endif %}
+{% endblock %}

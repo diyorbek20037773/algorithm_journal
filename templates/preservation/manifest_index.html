@@ -1,0 +1,18 @@
+{% load i18n %}<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>LOCKSS Permission — {{ site_settings.journal_name }}</title>
+  </head>
+  <body>
+    <h1>{{ site_settings.journal_name }}</h1>
+    <p>{{ permission }}</p>
+    <p>e-ISSN: {{ site_settings.eissn|default:"pending" }}</p>
+    <h2>Archival units</h2>
+    <ul>
+      {% for volume in volumes %}
+        <li><a href="{% url 'lockss_volume' volume.number %}">Volume {{ volume.number }} ({{ volume.year }})</a></li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ board_title }} · {{ site_settings.journal_name }}{% endblock %}
+
+{% block content %}
+  <div class="container-page">
+    <h1 class="text-3xl mb-2">{{ board_title }}</h1>
+    <p class="muted mb-8">
+      {% blocktranslate with members=member_count countries=country_count %}{{ members }} members from {{ countries }} countries{% endblocktranslate %}
+    </p>
+
+    {% if has_demo %}
+      <div class="alert alert-warning mb-8" role="note">
+        {% translate "Some entries below are seeded demonstration data marked DEMO — replace. The editorial office replaces them in the admin panel." %}
+      </div>
+    {% endif %}
+
+    {% for group in groups %}
+      <section class="mb-12">
+        <div class="section-heading"><h2>{{ group.label }}</h2></div>
+        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {% for member in group.members %}
+            <article class="card" id="member-{{ member.pk }}">
+              <div class="flex items-start gap-3">
+                {% if member.photo %}
+                  <img src="{{ member.photo.url }}" alt="" width="72" height="72" loading="lazy"
+                       class="w-[72px] h-[72px] rounded-full object-cover shrink-0">
+                {% else %}
+                  <div class="w-[72px] h-[72px] rounded-full surface-2 border border-[--color-line] flex items-center justify-center shrink-0"
+                       aria-hidden="true">
+                    <span class="font-serif text-lg">{{ member.initials }}</span>
+                  </div>
+                {% endif %}
+                <div class="min-w-0">
+                  <p class="font-medium leading-snug">{{ member.full_name }}</p>
+                  {% if member.degree %}<p class="meta">{{ member.degree }}</p>{% endif %}
+                  {% if member.academic_title %}<p class="meta">{{ member.academic_title }}</p>{% endif %}
+                </div>
+              </div>
+              <p class="muted text-sm mt-3">{{ member.affiliation }}{% if member.country %}, {{ member.country.name }}{% endif %}</p>
+              {% if member.expertise %}<p class="meta mt-2">{{ member.expertise }}</p>{% endif %}
+              <div class="flex flex-wrap gap-3 mt-3">
+                {% if member.orcid %}<a class="meta" href="{{ member.orcid_url }}" rel="noopener">ORCID</a>{% endif %}
+                {% if member.scopus_author_id %}<a class="meta" href="{{ member.scopus_url }}" rel="noopener">Scopus</a>{% endif %}
+                {% if member.email %}<span class="meta">{{ member.obfuscated_email }}</span>{% endif %}
+              </div>
+            </article>
+          {% endfor %}
+        </div>
+      </section>
+    {% empty %}
+      <div class="empty-state"><p>{% translate "The board list is being prepared." %}</p></div>
+    {% endfor %}
+  </div>
+{% endblock %}

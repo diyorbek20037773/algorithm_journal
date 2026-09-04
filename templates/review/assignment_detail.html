@@ -1,0 +1,52 @@
+{% extends "dashboard/_base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "Manuscript for review" %} · {{ site_settings.journal_name }}{% endblock %}
+
+{% block dashboard_content %}
+  <div class="alert alert-info mb-6">
+    {% translate "This review is double-blind. The manuscript below contains no information identifying the authors, and the authors will not learn your identity." %}
+  </div>
+
+  <p class="eyebrow">{{ section_name }} · {{ article_type }}</p>
+  <h1 class="text-2xl mt-1 mb-4">{{ manuscript_title }}</h1>
+
+  <dl class="dl-meta card-muted mb-6">
+    <dt>{% translate "Round" %}</dt><dd class="meta">{{ round_number }}</dd>
+    <dt>{% translate "Language" %}</dt><dd>{{ manuscript_language }}</dd>
+    <dt>{% translate "Word count" %}</dt><dd class="meta">{{ word_count }}</dd>
+    <dt>{% translate "Due" %}</dt><dd class="meta">{{ due_at|date:"j F Y" }}</dd>
+    <dt>{% translate "Keywords" %}</dt>
+    <dd class="flex flex-wrap gap-1.5">{% for keyword in manuscript_keywords %}<span class="chip">{{ keyword }}</span>{% endfor %}</dd>
+    <dt>{% translate "JEL codes" %}</dt>
+    <dd class="flex flex-wrap gap-1.5">{% for jel in jel_codes %}<span class="chip chip-jel">{{ jel.code }}</span>{% endfor %}</dd>
+  </dl>
+
+  <section class="mb-6">
+    <div class="section-heading"><h2>{% translate "Abstract" %}</h2></div>
+    <div class="prose-journal text-sm">{{ manuscript_abstract|linebreaks }}</div>
+  </section>
+
+  <section class="mb-6">
+    <div class="section-heading"><h2>{% translate "Files" %}</h2></div>
+    <ul class="space-y-2">
+      {% for file in files %}
+        <li><a class="btn btn-secondary btn-sm" href="{% url 'review:download_file' file.pk %}">{{ file.get_kind_display }} (v{{ file.version }})</a></li>
+      {% empty %}
+        <li class="muted">{% translate "No files are available." %}</li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <div class="flex flex-wrap gap-2">
+    {% if assignment.status == "invited" %}
+      <form method="post" action="{% url 'review:respond_dashboard' assignment.pk %}" class="flex gap-2">
+        {% csrf_token %}
+        <button type="submit" name="answer" value="accept" class="btn btn-primary">{% translate "Accept the invitation" %}</button>
+        <button type="submit" name="answer" value="decline" class="btn btn-secondary">{% translate "Decline" %}</button>
+      </form>
+    {% else %}
+      <a class="btn btn-primary" href="{% url 'review:review_form' assignment.pk %}">{% translate "Open the review form" %}</a>
+    {% endif %}
+  </div>
+{% endblock %}

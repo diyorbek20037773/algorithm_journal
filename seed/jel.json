@@ -1,0 +1,2610 @@
+[
+ {
+  "code": "A",
+  "level": 1,
+  "parent": null,
+  "en": "General Economics and Teaching",
+  "uz": "Umumiy iqtisodiyot va taʼlim",
+  "ru": "Общая экономика и преподавание"
+ },
+ {
+  "code": "B",
+  "level": 1,
+  "parent": null,
+  "en": "History of Economic Thought, Methodology, and Heterodox Approaches",
+  "uz": "Iqtisodiy taʼlimotlar tarixi, metodologiya va noortodoks yondashuvlar",
+  "ru": "История экономической мысли, методология и гетеродоксальные подходы"
+ },
+ {
+  "code": "C",
+  "level": 1,
+  "parent": null,
+  "en": "Mathematical and Quantitative Methods",
+  "uz": "Matematik va miqdoriy usullar",
+  "ru": "Математические и количественные методы"
+ },
+ {
+  "code": "D",
+  "level": 1,
+  "parent": null,
+  "en": "Microeconomics",
+  "uz": "Mikroiqtisodiyot",
+  "ru": "Микроэкономика"
+ },
+ {
+  "code": "E",
+  "level": 1,
+  "parent": null,
+  "en": "Macroeconomics and Monetary Economics",
+  "uz": "Makroiqtisodiyot va pul-kredit iqtisodiyoti",
+  "ru": "Макроэкономика и денежная экономика"
+ },
+ {
+  "code": "F",
+  "level": 1,
+  "parent": null,
+  "en": "International Economics",
+  "uz": "Xalqaro iqtisodiyot",
+  "ru": "Международная экономика"
+ },
+ {
+  "code": "G",
+  "level": 1,
+  "parent": null,
+  "en": "Financial Economics",
+  "uz": "Moliya iqtisodiyoti",
+  "ru": "Финансовая экономика"
+ },
+ {
+  "code": "H",
+  "level": 1,
+  "parent": null,
+  "en": "Public Economics",
+  "uz": "Davlat iqtisodiyoti",
+  "ru": "Общественные финансы"
+ },
+ {
+  "code": "I",
+  "level": 1,
+  "parent": null,
+  "en": "Health, Education, and Welfare",
+  "uz": "Sogʻliqni saqlash, taʼlim va farovonlik",
+  "ru": "Здравоохранение, образование и благосостояние"
+ },
+ {
+  "code": "J",
+  "level": 1,
+  "parent": null,
+  "en": "Labor and Demographic Economics",
+  "uz": "Mehnat va demografik iqtisodiyot",
+  "ru": "Экономика труда и демография"
+ },
+ {
+  "code": "K",
+  "level": 1,
+  "parent": null,
+  "en": "Law and Economics",
+  "uz": "Huquq va iqtisodiyot",
+  "ru": "Право и экономика"
+ },
+ {
+  "code": "L",
+  "level": 1,
+  "parent": null,
+  "en": "Industrial Organization",
+  "uz": "Tarmoq iqtisodiyoti",
+  "ru": "Отраслевая организация"
+ },
+ {
+  "code": "M",
+  "level": 1,
+  "parent": null,
+  "en": "Business Administration and Business Economics; Marketing; Accounting; Personnel Economics",
+  "uz": "Biznes boshqaruvi va biznes iqtisodiyoti; marketing; buxgalteriya hisobi; kadrlar iqtisodiyoti",
+  "ru": "Управление бизнесом и экономика бизнеса; маркетинг; бухгалтерский учёт; экономика персонала"
+ },
+ {
+  "code": "N",
+  "level": 1,
+  "parent": null,
+  "en": "Economic History",
+  "uz": "Iqtisodiy tarix",
+  "ru": "Экономическая история"
+ },
+ {
+  "code": "O",
+  "level": 1,
+  "parent": null,
+  "en": "Economic Development, Innovation, Technological Change, and Growth",
+  "uz": "Iqtisodiy rivojlanish, innovatsiya, texnologik oʻzgarish va oʻsish",
+  "ru": "Экономическое развитие, инновации, технологические изменения и рост"
+ },
+ {
+  "code": "P",
+  "level": 1,
+  "parent": null,
+  "en": "Political Economy and Comparative Economic Systems",
+  "uz": "Siyosiy iqtisod va qiyosiy iqtisodiy tizimlar",
+  "ru": "Политическая экономия и сравнительные экономические системы"
+ },
+ {
+  "code": "Q",
+  "level": 1,
+  "parent": null,
+  "en": "Agricultural and Natural Resource Economics; Environmental and Ecological Economics",
+  "uz": "Qishloq xoʻjaligi va tabiiy resurslar iqtisodiyoti; atrof-muhit iqtisodiyoti",
+  "ru": "Экономика сельского хозяйства и природных ресурсов; экологическая экономика"
+ },
+ {
+  "code": "R",
+  "level": 1,
+  "parent": null,
+  "en": "Urban, Rural, Regional, Real Estate, and Transportation Economics",
+  "uz": "Shahar, qishloq, hududiy, koʻchmas mulk va transport iqtisodiyoti",
+  "ru": "Городская, сельская, региональная экономика, недвижимость и транспорт"
+ },
+ {
+  "code": "Y",
+  "level": 1,
+  "parent": null,
+  "en": "Miscellaneous Categories",
+  "uz": "Boshqa toifalar",
+  "ru": "Прочие категории"
+ },
+ {
+  "code": "Z",
+  "level": 1,
+  "parent": null,
+  "en": "Other Special Topics",
+  "uz": "Boshqa maxsus mavzular",
+  "ru": "Другие специальные темы"
+ },
+ {
+  "code": "A1",
+  "level": 2,
+  "parent": "A",
+  "en": "General Economics",
+  "uz": "Umumiy iqtisodiyot",
+  "ru": "Общая экономика"
+ },
+ {
+  "code": "A2",
+  "level": 2,
+  "parent": "A",
+  "en": "Economic Education and Teaching of Economics",
+  "uz": "Iqtisodiy taʼlim va iqtisodiyotni oʻqitish",
+  "ru": "Экономическое образование и преподавание экономики"
+ },
+ {
+  "code": "A3",
+  "level": 2,
+  "parent": "A",
+  "en": "Collective Works",
+  "uz": "Jamoaviy asarlar",
+  "ru": "Коллективные работы"
+ },
+ {
+  "code": "B0",
+  "level": 2,
+  "parent": "B",
+  "en": "General",
+  "uz": "Umumiy",
+  "ru": "Общее"
+ },
+ {
+  "code": "B1",
+  "level": 2,
+  "parent": "B",
+  "en": "History of Economic Thought through 1925",
+  "uz": "1925-yilgacha iqtisodiy taʼlimotlar tarixi",
+  "ru": "История экономической мысли до 1925 года"
+ },
+ {
+  "code": "B2",
+  "level": 2,
+  "parent": "B",
+  "en": "History of Economic Thought since 1925",
+  "uz": "1925-yildan keyingi iqtisodiy taʼlimotlar tarixi",
+  "ru": "История экономической мысли с 1925 года"
+ },
+ {
+  "code": "B3",
+  "level": 2,
+  "parent": "B",
+  "en": "History of Economic Thought: Individuals",
+  "uz": "Iqtisodiy taʼlimotlar tarixi: shaxslar",
+  "ru": "История экономической мысли: персоналии"
+ },
+ {
+  "code": "B4",
+  "level": 2,
+  "parent": "B",
+  "en": "Economic Methodology",
+  "uz": "Iqtisodiy metodologiya",
+  "ru": "Экономическая методология"
+ },
+ {
+  "code": "B5",
+  "level": 2,
+  "parent": "B",
+  "en": "Current Heterodox Approaches",
+  "uz": "Zamonaviy noortodoks yondashuvlar",
+  "ru": "Современные гетеродоксальные подходы"
+ },
+ {
+  "code": "C0",
+  "level": 2,
+  "parent": "C",
+  "en": "General",
+  "uz": "Umumiy",
+  "ru": "Общее"
+ },
+ {
+  "code": "C1",
+  "level": 2,
+  "parent": "C",
+  "en": "Econometric and Statistical Methods and Methodology: General",
+  "uz": "Ekonometrik va statistik usullar: umumiy",
+  "ru": "Эконометрические и статистические методы: общее"
+ },
+ {
+  "code": "C2",
+  "level": 2,
+  "parent": "C",
+  "en": "Single Equation Models; Single Variables",
+  "uz": "Bir tenglamali modellar; bir oʻzgaruvchi",
+  "ru": "Модели с одним уравнением; отдельные переменные"
+ },
+ {
+  "code": "C3",
+  "level": 2,
+  "parent": "C",
+  "en": "Multiple or Simultaneous Equation Models; Multiple Variables",
+  "uz": "Koʻp tenglamali modellar; koʻp oʻzgaruvchilar",
+  "ru": "Модели с несколькими уравнениями; множественные переменные"
+ },
+ {
+  "code": "C4",
+  "level": 2,
+  "parent": "C",
+  "en": "Econometric and Statistical Methods: Special Topics",
+  "uz": "Ekonometrik va statistik usullar: maxsus mavzular",
+  "ru": "Эконометрические и статистические методы: специальные темы"
+ },
+ {
+  "code": "C5",
+  "level": 2,
+  "parent": "C",
+  "en": "Econometric Modeling",
+  "uz": "Ekonometrik modellashtirish",
+  "ru": "Эконометрическое моделирование"
+ },
+ {
+  "code": "C6",
+  "level": 2,
+  "parent": "C",
+  "en": "Mathematical Methods; Programming Models; Mathematical and Simulation Modeling",
+  "uz": "Matematik usullar; dasturlash modellari; simulyatsion modellashtirish",
+  "ru": "Математические методы; модели программирования; имитационное моделирование"
+ },
+ {
+  "code": "C7",
+  "level": 2,
+  "parent": "C",
+  "en": "Game Theory and Bargaining Theory",
+  "uz": "Oʻyinlar nazariyasi va muzokaralar nazariyasi",
+  "ru": "Теория игр и теория переговоров"
+ },
+ {
+  "code": "C8",
+  "level": 2,
+  "parent": "C",
+  "en": "Data Collection and Data Estimation Methodology; Computer Programs",
+  "uz": "Maʼlumot toʻplash va baholash metodologiyasi; kompyuter dasturlari",
+  "ru": "Сбор данных и методология оценивания; компьютерные программы"
+ },
+ {
+  "code": "C9",
+  "level": 2,
+  "parent": "C",
+  "en": "Design of Experiments",
+  "uz": "Tajribalarni loyihalash",
+  "ru": "Планирование экспериментов"
+ },
+ {
+  "code": "D0",
+  "level": 2,
+  "parent": "D",
+  "en": "General",
+  "uz": "Umumiy",
+  "ru": "Общее"
+ },
+ {
+  "code": "D1",
+  "level": 2,
+  "parent": "D",
+  "en": "Household Behavior and Family Economics",
+  "uz": "Uy xoʻjaligi xulqi va oila iqtisodiyoti",
+  "ru": "Поведение домохозяйств и экономика семьи"
+ },
+ {
+  "code": "D2",
+  "level": 2,
+  "parent": "D",
+  "en": "Production and Organizations",
+  "uz": "Ishlab chiqarish va tashkilotlar",
+  "ru": "Производство и организации"
+ },
+ {
+  "code": "D3",
+  "level": 2,
+  "parent": "D",
+  "en": "Distribution",
+  "uz": "Taqsimot",
+  "ru": "Распределение"
+ },
+ {
+  "code": "D4",
+  "level": 2,
+  "parent": "D",
+  "en": "Market Structure, Pricing, and Design",
+  "uz": "Bozor tuzilmasi, narx belgilash va dizayn",
+  "ru": "Структура рынка, ценообразование и дизайн"
+ },
+ {
+  "code": "D5",
+  "level": 2,
+  "parent": "D",
+  "en": "General Equilibrium and Disequilibrium",
+  "uz": "Umumiy muvozanat va nomuvozanat",
+  "ru": "Общее равновесие и неравновесие"
+ },
+ {
+  "code": "D6",
+  "level": 2,
+  "parent": "D",
+  "en": "Welfare Economics",
+  "uz": "Farovonlik iqtisodiyoti",
+  "ru": "Экономика благосостояния"
+ },
+ {
+  "code": "D7",
+  "level": 2,
+  "parent": "D",
+  "en": "Analysis of Collective Decision-Making",
+  "uz": "Jamoaviy qaror qabul qilish tahlili",
+  "ru": "Анализ коллективного принятия решений"
+ },
+ {
+  "code": "D8",
+  "level": 2,
+  "parent": "D",
+  "en": "Information, Knowledge, and Uncertainty",
+  "uz": "Axborot, bilim va noaniqlik",
+  "ru": "Информация, знания и неопределённость"
+ },
+ {
+  "code": "D9",
+  "level": 2,
+  "parent": "D",
+  "en": "Intertemporal Choice",
+  "uz": "Vaqtlararo tanlov",
+  "ru": "Межвременной выбор"
+ },
+ {
+  "code": "E0",
+  "level": 2,
+  "parent": "E",
+  "en": "General",
+  "uz": "Umumiy",
+  "ru": "Общее"
+ },
+ {
+  "code": "E1",
+  "level": 2,
+  "parent": "E",
+  "en": "General Aggregative Models",
+  "uz": "Umumiy agregat modellar",
+  "ru": "Общие агрегированные модели"
+ },
+ {
+  "code": "E2",
+  "level": 2,
+  "parent": "E",
+  "en": "Consumption, Saving, Production, Investment, Labor Markets, and Informal Economy",
+  "uz": "Isteʼmol, jamgʻarma, ishlab chiqarish, investitsiya, mehnat bozori va norasmiy iqtisodiyot",
+  "ru": "Потребление, сбережения, производство, инвестиции, рынки труда и неформальная экономика"
+ },
+ {
+  "code": "E3",
+  "level": 2,
+  "parent": "E",
+  "en": "Prices, Business Fluctuations, and Cycles",
+  "uz": "Narxlar, biznes tebranishlari va sikllar",
+  "ru": "Цены, деловые колебания и циклы"
+ },
+ {
+  "code": "E4",
+  "level": 2,
+  "parent": "E",
+  "en": "Money and Interest Rates",
+  "uz": "Pul va foiz stavkalari",
+  "ru": "Деньги и процентные ставки"
+ },
+ {
+  "code": "E5",
+  "level": 2,
+  "parent": "E",
+  "en": "Monetary Policy, Central Banking, and the Supply of Money and Credit",
+  "uz": "Pul-kredit siyosati, markaziy banklar, pul va kredit taklifi",
+  "ru": "Денежно-кредитная политика, центральные банки, предложение денег и кредита"
+ },
+ {
+  "code": "E6",
+  "level": 2,
+  "parent": "E",
+  "en": "Macroeconomic Policy, Macroeconomic Aspects of Public Finance, and General Outlook",
+  "uz": "Makroiqtisodiy siyosat, davlat moliyasining makroiqtisodiy jihatlari",
+  "ru": "Макроэкономическая политика, макроаспекты государственных финансов"
+ },
+ {
+  "code": "E7",
+  "level": 2,
+  "parent": "E",
+  "en": "Macro-Based Behavioral Economics",
+  "uz": "Makro asosli xulq-atvor iqtisodiyoti",
+  "ru": "Поведенческая макроэкономика"
+ },
+ {
+  "code": "F0",
+  "level": 2,
+  "parent": "F",
+  "en": "General",
+  "uz": "Umumiy",
+  "ru": "Общее"
+ },
+ {
+  "code": "F1",
+  "level": 2,
+  "parent": "F",
+  "en": "Trade",
+  "uz": "Savdo",
+  "ru": "Торговля"
+ },
+ {
+  "code": "F2",
+  "level": 2,
+  "parent": "F",
+  "en": "International Factor Movements and International Business",
+  "uz": "Xalqaro omillar harakati va xalqaro biznes",
+  "ru": "Международное движение факторов и международный бизнес"
+ },
+ {
+  "code": "F3",
+  "level": 2,
+  "parent": "F",
+  "en": "International Finance",
+  "uz": "Xalqaro moliya",
+  "ru": "Международные финансы"
+ },
+ {
+  "code": "F4",
+  "level": 2,
+  "parent": "F",
+  "en": "Macroeconomic Aspects of International Trade and Finance",
+  "uz": "Xalqaro savdo va moliyaning makroiqtisodiy jihatlari",
+  "ru": "Макроэкономические аспекты международной торговли и финансов"
+ },
+ {
+  "code": "F5",
+  "level": 2,
+  "parent": "F",
+  "en": "International Relations, National Security, and International Political Economy",
+  "uz": "Xalqaro munosabatlar, milliy xavfsizlik va xalqaro siyosiy iqtisod",
+  "ru": "Международные отношения, национальная безопасность и международная политэкономия"
+ },
+ {
+  "code": "F6",
+  "level": 2,
+  "parent": "F",
+  "en": "Economic Impacts of Globalization",
+  "uz": "Globallashuvning iqtisodiy taʼsiri",
+  "ru": "Экономические последствия глобализации"
+ },
+ {
+  "code": "G0",
+  "level": 2,
+  "parent": "G",
+  "en": "General",
+  "uz": "Umumiy",
+  "ru": "Общее"
+ },
+ {
+  "code": "G1",
+  "level": 2,
+  "parent": "G",
+  "en": "General Financial Markets",
+  "uz": "Umumiy moliya bozorlari",
+  "ru": "Общие финансовые рынки"
+ },
+ {
+  "code": "G2",
+  "level": 2,
+  "parent": "G",
+  "en": "Financial Institutions and Services",
+  "uz": "Moliya institutlari va xizmatlari",
+  "ru": "Финансовые институты и услуги"
+ },
+ {
+  "code": "G3",
+  "level": 2,
+  "parent": "G",
+  "en": "Corporate Finance and Governance",
+  "uz": "Korporativ moliya va boshqaruv",
+  "ru": "Корпоративные финансы и управление"
+ },
+ {
+  "code": "G4",
+  "level": 2,
+  "parent": "G",
+  "en": "Behavioral Finance",
+  "uz": "Xulq-atvor moliyasi",
+  "ru": "Поведенческие финансы"
+ },
+ {
+  "code": "G5",
+  "level": 2,
+  "parent": "G",
+  "en": "Household Finance",
+  "uz": "Uy xoʻjaligi moliyasi",
+  "ru": "Финансы домохозяйств"
+ },
+ {
+  "code": "H0",
+  "level": 2,
+  "parent": "H",
+  "en": "General",
+  "uz": "Umumiy",
+  "ru": "Общее"
+ },
+ {
+  "code": "H1",
+  "level": 2,
+  "parent": "H",
+  "en": "Structure and Scope of Government",
+  "uz": "Davlatning tuzilishi va koʻlami",
+  "ru": "Структура и масштабы государства"
+ },
+ {
+  "code": "H2",
+  "level": 2,
+  "parent": "H",
+  "en": "Taxation, Subsidies, and Revenue",
+  "uz": "Soliqqa tortish, subsidiyalar va daromadlar",
+  "ru": "Налогообложение, субсидии и доходы"
+ },
+ {
+  "code": "H3",
+  "level": 2,
+  "parent": "H",
+  "en": "Fiscal Policies and Behavior of Economic Agents",
+  "uz": "Fiskal siyosat va iqtisodiy agentlar xulqi",
+  "ru": "Фискальная политика и поведение экономических агентов"
+ },
+ {
+  "code": "H4",
+  "level": 2,
+  "parent": "H",
+  "en": "Publicly Provided Goods",
+  "uz": "Davlat tomonidan taqdim etiladigan tovarlar",
+  "ru": "Общественные блага"
+ },
+ {
+  "code": "H5",
+  "level": 2,
+  "parent": "H",
+  "en": "National Government Expenditures and Related Policies",
+  "uz": "Davlat xarajatlari va tegishli siyosat",
+  "ru": "Государственные расходы и связанная политика"
+ },
+ {
+  "code": "H6",
+  "level": 2,
+  "parent": "H",
+  "en": "National Budget, Deficit, and Debt",
+  "uz": "Davlat byudjeti, taqchillik va qarz",
+  "ru": "Государственный бюджет, дефицит и долг"
+ },
+ {
+  "code": "H7",
+  "level": 2,
+  "parent": "H",
+  "en": "State and Local Government; Intergovernmental Relations",
+  "uz": "Mahalliy hokimiyat; hukumatlararo munosabatlar",
+  "ru": "Региональные и местные органы власти; межбюджетные отношения"
+ },
+ {
+  "code": "H8",
+  "level": 2,
+  "parent": "H",
+  "en": "Miscellaneous Issues",
+  "uz": "Boshqa masalalar",
+  "ru": "Прочие вопросы"
+ },
+ {
+  "code": "I0",
+  "level": 2,
+  "parent": "I",
+  "en": "General",
+  "uz": "Umumiy",
+  "ru": "Общее"
+ },
+ {
+  "code": "I1",
+  "level": 2,
+  "parent": "I",
+  "en": "Health",
+  "uz": "Sogʻliqni saqlash",
+  "ru": "Здравоохранение"
+ },
+ {
+  "code": "I2",
+  "level": 2,
+  "parent": "I",
+  "en": "Education and Research Institutions",
+  "uz": "Taʼlim va tadqiqot muassasalari",
+  "ru": "Образование и исследовательские учреждения"
+ },
+ {
+  "code": "I3",
+  "level": 2,
+  "parent": "I",
+  "en": "Welfare, Well-Being, and Poverty",
+  "uz": "Farovonlik va qashshoqlik",
+  "ru": "Благосостояние и бедность"
+ },
+ {
+  "code": "J0",
+  "level": 2,
+  "parent": "J",
+  "en": "General",
+  "uz": "Umumiy",
+  "ru": "Общее"
+ },
+ {
+  "code": "J1",
+  "level": 2,
+  "parent": "J",
+  "en": "Demographic Economics",
+  "uz": "Demografik iqtisodiyot",
+  "ru": "Демографическая экономика"
+ },
+ {
+  "code": "J2",
+  "level": 2,
+  "parent": "J",
+  "en": "Demand and Supply of Labor",
+  "uz": "Mehnatga talab va taklif",
+  "ru": "Спрос и предложение труда"
+ },
+ {
+  "code": "J3",
+  "level": 2,
+  "parent": "J",
+  "en": "Wages, Compensation, and Labor Costs",
+  "uz": "Ish haqi, kompensatsiya va mehnat xarajatlari",
+  "ru": "Заработная плата, компенсации и издержки на труд"
+ },
+ {
+  "code": "J4",
+  "level": 2,
+  "parent": "J",
+  "en": "Particular Labor Markets",
+  "uz": "Alohida mehnat bozorlari",
+  "ru": "Отдельные рынки труда"
+ },
+ {
+  "code": "J5",
+  "level": 2,
+  "parent": "J",
+  "en": "Labor-Management Relations, Trade Unions, and Collective Bargaining",
+  "uz": "Mehnat munosabatlari, kasaba uyushmalari va jamoa shartnomalari",
+  "ru": "Трудовые отношения, профсоюзы и коллективные переговоры"
+ },
+ {
+  "code": "J6",
+  "level": 2,
+  "parent": "J",
+  "en": "Mobility, Unemployment, Vacancies, and Immigrant Workers",
+  "uz": "Harakatchanlik, ishsizlik, boʻsh ish oʻrinlari va migrant ishchilar",
+  "ru": "Мобильность, безработица, вакансии и трудовые мигранты"
+ },
+ {
+  "code": "J7",
+  "level": 2,
+  "parent": "J",
+  "en": "Labor Discrimination",
+  "uz": "Mehnatda kamsitish",
+  "ru": "Дискриминация в сфере труда"
+ },
+ {
+  "code": "J8",
+  "level": 2,
+  "parent": "J",
+  "en": "Labor Standards: National and International",
+  "uz": "Mehnat standartlari: milliy va xalqaro",
+  "ru": "Трудовые стандарты: национальные и международные"
+ },
+ {
+  "code": "K0",
+  "level": 2,
+  "parent": "K",
+  "en": "General",
+  "uz": "Umumiy",
+  "ru": "Общее"
+ },
+ {
+  "code": "K1",
+  "level": 2,
+  "parent": "K",
+  "en": "Basic Areas of Law",
+  "uz": "Huquqning asosiy sohalari",
+  "ru": "Основные отрасли права"
+ },
+ {
+  "code": "K2",
+  "level": 2,
+  "parent": "K",
+  "en": "Regulation and Business Law",
+  "uz": "Tartibga solish va biznes huquqi",
+  "ru": "Регулирование и предпринимательское право"
+ },
+ {
+  "code": "K3",
+  "level": 2,
+  "parent": "K",
+  "en": "Other Substantive Areas of Law",
+  "uz": "Huquqning boshqa moddiy sohalari",
+  "ru": "Другие материальные отрасли права"
+ },
+ {
+  "code": "K4",
+  "level": 2,
+  "parent": "K",
+  "en": "Legal Procedure, the Legal System, and Illegal Behavior",
+  "uz": "Yuridik jarayon, huquq tizimi va noqonuniy xatti-harakatlar",
+  "ru": "Юридический процесс, правовая система и противоправное поведение"
+ },
+ {
+  "code": "L0",
+  "level": 2,
+  "parent": "L",
+  "en": "General",
+  "uz": "Umumiy",
+  "ru": "Общее"
+ },
+ {
+  "code": "L1",
+  "level": 2,
+  "parent": "L",
+  "en": "Market Structure, Firm Strategy, and Market Performance",
+  "uz": "Bozor tuzilmasi, firma strategiyasi va bozor samaradorligi",
+  "ru": "Структура рынка, стратегия фирмы и результативность рынка"
+ },
+ {
+  "code": "L2",
+  "level": 2,
+  "parent": "L",
+  "en": "Firm Objectives, Organization, and Behavior",
+  "uz": "Firma maqsadlari, tashkil etilishi va xulqi",
+  "ru": "Цели, организация и поведение фирмы"
+ },
+ {
+  "code": "L3",
+  "level": 2,
+  "parent": "L",
+  "en": "Nonprofit Organizations and Public Enterprise",
+  "uz": "Notijorat tashkilotlar va davlat korxonalari",
+  "ru": "Некоммерческие организации и государственные предприятия"
+ },
+ {
+  "code": "L4",
+  "level": 2,
+  "parent": "L",
+  "en": "Antitrust Issues and Policies",
+  "uz": "Monopoliyaga qarshi masalalar va siyosat",
+  "ru": "Антимонопольные вопросы и политика"
+ },
+ {
+  "code": "L5",
+  "level": 2,
+  "parent": "L",
+  "en": "Regulation and Industrial Policy",
+  "uz": "Tartibga solish va sanoat siyosati",
+  "ru": "Регулирование и промышленная политика"
+ },
+ {
+  "code": "L6",
+  "level": 2,
+  "parent": "L",
+  "en": "Industry Studies: Manufacturing",
+  "uz": "Tarmoq tadqiqotlari: ishlab chiqarish",
+  "ru": "Отраслевые исследования: обрабатывающая промышленность"
+ },
+ {
+  "code": "L7",
+  "level": 2,
+  "parent": "L",
+  "en": "Industry Studies: Primary Products and Construction",
+  "uz": "Tarmoq tadqiqotlari: xomashyo va qurilish",
+  "ru": "Отраслевые исследования: сырьё и строительство"
+ },
+ {
+  "code": "L8",
+  "level": 2,
+  "parent": "L",
+  "en": "Industry Studies: Services",
+  "uz": "Tarmoq tadqiqotlari: xizmatlar",
+  "ru": "Отраслевые исследования: услуги"
+ },
+ {
+  "code": "L9",
+  "level": 2,
+  "parent": "L",
+  "en": "Industry Studies: Transportation and Utilities",
+  "uz": "Tarmoq tadqiqotlari: transport va kommunal xizmatlar",
+  "ru": "Отраслевые исследования: транспорт и коммунальные услуги"
+ },
+ {
+  "code": "M0",
+  "level": 2,
+  "parent": "M",
+  "en": "General",
+  "uz": "Umumiy",
+  "ru": "Общее"
+ },
+ {
+  "code": "M1",
+  "level": 2,
+  "parent": "M",
+  "en": "Business Administration",
+  "uz": "Biznes boshqaruvi",
+  "ru": "Управление бизнесом"
+ },
+ {
+  "code": "M2",
+  "level": 2,
+  "parent": "M",
+  "en": "Business Economics",
+  "uz": "Biznes iqtisodiyoti",
+  "ru": "Экономика бизнеса"
+ },
+ {
+  "code": "M3",
+  "level": 2,
+  "parent": "M",
+  "en": "Marketing and Advertising",
+  "uz": "Marketing va reklama",
+  "ru": "Маркетинг и реклама"
+ },
+ {
+  "code": "M4",
+  "level": 2,
+  "parent": "M",
+  "en": "Accounting and Auditing",
+  "uz": "Buxgalteriya hisobi va audit",
+  "ru": "Бухгалтерский учёт и аудит"
+ },
+ {
+  "code": "M5",
+  "level": 2,
+  "parent": "M",
+  "en": "Personnel Economics",
+  "uz": "Kadrlar iqtisodiyoti",
+  "ru": "Экономика персонала"
+ },
+ {
+  "code": "N0",
+  "level": 2,
+  "parent": "N",
+  "en": "General",
+  "uz": "Umumiy",
+  "ru": "Общее"
+ },
+ {
+  "code": "N1",
+  "level": 2,
+  "parent": "N",
+  "en": "Macroeconomics and Monetary Economics; Industrial Structure; Growth; Fluctuations",
+  "uz": "Makroiqtisodiyot va pul iqtisodiyoti; sanoat tuzilmasi; oʻsish",
+  "ru": "Макроэкономика и денежная экономика; структура промышленности; рост"
+ },
+ {
+  "code": "N2",
+  "level": 2,
+  "parent": "N",
+  "en": "Financial Markets and Institutions",
+  "uz": "Moliya bozorlari va institutlari",
+  "ru": "Финансовые рынки и институты"
+ },
+ {
+  "code": "N3",
+  "level": 2,
+  "parent": "N",
+  "en": "Labor and Consumers, Demography, Education, Health, Welfare, Income, Wealth, Religion, and Philanthropy",
+  "uz": "Mehnat va isteʼmolchilar, demografiya, taʼlim, sogʻliq, farovonlik",
+  "ru": "Труд и потребители, демография, образование, здоровье, благосостояние"
+ },
+ {
+  "code": "N4",
+  "level": 2,
+  "parent": "N",
+  "en": "Government, War, Law, International Relations, and Regulation",
+  "uz": "Hukumat, urush, huquq, xalqaro munosabatlar va tartibga solish",
+  "ru": "Государство, война, право, международные отношения и регулирование"
+ },
+ {
+  "code": "N5",
+  "level": 2,
+  "parent": "N",
+  "en": "Agriculture, Natural Resources, Environment, and Extractive Industries",
+  "uz": "Qishloq xoʻjaligi, tabiiy resurslar, atrof-muhit va qazib olish sanoati",
+  "ru": "Сельское хозяйство, природные ресурсы, окружающая среда и добывающие отрасли"
+ },
+ {
+  "code": "N6",
+  "level": 2,
+  "parent": "N",
+  "en": "Manufacturing and Construction",
+  "uz": "Ishlab chiqarish va qurilish",
+  "ru": "Обрабатывающая промышленность и строительство"
+ },
+ {
+  "code": "N7",
+  "level": 2,
+  "parent": "N",
+  "en": "Transport, Trade, Energy, Technology, and Other Services",
+  "uz": "Transport, savdo, energetika, texnologiya va boshqa xizmatlar",
+  "ru": "Транспорт, торговля, энергетика, технологии и другие услуги"
+ },
+ {
+  "code": "N8",
+  "level": 2,
+  "parent": "N",
+  "en": "Micro-Business History",
+  "uz": "Mikro-biznes tarixi",
+  "ru": "История микробизнеса"
+ },
+ {
+  "code": "N9",
+  "level": 2,
+  "parent": "N",
+  "en": "Regional and Urban History",
+  "uz": "Hududiy va shahar tarixi",
+  "ru": "Региональная и городская история"
+ },
+ {
+  "code": "O0",
+  "level": 2,
+  "parent": "O",
+  "en": "General",
+  "uz": "Umumiy",
+  "ru": "Общее"
+ },
+ {
+  "code": "O1",
+  "level": 2,
+  "parent": "O",
+  "en": "Economic Development",
+  "uz": "Iqtisodiy rivojlanish",
+  "ru": "Экономическое развитие"
+ },
+ {
+  "code": "O2",
+  "level": 2,
+  "parent": "O",
+  "en": "Development Planning and Policy",
+  "uz": "Rivojlanishni rejalashtirish va siyosat",
+  "ru": "Планирование развития и политика"
+ },
+ {
+  "code": "O3",
+  "level": 2,
+  "parent": "O",
+  "en": "Innovation; Research and Development; Technological Change; Intellectual Property Rights",
+  "uz": "Innovatsiya; ilmiy tadqiqot; texnologik oʻzgarish; intellektual mulk",
+  "ru": "Инновации; исследования и разработки; технологические изменения; интеллектуальная собственность"
+ },
+ {
+  "code": "O4",
+  "level": 2,
+  "parent": "O",
+  "en": "Economic Growth and Aggregate Productivity",
+  "uz": "Iqtisodiy oʻsish va agregat unumdorlik",
+  "ru": "Экономический рост и совокупная производительность"
+ },
+ {
+  "code": "O5",
+  "level": 2,
+  "parent": "O",
+  "en": "Economywide Country Studies",
+  "uz": "Mamlakat boʻyicha yaxlit tadqiqotlar",
+  "ru": "Страновые исследования"
+ },
+ {
+  "code": "P0",
+  "level": 2,
+  "parent": "P",
+  "en": "General",
+  "uz": "Umumiy",
+  "ru": "Общее"
+ },
+ {
+  "code": "P1",
+  "level": 2,
+  "parent": "P",
+  "en": "Capitalist Systems",
+  "uz": "Kapitalistik tizimlar",
+  "ru": "Капиталистические системы"
+ },
+ {
+  "code": "P2",
+  "level": 2,
+  "parent": "P",
+  "en": "Socialist Systems and Transitional Economies",
+  "uz": "Sotsialistik tizimlar va oʻtish iqtisodiyoti",
+  "ru": "Социалистические системы и переходные экономики"
+ },
+ {
+  "code": "P3",
+  "level": 2,
+  "parent": "P",
+  "en": "Socialist Institutions and Their Transitions",
+  "uz": "Sotsialistik institutlar va ularning oʻzgarishi",
+  "ru": "Социалистические институты и их трансформация"
+ },
+ {
+  "code": "P4",
+  "level": 2,
+  "parent": "P",
+  "en": "Other Economic Systems",
+  "uz": "Boshqa iqtisodiy tizimlar",
+  "ru": "Другие экономические системы"
+ },
+ {
+  "code": "P5",
+  "level": 2,
+  "parent": "P",
+  "en": "Comparative Economic Systems",
+  "uz": "Qiyosiy iqtisodiy tizimlar",
+  "ru": "Сравнительные экономические системы"
+ },
+ {
+  "code": "Q0",
+  "level": 2,
+  "parent": "Q",
+  "en": "General",
+  "uz": "Umumiy",
+  "ru": "Общее"
+ },
+ {
+  "code": "Q1",
+  "level": 2,
+  "parent": "Q",
+  "en": "Agriculture",
+  "uz": "Qishloq xoʻjaligi",
+  "ru": "Сельское хозяйство"
+ },
+ {
+  "code": "Q2",
+  "level": 2,
+  "parent": "Q",
+  "en": "Renewable Resources and Conservation",
+  "uz": "Qayta tiklanuvchi resurslar va ularni asrash",
+  "ru": "Возобновляемые ресурсы и их сохранение"
+ },
+ {
+  "code": "Q3",
+  "level": 2,
+  "parent": "Q",
+  "en": "Nonrenewable Resources and Conservation",
+  "uz": "Qayta tiklanmaydigan resurslar",
+  "ru": "Невозобновляемые ресурсы"
+ },
+ {
+  "code": "Q4",
+  "level": 2,
+  "parent": "Q",
+  "en": "Energy",
+  "uz": "Energetika",
+  "ru": "Энергетика"
+ },
+ {
+  "code": "Q5",
+  "level": 2,
+  "parent": "Q",
+  "en": "Environmental Economics",
+  "uz": "Atrof-muhit iqtisodiyoti",
+  "ru": "Экономика окружающей среды"
+ },
+ {
+  "code": "R0",
+  "level": 2,
+  "parent": "R",
+  "en": "General",
+  "uz": "Umumiy",
+  "ru": "Общее"
+ },
+ {
+  "code": "R1",
+  "level": 2,
+  "parent": "R",
+  "en": "General Regional Economics",
+  "uz": "Umumiy hududiy iqtisodiyot",
+  "ru": "Общая региональная экономика"
+ },
+ {
+  "code": "R2",
+  "level": 2,
+  "parent": "R",
+  "en": "Household Analysis",
+  "uz": "Uy xoʻjaligi tahlili",
+  "ru": "Анализ домохозяйств"
+ },
+ {
+  "code": "R3",
+  "level": 2,
+  "parent": "R",
+  "en": "Real Estate Markets, Spatial Production Analysis, and Firm Location",
+  "uz": "Koʻchmas mulk bozorlari va firma joylashuvi",
+  "ru": "Рынки недвижимости и размещение фирм"
+ },
+ {
+  "code": "R4",
+  "level": 2,
+  "parent": "R",
+  "en": "Transportation Economics",
+  "uz": "Transport iqtisodiyoti",
+  "ru": "Экономика транспорта"
+ },
+ {
+  "code": "R5",
+  "level": 2,
+  "parent": "R",
+  "en": "Regional Government Analysis",
+  "uz": "Hududiy boshqaruv tahlili",
+  "ru": "Анализ регионального управления"
+ },
+ {
+  "code": "Y1",
+  "level": 2,
+  "parent": "Y",
+  "en": "Data: Tables and Charts",
+  "uz": "Maʼlumotlar: jadval va diagrammalar",
+  "ru": "Данные: таблицы и графики"
+ },
+ {
+  "code": "Y2",
+  "level": 2,
+  "parent": "Y",
+  "en": "Introductory Material",
+  "uz": "Kirish materiallari",
+  "ru": "Вводные материалы"
+ },
+ {
+  "code": "Y3",
+  "level": 2,
+  "parent": "Y",
+  "en": "Book Reviews",
+  "uz": "Kitob taqrizlari",
+  "ru": "Рецензии на книги"
+ },
+ {
+  "code": "Y4",
+  "level": 2,
+  "parent": "Y",
+  "en": "Dissertations",
+  "uz": "Dissertatsiyalar",
+  "ru": "Диссертации"
+ },
+ {
+  "code": "Y5",
+  "level": 2,
+  "parent": "Y",
+  "en": "Further Reading",
+  "uz": "Qoʻshimcha adabiyot",
+  "ru": "Дополнительная литература"
+ },
+ {
+  "code": "Y6",
+  "level": 2,
+  "parent": "Y",
+  "en": "Excerpts",
+  "uz": "Parchalar",
+  "ru": "Извлечения"
+ },
+ {
+  "code": "Y7",
+  "level": 2,
+  "parent": "Y",
+  "en": "No Author General Discussions",
+  "uz": "Muallifsiz umumiy muhokamalar",
+  "ru": "Общие обсуждения без автора"
+ },
+ {
+  "code": "Y8",
+  "level": 2,
+  "parent": "Y",
+  "en": "Related Disciplines",
+  "uz": "Aloqador fanlar",
+  "ru": "Смежные дисциплины"
+ },
+ {
+  "code": "Y9",
+  "level": 2,
+  "parent": "Y",
+  "en": "Other",
+  "uz": "Boshqa",
+  "ru": "Прочее"
+ },
+ {
+  "code": "Z0",
+  "level": 2,
+  "parent": "Z",
+  "en": "General",
+  "uz": "Umumiy",
+  "ru": "Общее"
+ },
+ {
+  "code": "Z1",
+  "level": 2,
+  "parent": "Z",
+  "en": "Cultural Economics; Economic Sociology; Economic Anthropology",
+  "uz": "Madaniyat iqtisodiyoti; iqtisodiy sotsiologiya",
+  "ru": "Экономика культуры; экономическая социология"
+ },
+ {
+  "code": "Z2",
+  "level": 2,
+  "parent": "Z",
+  "en": "Sports Economics",
+  "uz": "Sport iqtisodiyoti",
+  "ru": "Экономика спорта"
+ },
+ {
+  "code": "Z3",
+  "level": 2,
+  "parent": "Z",
+  "en": "Tourism Economics",
+  "uz": "Turizm iqtisodiyoti",
+  "ru": "Экономика туризма"
+ },
+ {
+  "code": "A10",
+  "level": 3,
+  "parent": "A1",
+  "en": "General Economics: General",
+  "uz": "Umumiy iqtisodiyot: umumiy",
+  "ru": "Общая экономика: общее"
+ },
+ {
+  "code": "A11",
+  "level": 3,
+  "parent": "A1",
+  "en": "Role of Economics; Role of Economists; Market for Economists",
+  "uz": "Iqtisodiyotning roli; iqtisodchilar bozori",
+  "ru": "Роль экономики; рынок экономистов"
+ },
+ {
+  "code": "A13",
+  "level": 3,
+  "parent": "A1",
+  "en": "Relation of Economics to Social Values",
+  "uz": "Iqtisodiyotning ijtimoiy qadriyatlarga munosabati",
+  "ru": "Отношение экономики к социальным ценностям"
+ },
+ {
+  "code": "A20",
+  "level": 3,
+  "parent": "A2",
+  "en": "Economic Education: General",
+  "uz": "Iqtisodiy taʼlim: umumiy",
+  "ru": "Экономическое образование: общее"
+ },
+ {
+  "code": "B41",
+  "level": 3,
+  "parent": "B4",
+  "en": "Economic Methodology",
+  "uz": "Iqtisodiy metodologiya",
+  "ru": "Экономическая методология"
+ },
+ {
+  "code": "C10",
+  "level": 3,
+  "parent": "C1",
+  "en": "Econometric and Statistical Methods: General",
+  "uz": "Ekonometrik usullar: umumiy",
+  "ru": "Эконометрические методы: общее"
+ },
+ {
+  "code": "C11",
+  "level": 3,
+  "parent": "C1",
+  "en": "Bayesian Analysis: General",
+  "uz": "Bayes tahlili",
+  "ru": "Байесовский анализ"
+ },
+ {
+  "code": "C12",
+  "level": 3,
+  "parent": "C1",
+  "en": "Hypothesis Testing: General",
+  "uz": "Gipotezalarni tekshirish",
+  "ru": "Проверка гипотез"
+ },
+ {
+  "code": "C13",
+  "level": 3,
+  "parent": "C1",
+  "en": "Estimation: General",
+  "uz": "Baholash: umumiy",
+  "ru": "Оценивание: общее"
+ },
+ {
+  "code": "C14",
+  "level": 3,
+  "parent": "C1",
+  "en": "Semiparametric and Nonparametric Methods",
+  "uz": "Yarim va noparametrik usullar",
+  "ru": "Полупараметрические и непараметрические методы"
+ },
+ {
+  "code": "C21",
+  "level": 3,
+  "parent": "C2",
+  "en": "Cross-Sectional Models; Spatial Models",
+  "uz": "Kesim modellari; fazoviy modellar",
+  "ru": "Модели поперечных данных; пространственные модели"
+ },
+ {
+  "code": "C22",
+  "level": 3,
+  "parent": "C2",
+  "en": "Time-Series Models; Dynamic Quantile Regressions",
+  "uz": "Vaqt qatorlari modellari",
+  "ru": "Модели временных рядов"
+ },
+ {
+  "code": "C23",
+  "level": 3,
+  "parent": "C2",
+  "en": "Panel Data Models",
+  "uz": "Panel maʼlumotlar modellari",
+  "ru": "Модели панельных данных"
+ },
+ {
+  "code": "C31",
+  "level": 3,
+  "parent": "C3",
+  "en": "Cross-Sectional Models; Spatial Models: Multiple Equations",
+  "uz": "Koʻp tenglamali kesim modellari",
+  "ru": "Многоуравненные модели поперечных данных"
+ },
+ {
+  "code": "C32",
+  "level": 3,
+  "parent": "C3",
+  "en": "Time-Series Models: Multiple Equations",
+  "uz": "Koʻp tenglamali vaqt qatorlari",
+  "ru": "Многоуравненные модели временных рядов"
+ },
+ {
+  "code": "C33",
+  "level": 3,
+  "parent": "C3",
+  "en": "Panel Data Models: Multiple Equations",
+  "uz": "Koʻp tenglamali panel modellari",
+  "ru": "Многоуравненные панельные модели"
+ },
+ {
+  "code": "C43",
+  "level": 3,
+  "parent": "C4",
+  "en": "Index Numbers and Aggregation",
+  "uz": "Indeks sonlar va agregatlash",
+  "ru": "Индексы и агрегирование"
+ },
+ {
+  "code": "C51",
+  "level": 3,
+  "parent": "C5",
+  "en": "Model Construction and Estimation",
+  "uz": "Model qurish va baholash",
+  "ru": "Построение и оценка моделей"
+ },
+ {
+  "code": "C52",
+  "level": 3,
+  "parent": "C5",
+  "en": "Model Evaluation, Validation, and Selection",
+  "uz": "Modelni baholash va tanlash",
+  "ru": "Оценка, валидация и выбор моделей"
+ },
+ {
+  "code": "C53",
+  "level": 3,
+  "parent": "C5",
+  "en": "Forecasting and Prediction Methods",
+  "uz": "Prognozlash usullari",
+  "ru": "Методы прогнозирования"
+ },
+ {
+  "code": "C54",
+  "level": 3,
+  "parent": "C5",
+  "en": "Quantitative Policy Modeling",
+  "uz": "Miqdoriy siyosat modellashtirish",
+  "ru": "Количественное моделирование политики"
+ },
+ {
+  "code": "C61",
+  "level": 3,
+  "parent": "C6",
+  "en": "Optimization Techniques; Programming Models",
+  "uz": "Optimallashtirish usullari",
+  "ru": "Методы оптимизации; модели программирования"
+ },
+ {
+  "code": "C67",
+  "level": 3,
+  "parent": "C6",
+  "en": "Input-Output Models",
+  "uz": "Tarmoqlararo balans modellari",
+  "ru": "Модели затраты-выпуск"
+ },
+ {
+  "code": "C68",
+  "level": 3,
+  "parent": "C6",
+  "en": "Computable General Equilibrium Models",
+  "uz": "Hisoblanadigan umumiy muvozanat modellari",
+  "ru": "Вычислимые модели общего равновесия"
+ },
+ {
+  "code": "C70",
+  "level": 3,
+  "parent": "C7",
+  "en": "Game Theory and Bargaining Theory: General",
+  "uz": "Oʻyinlar nazariyasi: umumiy",
+  "ru": "Теория игр: общее"
+ },
+ {
+  "code": "C81",
+  "level": 3,
+  "parent": "C8",
+  "en": "Methodology for Collecting, Estimating, and Organizing Microeconomic Data",
+  "uz": "Mikroiqtisodiy maʼlumotlarni toʻplash metodologiyasi",
+  "ru": "Методология сбора микроэкономических данных"
+ },
+ {
+  "code": "C83",
+  "level": 3,
+  "parent": "C8",
+  "en": "Survey Methods; Sampling Methods",
+  "uz": "Soʻrov va tanlanma usullari",
+  "ru": "Методы опросов и выборки"
+ },
+ {
+  "code": "C87",
+  "level": 3,
+  "parent": "C8",
+  "en": "Econometric Software",
+  "uz": "Ekonometrik dasturiy taʼminot",
+  "ru": "Эконометрическое программное обеспечение"
+ },
+ {
+  "code": "D12",
+  "level": 3,
+  "parent": "D1",
+  "en": "Consumer Economics: Empirical Analysis",
+  "uz": "Isteʼmolchi iqtisodiyoti: empirik tahlil",
+  "ru": "Экономика потребителя: эмпирический анализ"
+ },
+ {
+  "code": "D14",
+  "level": 3,
+  "parent": "D1",
+  "en": "Household Saving; Personal Finance",
+  "uz": "Uy xoʻjaligi jamgʻarmasi; shaxsiy moliya",
+  "ru": "Сбережения домохозяйств; личные финансы"
+ },
+ {
+  "code": "D22",
+  "level": 3,
+  "parent": "D2",
+  "en": "Firm Behavior: Empirical Analysis",
+  "uz": "Firma xulqi: empirik tahlil",
+  "ru": "Поведение фирмы: эмпирический анализ"
+ },
+ {
+  "code": "D24",
+  "level": 3,
+  "parent": "D2",
+  "en": "Production; Cost; Capital; Total Factor Productivity; Capacity",
+  "uz": "Ishlab chiqarish; xarajat; kapital; unumdorlik",
+  "ru": "Производство; издержки; капитал; совокупная производительность"
+ },
+ {
+  "code": "D31",
+  "level": 3,
+  "parent": "D3",
+  "en": "Personal Income, Wealth, and Their Distributions",
+  "uz": "Shaxsiy daromad va boylik taqsimoti",
+  "ru": "Личный доход, богатство и их распределение"
+ },
+ {
+  "code": "D40",
+  "level": 3,
+  "parent": "D4",
+  "en": "Market Structure, Pricing, and Design: General",
+  "uz": "Bozor tuzilmasi va narx: umumiy",
+  "ru": "Структура рынка и ценообразование: общее"
+ },
+ {
+  "code": "D53",
+  "level": 3,
+  "parent": "D5",
+  "en": "Financial Markets",
+  "uz": "Moliya bozorlari",
+  "ru": "Финансовые рынки"
+ },
+ {
+  "code": "D61",
+  "level": 3,
+  "parent": "D6",
+  "en": "Allocative Efficiency; Cost-Benefit Analysis",
+  "uz": "Taqsimlash samaradorligi; xarajat-foyda tahlili",
+  "ru": "Эффективность распределения; анализ затрат и выгод"
+ },
+ {
+  "code": "D63",
+  "level": 3,
+  "parent": "D6",
+  "en": "Equity, Justice, Inequality, and Other Normative Criteria",
+  "uz": "Tenglik, adolat va tengsizlik",
+  "ru": "Справедливость, равенство и неравенство"
+ },
+ {
+  "code": "D72",
+  "level": 3,
+  "parent": "D7",
+  "en": "Political Processes: Rent-Seeking, Lobbying, Elections",
+  "uz": "Siyosiy jarayonlar: renta izlash, lobbichilik",
+  "ru": "Политические процессы: рентоориентированное поведение, лоббирование"
+ },
+ {
+  "code": "D73",
+  "level": 3,
+  "parent": "D7",
+  "en": "Bureaucracy; Administrative Processes in Public Organizations; Corruption",
+  "uz": "Byurokratiya; korrupsiya",
+  "ru": "Бюрократия; коррупция"
+ },
+ {
+  "code": "D81",
+  "level": 3,
+  "parent": "D8",
+  "en": "Criteria for Decision-Making under Risk and Uncertainty",
+  "uz": "Xavf va noaniqlikda qaror qabul qilish",
+  "ru": "Принятие решений в условиях риска и неопределённости"
+ },
+ {
+  "code": "D82",
+  "level": 3,
+  "parent": "D8",
+  "en": "Asymmetric and Private Information; Mechanism Design",
+  "uz": "Assimetrik axborot; mexanizm dizayni",
+  "ru": "Асимметричная информация; дизайн механизмов"
+ },
+ {
+  "code": "D83",
+  "level": 3,
+  "parent": "D8",
+  "en": "Search; Learning; Information and Knowledge; Communication; Belief",
+  "uz": "Qidiruv; oʻrganish; axborot va bilim",
+  "ru": "Поиск; обучение; информация и знания"
+ },
+ {
+  "code": "E01",
+  "level": 3,
+  "parent": "E0",
+  "en": "Measurement and Data on National Income and Product Accounts",
+  "uz": "Milliy hisoblar boʻyicha oʻlchov va maʼlumotlar",
+  "ru": "Измерение и данные национальных счетов"
+ },
+ {
+  "code": "E20",
+  "level": 3,
+  "parent": "E2",
+  "en": "Consumption, Saving, Production, Employment, and Investment: General",
+  "uz": "Isteʼmol, jamgʻarma, bandlik va investitsiya: umumiy",
+  "ru": "Потребление, сбережения, занятость и инвестиции: общее"
+ },
+ {
+  "code": "E22",
+  "level": 3,
+  "parent": "E2",
+  "en": "Investment; Capital; Intangible Capital; Capacity",
+  "uz": "Investitsiya; kapital",
+  "ru": "Инвестиции; капитал"
+ },
+ {
+  "code": "E24",
+  "level": 3,
+  "parent": "E2",
+  "en": "Employment; Unemployment; Wages; Intergenerational Income Distribution",
+  "uz": "Bandlik; ishsizlik; ish haqi",
+  "ru": "Занятость; безработица; заработная плата"
+ },
+ {
+  "code": "E26",
+  "level": 3,
+  "parent": "E2",
+  "en": "Informal Economy; Underground Economy",
+  "uz": "Norasmiy iqtisodiyot",
+  "ru": "Неформальная экономика"
+ },
+ {
+  "code": "E31",
+  "level": 3,
+  "parent": "E3",
+  "en": "Price Level; Inflation; Deflation",
+  "uz": "Narx darajasi; inflyatsiya; deflyatsiya",
+  "ru": "Уровень цен; инфляция; дефляция"
+ },
+ {
+  "code": "E32",
+  "level": 3,
+  "parent": "E3",
+  "en": "Business Fluctuations; Cycles",
+  "uz": "Biznes tebranishlari; sikllar",
+  "ru": "Деловые колебания; циклы"
+ },
+ {
+  "code": "E37",
+  "level": 3,
+  "parent": "E3",
+  "en": "Forecasting and Simulation: Models and Applications",
+  "uz": "Prognozlash va simulyatsiya",
+  "ru": "Прогнозирование и моделирование"
+ },
+ {
+  "code": "E41",
+  "level": 3,
+  "parent": "E4",
+  "en": "Demand for Money",
+  "uz": "Pulga talab",
+  "ru": "Спрос на деньги"
+ },
+ {
+  "code": "E43",
+  "level": 3,
+  "parent": "E4",
+  "en": "Interest Rates: Determination, Term Structure, and Effects",
+  "uz": "Foiz stavkalari",
+  "ru": "Процентные ставки"
+ },
+ {
+  "code": "E44",
+  "level": 3,
+  "parent": "E4",
+  "en": "Financial Markets and the Macroeconomy",
+  "uz": "Moliya bozorlari va makroiqtisodiyot",
+  "ru": "Финансовые рынки и макроэкономика"
+ },
+ {
+  "code": "E51",
+  "level": 3,
+  "parent": "E5",
+  "en": "Money Supply; Credit; Money Multipliers",
+  "uz": "Pul taklifi; kredit",
+  "ru": "Предложение денег; кредит"
+ },
+ {
+  "code": "E52",
+  "level": 3,
+  "parent": "E5",
+  "en": "Monetary Policy",
+  "uz": "Pul-kredit siyosati",
+  "ru": "Денежно-кредитная политика"
+ },
+ {
+  "code": "E58",
+  "level": 3,
+  "parent": "E5",
+  "en": "Central Banks and Their Policies",
+  "uz": "Markaziy banklar va ularning siyosati",
+  "ru": "Центральные банки и их политика"
+ },
+ {
+  "code": "E62",
+  "level": 3,
+  "parent": "E6",
+  "en": "Fiscal Policy",
+  "uz": "Fiskal siyosat",
+  "ru": "Фискальная политика"
+ },
+ {
+  "code": "E63",
+  "level": 3,
+  "parent": "E6",
+  "en": "Comparative or Joint Analysis of Fiscal and Monetary Policy",
+  "uz": "Fiskal va pul siyosatining qiyosiy tahlili",
+  "ru": "Сравнительный анализ фискальной и денежной политики"
+ },
+ {
+  "code": "E65",
+  "level": 3,
+  "parent": "E6",
+  "en": "Studies of Particular Policy Episodes",
+  "uz": "Alohida siyosat epizodlari tadqiqi",
+  "ru": "Исследования отдельных эпизодов политики"
+ },
+ {
+  "code": "F10",
+  "level": 3,
+  "parent": "F1",
+  "en": "Trade: General",
+  "uz": "Savdo: umumiy",
+  "ru": "Торговля: общее"
+ },
+ {
+  "code": "F13",
+  "level": 3,
+  "parent": "F1",
+  "en": "Trade Policy; International Trade Organizations",
+  "uz": "Savdo siyosati; xalqaro savdo tashkilotlari",
+  "ru": "Торговая политика; международные торговые организации"
+ },
+ {
+  "code": "F14",
+  "level": 3,
+  "parent": "F1",
+  "en": "Empirical Studies of Trade",
+  "uz": "Savdoning empirik tadqiqotlari",
+  "ru": "Эмпирические исследования торговли"
+ },
+ {
+  "code": "F15",
+  "level": 3,
+  "parent": "F1",
+  "en": "Economic Integration",
+  "uz": "Iqtisodiy integratsiya",
+  "ru": "Экономическая интеграция"
+ },
+ {
+  "code": "F21",
+  "level": 3,
+  "parent": "F2",
+  "en": "International Investment; Long-Term Capital Movements",
+  "uz": "Xalqaro investitsiya; uzoq muddatli kapital harakati",
+  "ru": "Международные инвестиции; движение капитала"
+ },
+ {
+  "code": "F22",
+  "level": 3,
+  "parent": "F2",
+  "en": "International Migration",
+  "uz": "Xalqaro migratsiya",
+  "ru": "Международная миграция"
+ },
+ {
+  "code": "F23",
+  "level": 3,
+  "parent": "F2",
+  "en": "Multinational Firms; International Business",
+  "uz": "Transmilliy firmalar; xalqaro biznes",
+  "ru": "Транснациональные компании; международный бизнес"
+ },
+ {
+  "code": "F31",
+  "level": 3,
+  "parent": "F3",
+  "en": "Foreign Exchange",
+  "uz": "Valyuta",
+  "ru": "Валютный курс"
+ },
+ {
+  "code": "F33",
+  "level": 3,
+  "parent": "F3",
+  "en": "International Monetary Arrangements and Institutions",
+  "uz": "Xalqaro valyuta tizimlari",
+  "ru": "Международные валютные механизмы"
+ },
+ {
+  "code": "F34",
+  "level": 3,
+  "parent": "F3",
+  "en": "International Lending and Debt Problems",
+  "uz": "Xalqaro kreditlash va qarz muammolari",
+  "ru": "Международное кредитование и проблемы долга"
+ },
+ {
+  "code": "F41",
+  "level": 3,
+  "parent": "F4",
+  "en": "Open Economy Macroeconomics",
+  "uz": "Ochiq iqtisodiyot makroiqtisodiyoti",
+  "ru": "Макроэкономика открытой экономики"
+ },
+ {
+  "code": "F43",
+  "level": 3,
+  "parent": "F4",
+  "en": "Economic Growth of Open Economies",
+  "uz": "Ochiq iqtisodiyotlarning oʻsishi",
+  "ru": "Экономический рост открытых экономик"
+ },
+ {
+  "code": "F63",
+  "level": 3,
+  "parent": "F6",
+  "en": "Economic Development",
+  "uz": "Iqtisodiy rivojlanish",
+  "ru": "Экономическое развитие"
+ },
+ {
+  "code": "G11",
+  "level": 3,
+  "parent": "G1",
+  "en": "Portfolio Choice; Investment Decisions",
+  "uz": "Portfel tanlovi; investitsiya qarorlari",
+  "ru": "Выбор портфеля; инвестиционные решения"
+ },
+ {
+  "code": "G12",
+  "level": 3,
+  "parent": "G1",
+  "en": "Asset Pricing; Trading Volume; Bond Interest Rates",
+  "uz": "Aktivlarni baholash",
+  "ru": "Ценообразование активов"
+ },
+ {
+  "code": "G14",
+  "level": 3,
+  "parent": "G1",
+  "en": "Information and Market Efficiency; Event Studies",
+  "uz": "Axborot va bozor samaradorligi",
+  "ru": "Информация и эффективность рынка"
+ },
+ {
+  "code": "G18",
+  "level": 3,
+  "parent": "G1",
+  "en": "General Financial Markets: Government Policy and Regulation",
+  "uz": "Moliya bozorlari: davlat siyosati va tartibga solish",
+  "ru": "Финансовые рынки: политика и регулирование"
+ },
+ {
+  "code": "G21",
+  "level": 3,
+  "parent": "G2",
+  "en": "Banks; Depository Institutions; Mortgages",
+  "uz": "Banklar; depozit institutlari; ipoteka",
+  "ru": "Банки; депозитные учреждения; ипотека"
+ },
+ {
+  "code": "G23",
+  "level": 3,
+  "parent": "G2",
+  "en": "Non-bank Financial Institutions; Financial Instruments",
+  "uz": "Nobank moliya institutlari",
+  "ru": "Небанковские финансовые институты"
+ },
+ {
+  "code": "G28",
+  "level": 3,
+  "parent": "G2",
+  "en": "Financial Institutions and Services: Government Policy and Regulation",
+  "uz": "Moliya institutlari: tartibga solish",
+  "ru": "Финансовые институты: политика и регулирование"
+ },
+ {
+  "code": "G32",
+  "level": 3,
+  "parent": "G3",
+  "en": "Financing Policy; Financial Risk and Risk Management; Capital Structure",
+  "uz": "Moliyalashtirish siyosati; xavflarni boshqarish",
+  "ru": "Финансовая политика; управление рисками; структура капитала"
+ },
+ {
+  "code": "G34",
+  "level": 3,
+  "parent": "G3",
+  "en": "Mergers; Acquisitions; Restructuring; Corporate Governance",
+  "uz": "Qoʻshilish va yutib olish; korporativ boshqaruv",
+  "ru": "Слияния и поглощения; корпоративное управление"
+ },
+ {
+  "code": "G41",
+  "level": 3,
+  "parent": "G4",
+  "en": "Behavioral Finance: Role and Effects of Psychological Attributes",
+  "uz": "Xulq-atvor moliyasi",
+  "ru": "Поведенческие финансы"
+ },
+ {
+  "code": "G51",
+  "level": 3,
+  "parent": "G5",
+  "en": "Household Saving, Borrowing, Debt, and Wealth",
+  "uz": "Uy xoʻjaligi jamgʻarmasi va qarzi",
+  "ru": "Сбережения, займы и долг домохозяйств"
+ },
+ {
+  "code": "H11",
+  "level": 3,
+  "parent": "H1",
+  "en": "Structure, Scope, and Performance of Government",
+  "uz": "Davlatning tuzilishi va samaradorligi",
+  "ru": "Структура и результативность государства"
+ },
+ {
+  "code": "H21",
+  "level": 3,
+  "parent": "H2",
+  "en": "Efficiency; Optimal Taxation",
+  "uz": "Samaradorlik; optimal soliqqa tortish",
+  "ru": "Эффективность; оптимальное налогообложение"
+ },
+ {
+  "code": "H23",
+  "level": 3,
+  "parent": "H2",
+  "en": "Externalities; Redistributive Effects; Environmental Taxes and Subsidies",
+  "uz": "Tashqi effektlar; ekologik soliqlar",
+  "ru": "Внешние эффекты; экологические налоги"
+ },
+ {
+  "code": "H25",
+  "level": 3,
+  "parent": "H2",
+  "en": "Business Taxes and Subsidies",
+  "uz": "Biznes soliqlari va subsidiyalari",
+  "ru": "Налоги и субсидии для бизнеса"
+ },
+ {
+  "code": "H26",
+  "level": 3,
+  "parent": "H2",
+  "en": "Tax Evasion and Avoidance",
+  "uz": "Soliqdan bosh tortish va uni chetlab oʻtish",
+  "ru": "Уклонение от налогов"
+ },
+ {
+  "code": "H30",
+  "level": 3,
+  "parent": "H3",
+  "en": "Fiscal Policies and Behavior of Economic Agents: General",
+  "uz": "Fiskal siyosat: umumiy",
+  "ru": "Фискальная политика: общее"
+ },
+ {
+  "code": "H50",
+  "level": 3,
+  "parent": "H5",
+  "en": "National Government Expenditures and Related Policies: General",
+  "uz": "Davlat xarajatlari: umumiy",
+  "ru": "Государственные расходы: общее"
+ },
+ {
+  "code": "H54",
+  "level": 3,
+  "parent": "H5",
+  "en": "Infrastructures; Other Public Investment and Capital Stock",
+  "uz": "Infratuzilma; davlat investitsiyalari",
+  "ru": "Инфраструктура; государственные инвестиции"
+ },
+ {
+  "code": "H55",
+  "level": 3,
+  "parent": "H5",
+  "en": "Social Security and Public Pensions",
+  "uz": "Ijtimoiy taʼminot va davlat pensiyalari",
+  "ru": "Социальное обеспечение и государственные пенсии"
+ },
+ {
+  "code": "H61",
+  "level": 3,
+  "parent": "H6",
+  "en": "Budget; Budget Systems",
+  "uz": "Byudjet; byudjet tizimlari",
+  "ru": "Бюджет; бюджетные системы"
+ },
+ {
+  "code": "H62",
+  "level": 3,
+  "parent": "H6",
+  "en": "Deficit; Surplus",
+  "uz": "Taqchillik; profitsit",
+  "ru": "Дефицит; профицит"
+ },
+ {
+  "code": "H63",
+  "level": 3,
+  "parent": "H6",
+  "en": "Debt; Debt Management; Sovereign Debt",
+  "uz": "Qarz; qarzni boshqarish",
+  "ru": "Долг; управление долгом"
+ },
+ {
+  "code": "H71",
+  "level": 3,
+  "parent": "H7",
+  "en": "State and Local Taxation, Subsidies, and Revenue",
+  "uz": "Mahalliy soliqlar va daromadlar",
+  "ru": "Региональные и местные налоги и доходы"
+ },
+ {
+  "code": "H77",
+  "level": 3,
+  "parent": "H7",
+  "en": "Intergovernmental Relations; Federalism; Secession",
+  "uz": "Hukumatlararo munosabatlar; federalizm",
+  "ru": "Межбюджетные отношения; федерализм"
+ },
+ {
+  "code": "I21",
+  "level": 3,
+  "parent": "I2",
+  "en": "Analysis of Education",
+  "uz": "Taʼlim tahlili",
+  "ru": "Анализ образования"
+ },
+ {
+  "code": "I23",
+  "level": 3,
+  "parent": "I2",
+  "en": "Higher Education; Research Institutions",
+  "uz": "Oliy taʼlim; tadqiqot muassasalari",
+  "ru": "Высшее образование; научные учреждения"
+ },
+ {
+  "code": "I25",
+  "level": 3,
+  "parent": "I2",
+  "en": "Education and Economic Development",
+  "uz": "Taʼlim va iqtisodiy rivojlanish",
+  "ru": "Образование и экономическое развитие"
+ },
+ {
+  "code": "I31",
+  "level": 3,
+  "parent": "I3",
+  "en": "General Welfare; Well-Being",
+  "uz": "Umumiy farovonlik",
+  "ru": "Общее благосостояние"
+ },
+ {
+  "code": "I32",
+  "level": 3,
+  "parent": "I3",
+  "en": "Measurement and Analysis of Poverty",
+  "uz": "Qashshoqlikni oʻlchash va tahlil qilish",
+  "ru": "Измерение и анализ бедности"
+ },
+ {
+  "code": "I38",
+  "level": 3,
+  "parent": "I3",
+  "en": "Welfare, Well-Being, and Poverty: Government Programs",
+  "uz": "Farovonlik va qashshoqlik: davlat dasturlari",
+  "ru": "Благосостояние и бедность: государственные программы"
+ },
+ {
+  "code": "J21",
+  "level": 3,
+  "parent": "J2",
+  "en": "Labor Force and Employment, Size, and Structure",
+  "uz": "Mehnat resurslari va bandlik",
+  "ru": "Рабочая сила и занятость"
+ },
+ {
+  "code": "J23",
+  "level": 3,
+  "parent": "J2",
+  "en": "Labor Demand",
+  "uz": "Mehnatga talab",
+  "ru": "Спрос на труд"
+ },
+ {
+  "code": "J24",
+  "level": 3,
+  "parent": "J2",
+  "en": "Human Capital; Skills; Occupational Choice; Labor Productivity",
+  "uz": "Inson kapitali; malaka; mehnat unumdorligi",
+  "ru": "Человеческий капитал; навыки; производительность труда"
+ },
+ {
+  "code": "J31",
+  "level": 3,
+  "parent": "J3",
+  "en": "Wage Level and Structure; Wage Differentials",
+  "uz": "Ish haqi darajasi va tuzilmasi",
+  "ru": "Уровень и структура заработной платы"
+ },
+ {
+  "code": "J46",
+  "level": 3,
+  "parent": "J4",
+  "en": "Informal Labor Markets",
+  "uz": "Norasmiy mehnat bozorlari",
+  "ru": "Неформальные рынки труда"
+ },
+ {
+  "code": "J61",
+  "level": 3,
+  "parent": "J6",
+  "en": "Geographic Labor Mobility; Immigrant Workers",
+  "uz": "Geografik mehnat harakatchanligi; migrantlar",
+  "ru": "Географическая мобильность труда; мигранты"
+ },
+ {
+  "code": "J64",
+  "level": 3,
+  "parent": "J6",
+  "en": "Unemployment: Models, Duration, Incidence, and Job Search",
+  "uz": "Ishsizlik: modellar va ish qidirish",
+  "ru": "Безработица: модели, длительность, поиск работы"
+ },
+ {
+  "code": "K34",
+  "level": 3,
+  "parent": "K3",
+  "en": "Tax Law",
+  "uz": "Soliq huquqi",
+  "ru": "Налоговое право"
+ },
+ {
+  "code": "K42",
+  "level": 3,
+  "parent": "K4",
+  "en": "Illegal Behavior and the Enforcement of Law",
+  "uz": "Noqonuniy xatti-harakat va huquqni qoʻllash",
+  "ru": "Противоправное поведение и правоприменение"
+ },
+ {
+  "code": "L11",
+  "level": 3,
+  "parent": "L1",
+  "en": "Production, Pricing, and Market Structure; Size Distribution of Firms",
+  "uz": "Ishlab chiqarish, narx va bozor tuzilmasi",
+  "ru": "Производство, ценообразование и структура рынка"
+ },
+ {
+  "code": "L25",
+  "level": 3,
+  "parent": "L2",
+  "en": "Firm Performance: Size, Diversification, and Scope",
+  "uz": "Firma samaradorligi",
+  "ru": "Результативность фирмы"
+ },
+ {
+  "code": "L26",
+  "level": 3,
+  "parent": "L2",
+  "en": "Entrepreneurship",
+  "uz": "Tadbirkorlik",
+  "ru": "Предпринимательство"
+ },
+ {
+  "code": "L38",
+  "level": 3,
+  "parent": "L3",
+  "en": "Public Policy",
+  "uz": "Davlat siyosati",
+  "ru": "Государственная политика"
+ },
+ {
+  "code": "L51",
+  "level": 3,
+  "parent": "L5",
+  "en": "Economics of Regulation",
+  "uz": "Tartibga solish iqtisodiyoti",
+  "ru": "Экономика регулирования"
+ },
+ {
+  "code": "L52",
+  "level": 3,
+  "parent": "L5",
+  "en": "Industrial Policy; Sectoral Planning Methods",
+  "uz": "Sanoat siyosati",
+  "ru": "Промышленная политика"
+ },
+ {
+  "code": "L60",
+  "level": 3,
+  "parent": "L6",
+  "en": "Industry Studies: Manufacturing: General",
+  "uz": "Ishlab chiqarish tarmoqlari: umumiy",
+  "ru": "Обрабатывающая промышленность: общее"
+ },
+ {
+  "code": "L81",
+  "level": 3,
+  "parent": "L8",
+  "en": "Retail and Wholesale Trade; e-Commerce",
+  "uz": "Chakana va ulgurji savdo; elektron tijorat",
+  "ru": "Розничная и оптовая торговля; электронная коммерция"
+ },
+ {
+  "code": "L86",
+  "level": 3,
+  "parent": "L8",
+  "en": "Information and Internet Services; Computer Software",
+  "uz": "Axborot va internet xizmatlari; dasturiy taʼminot",
+  "ru": "Информационные и интернет-услуги; программное обеспечение"
+ },
+ {
+  "code": "L91",
+  "level": 3,
+  "parent": "L9",
+  "en": "Transportation: General",
+  "uz": "Transport: umumiy",
+  "ru": "Транспорт: общее"
+ },
+ {
+  "code": "M13",
+  "level": 3,
+  "parent": "M1",
+  "en": "New Firms; Startups",
+  "uz": "Yangi firmalar; startaplar",
+  "ru": "Новые фирмы; стартапы"
+ },
+ {
+  "code": "M21",
+  "level": 3,
+  "parent": "M2",
+  "en": "Business Economics",
+  "uz": "Biznes iqtisodiyoti",
+  "ru": "Экономика бизнеса"
+ },
+ {
+  "code": "M41",
+  "level": 3,
+  "parent": "M4",
+  "en": "Accounting",
+  "uz": "Buxgalteriya hisobi",
+  "ru": "Бухгалтерский учёт"
+ },
+ {
+  "code": "M42",
+  "level": 3,
+  "parent": "M4",
+  "en": "Auditing",
+  "uz": "Audit",
+  "ru": "Аудит"
+ },
+ {
+  "code": "M48",
+  "level": 3,
+  "parent": "M4",
+  "en": "Accounting and Auditing: Government Policy and Regulation",
+  "uz": "Hisob va audit: davlat siyosati",
+  "ru": "Учёт и аудит: государственная политика"
+ },
+ {
+  "code": "N15",
+  "level": 3,
+  "parent": "N1",
+  "en": "Economic History: Macroeconomics: Asia",
+  "uz": "Iqtisodiy tarix: makroiqtisodiyot: Osiyo",
+  "ru": "Экономическая история: макроэкономика: Азия"
+ },
+ {
+  "code": "O11",
+  "level": 3,
+  "parent": "O1",
+  "en": "Macroeconomic Analyses of Economic Development",
+  "uz": "Iqtisodiy rivojlanishning makroiqtisodiy tahlili",
+  "ru": "Макроэкономический анализ развития"
+ },
+ {
+  "code": "O12",
+  "level": 3,
+  "parent": "O1",
+  "en": "Microeconomic Analyses of Economic Development",
+  "uz": "Iqtisodiy rivojlanishning mikroiqtisodiy tahlili",
+  "ru": "Микроэкономический анализ развития"
+ },
+ {
+  "code": "O14",
+  "level": 3,
+  "parent": "O1",
+  "en": "Industrialization; Manufacturing and Service Industries; Choice of Technology",
+  "uz": "Sanoatlashtirish; texnologiya tanlovi",
+  "ru": "Индустриализация; выбор технологии"
+ },
+ {
+  "code": "O16",
+  "level": 3,
+  "parent": "O1",
+  "en": "Financial Markets; Saving and Capital Investment",
+  "uz": "Moliya bozorlari; jamgʻarma va kapital",
+  "ru": "Финансовые рынки; сбережения и инвестиции"
+ },
+ {
+  "code": "O17",
+  "level": 3,
+  "parent": "O1",
+  "en": "Formal and Informal Sectors; Shadow Economy; Institutional Arrangements",
+  "uz": "Rasmiy va norasmiy sektorlar; soya iqtisodiyoti",
+  "ru": "Формальный и неформальный сектора; теневая экономика"
+ },
+ {
+  "code": "O18",
+  "level": 3,
+  "parent": "O1",
+  "en": "Urban, Rural, Regional, and Transportation Analysis; Housing; Infrastructure",
+  "uz": "Shahar, qishloq va hududiy tahlil; infratuzilma",
+  "ru": "Городской, сельский и региональный анализ; инфраструктура"
+ },
+ {
+  "code": "O19",
+  "level": 3,
+  "parent": "O1",
+  "en": "International Linkages to Development; Role of International Organizations",
+  "uz": "Rivojlanishning xalqaro aloqalari",
+  "ru": "Международные связи развития"
+ },
+ {
+  "code": "O25",
+  "level": 3,
+  "parent": "O2",
+  "en": "Industrial Policy",
+  "uz": "Sanoat siyosati",
+  "ru": "Промышленная политика"
+ },
+ {
+  "code": "O30",
+  "level": 3,
+  "parent": "O3",
+  "en": "Innovation; Research and Development: General",
+  "uz": "Innovatsiya va tadqiqot: umumiy",
+  "ru": "Инновации и НИОКР: общее"
+ },
+ {
+  "code": "O31",
+  "level": 3,
+  "parent": "O3",
+  "en": "Innovation and Invention: Processes and Incentives",
+  "uz": "Innovatsiya va ixtiro: jarayon va ragʻbat",
+  "ru": "Инновации и изобретения: процессы и стимулы"
+ },
+ {
+  "code": "O32",
+  "level": 3,
+  "parent": "O3",
+  "en": "Management of Technological Innovation and R&D",
+  "uz": "Texnologik innovatsiyalarni boshqarish",
+  "ru": "Управление технологическими инновациями и НИОКР"
+ },
+ {
+  "code": "O33",
+  "level": 3,
+  "parent": "O3",
+  "en": "Technological Change: Choices and Consequences; Diffusion Processes",
+  "uz": "Texnologik oʻzgarish: tanlov va oqibatlar",
+  "ru": "Технологические изменения: выбор и последствия"
+ },
+ {
+  "code": "O38",
+  "level": 3,
+  "parent": "O3",
+  "en": "Technological Change: Government Policy",
+  "uz": "Texnologik oʻzgarish: davlat siyosati",
+  "ru": "Технологические изменения: государственная политика"
+ },
+ {
+  "code": "O40",
+  "level": 3,
+  "parent": "O4",
+  "en": "Economic Growth and Aggregate Productivity: General",
+  "uz": "Iqtisodiy oʻsish: umumiy",
+  "ru": "Экономический рост: общее"
+ },
+ {
+  "code": "O43",
+  "level": 3,
+  "parent": "O4",
+  "en": "Institutions and Growth",
+  "uz": "Institutlar va oʻsish",
+  "ru": "Институты и рост"
+ },
+ {
+  "code": "O47",
+  "level": 3,
+  "parent": "O4",
+  "en": "Empirical Studies of Economic Growth; Aggregate Productivity",
+  "uz": "Iqtisodiy oʻsishning empirik tadqiqotlari",
+  "ru": "Эмпирические исследования роста"
+ },
+ {
+  "code": "O53",
+  "level": 3,
+  "parent": "O5",
+  "en": "Economywide Country Studies: Asia",
+  "uz": "Mamlakat tadqiqotlari: Osiyo",
+  "ru": "Страновые исследования: Азия"
+ },
+ {
+  "code": "P21",
+  "level": 3,
+  "parent": "P2",
+  "en": "Socialist Systems and Transitional Economies: Planning, Coordination, and Reform",
+  "uz": "Oʻtish iqtisodiyoti: rejalashtirish va islohot",
+  "ru": "Переходные экономики: планирование и реформы"
+ },
+ {
+  "code": "P26",
+  "level": 3,
+  "parent": "P2",
+  "en": "Socialist Systems and Transitional Economies: Political Economy; Property Rights",
+  "uz": "Oʻtish iqtisodiyoti: mulk huquqi",
+  "ru": "Переходные экономики: права собственности"
+ },
+ {
+  "code": "P33",
+  "level": 3,
+  "parent": "P3",
+  "en": "Socialist Institutions and Their Transitions: International Trade, Finance, Investment",
+  "uz": "Oʻtish davri: xalqaro savdo va investitsiya",
+  "ru": "Переходный период: международная торговля и инвестиции"
+ },
+ {
+  "code": "Q12",
+  "level": 3,
+  "parent": "Q1",
+  "en": "Micro Analysis of Farm Firms, Farm Households, and Farm Input Markets",
+  "uz": "Fermer xoʻjaliklari mikro tahlili",
+  "ru": "Микроанализ фермерских хозяйств"
+ },
+ {
+  "code": "Q13",
+  "level": 3,
+  "parent": "Q1",
+  "en": "Agricultural Markets and Marketing; Cooperatives; Agribusiness",
+  "uz": "Qishloq xoʻjaligi bozorlari; agrobiznes",
+  "ru": "Аграрные рынки; агробизнес"
+ },
+ {
+  "code": "Q18",
+  "level": 3,
+  "parent": "Q1",
+  "en": "Agricultural Policy; Food Policy",
+  "uz": "Qishloq xoʻjaligi siyosati; oziq-ovqat siyosati",
+  "ru": "Аграрная политика; продовольственная политика"
+ },
+ {
+  "code": "Q25",
+  "level": 3,
+  "parent": "Q2",
+  "en": "Water",
+  "uz": "Suv",
+  "ru": "Вода"
+ },
+ {
+  "code": "Q41",
+  "level": 3,
+  "parent": "Q4",
+  "en": "Energy Demand and Supply",
+  "uz": "Energiyaga talab va taklif",
+  "ru": "Спрос и предложение энергии"
+ },
+ {
+  "code": "Q43",
+  "level": 3,
+  "parent": "Q4",
+  "en": "Energy and the Macroeconomy",
+  "uz": "Energetika va makroiqtisodiyot",
+  "ru": "Энергетика и макроэкономика"
+ },
+ {
+  "code": "Q48",
+  "level": 3,
+  "parent": "Q4",
+  "en": "Energy: Government Policy",
+  "uz": "Energetika: davlat siyosati",
+  "ru": "Энергетика: государственная политика"
+ },
+ {
+  "code": "Q54",
+  "level": 3,
+  "parent": "Q5",
+  "en": "Climate; Natural Disasters and Their Management; Global Warming",
+  "uz": "Iqlim; tabiiy ofatlar; global isish",
+  "ru": "Климат; стихийные бедствия; глобальное потепление"
+ },
+ {
+  "code": "Q56",
+  "level": 3,
+  "parent": "Q5",
+  "en": "Environment and Development; Sustainability",
+  "uz": "Atrof-muhit va rivojlanish; barqarorlik",
+  "ru": "Окружающая среда и развитие; устойчивость"
+ },
+ {
+  "code": "R11",
+  "level": 3,
+  "parent": "R1",
+  "en": "Regional Economic Activity: Growth, Development, Environmental Issues, and Changes",
+  "uz": "Hududiy iqtisodiy faoliyat: oʻsish va rivojlanish",
+  "ru": "Региональная экономическая активность: рост и развитие"
+ },
+ {
+  "code": "R12",
+  "level": 3,
+  "parent": "R1",
+  "en": "Size and Spatial Distributions of Regional Economic Activity",
+  "uz": "Hududiy faoliyatning fazoviy taqsimoti",
+  "ru": "Пространственное распределение региональной активности"
+ },
+ {
+  "code": "R23",
+  "level": 3,
+  "parent": "R2",
+  "en": "Regional Migration; Regional Labor Markets; Population",
+  "uz": "Hududiy migratsiya; hududiy mehnat bozorlari",
+  "ru": "Региональная миграция; региональные рынки труда"
+ },
+ {
+  "code": "R31",
+  "level": 3,
+  "parent": "R3",
+  "en": "Housing Supply and Markets",
+  "uz": "Uy-joy taklifi va bozorlari",
+  "ru": "Предложение жилья и рынки"
+ },
+ {
+  "code": "R41",
+  "level": 3,
+  "parent": "R4",
+  "en": "Transportation: Demand, Supply, and Congestion",
+  "uz": "Transport: talab, taklif va tirbandlik",
+  "ru": "Транспорт: спрос, предложение и заторы"
+ },
+ {
+  "code": "R58",
+  "level": 3,
+  "parent": "R5",
+  "en": "Regional Development Planning and Policy",
+  "uz": "Hududiy rivojlanishni rejalashtirish",
+  "ru": "Планирование регионального развития"
+ },
+ {
+  "code": "Y10",
+  "level": 3,
+  "parent": "Y1",
+  "en": "Data: Tables and Charts",
+  "uz": "Maʼlumotlar: jadval va diagrammalar",
+  "ru": "Данные: таблицы и графики"
+ },
+ {
+  "code": "Z13",
+  "level": 3,
+  "parent": "Z1",
+  "en": "Economic Sociology; Economic Anthropology; Social and Economic Stratification",
+  "uz": "Iqtisodiy sotsiologiya; ijtimoiy tabaqalanish",
+  "ru": "Экономическая социология; социальная стратификация"
+ },
+ {
+  "code": "Z32",
+  "level": 3,
+  "parent": "Z3",
+  "en": "Tourism and Development",
+  "uz": "Turizm va rivojlanish",
+  "ru": "Туризм и развитие"
+ }
+]

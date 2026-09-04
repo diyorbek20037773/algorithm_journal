@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ section.name }} · {{ site_settings.journal_name }}{% endblock %}
+
+{% block content %}
+  <div class="container-page">
+    <p class="eyebrow">{% translate "Section" %}</p>
+    <h1 class="text-3xl mt-1 mb-2">{{ section.name }}</h1>
+    {% if section.description %}<p class="muted max-w-[70ch] mb-8">{{ section.description }}</p>{% endif %}
+    {% for article in articles %}
+      {% include "journal/partials/article_card.html" with article=article show_abstract=True %}
+    {% empty %}
+      <div class="empty-state"><p>{% translate "No articles have been published in this section yet." %}</p></div>
+    {% endfor %}
+    {% include "journal/partials/pagination.html" %}
+  </div>
+{% endblock %}

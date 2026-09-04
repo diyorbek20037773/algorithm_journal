@@ -1,0 +1,82 @@
+{% load i18n %}
+<header class="sticky top-0 z-40 border-b border-[--color-line] bg-[--color-paper]/95 backdrop-blur"
+        x-data="{ mobile: false, search: false }">
+  <div class="container-page flex h-16 items-center gap-4">
+
+    <a class="wordmark shrink-0" href="{% url 'journal:home' %}" aria-label="{{ site_settings.journal_name }}">
+      {% include "includes/wordmark.html" %}
+    </a>
+
+    <nav class="ml-auto hidden lg:flex items-center gap-1" aria-label="{% translate 'Primary' %}">
+      <a class="nav-link" href="{% url 'journal:issue_current' %}">{% translate "Current Issue" %}</a>
+      <a class="nav-link" href="{% url 'journal:archive' %}">{% translate "Archive" %}</a>
+      <a class="nav-link" href="{% url 'journal:online_first' %}">{% translate "Online First" %}</a>
+      <a class="nav-link" href="{% url 'core:for_authors' %}">{% translate "For Authors" %}</a>
+      <a class="nav-link" href="{% url 'core:for_reviewers' %}">{% translate "For Reviewers" %}</a>
+      <a class="nav-link" href="{% url 'core:about' %}">{% translate "About" %}</a>
+    </nav>
+
+    <div class="ml-auto lg:ml-0 flex items-center gap-2">
+
+      <a class="btn btn-ghost btn-sm" href="{% url 'search:search' %}" aria-label="{% translate 'Search' %}">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.3-4.3"></path>
+        </svg>
+        <span class="hidden xl:inline">{% translate "Search" %}</span>
+      </a>
+
+      {% include "includes/language_switcher.html" %}
+
+      <a class="btn btn-primary btn-sm hidden sm:inline-flex" href="{% url 'submissions:wizard_start' %}">
+        {% translate "Submit" %}
+      </a>
+
+      {% if user.is_authenticated %}
+        <div class="relative" x-data="{ open: false }">
+          <button type="button" class="btn btn-secondary btn-sm" @click="open = !open"
+                  :aria-expanded="open" aria-haspopup="true">
+            <span class="max-w-[10rem] truncate">{{ user.get_short_name }}</span>
+          </button>
+          <div x-show="open" x-cloak @click.outside="open = false"
+               class="absolute right-0 mt-1 w-56 rounded-[--radius-card] border border-[--color-line] bg-[--color-paper] p-2 shadow-lg">
+            <a class="footer-link px-2 py-2" href="{% url 'dashboard:home' %}">{% translate "Dashboard" %}</a>
+            <a class="footer-link px-2 py-2" href="{% url 'dashboard:profile' %}">{% translate "Profile" %}</a>
+            <a class="footer-link px-2 py-2" href="{% url 'dashboard:two_factor_setup' %}">{% translate "Two-factor authentication" %}</a>
+            <form method="post" action="{% url 'account_logout' %}" class="mt-1 border-t border-[--color-line] pt-1">
+              {% csrf_token %}
+              <button type="submit" class="footer-link px-2 py-2 w-full text-left">{% translate "Sign out" %}</button>
+            </form>
+          </div>
+        </div>
+      {% else %}
+        <a class="nav-link hidden sm:inline-flex" href="{% url 'account_login' %}">{% translate "Sign in" %}</a>
+      {% endif %}
+
+      <button type="button" class="btn btn-ghost btn-sm lg:hidden" @click="mobile = !mobile"
+              :aria-expanded="mobile" aria-controls="mobile-nav" aria-label="{% translate 'Menu' %}">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+             stroke-linecap="round" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-nav" x-show="mobile" x-cloak class="lg:hidden border-t border-[--color-line] bg-[--color-paper]">
+    <nav class="container-page py-3 flex flex-col" aria-label="{% translate 'Primary' %}">
+      <a class="nav-link" href="{% url 'journal:issue_current' %}">{% translate "Current Issue" %}</a>
+      <a class="nav-link" href="{% url 'journal:archive' %}">{% translate "Archive" %}</a>
+      <a class="nav-link" href="{% url 'journal:online_first' %}">{% translate "Online First" %}</a>
+      <a class="nav-link" href="{% url 'core:for_authors' %}">{% translate "For Authors" %}</a>
+      <a class="nav-link" href="{% url 'core:for_reviewers' %}">{% translate "For Reviewers" %}</a>
+      <a class="nav-link" href="{% url 'core:about' %}">{% translate "About" %}</a>
+      <a class="nav-link" href="{% url 'search:search' %}">{% translate "Search" %}</a>
+      <a class="btn btn-primary mt-2" href="{% url 'submissions:wizard_start' %}">{% translate "Submit your manuscript" %}</a>
+      {% if not user.is_authenticated %}
+        <a class="nav-link mt-1" href="{% url 'account_login' %}">{% translate "Sign in" %}</a>
+      {% endif %}
+    </nav>
+  </div>
+</header>

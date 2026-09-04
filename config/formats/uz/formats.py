@@ -1,0 +1,14 @@
+"""Date, time and number formats for the Uzbek (Latin) locale (SPEC S10)."""
+
+DATE_FORMAT = "j-E, Y-yil"
+DATETIME_FORMAT = "j-E, Y-yil, H:i"
+SHORT_DATE_FORMAT = "d.m.Y"
+SHORT_DATETIME_FORMAT = "d.m.Y H:i"
+YEAR_MONTH_FORMAT = "F Y"
+MONTH_DAY_FORMAT = "j-E"
+TIME_FORMAT = "H:i"
+FIRST_DAY_OF_WEEK = 1
+DECIMAL_SEPARATOR = ","
+THOUSAND_SEPARATOR = " "
+NUMBER_GROUPING = 3
+USE_THOUSAND_SEPARATOR = True

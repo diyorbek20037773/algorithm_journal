@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "Upload a revision" %} · {{ site_settings.journal_name }}{% endblock %}
+
+{% block content %}
+  <div class="container-page max-w-[820px]">
+    <h1 class="text-3xl mb-2">{% translate "Upload a revision" %}</h1>
+    <p class="muted mb-6">{{ submission.reference }} — {{ submission.title }}</p>
+
+    {% if submission.decision_letter %}
+      <div class="card-muted mb-6">
+        <p class="footer-heading">{% translate "Decision letter" %}</p>
+        <div class="prose-journal text-sm mt-2">{{ submission.decision_letter|linebreaks }}</div>
+      </div>
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data" novalidate>
+      {% csrf_token %}
+      {% for field in form %}{% include "includes/form_field.html" with field=field %}{% endfor %}
+      <button type="submit" class="btn btn-primary mt-4">{% translate "Submit the revision" %}</button>
+    </form>
+  </div>
+{% endblock %}

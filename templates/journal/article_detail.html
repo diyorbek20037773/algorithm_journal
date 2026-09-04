@@ -1,0 +1,313 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ article.title }} · {{ site_settings.journal_name }}{% endblock %}
+{% block og_type %}article{% endblock %}
+{% block og_title %}{{ article.title }}{% endblock %}
+{% block twitter_title %}{{ article.title }}{% endblock %}
+{% block canonical %}{{ site_url }}{{ article.get_absolute_url }}{% endblock %}
+
+{% block extra_meta %}
+  {% for tag in highwire_tags %}
+    <meta name="{{ tag.name }}" content="{{ tag.content }}">
+  {% endfor %}
+{% endblock %}
+
+{% block structured_data %}
+  <script type="application/ld+json">{{ json_ld|safe }}</script>
+{% endblock %}
+
+{% block content %}
+  <div class="container-page">
+
+    <nav aria-label="{% translate 'Breadcrumb' %}" class="meta mb-6">
+      <a href="{% url 'journal:home' %}">{% translate "Home" %}</a> ›
+      <a href="{% url 'journal:archive' %}">{% translate "Archive" %}</a> ›
+      {% if article.issue %}
+        <a href="{{ article.issue.get_absolute_url }}">{{ article.issue.label }}</a> ›
+      {% else %}
+        <a href="{% url 'journal:online_first' %}">{% translate "Online First" %}</a> ›
+      {% endif %}
+      <span class="subtle">{% translate "Article" %}</span>
+    </nav>
+
+    {% if article.status == "retracted" %}
+      <div class="alert alert-error mb-6" role="alert">
+        <strong>{% translate "RETRACTED ARTICLE" %}</strong>
+        <p class="mt-1">{{ article.retraction_notice|default:_("This article has been retracted. The record is kept online in line with COPE guidance.") }}</p>
+      </div>
+    {% endif %}
+
+    <div class="grid gap-10 lg:grid-cols-[1fr_300px] items-start">
+
+      {# --- Main column ------------------------------------------------ #}
+      <div class="max-w-[760px]">
+        <div class="flex flex-wrap items-center gap-2 mb-3">
+          <a class="eyebrow" href="{{ article.section.get_absolute_url }}">{{ article.section.name }}</a>
+          <span class="chip">{{ article.get_article_type_display }}</span>
+          <span class="badge-oa">{% translate "Open Access" %} · CC BY 4.0</span>
+          {% if article.is_online_first %}
+            <span class="badge-online-first">{% translate "Online First" %}</span>
+          {% endif %}
+        </div>
+
+        <h1 class="text-3xl md:text-4xl leading-tight">{{ article.title }}</h1>
+        {% if article.subtitle %}
+          <p class="text-xl muted mt-2">{{ article.subtitle }}</p>
+        {% endif %}
+
+        {% if title_translations|length > 1 %}
+          <details class="mt-4">
+            <summary class="meta cursor-pointer">{% translate "Title in other languages" %}</summary>
+            <dl class="dl-meta mt-3">
+              {% for item in title_translations %}
+                <dt>{{ item.label }}</dt>
+                <dd lang="{{ item.code }}">{{ item.text }}</dd>
+              {% endfor %}
+            </dl>
+          </details>
+        {% endif %}
+
+        {# --- Authors --- #}
+        <div class="mt-6">
+          <p class="authors-line text-base">
+            {% for author in authors %}
+              <span class="inline-block mr-1">
+                {{ author.full_name }}<sup>{{ forloop.counter }}</sup>{% if author.orcid %}<a href="{{ author.orcid_url }}" rel="noopener" class="ml-0.5" aria-label="ORCID iD for {{ author.full_name }}"><span aria-hidden="true" style="color:#a6ce39;font-weight:600">iD</span></a>{% endif %}{% if author.is_corresponding and author.email %}<a href="mailto:{{ author.email }}" aria-label="{% translate 'E-mail the corresponding author' %}" class="ml-0.5">✉</a>{% endif %}{% if not forloop.last %},{% endif %}
+              </span>
+            {% endfor %}
+          </p>
+          <ol class="meta mt-2 space-y-0.5">
+            {% for author in authors %}
+              <li><sup>{{ forloop.counter }}</sup> {{ author.affiliation_display|default:_("Affiliation not provided") }}</li>
+            {% endfor %}
+          </ol>
+        </div>
+
+        {# --- Metadata --- #}
+        <dl class="dl-meta mt-8 card-muted">
+          {% if article.doi %}
+            <dt>DOI</dt>
+            <dd><a class="meta" href="{{ article.doi_url }}" rel="noopener">https://doi.org/{{ article.doi }}</a></dd>
+          {% endif %}
+          {% if article.issue %}
+            <dt>{% translate "Issue" %}</dt>
+            <dd>
+              <a href="{{ article.issue.get_absolute_url }}">
+                Vol. {{ article.issue.volume.number }} No. {{ article.issue.number }} ({{ article.issue.volume.year }})
+              </a>
+              {% if article.pages %} · {% translate "Pages" %} {{ article.pages }}{% endif %}
+            </dd>
+          {% endif %}
+          {% if article.published_at %}
+            <dt>{% translate "Published" %}</dt>
+            <dd>{{ article.published_at|date:"j F Y" }}</dd>
+          {% endif %}
+          {% if article.published_online_at %}
+            <dt>{% translate "Published online" %}</dt>
+            <dd>{{ article.published_online_at|date:"j F Y" }}</dd>
+          {% endif %}
+          <dt>{% translate "Received / Accepted" %}</dt>
+          <dd class="meta">
+            {{ article.received_at|date:"j M Y"|default:"—" }} / {{ article.accepted_at|date:"j M Y"|default:"—" }}
+          </dd>
+          {% if article.jel_codes.all %}
+            <dt>{% translate "JEL codes" %}</dt>
+            <dd class="flex flex-wrap gap-1.5">
+              {% for jel in article.jel_codes.all %}
+                <a class="chip chip-jel" href="{{ jel.get_absolute_url }}" title="{{ jel.label }}">{{ jel.code }}</a>
+              {% endfor %}
+            </dd>
+          {% endif %}
+          {% if article.keywords.all %}
+            <dt>{% translate "Keywords" %}</dt>
+            <dd class="flex flex-wrap gap-1.5">
+              {% for keyword in article.keywords.all %}
+                <a class="chip" href="{{ keyword.get_absolute_url }}">{{ keyword.name }}</a>
+              {% endfor %}
+            </dd>
+          {% endif %}
+          <dt>{% translate "Language" %}</dt>
+          <dd>{{ article.get_language_display }}</dd>
+        </dl>
+
+        {# --- Abstract --- #}
+        <section class="mt-10" x-data="{ tab: '{{ LANGUAGE_CODE }}' }">
+          <div class="section-heading">
+            <h2>{% translate "Abstract" %}</h2>
+            {% if abstract_translations|length > 1 %}
+              <div class="flex gap-1" role="tablist" aria-label="{% translate 'Abstract language' %}">
+                {% for item in abstract_translations %}
+                  <button type="button" class="btn btn-ghost btn-sm" role="tab"
+                          :aria-selected="tab === '{{ item.code }}'"
+                          :class="tab === '{{ item.code }}' ? 'font-semibold underline' : ''"
+                          @click="tab = '{{ item.code }}'">{{ item.label }}</button>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+          {% for item in abstract_translations %}
+            <div lang="{{ item.code }}" class="prose-journal"
+                 x-show="tab === '{{ item.code }}'"
+                 {% if forloop.first %}x-init="if (!{{ abstract_translations|length }}) tab = '{{ item.code }}'"{% endif %}>
+              {{ item.text|linebreaks }}
+            </div>
+          {% empty %}
+            <p class="muted">{% translate "No abstract is available for this article." %}</p>
+          {% endfor %}
+          <noscript>
+            <div class="prose-journal">{{ article.abstract|linebreaks }}</div>
+          </noscript>
+        </section>
+
+        {# --- Statements --- #}
+        <section class="mt-10 space-y-4">
+          {% if article.funding_statement %}
+            <div><p class="footer-heading">{% translate "Funding" %}</p><p class="muted text-sm">{{ article.funding_statement }}</p></div>
+          {% endif %}
+          {% if article.conflict_of_interest_statement %}
+            <div><p class="footer-heading">{% translate "Conflict of interest" %}</p><p class="muted text-sm">{{ article.conflict_of_interest_statement }}</p></div>
+          {% endif %}
+          {% if article.data_availability_statement %}
+            <div><p class="footer-heading">{% translate "Data availability" %}</p><p class="muted text-sm">{{ article.data_availability_statement }}</p></div>
+          {% endif %}
+          {% if article.ai_use_statement %}
+            <div><p class="footer-heading">{% translate "Use of generative AI" %}</p><p class="muted text-sm">{{ article.ai_use_statement }}</p></div>
+          {% endif %}
+          {% if article.acknowledgements %}
+            <div><p class="footer-heading">{% translate "Acknowledgements" %}</p><p class="muted text-sm">{{ article.acknowledgements }}</p></div>
+          {% endif %}
+        </section>
+
+        {# --- How to cite --- #}
+        <section class="mt-10">
+          <div class="section-heading"><h2>{% translate "How to cite" %}</h2></div>
+          <div class="card-muted">
+            <p class="text-sm leading-relaxed" id="apa-citation">{{ article.citation_apa }}</p>
+            <div class="flex flex-wrap gap-2 mt-4">
+              <a class="btn btn-secondary btn-sm" href="{% url 'journal:article_export' article.pk 'bibtex' %}">BibTeX</a>
+              <a class="btn btn-secondary btn-sm" href="{% url 'journal:article_export' article.pk 'ris' %}">RIS</a>
+              <a class="btn btn-secondary btn-sm" href="{% url 'journal:article_export' article.pk 'enw' %}">EndNote</a>
+              <a class="btn btn-secondary btn-sm" href="{% url 'journal:article_export' article.pk 'json' %}">CSL-JSON</a>
+            </div>
+          </div>
+        </section>
+
+        {# --- References --- #}
+        {% if references %}
+          <section class="mt-10">
+            <div class="section-heading">
+              <h2>{% translate "References" %}</h2>
+              <span class="meta">{{ references|length }}</span>
+            </div>
+            <ol class="space-y-3 list-decimal ml-5">
+              {% for reference in references %}
+                <li itemprop="citation" class="text-sm leading-relaxed">
+                  {{ reference.raw_text }}
+                  <span class="whitespace-nowrap">
+                    {% if reference.doi %}
+                      <a class="meta ml-1" href="{{ reference.doi_url }}" rel="noopener">DOI</a>
+                    {% endif %}
+                    <a class="meta ml-1" href="{{ reference.scholar_url }}" rel="noopener nofollow">{% translate "Google Scholar" %}</a>
+                  </span>
+                </li>
+              {% endfor %}
+            </ol>
+          </section>
+        {% endif %}
+
+        {# --- Related --- #}
+        {% if related_articles %}
+          <section class="mt-10">
+            <div class="section-heading"><h2>{% translate "Related articles" %}</h2></div>
+            {% for related in related_articles %}
+              {% include "journal/partials/article_card.html" with article=related %}
+            {% endfor %}
+          </section>
+        {% endif %}
+
+        {# --- Authors panel --- #}
+        <section class="mt-10">
+          <div class="section-heading"><h2>{% translate "About the authors" %}</h2></div>
+          <div class="grid gap-4 sm:grid-cols-2">
+            {% for author in authors %}
+              <div class="card">
+                <a class="font-medium" href="{{ author.get_absolute_url }}">{{ author.full_name }}</a>
+                <p class="muted text-sm mt-1">{{ author.affiliation_display }}</p>
+                {% if author.orcid %}
+                  <p class="meta mt-1"><a href="{{ author.orcid_url }}" rel="noopener">{{ author.orcid }}</a></p>
+                {% endif %}
+                {% if author.credit_roles %}
+                  <p class="meta mt-2">{{ author.credit_roles|join:", " }}</p>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+        </section>
+
+        {# --- Licence --- #}
+        <section class="mt-10 card-muted">
+          <p class="footer-heading">{% translate "Licence" %}</p>
+          <p class="text-sm muted">
+            {% blocktranslate with holder=article.copyright_holder %}© {{ holder }}.{% endblocktranslate %}
+            {% translate "This is an open access article distributed under the terms of the" %}
+            <a href="{{ article.license.url|default:'https://creativecommons.org/licenses/by/4.0/' }}" rel="license noopener">
+              {{ article.license.name|default:"Creative Commons Attribution 4.0 International License" }}</a>,
+            {% translate "which permits unrestricted use, distribution and reproduction in any medium, provided the original work is properly cited." %}
+          </p>
+        </section>
+      </div>
+
+      {# --- Action rail ------------------------------------------------ #}
+      <aside class="lg:sticky lg:top-20 space-y-4">
+        {% if primary_galley %}
+          <a class="btn btn-primary w-full" href="{{ article.pdf_url }}">
+            {% translate "Download PDF" %} <span class="meta text-white/80">({{ primary_galley.size_display }})</span>
+          </a>
+        {% endif %}
+        {% for galley in galleys %}
+          {% if not galley.is_primary %}
+            <a class="btn btn-secondary w-full" href="{{ galley.get_absolute_url }}">
+              {{ galley.get_label_display }} <span class="meta">({{ galley.size_display }})</span>
+            </a>
+          {% endif %}
+        {% endfor %}
+
+        <button type="button" class="btn btn-secondary w-full"
+                hx-get="{% url 'journal:article_cite' article.pk %}"
+                hx-target="#modal-root" hx-swap="innerHTML">
+          {% translate "Cite this article" %}
+        </button>
+
+        <div class="card" x-data="{ copied: false }">
+          <p class="footer-heading">{% translate "Share" %}</p>
+          <div class="flex flex-wrap gap-2">
+            <button type="button" class="btn btn-ghost btn-sm"
+                    @click="navigator.clipboard.writeText('{{ site_url }}{{ article.get_absolute_url }}'); copied = true; setTimeout(() => copied = false, 2000)">
+              <span x-show="!copied">{% translate "Copy link" %}</span>
+              <span x-show="copied" x-cloak>{% translate "Copied" %}</span>
+            </button>
+            <a class="btn btn-ghost btn-sm" rel="noopener nofollow"
+               href="https://t.me/share/url?url={{ site_url }}{{ article.get_absolute_url|urlencode }}">Telegram</a>
+            <a class="btn btn-ghost btn-sm" rel="noopener nofollow"
+               href="https://www.linkedin.com/sharing/share-offsite/?url={{ site_url }}{{ article.get_absolute_url|urlencode }}">LinkedIn</a>
+            <a class="btn btn-ghost btn-sm" rel="noopener nofollow"
+               href="https://twitter.com/intent/tweet?url={{ site_url }}{{ article.get_absolute_url|urlencode }}">X</a>
+            <a class="btn btn-ghost btn-sm" href="mailto:?subject={{ article.title|urlencode }}&amp;body={{ site_url }}{{ article.get_absolute_url|urlencode }}">{% translate "E-mail" %}</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <p class="footer-heading">{% translate "Metrics" %}</p>
+          <dl class="dl-meta">
+            <dt>{% translate "Views" %}</dt><dd class="meta">{{ article.views_count }}</dd>
+            <dt>{% translate "Downloads" %}</dt><dd class="meta">{{ article.downloads_count }}</dd>
+            {% if article.cited_by_count %}
+              <dt>{% translate "Cited by" %}</dt><dd class="meta">{{ article.cited_by_count }} (Crossref)</dd>
+            {% endif %}
+          </dl>
+        </div>
+      </aside>
+    </div>
+  </div>
+{% endblock %}

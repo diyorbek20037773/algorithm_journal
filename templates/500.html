@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}500 — {% translate "Server error" %} · {{ site_settings.journal_name }}{% endblock %}
+
+{% block content %}
+  <div class="container-page">
+    <div class="max-w-xl py-16">
+      <p class="meta">500</p>
+      <h1 class="text-3xl mt-2 mb-4">{% translate "Server error" %}</h1>
+      <p class="muted mb-8">{% translate "Something went wrong on our side. The editorial office has been notified." %}</p>
+      <div class="flex flex-wrap gap-3">
+        <a class="btn btn-primary" href="{% url 'journal:home' %}">{% translate "Go to the home page" %}</a>
+        <a class="btn btn-secondary" href="{% url 'search:search' %}">{% translate "Search the journal" %}</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

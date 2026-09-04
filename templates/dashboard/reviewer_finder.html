@@ -1,0 +1,35 @@
+{% extends "dashboard/_base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "Find reviewers" %} · {% translate "Dashboard" %}{% endblock %}
+
+{% block dashboard_content %}
+  <h1 class="text-2xl mb-2">{% translate "Find reviewers" %}</h1>
+  <p class="muted mb-6">{{ submission.reference }} — {{ submission.title }}</p>
+
+  <form class="flex gap-2 mb-6" method="get"
+        hx-get="{% url 'dashboard:reviewer_finder' submission.pk %}" hx-target="#finder-results">
+    <label class="visually-hidden" for="finder-q">{% translate "Search reviewers" %}</label>
+    <input class="input" id="finder-q" type="search" name="q" value="{{ query }}"
+           placeholder="{% translate 'Name, expertise, affiliation' %}">
+    <button type="submit" class="btn btn-secondary">{% translate "Search" %}</button>
+  </form>
+
+  <div id="finder-results">
+    {% include "dashboard/partials/reviewer_finder.html" %}
+  </div>
+
+  <section class="mt-10">
+    <div class="section-heading"><h2>{% translate "Invite someone by e-mail" %}</h2></div>
+    <form method="post" action="{% url 'dashboard:invite_reviewer' submission.pk %}" class="card">
+      {% csrf_token %}
+      <div class="grid gap-3 sm:grid-cols-2">
+        {% include "includes/form_field.html" with field=invite_form.email %}
+        {% include "includes/form_field.html" with field=invite_form.first_name %}
+        {% include "includes/form_field.html" with field=invite_form.last_name %}
+        {% include "includes/form_field.html" with field=invite_form.due_days %}
+      </div>
+      <button type="submit" class="btn btn-primary">{% translate "Send the invitation" %}</button>
+    </form>
+  </section>
+{% endblock %}

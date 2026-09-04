@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.venv/
+venv/
+.eggs/
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+/media/
+/staticfiles/
+/static_collected/
+/exports/
+/backups/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Tailwind / assets
+/static/css/output.css
+/.tailwind/
+tailwindcss*.exe
+tailwindcss
+
+# Translations (compiled)
+*.mo
+
+# Tests / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+.mypy_cache/
+.ruff_cache/
+/test-results/
+/playwright-report/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Kit archives (source material)
+algorithm_journal_kit/
+algorithm_journal_kit.zip

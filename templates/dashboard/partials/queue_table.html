@@ -1,0 +1,41 @@
+{% load i18n %}
+<table class="table">
+  <thead>
+    <tr>
+      <th>{% translate "Reference" %}</th>
+      <th>{% translate "Title" %}</th>
+      <th>{% translate "Section" %}</th>
+      <th>{% translate "Status" %}</th>
+      <th>{% translate "Reviewers" %}</th>
+      <th>{% translate "Updated" %}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for submission in submissions %}
+      <tr>
+        <td class="meta">{{ submission.reference|default:"—" }}</td>
+        <td><a href="{% url 'dashboard:submission_detail' submission.pk %}">{{ submission.title|truncatechars:70 }}</a></td>
+        <td class="muted">{{ submission.section.name }}</td>
+        <td>{% include "includes/status_chip.html" with label=submission.get_status_display tone=submission.status_display_class %}</td>
+        <td>
+          {% with round=submission.latest_round %}
+            {% if round %}
+              <span class="flex gap-1">
+                {% for assignment in round.assignments.all %}
+                  <span class="dot" title="{{ assignment.get_status_display }}"
+                        style="background: var(--color-{% if assignment.status == 'submitted' %}success{% elif assignment.status == 'overdue' %}danger{% elif assignment.status == 'accepted' %}accent{% else %}ink-3{% endif %})"></span>
+                {% endfor %}
+              </span>
+            {% else %}
+              <span class="meta">—</span>
+            {% endif %}
+          {% endwith %}
+        </td>
+        <td class="meta">{{ submission.last_activity_at|date:"j M Y" }}</td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="6"><div class="empty-state">{% translate "This queue is empty." %}</div></td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% include "journal/partials/pagination.html" %}

@@ -1,0 +1,168 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  DJANGO_SETTINGS_MODULE: config.settings.test
+  DJANGO_SECRET_KEY: ci-secret-key-not-used-in-production-0123456789
+  DATABASE_URL: postgres://arer:arer@localhost:5432/arer_test
+  REDIS_URL: redis://localhost:6379/0
+  CELERY_BROKER_URL: redis://localhost:6379/1
+  CELERY_RESULT_BACKEND: redis://localhost:6379/2
+  DJANGO_DEBUG: "False"
+  DOI_PREFIX: "10.00000"
+
+jobs:
+  quality:
+    name: Lint, migrations and tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: arer_test
+          POSTGRES_USER: arer
+          POSTGRES_PASSWORD: arer
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 20
+      redis:
+        image: redis:7
+        ports: ["6379:6379"]
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install system packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gettext libmagic1 qpdf postgresql-client
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Install dependencies
+        run: |
+          uv venv
+          uv pip install -r pyproject.toml --extra dev
+
+      - name: Ruff (lint)
+        run: uv run ruff check .
+
+      - name: Ruff (format)
+        run: uv run ruff format --check .
+
+      - name: djLint (templates)
+        run: uv run djlint templates apps --check
+
+      - name: Compile translations
+        run: uv run python manage.py compilemessages --ignore=.venv
+
+      - name: Translation completeness
+        run: uv run python scripts/check_translations.py
+
+      - name: Django system check
+        run: uv run python manage.py check
+
+      - name: Missing migrations
+        run: uv run python manage.py makemigrations --check --dry-run
+
+      - name: Deployment check (prod settings)
+        env:
+          DJANGO_SETTINGS_MODULE: config.settings.prod
+          DJANGO_ALLOWED_HOSTS: example.org
+          SECURE_SSL_REDIRECT: "True"
+        run: uv run python manage.py check --deploy --fail-level ERROR
+
+      - name: Tests
+        run: uv run pytest -q -m "not e2e" --cov=apps --cov-report=term-missing
+
+      - name: Backup / restore drill
+        run: bash scripts/ci_backup_restore.sh
+
+      - name: pip-audit (non-blocking)
+        continue-on-error: true
+        run: uv run pip-audit --strict || true
+
+  e2e:
+    name: Playwright end-to-end
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: arer_test
+          POSTGRES_USER: arer
+          POSTGRES_PASSWORD: arer
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 20
+      redis:
+        image: redis:7
+        ports: ["6379:6379"]
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install system packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gettext libmagic1 qpdf
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Install dependencies
+        run: |
+          uv venv
+          uv pip install -r pyproject.toml --extra dev
+          uv run playwright install --with-deps chromium
+
+      - name: Compile translations
+        run: uv run python manage.py compilemessages --ignore=.venv
+
+      - name: Run end-to-end suite
+        run: uv run pytest -q -m e2e
+
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots
+          path: docs/screenshots/
+          if-no-files-found: ignore

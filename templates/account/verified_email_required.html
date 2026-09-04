@@ -1,0 +1,9 @@
+{% extends "account/base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "Verify your e-mail address" %}{% endblock %}
+
+{% block auth_content %}
+  <h1 class="text-2xl mb-4">{% translate "Verify your e-mail address" %}</h1>
+  <p class="muted">{% translate "We have sent a confirmation link to your e-mail address. Please open it to activate your account." %}</p>
+{% endblock %}

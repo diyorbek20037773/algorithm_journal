@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block main_class %}py-8{% endblock %}
+
+{% block content %}
+  <div class="container-page grid gap-8 lg:grid-cols-[220px_1fr] items-start">
+    <nav class="lg:sticky lg:top-20" aria-label="{% translate 'Dashboard navigation' %}">
+      <p class="footer-heading">{% translate "Dashboard" %}</p>
+      <a class="footer-link" href="{% url 'dashboard:home' %}">{% translate "Overview" %}</a>
+      <a class="footer-link" href="{% url 'submissions:wizard_start' %}">{% translate "New submission" %}</a>
+      {% if user.is_reviewer %}
+        <a class="footer-link" href="{% url 'review:dashboard' %}">{% translate "My reviews" %}</a>
+      {% endif %}
+      {% if user.is_editorial_staff %}
+        <p class="footer-heading mt-5">{% translate "Editorial" %}</p>
+        <a class="footer-link" href="{% url 'dashboard:queue' 'new' %}">{% translate "New" %}</a>
+        <a class="footer-link" href="{% url 'dashboard:queue' 'screening' %}">{% translate "Screening" %}</a>
+        <a class="footer-link" href="{% url 'dashboard:queue' 'in_review' %}">{% translate "In review" %}</a>
+        <a class="footer-link" href="{% url 'dashboard:queue' 'decision' %}">{% translate "Awaiting decision" %}</a>
+        <a class="footer-link" href="{% url 'dashboard:queue' 'revisions' %}">{% translate "Revisions" %}</a>
+        <a class="footer-link" href="{% url 'dashboard:queue' 'production' %}">{% translate "In production" %}</a>
+        <a class="footer-link" href="{% url 'dashboard:reports' %}">{% translate "Reports" %}</a>
+        <a class="footer-link" href="{% url 'production:queue' %}">{% translate "Production" %}</a>
+      {% endif %}
+      <p class="footer-heading mt-5">{% translate "Account" %}</p>
+      <a class="footer-link" href="{% url 'dashboard:profile' %}">{% translate "Profile" %}</a>
+      <a class="footer-link" href="{% url 'dashboard:two_factor_setup' %}">{% translate "Two-factor authentication" %}</a>
+      {% if user.is_superuser %}
+        <a class="footer-link" href="/admin/">{% translate "Django admin" %}</a>
+      {% endif %}
+    </nav>
+
+    <div class="min-w-0">
+      {% block dashboard_content %}{% endblock %}
+    </div>
+  </div>
+{% endblock %}

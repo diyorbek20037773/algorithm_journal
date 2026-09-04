@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ announcement.title }} · {{ site_settings.journal_name }}{% endblock %}
+
+{% block content %}
+  <div class="container-page max-w-[760px]">
+    <nav class="meta mb-6" aria-label="{% translate 'Breadcrumb' %}">
+      <a href="{% url 'journal:home' %}">{% translate "Home" %}</a> ›
+      <a href="{% url 'core:announcement_list' %}">{% translate "Announcements" %}</a>
+    </nav>
+    <h1 class="text-3xl">{{ announcement.title }}</h1>
+    <p class="meta mt-2 mb-8">{{ announcement.published_at|date:"j F Y" }}</p>
+    <div class="prose-journal">{{ announcement.body_html|safe }}</div>
+  </div>
+{% endblock %}

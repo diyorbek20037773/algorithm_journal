@@ -1,0 +1,31 @@
+{% extends "core/_page_shell.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block page_extra %}
+  <section class="mt-8">
+    <div class="section-heading"><h2>{% translate "Downloads" %}</h2></div>
+    <ul class="grid gap-3 sm:grid-cols-2">
+      <li class="card">
+        <p class="font-medium">{% translate "Manuscript template (DOCX)" %}</p>
+        <p class="muted text-sm mt-1">{% translate "IMRaD structure, trilingual abstract block, APA 7 reference examples." %}</p>
+        <a class="btn btn-secondary btn-sm mt-3" href="{% static 'templates/ARER-manuscript-template.docx' %}">{% translate "Download DOCX" %}</a>
+      </li>
+      <li class="card">
+        <p class="font-medium">{% translate "Manuscript template (LaTeX)" %}</p>
+        <p class="muted text-sm mt-1">{% translate "Article class with the journal page setup and bibliography style." %}</p>
+        <a class="btn btn-secondary btn-sm mt-3" href="{% static 'templates/ARER-manuscript-template.tex' %}">{% translate "Download TEX" %}</a>
+      </li>
+      <li class="card">
+        <p class="font-medium">{% translate "Title page template" %}</p>
+        <p class="muted text-sm mt-1">{% translate "Author names, affiliations, ORCID iDs, corresponding author, statements." %}</p>
+        <a class="btn btn-secondary btn-sm mt-3" href="{% static 'templates/ARER-title-page.docx' %}">{% translate "Download DOCX" %}</a>
+      </li>
+      <li class="card">
+        <p class="font-medium">{% translate "Cover letter template" %}</p>
+        <p class="muted text-sm mt-1">{% translate "Short structure for the letter to the editor." %}</p>
+        <a class="btn btn-secondary btn-sm mt-3" href="{% static 'templates/ARER-cover-letter.txt' %}">{% translate "Download TXT" %}</a>
+      </li>
+    </ul>
+  </section>
+{% endblock %}

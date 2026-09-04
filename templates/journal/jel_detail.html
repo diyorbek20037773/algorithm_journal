@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}JEL {{ jel.code }} — {{ jel.label }} · {{ site_settings.journal_name }}{% endblock %}
+
+{% block content %}
+  <div class="container-page">
+    <p class="eyebrow">{% translate "JEL classification" %}</p>
+    <h1 class="text-3xl mt-1 mb-6"><span class="meta text-2xl">{{ jel.code }}</span> {{ jel.label }}</h1>
+    {% for article in articles %}
+      {% include "journal/partials/article_card.html" with article=article %}
+    {% empty %}
+      <div class="empty-state"><p>{% translate "No articles are classified under this code yet." %}</p></div>
+    {% endfor %}
+    {% include "journal/partials/pagination.html" %}
+  </div>
+{% endblock %}

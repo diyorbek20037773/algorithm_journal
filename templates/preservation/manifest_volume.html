@@ -1,0 +1,20 @@
+{% load i18n %}<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>LOCKSS Permission — Volume {{ volume.number }} — {{ site_settings.journal_name }}</title>
+  </head>
+  <body>
+    <h1>{{ site_settings.journal_name }} — Volume {{ volume.number }} ({{ volume.year }})</h1>
+    <p>{{ permission }}</p>
+    <ul>
+      {% for article in articles %}
+        <li>
+          <a href="{{ site_url }}{{ article.get_absolute_url }}">{{ article.title }}</a>
+          {% if article.primary_galley %} — <a href="{{ site_url }}{{ article.pdf_url }}">PDF</a>{% endif %}
+          {% if article.doi %} — {{ article.doi }}{% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>

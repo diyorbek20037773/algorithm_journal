@@ -1,0 +1,12 @@
+{% load i18n %}
+{% if site_settings.announcement_bar_text %}
+  <div class="surface-2 border-b border-[--color-line] text-sm"
+       x-data="{ shown: true }" x-show="shown" x-cloak>
+    <div class="container-page flex items-center gap-3 py-2">
+      <span class="eyebrow">{% translate "Notice" %}</span>
+      <p class="muted flex-1">{{ site_settings.announcement_bar_text }}</p>
+      <button type="button" class="btn btn-ghost btn-sm" @click="shown = false"
+              aria-label="{% translate "Dismiss" %}">&times;</button>
+    </div>
+  </div>
+{% endif %}

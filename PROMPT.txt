@@ -1,0 +1,13 @@
+Read CLAUDE.md, SPEC.md and DESIGN_BRIEF.md in this folder completely before doing anything (TEXNIK_TOPSHIRIQ.md is the client's formal Uzbek terms of reference — SPEC.md is the engineering source of truth).
+
+Then build the entire project described there, autonomously, phase by phase (SPEC.md §14, Phases 0→8), until every acceptance check in SPEC.md §15 passes.
+
+Hard rules for this session:
+- I will not be available. Do NOT ask me any questions and do NOT pause for confirmation at any point. Every open decision already has a default in SPEC.md §2; if something is still undefined, choose the most standard, simplest, reversible option and append it to DECISIONS.md.
+- Work in this folder as the repository root. Initialise git, set remote https://github.com/diyorbek20037773/algorithm_journal (branch main). Commit after every meaningful step and push at the end of every phase. If push fails, keep going and document the exact push command for me in HANDOFF.md.
+- If the design/ folder exists, implement its pages faithfully; if it does not, implement DESIGN_BRIEF.md as written.
+- At the end of every phase: run make lint && make test, ensure makemigrations --check is clean, take Playwright screenshots into docs/screenshots/, update PROGRESS.md, commit, push.
+- The final result must run locally on a clean machine with only Docker installed: `cp .env.example .env && docker compose up --build`, then `migrate` and `seed_demo`, site at http://localhost:8000 with demo accounts documented in README.md.
+- Finish by writing HANDOFF.md in Uzbek (Latin script) exactly as CLAUDE.md §7 describes, with the SPEC.md §15 checklist marked ✅/⚠️, and make the final push.
+
+Start now with Phase 0 and continue without stopping until Phase 8 is complete.

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}404 — {% translate "Page not found" %} · {{ site_settings.journal_name }}{% endblock %}
+
+{% block content %}
+  <div class="container-page">
+    <div class="max-w-xl py-16">
+      <p class="meta">404</p>
+      <h1 class="text-3xl mt-2 mb-4">{% translate "Page not found" %}</h1>
+      <p class="muted mb-8">{% translate "This page does not exist or has moved." %}</p>
+      <div class="flex flex-wrap gap-3">
+        <a class="btn btn-primary" href="{% url 'journal:home' %}">{% translate "Go to the home page" %}</a>
+        <a class="btn btn-secondary" href="{% url 'search:search' %}">{% translate "Search the journal" %}</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

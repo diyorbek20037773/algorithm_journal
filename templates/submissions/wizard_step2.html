@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "Submission — step 2" %} · {{ site_settings.journal_name }}{% endblock %}
+
+{% block content %}
+  <div class="container-page max-w-[820px]">
+    <h1 class="text-3xl mb-6">{% translate "Files" %}</h1>
+    {% include "includes/wizard_steps.html" %}
+
+    {% if files %}
+      <section class="mb-8">
+        <div class="section-heading"><h2>{% translate "Uploaded files" %}</h2></div>
+        <table class="table">
+          <thead>
+            <tr><th>{% translate "Kind" %}</th><th>{% translate "Version" %}</th><th>{% translate "Uploaded" %}</th><th></th></tr>
+          </thead>
+          <tbody>
+            {% for item in files %}
+              <tr>
+                <td>{{ item.get_kind_display }}</td>
+                <td class="meta">v{{ item.version }}</td>
+                <td class="meta">{{ item.created_at|date:"j M Y, H:i" }}</td>
+                <td>
+                  <form method="post" action="{% url 'submissions:delete_file' item.pk %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-ghost btn-sm">{% translate "Remove" %}</button>
+                  </form>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </section>
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data" novalidate>
+      {% csrf_token %}
+      {% for field in form %}{% include "includes/form_field.html" with field=field %}{% endfor %}
+      <div class="flex gap-3 mt-8">
+        <a class="btn btn-secondary" href="{% url 'submissions:wizard_step1' submission.pk %}">{% translate "Back" %}</a>
+        <button type="submit" class="btn btn-primary">{% translate "Save and continue" %}</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}

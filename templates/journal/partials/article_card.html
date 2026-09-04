@@ -1,0 +1,37 @@
+{% load i18n %}
+<article class="article-card">
+  <p class="eyebrow">{{ article.section.name }}</p>
+  <h3 class="mt-1">
+    <a class="article-title" href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+  </h3>
+  <p class="authors-line mt-1">
+    {% for author in article.authors.all %}
+      <span>{{ author.full_name }}{% if author.orcid %}<a href="{{ author.orcid_url }}" rel="noopener" title="ORCID" class="ml-1" aria-label="ORCID {{ author.full_name }}"><span aria-hidden="true" style="color:#a6ce39">iD</span></a>{% endif %}</span>{% if not forloop.last %}, {% endif %}
+    {% endfor %}
+  </p>
+  <p class="meta mt-2">
+    {% if article.issue %}
+      Vol. {{ article.issue.volume.number }} No. {{ article.issue.number }} ({{ article.issue.volume.year }}){% if article.pages %} · {{ article.pages }}{% endif %}
+    {% else %}
+      <span class="badge-online-first">{% translate "Online First" %}</span>
+    {% endif %}
+    {% if article.doi %} · <a href="{{ article.doi_url }}" rel="noopener">{{ article.doi }}</a>{% endif %}
+  </p>
+  {% if show_abstract and article.abstract_plain %}
+    <p class="muted text-sm mt-2 line-clamp-2">{{ article.abstract_plain|truncatewords:34 }}</p>
+  {% endif %}
+  <div class="flex flex-wrap items-center gap-3 mt-3">
+    {% if article.primary_galley %}
+      <a class="btn btn-secondary btn-sm" href="{{ article.pdf_url }}">
+        {% translate "PDF" %} <span class="meta">({{ article.primary_galley.size_display }})</span>
+      </a>
+    {% endif %}
+    <a class="btn btn-ghost btn-sm"
+       href="{% url 'journal:article_cite' article.pk %}"
+       hx-get="{% url 'journal:article_cite' article.pk %}"
+       hx-target="#modal-root"
+       hx-swap="innerHTML">{% translate "Cite" %}</a>
+    <span class="meta">{% translate "Views" %}: {{ article.views_count }}</span>
+    <span class="meta">{% translate "Downloads" %}: {{ article.downloads_count }}</span>
+  </div>
+</article>
