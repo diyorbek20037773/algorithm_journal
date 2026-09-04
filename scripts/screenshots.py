@@ -25,6 +25,10 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(BASE_DIR))
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.dev")
+# Playwright's synchronous API runs inside a greenlet event loop, which Django
+# mistakes for an async context. This script only ever touches the ORM from the
+# main thread, so the guard is safe to lift here.
+os.environ.setdefault("DJANGO_ALLOW_ASYNC_UNSAFE", "true")
 
 OUT_DIR = BASE_DIR / "docs" / "screenshots"
 

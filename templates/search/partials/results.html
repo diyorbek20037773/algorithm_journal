@@ -6,7 +6,7 @@
 {% for article in results %}
   <article class="article-card">
     <p class="eyebrow">{{ article.section.name }}</p>
-    <h3 class="mt-1"><a class="article-title" href="{{ article.get_absolute_url }}">{{ article.title }}</a></h3>
+    <h2 class="mt-1"><a class="article-title" href="{{ article.get_absolute_url }}">{{ article.title }}</a></h2>
     <p class="authors-line mt-1">{{ article.authors_display }}</p>
     <p class="meta mt-1">
       {% if article.issue %}Vol. {{ article.issue.volume.number }} No. {{ article.issue.number }} ({{ article.issue.volume.year }}){% else %}{% translate "Online First" %}{% endif %}

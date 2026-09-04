@@ -67,7 +67,7 @@
                 {{ author.full_name }}<sup>{{ forloop.counter }}</sup>{% if author.orcid %}<a href="{{ author.orcid_url }}"
    rel="noopener"
    class="ml-0.5"
-   aria-label="ORCID iD for {{ author.full_name }}"><span aria-hidden="true" style="color:#a6ce39;font-weight:600">iD</span></a>{% endif %}{% if author.is_corresponding and author.email %}<a href="mailto:{{ author.email }}"
+   aria-label="ORCID iD for {{ author.full_name }}">{% include "includes/orcid_icon.html" %}</a>{% endif %}{% if author.is_corresponding and author.email %}<a href="mailto:{{ author.email }}"
    aria-label="{% translate 'E-mail the corresponding author' %}"
    class="ml-0.5">✉</a>{% endif %}{% if not forloop.last %},{% endif %}
               </span>

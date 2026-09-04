@@ -1,0 +1,23 @@
+{
+  "home": {
+    "violations": []
+  },
+  "issue": {
+    "violations": []
+  },
+  "article": {
+    "violations": []
+  },
+  "search": {
+    "violations": []
+  },
+  "board": {
+    "violations": []
+  },
+  "submit": {
+    "violations": []
+  },
+  "dashboard": {
+    "violations": []
+  }
+}

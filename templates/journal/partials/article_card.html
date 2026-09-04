@@ -10,7 +10,7 @@
    rel="noopener"
    title="ORCID"
    class="ml-1"
-   aria-label="ORCID {{ author.full_name }}"><span aria-hidden="true" style="color:#a6ce39">iD</span></a>{% endif %}</span>{% if not forloop.last %}, {% endif %}
+   aria-label="ORCID {{ author.full_name }}">{% include "includes/orcid_icon.html" %}</a>{% endif %}</span>{% if not forloop.last %}, {% endif %}
     {% endfor %}
   </p>
   <p class="meta mt-2">

@@ -20,7 +20,7 @@
   <a class="btn btn-secondary w-full mt-3"
      href="{% url 'orcid_login' %}?process=login"
      style="border-color: var(--color-orcid)">
-    <span aria-hidden="true" style="color:var(--color-orcid);font-weight:700">iD</span>
+    {% include "includes/orcid_icon.html" %}
     {% translate "Sign in with ORCID" %}
   </a>
   <div class="rule mt-6 pt-4 text-sm flex flex-col gap-2">

@@ -13,7 +13,8 @@
   --color-paper-2: #f6f7f9;
   --color-ink: #111827;
   --color-ink-2: #4b5563;
-  --color-ink-3: #9ca3af;
+  /* #6b7280 gives 4.8:1 on white; the brief's lighter grey failed WCAG AA. */
+  --color-ink-3: #6b7280;
   --color-line: #e5e7eb;
   --color-accent: #0f4c81;
   --color-accent-2: #0b3a63;
@@ -42,7 +43,7 @@
       --color-paper-2: #151b22;
       --color-ink: #e6eaf0;
       --color-ink-2: #a6b0bd;
-      --color-ink-3: #6b7684;
+      --color-ink-3: #98a2b3;
       --color-line: #242d38;
       --color-accent: #5fa8ff;
       --color-accent-2: #8cc2ff;
@@ -90,9 +91,32 @@
     font-weight: 600;
   }
 
+  /* WCAG 1.4.1: a link inside a block of text must be distinguishable without
+     colour, so links are underlined by default. Components that are visually
+     obvious on their own (buttons, chips, navigation, card titles) opt out. */
   a {
     color: var(--color-accent);
+    text-decoration: underline;
     text-underline-offset: 2px;
+  }
+
+  a.btn,
+  a.chip,
+  a.nav-link,
+  a.footer-link,
+  a.article-title,
+  a.wordmark,
+  a.eyebrow,
+  .lang-switch a,
+  .credibility a,
+  nav[aria-label] a.nav-link {
+    text-decoration: none;
+  }
+
+  a.footer-link:hover,
+  a.article-title:hover,
+  a.chip:hover {
+    text-decoration: underline;
   }
 
   a:hover {
