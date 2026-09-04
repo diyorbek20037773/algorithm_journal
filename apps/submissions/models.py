@@ -97,9 +97,11 @@ class SubmissionQuerySet(models.QuerySet):
 
         if user.is_superuser or user.has_role(Role.EDITOR_IN_CHIEF, Role.ADMIN):
             return self.exclude(status=SubmissionStatus.DRAFT)
-        return self.exclude(status=SubmissionStatus.DRAFT).filter(
-            models.Q(assigned_editor=user) | models.Q(section__editors=user)
-        ).distinct()
+        return (
+            self.exclude(status=SubmissionStatus.DRAFT)
+            .filter(models.Q(assigned_editor=user) | models.Q(section__editors=user))
+            .distinct()
+        )
 
     def with_related(self) -> SubmissionQuerySet:
         """Prefetch related objects needed by list templates."""
@@ -121,15 +123,23 @@ class Submission(TimeStampedModel):
         _("submission ID"), max_length=32, unique=True, blank=True, null=True, db_index=True
     )
     article = models.OneToOneField(
-        "journal.Article", verbose_name=_("published article"), null=True, blank=True,
-        on_delete=models.SET_NULL, related_name="source_submission",
+        "journal.Article",
+        verbose_name=_("published article"),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="source_submission",
     )
     submitter = models.ForeignKey(
-        settings.AUTH_USER_MODEL, verbose_name=_("submitter"), on_delete=models.PROTECT,
+        settings.AUTH_USER_MODEL,
+        verbose_name=_("submitter"),
+        on_delete=models.PROTECT,
         related_name="submissions",
     )
     section = models.ForeignKey(
-        "journal.Section", verbose_name=_("section"), on_delete=models.PROTECT,
+        "journal.Section",
+        verbose_name=_("section"),
+        on_delete=models.PROTECT,
         related_name="submissions",
     )
     article_type = models.CharField(
@@ -145,26 +155,39 @@ class Submission(TimeStampedModel):
         "journal.JELCode", verbose_name=_("JEL codes"), blank=True, related_name="submissions"
     )
     language = models.CharField(
-        _("manuscript language"), max_length=10, default="en",
+        _("manuscript language"),
+        max_length=10,
+        default="en",
         choices=[("en", "English"), ("uz", "Oʻzbekcha"), ("ru", "Русский")],
     )
     word_count = models.PositiveIntegerField(_("word count"), default=0)
     cover_letter = models.TextField(_("cover letter"), blank=True)
 
     status = models.CharField(
-        _("status"), max_length=32, choices=SubmissionStatus.choices,
-        default=SubmissionStatus.DRAFT, db_index=True,
+        _("status"),
+        max_length=32,
+        choices=SubmissionStatus.choices,
+        default=SubmissionStatus.DRAFT,
+        db_index=True,
     )
     current_round = models.PositiveSmallIntegerField(_("current round"), default=0)
     wizard_step = models.PositiveSmallIntegerField(_("wizard step"), default=1)
 
     assigned_editor = models.ForeignKey(
-        settings.AUTH_USER_MODEL, verbose_name=_("handling editor"), null=True, blank=True,
-        on_delete=models.SET_NULL, related_name="handled_submissions",
+        settings.AUTH_USER_MODEL,
+        verbose_name=_("handling editor"),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="handled_submissions",
     )
     assigned_by = models.ForeignKey(
-        settings.AUTH_USER_MODEL, verbose_name=_("assigned by"), null=True, blank=True,
-        on_delete=models.SET_NULL, related_name="editor_assignments_made",
+        settings.AUTH_USER_MODEL,
+        verbose_name=_("assigned by"),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="editor_assignments_made",
     )
 
     submitted_at = models.DateTimeField(_("submitted at"), null=True, blank=True, db_index=True)
@@ -175,19 +198,23 @@ class Submission(TimeStampedModel):
     withdraw_reason = models.TextField(_("withdrawal reason"), blank=True)
 
     similarity_percent = models.FloatField(
-        _("similarity (%)"), null=True, blank=True,
+        _("similarity (%)"),
+        null=True,
+        blank=True,
         validators=[MinValueValidator(0), MaxValueValidator(100)],
     )
     similarity_report = models.FileField(
         _("similarity report"), upload_to=similarity_report_upload_to, null=True, blank=True
     )
     similarity_checked_by = models.ForeignKey(
-        settings.AUTH_USER_MODEL, verbose_name=_("similarity checked by"), null=True, blank=True,
-        on_delete=models.SET_NULL, related_name="similarity_checks",
+        settings.AUTH_USER_MODEL,
+        verbose_name=_("similarity checked by"),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="similarity_checks",
     )
-    similarity_checked_at = models.DateTimeField(
-        _("similarity checked at"), null=True, blank=True
-    )
+    similarity_checked_at = models.DateTimeField(_("similarity checked at"), null=True, blank=True)
     similarity_override_reason = models.TextField(
         _("similarity override justification"), blank=True
     )
@@ -308,8 +335,12 @@ class SubmissionAuthor(TimeStampedModel):
     )
     order = models.PositiveSmallIntegerField(_("order"), default=1)
     user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, verbose_name=_("account"), null=True, blank=True,
-        on_delete=models.SET_NULL, related_name="submission_authorships",
+        settings.AUTH_USER_MODEL,
+        verbose_name=_("account"),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="submission_authorships",
     )
     given_name = models.CharField(_("given name"), max_length=128)
     family_name = models.CharField(_("family name"), max_length=128)
@@ -364,15 +395,23 @@ class SubmissionFile(TimeStampedModel):
         Submission, verbose_name=_("submission"), on_delete=models.CASCADE, related_name="files"
     )
     round = models.ForeignKey(
-        "submissions.ReviewRound", verbose_name=_("round"), null=True, blank=True,
-        on_delete=models.SET_NULL, related_name="files",
+        "submissions.ReviewRound",
+        verbose_name=_("round"),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="files",
     )
     kind = models.CharField(_("kind"), max_length=32, choices=Kind.choices, db_index=True)
     file = models.FileField(_("file"), upload_to=submission_file_upload_to)
     original_name = models.CharField(_("original file name"), max_length=255, blank=True)
     uploaded_by = models.ForeignKey(
-        settings.AUTH_USER_MODEL, verbose_name=_("uploaded by"), null=True, blank=True,
-        on_delete=models.SET_NULL, related_name="uploaded_submission_files",
+        settings.AUTH_USER_MODEL,
+        verbose_name=_("uploaded by"),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="uploaded_submission_files",
     )
     version = models.PositiveSmallIntegerField(_("version"), default=1)
     size = models.PositiveIntegerField(_("size"), default=0)
@@ -435,9 +474,10 @@ class ReviewRound(TimeStampedModel):
         active = self.assignments.exclude(
             status__in=[ReviewAssignment.Status.DECLINED, ReviewAssignment.Status.CANCELLED]
         )
-        return active.exists() and not active.exclude(
-            status=ReviewAssignment.Status.SUBMITTED
-        ).exists()
+        return (
+            active.exists()
+            and not active.exclude(status=ReviewAssignment.Status.SUBMITTED).exists()
+        )
 
 
 class ReviewAssignment(TimeStampedModel):
@@ -460,12 +500,18 @@ class ReviewAssignment(TimeStampedModel):
         ReviewRound, verbose_name=_("round"), on_delete=models.CASCADE, related_name="assignments"
     )
     reviewer = models.ForeignKey(
-        settings.AUTH_USER_MODEL, verbose_name=_("reviewer"), on_delete=models.CASCADE,
+        settings.AUTH_USER_MODEL,
+        verbose_name=_("reviewer"),
+        on_delete=models.CASCADE,
         related_name="review_assignments",
     )
     invited_by = models.ForeignKey(
-        settings.AUTH_USER_MODEL, verbose_name=_("invited by"), null=True, blank=True,
-        on_delete=models.SET_NULL, related_name="review_invitations_sent",
+        settings.AUTH_USER_MODEL,
+        verbose_name=_("invited by"),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="review_invitations_sent",
     )
     invited_at = models.DateTimeField(_("invited at"), default=timezone.now)
     responded_at = models.DateTimeField(_("responded at"), null=True, blank=True)
@@ -487,9 +533,7 @@ class ReviewAssignment(TimeStampedModel):
         verbose_name_plural = _("review assignments")
         ordering: ClassVar[list[str]] = ["-invited_at"]
         constraints: ClassVar[list[models.BaseConstraint]] = [
-            models.UniqueConstraint(
-                fields=["round", "reviewer"], name="unique_reviewer_per_round"
-            )
+            models.UniqueConstraint(fields=["round", "reviewer"], name="unique_reviewer_per_round")
         ]
         indexes: ClassVar[list[models.Index]] = [
             models.Index(fields=["reviewer", "status"]),
@@ -550,7 +594,9 @@ class Review(TimeStampedModel):
     ]
 
     assignment = models.OneToOneField(
-        ReviewAssignment, verbose_name=_("assignment"), on_delete=models.CASCADE,
+        ReviewAssignment,
+        verbose_name=_("assignment"),
+        on_delete=models.CASCADE,
         related_name="review",
     )
     recommendation = models.CharField(
@@ -565,7 +611,9 @@ class Review(TimeStampedModel):
     is_anonymised = models.BooleanField(_("attachment metadata stripped"), default=False)
     submitted_at = models.DateTimeField(_("submitted at"), null=True, blank=True)
     quality_rating = models.PositiveSmallIntegerField(
-        _("review quality (1–5)"), null=True, blank=True,
+        _("review quality (1–5)"),
+        null=True,
+        blank=True,
         validators=[MinValueValidator(1), MaxValueValidator(5)],
     )
     is_draft = models.BooleanField(_("draft"), default=True)
@@ -606,16 +654,26 @@ class EditorialDecision(TimeStampedModel):
         RESUBMIT = "resubmit", _("Reject with resubmission encouraged")
 
     submission = models.ForeignKey(
-        Submission, verbose_name=_("submission"), on_delete=models.CASCADE,
+        Submission,
+        verbose_name=_("submission"),
+        on_delete=models.CASCADE,
         related_name="decisions",
     )
     round = models.ForeignKey(
-        ReviewRound, verbose_name=_("round"), null=True, blank=True, on_delete=models.SET_NULL,
+        ReviewRound,
+        verbose_name=_("round"),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
         related_name="decisions",
     )
     decided_by = models.ForeignKey(
-        settings.AUTH_USER_MODEL, verbose_name=_("decided by"), null=True, blank=True,
-        on_delete=models.SET_NULL, related_name="decisions_made",
+        settings.AUTH_USER_MODEL,
+        verbose_name=_("decided by"),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="decisions_made",
     )
     decision = models.CharField(_("decision"), max_length=32, choices=Decision.choices)
     letter = models.TextField(_("decision letter"), blank=True)
@@ -636,16 +694,26 @@ class RevisionRequest(TimeStampedModel):
     """A request for the author to revise and resubmit."""
 
     submission = models.ForeignKey(
-        Submission, verbose_name=_("submission"), on_delete=models.CASCADE,
+        Submission,
+        verbose_name=_("submission"),
+        on_delete=models.CASCADE,
         related_name="revision_requests",
     )
     round = models.ForeignKey(
-        ReviewRound, verbose_name=_("round"), null=True, blank=True, on_delete=models.SET_NULL,
+        ReviewRound,
+        verbose_name=_("round"),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
         related_name="revision_requests",
     )
     decision = models.ForeignKey(
-        EditorialDecision, verbose_name=_("decision"), null=True, blank=True,
-        on_delete=models.SET_NULL, related_name="revision_requests",
+        EditorialDecision,
+        verbose_name=_("decision"),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="revision_requests",
     )
     is_major = models.BooleanField(_("major revision"), default=False)
     due_at = models.DateTimeField(_("due at"))
@@ -673,17 +741,25 @@ class Discussion(TimeStampedModel):
         EDITORS_ONLY = "editors_only", _("Editors only")
 
     submission = models.ForeignKey(
-        Submission, verbose_name=_("submission"), on_delete=models.CASCADE,
+        Submission,
+        verbose_name=_("submission"),
+        on_delete=models.CASCADE,
         related_name="discussions",
     )
     subject = models.CharField(_("subject"), max_length=255)
     visibility = models.CharField(
-        _("visibility"), max_length=32, choices=Visibility.choices,
+        _("visibility"),
+        max_length=32,
+        choices=Visibility.choices,
         default=Visibility.AUTHOR_EDITOR,
     )
     created_by = models.ForeignKey(
-        settings.AUTH_USER_MODEL, verbose_name=_("created by"), null=True, blank=True,
-        on_delete=models.SET_NULL, related_name="discussions_started",
+        settings.AUTH_USER_MODEL,
+        verbose_name=_("created by"),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="discussions_started",
     )
     is_closed = models.BooleanField(_("closed"), default=False)
 
@@ -703,8 +779,12 @@ class DiscussionMessage(TimeStampedModel):
         Discussion, verbose_name=_("discussion"), on_delete=models.CASCADE, related_name="messages"
     )
     author = models.ForeignKey(
-        settings.AUTH_USER_MODEL, verbose_name=_("author"), null=True, blank=True,
-        on_delete=models.SET_NULL, related_name="discussion_messages",
+        settings.AUTH_USER_MODEL,
+        verbose_name=_("author"),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="discussion_messages",
     )
     body = models.TextField(_("message"))
     is_system = models.BooleanField(_("system message"), default=False)
@@ -725,8 +805,12 @@ class EditorNote(TimeStampedModel):
         Submission, verbose_name=_("submission"), on_delete=models.CASCADE, related_name="notes"
     )
     author = models.ForeignKey(
-        settings.AUTH_USER_MODEL, verbose_name=_("author"), null=True, blank=True,
-        on_delete=models.SET_NULL, related_name="editor_notes",
+        settings.AUTH_USER_MODEL,
+        verbose_name=_("author"),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="editor_notes",
     )
     body = models.TextField(_("note"))
 
@@ -767,13 +851,19 @@ class ProductionTask(TimeStampedModel):
     ]
 
     submission = models.ForeignKey(
-        Submission, verbose_name=_("submission"), on_delete=models.CASCADE,
+        Submission,
+        verbose_name=_("submission"),
+        on_delete=models.CASCADE,
         related_name="production_tasks",
     )
     stage = models.CharField(_("stage"), max_length=32, choices=Stage.choices)
     assignee = models.ForeignKey(
-        settings.AUTH_USER_MODEL, verbose_name=_("assignee"), null=True, blank=True,
-        on_delete=models.SET_NULL, related_name="production_tasks",
+        settings.AUTH_USER_MODEL,
+        verbose_name=_("assignee"),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="production_tasks",
     )
     status = models.CharField(
         _("status"), max_length=16, choices=Status.choices, default=Status.PENDING
@@ -787,9 +877,7 @@ class ProductionTask(TimeStampedModel):
         verbose_name_plural = _("production tasks")
         ordering: ClassVar[list[str]] = ["submission", "id"]
         constraints: ClassVar[list[models.BaseConstraint]] = [
-            models.UniqueConstraint(
-                fields=["submission", "stage"], name="unique_production_stage"
-            )
+            models.UniqueConstraint(fields=["submission", "stage"], name="unique_production_stage")
         ]
 
     def __str__(self) -> str:

@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
-
 {% block title %}{% translate "Online First" %} · {{ site_settings.journal_name }}{% endblock %}
-
 {% block content %}
   <div class="container-page">
     <h1 class="text-3xl mb-2">{% translate "Online First" %}</h1>
@@ -12,7 +10,9 @@
     {% for article in articles %}
       {% include "journal/partials/article_card.html" with article=article show_abstract=True %}
     {% empty %}
-      <div class="empty-state"><p>{% translate "There are no Online First articles at the moment." %}</p></div>
+      <div class="empty-state">
+        <p>{% translate "There are no Online First articles at the moment." %}</p>
+      </div>
     {% endfor %}
     {% include "journal/partials/pagination.html" %}
   </div>

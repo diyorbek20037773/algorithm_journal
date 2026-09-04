@@ -164,20 +164,42 @@ def page_count(uploaded_file) -> int:
         uploaded_file.seek(0)
 
 
+#: Document-information keys that can identify an author or their institution.
+IDENTIFYING_PDF_KEYS: tuple[str, ...] = (
+    "/Author",
+    "/Creator",
+    "/Producer",
+    "/Title",
+    "/Subject",
+    "/Keywords",
+    "/Company",
+    "/SourceModified",
+)
+
+
 def strip_pdf_metadata(file_field) -> bool:
-    """Remove identifying metadata from a PDF in place (reviewer anonymity)."""
+    """Remove identifying metadata from a PDF in place (reviewer anonymity).
+
+    Both the document information dictionary and the XMP packet are cleared.
+    ``pikepdf`` writes its own ``/Producer`` when saving, which carries no
+    information about the author, so that key may reappear.
+    """
     try:
         import pikepdf
 
         path = file_field.path
         with pikepdf.open(path, allow_overwriting_input=True) as pdf:
-            pdf.docinfo.clear()
+            # ``docinfo`` is a PDF dictionary: delete each key rather than
+            # calling ``clear()``, which pikepdf only defines for arrays.
+            for key in list(pdf.docinfo.keys()):
+                del pdf.docinfo[key]
             with pdf.open_metadata() as meta:
-                meta.clear()
+                for key in list(meta.keys()):
+                    del meta[key]
             pdf.save(path)
         return True
     except Exception:  # pragma: no cover - non-PDF or storage without paths
-        logger.info("Could not strip PDF metadata from %s", getattr(file_field, "name", "?"))
+        logger.exception("Could not strip PDF metadata from %s", getattr(file_field, "name", "?"))
         return False
 
 
@@ -329,9 +351,7 @@ def submit_review(assignment: ReviewAssignment, review: Review) -> Review:
         profile.reviews_completed += 1
         days = (assignment.completed_at - assignment.invited_at).days
         previous = profile.average_review_days
-        profile.average_review_days = (
-            days if previous is None else round((previous + days) / 2, 1)
-        )
+        profile.average_review_days = days if previous is None else round((previous + days) / 2, 1)
         profile.save(update_fields=["reviews_completed", "average_review_days", "updated_at"])
 
     _maybe_close_round(assignment.round)
@@ -344,7 +364,6 @@ def submit_review(assignment: ReviewAssignment, review: Review) -> Review:
 def _maybe_close_round(round_obj: ReviewRound) -> None:
     """Move the submission to ``awaiting_decision`` when reviews are complete."""
     from apps.submissions import workflow
-
     from apps.submissions.models import SubmissionStatus
 
     submission = round_obj.submission
@@ -379,10 +398,16 @@ def build_decision_letter(submission: Submission, decision: str) -> str:
     intro = {
         "accept": _("I am pleased to inform you that your manuscript has been accepted."),
         "minor_revision": _("Your manuscript requires minor revisions before it can be accepted."),
-        "major_revision": _("Your manuscript requires major revisions before it can be considered further."),
+        "major_revision": _(
+            "Your manuscript requires major revisions before it can be considered further."
+        ),
         "reject": _("After careful consideration, we cannot accept your manuscript."),
-        "desk_reject": _("After an initial editorial assessment, we cannot proceed with your manuscript."),
-        "resubmit": _("We cannot accept the manuscript in its present form, but we would welcome a resubmission."),
+        "desk_reject": _(
+            "After an initial editorial assessment, we cannot proceed with your manuscript."
+        ),
+        "resubmit": _(
+            "We cannot accept the manuscript in its present form, but we would welcome a resubmission."
+        ),
     }.get(decision, "")
 
     lines = [

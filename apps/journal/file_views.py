@@ -21,7 +21,9 @@ def _serve(request: HttpRequest, galley: Galley) -> HttpResponse:
     filename = f"{galley.article_id}-{galley.label}".lower().replace(" ", "-")
     suffix = os.path.splitext(galley.file.name)[1] or ".pdf"
     download_name = f"{filename}{suffix}"
-    content_type = galley.mime or mimetypes.guess_type(galley.file.name)[0] or "application/octet-stream"
+    content_type = (
+        galley.mime or mimetypes.guess_type(galley.file.name)[0] or "application/octet-stream"
+    )
 
     if not settings.DEBUG and getattr(settings, "USE_X_ACCEL_REDIRECT", False):
         response = HttpResponse(status=200)

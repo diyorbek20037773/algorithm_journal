@@ -8,8 +8,8 @@ from modeltranslation.admin import TabbedTranslationAdmin
 from apps.submissions.models import (
     Discussion,
     DiscussionMessage,
-    EditorNote,
     EditorialDecision,
+    EditorNote,
     ProductionTask,
     Review,
     ReviewAssignment,

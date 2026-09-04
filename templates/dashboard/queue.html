@@ -1,20 +1,21 @@
 {% extends "dashboard/_base.html" %}
 {% load i18n %}
-
 {% block title %}{{ queue_label }} · {% translate "Dashboard" %}{% endblock %}
-
 {% block dashboard_content %}
   <h1 class="text-3xl mb-6">{{ queue_label }}</h1>
-
-  <form class="flex gap-2 mb-6" method="get"
-        hx-get="{% url 'dashboard:queue' queue_key %}" hx-target="#queue-table" hx-trigger="submit, keyup changed delay:400ms from:input">
+  <form class="flex gap-2 mb-6"
+        method="get"
+        hx-get="{% url 'dashboard:queue' queue_key %}"
+        hx-target="#queue-table"
+        hx-trigger="submit, keyup changed delay:400ms from:input">
     <label class="visually-hidden" for="queue-search">{% translate "Search" %}</label>
-    <input class="input" id="queue-search" type="search" name="q" value="{{ search }}"
+    <input class="input"
+           id="queue-search"
+           type="search"
+           name="q"
+           value="{{ search }}"
            placeholder="{% translate 'Title or reference' %}">
     <button type="submit" class="btn btn-secondary">{% translate "Filter" %}</button>
   </form>
-
-  <div id="queue-table">
-    {% include "dashboard/partials/queue_table.html" %}
-  </div>
+  <div id="queue-table">{% include "dashboard/partials/queue_table.html" %}</div>
 {% endblock %}

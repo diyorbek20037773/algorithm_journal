@@ -1,15 +1,14 @@
 {% extends "dashboard/_base.html" %}
 {% load i18n %}
-
 {% block title %}{% translate "Dashboard" %} · {{ site_settings.journal_name }}{% endblock %}
-
 {% block dashboard_content %}
   <h1 class="text-3xl mb-1">{% translate "Dashboard" %}</h1>
   <p class="muted mb-8">{{ user.get_full_name }} — {{ user.email }}</p>
-
   {% if actions_needed %}
     <section class="mb-10">
-      <div class="section-heading"><h2>{% translate "Action needed" %}</h2></div>
+      <div class="section-heading">
+        <h2>{% translate "Action needed" %}</h2>
+      </div>
       {% for submission in actions_needed %}
         <div class="card mb-3 flex items-center justify-between gap-4">
           <div>
@@ -17,19 +16,22 @@
             <p class="meta">{{ submission.reference }} — {{ submission.get_status_display }}</p>
           </div>
           {% if submission.status == "revision_requested" %}
-            <a class="btn btn-primary btn-sm" href="{% url 'submissions:upload_revision' submission.pk %}">{% translate "Upload revision" %}</a>
+            <a class="btn btn-primary btn-sm"
+               href="{% url 'submissions:upload_revision' submission.pk %}">{% translate "Upload revision" %}</a>
           {% endif %}
         </div>
       {% endfor %}
     </section>
   {% endif %}
-
   {% if editor_queues %}
     <section class="mb-10">
-      <div class="section-heading"><h2>{% translate "Editorial queues" %}</h2></div>
+      <div class="section-heading">
+        <h2>{% translate "Editorial queues" %}</h2>
+      </div>
       <div class="grid gap-3 sm:grid-cols-3">
         {% for queue in editor_queues %}
-          <a class="card hover:border-[--color-accent]" href="{% url 'dashboard:queue' queue.key %}">
+          <a class="card hover:border-[--color-accent]"
+             href="{% url 'dashboard:queue' queue.key %}">
             <p class="footer-heading">{{ queue.label }}</p>
             <p class="text-3xl font-serif">{{ queue.count }}</p>
           </a>
@@ -49,7 +51,6 @@
       {% endif %}
     </section>
   {% endif %}
-
   {% if review_invitations or active_reviews %}
     <section class="mb-10">
       <div class="section-heading">
@@ -61,7 +62,8 @@
           <p class="eyebrow">{% translate "Invitation" %}</p>
           <p class="font-medium mt-1">{{ assignment.round.submission.title }}</p>
           <p class="meta">{% translate "Due" %} {{ assignment.due_at|date:"j F Y" }}</p>
-          <a class="btn btn-secondary btn-sm mt-3" href="{% url 'review:assignment_detail' assignment.pk %}">{% translate "Open" %}</a>
+          <a class="btn btn-secondary btn-sm mt-3"
+             href="{% url 'review:assignment_detail' assignment.pk %}">{% translate "Open" %}</a>
         </div>
       {% endfor %}
       {% for assignment in active_reviews %}
@@ -69,16 +71,17 @@
           <p class="eyebrow">{% translate "In progress" %}</p>
           <p class="font-medium mt-1">{{ assignment.round.submission.title }}</p>
           <p class="meta">{% translate "Due" %} {{ assignment.due_at|date:"j F Y" }} ({{ assignment.days_remaining }} {% translate "days" %})</p>
-          <a class="btn btn-primary btn-sm mt-3" href="{% url 'review:review_form' assignment.pk %}">{% translate "Write the review" %}</a>
+          <a class="btn btn-primary btn-sm mt-3"
+             href="{% url 'review:review_form' assignment.pk %}">{% translate "Write the review" %}</a>
         </div>
       {% endfor %}
     </section>
   {% endif %}
-
   <section class="mb-10">
     <div class="section-heading">
       <h2>{% translate "My submissions" %}</h2>
-      <a class="btn btn-ghost btn-sm" href="{% url 'submissions:wizard_start' %}">{% translate "New submission" %}</a>
+      <a class="btn btn-ghost btn-sm"
+         href="{% url 'submissions:wizard_start' %}">{% translate "New submission" %}</a>
     </div>
     {% for submission in my_submissions %}
       <div class="card mb-3">
@@ -109,19 +112,23 @@
         </div>
         <div class="flex flex-wrap gap-2 mt-4">
           {% if submission.status == "draft" %}
-            <a class="btn btn-primary btn-sm" href="{% url 'submissions:wizard_step1' submission.pk %}">{% translate "Continue draft" %}</a>
+            <a class="btn btn-primary btn-sm"
+               href="{% url 'submissions:wizard_step1' submission.pk %}">{% translate "Continue draft" %}</a>
           {% else %}
-            <a class="btn btn-secondary btn-sm" href="{% url 'dashboard:submission_detail' submission.pk %}">{% translate "Details" %}</a>
+            <a class="btn btn-secondary btn-sm"
+               href="{% url 'dashboard:submission_detail' submission.pk %}">{% translate "Details" %}</a>
           {% endif %}
           {% if submission.status == "revision_requested" %}
-            <a class="btn btn-primary btn-sm" href="{% url 'submissions:upload_revision' submission.pk %}">{% translate "Upload revision" %}</a>
+            <a class="btn btn-primary btn-sm"
+               href="{% url 'submissions:upload_revision' submission.pk %}">{% translate "Upload revision" %}</a>
           {% endif %}
         </div>
       </div>
     {% empty %}
       <div class="empty-state">
         <p>{% translate "You have not submitted anything yet." %}</p>
-        <a class="btn btn-primary mt-4" href="{% url 'submissions:wizard_start' %}">{% translate "Submit a manuscript" %}</a>
+        <a class="btn btn-primary mt-4"
+           href="{% url 'submissions:wizard_start' %}">{% translate "Submit a manuscript" %}</a>
       </div>
     {% endfor %}
   </section>

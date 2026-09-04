@@ -1,20 +1,23 @@
 {% extends "base.html" %}
 {% load i18n %}
-
 {% block title %}{% translate "Announcements" %} · {{ site_settings.journal_name }}{% endblock %}
-
 {% block content %}
   <div class="container-page max-w-[820px]">
     <h1 class="text-3xl mb-8">{% translate "Announcements" %}</h1>
     {% for announcement in announcements %}
       <article class="article-card">
-        {% if announcement.is_pinned %}<p class="eyebrow">{% translate "Pinned" %}</p>{% endif %}
-        <h2><a class="article-title text-xl" href="{{ announcement.get_absolute_url }}">{{ announcement.title }}</a></h2>
+        {% if announcement.is_pinned %}
+          <p class="eyebrow">{% translate "Pinned" %}</p>
+        {% endif %}
+        <h2><a class="article-title text-xl"
+   href="{{ announcement.get_absolute_url }}">{{ announcement.title }}</a></h2>
         <p class="meta mt-1">{{ announcement.published_at|date:"j F Y" }}</p>
         <div class="prose-journal mt-3">{{ announcement.body_html|striptags|truncatewords:45 }}</div>
       </article>
     {% empty %}
-      <div class="empty-state"><p>{% translate "There are no announcements at the moment." %}</p></div>
+      <div class="empty-state">
+        <p>{% translate "There are no announcements at the moment." %}</p>
+      </div>
     {% endfor %}
   </div>
 {% endblock %}

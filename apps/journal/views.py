@@ -43,14 +43,17 @@ class HomeView(TemplateView):
             list(
                 Article.objects.public()
                 .filter(issue=current_issue)
-                .with_related()
+                .for_cards()
                 .order_by("article_number", "id")[:6]
             )
             if current_issue
             else []
         )
         context["online_first"] = list(
-            Article.objects.online_first().with_related().order_by("-published_online_at")[:4]
+            Article.objects.online_first()
+            .select_related("section")
+            .prefetch_related("authors")
+            .order_by("-published_online_at")[:4]
         )
         context["sections"] = list(
             Section.objects.filter(is_active=True, is_research=True)

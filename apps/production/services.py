@@ -15,7 +15,7 @@ from django.utils.translation import gettext as _
 
 from apps.core.models import AuditLog
 from apps.core.services import get_site_settings, log_action
-from apps.journal.models import Article, Author, Galley, Issue, Keyword, License, Reference
+from apps.journal.models import Article, Author, Issue, Keyword, License, Reference
 from apps.submissions.models import (
     ProductionTask,
     Submission,
@@ -237,7 +237,9 @@ def metadata_completeness(article: Article) -> list[dict[str, Any]]:
             "level": "warning",
         }
     )
-    checks.append({"label": _("Licence"), "ok": article.license_id is not None, "level": "required"})
+    checks.append(
+        {"label": _("Licence"), "ok": article.license_id is not None, "level": "required"}
+    )
     checks.append(
         {"label": _("Received date"), "ok": article.received_at is not None, "level": "required"}
     )
@@ -261,9 +263,7 @@ def publish_online_first(article: Article, *, user=None, request=None) -> Articl
     """Publish an article ahead of its issue and register the DOI."""
     blockers = completeness_blockers(article)
     if blockers:
-        raise ValidationError(
-            _("Cannot publish: %(items)s") % {"items": ", ".join(blockers)}
-        )
+        raise ValidationError(_("Cannot publish: %(items)s") % {"items": ", ".join(blockers)})
     reserve_doi(article, user=user, request=request)
     article.status = Article.Status.ONLINE_FIRST
     article.published_online_at = article.published_online_at or timezone.now().date()
@@ -301,7 +301,9 @@ def publish_issue(issue: Issue, *, user=None, request=None) -> Issue:
         if blockers:
             problems.append(f"#{article.pk}: {', '.join(blockers)}")
     if problems:
-        raise ValidationError(_("Some articles are incomplete: %(items)s") % {"items": "; ".join(problems)})
+        raise ValidationError(
+            _("Some articles are incomplete: %(items)s") % {"items": "; ".join(problems)}
+        )
 
     issue.is_published = True
     issue.published_at = issue.published_at or timezone.now().date()

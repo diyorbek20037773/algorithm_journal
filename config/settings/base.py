@@ -307,6 +307,11 @@ TAILWIND_CLI_DIST_CSS = "css/output.css"
 TAILWIND_CLI_AUTOMATIC_DOWNLOAD = True
 TAILWIND_CLI_PATH = str(BASE_DIR / ".tailwind")
 
+# The Tailwind source lives at static/src/css/input.css as required by
+# DESIGN_BRIEF §2. collectstatic is always run with --ignore=src, so the
+# source file never reaches the manifest storage backend.
+SILENCED_SYSTEM_CHECKS = ["django_tailwind_cli.W001"]
+
 # -----------------------------------------------------------------------------
 # Email
 # -----------------------------------------------------------------------------

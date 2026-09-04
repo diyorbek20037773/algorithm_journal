@@ -1,19 +1,19 @@
 {% load i18n %}
 {# Server-rendered inline SVG bar chart — no JavaScript charting library. #}
 <div class="card overflow-x-auto">
-  <svg viewBox="0 0 720 240" role="img" width="100%" height="240"
+  <svg viewBox="0 0 720 240"
+       role="img"
+       width="100%"
+       height="240"
        aria-label="{% translate 'Submissions and acceptances per month' %}">
     <title>{% translate "Submissions and acceptances per month" %}</title>
     <line x1="40" y1="200" x2="700" y2="200" stroke="var(--color-line)" stroke-width="1"></line>
     <line x1="40" y1="20" x2="40" y2="200" stroke="var(--color-line)" stroke-width="1"></line>
     {% for point in series %}
       <g>
-        <rect x="{{ point.x_submissions }}" y="{{ point.y_submissions }}"
-              width="18" height="{{ point.h_submissions }}" fill="var(--color-accent)"></rect>
-        <rect x="{{ point.x_accepted }}" y="{{ point.y_accepted }}"
-              width="18" height="{{ point.h_accepted }}" fill="var(--color-success)"></rect>
-        <text x="{{ point.x_label }}" y="216" font-size="9" fill="var(--color-ink-3)"
-              text-anchor="middle">{{ point.month|date:"M" }}</text>
+      <rect x="{{ point.x_submissions }}" y="{{ point.y_submissions }}" width="18" height="{{ point.h_submissions }}" fill="var(--color-accent)"></rect>
+      <rect x="{{ point.x_accepted }}" y="{{ point.y_accepted }}" width="18" height="{{ point.h_accepted }}" fill="var(--color-success)"></rect>
+      <text x="{{ point.x_label }}" y="216" font-size="9" fill="var(--color-ink-3)" text-anchor="middle">{{ point.month|date:"M" }}</text>
       </g>
     {% endfor %}
   </svg>

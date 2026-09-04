@@ -143,9 +143,7 @@ def json_ld(article: Article) -> str:
         "publisher": {"@type": "Organization", "name": site.publisher_name},
     }
     if article.doi:
-        data["identifier"] = [
-            {"@type": "PropertyValue", "propertyID": "DOI", "value": article.doi}
-        ]
+        data["identifier"] = [{"@type": "PropertyValue", "propertyID": "DOI", "value": article.doi}]
         data["sameAs"] = article.doi_url
     if article.license:
         data["license"] = article.license.url

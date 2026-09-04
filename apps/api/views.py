@@ -82,9 +82,7 @@ def doaj_export(request: Request) -> Response:
                     for author in article.author_list()
                 ],
                 "keywords": [k.name for k in article.keywords.all()][:6],
-                "identifier": [
-                    {"type": "doi", "id": article.doi} for _ in [1] if article.doi
-                ]
+                "identifier": [{"type": "doi", "id": article.doi} for _ in [1] if article.doi]
                 + ([{"type": "eissn", "id": site.eissn}] if site.eissn else []),
                 "journal": {
                     "title": site.journal_name_en or site.journal_name,

@@ -96,6 +96,9 @@ jobs:
           DJANGO_SETTINGS_MODULE: config.settings.prod
           DJANGO_ALLOWED_HOSTS: example.org
           SECURE_SSL_REDIRECT: "True"
+          SECURE_HSTS_SECONDS: "31536000"
+          SESSION_COOKIE_SECURE: "True"
+          CSRF_COOKIE_SECURE: "True"
         run: uv run python manage.py check --deploy --fail-level ERROR
 
       - name: Tests

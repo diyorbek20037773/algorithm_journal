@@ -1,14 +1,11 @@
 {% extends "dashboard/_base.html" %}
 {% load i18n %}
-
 {% block title %}{% translate "Reports" %} · {% translate "Dashboard" %}{% endblock %}
-
 {% block dashboard_content %}
   <div class="flex items-center justify-between mb-6">
     <h1 class="text-2xl">{% translate "Editorial reports" %}</h1>
     <a class="btn btn-secondary btn-sm" href="?format=csv">{% translate "Export CSV" %}</a>
   </div>
-
   <div class="grid gap-3 sm:grid-cols-2 mb-8">
     <div class="card">
       <p class="footer-heading">{% translate "Acceptance rate" %}</p>
@@ -19,19 +16,25 @@
       <p class="text-3xl font-serif">{{ kpis.median_days_to_first_decision|default:"—" }}</p>
     </div>
   </div>
-
   <section class="mb-8">
-    <div class="section-heading"><h2>{% translate "Submissions and acceptances" %}</h2></div>
+    <div class="section-heading">
+      <h2>{% translate "Submissions and acceptances" %}</h2>
+    </div>
     {% include "core/partials/bar_chart.html" with series=monthly %}
   </section>
-
   <section>
-    <div class="section-heading"><h2>{% translate "Monthly snapshots" %}</h2></div>
+    <div class="section-heading">
+      <h2>{% translate "Monthly snapshots" %}</h2>
+    </div>
     <table class="table">
       <thead>
         <tr>
-          <th>{% translate "Month" %}</th><th>{% translate "Received" %}</th><th>{% translate "Desk rejected" %}</th>
-          <th>{% translate "To review" %}</th><th>{% translate "Accepted" %}</th><th>{% translate "Rejected" %}</th>
+          <th>{% translate "Month" %}</th>
+          <th>{% translate "Received" %}</th>
+          <th>{% translate "Desk rejected" %}</th>
+          <th>{% translate "To review" %}</th>
+          <th>{% translate "Accepted" %}</th>
+          <th>{% translate "Rejected" %}</th>
           <th>{% translate "Acceptance rate" %}</th>
         </tr>
       </thead>
@@ -47,7 +50,11 @@
             <td class="meta">{% if snapshot.acceptance_rate %}{{ snapshot.acceptance_rate }}%{% else %}—{% endif %}</td>
           </tr>
         {% empty %}
-          <tr><td colspan="7"><div class="empty-state">{% translate "No snapshots yet." %}</div></td></tr>
+          <tr>
+            <td colspan="7">
+              <div class="empty-state">{% translate "No snapshots yet." %}</div>
+            </td>
+          </tr>
         {% endfor %}
       </tbody>
     </table>

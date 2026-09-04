@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
-
 {% block title %}{{ keyword.name }} · {{ site_settings.journal_name }}{% endblock %}
-
 {% block content %}
   <div class="container-page">
     <p class="eyebrow">{% translate "Keyword" %}</p>
@@ -10,7 +8,9 @@
     {% for article in articles %}
       {% include "journal/partials/article_card.html" with article=article %}
     {% empty %}
-      <div class="empty-state"><p>{% translate "No articles carry this keyword yet." %}</p></div>
+      <div class="empty-state">
+        <p>{% translate "No articles carry this keyword yet." %}</p>
+      </div>
     {% endfor %}
     {% include "journal/partials/pagination.html" %}
   </div>

@@ -19,7 +19,7 @@ RAW_EVENT_RETENTION_DAYS = 90
 @shared_task(name="apps.metrics.tasks.aggregate_daily_stats")
 def aggregate_daily_stats(days_back: int = 2) -> str:
     """Fold recent raw events into daily statistics and refresh totals."""
-    today = timezone.now().date()
+    today = timezone.localdate()
     written = 0
     for offset in range(days_back):
         written += services.aggregate_day(today - timedelta(days=offset))
@@ -41,7 +41,7 @@ def snapshot_editorial_kpi() -> str:
     from apps.journal.models import Article, Author
     from apps.submissions.models import EditorialDecision, ReviewAssignment, Submission
 
-    month = timezone.now().date().replace(day=1)
+    month = timezone.localdate().replace(day=1)
     next_month = services._shift_month(month, 1)
 
     submissions = Submission.objects.filter(

@@ -31,16 +31,20 @@ class UserAdmin(BaseUserAdmin):
         (None, {"fields": ("email", "password")}),
         (_("Personal info"), {"fields": ("first_name", "last_name", "preferred_language")}),
         (_("Editorial"), {"fields": ("is_reviewer", "must_enroll_2fa")}),
-        (_("Permissions"), {
-            "fields": ("is_active", "is_staff", "is_superuser", "groups", "user_permissions")
-        }),
+        (
+            _("Permissions"),
+            {"fields": ("is_active", "is_staff", "is_superuser", "groups", "user_permissions")},
+        ),
         (_("Important dates"), {"fields": ("last_login", "date_joined", "last_activity_at")}),
     )
     add_fieldsets = (
-        (None, {
-            "classes": ("wide",),
-            "fields": ("email", "password1", "password2", "first_name", "last_name"),
-        }),
+        (
+            None,
+            {
+                "classes": ("wide",),
+                "fields": ("email", "password1", "password2", "first_name", "last_name"),
+            },
+        ),
     )
 
 

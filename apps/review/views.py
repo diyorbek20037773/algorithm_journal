@@ -236,9 +236,7 @@ def certificate(request: HttpRequest) -> HttpResponse:
         height - 120 * mm,
         f"has completed {completed} peer review(s) for the journal.",
     )
-    pdf.drawCentredString(
-        width / 2, height - 132 * mm, f"Issued on {timezone.now():%d %B %Y}"
-    )
+    pdf.drawCentredString(width / 2, height - 132 * mm, f"Issued on {timezone.now():%d %B %Y}")
     pdf.setFont("Helvetica", 9)
     pdf.drawCentredString(width / 2, 30 * mm, f"{site.publisher_name} · {site.contact_email}")
     pdf.showPage()

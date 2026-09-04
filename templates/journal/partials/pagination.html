@@ -1,21 +1,18 @@
 {% load i18n %}
 {% if page_obj.has_other_pages %}
-  <nav class="flex items-center justify-between gap-4 mt-8" aria-label="{% translate "Pagination" %}">
+  <nav class="flex items-center justify-between gap-4 mt-8"
+       aria-label="{% translate "Pagination" %}">
     <div>
       {% if page_obj.has_previous %}
-        <a class="btn btn-secondary btn-sm" href="?{% if querystring %}{{ querystring }}&amp;{% endif %}page={{ page_obj.previous_page_number }}">
-          &larr; {% translate "Previous" %}
-        </a>
+        <a class="btn btn-secondary btn-sm"
+           href="?{% if querystring %}{{ querystring }}&amp;{% endif %}page={{ page_obj.previous_page_number }}">← {% translate "Previous" %}</a>
       {% endif %}
     </div>
-    <p class="meta">
-      {% blocktranslate with current=page_obj.number total=page_obj.paginator.num_pages %}Page {{ current }} of {{ total }}{% endblocktranslate %}
-    </p>
+    <p class="meta">{% blocktranslate with current=page_obj.number total=page_obj.paginator.num_pages %}Page {{ current }} of {{ total }}{% endblocktranslate %}</p>
     <div>
       {% if page_obj.has_next %}
-        <a class="btn btn-secondary btn-sm" href="?{% if querystring %}{{ querystring }}&amp;{% endif %}page={{ page_obj.next_page_number }}">
-          {% translate "Next" %} &rarr;
-        </a>
+        <a class="btn btn-secondary btn-sm"
+           href="?{% if querystring %}{{ querystring }}&amp;{% endif %}page={{ page_obj.next_page_number }}">{% translate "Next" %} →</a>
       {% endif %}
     </div>
   </nav>

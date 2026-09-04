@@ -4,7 +4,14 @@ from __future__ import annotations
 
 from modeltranslation.translator import TranslationOptions, register
 
-from apps.core.models import Announcement, EmailTemplate, IndexingService, MenuItem, Page, SiteSettings
+from apps.core.models import (
+    Announcement,
+    EmailTemplate,
+    IndexingService,
+    MenuItem,
+    Page,
+    SiteSettings,
+)
 
 
 @register(SiteSettings)

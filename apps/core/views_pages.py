@@ -65,16 +65,30 @@ def for_reviewers(request: HttpRequest) -> HttpResponse:
 CHECKLIST_ITEMS: list[Any] = [
     _("The manuscript is original, unpublished, and not under consideration elsewhere."),
     _("The article is between 4,000 and 10,000 words (2,000–4,000 for a short communication)."),
-    _("The manuscript file is anonymised: no author names, affiliations, acknowledgements or self-identifying citations."),
-    _("A separate title page lists all authors, affiliations with city and country, ORCID iDs and the corresponding author."),
-    _("Title, abstract (150–250 words) and 5–8 keywords are provided in English, Uzbek and Russian."),
+    _(
+        "The manuscript file is anonymised: no author names, affiliations, acknowledgements or self-identifying citations."
+    ),
+    _(
+        "A separate title page lists all authors, affiliations with city and country, ORCID iDs and the corresponding author."
+    ),
+    _(
+        "Title, abstract (150–250 words) and 5–8 keywords are provided in English, Uzbek and Russian."
+    ),
     _("Between one and five JEL classification codes have been selected."),
-    _("The structure follows IMRaD: introduction, literature, methods, results, discussion, conclusion."),
-    _("References follow APA 7th edition, with DOIs where available; non-Latin sources include a transliteration and an English translation."),
-    _("Tables and figures are numbered, captioned and referred to in the text; figures are legible at print size."),
+    _(
+        "The structure follows IMRaD: introduction, literature, methods, results, discussion, conclusion."
+    ),
+    _(
+        "References follow APA 7th edition, with DOIs where available; non-Latin sources include a transliteration and an English translation."
+    ),
+    _(
+        "Tables and figures are numbered, captioned and referred to in the text; figures are legible at print size."
+    ),
     _("Funding, conflict of interest, data availability and generative-AI use are declared."),
     _("All co-authors have approved the submission and agree to publication under CC BY 4.0."),
-    _("Research involving human participants states the ethical approval or explains why none was required."),
+    _(
+        "Research involving human participants states the ethical approval or explains why none was required."
+    ),
 ]
 
 
@@ -118,9 +132,7 @@ def contact(request: HttpRequest) -> HttpResponse:
                     "message": message.body,
                 },
                 fallback_subject=f"[Contact] {message.subject}",
-                fallback_body=(
-                    f"**From:** {message.name} <{message.email}>\n\n{message.body}"
-                ),
+                fallback_body=(f"**From:** {message.name} <{message.email}>\n\n{message.body}"),
             )
             messages.success(request, _("Thank you — your message has been sent."))
             return redirect("core:contact")

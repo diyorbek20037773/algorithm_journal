@@ -1,9 +1,8 @@
 {% load i18n %}
 <p class="meta mb-4">
   {% blocktranslate count counter=result_count %}{{ counter }} result{% plural %}{{ counter }} results{% endblocktranslate %}
-  {% if query %} — <span class="subtle">{{ query }}</span>{% endif %}
+  {% if query %}— <span class="subtle">{{ query }}</span>{% endif %}
 </p>
-
 {% for article in results %}
   <article class="article-card">
     <p class="eyebrow">{{ article.section.name }}</p>
@@ -11,7 +10,7 @@
     <p class="authors-line mt-1">{{ article.authors_display }}</p>
     <p class="meta mt-1">
       {% if article.issue %}Vol. {{ article.issue.volume.number }} No. {{ article.issue.number }} ({{ article.issue.volume.year }}){% else %}{% translate "Online First" %}{% endif %}
-      {% if article.doi %} · {{ article.doi }}{% endif %}
+      {% if article.doi %}· {{ article.doi }}{% endif %}
     </p>
     {% if article.headline %}
       <p class="muted text-sm mt-2">{{ article.headline|safe }}</p>
@@ -20,8 +19,11 @@
     {% endif %}
     <div class="flex gap-3 mt-3">
       {% if article.primary_galley %}<a class="btn btn-secondary btn-sm" href="{{ article.pdf_url }}">PDF</a>{% endif %}
-      <a class="btn btn-ghost btn-sm" hx-get="{% url 'journal:article_cite' article.pk %}"
-         hx-target="#modal-root" hx-swap="innerHTML" href="{% url 'journal:article_cite' article.pk %}">{% translate "Cite" %}</a>
+      <a class="btn btn-ghost btn-sm"
+         hx-get="{% url 'journal:article_cite' article.pk %}"
+         hx-target="#modal-root"
+         hx-swap="innerHTML"
+         href="{% url 'journal:article_cite' article.pk %}">{% translate "Cite" %}</a>
     </div>
   </article>
 {% empty %}
@@ -31,5 +33,4 @@
     <a class="btn btn-secondary mt-4" href="{% url 'journal:archive' %}">{% translate "Browse the archive" %}</a>
   </div>
 {% endfor %}
-
 {% include "journal/partials/pagination.html" %}

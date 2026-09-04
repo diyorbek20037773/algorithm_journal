@@ -1,8 +1,6 @@
 {% extends "dashboard/_base.html" %}
 {% load i18n %}
-
 {% block title %}{% translate "Profile" %} · {% translate "Dashboard" %}{% endblock %}
-
 {% block dashboard_content %}
   <h1 class="text-2xl mb-6">{% translate "Profile" %}</h1>
   <form method="post" novalidate>
@@ -10,13 +8,17 @@
     <fieldset class="card mb-6">
       <legend class="footer-heading px-1">{% translate "Account" %}</legend>
       <div class="grid gap-3 sm:grid-cols-2">
-        {% for field in user_form %}{% include "includes/form_field.html" with field=field %}{% endfor %}
+        {% for field in user_form %}
+          {% include "includes/form_field.html" with field=field %}
+        {% endfor %}
       </div>
     </fieldset>
     <fieldset class="card mb-6">
       <legend class="footer-heading px-1">{% translate "Scholarly profile" %}</legend>
       <div class="grid gap-3 sm:grid-cols-2">
-        {% for field in profile_form %}{% include "includes/form_field.html" with field=field %}{% endfor %}
+        {% for field in profile_form %}
+          {% include "includes/form_field.html" with field=field %}
+        {% endfor %}
       </div>
     </fieldset>
     <button type="submit" class="btn btn-primary">{% translate "Save profile" %}</button>

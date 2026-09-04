@@ -65,9 +65,7 @@ def _apply_filters(queryset: QuerySet[Article], params) -> QuerySet[Article]:
     author = params.get("author")
     if author:
         queryset = queryset.annotate(
-            author_similarity=TrigramSimilarity(
-                F("authors__family_name"), Value(author)
-            )
+            author_similarity=TrigramSimilarity(F("authors__family_name"), Value(author))
         ).filter(
             Q(author_similarity__gt=0.25)
             | Q(authors__family_name__icontains=author)
@@ -156,7 +154,9 @@ def search(request: HttpRequest) -> HttpResponse:
     }
 
     template = (
-        "search/partials/results.html" if request.headers.get("HX-Request") else "search/search.html"
+        "search/partials/results.html"
+        if request.headers.get("HX-Request")
+        else "search/search.html"
     )
     return TemplateResponse(request, template, context)
 

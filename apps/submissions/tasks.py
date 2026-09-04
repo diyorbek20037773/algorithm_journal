@@ -43,7 +43,8 @@ def notify_submission_received(submission_id: int) -> str:
         to=[submission.submitter.email],
         context=context,
         language=_language(submission.submitter),
-        fallback_subject=_("Your submission %(ref)s has been received") % {"ref": submission.reference},
+        fallback_subject=_("Your submission %(ref)s has been received")
+        % {"ref": submission.reference},
         fallback_body=_(
             "Dear author,\n\nThank you for submitting **{title}** ({reference}) to {journal}.\n\n"
             "You can follow its progress in your dashboard: {dashboard_url}"
@@ -183,8 +184,10 @@ def send_decision_email(decision_id: int) -> str:
 @shared_task(name="apps.submissions.tasks.notify_published")
 def notify_published(submission_id: int) -> str:
     """Tell every author that their article is online."""
-    submission = Submission.objects.select_related("article").prefetch_related("authors").get(
-        pk=submission_id
+    submission = (
+        Submission.objects.select_related("article")
+        .prefetch_related("authors")
+        .get(pk=submission_id)
     )
     article = submission.article
     if article is None:
@@ -202,9 +205,7 @@ def notify_published(submission_id: int) -> str:
             },
             language=_language(submission.submitter),
             fallback_subject=_("Your article is published"),
-            fallback_body=_(
-                "Your article **{title}** is now published.\n\nDOI: {doi}\nURL: {url}"
-            ),
+            fallback_body=_("Your article **{title}** is now published.\n\nDOI: {doi}\nURL: {url}"),
         )
     return "ok"
 

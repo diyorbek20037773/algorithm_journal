@@ -22,7 +22,8 @@
             {% if round %}
               <span class="flex gap-1">
                 {% for assignment in round.assignments.all %}
-                  <span class="dot" title="{{ assignment.get_status_display }}"
+                  <span class="dot"
+                        title="{{ assignment.get_status_display }}"
                         style="background: var(--color-{% if assignment.status == 'submitted' %}success{% elif assignment.status == 'overdue' %}danger{% elif assignment.status == 'accepted' %}accent{% else %}ink-3{% endif %})"></span>
                 {% endfor %}
               </span>
@@ -34,7 +35,11 @@
         <td class="meta">{{ submission.last_activity_at|date:"j M Y" }}</td>
       </tr>
     {% empty %}
-      <tr><td colspan="6"><div class="empty-state">{% translate "This queue is empty." %}</div></td></tr>
+      <tr>
+        <td colspan="6">
+          <div class="empty-state">{% translate "This queue is empty." %}</div>
+        </td>
+      </tr>
     {% endfor %}
   </tbody>
 </table>

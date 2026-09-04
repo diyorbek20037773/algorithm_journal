@@ -1,12 +1,10 @@
 {% extends "base.html" %}
 {% load i18n %}
-
 {% block title %}{{ page.title }} · {{ site_settings.journal_name }}{% endblock %}
-
 {% block content %}
   <div class="container-page grid gap-10 lg:grid-cols-[220px_1fr_220px] items-start">
-
-    <nav class="hidden lg:block lg:sticky lg:top-20" aria-label="{% translate 'Section navigation' %}">
+    <nav class="hidden lg:block lg:sticky lg:top-20"
+         aria-label="{% translate 'Section navigation' %}">
       <p class="footer-heading">{% translate "In this section" %}</p>
       {% for item in siblings %}
         <a class="footer-link {% if item.slug == page.slug %}text-[--color-accent] font-medium{% endif %}"
@@ -14,7 +12,6 @@
            {% if item.slug == page.slug %}aria-current="page"{% endif %}>{{ item.title }}</a>
       {% endfor %}
     </nav>
-
     <article class="min-w-0">
       <h1 class="text-3xl mb-6">{{ page.title }}</h1>
       {% block page_intro %}{% endblock %}
@@ -22,7 +19,6 @@
       {% block page_extra %}{% endblock %}
       <p class="meta mt-10">{% translate "Last updated" %}: {{ page.updated_at|date:"j F Y" }}</p>
     </article>
-
     <aside class="hidden lg:block lg:sticky lg:top-20">
       {% block page_aside %}{% endblock %}
     </aside>

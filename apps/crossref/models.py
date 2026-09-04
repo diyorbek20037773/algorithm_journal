@@ -47,11 +47,17 @@ class DOIRegistration(TimeStampedModel):
     """History of DOI registration attempts for one article."""
 
     article = models.ForeignKey(
-        "journal.Article", verbose_name=_("article"), on_delete=models.CASCADE,
+        "journal.Article",
+        verbose_name=_("article"),
+        on_delete=models.CASCADE,
         related_name="doi_registrations",
     )
     batch = models.ForeignKey(
-        DepositBatch, verbose_name=_("batch"), null=True, blank=True, on_delete=models.SET_NULL,
+        DepositBatch,
+        verbose_name=_("batch"),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
         related_name="registrations",
     )
     doi = models.CharField(_("DOI"), max_length=128)

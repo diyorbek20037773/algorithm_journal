@@ -194,13 +194,16 @@ class Issue(TimeStampedModel, AutoTranslitMixin):
 
     @classmethod
     def current(cls) -> Issue | None:
-        """The issue shown on the home page."""
+        """The issue shown on the home page.
+
+        Resolved in a single query: the flagged current issue if there is one,
+        otherwise the most recently published issue.
+        """
         return (
             cls.objects.published()
-            .filter(is_current=True)
             .select_related("volume")
+            .order_by("-is_current", "-volume__number", "-number")
             .first()
-            or cls.objects.published().select_related("volume").first()
         )
 
 
@@ -242,8 +245,12 @@ class JELCode(TimeStampedModel, AutoTranslitMixin):
     code = models.CharField(_("code"), max_length=8, unique=True, db_index=True)
     label = models.CharField(_("label"), max_length=255)
     parent = models.ForeignKey(
-        "self", verbose_name=_("parent"), null=True, blank=True,
-        on_delete=models.SET_NULL, related_name="children",
+        "self",
+        verbose_name=_("parent"),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="children",
     )
     level = models.PositiveSmallIntegerField(_("level"), default=1)
 
@@ -288,6 +295,17 @@ class ArticleQuerySet(models.QuerySet):
             "authors", "keywords", "jel_codes", "galleys"
         )
 
+    def for_cards(self) -> ArticleQuerySet:
+        """Prefetch only what an article card renders.
+
+        Cards show the section, authors and the PDF link, so keywords and JEL
+        codes are deliberately not prefetched — that keeps the home page and
+        issue listings inside the query budget of SPEC §12.
+        """
+        return self.select_related("issue", "issue__volume", "section").prefetch_related(
+            "authors", "galleys"
+        )
+
 
 class Article(TimeStampedModel, AutoTranslitMixin):
     """A scholarly article — the central published object."""
@@ -314,8 +332,12 @@ class Article(TimeStampedModel, AutoTranslitMixin):
         EDITORIAL = "editorial", _("Editorial")
 
     issue = models.ForeignKey(
-        Issue, verbose_name=_("issue"), null=True, blank=True,
-        on_delete=models.SET_NULL, related_name="articles",
+        Issue,
+        verbose_name=_("issue"),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="articles",
     )
     section = models.ForeignKey(
         Section, verbose_name=_("section"), on_delete=models.PROTECT, related_name="articles"
@@ -363,8 +385,12 @@ class Article(TimeStampedModel, AutoTranslitMixin):
     )
 
     license = models.ForeignKey(
-        License, verbose_name=_("licence"), null=True, blank=True,
-        on_delete=models.SET_NULL, related_name="articles",
+        License,
+        verbose_name=_("licence"),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="articles",
     )
     copyright_holder = models.CharField(
         _("copyright holder"), max_length=255, default="The Author(s)"
@@ -385,8 +411,12 @@ class Article(TimeStampedModel, AutoTranslitMixin):
     retraction_notice = models.TextField(_("retraction notice"), blank=True)
 
     submission = models.OneToOneField(
-        "submissions.Submission", verbose_name=_("submission"), null=True, blank=True,
-        on_delete=models.SET_NULL, related_name="published_article",
+        "submissions.Submission",
+        verbose_name=_("submission"),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="published_article",
     )
 
     views_count = models.PositiveIntegerField(_("views"), default=0)
@@ -440,7 +470,11 @@ class Article(TimeStampedModel, AutoTranslitMixin):
     @property
     def is_public(self) -> bool:
         """True when readers may open the landing page."""
-        return self.status in {self.Status.PUBLISHED, self.Status.ONLINE_FIRST, self.Status.RETRACTED}
+        return self.status in {
+            self.Status.PUBLISHED,
+            self.Status.ONLINE_FIRST,
+            self.Status.RETRACTED,
+        }
 
     @property
     def is_online_first(self) -> bool:
@@ -469,7 +503,9 @@ class Article(TimeStampedModel, AutoTranslitMixin):
     @property
     def xml_galley(self) -> Galley | None:
         """The JATS XML galley, when one was uploaded."""
-        return next((g for g in self.galleys.all() if g.mime in {"application/xml", "text/xml"}), None)
+        return next(
+            (g for g in self.galleys.all() if g.mime in {"application/xml", "text/xml"}), None
+        )
 
     @property
     def display_date(self) -> date | None:
@@ -543,12 +579,18 @@ class Author(TimeStampedModel, AutoTranslitMixin):
     )
     order = models.PositiveSmallIntegerField(_("order"), default=1)
     user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, verbose_name=_("account"), null=True, blank=True,
-        on_delete=models.SET_NULL, related_name="authorships",
+        settings.AUTH_USER_MODEL,
+        verbose_name=_("account"),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="authorships",
     )
     given_name = models.CharField(_("given name"), max_length=128)
     family_name = models.CharField(_("family name"), max_length=128)
-    given_name_native = models.CharField(_("given name (native script)"), max_length=128, blank=True)
+    given_name_native = models.CharField(
+        _("given name (native script)"), max_length=128, blank=True
+    )
     family_name_native = models.CharField(
         _("family name (native script)"), max_length=128, blank=True
     )
@@ -725,8 +767,12 @@ class EditorialBoardMember(TimeStampedModel, AutoTranslitMixin):
     ]
 
     user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, verbose_name=_("account"), null=True, blank=True,
-        on_delete=models.SET_NULL, related_name="board_memberships",
+        settings.AUTH_USER_MODEL,
+        verbose_name=_("account"),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="board_memberships",
     )
     full_name = models.CharField(_("full name"), max_length=255)
     role = models.CharField(

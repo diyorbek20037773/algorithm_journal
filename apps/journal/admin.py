@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from django.contrib import admin
-from django.utils.translation import gettext_lazy as _
 from modeltranslation.admin import TabbedTranslationAdmin
 
 from apps.journal.models import (
@@ -27,7 +26,16 @@ class AuthorInline(admin.TabularInline):
 
     model = Author
     extra = 0
-    fields = ("order", "given_name", "family_name", "email", "orcid", "affiliation", "country", "is_corresponding")
+    fields = (
+        "order",
+        "given_name",
+        "family_name",
+        "email",
+        "orcid",
+        "affiliation",
+        "country",
+        "is_corresponding",
+    )
 
 
 class GalleyInline(admin.TabularInline):
@@ -125,4 +133,10 @@ class ArticleStatisticSnapshotAdmin(admin.ModelAdmin):
     """Denormalised usage snapshots."""
 
     list_display = ("article", "views_total", "downloads_total", "computed_at")
-    readonly_fields = ("article", "views_total", "downloads_total", "views_last_30d", "downloads_last_30d")
+    readonly_fields = (
+        "article",
+        "views_total",
+        "downloads_total",
+        "views_last_30d",
+        "downloads_last_30d",
+    )

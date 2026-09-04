@@ -18,9 +18,7 @@ LOCKSS_PERMISSION = (
 @require_GET
 def manifest_index(request: HttpRequest) -> HttpResponse:
     """List every volume that a preservation network may harvest."""
-    volumes = (
-        Volume.objects.filter(issues__is_published=True).distinct().order_by("-number")
-    )
+    volumes = Volume.objects.filter(issues__is_published=True).distinct().order_by("-number")
     return TemplateResponse(
         request,
         "preservation/manifest_index.html",

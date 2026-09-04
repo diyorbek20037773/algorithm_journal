@@ -1,12 +1,9 @@
 {% extends "dashboard/_base.html" %}
 {% load i18n %}
-
 {% block title %}{% translate "Issue builder" %} — {{ issue.label }}{% endblock %}
-
 {% block dashboard_content %}
   <h1 class="text-2xl mb-1">{% translate "Issue builder" %}</h1>
   <p class="muted mb-6">{{ issue.label }} — {% if issue.is_published %}{% translate "published" %}{% else %}{% translate "in preparation" %}{% endif %}</p>
-
   <div class="grid gap-8 lg:grid-cols-[1fr_280px] items-start">
     <div>
       <form method="post" action="{% url 'production:reorder_issue' issue.pk %}">
@@ -18,14 +15,26 @@
           <tbody>
             {% for article in assigned %}
               <tr>
-                <td><input class="input w-16" type="number" name="article_{{ article.pk }}_number" value="{{ article.article_number|default:forloop.counter }}"></td>
+                <td>
+                  <input class="input w-16"
+                         type="number"
+                         name="article_{{ article.pk }}_number"
+                         value="{{ article.article_number|default:forloop.counter }}">
+                </td>
                 <td>
                   <a href="{% url 'production:article' article.pk %}">{{ article.title|truncatechars:60 }}</a>
-                  <br><span class="meta">{{ article.section.name }}</span>
+                  <br>
+                  <span class="meta">{{ article.section.name }}</span>
                 </td>
                 <td class="flex gap-1">
-                  <input class="input w-20" name="article_{{ article.pk }}_pages_start" value="{{ article.pages_start }}" placeholder="{% translate 'from' %}">
-                  <input class="input w-20" name="article_{{ article.pk }}_pages_end" value="{{ article.pages_end }}" placeholder="{% translate 'to' %}">
+                  <input class="input w-20"
+                         name="article_{{ article.pk }}_pages_start"
+                         value="{{ article.pages_start }}"
+                         placeholder="{% translate 'from' %}">
+                  <input class="input w-20"
+                         name="article_{{ article.pk }}_pages_end"
+                         value="{{ article.pages_end }}"
+                         placeholder="{% translate 'to' %}">
                 </td>
                 <td>
                   {% with items=blockers|default_if_none:"" %}
@@ -34,14 +43,17 @@
                 </td>
               </tr>
             {% empty %}
-              <tr><td colspan="4"><div class="empty-state">{% translate "No articles have been scheduled into this issue." %}</div></td></tr>
+              <tr>
+                <td colspan="4">
+                  <div class="empty-state">{% translate "No articles have been scheduled into this issue." %}</div>
+                </td>
+              </tr>
             {% endfor %}
           </tbody>
         </table>
         <button type="submit" class="btn btn-secondary mt-4">{% translate "Save order and pages" %}</button>
       </form>
     </div>
-
     <aside class="space-y-4">
       <div class="card">
         <p class="footer-heading">{% translate "Publish" %}</p>
@@ -52,12 +64,11 @@
         {% endif %}
         <form method="post" action="{% url 'production:publish_issue' issue.pk %}">
           {% csrf_token %}
-          <button type="submit" class="btn btn-primary w-full" {% if not can_publish %}disabled{% endif %}>
-            {% translate "Publish the issue" %}
-          </button>
+          <button type="submit"
+                  class="btn btn-primary w-full"
+                  {% if not can_publish %}disabled{% endif %}>{% translate "Publish the issue" %}</button>
         </form>
       </div>
-
       <div class="card">
         <p class="footer-heading">{% translate "Unassigned articles" %}</p>
         <ul class="space-y-2 mt-2">

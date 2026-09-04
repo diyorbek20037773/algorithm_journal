@@ -24,13 +24,19 @@ class AccessEvent(models.Model):
         DOWNLOAD = "download", _("Download")
 
     article = models.ForeignKey(
-        "journal.Article", verbose_name=_("article"), on_delete=models.CASCADE,
+        "journal.Article",
+        verbose_name=_("article"),
+        on_delete=models.CASCADE,
         related_name="access_events",
     )
     kind = models.CharField(_("kind"), max_length=16, choices=Kind.choices, db_index=True)
     galley = models.ForeignKey(
-        "journal.Galley", verbose_name=_("galley"), null=True, blank=True,
-        on_delete=models.SET_NULL, related_name="access_events",
+        "journal.Galley",
+        verbose_name=_("galley"),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="access_events",
     )
     occurred_at = models.DateTimeField(_("occurred at"), default=timezone.now, db_index=True)
     ip_hash = models.CharField(_("IP hash"), max_length=64, db_index=True)
@@ -56,7 +62,9 @@ class DailyArticleStat(models.Model):
     """Nightly aggregate of views and downloads for one article and day."""
 
     article = models.ForeignKey(
-        "journal.Article", verbose_name=_("article"), on_delete=models.CASCADE,
+        "journal.Article",
+        verbose_name=_("article"),
+        on_delete=models.CASCADE,
         related_name="daily_stats",
     )
     date = models.DateField(_("date"), db_index=True)

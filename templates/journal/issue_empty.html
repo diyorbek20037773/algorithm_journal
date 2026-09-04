@@ -1,14 +1,13 @@
 {% extends "base.html" %}
 {% load i18n %}
-
 {% block title %}{% translate "Current issue" %} · {{ site_settings.journal_name }}{% endblock %}
-
 {% block content %}
   <div class="container-page">
     <h1 class="text-3xl mb-4">{% translate "Current issue" %}</h1>
     <div class="empty-state">
       <p>{% translate "No issue has been published yet. Articles accepted for publication appear first as Online First." %}</p>
-      <a class="btn btn-secondary mt-4" href="{% url 'journal:online_first' %}">{% translate "See Online First articles" %}</a>
+      <a class="btn btn-secondary mt-4"
+         href="{% url 'journal:online_first' %}">{% translate "See Online First articles" %}</a>
     </div>
   </div>
 {% endblock %}

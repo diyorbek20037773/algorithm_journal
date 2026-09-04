@@ -1,16 +1,22 @@
 {% extends "dashboard/_base.html" %}
 {% load i18n %}
-
 {% block title %}{% translate "Production" %} — {{ submission.reference }}{% endblock %}
-
 {% block dashboard_content %}
   <p class="meta">{{ submission.reference }}</p>
   <h1 class="text-2xl mt-1 mb-6">{{ submission.title }}</h1>
-
   <section class="mb-8">
-    <div class="section-heading"><h2>{% translate "Production checklist" %}</h2></div>
+    <div class="section-heading">
+      <h2>{% translate "Production checklist" %}</h2>
+    </div>
     <table class="table">
-      <thead><tr><th>{% translate "Stage" %}</th><th>{% translate "Status" %}</th><th>{% translate "Due" %}</th><th></th></tr></thead>
+      <thead>
+        <tr>
+          <th>{% translate "Stage" %}</th>
+          <th>{% translate "Status" %}</th>
+          <th>{% translate "Due" %}</th>
+          <th></th>
+        </tr>
+      </thead>
       <tbody>
         {% for task in tasks %}
           <tr>
@@ -20,7 +26,8 @@
             <td>
               {% if task.status != "done" %}
                 <form method="post" action="{% url 'production:complete_task' task.pk %}">
-                  {% csrf_token %}<button type="submit" class="btn btn-ghost btn-sm">{% translate "Mark done" %}</button>
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-ghost btn-sm">{% translate "Mark done" %}</button>
                 </form>
               {% endif %}
             </td>
@@ -29,9 +36,10 @@
       </tbody>
     </table>
   </section>
-
   <section class="mb-8">
-    <div class="section-heading"><h2>{% translate "Stage actions" %}</h2></div>
+    <div class="section-heading">
+      <h2>{% translate "Stage actions" %}</h2>
+    </div>
     <div class="flex flex-wrap gap-2">
       {% for transition in transitions %}
         <form method="post" action="{% url 'production:advance' submission.pk %}">
@@ -42,10 +50,13 @@
       {% endfor %}
     </div>
   </section>
-
   <section class="mb-8">
-    <div class="section-heading"><h2>{% translate "Files" %}</h2></div>
-    <form method="post" action="{% url 'production:upload_file' submission.pk %}" enctype="multipart/form-data"
+    <div class="section-heading">
+      <h2>{% translate "Files" %}</h2>
+    </div>
+    <form method="post"
+          action="{% url 'production:upload_file' submission.pk %}"
+          enctype="multipart/form-data"
           class="card grid gap-3 sm:grid-cols-[1fr_1fr_auto] items-end">
       {% csrf_token %}
       <div>
@@ -68,12 +79,14 @@
       {% endfor %}
     </ul>
   </section>
-
   {% if article %}
     <section>
-      <div class="section-heading"><h2>{% translate "Article record" %}</h2></div>
+      <div class="section-heading">
+        <h2>{% translate "Article record" %}</h2>
+      </div>
       <p class="muted mb-3">{% translate "Metadata, galleys, DOI and issue scheduling are managed on the article page." %}</p>
-      <a class="btn btn-primary" href="{% url 'production:article' article.pk %}">{% translate "Open the article record" %}</a>
+      <a class="btn btn-primary"
+         href="{% url 'production:article' article.pk %}">{% translate "Open the article record" %}</a>
     </section>
   {% endif %}
 {% endblock %}

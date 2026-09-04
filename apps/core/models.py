@@ -126,8 +126,17 @@ class SiteSettings(TimeStampedModel, AutoTranslitMixin):
         return self.journal_name
 
     def save(self, *args, **kwargs):
-        """Force the singleton primary key and clear the cached instance."""
+        """Force the singleton primary key and clear the cached instance.
+
+        Constructing a second ``SiteSettings()`` and saving it updates the one
+        row instead of raising a duplicate-key error.
+        """
         self.pk = self.SINGLETON_PK
+        existing = SiteSettings.objects.filter(pk=self.pk).values("created_at").first()
+        if self._state.adding and existing is not None:
+            self._state.adding = False
+            self.created_at = existing["created_at"]
+            kwargs.pop("force_insert", None)
         super().save(*args, **kwargs)
         from django.core.cache import cache
 
@@ -256,7 +265,10 @@ class MenuItem(TimeStampedModel):
     label = models.CharField(_("label"), max_length=128)
     url = models.CharField(_("URL"), max_length=255)
     group = models.CharField(
-        _("menu group"), max_length=16, choices=Page.MenuGroup.choices, default=Page.MenuGroup.FOOTER
+        _("menu group"),
+        max_length=16,
+        choices=Page.MenuGroup.choices,
+        default=Page.MenuGroup.FOOTER,
     )
     order = models.PositiveSmallIntegerField(_("order"), default=0)
     is_active = models.BooleanField(_("active"), default=True)

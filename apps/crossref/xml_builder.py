@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import functools
 import hashlib
 import logging
 from datetime import datetime
@@ -22,9 +23,7 @@ JATS_NS = "http://www.ncbi.nlm.nih.gov/JATS1"
 AI_NS = "http://www.crossref.org/AccessIndicators.xsd"
 FR_NS = "http://www.crossref.org/fundref.xsd"
 
-SCHEMA_LOCATION = (
-    f"{CROSSREF_NS} https://www.crossref.org/schemas/crossref5.4.0.xsd"
-)
+SCHEMA_LOCATION = f"{CROSSREF_NS} https://www.crossref.org/schemas/crossref5.4.0.xsd"
 
 NSMAP = {
     None: CROSSREF_NS,
@@ -38,13 +37,18 @@ XSD_PATH = Path(__file__).resolve().parent / "schemas" / "crossref5.4.0.xsd"
 
 
 def _el(parent, tag: str, text: str | None = None, **attrs: Any):
-    """Create a namespaced child element with optional text and attributes."""
+    """Create a namespaced child element with optional text and attributes.
+
+    Attribute names are used verbatim: Crossref spells them with underscores
+    (``media_type``, ``contributor_role``, ``item_number_type``), so no
+    hyphenation is applied.
+    """
     element = etree.SubElement(parent, f"{{{CROSSREF_NS}}}{tag}")
     if text:
         element.text = str(text)
     for key, value in attrs.items():
         if value not in (None, ""):
-            element.set(key.replace("__", ":").replace("_", "-"), str(value))
+            element.set(key, str(value))
     return element
 
 
@@ -147,7 +151,7 @@ def _journal_article(journal, article: Article, site) -> None:
                 _el(
                     institution,
                     "institution_id",
-                    f"https://ror.org/{author.affiliation_ror.lstrip('https://ror.org/')}",
+                    f"https://ror.org/{author.affiliation_ror.removeprefix('https://ror.org/')}",
                     type="ror",
                 )
         if author.orcid:
@@ -156,7 +160,7 @@ def _journal_article(journal, article: Article, site) -> None:
 
     for language, text in _abstracts(article):
         abstract = etree.SubElement(element, f"{{{JATS_NS}}}abstract")
-        abstract.set(f"{{http://www.w3.org/XML/1998/namespace}}lang", language)
+        abstract.set("{http://www.w3.org/XML/1998/namespace}lang", language)
         paragraph = etree.SubElement(abstract, f"{{{JATS_NS}}}p")
         paragraph.text = text
 
@@ -221,26 +225,40 @@ def _abstracts(article: Article) -> list[tuple[str, str]]:
     return out
 
 
+@functools.lru_cache(maxsize=1)
+def _schema() -> Any:
+    """Compile the bundled Crossref XSD once per process.
+
+    The schema tree is large (about 1.4 MB across 19 files), so compiling it
+    for every article would dominate the runtime of a bulk validation.
+    Returns ``None`` when the bundle is missing or cannot be compiled.
+    """
+    if not XSD_PATH.exists():
+        return None
+    try:
+        return etree.XMLSchema(etree.parse(str(XSD_PATH)))
+    except etree.XMLSchemaParseError as exc:  # pragma: no cover - broken bundle
+        logger.warning("Could not load the Crossref XSD: %s", exc)
+        return None
+
+
 def validate(xml_bytes: bytes) -> list[str]:
     """Validate deposit XML against the bundled XSD.
 
     Returns a list of error strings (empty when valid).  When the schema
     bundle is unavailable the function performs well-formedness checking and
-    structural assertions instead, and says so in the returned messages.
+    structural assertions instead.
     """
     try:
         document = etree.fromstring(xml_bytes)
     except etree.XMLSyntaxError as exc:
         return [f"XML is not well formed: {exc}"]
 
-    if XSD_PATH.exists():
-        try:
-            schema = etree.XMLSchema(etree.parse(str(XSD_PATH)))
-            if schema.validate(document):
-                return []
-            return [str(error) for error in schema.error_log]
-        except etree.XMLSchemaParseError as exc:  # pragma: no cover - broken bundle
-            logger.warning("Could not load the Crossref XSD: %s", exc)
+    schema = _schema()
+    if schema is not None:
+        if schema.validate(document):
+            return []
+        return [str(error) for error in schema.error_log]
 
     return _structural_check(document)
 
@@ -253,7 +271,12 @@ def _structural_check(document) -> list[str]:
         errors.append("Root element must be doi_batch")
     if document.get("version") != "5.4.0":
         errors.append("doi_batch/@version must be 5.4.0")
-    for path in ("cr:head/cr:doi_batch_id", "cr:head/cr:timestamp", "cr:head/cr:depositor", "cr:body"):
+    for path in (
+        "cr:head/cr:doi_batch_id",
+        "cr:head/cr:timestamp",
+        "cr:head/cr:depositor",
+        "cr:body",
+    ):
         if document.find(path, ns) is None:
             errors.append(f"Missing required element: {path}")
     for article in document.findall(".//cr:journal_article", ns):

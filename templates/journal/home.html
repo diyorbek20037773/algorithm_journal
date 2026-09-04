@@ -1,16 +1,11 @@
 {% extends "base.html" %}
 {% load i18n %}
-
 {% block title %}{{ site_settings.journal_name }}{% if site_settings.journal_subtitle %} — {{ site_settings.journal_subtitle }}{% endif %}{% endblock %}
-
 {% block main_class %}py-0{% endblock %}
-
 {% block structured_data %}
   <script type="application/ld+json">{{ periodical_json_ld|safe }}</script>
 {% endblock %}
-
 {% block content %}
-
   {# --- Masthead ------------------------------------------------------ #}
   <section class="border-b border-[--color-line]">
     <div class="container-page py-14 md:py-20">
@@ -19,7 +14,6 @@
         {% if site_settings.journal_subtitle %}
           <p class="mt-3 text-lg muted">{{ site_settings.journal_subtitle }}</p>
         {% endif %}
-
         <ul class="credibility mt-6">
           <li><span class="subtle">e-ISSN</span> <strong>{{ site_settings.eissn|default:_("pending") }}</strong></li>
           <li><span class="subtle">DOI</span> <strong>{{ site_settings.doi_prefix_display }}</strong></li>
@@ -34,7 +28,6 @@
             <li>{% blocktranslate with rate=kpis.acceptance_rate %}{{ rate }}% acceptance rate{% endblocktranslate %}</li>
           {% endif %}
         </ul>
-
         <div class="flex flex-wrap gap-3 mt-8">
           <a class="btn btn-primary" href="{% url 'submissions:wizard_start' %}">{% translate "Submit your manuscript" %}</a>
           <a class="btn btn-secondary" href="{% url 'core:author_guidelines' %}">{% translate "Author guidelines" %}</a>
@@ -42,18 +35,16 @@
       </div>
     </div>
   </section>
-
   <div class="container-page py-12 grid gap-12 lg:grid-cols-3">
-
     {# --- Current issue ---------------------------------------------- #}
     <div class="lg:col-span-2">
       <div class="section-heading">
         <h2>{% translate "Current issue" %}</h2>
         {% if current_issue %}
-          <a class="btn btn-ghost btn-sm" href="{{ current_issue.get_absolute_url }}">{% translate "View full issue" %} &rarr;</a>
+          <a class="btn btn-ghost btn-sm"
+             href="{{ current_issue.get_absolute_url }}">{% translate "View full issue" %} →</a>
         {% endif %}
       </div>
-
       {% if current_issue %}
         <div class="grid gap-6 sm:grid-cols-[160px_1fr] items-start">
           <div class="issue-cover w-40">
@@ -82,7 +73,6 @@
         </div>
       {% endif %}
     </div>
-
     {# --- Right rail --------------------------------------------------- #}
     <div class="space-y-10">
       {% if online_first %}
@@ -102,22 +92,22 @@
           </ul>
         </section>
       {% endif %}
-
       <section>
         <div class="section-heading">
           <h2>{% translate "Announcements" %}</h2>
-          <a class="btn btn-ghost btn-sm" href="{% url 'core:announcement_list' %}">{% translate "All" %}</a>
+          <a class="btn btn-ghost btn-sm"
+             href="{% url 'core:announcement_list' %}">{% translate "All" %}</a>
         </div>
         {% for announcement in announcements %}
           <article class="mb-4">
-            <a class="article-title text-base" href="{{ announcement.get_absolute_url }}">{{ announcement.title }}</a>
+            <a class="article-title text-base"
+               href="{{ announcement.get_absolute_url }}">{{ announcement.title }}</a>
             <p class="meta">{{ announcement.published_at|date:"j F Y" }}</p>
           </article>
         {% empty %}
           <p class="muted text-sm">{% translate "There are no announcements at the moment." %}</p>
         {% endfor %}
       </section>
-
       <section>
         <div class="section-heading">
           <h2>{% translate "Most read" %}</h2>
@@ -136,7 +126,6 @@
       </section>
     </div>
   </div>
-
   {# --- Browse by section -------------------------------------------- #}
   <section class="surface-2 border-y border-[--color-line]">
     <div class="container-page py-12">
@@ -145,14 +134,14 @@
       </div>
       <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {% for section in sections %}
-          <a class="card hover:border-[--color-accent] transition-colors" href="{{ section.get_absolute_url }}">
+          <a class="card hover:border-[--color-accent] transition-colors"
+             href="{{ section.get_absolute_url }}">
             <p class="eyebrow">{{ forloop.counter }}</p>
             <p class="font-medium mt-1 leading-snug">{{ section.name }}</p>
             <p class="meta mt-2">{% blocktranslate count counter=section.published_count %}{{ counter }} article{% plural %}{{ counter }} articles{% endblocktranslate %}</p>
           </a>
         {% endfor %}
       </div>
-
       <div class="section-heading mt-12">
         <h2>{% translate "Browse by JEL classification" %}</h2>
         <a class="btn btn-ghost btn-sm" href="{% url 'journal:jel_index' %}">{% translate "Full tree" %}</a>
@@ -164,7 +153,6 @@
       </div>
     </div>
   </section>
-
   {# --- Author journey ------------------------------------------------ #}
   <section class="container-page py-12">
     <div class="section-heading">
@@ -175,29 +163,32 @@
         <p class="eyebrow">{% translate "Step 1" %}</p>
         <p class="font-medium mt-1">{% translate "Read the scope" %}</p>
         <p class="muted text-sm mt-2">{% translate "Check that your research fits one of our eight sections." %}</p>
-        <a class="btn btn-ghost btn-sm mt-3 px-0" href="{% url 'core:aims_and_scope' %}">{% translate "Aims & scope" %} &rarr;</a>
+        <a class="btn btn-ghost btn-sm mt-3 px-0"
+           href="{% url 'core:aims_and_scope' %}">{% translate "Aims & scope" %} →</a>
       </li>
       <li class="card">
         <p class="eyebrow">{% translate "Step 2" %}</p>
         <p class="font-medium mt-1">{% translate "Prepare the manuscript" %}</p>
         <p class="muted text-sm mt-2">{% translate "Use our template and APA 7 references; anonymise the file." %}</p>
-        <a class="btn btn-ghost btn-sm mt-3 px-0" href="{% url 'core:templates' %}">{% translate "Templates" %} &rarr;</a>
+        <a class="btn btn-ghost btn-sm mt-3 px-0"
+           href="{% url 'core:templates' %}">{% translate "Templates" %} →</a>
       </li>
       <li class="card">
         <p class="eyebrow">{% translate "Step 3" %}</p>
         <p class="font-medium mt-1">{% translate "Submit online" %}</p>
         <p class="muted text-sm mt-2">{% translate "Five short steps; you can save and return at any time." %}</p>
-        <a class="btn btn-ghost btn-sm mt-3 px-0" href="{% url 'submissions:wizard_start' %}">{% translate "Submit" %} &rarr;</a>
+        <a class="btn btn-ghost btn-sm mt-3 px-0"
+           href="{% url 'submissions:wizard_start' %}">{% translate "Submit" %} →</a>
       </li>
       <li class="card">
         <p class="eyebrow">{% translate "Step 4" %}</p>
         <p class="font-medium mt-1">{% translate "Double-blind review" %}</p>
         <p class="muted text-sm mt-2">{% translate "Two independent reviewers; first decision within about eight weeks." %}</p>
-        <a class="btn btn-ghost btn-sm mt-3 px-0" href="{% url 'core:peer_review' %}">{% translate "Peer review" %} &rarr;</a>
+        <a class="btn btn-ghost btn-sm mt-3 px-0"
+           href="{% url 'core:peer_review' %}">{% translate "Peer review" %} →</a>
       </li>
     </ol>
   </section>
-
   {# --- Indexing ------------------------------------------------------ #}
   {% if indexing_services %}
     <section class="border-t border-[--color-line]">
@@ -206,7 +197,9 @@
         <ul class="flex flex-wrap items-center gap-6">
           {% for service in indexing_services %}
             <li>
-              <a class="muted text-sm hover:text-[--color-accent]" href="{{ service.url }}" rel="noopener">{{ service.name }}</a>
+              <a class="muted text-sm hover:text-[--color-accent]"
+                 href="{{ service.url }}"
+                 rel="noopener">{{ service.name }}</a>
             </li>
           {% endfor %}
         </ul>

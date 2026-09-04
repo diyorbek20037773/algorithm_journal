@@ -1,53 +1,57 @@
 {% extends "base.html" %}
 {% load i18n %}
-
 {% block title %}{% translate "Search" %} · {{ site_settings.journal_name }}{% endblock %}
-
 {% block content %}
   <div class="container-page">
     <h1 class="text-3xl mb-6">{% translate "Search" %}</h1>
-
-    <form method="get" action="{% url 'search:search' %}" class="grid gap-6 lg:grid-cols-[260px_1fr] items-start"
-          hx-get="{% url 'search:search' %}" hx-target="#search-results" hx-push-url="true"
+    <form method="get"
+          action="{% url 'search:search' %}"
+          class="grid gap-6 lg:grid-cols-[260px_1fr] items-start"
+          hx-get="{% url 'search:search' %}"
+          hx-target="#search-results"
+          hx-push-url="true"
           hx-trigger="submit, change from:select, change from:input[type=checkbox]">
-
       <aside class="card" x-data="{ open: true }">
         <div class="flex items-center justify-between lg:block">
           <p class="footer-heading">{% translate "Filters" %}</p>
-          <button type="button" class="btn btn-ghost btn-sm lg:hidden" @click="open = !open">
+          <button type="button"
+                  class="btn btn-ghost btn-sm lg:hidden"
+                  @click="open = !open">
             <span x-show="open">{% translate "Hide" %}</span><span x-show="!open" x-cloak>{% translate "Show" %}</span>
           </button>
         </div>
-
         <div x-show="open">
           <label class="field-label mt-3" for="filter-section">{% translate "Section" %}</label>
           <select class="select" id="filter-section" name="section">
             <option value="">{% translate "All sections" %}</option>
             {% for section in sections %}
-              <option value="{{ section.slug }}" {% if filters.section == section.slug %}selected{% endif %}>{{ section.name }}</option>
+              <option value="{{ section.slug }}"
+                      {% if filters.section == section.slug %}selected{% endif %}>{{ section.name }}</option>
             {% endfor %}
           </select>
-
           <label class="field-label mt-4" for="filter-year">{% translate "Year" %}</label>
           <select class="select" id="filter-year" name="year">
             <option value="">{% translate "All years" %}</option>
             {% for year in years %}
-              <option value="{{ year }}" {% if filters.year == year|stringformat:"s" %}selected{% endif %}>{{ year }}</option>
+              <option value="{{ year }}"
+                      {% if filters.year == year|stringformat:"s" %}selected{% endif %}>{{ year }}</option>
             {% endfor %}
           </select>
-
           <label class="field-label mt-4" for="filter-jel">{% translate "JEL code" %}</label>
           <select class="select" id="filter-jel" name="jel">
             <option value="">{% translate "All JEL codes" %}</option>
             {% for jel in jel_top_level %}
-              <option value="{{ jel.code }}" {% if filters.jel == jel.code %}selected{% endif %}>{{ jel.code }} — {{ jel.label }}</option>
+              <option value="{{ jel.code }}"
+                      {% if filters.jel == jel.code %}selected{% endif %}>{{ jel.code }} — {{ jel.label }}</option>
             {% endfor %}
           </select>
-
           <label class="field-label mt-4" for="filter-author">{% translate "Author" %}</label>
-          <input class="input" id="filter-author" type="search" name="author" value="{{ filters.author }}"
+          <input class="input"
+                 id="filter-author"
+                 type="search"
+                 name="author"
+                 value="{{ filters.author }}"
                  placeholder="{% translate 'Family name' %}">
-
           <label class="field-label mt-4" for="filter-sort">{% translate "Sort by" %}</label>
           <select class="select" id="filter-sort" name="sort">
             <option value="relevance" {% if sort == "relevance" %}selected{% endif %}>{% translate "Relevance" %}</option>
@@ -55,23 +59,23 @@
             <option value="oldest" {% if sort == "oldest" %}selected{% endif %}>{% translate "Oldest first" %}</option>
             <option value="most_viewed" {% if sort == "most_viewed" %}selected{% endif %}>{% translate "Most viewed" %}</option>
           </select>
-
           <button type="submit" class="btn btn-secondary w-full mt-6">{% translate "Apply filters" %}</button>
           <a class="btn btn-ghost w-full mt-2" href="{% url 'search:search' %}">{% translate "Reset" %}</a>
         </div>
       </aside>
-
       <div class="min-w-0">
         <div class="flex gap-2 mb-6">
           <label class="visually-hidden" for="search-q">{% translate "Search query" %}</label>
-          <input class="input" id="search-q" type="search" name="q" value="{{ query }}"
-                 placeholder="{% translate 'Title, abstract, keywords, authors, references' %}" autofocus>
+          <input class="input"
+                 id="search-q"
+                 type="search"
+                 name="q"
+                 value="{{ query }}"
+                 placeholder="{% translate 'Title, abstract, keywords, authors, references' %}"
+                 autofocus>
           <button type="submit" class="btn btn-primary">{% translate "Search" %}</button>
         </div>
-
-        <div id="search-results">
-          {% include "search/partials/results.html" %}
-        </div>
+        <div id="search-results">{% include "search/partials/results.html" %}</div>
       </div>
     </form>
   </div>

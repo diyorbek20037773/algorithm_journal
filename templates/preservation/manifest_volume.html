@@ -1,4 +1,5 @@
-{% load i18n %}<!DOCTYPE html>
+{% load i18n %}
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -11,8 +12,8 @@
       {% for article in articles %}
         <li>
           <a href="{{ site_url }}{{ article.get_absolute_url }}">{{ article.title }}</a>
-          {% if article.primary_galley %} — <a href="{{ site_url }}{{ article.pdf_url }}">PDF</a>{% endif %}
-          {% if article.doi %} — {{ article.doi }}{% endif %}
+          {% if article.primary_galley %}— <a href="{{ site_url }}{{ article.pdf_url }}">PDF</a>{% endif %}
+          {% if article.doi %}— {{ article.doi }}{% endif %}
         </li>
       {% endfor %}
     </ul>

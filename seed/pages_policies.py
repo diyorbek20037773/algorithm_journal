@@ -340,7 +340,11 @@ beramiz.""",
         "slug": "peer-review",
         "menu_group": "about",
         "order": 3,
-        "title": {"en": "Peer Review Process", "uz": "Taqriz jarayoni", "ru": "Процесс рецензирования"},
+        "title": {
+            "en": "Peer Review Process",
+            "uz": "Taqriz jarayoni",
+            "ru": "Процесс рецензирования",
+        },
         "seo": {
             "en": "Double-blind peer review with at least two reviewers, screening within 7 days and a first decision within 8 weeks.",
             "uz": "Kamida ikki taqrizchi ishtirokidagi ikki tomonlama yashirin taqriz; dastlabki koʻrik 7 kun, birinchi qaror 8 hafta ichida.",

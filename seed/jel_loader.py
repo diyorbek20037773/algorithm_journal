@@ -19,7 +19,7 @@ def load_jel(path: Path | None = None) -> int:
 
     # First pass: create every node without parents so links always resolve.
     for row in payload:
-        code, created = JELCode.objects.get_or_create(code=row["code"])
+        code, _created = JELCode.objects.get_or_create(code=row["code"])
         code.level = row["level"]
         code.label_en = row["en"]
         code.label_uz = row["uz"]

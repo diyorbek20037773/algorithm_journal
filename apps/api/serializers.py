@@ -158,9 +158,7 @@ class ArticleDetailSerializer(ArticleListSerializer):
 
     def get_references(self, obj: Article) -> list[dict[str, Any]]:
         """Ordered reference list with detected DOIs."""
-        return [
-            {"order": r.order, "text": r.raw_text, "doi": r.doi} for r in obj.references.all()
-        ]
+        return [{"order": r.order, "text": r.raw_text, "doi": r.doi} for r in obj.references.all()]
 
     def get_license(self, obj: Article) -> dict[str, str]:
         """Licence code, name and URL."""

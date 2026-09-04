@@ -1,11 +1,10 @@
 {% extends "base.html" %}
 {% load i18n %}
-
 {% block main_class %}py-8{% endblock %}
-
 {% block content %}
   <div class="container-page grid gap-8 lg:grid-cols-[220px_1fr] items-start">
-    <nav class="lg:sticky lg:top-20" aria-label="{% translate 'Dashboard navigation' %}">
+    <nav class="lg:sticky lg:top-20"
+         aria-label="{% translate 'Dashboard navigation' %}">
       <p class="footer-heading">{% translate "Dashboard" %}</p>
       <a class="footer-link" href="{% url 'dashboard:home' %}">{% translate "Overview" %}</a>
       <a class="footer-link" href="{% url 'submissions:wizard_start' %}">{% translate "New submission" %}</a>
@@ -30,7 +29,6 @@
         <a class="footer-link" href="/admin/">{% translate "Django admin" %}</a>
       {% endif %}
     </nav>
-
     <div class="min-w-0">
       {% block dashboard_content %}{% endblock %}
     </div>

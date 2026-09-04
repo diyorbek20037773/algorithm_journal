@@ -30,7 +30,11 @@ class EditorialKPIAdmin(admin.ModelAdmin):
     """Monthly editorial indicators."""
 
     list_display = (
-        "month", "submissions_received", "accepted", "rejected",
-        "acceptance_rate", "median_days_to_first_decision",
+        "month",
+        "submissions_received",
+        "accepted",
+        "rejected",
+        "acceptance_rate",
+        "median_days_to_first_decision",
     )
     date_hierarchy = "month"

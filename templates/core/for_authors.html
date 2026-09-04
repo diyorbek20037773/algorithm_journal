@@ -1,44 +1,42 @@
 {% extends "base.html" %}
 {% load i18n %}
-
 {% block title %}{% translate "For Authors" %} · {{ site_settings.journal_name }}{% endblock %}
-
 {% block content %}
   <div class="container-page">
     <h1 class="text-3xl mb-2">{{ page.title }}</h1>
     <p class="muted max-w-[70ch] mb-8">{{ page.seo_description }}</p>
-
     <div class="card-muted mb-10">
       <p class="eyebrow">{% translate "No fees" %}</p>
-      <p class="mt-1">
-        {% translate "This journal charges no article processing charges, no submission fees and no page charges. Publication is free for authors and free for readers." %}
-      </p>
-      <a class="btn btn-ghost btn-sm px-0 mt-2" href="{% url 'core:fees' %}">{% translate "Read the fee policy" %} &rarr;</a>
+      <p class="mt-1">{% translate "This journal charges no article processing charges, no submission fees and no page charges. Publication is free for authors and free for readers." %}</p>
+      <a class="btn btn-ghost btn-sm px-0 mt-2" href="{% url 'core:fees' %}">{% translate "Read the fee policy" %} →</a>
     </div>
-
     <ol class="grid gap-4 md:grid-cols-5 mb-12">
       <li class="card">
         <p class="eyebrow">1</p><p class="font-medium mt-1">{% translate "Check the scope" %}</p>
-        <a class="btn btn-ghost btn-sm px-0 mt-2" href="{% url 'core:aims_and_scope' %}">{% translate "Aims & scope" %}</a>
+        <a class="btn btn-ghost btn-sm px-0 mt-2"
+           href="{% url 'core:aims_and_scope' %}">{% translate "Aims & scope" %}</a>
       </li>
       <li class="card">
         <p class="eyebrow">2</p><p class="font-medium mt-1">{% translate "Prepare" %}</p>
-        <a class="btn btn-ghost btn-sm px-0 mt-2" href="{% url 'core:author_guidelines' %}">{% translate "Guidelines" %}</a>
+        <a class="btn btn-ghost btn-sm px-0 mt-2"
+           href="{% url 'core:author_guidelines' %}">{% translate "Guidelines" %}</a>
       </li>
       <li class="card">
         <p class="eyebrow">3</p><p class="font-medium mt-1">{% translate "Check the list" %}</p>
-        <a class="btn btn-ghost btn-sm px-0 mt-2" href="{% url 'core:checklist' %}">{% translate "Checklist" %}</a>
+        <a class="btn btn-ghost btn-sm px-0 mt-2"
+           href="{% url 'core:checklist' %}">{% translate "Checklist" %}</a>
       </li>
       <li class="card">
         <p class="eyebrow">4</p><p class="font-medium mt-1">{% translate "Submit" %}</p>
-        <a class="btn btn-ghost btn-sm px-0 mt-2" href="{% url 'submissions:wizard_start' %}">{% translate "Submission wizard" %}</a>
+        <a class="btn btn-ghost btn-sm px-0 mt-2"
+           href="{% url 'submissions:wizard_start' %}">{% translate "Submission wizard" %}</a>
       </li>
       <li class="card">
         <p class="eyebrow">5</p><p class="font-medium mt-1">{% translate "After submission" %}</p>
-        <a class="btn btn-ghost btn-sm px-0 mt-2" href="{% url 'core:peer_review' %}">{% translate "Peer review" %}</a>
+        <a class="btn btn-ghost btn-sm px-0 mt-2"
+           href="{% url 'core:peer_review' %}">{% translate "Peer review" %}</a>
       </li>
     </ol>
-
     <div class="grid gap-10 lg:grid-cols-[1fr_280px] items-start">
       <div class="prose-journal">{{ page.body_html|safe }}</div>
       <aside class="card">
@@ -46,7 +44,8 @@
         {% for item in author_pages %}
           <a class="footer-link" href="{{ item.get_absolute_url }}">{{ item.title }}</a>
         {% endfor %}
-        <a class="btn btn-primary w-full mt-4" href="{% url 'submissions:wizard_start' %}">{% translate "Start a submission" %}</a>
+        <a class="btn btn-primary w-full mt-4"
+           href="{% url 'submissions:wizard_start' %}">{% translate "Start a submission" %}</a>
       </aside>
     </div>
   </div>

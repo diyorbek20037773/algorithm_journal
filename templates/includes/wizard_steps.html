@@ -1,5 +1,6 @@
 {% load i18n %}
-<ol class="flex flex-wrap gap-2 mb-8" aria-label="{% translate 'Submission steps' %}">
+<ol class="flex flex-wrap gap-2 mb-8"
+    aria-label="{% translate 'Submission steps' %}">
   {% for number, label in steps %}
     <li class="flex items-center gap-2">
       <span class="chip {% if number == current_step %}chip-jel{% elif number < current_step %}chip{% endif %}"

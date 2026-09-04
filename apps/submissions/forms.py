@@ -48,7 +48,11 @@ class WizardStartForm(forms.ModelForm):
         self.fields["article_type"].widget.attrs.update(SELECT)
         self.fields["language"].widget.attrs.update(SELECT)
         self.fields["ai_use_statement"].widget.attrs.update(
-            {**TEXTAREA, "rows": 4, "placeholder": _("Describe any use of generative AI, or write 'None'.")}
+            {
+                **TEXTAREA,
+                "rows": 4,
+                "placeholder": _("Describe any use of generative AI, or write 'None'."),
+            }
         )
         existing = (self.instance.author_declarations or {}) if self.instance.pk else {}
         for key, label in DECLARATIONS:
@@ -70,7 +74,9 @@ class WizardStartForm(forms.ModelForm):
         """Require an explicit statement, even if it is 'None'."""
         value = (self.cleaned_data.get("ai_use_statement") or "").strip()
         if not value:
-            raise forms.ValidationError(_("Please state your use of generative AI, or write 'None'."))
+            raise forms.ValidationError(
+                _("Please state your use of generative AI, or write 'None'.")
+            )
         return value
 
     def save(self, commit: bool = True) -> Submission:
@@ -197,14 +203,16 @@ class MetadataForm(forms.Form):
     def clean(self) -> dict[str, Any]:
         """Check abstract length and keyword count in every language."""
         cleaned = super().clean()
-        for code, label in self.LANGUAGES:
+        for code, _label in self.LANGUAGES:
             abstract = cleaned.get(f"abstract_{code}")
             if abstract:
                 words = len(strip_markdown(abstract).split())
                 if not (settings.ABSTRACT_MIN_WORDS <= words <= settings.ABSTRACT_MAX_WORDS):
                     self.add_error(
                         f"abstract_{code}",
-                        _("The abstract has %(count)s words; it must have between %(min)s and %(max)s.")
+                        _(
+                            "The abstract has %(count)s words; it must have between %(min)s and %(max)s."
+                        )
                         % {
                             "count": words,
                             "min": settings.ABSTRACT_MIN_WORDS,
@@ -265,7 +273,12 @@ class SubmissionAuthorForm(forms.ModelForm):
 
 
 AuthorFormSet = forms.modelformset_factory(
-    SubmissionAuthor, form=SubmissionAuthorForm, extra=1, can_delete=True, min_num=1, validate_min=True
+    SubmissionAuthor,
+    form=SubmissionAuthorForm,
+    extra=1,
+    can_delete=True,
+    min_num=1,
+    validate_min=True,
 )
 
 
@@ -355,8 +368,10 @@ class SimilarityForm(forms.ModelForm):
         cleaned = super().clean()
         percent = cleaned.get("similarity_percent")
         threshold = get_site_settings().similarity_threshold
-        if percent is not None and percent > threshold and not cleaned.get(
-            "similarity_override_reason"
+        if (
+            percent is not None
+            and percent > threshold
+            and not cleaned.get("similarity_override_reason")
         ):
             self.add_error(
                 "similarity_override_reason",
@@ -435,9 +450,15 @@ class InviteReviewerForm(forms.Form):
     """Invite an existing user or a new person by e-mail."""
 
     reviewer_id = forms.IntegerField(required=False, widget=forms.HiddenInput)
-    email = forms.EmailField(required=False, label=_("E-mail"), widget=forms.EmailInput(attrs=TEXT_INPUT))
-    first_name = forms.CharField(required=False, label=_("Given name"), widget=forms.TextInput(attrs=TEXT_INPUT))
-    last_name = forms.CharField(required=False, label=_("Family name"), widget=forms.TextInput(attrs=TEXT_INPUT))
+    email = forms.EmailField(
+        required=False, label=_("E-mail"), widget=forms.EmailInput(attrs=TEXT_INPUT)
+    )
+    first_name = forms.CharField(
+        required=False, label=_("Given name"), widget=forms.TextInput(attrs=TEXT_INPUT)
+    )
+    last_name = forms.CharField(
+        required=False, label=_("Family name"), widget=forms.TextInput(attrs=TEXT_INPUT)
+    )
     due_days = forms.IntegerField(
         required=False,
         initial=settings.REVIEW_DUE_DAYS,
@@ -465,9 +486,7 @@ class WithdrawForm(forms.Form):
 class DiscussionMessageForm(forms.Form):
     """Post a message into a submission discussion."""
 
-    body = forms.CharField(
-        label=_("Message"), widget=forms.Textarea(attrs={**TEXTAREA, "rows": 4})
-    )
+    body = forms.CharField(label=_("Message"), widget=forms.Textarea(attrs={**TEXTAREA, "rows": 4}))
 
 
 #: Exposed so templates can render the allowed extensions per slot.

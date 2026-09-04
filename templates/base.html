@@ -5,28 +5,33 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{{ site_settings.journal_name }}{% endblock %}</title>
-    <meta name="description" content="{% block meta_description %}{{ meta_description|default:site_settings.journal_subtitle }}{% endblock %}">
-    <link rel="canonical" href="{% block canonical %}{{ site_url }}{{ request.path }}{% endblock %}">
-
+    <meta name="description"
+          content="{% block meta_description %}{{ meta_description|default:site_settings.journal_subtitle }}{% endblock %}">
+    <link rel="canonical"
+          href="{% block canonical %}{{ site_url }}{{ request.path }}{% endblock %}">
     {% block hreflang %}
       {% for link in language_links %}
-        <link rel="alternate" hreflang="{{ link.code }}" href="{{ link.absolute_url }}">
+        <link rel="alternate"
+              hreflang="{{ link.code }}"
+              href="{{ link.absolute_url }}">
       {% endfor %}
-      <link rel="alternate" hreflang="x-default" href="{{ site_url }}{% url 'journal:home' %}">
+      <link rel="alternate"
+            hreflang="x-default"
+            href="{{ site_url }}{% url 'journal:home' %}">
     {% endblock %}
-
     {# --- Open Graph / Twitter --- #}
     <meta property="og:site_name" content="{{ site_settings.journal_name }}">
     <meta property="og:type" content="{% block og_type %}website{% endblock %}">
-    <meta property="og:title" content="{% block og_title %}{{ site_settings.journal_name }}{% endblock %}">
-    <meta property="og:description" content="{% block og_description %}{{ meta_description|default:site_settings.journal_subtitle }}{% endblock %}">
+    <meta property="og:title"
+          content="{% block og_title %}{{ site_settings.journal_name }}{% endblock %}">
+    <meta property="og:description"
+          content="{% block og_description %}{{ meta_description|default:site_settings.journal_subtitle }}{% endblock %}">
     <meta property="og:url" content="{{ site_url }}{{ request.path }}">
     <meta property="og:locale" content="{{ LANGUAGE_CODE }}">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="{% block twitter_title %}{{ site_settings.journal_name }}{% endblock %}">
-
+    <meta name="twitter:title"
+          content="{% block twitter_title %}{{ site_settings.journal_name }}{% endblock %}">
     {% block extra_meta %}{% endblock %}
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet"
@@ -37,25 +42,27 @@
     {% else %}
       <link rel="icon" href="{% static 'img/favicon.svg' %}" type="image/svg+xml">
     {% endif %}
-
-    <link rel="alternate" type="application/rss+xml" title="{{ site_settings.short_code }} — {% translate 'Latest articles' %}" href="{{ site_url }}/feed/rss/">
-    <link rel="alternate" type="application/atom+xml" title="{{ site_settings.short_code }} — {% translate 'Latest articles' %}" href="{{ site_url }}/feed/atom/">
-
+    <link rel="alternate"
+          type="application/rss+xml"
+          title="{{ site_settings.short_code }} — {% translate 'Latest articles' %}"
+          href="{{ site_url }}/feed/rss/">
+    <link rel="alternate"
+          type="application/atom+xml"
+          title="{{ site_settings.short_code }} — {% translate 'Latest articles' %}"
+          href="{{ site_url }}/feed/atom/">
     <script src="{% static 'js/htmx.min.js' %}" defer></script>
     <script src="{% static 'js/alpine.min.js' %}" defer></script>
-
     {% block structured_data %}{% endblock %}
     {% block extra_head %}{% endblock %}
-
-    {% if matomo_url and matomo_site_id %}{% include "includes/matomo.html" %}{% endif %}
+    {% if matomo_url and matomo_site_id %}
+      {% include "includes/matomo.html" %}
+    {% endif %}
   </head>
-
-  <body class="min-h-full flex flex-col" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+  <body class="min-h-full flex flex-col"
+        hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
     <a class="skip-link" href="#main">{% translate "Skip to main content" %}</a>
-
     {% include "includes/announcement_bar.html" %}
     {% include "includes/header.html" %}
-
     {% if messages %}
       <div class="container-page mt-4" role="status" aria-live="polite">
         {% for message in messages %}
@@ -63,16 +70,12 @@
         {% endfor %}
       </div>
     {% endif %}
-
     <main id="main" class="flex-1 {% block main_class %}py-10{% endblock %}">
       {% block content %}{% endblock %}
     </main>
-
     {% include "includes/footer.html" %}
-
     <div id="toast-stack" class="toast-stack" aria-live="polite"></div>
     <div id="modal-root"></div>
-
     {% block extra_js %}{% endblock %}
   </body>
 </html>

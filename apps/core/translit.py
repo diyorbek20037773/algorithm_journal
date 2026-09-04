@@ -21,7 +21,7 @@ from __future__ import annotations
 
 import re
 
-__all__ = ["to_cyrillic", "to_latin", "APOSTROPHES", "EXCEPTIONS_LAT_CYR"]
+__all__ = ["APOSTROPHES", "EXCEPTIONS_LAT_CYR", "to_cyrillic", "to_latin"]
 
 #: Every character that may be used as the Uzbek modifier apostrophe.
 APOSTROPHES = "ʻʼ'`‘’´"
@@ -178,6 +178,15 @@ def _convert_latin_word(word: str) -> str:
         if i == 0 and lowered[0] == "e":
             out.append("э")
             i += 1
+            continue
+        # "yoʻ" is y + oʻ (йў), not the digraph "yo" followed by an apostrophe.
+        if lowered.startswith("yoʻ", i):
+            out.append("йў")
+            i += 3
+            continue
+        if lowered.startswith("ygʻ", i):
+            out.append("йғ")
+            i += 3
             continue
         if lowered[i] == "ʻ":
             # A standalone apostrophe is the tutuq belgisi.

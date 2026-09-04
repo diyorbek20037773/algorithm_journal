@@ -28,8 +28,8 @@ from apps.submissions.forms import (
 from apps.submissions.models import (
     Discussion,
     DiscussionMessage,
-    EditorNote,
     EditorialDecision,
+    EditorNote,
     Review,
     ReviewAssignment,
     Submission,
@@ -51,7 +51,11 @@ EDITOR_QUEUES: list[tuple[str, Any, list[str]]] = [
     ("screening", _("Screening"), [SubmissionStatus.SCREENING]),
     ("in_review", _("In review"), [SubmissionStatus.UNDER_REVIEW]),
     ("decision", _("Awaiting decision"), [SubmissionStatus.AWAITING_DECISION]),
-    ("revisions", _("Revisions"), [SubmissionStatus.REVISION_REQUESTED, SubmissionStatus.RESUBMITTED]),
+    (
+        "revisions",
+        _("Revisions"),
+        [SubmissionStatus.REVISION_REQUESTED, SubmissionStatus.RESUBMITTED],
+    ),
     (
         "production",
         _("Accepted / in production"),
@@ -80,7 +84,9 @@ def home(request: HttpRequest) -> HttpResponse:
         status__in=[SubmissionStatus.REVISION_REQUESTED, SubmissionStatus.AUTHOR_PROOF],
     )
     context["published_articles"] = [
-        s.article for s in Submission.objects.filter(submitter=user).select_related("article") if s.article
+        s.article
+        for s in Submission.objects.filter(submitter=user).select_related("article")
+        if s.article
     ]
 
     if user.is_reviewer or user.has_role(Role.REVIEWER):
@@ -99,9 +105,7 @@ def home(request: HttpRequest) -> HttpResponse:
                 "key": key,
                 "label": label,
                 "count": queryset.filter(status__in=statuses).count(),
-                "items": list(
-                    queryset.filter(status__in=statuses).with_related()[:5]
-                ),
+                "items": list(queryset.filter(status__in=statuses).with_related()[:5]),
             }
             for key, label, statuses in EDITOR_QUEUES
         ]
@@ -121,7 +125,9 @@ def queue(request: HttpRequest, key: str) -> HttpResponse:
     if definition is None:
         raise PermissionDenied
     _key, label, statuses = definition
-    queryset = Submission.objects.for_editor(request.user).filter(status__in=statuses).with_related()
+    queryset = (
+        Submission.objects.for_editor(request.user).filter(status__in=statuses).with_related()
+    )
 
     search = request.GET.get("q", "").strip()
     if search:
@@ -178,7 +184,9 @@ def submission_detail(request: HttpRequest, pk: int) -> HttpResponse:
         "decisions": submission.decisions.select_related("decided_by"),
         "notes": submission.notes.select_related("author") if is_editor else [],
         "discussions": submission.discussions.prefetch_related("messages__author"),
-        "transitions": workflow.available_transitions(submission, request.user) if is_editor else [],
+        "transitions": workflow.available_transitions(submission, request.user)
+        if is_editor
+        else [],
         "similarity_form": SimilarityForm(instance=submission) if is_editor else None,
         "decision_form": DecisionForm() if is_editor else None,
         "invite_form": InviteReviewerForm() if is_editor else None,
@@ -252,8 +260,12 @@ def reviewer_finder(request: HttpRequest, pk: int) -> HttpResponse:
     return TemplateResponse(
         request,
         template,
-        {"submission": submission, "candidates": candidates, "query": request.GET.get("q", ""),
-         "invite_form": InviteReviewerForm()},
+        {
+            "submission": submission,
+            "candidates": candidates,
+            "query": request.GET.get("q", ""),
+            "invite_form": InviteReviewerForm(),
+        },
     )
 
 
@@ -278,7 +290,9 @@ def invite_reviewer_view(request: HttpRequest, pk: int) -> HttpResponse:
         if form.cleaned_data.get("reviewer_id"):
             reviewer = get_object_or_404(User, pk=form.cleaned_data["reviewer_id"])
             invite_reviewer(
-                round_obj, reviewer, invited_by=request.user,
+                round_obj,
+                reviewer,
+                invited_by=request.user,
                 due_days=form.cleaned_data.get("due_days"),
             )
         else:
@@ -511,14 +525,16 @@ def two_factor_setup(request: HttpRequest) -> HttpResponse:
         device = TOTPDevice.objects.create(user=request.user, name="default", confirmed=False)
 
     if request.user.has_verified_totp and device is None:
-        return TemplateResponse(
-            request, "dashboard/two_factor.html", {"already_enrolled": True}
-        )
+        return TemplateResponse(request, "dashboard/two_factor.html", {"already_enrolled": True})
 
     recovery_codes: list[str] = []
     if request.method == "POST":
         form = TOTPSetupForm(request.POST)
-        if form.is_valid() and device is not None and device.verify_token(form.cleaned_data["token"]):
+        if (
+            form.is_valid()
+            and device is not None
+            and device.verify_token(form.cleaned_data["token"])
+        ):
             device.confirmed = True
             device.save()
             request.user.must_enroll_2fa = False

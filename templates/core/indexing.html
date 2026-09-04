@@ -1,9 +1,10 @@
 {% extends "core/_page_shell.html" %}
 {% load i18n %}
-
 {% block page_extra %}
   <section class="mt-10">
-    <div class="section-heading"><h2>{% translate "Currently indexed in" %}</h2></div>
+    <div class="section-heading">
+      <h2>{% translate "Currently indexed in" %}</h2>
+    </div>
     {% if services %}
       <ul class="grid gap-3 sm:grid-cols-2">
         {% for service in services %}
@@ -17,18 +18,17 @@
       <p class="muted">{% translate "Indexing applications are in preparation." %}</p>
     {% endif %}
   </section>
-
   {% if planned_services %}
     <section class="mt-10">
-      <div class="section-heading"><h2>{% translate "Applications planned" %}</h2></div>
+      <div class="section-heading">
+        <h2>{% translate "Applications planned" %}</h2>
+      </div>
       <ul class="flex flex-wrap gap-2">
         {% for service in planned_services %}
           <li class="chip">{{ service.name }}</li>
         {% endfor %}
       </ul>
-      <p class="muted text-sm mt-3">
-        {% translate "We do not display impact-factor style badges from unverified providers." %}
-      </p>
+      <p class="muted text-sm mt-3">{% translate "We do not display impact-factor style badges from unverified providers." %}</p>
     </section>
   {% endif %}
 {% endblock %}

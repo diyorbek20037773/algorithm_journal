@@ -1,15 +1,10 @@
 {% extends "base.html" %}
 {% load i18n %}
-
 {% block title %}{% translate "Submit a manuscript" %} · {{ site_settings.journal_name }}{% endblock %}
-
 {% block content %}
   <div class="container-page max-w-[820px]">
     <h1 class="text-3xl mb-2">{% translate "Submit a manuscript" %}</h1>
-    <p class="muted mb-8">
-      {% translate "Submission takes five short steps. Your work is saved after every step, so you can leave and return at any time." %}
-    </p>
-
+    <p class="muted mb-8">{% translate "Submission takes five short steps. Your work is saved after every step, so you can leave and return at any time." %}</p>
     <div class="card-muted mb-8">
       <p class="footer-heading">{% translate "Before you start" %}</p>
       <ul class="text-sm space-y-1 mt-2">
@@ -19,12 +14,14 @@
         <li>• {% translate "One to five JEL codes" %}</li>
         <li>• {% translate "ORCID iDs of the authors" %}</li>
       </ul>
-      <a class="btn btn-ghost btn-sm px-0 mt-3" href="{% url 'core:checklist' %}">{% translate "Open the full checklist" %} &rarr;</a>
+      <a class="btn btn-ghost btn-sm px-0 mt-3"
+         href="{% url 'core:checklist' %}">{% translate "Open the full checklist" %} →</a>
     </div>
-
     {% if drafts %}
       <section class="mb-8">
-        <div class="section-heading"><h2>{% translate "Continue a draft" %}</h2></div>
+        <div class="section-heading">
+          <h2>{% translate "Continue a draft" %}</h2>
+        </div>
         <ul class="space-y-2">
           {% for draft in drafts %}
             <li class="card flex items-center justify-between gap-4">
@@ -32,13 +29,13 @@
                 <p class="font-medium">{{ draft.title }}</p>
                 <p class="meta">{% translate "Last edited" %} {{ draft.updated_at|date:"j F Y, H:i" }} · {% translate "Step" %} {{ draft.wizard_step }}/5</p>
               </div>
-              <a class="btn btn-secondary btn-sm" href="{% url 'submissions:wizard_step1' draft.pk %}">{% translate "Continue" %}</a>
+              <a class="btn btn-secondary btn-sm"
+                 href="{% url 'submissions:wizard_step1' draft.pk %}">{% translate "Continue" %}</a>
             </li>
           {% endfor %}
         </ul>
       </section>
     {% endif %}
-
     <a class="btn btn-primary" href="{% url 'submissions:wizard_new' %}">{% translate "Start a new submission" %}</a>
   </div>
 {% endblock %}

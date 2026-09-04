@@ -5,13 +5,16 @@ from __future__ import annotations
 from typing import Any
 
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.template.response import TemplateResponse
 from django.utils import timezone
+from django.utils.decorators import method_decorator
 from django.utils.translation import gettext as _
 from django.views.decorators.http import require_POST
+from django.views.generic import TemplateView
 
 from apps.accounts.permissions import ProductionRequiredMixin
 from apps.journal.models import Article, Galley, Issue, Volume
@@ -25,10 +28,6 @@ from apps.submissions.models import (
     SubmissionStatus,
 )
 
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
-from django.views.generic import TemplateView
-
 
 class ProductionQueueView(ProductionRequiredMixin, TemplateView):
     """Queue of accepted manuscripts moving through production."""
@@ -40,8 +39,11 @@ class ProductionQueueView(ProductionRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         queryset = Submission.objects.filter(status__in=PRODUCTION_STATES).with_related()
         context["queues"] = [
-            {"status": status, "label": dict(SubmissionStatus.choices)[status],
-             "items": [s for s in queryset if s.status == status]}
+            {
+                "status": status,
+                "label": dict(SubmissionStatus.choices)[status],
+                "items": [s for s in queryset if s.status == status],
+            }
             for status in PRODUCTION_STATES
         ]
         context["ready"] = Article.objects.filter(status=Article.Status.DRAFT).with_related()
@@ -211,7 +213,9 @@ def schedule_to_issue(request: HttpRequest, pk: int) -> HttpResponse:
         pages_end=request.POST.get("pages_end", ""),
         user=request.user,
     )
-    messages.success(request, _("The article has been scheduled into %(issue)s.") % {"issue": issue.label})
+    messages.success(
+        request, _("The article has been scheduled into %(issue)s.") % {"issue": issue.label}
+    )
     return redirect("production:issue_builder", pk=issue.pk)
 
 
@@ -251,7 +255,9 @@ def reorder_issue(request: HttpRequest, pk: int) -> HttpResponse:
     for article in Article.objects.filter(issue=issue):
         prefix = f"article_{article.pk}"
         number = request.POST.get(f"{prefix}_number")
-        article.article_number = int(number) if number and number.isdigit() else article.article_number
+        article.article_number = (
+            int(number) if number and number.isdigit() else article.article_number
+        )
         article.pages_start = request.POST.get(f"{prefix}_pages_start", article.pages_start)
         article.pages_end = request.POST.get(f"{prefix}_pages_end", article.pages_end)
         article.save(update_fields=["article_number", "pages_start", "pages_end", "updated_at"])

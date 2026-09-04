@@ -184,9 +184,7 @@ class Profile(TimeStampedModel):
     reviews_declined = models.PositiveIntegerField(_("reviews declined"), default=0)
     average_review_days = models.FloatField(_("average review days"), null=True, blank=True)
     average_quality_rating = models.FloatField(_("average quality rating"), null=True, blank=True)
-    accepts_review_invitations = models.BooleanField(
-        _("accepts review invitations"), default=True
-    )
+    accepts_review_invitations = models.BooleanField(_("accepts review invitations"), default=True)
 
     class Meta:
         verbose_name = _("profile")

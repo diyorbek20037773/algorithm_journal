@@ -56,7 +56,9 @@ class Transition:
 TRANSITIONS: dict[str, Transition] = {
     t.name: t
     for t in [
-        Transition("submit", (SubmissionStatus.DRAFT,), SubmissionStatus.SUBMITTED, (), _("Submit")),
+        Transition(
+            "submit", (SubmissionStatus.DRAFT,), SubmissionStatus.SUBMITTED, (), _("Submit")
+        ),
         Transition(
             "assign_editor",
             (SubmissionStatus.SUBMITTED,),
@@ -280,9 +282,7 @@ def _on_send_to_review(submission: Submission, user, **kwargs) -> None:
     site = get_site_settings()
     override = bool(submission.similarity_override_reason)
     if submission.similarity_percent is None and not override:
-        raise TransitionError(
-            _("A similarity check result is required before sending to review.")
-        )
+        raise TransitionError(_("A similarity check result is required before sending to review."))
     if (
         submission.similarity_percent is not None
         and submission.similarity_percent > site.similarity_threshold
@@ -294,7 +294,9 @@ def _on_send_to_review(submission: Submission, user, **kwargs) -> None:
         )
     submission.current_round += 1
     ReviewRound.objects.get_or_create(
-        submission=submission, number=submission.current_round, defaults={"status": ReviewRound.Status.OPEN}
+        submission=submission,
+        number=submission.current_round,
+        defaults={"status": ReviewRound.Status.OPEN},
     )
 
 

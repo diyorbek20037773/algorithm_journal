@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from .base import *  # noqa: F403
+from .base import *
 
 DEBUG = False
 ALLOWED_HOSTS = ["*", "testserver", "localhost", "127.0.0.1"]
@@ -24,15 +24,13 @@ EMAIL_BACKEND = "django.core.mail.backends.locmem.EmailBackend"
 AXES_ENABLED = False
 STAFF_2FA_REQUIRED = True
 
-STORAGES["staticfiles"] = {  # noqa: F405
-    "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage"
-}
+STORAGES["staticfiles"] = {"BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage"}
 
-MEDIA_ROOT = BASE_DIR / ".pytest-media"  # noqa: F405
+MEDIA_ROOT = BASE_DIR / ".pytest-media"
 
 # Tests must not be throttled.
-REST_FRAMEWORK = {**REST_FRAMEWORK, "DEFAULT_THROTTLE_RATES": {"anon": "10000/min"}}  # noqa: F405
+REST_FRAMEWORK = {**REST_FRAMEWORK, "DEFAULT_THROTTLE_RATES": {"anon": "10000/min"}}
 
 RATELIMIT_ENABLE = False
 
-LOGGING["root"]["level"] = "WARNING"  # noqa: F405
+LOGGING["root"]["level"] = "WARNING"

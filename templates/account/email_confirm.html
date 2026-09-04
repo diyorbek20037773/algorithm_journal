@@ -1,12 +1,13 @@
 {% extends "account/base.html" %}
 {% load i18n %}
-
-{% block title %}{% translate "Confirm your e-mail address" %}{% endblock %}
-
+{% block title %}
+  {% translate "Confirm your e-mail address" %}
+{% endblock %}
 {% block auth_content %}
   <h1 class="text-2xl mb-4">{% translate "Confirm your e-mail address" %}</h1>
   {% if confirmation %}
-    <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
+    <form method="post"
+          action="{% url 'account_confirm_email' confirmation.key %}">
       {% csrf_token %}
       <button type="submit" class="btn btn-primary w-full">{% translate "Confirm" %}</button>
     </form>

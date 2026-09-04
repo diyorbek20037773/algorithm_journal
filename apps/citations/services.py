@@ -40,9 +40,7 @@ def csl_json(article) -> dict[str, Any]:
         "title": article.title_en or article.title,
         "container-title": site.journal_name_en or site.journal_name,
         "container-title-short": site.short_code,
-        "author": [
-            {"family": a.family_name, "given": a.given_name} for a in article.author_list()
-        ],
+        "author": [{"family": a.family_name, "given": a.given_name} for a in article.author_list()],
         "language": article.language,
         "abstract": article.abstract_plain,
         "URL": article.doi_url or article.canonical_url,

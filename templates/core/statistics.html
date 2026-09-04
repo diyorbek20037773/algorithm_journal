@@ -1,15 +1,10 @@
 {% extends "base.html" %}
 {% load i18n %}
-
 {% block title %}{% translate "Journal statistics" %} · {{ site_settings.journal_name }}{% endblock %}
-
 {% block content %}
   <div class="container-page">
     <h1 class="text-3xl mb-2">{% translate "Journal statistics" %}</h1>
-    <p class="muted mb-8 max-w-[70ch]">
-      {% translate "Editorial and usage indicators, recalculated nightly. Bot traffic is filtered using the COUNTER robots list." %}
-    </p>
-
+    <p class="muted mb-8 max-w-[70ch]">{% translate "Editorial and usage indicators, recalculated nightly. Bot traffic is filtered using the COUNTER robots list." %}</p>
     {% if not stats.has_data %}
       <div class="empty-state">
         <p>{% translate "Statistics will appear here once the first articles are published." %}</p>
@@ -25,14 +20,16 @@
         <div class="card"><p class="footer-heading">{% translate "Median review time (days)" %}</p><p class="text-3xl font-serif">{{ stats.median_review_days|default:"—" }}</p></div>
         <div class="card"><p class="footer-heading">{% translate "Active reviewers (12 months)" %}</p><p class="text-3xl font-serif">{{ stats.reviewers_active }}</p></div>
       </div>
-
       <section class="mb-12">
-        <div class="section-heading"><h2>{% translate "Submissions and acceptances by month" %}</h2></div>
+        <div class="section-heading">
+          <h2>{% translate "Submissions and acceptances by month" %}</h2>
+        </div>
         {% include "core/partials/bar_chart.html" with series=stats.monthly %}
       </section>
-
       <section>
-        <div class="section-heading"><h2>{% translate "Countries of authors" %}</h2></div>
+        <div class="section-heading">
+          <h2>{% translate "Countries of authors" %}</h2>
+        </div>
         <ul class="flex flex-wrap gap-2">
           {% for country in stats.countries %}
             <li class="chip">{{ country }}</li>

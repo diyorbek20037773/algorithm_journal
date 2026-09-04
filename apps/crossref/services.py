@@ -49,9 +49,7 @@ def submit_batch(batch: DepositBatch, *, user=None) -> DepositBatch:
     try:
         success, response = client.deposit(payload, filename=f"{batch.doi_batch_id}.xml")
     except client.CrossrefNotConfigured as exc:
-        batch.response_log = (
-            f"{batch.response_log}\n\nDeposit not attempted: {exc}".strip()
-        )
+        batch.response_log = f"{batch.response_log}\n\nDeposit not attempted: {exc}".strip()
         batch.save(update_fields=["response_log", "updated_at"])
         return batch
 
@@ -103,7 +101,9 @@ def refresh_status(batch: DepositBatch) -> DepositBatch:
         batch.status = DepositBatch.Status.SUCCESS
         batch.resolved_at = timezone.now()
         batch.articles.update(
-            doi_status=Article.DOIStatus.UPDATED if batch.is_update else Article.DOIStatus.REGISTERED
+            doi_status=Article.DOIStatus.UPDATED
+            if batch.is_update
+            else Article.DOIStatus.REGISTERED
         )
         batch.registrations.update(status="registered")
     elif status == "failed":

@@ -1,15 +1,14 @@
 {% extends "dashboard/_base.html" %}
 {% load i18n %}
-
 {% block title %}{% translate "Editorial decision" %} · {% translate "Dashboard" %}{% endblock %}
-
 {% block dashboard_content %}
   <h1 class="text-2xl mb-2">{% translate "Editorial decision" %}</h1>
   <p class="muted mb-6">{{ submission.reference }} — {{ submission.title }}</p>
-
   {% if reviews %}
     <section class="mb-8">
-      <div class="section-heading"><h2>{% translate "Reviews in this round" %}</h2></div>
+      <div class="section-heading">
+        <h2>{% translate "Reviews in this round" %}</h2>
+      </div>
       {% for review in reviews %}
         <div class="card mb-3">
           <p class="font-medium">{% translate "Reviewer" %} {{ forloop.counter }} — {{ review.get_recommendation_display }}</p>
@@ -18,13 +17,15 @@
       {% endfor %}
     </section>
   {% endif %}
-
   <form method="post">
     {% csrf_token %}
-    {% for field in form %}{% include "includes/form_field.html" with field=field %}{% endfor %}
+    {% for field in form %}
+      {% include "includes/form_field.html" with field=field %}
+    {% endfor %}
     <div class="flex gap-3">
       <button type="submit" class="btn btn-primary">{% translate "Record the decision and notify the author" %}</button>
-      <a class="btn btn-secondary" href="{% url 'dashboard:submission_detail' submission.pk %}">{% translate "Cancel" %}</a>
+      <a class="btn btn-secondary"
+         href="{% url 'dashboard:submission_detail' submission.pk %}">{% translate "Cancel" %}</a>
     </div>
   </form>
 {% endblock %}

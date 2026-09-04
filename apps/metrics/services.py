@@ -112,7 +112,7 @@ def most_read(limit: int = 5, days: int = 30) -> list[Article]:
     cached = cache.get(cache_key)
     if cached is not None:
         return cached
-    since = timezone.now().date() - timedelta(days=days)
+    since = timezone.localdate() - timedelta(days=days)
     rows = (
         DailyArticleStat.objects.filter(date__gte=since)
         .values("article")
@@ -120,10 +120,11 @@ def most_read(limit: int = 5, days: int = 30) -> list[Article]:
         .order_by("-total")[: limit * 3]
     )
     ids = [r["article"] for r in rows]
-    articles = {a.pk: a for a in Article.objects.public().filter(pk__in=ids).with_related()}
+    fields = ("id", "title", "slug", "views_count", "downloads_count")
+    articles = {a.pk: a for a in Article.objects.public().filter(pk__in=ids).only(*fields)}
     ordered = [articles[i] for i in ids if i in articles][:limit]
     if not ordered:
-        ordered = list(Article.objects.public().with_related().order_by("-views_count")[:limit])
+        ordered = list(Article.objects.public().only(*fields).order_by("-views_count")[:limit])
     cache.set(cache_key, ordered, 600)
     return ordered
 
@@ -198,7 +199,7 @@ def public_statistics() -> dict[str, Any]:
     )
     author_names = {(a.given_name.lower(), a.family_name.lower()) for a in author_rows}
 
-    since_year = timezone.now().date() - timedelta(days=365)
+    since_year = timezone.localdate() - timedelta(days=365)
     downloads_last_year = (
         DailyArticleStat.objects.filter(date__gte=since_year).aggregate(total=Sum("downloads"))[
             "total"
@@ -250,7 +251,7 @@ def monthly_series(months: int = 12) -> list[dict[str, Any]]:
     """Submissions and acceptances per month for the statistics bar chart."""
     from apps.submissions.models import EditorialDecision, Submission
 
-    today = timezone.now().date().replace(day=1)
+    today = timezone.localdate().replace(day=1)
     series: list[dict[str, Any]] = []
     for offset in range(months - 1, -1, -1):
         month = _shift_month(today, -offset)

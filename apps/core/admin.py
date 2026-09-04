@@ -23,19 +23,38 @@ class SiteSettingsAdmin(TabbedTranslationAdmin):
     """Singleton editor for the journal's identity and policies."""
 
     fieldsets = (
-        (_("Identity"), {"fields": ("journal_name", "journal_subtitle", "short_code", "founded_year")}),
-        (_("Identifiers"), {
-            "fields": (
-                "eissn", "pissn", "doi_prefix", "crossref_member_id",
-                "registration_certificate_number", "registration_certificate_date",
-                "registration_authority",
-            )
-        }),
+        (
+            _("Identity"),
+            {"fields": ("journal_name", "journal_subtitle", "short_code", "founded_year")},
+        ),
+        (
+            _("Identifiers"),
+            {
+                "fields": (
+                    "eissn",
+                    "pissn",
+                    "doi_prefix",
+                    "crossref_member_id",
+                    "registration_certificate_number",
+                    "registration_certificate_date",
+                    "registration_authority",
+                )
+            },
+        ),
         (_("Publisher"), {"fields": ("publisher_name", "publisher_address", "frequency_text")}),
-        (_("Contact"), {"fields": ("contact_email", "contact_phone", "contact_address", "editor_in_chief")}),
+        (
+            _("Contact"),
+            {"fields": ("contact_email", "contact_phone", "contact_address", "editor_in_chief")},
+        ),
         (_("Branding"), {"fields": ("logo", "logo_dark", "favicon", "social_links")}),
-        (_("Policies"), {"fields": ("similarity_threshold", "show_online_first", "announcement_bar_text")}),
-        (_("Integrations"), {"fields": ("google_scholar_url", "matomo_site_id", "indexing_badges")}),
+        (
+            _("Policies"),
+            {"fields": ("similarity_threshold", "show_online_first", "announcement_bar_text")},
+        ),
+        (
+            _("Integrations"),
+            {"fields": ("google_scholar_url", "matomo_site_id", "indexing_badges")},
+        ),
     )
     filter_horizontal = ("indexing_badges",)
 
@@ -52,7 +71,14 @@ class SiteSettingsAdmin(TabbedTranslationAdmin):
 class PageAdmin(TabbedTranslationAdmin):
     """Markdown CMS pages with a per-language editor."""
 
-    list_display = ("title", "slug", "menu_group", "menu_order", "is_published", "needs_editorial_review")
+    list_display = (
+        "title",
+        "slug",
+        "menu_group",
+        "menu_order",
+        "is_published",
+        "needs_editorial_review",
+    )
     list_filter = ("menu_group", "is_published", "needs_editorial_review")
     search_fields = ("title", "slug", "body")
     prepopulated_fields = {"slug": ("title",)}

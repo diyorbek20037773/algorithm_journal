@@ -275,9 +275,16 @@ assertions on rendered HTML for author names/emails).
 ```python
 class PlagiarismProvider(Protocol):
     slug: str
-    def submit(self, submission: Submission, file: SubmissionFile) -> str: ...   # returns external id
+
+    def submit(
+        self, submission: Submission, file: SubmissionFile
+    ) -> str: ...  # returns external id
     def fetch_result(self, external_id: str) -> PlagiarismResult | None: ...
-class ManualProvider: ...   # editor uploads report + %; default
+
+
+class ManualProvider: ...  # editor uploads report + %; default
+
+
 class IThenticateProvider: ...  # config: ITHENTICATE_URL, ITHENTICATE_API_KEY; raises NotConfigured
 ```
 `PLAGIARISM_PROVIDER` env selects. Submission cannot move `screening → under_review` unless a

@@ -85,7 +85,7 @@ TOPICS: list[tuple[str, str, str, str, list[str]]] = [
         "Ochiq maʼlumot portallari va davlat xaridlaridagi raqobat",
         "Порталы открытых данных и конкуренция в государственных закупках",
         "digital-economy-innovation",
-        ["H57" , "D73", "O38"],
+        ["H57", "D73", "O38"],
     ),
     (
         "Measuring Total Factor Productivity with Imperfect Deflators",
@@ -247,7 +247,13 @@ ABSTRACT_TEMPLATE = {
 }
 
 AUTHOR_POOL = [
-    ("Dilnoza", "Yusupova", "Institute of Forecasting and Macroeconomic Research", "Tashkent", "UZ"),
+    (
+        "Dilnoza",
+        "Yusupova",
+        "Institute of Forecasting and Macroeconomic Research",
+        "Tashkent",
+        "UZ",
+    ),
     ("Sardor", "Rakhmonov", "Tashkent University of Information Technologies", "Tashkent", "UZ"),
     ("Aidos", "Nurgaliyev", "Graduate School of Economics", "Almaty", "KZ"),
     ("Marta", "Kowalska", "Warsaw School of Economics", "Warsaw", "PL"),
@@ -265,7 +271,9 @@ MANUSCRIPT_TEXT = (
 )
 
 
-def _make_file(submission: Submission, kind: str, uploader: User, version: int = 1) -> SubmissionFile:
+def _make_file(
+    submission: Submission, kind: str, uploader: User, version: int = 1
+) -> SubmissionFile:
     """Attach a small placeholder file to a submission."""
     record = SubmissionFile(
         submission=submission,
@@ -339,9 +347,27 @@ def _create_submission(
     }
     abstracts["uz-cyrl"] = to_cyrillic(abstracts["uz"])
     keywords = {
-        "en": ["policy evaluation", "administrative data", "identification", "heterogeneity", "emerging economies"],
-        "uz": ["siyosatni baholash", "maʼmuriy maʼlumotlar", "identifikatsiya", "heterogenlik", "rivojlanayotgan iqtisodiyotlar"],
-        "ru": ["оценка политики", "административные данные", "идентификация", "неоднородность", "развивающиеся экономики"],
+        "en": [
+            "policy evaluation",
+            "administrative data",
+            "identification",
+            "heterogeneity",
+            "emerging economies",
+        ],
+        "uz": [
+            "siyosatni baholash",
+            "maʼmuriy maʼlumotlar",
+            "identifikatsiya",
+            "heterogenlik",
+            "rivojlanayotgan iqtisodiyotlar",
+        ],
+        "ru": [
+            "оценка политики",
+            "административные данные",
+            "идентификация",
+            "неоднородность",
+            "развивающиеся экономики",
+        ],
     }
     keywords["uz-cyrl"] = [to_cyrillic(k) for k in keywords["uz"]]
 
@@ -435,13 +461,22 @@ def _assign(
         status=status,
         response=(
             ReviewAssignment.Response.ACCEPTED
-            if status in {ReviewAssignment.Status.ACCEPTED, ReviewAssignment.Status.SUBMITTED, ReviewAssignment.Status.OVERDUE}
+            if status
+            in {
+                ReviewAssignment.Status.ACCEPTED,
+                ReviewAssignment.Status.SUBMITTED,
+                ReviewAssignment.Status.OVERDUE,
+            }
             else ReviewAssignment.Response.DECLINED
             if status == ReviewAssignment.Status.DECLINED
             else ReviewAssignment.Response.PENDING
         ),
-        responded_at=now - dt.timedelta(days=20) if status != ReviewAssignment.Status.INVITED else None,
-        completed_at=now - dt.timedelta(days=2) if status == ReviewAssignment.Status.SUBMITTED else None,
+        responded_at=now - dt.timedelta(days=20)
+        if status != ReviewAssignment.Status.INVITED
+        else None,
+        completed_at=now - dt.timedelta(days=2)
+        if status == ReviewAssignment.Status.SUBMITTED
+        else None,
     )
     if with_review:
         Review.objects.create(
@@ -533,13 +568,19 @@ def create_demo_submissions(stdout: Any, style: Any) -> int:
                 save=False,
             )
             submission.save()
-            _system_note(submission, "Similarity check recorded: 12.4 % (within the 20 % threshold).")
+            _system_note(
+                submission, "Similarity check recorded: 12.4 % (within the 20 % threshold)."
+            )
         created += 1
 
     # --- 4 under review, assignments in every status -----------------------
     review_states = [
         [ReviewAssignment.Status.INVITED, ReviewAssignment.Status.ACCEPTED],
-        [ReviewAssignment.Status.ACCEPTED, ReviewAssignment.Status.DECLINED, ReviewAssignment.Status.INVITED],
+        [
+            ReviewAssignment.Status.ACCEPTED,
+            ReviewAssignment.Status.DECLINED,
+            ReviewAssignment.Status.INVITED,
+        ],
         [ReviewAssignment.Status.OVERDUE, ReviewAssignment.Status.ACCEPTED],
         [ReviewAssignment.Status.SUBMITTED, ReviewAssignment.Status.ACCEPTED],
     ]
@@ -581,10 +622,22 @@ def create_demo_submissions(stdout: Any, style: Any) -> int:
         submission.similarity_checked_at = timezone.now() - dt.timedelta(days=45)
         submission.save()
         round_obj = _add_round(submission)
-        _assign(round_obj, reviewers[0], ReviewAssignment.Status.SUBMITTED, editor=editor, with_review=True,
-                recommendation=Review.Recommendation.MINOR)
-        _assign(round_obj, reviewers[1], ReviewAssignment.Status.SUBMITTED, editor=editor, with_review=True,
-                recommendation=Review.Recommendation.MAJOR)
+        _assign(
+            round_obj,
+            reviewers[0],
+            ReviewAssignment.Status.SUBMITTED,
+            editor=editor,
+            with_review=True,
+            recommendation=Review.Recommendation.MINOR,
+        )
+        _assign(
+            round_obj,
+            reviewers[1],
+            ReviewAssignment.Status.SUBMITTED,
+            editor=editor,
+            with_review=True,
+            recommendation=Review.Recommendation.MAJOR,
+        )
         _system_note(submission, "All reviews received; awaiting the editorial decision.")
         created += 1
 
@@ -601,9 +654,21 @@ def create_demo_submissions(stdout: Any, style: Any) -> int:
         submission.similarity_checked_by = editor
         submission.similarity_checked_at = timezone.now() - dt.timedelta(days=58)
         round_obj = _add_round(submission)
-        _assign(round_obj, reviewers[0], ReviewAssignment.Status.SUBMITTED, editor=editor, with_review=True)
-        _assign(round_obj, reviewers[2], ReviewAssignment.Status.SUBMITTED, editor=editor, with_review=True,
-                recommendation=Review.Recommendation.MAJOR if major else Review.Recommendation.MINOR)
+        _assign(
+            round_obj,
+            reviewers[0],
+            ReviewAssignment.Status.SUBMITTED,
+            editor=editor,
+            with_review=True,
+        )
+        _assign(
+            round_obj,
+            reviewers[2],
+            ReviewAssignment.Status.SUBMITTED,
+            editor=editor,
+            with_review=True,
+            recommendation=Review.Recommendation.MAJOR if major else Review.Recommendation.MINOR,
+        )
         decision = EditorialDecision.objects.create(
             submission=submission,
             round=round_obj,
@@ -646,8 +711,12 @@ def create_demo_submissions(stdout: Any, style: Any) -> int:
     submission.similarity_checked_by = editor
     submission.similarity_checked_at = timezone.now() - dt.timedelta(days=90)
     round_one = _add_round(submission, 1)
-    _assign(round_one, reviewers[0], ReviewAssignment.Status.SUBMITTED, editor=editor, with_review=True)
-    _assign(round_one, reviewers[1], ReviewAssignment.Status.SUBMITTED, editor=editor, with_review=True)
+    _assign(
+        round_one, reviewers[0], ReviewAssignment.Status.SUBMITTED, editor=editor, with_review=True
+    )
+    _assign(
+        round_one, reviewers[1], ReviewAssignment.Status.SUBMITTED, editor=editor, with_review=True
+    )
     round_one.status = ReviewRound.Status.CLOSED
     round_one.closed_at = timezone.now() - dt.timedelta(days=40)
     round_one.save()
@@ -683,10 +752,22 @@ def create_demo_submissions(stdout: Any, style: Any) -> int:
         submission.accepted_at = timezone.now() - dt.timedelta(days=20 - index * 5)
         submission.save()
         round_obj = _add_round(submission)
-        _assign(round_obj, reviewers[1], ReviewAssignment.Status.SUBMITTED, editor=editor, with_review=True,
-                recommendation=Review.Recommendation.ACCEPT)
-        _assign(round_obj, reviewers[2], ReviewAssignment.Status.SUBMITTED, editor=editor, with_review=True,
-                recommendation=Review.Recommendation.MINOR)
+        _assign(
+            round_obj,
+            reviewers[1],
+            ReviewAssignment.Status.SUBMITTED,
+            editor=editor,
+            with_review=True,
+            recommendation=Review.Recommendation.ACCEPT,
+        )
+        _assign(
+            round_obj,
+            reviewers[2],
+            ReviewAssignment.Status.SUBMITTED,
+            editor=editor,
+            with_review=True,
+            recommendation=Review.Recommendation.MINOR,
+        )
         EditorialDecision.objects.create(
             submission=submission,
             round=round_obj,
@@ -725,16 +806,30 @@ def create_demo_submissions(stdout: Any, style: Any) -> int:
             submission.similarity_checked_at = timezone.now() - dt.timedelta(days=140)
             submission.save()
             round_obj = _add_round(submission)
-            _assign(round_obj, reviewers[index % 3], ReviewAssignment.Status.SUBMITTED, editor=editor,
-                    with_review=True, recommendation=Review.Recommendation.REJECT)
-            _assign(round_obj, reviewers[(index + 1) % 3], ReviewAssignment.Status.SUBMITTED, editor=editor,
-                    with_review=True, recommendation=Review.Recommendation.REJECT)
+            _assign(
+                round_obj,
+                reviewers[index % 3],
+                ReviewAssignment.Status.SUBMITTED,
+                editor=editor,
+                with_review=True,
+                recommendation=Review.Recommendation.REJECT,
+            )
+            _assign(
+                round_obj,
+                reviewers[(index + 1) % 3],
+                ReviewAssignment.Status.SUBMITTED,
+                editor=editor,
+                with_review=True,
+                recommendation=Review.Recommendation.REJECT,
+            )
         EditorialDecision.objects.create(
             submission=submission,
             round=submission.latest_round,
             decided_by=eic if not desk else editor,
             decision=(
-                EditorialDecision.Decision.DESK_REJECT if desk else EditorialDecision.Decision.REJECT
+                EditorialDecision.Decision.DESK_REJECT
+                if desk
+                else EditorialDecision.Decision.REJECT
             ),
             letter=(
                 "Dear Author,\n\nAfter an initial editorial assessment we have decided not to "

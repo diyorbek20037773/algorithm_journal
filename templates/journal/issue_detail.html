@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
-
 {% block title %}{{ issue.label }} · {{ site_settings.journal_name }}{% endblock %}
-
 {% block structured_data %}
   <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"PublicationIssue",
@@ -12,7 +10,6 @@
        "isPartOf":{"@type":"Periodical","name":"{{ site_settings.journal_name|escapejs }}"{% if site_settings.eissn %},"issn":"{{ site_settings.eissn }}"{% endif %}}}}
   </script>
 {% endblock %}
-
 {% block content %}
   <div class="container-page">
     <nav aria-label="{% translate 'Breadcrumb' %}" class="meta mb-6">
@@ -20,7 +17,6 @@
       <a href="{% url 'journal:archive' %}">{% translate "Archive" %}</a> ›
       <span class="subtle">{{ issue.label }}</span>
     </nav>
-
     <div class="grid gap-8 sm:grid-cols-[180px_1fr] items-start card-muted mb-10">
       <div class="issue-cover w-44">
         <p class="meta">{{ site_settings.short_code }}</p>
@@ -46,7 +42,6 @@
         {% endif %}
       </div>
     </div>
-
     {% for group in grouped_articles %}
       <section class="mb-10">
         <div class="section-heading">
@@ -57,18 +52,22 @@
         {% endfor %}
       </section>
     {% empty %}
-      <div class="empty-state"><p>{% translate "This issue has no articles." %}</p></div>
+      <div class="empty-state">
+        <p>{% translate "This issue has no articles." %}</p>
+      </div>
     {% endfor %}
-
-    <nav class="rule pt-6 flex items-center justify-between" aria-label="{% translate 'Issue navigation' %}">
+    <nav class="rule pt-6 flex items-center justify-between"
+         aria-label="{% translate 'Issue navigation' %}">
       <div>
         {% if previous_issue %}
-          <a class="btn btn-secondary btn-sm" href="{{ previous_issue.get_absolute_url }}">&larr; {{ previous_issue.label }}</a>
+          <a class="btn btn-secondary btn-sm"
+             href="{{ previous_issue.get_absolute_url }}">← {{ previous_issue.label }}</a>
         {% endif %}
       </div>
       <div>
         {% if next_issue %}
-          <a class="btn btn-secondary btn-sm" href="{{ next_issue.get_absolute_url }}">{{ next_issue.label }} &rarr;</a>
+          <a class="btn btn-secondary btn-sm"
+             href="{{ next_issue.get_absolute_url }}">{{ next_issue.label }} →</a>
         {% endif %}
       </div>
     </nav>

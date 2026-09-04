@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import base64
 import json
-from datetime import datetime, timezone as dt_timezone
+from datetime import UTC, datetime
 from typing import Any
 
 from django.conf import settings
@@ -57,7 +57,7 @@ ALLOWED_ARGS: dict[str, set[str]] = {
 
 def _now() -> str:
     """Current UTC timestamp in OAI-PMH format."""
-    return timezone.now().astimezone(dt_timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    return timezone.now().astimezone(UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
 def _identifier(article: Article) -> str:
@@ -83,7 +83,7 @@ def _parse_date(value: str | None) -> datetime | None:
     for fmt in ("%Y-%m-%dT%H:%M:%SZ", "%Y-%m-%d"):
         try:
             parsed = datetime.strptime(value, fmt)
-            return parsed.replace(tzinfo=dt_timezone.utc)
+            return parsed.replace(tzinfo=UTC)
         except ValueError:
             continue
     raise ValueError(value)
@@ -91,9 +91,7 @@ def _parse_date(value: str | None) -> datetime | None:
 
 def _root(request: HttpRequest, verb: str | None, params: dict[str, str]):
     """Build the shared OAI-PMH envelope."""
-    root = etree.Element(
-        f"{{{OAI_NS}}}OAI-PMH", nsmap={None: OAI_NS, "xsi": XSI_NS}
-    )
+    root = etree.Element(f"{{{OAI_NS}}}OAI-PMH", nsmap={None: OAI_NS, "xsi": XSI_NS})
     root.set(
         f"{{{XSI_NS}}}schemaLocation",
         f"{OAI_NS} http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd",
@@ -133,14 +131,14 @@ def _decode_token(token: str) -> dict[str, Any]:
     """Decode a resumption token, raising ``ValueError`` when malformed."""
     try:
         return json.loads(base64.urlsafe_b64decode(token.encode()).decode())
-    except Exception as exc:  # noqa: BLE001 - any failure is a bad token
+    except Exception as exc:
         raise ValueError("badResumptionToken") from exc
 
 
 @require_GET
 def endpoint(request: HttpRequest) -> HttpResponse:
     """Single OAI-PMH entry point implementing all six verbs."""
-    params = {k: v for k, v in request.GET.items()}
+    params = dict(request.GET.items())
     verb = params.get("verb")
     root = _root(request, verb, params)
 
@@ -173,7 +171,10 @@ def _identify(root, params: dict[str, str], verb: str) -> HttpResponse:
     site = get_site_settings()
     identify = etree.SubElement(root, f"{{{OAI_NS}}}Identify")
     earliest = (
-        Article.objects.public().order_by("published_at").values_list("published_at", flat=True).first()
+        Article.objects.public()
+        .order_by("published_at")
+        .values_list("published_at", flat=True)
+        .first()
     )
 
     def add(tag: str, text: str) -> None:
@@ -355,13 +356,13 @@ def _header(parent, article: Article) -> None:
         header.set("status", "deleted")
     etree.SubElement(header, f"{{{OAI_NS}}}identifier").text = _identifier(article)
     etree.SubElement(header, f"{{{OAI_NS}}}datestamp").text = article.updated_at.astimezone(
-        dt_timezone.utc
+        UTC
     ).strftime("%Y-%m-%dT%H:%M:%SZ")
     etree.SubElement(header, f"{{{OAI_NS}}}setSpec").text = f"section:{article.section.slug}"
     if article.issue_id:
-        etree.SubElement(header, f"{{{OAI_NS}}}setSpec").text = (
-            f"volume:{article.issue.volume.number}"
-        )
+        etree.SubElement(
+            header, f"{{{OAI_NS}}}setSpec"
+        ).text = f"volume:{article.issue.volume.number}"
 
 
 def _metadata(parent, article: Article, prefix: str) -> None:
@@ -402,7 +403,9 @@ def _oai_dc(parent, article: Article) -> None:
     add("format", "application/pdf")
     add("identifier", article.doi_url or article.canonical_url)
     add("identifier", article.canonical_url)
-    add("source", f"{site.journal_name}; {article.issue.label if article.issue else 'Online First'}")
+    add(
+        "source", f"{site.journal_name}; {article.issue.label if article.issue else 'Online First'}"
+    )
     add("language", article.language)
     if article.license:
         add("rights", article.license.url)

@@ -6,7 +6,11 @@
   </h3>
   <p class="authors-line mt-1">
     {% for author in article.authors.all %}
-      <span>{{ author.full_name }}{% if author.orcid %}<a href="{{ author.orcid_url }}" rel="noopener" title="ORCID" class="ml-1" aria-label="ORCID {{ author.full_name }}"><span aria-hidden="true" style="color:#a6ce39">iD</span></a>{% endif %}</span>{% if not forloop.last %}, {% endif %}
+      <span>{{ author.full_name }}{% if author.orcid %}<a href="{{ author.orcid_url }}"
+   rel="noopener"
+   title="ORCID"
+   class="ml-1"
+   aria-label="ORCID {{ author.full_name }}"><span aria-hidden="true" style="color:#a6ce39">iD</span></a>{% endif %}</span>{% if not forloop.last %}, {% endif %}
     {% endfor %}
   </p>
   <p class="meta mt-2">
@@ -15,7 +19,7 @@
     {% else %}
       <span class="badge-online-first">{% translate "Online First" %}</span>
     {% endif %}
-    {% if article.doi %} · <a href="{{ article.doi_url }}" rel="noopener">{{ article.doi }}</a>{% endif %}
+    {% if article.doi %}· <a href="{{ article.doi_url }}" rel="noopener">{{ article.doi }}</a>{% endif %}
   </p>
   {% if show_abstract and article.abstract_plain %}
     <p class="muted text-sm mt-2 line-clamp-2">{{ article.abstract_plain|truncatewords:34 }}</p>

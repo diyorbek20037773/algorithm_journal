@@ -1,14 +1,9 @@
 {% extends "dashboard/_base.html" %}
 {% load i18n %}
-
 {% block title %}{% translate "Two-factor authentication" %} · {% translate "Dashboard" %}{% endblock %}
-
 {% block dashboard_content %}
   <h1 class="text-2xl mb-2">{% translate "Two-factor authentication" %}</h1>
-  <p class="muted mb-6 max-w-[70ch]">
-    {% translate "Editorial accounts must use a time-based one-time password (TOTP) app such as Aegis, Google Authenticator or 1Password." %}
-  </p>
-
+  <p class="muted mb-6 max-w-[70ch]">{% translate "Editorial accounts must use a time-based one-time password (TOTP) app such as Aegis, Google Authenticator or 1Password." %}</p>
   {% if already_enrolled %}
     <div class="alert alert-success">{% translate "Two-factor authentication is already active on this account." %}</div>
   {% elif success %}
@@ -24,8 +19,11 @@
     <div class="grid gap-6 sm:grid-cols-[220px_1fr] items-start">
       <div class="card text-center">
         {% if qr_data %}
-          <img src="data:image/png;base64,{{ qr_data }}" alt="{% translate 'QR code for the authenticator app' %}"
-               width="180" height="180" class="mx-auto">
+          <img src="data:image/png;base64,{{ qr_data }}"
+               alt="{% translate 'QR code for the authenticator app' %}"
+               width="180"
+               height="180"
+               class="mx-auto">
         {% endif %}
         <p class="meta mt-3 break-all">{{ device.config_url }}</p>
       </div>
@@ -35,7 +33,9 @@
           <li>1. {% translate "Scan the QR code with your authenticator app." %}</li>
           <li>2. {% translate "Enter the six-digit code the app shows." %}</li>
         </ol>
-        {% for field in form %}{% include "includes/form_field.html" with field=field %}{% endfor %}
+        {% for field in form %}
+          {% include "includes/form_field.html" with field=field %}
+        {% endfor %}
         <button type="submit" class="btn btn-primary">{% translate "Activate" %}</button>
       </form>
     </div>

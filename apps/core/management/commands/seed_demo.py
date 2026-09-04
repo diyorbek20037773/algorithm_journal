@@ -344,13 +344,48 @@ class Command(BaseCommand):
         profile, _created = Profile.objects.get_or_create(user=user)
         data = {
             "admin": ("Editorial office", "UZ", "0000-0002-2000-0001", "Systems administration"),
-            "eic": ("Institute of Economic Research", "UZ", "0000-0002-2000-0002", "Macroeconomic policy, structural reform"),
-            "editor": ("Institute of Economic Research", "UZ", "0000-0002-2000-0003", "Public finance, taxation, fiscal policy"),
-            "production": ("Editorial office", "UZ", "0000-0002-2000-0004", "Production and typesetting"),
-            "reviewer1": ("Banking and Finance Academy", "UZ", "0000-0002-2000-0005", "Banking, credit markets, financial inclusion"),
-            "reviewer2": ("Graduate School of Economics", "KZ", "0000-0002-2000-0006", "International trade, gravity models, integration"),
-            "reviewer3": ("Middle East Technical University", "TR", "0000-0002-2000-0007", "Monetary policy, inflation, emerging markets"),
-            "author": ("Centre for Regional Studies", "UZ", "0000-0002-2000-0008", "Regional development, agriculture, water economics"),
+            "eic": (
+                "Institute of Economic Research",
+                "UZ",
+                "0000-0002-2000-0002",
+                "Macroeconomic policy, structural reform",
+            ),
+            "editor": (
+                "Institute of Economic Research",
+                "UZ",
+                "0000-0002-2000-0003",
+                "Public finance, taxation, fiscal policy",
+            ),
+            "production": (
+                "Editorial office",
+                "UZ",
+                "0000-0002-2000-0004",
+                "Production and typesetting",
+            ),
+            "reviewer1": (
+                "Banking and Finance Academy",
+                "UZ",
+                "0000-0002-2000-0005",
+                "Banking, credit markets, financial inclusion",
+            ),
+            "reviewer2": (
+                "Graduate School of Economics",
+                "KZ",
+                "0000-0002-2000-0006",
+                "International trade, gravity models, integration",
+            ),
+            "reviewer3": (
+                "Middle East Technical University",
+                "TR",
+                "0000-0002-2000-0007",
+                "Monetary policy, inflation, emerging markets",
+            ),
+            "author": (
+                "Centre for Regional Studies",
+                "UZ",
+                "0000-0002-2000-0008",
+                "Regional development, agriculture, water economics",
+            ),
         }[key]
         profile.affiliation, profile.country, profile.orcid, profile.expertise = data
         profile.city = "Tashkent"
@@ -367,7 +402,7 @@ class Command(BaseCommand):
             member, _created = EditorialBoardMember.objects.get_or_create(
                 full_name_en=row["name"], role=row["role"]
             )
-            set_translated(member, "full_name", {code: row["name"] for code in LANGS})
+            set_translated(member, "full_name", dict.fromkeys(LANGS, row["name"]))
             set_translated(member, "degree", row["degree"])
             set_translated(member, "academic_title", row["title"])
             set_translated(member, "affiliation", row["affiliation"])
@@ -484,7 +519,9 @@ class Command(BaseCommand):
                 {"en": "The Author(s)", "uz": "Muallif(lar)", "ru": "Автор(ы)"},
             )
 
-            received = (issue.published_at if issue else dt.date(2026, 4, 10)) - dt.timedelta(days=150)
+            received = (issue.published_at if issue else dt.date(2026, 4, 10)) - dt.timedelta(
+                days=150
+            )
             article.received_at = received
             article.revised_at = received + dt.timedelta(days=64)
             article.accepted_at = received + dt.timedelta(days=95)
@@ -605,9 +642,7 @@ class Command(BaseCommand):
                 if views == 0 and downloads == 0:
                     continue
                 rows.append(
-                    DailyArticleStat(
-                        article=article, date=date, views=views, downloads=downloads
-                    )
+                    DailyArticleStat(article=article, date=date, views=views, downloads=downloads)
                 )
         DailyArticleStat.objects.bulk_create(rows, ignore_conflicts=True)
         refresh_article_totals()

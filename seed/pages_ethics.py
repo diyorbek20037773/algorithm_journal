@@ -1082,7 +1082,11 @@ Factor», «ICV» и подобные от непроверенных поста
         "slug": "privacy",
         "menu_group": "about",
         "order": 10,
-        "title": {"en": "Privacy Policy", "uz": "Maxfiylik siyosati", "ru": "Политика конфиденциальности"},
+        "title": {
+            "en": "Privacy Policy",
+            "uz": "Maxfiylik siyosati",
+            "ru": "Политика конфиденциальности",
+        },
         "seo": {
             "en": "What personal data the journal collects, why, how long it is kept, where it is stored, and your rights under Uzbek law ZRU-547.",
             "uz": "Jurnal qanday shaxsiy maʼlumotlarni yigʻadi, nima uchun, qancha saqlaydi, qayerda saqlaydi va OʻzR ZRU-547 boʻyicha huquqlaringiz.",

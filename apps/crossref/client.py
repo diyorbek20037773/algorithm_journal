@@ -19,7 +19,11 @@ class CrossrefNotConfigured(RuntimeError):
 
 def deposit_url() -> str:
     """Test or production deposit endpoint, depending on ``CROSSREF_TEST``."""
-    return settings.CROSSREF_DEPOSIT_URL if settings.CROSSREF_TEST else settings.CROSSREF_DEPOSIT_URL_PROD
+    return (
+        settings.CROSSREF_DEPOSIT_URL
+        if settings.CROSSREF_TEST
+        else settings.CROSSREF_DEPOSIT_URL_PROD
+    )
 
 
 def is_configured() -> bool:
@@ -72,7 +76,7 @@ def submission_status(doi_batch_id: str) -> tuple[str, str]:
     )
     body = response.text or ""
     upper = body.upper()
-    if "STATUS=\"COMPLETED\"" in upper.replace(" ", "") or "SUCCESS" in upper:
+    if 'STATUS="COMPLETED"' in upper.replace(" ", "") or "SUCCESS" in upper:
         status = "success"
     elif "FAILURE" in upper or "ERROR" in upper:
         status = "failed"
@@ -83,9 +87,7 @@ def submission_status(doi_batch_id: str) -> tuple[str, str]:
 
 def user_agent() -> str:
     """Polite user agent required by the Crossref REST API."""
-    return (
-        f"ARER/1.0 (https://{settings.SITE_DOMAIN}; mailto:{settings.CROSSREF_POLITE_MAILTO})"
-    )
+    return f"ARER/1.0 (https://{settings.SITE_DOMAIN}; mailto:{settings.CROSSREF_POLITE_MAILTO})"
 
 
 def cited_by_count(doi: str) -> int | None:

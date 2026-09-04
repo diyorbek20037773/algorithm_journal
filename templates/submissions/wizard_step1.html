@@ -1,13 +1,10 @@
 {% extends "base.html" %}
 {% load i18n %}
-
 {% block title %}{% translate "Submission — step 1" %} · {{ site_settings.journal_name }}{% endblock %}
-
 {% block content %}
   <div class="container-page max-w-[820px]">
     <h1 class="text-3xl mb-6">{% translate "Submit a manuscript" %}</h1>
     {% include "includes/wizard_steps.html" %}
-
     <form method="post" novalidate>
       {% csrf_token %}
       {% for field in form %}
@@ -15,7 +12,6 @@
           {% include "includes/form_field.html" with field=field %}
         {% endif %}
       {% endfor %}
-
       <fieldset class="card mt-6">
         <legend class="footer-heading px-1">{% translate "Author declarations" %}</legend>
         {% for field in form %}
@@ -28,7 +24,6 @@
           {% endif %}
         {% endfor %}
       </fieldset>
-
       <div class="flex gap-3 mt-8">
         <button type="submit" class="btn btn-primary">{% translate "Save and continue" %}</button>
         <a class="btn btn-secondary" href="{% url 'submissions:wizard_start' %}">{% translate "Cancel" %}</a>

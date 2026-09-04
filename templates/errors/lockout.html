@@ -1,16 +1,12 @@
 {% extends "base.html" %}
 {% load i18n %}
-
 {% block title %}{% translate "Account temporarily locked" %} · {{ site_settings.journal_name }}{% endblock %}
-
 {% block content %}
   <div class="container-page">
     <div class="max-w-xl py-16">
       <p class="meta">403</p>
       <h1 class="text-3xl mt-2 mb-4">{% translate "Account temporarily locked" %}</h1>
-      <p class="muted mb-8">
-        {% translate "Too many failed sign-in attempts were made from this address. Please try again in 30 minutes or contact the editorial office." %}
-      </p>
+      <p class="muted mb-8">{% translate "Too many failed sign-in attempts were made from this address. Please try again in 30 minutes or contact the editorial office." %}</p>
       <a class="btn btn-secondary" href="{% url 'core:contact' %}">{% translate "Contact the editorial office" %}</a>
     </div>
   </div>

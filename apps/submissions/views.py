@@ -31,7 +31,6 @@ from apps.submissions.models import (
     SubmissionFile,
     SubmissionStatus,
 )
-from apps.submissions.services import count_words
 
 WIZARD_STEPS = [
     (1, _("Start")),
@@ -137,7 +136,9 @@ def wizard_step2(request: HttpRequest, pk: int) -> HttpResponse:
             if words and words < 4000:
                 messages.warning(
                     request,
-                    _("The manuscript has about %(count)s words; research articles should have at least 4,000.")
+                    _(
+                        "The manuscript has about %(count)s words; research articles should have at least 4,000."
+                    )
                     % {"count": words},
                 )
             return redirect("submissions:wizard_step3", pk=submission.pk)

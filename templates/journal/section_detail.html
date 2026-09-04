@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
-
 {% block title %}{{ section.name }} · {{ site_settings.journal_name }}{% endblock %}
-
 {% block content %}
   <div class="container-page">
     <p class="eyebrow">{% translate "Section" %}</p>
@@ -11,7 +9,9 @@
     {% for article in articles %}
       {% include "journal/partials/article_card.html" with article=article show_abstract=True %}
     {% empty %}
-      <div class="empty-state"><p>{% translate "No articles have been published in this section yet." %}</p></div>
+      <div class="empty-state">
+        <p>{% translate "No articles have been published in this section yet." %}</p>
+      </div>
     {% endfor %}
     {% include "journal/partials/pagination.html" %}
   </div>

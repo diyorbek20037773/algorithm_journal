@@ -129,7 +129,9 @@ def build_article_pdf(article: Any) -> bytes:
     # --- title block -------------------------------------------------------
     pdf.setFillColor(ACCENT)
     pdf.setFont("Helvetica-Bold", 8)
-    pdf.drawString(MARGIN, y, article.section.name_en.upper() if article.section.name_en else "ARTICLE")
+    pdf.drawString(
+        MARGIN, y, article.section.name_en.upper() if article.section.name_en else "ARTICLE"
+    )
     y -= 18
 
     pdf.setFillColor(INK)
@@ -145,7 +147,9 @@ def build_article_pdf(article: Any) -> bytes:
         pdf.drawString(MARGIN, y, line)
         y -= 12
     for author in article.author_list():
-        text = f"{author.affiliation_display}" + (f" · ORCID {author.orcid}" if author.orcid else "")
+        text = f"{author.affiliation_display}" + (
+            f" · ORCID {author.orcid}" if author.orcid else ""
+        )
         for line in textwrap.wrap(text, 110):
             pdf.setFont("Helvetica", 7.5)
             pdf.drawString(MARGIN, y, line)
