@@ -25,8 +25,7 @@ db.sqlite3
 .env.*
 !.env.example
 
-# Tailwind / assets
-/static/css/output.css
+# Tailwind / assets (output.css is committed so the site renders without a build)
 /.tailwind/
 tailwindcss*.exe
 tailwindcss

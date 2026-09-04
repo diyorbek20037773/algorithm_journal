@@ -54,7 +54,8 @@ ALLOWED_TAGS: set[str] = {
 }
 
 ALLOWED_ATTRIBUTES: dict[str, set[str]] = {
-    "a": {"href", "title", "rel", "target", "id"},
+    # ``rel`` is intentionally absent: nh3 sets it itself via ``link_rel``.
+    "a": {"href", "title", "target", "id"},
     "img": {"src", "alt", "title", "width", "height", "loading"},
     "td": {"colspan", "rowspan", "align"},
     "th": {"colspan", "rowspan", "align", "scope"},

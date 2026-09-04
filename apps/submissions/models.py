@@ -118,7 +118,7 @@ class Submission(TimeStampedModel):
         BOOK_REVIEW = "book_review", _("Book review")
 
     reference = models.CharField(
-        _("submission ID"), max_length=32, unique=True, blank=True, db_index=True
+        _("submission ID"), max_length=32, unique=True, blank=True, null=True, db_index=True
     )
     article = models.OneToOneField(
         "journal.Article", verbose_name=_("published article"), null=True, blank=True,
@@ -231,9 +231,15 @@ class Submission(TimeStampedModel):
         return reverse("dashboard:submission_detail", kwargs={"pk": self.pk})
 
     def save(self, *args, **kwargs):
-        """Assign a human-readable reference when the manuscript is submitted."""
+        """Assign a human-readable reference when the manuscript is submitted.
+
+        Drafts keep ``NULL`` rather than an empty string so that the unique
+        constraint allows any number of unsubmitted drafts.
+        """
         if not self.reference and self.status != SubmissionStatus.DRAFT:
             self.reference = self.build_reference()
+        if not self.reference:
+            self.reference = None
         super().save(*args, **kwargs)
 
     def build_reference(self) -> str:

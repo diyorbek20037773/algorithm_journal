@@ -214,6 +214,8 @@ LOGOUT_REDIRECT_URL = "/"
 
 # --- allauth ---
 ACCOUNT_LOGIN_METHODS = {"email"}
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_USER_MODEL_EMAIL_FIELD = "email"
 ACCOUNT_SIGNUP_FIELDS = ["email*", "password1*", "password2*"]
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_UNIQUE_EMAIL = True
@@ -300,7 +302,7 @@ STORAGES = {
 
 # django-tailwind-cli (standalone binary — no Node required)
 TAILWIND_CLI_VERSION = "4.1.11"
-TAILWIND_CLI_SRC_CSS = "src/css/input.css"
+TAILWIND_CLI_SRC_CSS = "static/src/css/input.css"
 TAILWIND_CLI_DIST_CSS = "css/output.css"
 TAILWIND_CLI_AUTOMATIC_DOWNLOAD = True
 TAILWIND_CLI_PATH = str(BASE_DIR / ".tailwind")

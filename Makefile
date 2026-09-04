@@ -118,7 +118,7 @@ tailwind-watch: ## Watch and rebuild Tailwind
 	$(MANAGE) tailwind watch
 
 static: tailwind ## Collect static files
-	$(MANAGE) collectstatic --noinput
+	$(MANAGE) collectstatic --noinput --ignore=src
 
 # --- screenshots & e2e -------------------------------------------------------
 screenshots: ## Capture Playwright screenshots into docs/screenshots/

@@ -26,13 +26,13 @@ case "${ROLE}" in
     python manage.py compilemessages --ignore=.venv >/dev/null 2>&1 || true
     python manage.py migrate --noinput
     python manage.py tailwind build || true
-    python manage.py collectstatic --noinput || true
+    python manage.py collectstatic --noinput --ignore=src || true
     exec python manage.py runserver 0.0.0.0:8000
     ;;
   prod)
     wait_for_postgres
     python manage.py migrate --noinput
-    python manage.py collectstatic --noinput
+    python manage.py collectstatic --noinput --ignore=src
     exec gunicorn config.wsgi:application \
       --bind 0.0.0.0:8000 \
       --workers "${GUNICORN_WORKERS:-3}" \

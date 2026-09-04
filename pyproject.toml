@@ -34,6 +34,7 @@ dependencies = [
     "django-axes>=7.0",
     # Content
     "markdown-it-py>=3.0",
+    "linkify-it-py>=2.0",
     "nh3>=0.2",
     "Pillow>=11.0",
     "django-countries>=7.6",
