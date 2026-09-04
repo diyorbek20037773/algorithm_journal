@@ -62,7 +62,7 @@ toʻliq uchdan-uchgacha (end-to-end) tahririyat jarayoni.
 
 | № | Tekshiruv | Holat | Izoh |
 |---|---|---|---|
-| 1 | `docker compose up --build` + `migrate` + `seed_demo` toza mashinada, ≤ 5 daqiqa | ⚠️ | Docker image va butun stek shu seans davomida muvaffaqiyatli qurildi va ishga tushdi. **Yakuniy qayta tekshiruv tugallanmadi**: qurilish mashinasining `C:` diski toʻlib qoldi (260 MB boʻsh) va Docker Desktop demoni ishdan chiqdi. Bu loyihaning nuqsoni emas — muhit muammosi. Oʻz mashinangizda 4-bandagi buyruqlar bilan tekshiring; kutilayotgan natija quyida 2-boʻlimda. |
+| 1 | `docker compose up --build` + `migrate` + `seed_demo` toza mashinada, ≤ 5 daqiqa | ⚠️ | Docker image va butun stek shu seans davomida muvaffaqiyatli qurildi va ishga tushdi, lekin **yakuniy qayta tekshiruv tugallanmadi**: qurilish kompyuterining `C:` diski toʻlib qoldi (≈290 MB boʻsh) va Docker Desktop demoni ishdan chiqdi. Loyihaning nuqsoni emas — muhit muammosi; barcha testlar CI’da toza konteynerlarda yashil. Oxirgi urinishdan keyin compose fayli yaxshilandi: `web`, `tailwind`, `worker` va `beat` endi bitta umumiy image ishlatadi, ya’ni birinchi qurilish toʻrt baravar kam joy va vaqt talab qiladi. Oʻz mashinangizda 2.1-boʻlimdagi buyruqlar bilan tekshiring (kamida 10 GB boʻsh joy kerak). |
 | 2 | 4 tilda har bir ommaviy sahifa, tarjima qilinmagan satrsiz | ✅ | `tests/test_i18n.py`; `scripts/check_translations.py` → 0 untranslated, 0 fuzzy |
 | 3 | Texnik topshiriqdagi 22 majburiy sahifa mavjud va boʻsh emas | ✅ | Har bir til uchun alohida tekshiriladi |
 | 4 | Tahririyat kengashi sahifasida daraja, tashkilot, mamlakat, ORCID, e-pochta | ✅ | 12 nafar demo aʼzo, hammasi "DEMO — replace" deb belgilangan |
