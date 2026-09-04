@@ -75,10 +75,10 @@ toʻliq uchdan-uchgacha (end-to-end) tahririyat jarayoni.
 | 11 | Filtrli qidiruv; muallif ismida xatoga chidamli | ✅ | PostgreSQL FTS + trigram |
 | 12 | Unumdorlik: soʻrov soni, bundle hajmi, Lighthouse | ✅ | [`docs/PERFORMANCE.md`](docs/PERFORMANCE.md). Lighthouse oʻrniga axe-core va soʻrov/hajm oʻlchovlari — sabab hujjatda yozilgan (loyihada Node yoʻq) |
 | 13 | 360 / 768 / 1280 / 1920 px skrinshotlar | ✅ | `docs/screenshots/responsive/` |
-| 14 | `backup.sh` va `restore.sh` CI ishida sinaladi | ✅ | GitHub Actions’dagi “Backup / restore drill” qadami yashil (run 33919274518) |
+| 14 | `backup.sh` va `restore.sh` CI ishida sinaladi | ✅ | GitHub Actions’dagi “Backup / restore drill” qadami har bir push’da bajariladi va yashil |
 | 15 | Xodimlar uchun 2FA majburiy | ✅ | TOTP qurilmasisiz muharrir roʻyxatdan oʻtish sahifasiga yoʻnaltiriladi |
 | 16 | Audit jurnali qaror va nashr amallarini yozadi | ✅ | |
-| 17 | `docs/` toʻliq; HANDOFF oʻzbekcha; CI yashil; GitHub’ga yuborilgan | ✅ | Kod GitHub’da; ikkala CI ishi ham yashil (run 33919274518) |
+| 17 | `docs/` toʻliq; HANDOFF oʻzbekcha; CI yashil; GitHub’ga yuborilgan | ✅ | Kod GitHub’da; `main` tarmogʻida ikkala CI ishi ham yashil |
 | 18 | Anonimlik: taqrizchi sahifalarida muallif maʼlumoti yoʻq va aksincha | ✅ | 10 ta test; API va OAI faqat nashr etilganini koʻrsatadi |
 
 Jami: **17 ✅**, **1 ⚠️**. Yagona ogohlantirish kod bilan emas, qurilish
@@ -347,8 +347,8 @@ yozilmagan**.
 tarmogʻiga commit qilingan va push qilingan. GitHub Actions ikkala ishni ham
 bajarib, **yashil** natija berdi — lint, format, shablon tekshiruvi, tarjima
 toʻliqligi, migratsiyalar, prod sozlamalari tekshiruvi, 360 test, Playwright
-E2E va zaxira/tiklash mashqi:
-<https://github.com/diyorbek20037773/algorithm_journal/actions/runs/33919274518>
+E2E va zaxira/tiklash mashqi. Joriy holatni shu yerdan koʻrasiz:
+<https://github.com/diyorbek20037773/algorithm_journal/actions?query=branch%3Amain>
 
 Keyingi oʻzgarishlarni yuborish uchun:
 
