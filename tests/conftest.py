@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import datetime as dt
+import os
 
 import pytest
 from django.contrib.auth.models import Group
@@ -25,6 +26,13 @@ from apps.journal.models import (
     Volume,
 )
 from apps.submissions.models import Submission, SubmissionAuthor, SubmissionFile
+
+# Playwright's synchronous API runs the test body inside a greenlet that owns a
+# live asyncio loop.  Django sees the loop, decides it is in an async context
+# and refuses ORM access — which breaks the ``django_db`` teardown of the
+# browser test, not just the test body.  The suite only ever touches the
+# throw-away test database, so the guard is safe to lift here.
+os.environ.setdefault("DJANGO_ALLOW_ASYNC_UNSAFE", "true")
 
 PASSWORD = "Algorithm2026!"
 
