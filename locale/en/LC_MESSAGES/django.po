@@ -1,0 +1,5226 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-05 01:00+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: ARER editorial office\n"
+"Language-Team: ARER\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\apps\accounts\admin.py:32
+msgid "Personal info"
+msgstr "Personal info"
+
+#: .\apps\accounts\admin.py:33 .\apps\journal\models.py:332
+#: .\templates\dashboard\_base.html:15
+msgid "Editorial"
+msgstr "Editorial"
+
+#: .\apps\accounts\admin.py:35
+msgid "Permissions"
+msgstr "Permissions"
+
+#: .\apps\accounts\admin.py:38
+msgid "Important dates"
+msgstr "Important dates"
+
+#: .\apps\accounts\middleware.py:60
+msgid ""
+"Two-factor authentication is mandatory for editorial accounts. Please set it"
+" up to continue."
+msgstr ""
+"Two-factor authentication is mandatory for editorial accounts. Please set it"
+" up to continue."
+
+#: .\apps\accounts\models.py:20 .\templates\journal\author_detail.html:6
+#: .\templates\search\search.html:48
+msgid "Author"
+msgstr "Author"
+
+#: .\apps\accounts\models.py:21 .\templates\dashboard\decide.html:14
+#: .\templates\dashboard\partials\reviewer_finder.html:5
+#: .\templates\dashboard\submission_detail.html:173
+#: .\templates\dashboard\submission_detail.html:222
+msgid "Reviewer"
+msgstr "Reviewer"
+
+#: .\apps\accounts\models.py:22
+msgid "Section editor"
+msgstr "Section editor"
+
+#: .\apps\accounts\models.py:23 .\apps\journal\models.py:750
+msgid "Editor-in-Chief"
+msgstr "Editor-in-Chief"
+
+#: .\apps\accounts\models.py:24
+msgid "Production editor"
+msgstr "Production editor"
+
+#: .\apps\accounts\models.py:25
+msgid "Administrator"
+msgstr "Administrator"
+
+#: .\apps\accounts\models.py:73
+msgid "e-mail address"
+msgstr "e-mail address"
+
+#: .\apps\accounts\models.py:74 .\apps\journal\models.py:589
+#: .\apps\submissions\models.py:345
+msgid "given name"
+msgstr "given name"
+
+#: .\apps\accounts\models.py:75 .\apps\journal\models.py:590
+#: .\apps\submissions\models.py:346
+msgid "family name"
+msgstr "family name"
+
+#: .\apps\accounts\models.py:77
+msgid "preferred language"
+msgstr "preferred language"
+
+#: .\apps\accounts\models.py:83
+msgid "available as reviewer"
+msgstr "available as reviewer"
+
+#: .\apps\accounts\models.py:85
+msgid "Flagged by an editor; controls appearance in the reviewer finder."
+msgstr "Flagged by an editor; controls appearance in the reviewer finder."
+
+#: .\apps\accounts\models.py:88
+msgid "must enrol in 2FA"
+msgstr "must enrol in 2FA"
+
+#: .\apps\accounts\models.py:90
+msgid "Set for staff accounts created by seeding or by an administrator."
+msgstr "Set for staff accounts created by seeding or by an administrator."
+
+#: .\apps\accounts\models.py:92 .\apps\submissions\models.py:194
+msgid "last activity"
+msgstr "last activity"
+
+#: .\apps\accounts\models.py:100 .\apps\accounts\models.py:162
+msgid "user"
+msgstr "user"
+
+#: .\apps\accounts\models.py:101
+msgid "users"
+msgstr "users"
+
+#: .\apps\accounts\models.py:164 .\apps\journal\models.py:599
+#: .\apps\journal\models.py:785 .\apps\submissions\models.py:349
+msgid "ORCID iD"
+msgstr "ORCID iD"
+
+#: .\apps\accounts\models.py:165 .\apps\journal\models.py:600
+#: .\apps\submissions\models.py:350
+msgid "ORCID verified"
+msgstr "ORCID verified"
+
+#: .\apps\accounts\models.py:166 .\apps\journal\models.py:601
+#: .\apps\journal\models.py:783 .\apps\submissions\models.py:351
+msgid "affiliation"
+msgstr "affiliation"
+
+#: .\apps\accounts\models.py:167
+msgid "department"
+msgstr "department"
+
+#: .\apps\accounts\models.py:168 .\apps\journal\models.py:603
+#: .\apps\submissions\models.py:353
+msgid "city"
+msgstr "city"
+
+#: .\apps\accounts\models.py:169 .\apps\journal\models.py:604
+#: .\apps\journal\models.py:784 .\apps\metrics\models.py:45
+#: .\apps\submissions\models.py:354
+msgid "country"
+msgstr "country"
+
+#: .\apps\accounts\models.py:170 .\apps\journal\models.py:781
+msgid "academic degree"
+msgstr "academic degree"
+
+#: .\apps\accounts\models.py:171 .\apps\journal\models.py:782
+msgid "academic title"
+msgstr "academic title"
+
+#: .\apps\accounts\models.py:172 .\apps\journal\models.py:605
+#: .\apps\journal\models.py:789
+msgid "biography"
+msgstr "biography"
+
+#: .\apps\accounts\models.py:173
+msgid "website"
+msgstr "website"
+
+#: .\apps\accounts\models.py:174 .\apps\journal\models.py:786
+msgid "Scopus Author ID"
+msgstr "Scopus Author ID"
+
+#: .\apps\accounts\models.py:176
+msgid "areas of expertise"
+msgstr "areas of expertise"
+
+#: .\apps\accounts\models.py:178
+msgid "Comma-separated keywords used by the reviewer finder."
+msgstr "Comma-separated keywords used by the reviewer finder."
+
+#: .\apps\accounts\models.py:181 .\apps\journal\models.py:259
+#: .\apps\journal\models.py:358 .\apps\submissions\forms.py:145
+#: .\apps\submissions\models.py:155
+#: .\templates\dashboard\submission_detail.html:55
+#: .\templates\journal\article_detail.html:114
+#: .\templates\review\assignment_detail.html:17
+#: .\templates\submissions\wizard_step5.html:22
+msgid "JEL codes"
+msgstr "JEL codes"
+
+#: .\apps\accounts\models.py:183
+msgid "reviews completed"
+msgstr "reviews completed"
+
+#: .\apps\accounts\models.py:184
+msgid "reviews declined"
+msgstr "reviews declined"
+
+#: .\apps\accounts\models.py:185
+msgid "average review days"
+msgstr "average review days"
+
+#: .\apps\accounts\models.py:186
+msgid "average quality rating"
+msgstr "average quality rating"
+
+#: .\apps\accounts\models.py:187
+msgid "accepts review invitations"
+msgstr "accepts review invitations"
+
+#: .\apps\accounts\models.py:190
+msgid "profile"
+msgstr "profile"
+
+#: .\apps\accounts\models.py:191
+msgid "profiles"
+msgstr "profiles"
+
+#: .\apps\citations\services.py:192
+msgid "Unsupported export format."
+msgstr "Unsupported export format."
+
+#: .\apps\core\admin.py:27
+msgid "Identity"
+msgstr "Identity"
+
+#: .\apps\core\admin.py:31
+msgid "Identifiers"
+msgstr "Identifiers"
+
+#: .\apps\core\admin.py:44 .\templates\core\about.html:17
+#: .\templates\core\contact.html:10
+msgid "Publisher"
+msgstr "Publisher"
+
+#: .\apps\core\admin.py:46 .\templates\includes\footer.html:10
+msgid "Contact"
+msgstr "Contact"
+
+#: .\apps\core\admin.py:49
+msgid "Branding"
+msgstr "Branding"
+
+#: .\apps\core\admin.py:51
+msgid "Policies"
+msgstr "Policies"
+
+#: .\apps\core\admin.py:55
+msgid "Integrations"
+msgstr "Integrations"
+
+#: .\apps\core\forms.py:16
+msgid "Leave this field empty"
+msgstr "Leave this field empty"
+
+#: .\apps\core\forms.py:30
+msgid "Your name"
+msgstr "Your name"
+
+#: .\apps\core\forms.py:31
+msgid "E-mail address"
+msgstr "E-mail address"
+
+#: .\apps\core\forms.py:32
+msgid "Subject"
+msgstr "Subject"
+
+#: .\apps\core\forms.py:33 .\apps\submissions\forms.py:489
+msgid "Message"
+msgstr "Message"
+
+#: .\apps\core\forms.py:40
+msgid "Spam detected."
+msgstr "Spam detected."
+
+#: .\apps\core\forms.py:47
+msgid "Please write at least 20 characters."
+msgstr "Please write at least 20 characters."
+
+#: .\apps\core\models.py:21
+msgid "created at"
+msgstr "created at"
+
+#: .\apps\core\models.py:22
+msgid "updated at"
+msgstr "updated at"
+
+#: .\apps\core\models.py:37
+msgid "machine-generated fields"
+msgstr "machine-generated fields"
+
+#: .\apps\core\models.py:59
+msgid "journal name"
+msgstr "journal name"
+
+#: .\apps\core\models.py:61
+msgid "journal subtitle"
+msgstr "journal subtitle"
+
+#: .\apps\core\models.py:62
+msgid "short code"
+msgstr "short code"
+
+#: .\apps\core\models.py:64
+msgid "e-ISSN"
+msgstr "e-ISSN"
+
+#: .\apps\core\models.py:65
+msgid "print ISSN"
+msgstr "print ISSN"
+
+#: .\apps\core\models.py:67
+msgid "registration certificate number"
+msgstr "registration certificate number"
+
+#: .\apps\core\models.py:70
+msgid "registration certificate date"
+msgstr "registration certificate date"
+
+#: .\apps\core\models.py:73
+msgid "registration authority"
+msgstr "registration authority"
+
+#: .\apps\core\models.py:77
+msgid "publisher"
+msgstr "publisher"
+
+#: .\apps\core\models.py:79
+msgid "publisher address"
+msgstr "publisher address"
+
+#: .\apps\core\models.py:80
+msgid "founded year"
+msgstr "founded year"
+
+#: .\apps\core\models.py:81 .\templates\core\about.html:16
+msgid "DOI prefix"
+msgstr "DOI prefix"
+
+#: .\apps\core\models.py:83
+msgid "publication frequency"
+msgstr "publication frequency"
+
+#: .\apps\core\models.py:86
+msgid "contact e-mail"
+msgstr "contact e-mail"
+
+#: .\apps\core\models.py:87
+msgid "contact phone"
+msgstr "contact phone"
+
+#: .\apps\core\models.py:88
+msgid "contact address"
+msgstr "contact address"
+
+#: .\apps\core\models.py:92
+msgid "editor-in-chief"
+msgstr "editor-in-chief"
+
+#: .\apps\core\models.py:99 .\apps\core\models.py:176
+msgid "logo"
+msgstr "logo"
+
+#: .\apps\core\models.py:100
+msgid "logo (dark)"
+msgstr "logo (dark)"
+
+#: .\apps\core\models.py:101
+msgid "favicon"
+msgstr "favicon"
+
+#: .\apps\core\models.py:103
+msgid "social links"
+msgstr "social links"
+
+#: .\apps\core\models.py:104
+msgid "Google Scholar profile"
+msgstr "Google Scholar profile"
+
+#: .\apps\core\models.py:105
+msgid "Crossref member ID"
+msgstr "Crossref member ID"
+
+#: .\apps\core\models.py:108
+msgid "maximum similarity (%)"
+msgstr "maximum similarity (%)"
+
+#: .\apps\core\models.py:113
+msgid "announcement bar text"
+msgstr "announcement bar text"
+
+#: .\apps\core\models.py:115
+msgid "Matomo site ID"
+msgstr "Matomo site ID"
+
+#: .\apps\core\models.py:117 .\apps\core\models.py:186
+msgid "indexing services"
+msgstr "indexing services"
+
+#: .\apps\core\models.py:119
+msgid "show Online First"
+msgstr "show Online First"
+
+#: .\apps\core\models.py:122 .\apps\core\models.py:123
+msgid "site settings"
+msgstr "site settings"
+
+#: .\apps\core\models.py:147
+msgid "Site settings cannot be deleted."
+msgstr "Site settings cannot be deleted."
+
+#: .\apps\core\models.py:158 .\templates\core\about.html:13
+#: .\templates\includes\footer.html:12 .\templates\journal\home.html:18
+msgid "pending"
+msgstr "pending"
+
+#: .\apps\core\models.py:174 .\apps\core\models.py:333
+#: .\apps\journal\models.py:47 .\apps\journal\models.py:70
+msgid "name"
+msgstr "name"
+
+#: .\apps\core\models.py:175 .\apps\core\models.py:215
+#: .\apps\core\models.py:301 .\apps\journal\models.py:69
+#: .\apps\journal\models.py:214 .\apps\journal\models.py:352
+msgid "slug"
+msgstr "slug"
+
+#: .\apps\core\models.py:177 .\apps\core\models.py:266
+msgid "URL"
+msgstr "URL"
+
+#: .\apps\core\models.py:179 .\apps\core\models.py:274
+#: .\apps\core\models.py:389 .\apps\journal\models.py:73
+#: .\apps\journal\models.py:795
+msgid "active"
+msgstr "active"
+
+#: .\apps\core\models.py:179
+msgid "Only active services are displayed publicly."
+msgstr "Only active services are displayed publicly."
+
+#: .\apps\core\models.py:181 .\apps\core\models.py:273
+#: .\apps\journal\models.py:72 .\apps\journal\models.py:580
+#: .\apps\journal\models.py:664 .\apps\journal\models.py:720
+#: .\apps\journal\models.py:794 .\apps\submissions\models.py:336
+msgid "order"
+msgstr "order"
+
+#: .\apps\core\models.py:182 .\apps\submissions\models.py:815
+msgid "note"
+msgstr "note"
+
+#: .\apps\core\models.py:185
+msgid "indexing service"
+msgstr "indexing service"
+
+#: .\apps\core\models.py:209 .\templates\includes\header.html:15
+#: .\templates\includes\header.html:97
+msgid "About"
+msgstr "About"
+
+#: .\apps\core\models.py:210 .\templates\core\for_authors.html:3
+#: .\templates\includes\footer.html:27 .\templates\includes\header.html:13
+#: .\templates\includes\header.html:95
+msgid "For Authors"
+msgstr "For Authors"
+
+#: .\apps\core\models.py:211 .\templates\includes\header.html:14
+#: .\templates\includes\header.html:96
+msgid "For Reviewers"
+msgstr "For Reviewers"
+
+#: .\apps\core\models.py:212
+msgid "Footer"
+msgstr "Footer"
+
+#: .\apps\core\models.py:213
+msgid "Not in menu"
+msgstr "Not in menu"
+
+#: .\apps\core\models.py:216 .\apps\core\models.py:300
+#: .\apps\journal\models.py:111 .\apps\journal\models.py:143
+#: .\apps\journal\models.py:349 .\apps\submissions\models.py:149
+msgid "title"
+msgstr "title"
+
+#: .\apps\core\models.py:217 .\apps\core\models.py:302
+#: .\apps\core\models.py:383
+msgid "body (Markdown)"
+msgstr "body (Markdown)"
+
+#: .\apps\core\models.py:220
+msgid "parent page"
+msgstr "parent page"
+
+#: .\apps\core\models.py:227 .\apps\core\models.py:268
+msgid "menu group"
+msgstr "menu group"
+
+#: .\apps\core\models.py:229
+msgid "menu order"
+msgstr "menu order"
+
+#: .\apps\core\models.py:230 .\apps\journal\models.py:146
+#: .\apps\journal\models.py:381 .\apps\metrics\models.py:96
+#: .\templates\production\issue_builder.html:6
+msgid "published"
+msgstr "published"
+
+#: .\apps\core\models.py:231
+msgid "SEO description"
+msgstr "SEO description"
+
+#: .\apps\core\models.py:233
+msgid "needs editorial review"
+msgstr "needs editorial review"
+
+#: .\apps\core\models.py:235
+msgid "Machine-drafted translations are flagged for proofreading."
+msgstr "Machine-drafted translations are flagged for proofreading."
+
+#: .\apps\core\models.py:241
+msgid "page"
+msgstr "page"
+
+#: .\apps\core\models.py:242
+msgid "pages"
+msgstr "pages"
+
+#: .\apps\core\models.py:265 .\apps\journal\models.py:246
+#: .\apps\journal\models.py:711
+msgid "label"
+msgstr "label"
+
+#: .\apps\core\models.py:275
+msgid "open in a new tab"
+msgstr "open in a new tab"
+
+#: .\apps\core\models.py:278
+msgid "menu item"
+msgstr "menu item"
+
+#: .\apps\core\models.py:279
+msgid "menu items"
+msgstr "menu items"
+
+#: .\apps\core\models.py:303 .\apps\journal\models.py:145
+msgid "published at"
+msgstr "published at"
+
+#: .\apps\core\models.py:304
+msgid "expires at"
+msgstr "expires at"
+
+#: .\apps\core\models.py:305
+msgid "pinned"
+msgstr "pinned"
+
+#: .\apps\core\models.py:310
+msgid "announcement"
+msgstr "announcement"
+
+#: .\apps\core\models.py:311
+msgid "announcements"
+msgstr "announcements"
+
+#: .\apps\core\models.py:334 .\apps\journal\models.py:597
+#: .\apps\journal\models.py:787 .\apps\submissions\models.py:347
+msgid "e-mail"
+msgstr "e-mail"
+
+#: .\apps\core\models.py:335 .\apps\core\models.py:382
+#: .\apps\submissions\models.py:749
+msgid "subject"
+msgstr "subject"
+
+#: .\apps\core\models.py:336 .\apps\crossref\models.py:65
+#: .\apps\submissions\models.py:789
+msgid "message"
+msgstr "message"
+
+#: .\apps\core\models.py:337 .\apps\core\models.py:428
+msgid "IP address"
+msgstr "IP address"
+
+#: .\apps\core\models.py:338
+msgid "handled"
+msgstr "handled"
+
+#: .\apps\core\models.py:341
+msgid "handled by"
+msgstr "handled by"
+
+#: .\apps\core\models.py:349
+msgid "contact message"
+msgstr "contact message"
+
+#: .\apps\core\models.py:350
+msgid "contact messages"
+msgstr "contact messages"
+
+#: .\apps\core\models.py:361
+msgid "Account verification"
+msgstr "Account verification"
+
+#: .\apps\core\models.py:364
+msgid "Submission received (author)"
+msgstr "Submission received (author)"
+
+#: .\apps\core\models.py:368
+msgid "Submission received (editor)"
+msgstr "Submission received (editor)"
+
+#: .\apps\core\models.py:370
+msgid "Editor assigned"
+msgstr "Editor assigned"
+
+#: .\apps\core\models.py:371
+msgid "Reviewer invitation"
+msgstr "Reviewer invitation"
+
+#: .\apps\core\models.py:372
+msgid "Reviewer reminder"
+msgstr "Reviewer reminder"
+
+#: .\apps\core\models.py:373
+msgid "Reviewer thanks"
+msgstr "Reviewer thanks"
+
+#: .\apps\core\models.py:374 .\apps\core\models.py:408
+#: .\templates\dashboard\decide.html:3 .\templates\dashboard\decide.html:5
+msgid "Editorial decision"
+msgstr "Editorial decision"
+
+#: .\apps\core\models.py:375
+msgid "Revision reminder"
+msgstr "Revision reminder"
+
+#: .\apps\core\models.py:376
+msgid "Proof request"
+msgstr "Proof request"
+
+#: .\apps\core\models.py:377
+msgid "Article published"
+msgstr "Article published"
+
+#: .\apps\core\models.py:378
+msgid "DOI registered"
+msgstr "DOI registered"
+
+#: .\apps\core\models.py:379
+msgid "Contact form notification"
+msgstr "Contact form notification"
+
+#: .\apps\core\models.py:381
+msgid "event"
+msgstr "event"
+
+#: .\apps\core\models.py:385
+msgid "available placeholders"
+msgstr "available placeholders"
+
+#: .\apps\core\models.py:387
+msgid "Documented context variables, one per line."
+msgstr "Documented context variables, one per line."
+
+#: .\apps\core\models.py:392
+msgid "e-mail template"
+msgstr "e-mail template"
+
+#: .\apps\core\models.py:393
+msgid "e-mail templates"
+msgstr "e-mail templates"
+
+#: .\apps\core\models.py:404
+msgid "Login"
+msgstr "Login"
+
+#: .\apps\core\models.py:405
+msgid "Failed login"
+msgstr "Failed login"
+
+#: .\apps\core\models.py:406
+msgid "Logout"
+msgstr "Logout"
+
+#: .\apps\core\models.py:407
+msgid "Role change"
+msgstr "Role change"
+
+#: .\apps\core\models.py:409 .\templates\production\issue_builder.html:59
+msgid "Publish"
+msgstr "Publish"
+
+#: .\apps\core\models.py:410
+msgid "Unpublish"
+msgstr "Unpublish"
+
+#: .\apps\core\models.py:411
+msgid "Settings change"
+msgstr "Settings change"
+
+#: .\apps\core\models.py:412
+msgid "File deletion"
+msgstr "File deletion"
+
+#: .\apps\core\models.py:413
+msgid "Workflow transition"
+msgstr "Workflow transition"
+
+#: .\apps\core\models.py:414
+msgid "Crossref deposit"
+msgstr "Crossref deposit"
+
+#: .\apps\core\models.py:415
+msgid "Policy override"
+msgstr "Policy override"
+
+#: .\apps\core\models.py:419
+msgid "actor"
+msgstr "actor"
+
+#: .\apps\core\models.py:425
+msgid "action"
+msgstr "action"
+
+#: .\apps\core\models.py:426
+msgid "target"
+msgstr "target"
+
+#: .\apps\core\models.py:427
+msgid "changes"
+msgstr "changes"
+
+#: .\apps\core\models.py:431
+msgid "audit log entry"
+msgstr "audit log entry"
+
+#: .\apps\core\models.py:432
+msgid "audit log"
+msgstr "audit log"
+
+#: .\apps\core\views.py:75 .\templates\400.html:3 .\templates\400.html:8
+msgid "Bad request"
+msgstr "Bad request"
+
+#: .\apps\core\views.py:75 .\templates\400.html:9
+msgid "The request could not be understood."
+msgstr "The request could not be understood."
+
+#: .\apps\core\views.py:81 .\templates\403.html:3 .\templates\403.html:8
+msgid "Access denied"
+msgstr "Access denied"
+
+#: .\apps\core\views.py:81 .\templates\403.html:9
+msgid "You do not have permission to view this page."
+msgstr "You do not have permission to view this page."
+
+#: .\apps\core\views.py:87 .\templates\404.html:3 .\templates\404.html:8
+msgid "Page not found"
+msgstr "Page not found"
+
+#: .\apps\core\views.py:87 .\templates\404.html:9
+msgid "This page does not exist or has moved."
+msgstr "This page does not exist or has moved."
+
+#: .\apps\core\views.py:95 .\templates\500.html:3 .\templates\500.html:8
+msgid "Server error"
+msgstr "Server error"
+
+#: .\apps\core\views.py:96 .\templates\500.html:9
+msgid ""
+"Something went wrong on our side. The editorial office has been notified."
+msgstr ""
+"Something went wrong on our side. The editorial office has been notified."
+
+#: .\apps\core\views_pages.py:66
+msgid ""
+"The manuscript is original, unpublished, and not under consideration "
+"elsewhere."
+msgstr ""
+"The manuscript is original, unpublished, and not under consideration "
+"elsewhere."
+
+#: .\apps\core\views_pages.py:67
+msgid ""
+"The article is between 4,000 and 10,000 words (2,000–4,000 for a short "
+"communication)."
+msgstr ""
+"The article is between 4,000 and 10,000 words (2,000–4,000 for a short "
+"communication)."
+
+#: .\apps\core\views_pages.py:69
+msgid ""
+"The manuscript file is anonymised: no author names, affiliations, "
+"acknowledgements or self-identifying citations."
+msgstr ""
+"The manuscript file is anonymised: no author names, affiliations, "
+"acknowledgements or self-identifying citations."
+
+#: .\apps\core\views_pages.py:72
+msgid ""
+"A separate title page lists all authors, affiliations with city and country,"
+" ORCID iDs and the corresponding author."
+msgstr ""
+"A separate title page lists all authors, affiliations with city and country,"
+" ORCID iDs and the corresponding author."
+
+#: .\apps\core\views_pages.py:75
+msgid ""
+"Title, abstract (150–250 words) and 5–8 keywords are provided in English, "
+"Uzbek and Russian."
+msgstr ""
+"Title, abstract (150–250 words) and 5–8 keywords are provided in English, "
+"Uzbek and Russian."
+
+#: .\apps\core\views_pages.py:77
+msgid "Between one and five JEL classification codes have been selected."
+msgstr "Between one and five JEL classification codes have been selected."
+
+#: .\apps\core\views_pages.py:79
+msgid ""
+"The structure follows IMRaD: introduction, literature, methods, results, "
+"discussion, conclusion."
+msgstr ""
+"The structure follows IMRaD: introduction, literature, methods, results, "
+"discussion, conclusion."
+
+#: .\apps\core\views_pages.py:82
+msgid ""
+"References follow APA 7th edition, with DOIs where available; non-Latin "
+"sources include a transliteration and an English translation."
+msgstr ""
+"References follow APA 7th edition, with DOIs where available; non-Latin "
+"sources include a transliteration and an English translation."
+
+#: .\apps\core\views_pages.py:85
+msgid ""
+"Tables and figures are numbered, captioned and referred to in the text; "
+"figures are legible at print size."
+msgstr ""
+"Tables and figures are numbered, captioned and referred to in the text; "
+"figures are legible at print size."
+
+#: .\apps\core\views_pages.py:87
+msgid ""
+"Funding, conflict of interest, data availability and generative-AI use are "
+"declared."
+msgstr ""
+"Funding, conflict of interest, data availability and generative-AI use are "
+"declared."
+
+#: .\apps\core\views_pages.py:88
+msgid ""
+"All co-authors have approved the submission and agree to publication under "
+"CC BY 4.0."
+msgstr ""
+"All co-authors have approved the submission and agree to publication under "
+"CC BY 4.0."
+
+#: .\apps\core\views_pages.py:90
+msgid ""
+"Research involving human participants states the ethical approval or "
+"explains why none was required."
+msgstr ""
+"Research involving human participants states the ethical approval or "
+"explains why none was required."
+
+#: .\apps\core\views_pages.py:118
+msgid "Too many messages have been sent from this address. Please try later."
+msgstr "Too many messages have been sent from this address. Please try later."
+
+#: .\apps\core\views_pages.py:137
+msgid "Thank you — your message has been sent."
+msgstr "Thank you — your message has been sent."
+
+#: .\apps\crossref\models.py:17 .\apps\submissions\models.py:495
+#: .\apps\submissions\models.py:838
+msgid "Pending"
+msgstr "Pending"
+
+#: .\apps\crossref\models.py:18 .\apps\submissions\models.py:42
+#: .\templates\dashboard\home.html:97
+#: .\templates\dashboard\submission_detail.html:11
+#: .\templates\review\dashboard.html:69
+msgid "Submitted"
+msgstr "Submitted"
+
+#: .\apps\crossref\models.py:19
+msgid "Success"
+msgstr "Success"
+
+#: .\apps\crossref\models.py:20
+msgid "Failed"
+msgstr "Failed"
+
+#: .\apps\crossref\models.py:22
+msgid "batch ID"
+msgstr "batch ID"
+
+#: .\apps\crossref\models.py:23
+msgid "deposit XML"
+msgstr "deposit XML"
+
+#: .\apps\crossref\models.py:25 .\apps\journal\models.py:432
+msgid "articles"
+msgstr "articles"
+
+#: .\apps\crossref\models.py:28 .\apps\crossref\models.py:64
+#: .\apps\journal\models.py:384 .\apps\submissions\models.py:167
+#: .\apps\submissions\models.py:457 .\apps\submissions\models.py:528
+#: .\apps\submissions\models.py:869
+msgid "status"
+msgstr "status"
+
+#: .\apps\crossref\models.py:30
+msgid "response log"
+msgstr "response log"
+
+#: .\apps\crossref\models.py:31 .\apps\submissions\models.py:193
+#: .\apps\submissions\models.py:612
+msgid "submitted at"
+msgstr "submitted at"
+
+#: .\apps\crossref\models.py:32
+msgid "resolved at"
+msgstr "resolved at"
+
+#: .\apps\crossref\models.py:33
+msgid "test deposit"
+msgstr "test deposit"
+
+#: .\apps\crossref\models.py:34
+msgid "metadata update"
+msgstr "metadata update"
+
+#: .\apps\crossref\models.py:37
+msgid "deposit batch"
+msgstr "deposit batch"
+
+#: .\apps\crossref\models.py:38
+msgid "deposit batches"
+msgstr "deposit batches"
+
+#: .\apps\crossref\models.py:51 .\apps\journal\models.py:431
+#: .\apps\journal\models.py:578 .\apps\journal\models.py:662
+#: .\apps\journal\models.py:709 .\apps\journal\models.py:843
+#: .\apps\metrics\models.py:28 .\apps\metrics\models.py:66
+msgid "article"
+msgstr "article"
+
+#: .\apps\crossref\models.py:57
+msgid "batch"
+msgstr "batch"
+
+#: .\apps\crossref\models.py:63 .\apps\journal\models.py:367
+#: .\apps\journal\models.py:666
+msgid "DOI"
+msgstr "DOI"
+
+#: .\apps\crossref\models.py:68
+msgid "DOI registration"
+msgstr "DOI registration"
+
+#: .\apps\crossref\models.py:69
+msgid "DOI registrations"
+msgstr "DOI registrations"
+
+#: .\apps\dashboard\forms.py:27 .\apps\submissions\forms.py:457
+msgid "Given name"
+msgstr "Given name"
+
+#: .\apps\dashboard\forms.py:28 .\apps\submissions\forms.py:460
+#: .\templates\search\search.html:54
+msgid "Family name"
+msgstr "Family name"
+
+#: .\apps\dashboard\forms.py:29
+msgid "Interface language"
+msgstr "Interface language"
+
+#: .\apps\dashboard\forms.py:72 .\apps\submissions\forms.py:271
+msgid "Enter an ORCID iD as 0000-0000-0000-0000."
+msgstr "Enter an ORCID iD as 0000-0000-0000-0000."
+
+#: .\apps\dashboard\forms.py:80
+msgid "Six-digit code"
+msgstr "Six-digit code"
+
+#: .\apps\dashboard\views.py:50 .\templates\dashboard\_base.html:16
+msgid "New"
+msgstr "New"
+
+#: .\apps\dashboard\views.py:51 .\apps\submissions\models.py:43
+#: .\templates\dashboard\_base.html:17
+msgid "Screening"
+msgstr "Screening"
+
+#: .\apps\dashboard\views.py:52 .\templates\dashboard\_base.html:18
+msgid "In review"
+msgstr "In review"
+
+#: .\apps\dashboard\views.py:53 .\apps\submissions\models.py:45
+#: .\templates\dashboard\_base.html:19
+msgid "Awaiting decision"
+msgstr "Awaiting decision"
+
+#: .\apps\dashboard\views.py:56 .\templates\dashboard\_base.html:20
+msgid "Revisions"
+msgstr "Revisions"
+
+#: .\apps\dashboard\views.py:61
+msgid "Accepted / in production"
+msgstr "Accepted / in production"
+
+#: .\apps\dashboard\views.py:212
+msgid "The similarity result has been recorded."
+msgstr "The similarity result has been recorded."
+
+#: .\apps\dashboard\views.py:214
+msgid "Please correct the similarity form."
+msgstr "Please correct the similarity form."
+
+#: .\apps\dashboard\views.py:230
+msgid "Done."
+msgstr "Done."
+
+#: .\apps\dashboard\views.py:234 .\apps\submissions\workflow.py:226
+msgid "You may not perform this action."
+msgstr "You may not perform this action."
+
+#: .\apps\dashboard\views.py:281
+msgid "Send the manuscript to review before inviting reviewers."
+msgstr "Send the manuscript to review before inviting reviewers."
+
+#: .\apps\dashboard\views.py:286 .\apps\submissions\forms.py:473
+msgid "Choose a reviewer or enter an e-mail address."
+msgstr "Choose a reviewer or enter an e-mail address."
+
+#: .\apps\dashboard\views.py:306
+msgid "The invitation has been sent."
+msgstr "The invitation has been sent."
+
+#: .\apps\dashboard\views.py:321
+msgid "The invitation has been cancelled."
+msgstr "The invitation has been cancelled."
+
+#: .\apps\dashboard\views.py:338
+msgid "A reminder has been sent."
+msgstr "A reminder has been sent."
+
+#: .\apps\dashboard\views.py:353
+msgid "Thank you — the rating has been saved."
+msgstr "Thank you — the rating has been saved."
+
+#: .\apps\dashboard\views.py:375
+msgid "The decision has been recorded and sent."
+msgstr "The decision has been recorded and sent."
+
+#: .\apps\dashboard\views.py:416
+msgid "Correspondence"
+msgstr "Correspondence"
+
+#: .\apps\dashboard\views.py:421
+msgid "Message posted."
+msgstr "Message posted."
+
+#: .\apps\dashboard\views.py:435
+msgid "Note saved."
+msgstr "Note saved."
+
+#: .\apps\dashboard\views.py:501
+msgid "Your profile has been updated."
+msgstr "Your profile has been updated."
+
+#: .\apps\dashboard\views.py:550 .\templates\dashboard\two_factor.html:10
+msgid "Two-factor authentication is now active."
+msgstr "Two-factor authentication is now active."
+
+#: .\apps\dashboard\views.py:556
+msgid "That code is not valid. Please try again."
+msgstr "That code is not valid. Please try again."
+
+#: .\apps\journal\feeds.py:32 .\templates\base.html:47
+#: .\templates\base.html:51
+msgid "Latest articles"
+msgstr "Latest articles"
+
+#: .\apps\journal\models.py:46 .\apps\journal\models.py:245
+msgid "code"
+msgstr "code"
+
+#: .\apps\journal\models.py:48
+msgid "licence URL"
+msgstr "licence URL"
+
+#: .\apps\journal\models.py:49
+msgid "badge SVG"
+msgstr "badge SVG"
+
+#: .\apps\journal\models.py:50
+msgid "default licence"
+msgstr "default licence"
+
+#: .\apps\journal\models.py:53 .\apps\journal\models.py:389
+msgid "licence"
+msgstr "licence"
+
+#: .\apps\journal\models.py:54
+msgid "licences"
+msgstr "licences"
+
+#: .\apps\journal\models.py:71
+msgid "description"
+msgstr "description"
+
+#: .\apps\journal\models.py:75
+msgid "research section"
+msgstr "research section"
+
+#: .\apps\journal\models.py:77
+msgid ""
+"Non-research sections (reviews, commentary) are excluded from the home grid."
+msgstr ""
+"Non-research sections (reviews, commentary) are excluded from the home grid."
+
+#: .\apps\journal\models.py:81
+msgid "section editors"
+msgstr "section editors"
+
+#: .\apps\journal\models.py:85
+msgid "suggested JEL prefixes"
+msgstr "suggested JEL prefixes"
+
+#: .\apps\journal\models.py:88 .\apps\journal\models.py:343
+#: .\apps\submissions\models.py:141
+msgid "section"
+msgstr "section"
+
+#: .\apps\journal\models.py:89 .\apps\journal\models.py:792
+msgid "sections"
+msgstr "sections"
+
+#: .\apps\journal\models.py:109
+msgid "volume number"
+msgstr "volume number"
+
+#: .\apps\journal\models.py:110
+msgid "year"
+msgstr "year"
+
+#: .\apps\journal\models.py:114 .\apps\journal\models.py:138
+msgid "volume"
+msgstr "volume"
+
+#: .\apps\journal\models.py:115
+msgid "volumes"
+msgstr "volumes"
+
+#: .\apps\journal\models.py:141
+msgid "issue number"
+msgstr "issue number"
+
+#: .\apps\journal\models.py:144
+msgid "editorial note"
+msgstr "editorial note"
+
+#: .\apps\journal\models.py:147
+msgid "current issue"
+msgstr "current issue"
+
+#: .\apps\journal\models.py:148
+msgid "cover"
+msgstr "cover"
+
+#: .\apps\journal\models.py:149
+msgid "issue DOI"
+msgstr "issue DOI"
+
+#: .\apps\journal\models.py:150
+msgid "page prefix"
+msgstr "page prefix"
+
+#: .\apps\journal\models.py:152
+msgid "full issue PDF"
+msgstr "full issue PDF"
+
+#: .\apps\journal\models.py:158 .\apps\journal\models.py:336
+msgid "issue"
+msgstr "issue"
+
+#: .\apps\journal\models.py:159 .\templates\journal\archive.html:22
+msgid "issues"
+msgstr "issues"
+
+#: .\apps\journal\models.py:213 .\apps\journal\models.py:217
+msgid "keyword"
+msgstr "keyword"
+
+#: .\apps\journal\models.py:218 .\apps\journal\models.py:355
+#: .\apps\submissions\models.py:152
+msgid "keywords"
+msgstr "keywords"
+
+#: .\apps\journal\models.py:249
+msgid "parent"
+msgstr "parent"
+
+#: .\apps\journal\models.py:255
+msgid "level"
+msgstr "level"
+
+#: .\apps\journal\models.py:258 .\templates\search\search.html:40
+msgid "JEL code"
+msgstr "JEL code"
+
+#: .\apps\journal\models.py:314 .\apps\submissions\models.py:41
+msgid "Draft"
+msgstr "Draft"
+
+#: .\apps\journal\models.py:315 .\templates\includes\footer.html:40
+#: .\templates\includes\header.html:12 .\templates\includes\header.html:94
+#: .\templates\journal\article_detail.html:24
+#: .\templates\journal\article_detail.html:42 .\templates\journal\home.html:81
+#: .\templates\journal\online_first.html:3
+#: .\templates\journal\online_first.html:6
+#: .\templates\journal\partials\article_card.html:20
+#: .\templates\production\queue.html:80
+#: .\templates\search\partials\results.html:12
+msgid "Online First"
+msgstr "Online First"
+
+#: .\apps\journal\models.py:316 .\apps\submissions\models.py:54
+#: .\templates\dashboard\home.html:109
+#: .\templates\journal\article_detail.html:98 .\templates\journal\home.html:61
+#: .\templates\journal\issue_detail.html:33
+msgid "Published"
+msgstr "Published"
+
+#: .\apps\journal\models.py:317
+msgid "Retracted"
+msgstr "Retracted"
+
+#: .\apps\journal\models.py:318 .\apps\submissions\models.py:56
+msgid "Withdrawn"
+msgstr "Withdrawn"
+
+#: .\apps\journal\models.py:321
+msgid "Not assigned"
+msgstr "Not assigned"
+
+#: .\apps\journal\models.py:322
+msgid "Reserved"
+msgstr "Reserved"
+
+#: .\apps\journal\models.py:323
+msgid "Registered"
+msgstr "Registered"
+
+#: .\apps\journal\models.py:324
+msgid "Registration failed"
+msgstr "Registration failed"
+
+#: .\apps\journal\models.py:325
+msgid "Metadata updated"
+msgstr "Metadata updated"
+
+#: .\apps\journal\models.py:328 .\apps\submissions\models.py:117
+msgid "Research article"
+msgstr "Research article"
+
+#: .\apps\journal\models.py:329 .\apps\submissions\models.py:118
+msgid "Review article"
+msgstr "Review article"
+
+#: .\apps\journal\models.py:330 .\apps\submissions\models.py:119
+msgid "Short communication"
+msgstr "Short communication"
+
+#: .\apps\journal\models.py:331 .\apps\submissions\models.py:120
+msgid "Book review"
+msgstr "Book review"
+
+#: .\apps\journal\models.py:346 .\apps\submissions\models.py:146
+msgid "article type"
+msgstr "article type"
+
+#: .\apps\journal\models.py:350
+msgid "subtitle"
+msgstr "subtitle"
+
+#: .\apps\journal\models.py:351 .\apps\submissions\models.py:150
+msgid "abstract"
+msgstr "abstract"
+
+#: .\apps\journal\models.py:361
+msgid "article language"
+msgstr "article language"
+
+#: .\apps\journal\models.py:369
+msgid "DOI status"
+msgstr "DOI status"
+
+#: .\apps\journal\models.py:372
+msgid "first page"
+msgstr "first page"
+
+#: .\apps\journal\models.py:373
+msgid "last page"
+msgstr "last page"
+
+#: .\apps\journal\models.py:374
+msgid "e-location ID"
+msgstr "e-location ID"
+
+#: .\apps\journal\models.py:375
+msgid "article number"
+msgstr "article number"
+
+#: .\apps\journal\models.py:377
+msgid "received"
+msgstr "received"
+
+#: .\apps\journal\models.py:378
+msgid "revised"
+msgstr "revised"
+
+#: .\apps\journal\models.py:379 .\apps\metrics\models.py:94
+msgid "accepted"
+msgstr "accepted"
+
+#: .\apps\journal\models.py:380
+msgid "published online"
+msgstr "published online"
+
+#: .\apps\journal\models.py:396
+msgid "copyright holder"
+msgstr "copyright holder"
+
+#: .\apps\journal\models.py:398 .\apps\submissions\models.py:227
+msgid "funding statement"
+msgstr "funding statement"
+
+#: .\apps\journal\models.py:400 .\apps\submissions\models.py:229
+msgid "conflict of interest statement"
+msgstr "conflict of interest statement"
+
+#: .\apps\journal\models.py:404 .\apps\submissions\models.py:231
+msgid "data availability statement"
+msgstr "data availability statement"
+
+#: .\apps\journal\models.py:406 .\apps\production\services.py:175
+msgid "AI use statement"
+msgstr "AI use statement"
+
+#: .\apps\journal\models.py:410
+msgid "acknowledgements"
+msgstr "acknowledgements"
+
+#: .\apps\journal\models.py:411
+msgid "retraction notice"
+msgstr "retraction notice"
+
+#: .\apps\journal\models.py:415 .\apps\submissions\models.py:244
+#: .\apps\submissions\models.py:334 .\apps\submissions\models.py:395
+#: .\apps\submissions\models.py:451 .\apps\submissions\models.py:658
+#: .\apps\submissions\models.py:698 .\apps\submissions\models.py:745
+#: .\apps\submissions\models.py:805 .\apps\submissions\models.py:855
+msgid "submission"
+msgstr "submission"
+
+#: .\apps\journal\models.py:422 .\apps\metrics\models.py:71
+msgid "views"
+msgstr "views"
+
+#: .\apps\journal\models.py:423 .\apps\metrics\models.py:72
+msgid "downloads"
+msgstr "downloads"
+
+#: .\apps\journal\models.py:424
+msgid "cited by (Crossref)"
+msgstr "cited by (Crossref)"
+
+#: .\apps\journal\models.py:425
+msgid "cited-by updated"
+msgstr "cited-by updated"
+
+#: .\apps\journal\models.py:426
+msgid "featured"
+msgstr "featured"
+
+#: .\apps\journal\models.py:583 .\apps\journal\models.py:771
+#: .\apps\submissions\models.py:339
+msgid "account"
+msgstr "account"
+
+#: .\apps\journal\models.py:592
+msgid "given name (native script)"
+msgstr "given name (native script)"
+
+#: .\apps\journal\models.py:595
+msgid "family name (native script)"
+msgstr "family name (native script)"
+
+#: .\apps\journal\models.py:598 .\apps\submissions\models.py:348
+msgid "corresponding author"
+msgstr "corresponding author"
+
+#: .\apps\journal\models.py:602 .\apps\submissions\models.py:352
+msgid "ROR ID"
+msgstr "ROR ID"
+
+#: .\apps\journal\models.py:606 .\apps\submissions\models.py:356
+msgid "CRediT roles"
+msgstr "CRediT roles"
+
+#: .\apps\journal\models.py:609 .\apps\submissions\models.py:783
+#: .\apps\submissions\models.py:809
+msgid "author"
+msgstr "author"
+
+#: .\apps\journal\models.py:610
+msgid "authors"
+msgstr "authors"
+
+#: .\apps\journal\models.py:665
+msgid "reference text"
+msgstr "reference text"
+
+#: .\apps\journal\models.py:667
+msgid "structured data"
+msgstr "structured data"
+
+#: .\apps\journal\models.py:670
+msgid "reference"
+msgstr "reference"
+
+#: .\apps\journal\models.py:671
+msgid "references"
+msgstr "references"
+
+#: .\apps\journal\models.py:702
+#: .\templates\journal\partials\article_card.html:30
+msgid "PDF"
+msgstr "PDF"
+
+#: .\apps\journal\models.py:703
+msgid "PDF (Uzbek)"
+msgstr "PDF (Uzbek)"
+
+#: .\apps\journal\models.py:704
+msgid "PDF (Russian)"
+msgstr "PDF (Russian)"
+
+#: .\apps\journal\models.py:705
+msgid "JATS XML"
+msgstr "JATS XML"
+
+#: .\apps\journal\models.py:706 .\templates\production\article_detail.html:37
+msgid "Supplementary"
+msgstr "Supplementary"
+
+#: .\apps\journal\models.py:712
+msgid "language"
+msgstr "language"
+
+#: .\apps\journal\models.py:713 .\apps\submissions\models.py:406
+msgid "file"
+msgstr "file"
+
+#: .\apps\journal\models.py:715
+msgid "unstamped original"
+msgstr "unstamped original"
+
+#: .\apps\journal\models.py:717 .\apps\submissions\models.py:418
+msgid "MIME type"
+msgstr "MIME type"
+
+#: .\apps\journal\models.py:718
+msgid "size in bytes"
+msgstr "size in bytes"
+
+#: .\apps\journal\models.py:719 .\templates\production\article_detail.html:48
+msgid "primary"
+msgstr "primary"
+
+#: .\apps\journal\models.py:723 .\apps\metrics\models.py:35
+msgid "galley"
+msgstr "galley"
+
+#: .\apps\journal\models.py:724
+msgid "galleys"
+msgstr "galleys"
+
+#: .\apps\journal\models.py:751
+msgid "Deputy Editor"
+msgstr "Deputy Editor"
+
+#: .\apps\journal\models.py:752
+msgid "Managing Editor"
+msgstr "Managing Editor"
+
+#: .\apps\journal\models.py:753
+msgid "Section Editor"
+msgstr "Section Editor"
+
+#: .\apps\journal\models.py:754
+msgid "Editorial Board Member"
+msgstr "Editorial Board Member"
+
+#: .\apps\journal\models.py:755
+msgid "International Advisory Board"
+msgstr "International Advisory Board"
+
+#: .\apps\journal\models.py:756 .\apps\journal\views.py:502
+#: .\templates\includes\footer.html:9
+msgid "Reviewer Board"
+msgstr "Reviewer Board"
+
+#: .\apps\journal\models.py:777
+msgid "full name"
+msgstr "full name"
+
+#: .\apps\journal\models.py:779
+msgid "role"
+msgstr "role"
+
+#: .\apps\journal\models.py:788
+msgid "photo"
+msgstr "photo"
+
+#: .\apps\journal\models.py:790
+msgid "expertise"
+msgstr "expertise"
+
+#: .\apps\journal\models.py:797
+msgid "demo entry"
+msgstr "demo entry"
+
+#: .\apps\journal\models.py:799
+msgid "Seeded placeholder — replace with a real board member."
+msgstr "Seeded placeholder — replace with a real board member."
+
+#: .\apps\journal\models.py:803
+msgid "editorial board member"
+msgstr "editorial board member"
+
+#: .\apps\journal\models.py:804
+msgid "editorial board members"
+msgstr "editorial board members"
+
+#: .\apps\journal\models.py:845
+msgid "total views"
+msgstr "total views"
+
+#: .\apps\journal\models.py:846
+msgid "total downloads"
+msgstr "total downloads"
+
+#: .\apps\journal\models.py:847
+msgid "views (30 days)"
+msgstr "views (30 days)"
+
+#: .\apps\journal\models.py:848
+msgid "downloads (30 days)"
+msgstr "downloads (30 days)"
+
+#: .\apps\journal\models.py:849
+msgid "computed at"
+msgstr "computed at"
+
+#: .\apps\journal\models.py:852 .\apps\journal\models.py:853
+msgid "article statistics"
+msgstr "article statistics"
+
+#: .\apps\journal\views.py:114
+msgid "Complete archive of published issues."
+msgstr "Complete archive of published issues."
+
+#: .\apps\journal\views.py:142
+msgid ""
+"Peer-reviewed articles published ahead of their issue, already citable by "
+"DOI."
+msgstr ""
+"Peer-reviewed articles published ahead of their issue, already citable by "
+"DOI."
+
+#: .\apps\journal\views.py:436
+msgid "Author not found."
+msgstr "Author not found."
+
+#: .\apps\journal\views.py:448
+#, python-format
+msgid "Articles by %(name)s"
+msgstr "Articles by %(name)s"
+
+#: .\apps\journal\views.py:493 .\templates\includes\footer.html:8
+msgid "Editorial Board"
+msgstr "Editorial Board"
+
+#: .\apps\journal\views.py:494
+msgid "Editorial board of the journal."
+msgstr "Editorial board of the journal."
+
+#: .\apps\journal\views.py:503
+msgid "Standing reviewer board of the journal."
+msgstr "Standing reviewer board of the journal."
+
+#: .\apps\metrics\models.py:23
+msgid "View"
+msgstr "View"
+
+#: .\apps\metrics\models.py:24
+#: .\templates\dashboard\submission_detail.html:153
+msgid "Download"
+msgstr "Download"
+
+#: .\apps\metrics\models.py:32 .\apps\submissions\models.py:405
+msgid "kind"
+msgstr "kind"
+
+#: .\apps\metrics\models.py:41
+msgid "occurred at"
+msgstr "occurred at"
+
+#: .\apps\metrics\models.py:42
+msgid "IP hash"
+msgstr "IP hash"
+
+#: .\apps\metrics\models.py:43
+msgid "user agent hash"
+msgstr "user agent hash"
+
+#: .\apps\metrics\models.py:44
+msgid "session hash"
+msgstr "session hash"
+
+#: .\apps\metrics\models.py:46
+msgid "bot"
+msgstr "bot"
+
+#: .\apps\metrics\models.py:49
+msgid "access event"
+msgstr "access event"
+
+#: .\apps\metrics\models.py:50
+msgid "access events"
+msgstr "access events"
+
+#: .\apps\metrics\models.py:70
+msgid "date"
+msgstr "date"
+
+#: .\apps\metrics\models.py:75
+msgid "daily article statistic"
+msgstr "daily article statistic"
+
+#: .\apps\metrics\models.py:76
+msgid "daily article statistics"
+msgstr "daily article statistics"
+
+#: .\apps\metrics\models.py:90
+msgid "month"
+msgstr "month"
+
+#: .\apps\metrics\models.py:90
+msgid "First day of the month."
+msgstr "First day of the month."
+
+#: .\apps\metrics\models.py:91
+msgid "submissions received"
+msgstr "submissions received"
+
+#: .\apps\metrics\models.py:92
+msgid "desk rejected"
+msgstr "desk rejected"
+
+#: .\apps\metrics\models.py:93
+msgid "sent to review"
+msgstr "sent to review"
+
+#: .\apps\metrics\models.py:95
+msgid "rejected"
+msgstr "rejected"
+
+#: .\apps\metrics\models.py:97
+msgid "acceptance rate (%)"
+msgstr "acceptance rate (%)"
+
+#: .\apps\metrics\models.py:99
+msgid "median days to first decision"
+msgstr "median days to first decision"
+
+#: .\apps\metrics\models.py:101
+msgid "median review days"
+msgstr "median review days"
+
+#: .\apps\metrics\models.py:102
+msgid "active reviewers"
+msgstr "active reviewers"
+
+#: .\apps\metrics\models.py:103
+msgid "author countries"
+msgstr "author countries"
+
+#: .\apps\metrics\models.py:106
+msgid "editorial KPI"
+msgstr "editorial KPI"
+
+#: .\apps\metrics\models.py:107
+msgid "editorial KPIs"
+msgstr "editorial KPIs"
+
+#: .\apps\plagiarism\providers.py:59
+msgid "Manual (editor uploads report)"
+msgstr "Manual (editor uploads report)"
+
+#: .\apps\plagiarism\providers.py:94
+msgid "iThenticate (Crossref Similarity Check)"
+msgstr "iThenticate (Crossref Similarity Check)"
+
+#: .\apps\production\services.py:168
+msgid "Title (English)"
+msgstr "Title (English)"
+
+#: .\apps\production\services.py:169
+msgid "Title (Uzbek)"
+msgstr "Title (Uzbek)"
+
+#: .\apps\production\services.py:170
+msgid "Title (Russian)"
+msgstr "Title (Russian)"
+
+#: .\apps\production\services.py:171
+msgid "Abstract (English)"
+msgstr "Abstract (English)"
+
+#: .\apps\production\services.py:172
+msgid "Abstract (Uzbek)"
+msgstr "Abstract (Uzbek)"
+
+#: .\apps\production\services.py:173
+msgid "Abstract (Russian)"
+msgstr "Abstract (Russian)"
+
+#: .\apps\production\services.py:174
+msgid "Conflict of interest statement"
+msgstr "Conflict of interest statement"
+
+#: .\apps\production\services.py:188
+msgid "At least one author"
+msgstr "At least one author"
+
+#: .\apps\production\services.py:191
+msgid "Every author has an affiliation with country"
+msgstr "Every author has an affiliation with country"
+
+#: .\apps\production\services.py:198
+msgid "Corresponding author with e-mail"
+msgstr "Corresponding author with e-mail"
+
+#: .\apps\production\services.py:205
+msgid "ORCID iD for every author"
+msgstr "ORCID iD for every author"
+
+#: .\apps\production\services.py:213
+msgid "5–8 keywords"
+msgstr "5–8 keywords"
+
+#: .\apps\production\services.py:221
+msgid "1–5 JEL codes"
+msgstr "1–5 JEL codes"
+
+#: .\apps\production\services.py:226
+msgid "DOI assigned"
+msgstr "DOI assigned"
+
+#: .\apps\production\services.py:229
+msgid "Primary PDF galley"
+msgstr "Primary PDF galley"
+
+#: .\apps\production\services.py:236
+msgid "At least 10 references"
+msgstr "At least 10 references"
+
+#: .\apps\production\services.py:242 .\templates\core\about.html:24
+#: .\templates\journal\article_detail.html:261
+msgid "Licence"
+msgstr "Licence"
+
+#: .\apps\production\services.py:245
+msgid "Received date"
+msgstr "Received date"
+
+#: .\apps\production\services.py:248
+msgid "Accepted date"
+msgstr "Accepted date"
+
+#: .\apps\production\services.py:267
+#, python-format
+msgid "Cannot publish: %(items)s"
+msgstr "Cannot publish: %(items)s"
+
+#: .\apps\production\services.py:297
+msgid "The issue has no articles."
+msgstr "The issue has no articles."
+
+#: .\apps\production\services.py:306
+#, python-format
+msgid "Some articles are incomplete: %(items)s"
+msgstr "Some articles are incomplete: %(items)s"
+
+#: .\apps\production\views.py:88
+msgid "The manuscript has moved to the next stage."
+msgstr "The manuscript has moved to the next stage."
+
+#: .\apps\production\views.py:107
+msgid "Stage marked as complete."
+msgstr "Stage marked as complete."
+
+#: .\apps\production\views.py:119 .\apps\production\views.py:142
+msgid "No file was selected."
+msgstr "No file was selected."
+
+#: .\apps\production\views.py:131
+msgid "File uploaded."
+msgstr "File uploaded."
+
+#: .\apps\production\views.py:159
+msgid "Galley uploaded."
+msgstr "Galley uploaded."
+
+#: .\apps\production\views.py:186
+#, python-format
+msgid "DOI reserved: %(doi)s"
+msgstr "DOI reserved: %(doi)s"
+
+#: .\apps\production\views.py:197
+msgid "The article is published as Online First."
+msgstr "The article is published as Online First."
+
+#: .\apps\production\views.py:217
+#, python-format
+msgid "The article has been scheduled into %(issue)s."
+msgstr "The article has been scheduled into %(issue)s."
+
+#: .\apps\production\views.py:264
+msgid "The issue order has been saved."
+msgstr "The issue order has been saved."
+
+#: .\apps\production\views.py:275
+#, python-format
+msgid "Issue %(label)s is published."
+msgstr "Issue %(label)s is published."
+
+#: .\apps\production\views.py:292
+#, python-format
+msgid "Issue %(label)s created."
+msgstr "Issue %(label)s created."
+
+#: .\apps\production\views.py:292
+#, python-format
+msgid "Issue %(label)s already exists."
+msgstr "Issue %(label)s already exists."
+
+#: .\apps\review\views.py:123
+msgid "Thank you for accepting the review invitation."
+msgstr "Thank you for accepting the review invitation."
+
+#: .\apps\review\views.py:128
+msgid "The invitation has been declined."
+msgstr "The invitation has been declined."
+
+#: .\apps\review\views.py:148
+msgid "Accept the invitation before writing a review."
+msgstr "Accept the invitation before writing a review."
+
+#: .\apps\review\views.py:167
+msgid "Draft saved."
+msgstr "Draft saved."
+
+#: .\apps\review\views.py:173
+msgid "Thank you — your review has been submitted."
+msgstr "Thank you — your review has been submitted."
+
+#: .\apps\review\views.py:217
+msgid "A certificate becomes available after your first review."
+msgstr "A certificate becomes available after your first review."
+
+#: .\apps\submissions\forms.py:28
+msgid "The manuscript is original and has not been published before."
+msgstr "The manuscript is original and has not been published before."
+
+#: .\apps\submissions\forms.py:31
+msgid "The manuscript is not under consideration by another journal."
+msgstr "The manuscript is not under consideration by another journal."
+
+#: .\apps\submissions\forms.py:33
+msgid "The manuscript follows the author guidelines and reference style."
+msgstr "The manuscript follows the author guidelines and reference style."
+
+#: .\apps\submissions\forms.py:34
+msgid "The manuscript file contains no information identifying the authors."
+msgstr "The manuscript file contains no information identifying the authors."
+
+#: .\apps\submissions\forms.py:35
+msgid "The research complies with the journal's publication ethics policy."
+msgstr "The research complies with the journal's publication ethics policy."
+
+#: .\apps\submissions\forms.py:36
+msgid "All authors agree to publication under the CC BY 4.0 licence."
+msgstr "All authors agree to publication under the CC BY 4.0 licence."
+
+#: .\apps\submissions\forms.py:54
+msgid "Describe any use of generative AI, or write 'None'."
+msgstr "Describe any use of generative AI, or write 'None'."
+
+#: .\apps\submissions\forms.py:67
+#: .\templates\dashboard\partials\queue_table.html:7
+#: .\templates\journal\section_detail.html:6 .\templates\search\search.html:24
+#: .\templates\submissions\wizard_step5.html:18
+msgid "Section"
+msgstr "Section"
+
+#: .\apps\submissions\forms.py:68
+msgid "Article type"
+msgstr "Article type"
+
+#: .\apps\submissions\forms.py:69
+msgid "Manuscript language"
+msgstr "Manuscript language"
+
+#: .\apps\submissions\forms.py:70
+msgid "Declaration on the use of generative AI"
+msgstr "Declaration on the use of generative AI"
+
+#: .\apps\submissions\forms.py:78
+msgid "Please state your use of generative AI, or write 'None'."
+msgstr "Please state your use of generative AI, or write 'None'."
+
+#: .\apps\submissions\forms.py:99 .\apps\submissions\models.py:376
+msgid "Anonymised manuscript"
+msgstr "Anonymised manuscript"
+
+#: .\apps\submissions\forms.py:100
+#, python-format
+msgid "PDF or DOCX, at most %(size)s MB, with no author information."
+msgstr "PDF or DOCX, at most %(size)s MB, with no author information."
+
+#: .\apps\submissions\forms.py:105 .\apps\submissions\models.py:377
+msgid "Title page"
+msgstr "Title page"
+
+#: .\apps\submissions\forms.py:106
+msgid "Separate file listing all authors, affiliations and contact details."
+msgstr "Separate file listing all authors, affiliations and contact details."
+
+#: .\apps\submissions\forms.py:108 .\apps\submissions\models.py:378
+msgid "Figures and tables"
+msgstr "Figures and tables"
+
+#: .\apps\submissions\forms.py:109
+msgid "Data or supplementary material"
+msgstr "Data or supplementary material"
+
+#: .\apps\submissions\forms.py:140 .\apps\submissions\views.py:328
+#: .\templates\submissions\wizard_step3.html:14
+msgid "English"
+msgstr "English"
+
+#: .\apps\submissions\forms.py:140
+msgid "Uzbek (Latin)"
+msgstr "Uzbek (Latin)"
+
+#: .\apps\submissions\forms.py:140 .\apps\submissions\views.py:328
+#: .\templates\submissions\wizard_step3.html:22
+msgid "Russian"
+msgstr "Russian"
+
+#: .\apps\submissions\forms.py:147
+msgid "Select between 1 and 5 codes."
+msgstr "Select between 1 and 5 codes."
+
+#: .\apps\submissions\forms.py:150 .\templates\journal\article_detail.html:170
+msgid "Funding"
+msgstr "Funding"
+
+#: .\apps\submissions\forms.py:154 .\templates\journal\article_detail.html:173
+msgid "Conflict of interest"
+msgstr "Conflict of interest"
+
+#: .\apps\submissions\forms.py:155 .\apps\submissions\views.py:173
+msgid "The authors declare no conflict of interest."
+msgstr "The authors declare no conflict of interest."
+
+#: .\apps\submissions\forms.py:160 .\templates\journal\article_detail.html:176
+msgid "Data availability"
+msgstr "Data availability"
+
+#: .\apps\submissions\forms.py:165 .\templates\journal\article_detail.html:208
+msgid "References"
+msgstr "References"
+
+#: .\apps\submissions\forms.py:166
+msgid "One reference per line, APA 7th style."
+msgstr "One reference per line, APA 7th style."
+
+#: .\apps\submissions\forms.py:176
+#, python-format
+msgid "Title (%(lang)s)"
+msgstr "Title (%(lang)s)"
+
+#: .\apps\submissions\forms.py:181
+#, python-format
+msgid "Abstract (%(lang)s)"
+msgstr "Abstract (%(lang)s)"
+
+#: .\apps\submissions\forms.py:183
+#, python-format
+msgid "Between %(min)s and %(max)s words."
+msgstr "Between %(min)s and %(max)s words."
+
+#: .\apps\submissions\forms.py:187
+#, python-format
+msgid "Keywords (%(lang)s)"
+msgstr "Keywords (%(lang)s)"
+
+#: .\apps\submissions\forms.py:189
+#, python-format
+msgid "%(min)s–%(max)s keywords, comma separated."
+msgstr "%(min)s–%(max)s keywords, comma separated."
+
+#: .\apps\submissions\forms.py:198
+#, python-format
+msgid "Select between %(min)s and %(max)s JEL codes."
+msgstr "Select between %(min)s and %(max)s JEL codes."
+
+#: .\apps\submissions\forms.py:214
+#, python-format
+msgid ""
+"The abstract has %(count)s words; it must have between %(min)s and %(max)s."
+msgstr ""
+"The abstract has %(count)s words; it must have between %(min)s and %(max)s."
+
+#: .\apps\submissions\forms.py:228
+#, python-format
+msgid "Provide between %(min)s and %(max)s keywords (you gave %(count)s)."
+msgstr "Provide between %(min)s and %(max)s keywords (you gave %(count)s)."
+
+#: .\apps\submissions\forms.py:290
+msgid "Suggested reviewers"
+msgstr "Suggested reviewers"
+
+#: .\apps\submissions\forms.py:291
+msgid "One per line: name, e-mail, affiliation."
+msgstr "One per line: name, e-mail, affiliation."
+
+#: .\apps\submissions\forms.py:296
+msgid "Reviewers to exclude"
+msgstr "Reviewers to exclude"
+
+#: .\apps\submissions\forms.py:297
+msgid "One per line, with a short reason."
+msgstr "One per line, with a short reason."
+
+#: .\apps\submissions\forms.py:305
+msgid "Cover letter"
+msgstr "Cover letter"
+
+#: .\apps\submissions\forms.py:324 .\apps\submissions\models.py:381
+msgid "Revised manuscript"
+msgstr "Revised manuscript"
+
+#: .\apps\submissions\forms.py:325
+msgid "Response to reviewers (file)"
+msgstr "Response to reviewers (file)"
+
+#: .\apps\submissions\forms.py:328 .\apps\submissions\models.py:382
+msgid "Response to reviewers"
+msgstr "Response to reviewers"
+
+#: .\apps\submissions\forms.py:359
+msgid "Similarity (%)"
+msgstr "Similarity (%)"
+
+#: .\apps\submissions\forms.py:360
+msgid "Similarity report (PDF)"
+msgstr "Similarity report (PDF)"
+
+#: .\apps\submissions\forms.py:361
+msgid "Justification for exceeding the threshold"
+msgstr "Justification for exceeding the threshold"
+
+#: .\apps\submissions\forms.py:378
+#, python-format
+msgid "Similarity above %(threshold)s%% requires a written justification."
+msgstr "Similarity above %(threshold)s%% requires a written justification."
+
+#: .\apps\submissions\forms.py:394 .\templates\dashboard\home.html:105
+#: .\templates\dashboard\submission_detail.html:29
+msgid "Decision"
+msgstr "Decision"
+
+#: .\apps\submissions\forms.py:394
+msgid "Letter to the author"
+msgstr "Letter to the author"
+
+#: .\apps\submissions\forms.py:409 .\templates\review\dashboard.html:68
+msgid "Recommendation"
+msgstr "Recommendation"
+
+#: .\apps\submissions\forms.py:410
+msgid "Comments to the authors"
+msgstr "Comments to the authors"
+
+#: .\apps\submissions\forms.py:411
+msgid "Confidential comments to the editor"
+msgstr "Confidential comments to the editor"
+
+#: .\apps\submissions\forms.py:412
+msgid "Annotated file (optional)"
+msgstr "Annotated file (optional)"
+
+#: .\apps\submissions\forms.py:434
+msgid "Please write at least 100 characters of feedback for the authors."
+msgstr "Please write at least 100 characters of feedback for the authors."
+
+#: .\apps\submissions\forms.py:454 .\templates\core\contact.html:14
+#: .\templates\dashboard\submission_detail.html:70
+#: .\templates\journal\article_detail.html:309
+msgid "E-mail"
+msgstr "E-mail"
+
+#: .\apps\submissions\forms.py:465
+msgid "Days to complete"
+msgstr "Days to complete"
+
+#: .\apps\submissions\forms.py:481
+msgid "Reason for withdrawal"
+msgstr "Reason for withdrawal"
+
+#: .\apps\submissions\models.py:44
+msgid "Under review"
+msgstr "Under review"
+
+#: .\apps\submissions\models.py:46
+msgid "Revision requested"
+msgstr "Revision requested"
+
+#: .\apps\submissions\models.py:47
+msgid "Resubmitted"
+msgstr "Resubmitted"
+
+#: .\apps\submissions\models.py:48 .\apps\submissions\models.py:488
+#: .\apps\submissions\models.py:496
+#: .\templates\core\partials\bar_chart.html:22
+#: .\templates\dashboard\reports.html:36
+msgid "Accepted"
+msgstr "Accepted"
+
+#: .\apps\submissions\models.py:49 .\apps\submissions\models.py:830
+msgid "Copyediting"
+msgstr "Copyediting"
+
+#: .\apps\submissions\models.py:50 .\apps\submissions\models.py:831
+msgid "Author proof"
+msgstr "Author proof"
+
+#: .\apps\submissions\models.py:51 .\apps\submissions\models.py:832
+msgid "Typesetting"
+msgstr "Typesetting"
+
+#: .\apps\submissions\models.py:52
+msgid "Ready to publish"
+msgstr "Ready to publish"
+
+#: .\apps\submissions\models.py:53
+msgid "Published (Online First)"
+msgstr "Published (Online First)"
+
+#: .\apps\submissions\models.py:55 .\templates\dashboard\reports.html:37
+msgid "Rejected"
+msgstr "Rejected"
+
+#: .\apps\submissions\models.py:123
+msgid "submission ID"
+msgstr "submission ID"
+
+#: .\apps\submissions\models.py:127
+msgid "published article"
+msgstr "published article"
+
+#: .\apps\submissions\models.py:135
+msgid "submitter"
+msgstr "submitter"
+
+#: .\apps\submissions\models.py:152
+msgid "Comma-separated, 5–8 keywords."
+msgstr "Comma-separated, 5–8 keywords."
+
+#: .\apps\submissions\models.py:158
+msgid "manuscript language"
+msgstr "manuscript language"
+
+#: .\apps\submissions\models.py:163
+msgid "word count"
+msgstr "word count"
+
+#: .\apps\submissions\models.py:164
+msgid "cover letter"
+msgstr "cover letter"
+
+#: .\apps\submissions\models.py:173
+msgid "current round"
+msgstr "current round"
+
+#: .\apps\submissions\models.py:174
+msgid "wizard step"
+msgstr "wizard step"
+
+#: .\apps\submissions\models.py:178
+msgid "handling editor"
+msgstr "handling editor"
+
+#: .\apps\submissions\models.py:186
+msgid "assigned by"
+msgstr "assigned by"
+
+#: .\apps\submissions\models.py:195
+msgid "accepted at"
+msgstr "accepted at"
+
+#: .\apps\submissions\models.py:197
+msgid "withdrawn"
+msgstr "withdrawn"
+
+#: .\apps\submissions\models.py:198
+msgid "withdrawal reason"
+msgstr "withdrawal reason"
+
+#: .\apps\submissions\models.py:201
+msgid "similarity (%)"
+msgstr "similarity (%)"
+
+#: .\apps\submissions\models.py:207
+msgid "similarity report"
+msgstr "similarity report"
+
+#: .\apps\submissions\models.py:211
+msgid "similarity checked by"
+msgstr "similarity checked by"
+
+#: .\apps\submissions\models.py:217
+msgid "similarity checked at"
+msgstr "similarity checked at"
+
+#: .\apps\submissions\models.py:219
+msgid "similarity override justification"
+msgstr "similarity override justification"
+
+#: .\apps\submissions\models.py:222
+msgid "author declarations"
+msgstr "author declarations"
+
+#: .\apps\submissions\models.py:223
+msgid "suggested reviewers"
+msgstr "suggested reviewers"
+
+#: .\apps\submissions\models.py:224
+msgid "opposed reviewers"
+msgstr "opposed reviewers"
+
+#: .\apps\submissions\models.py:225
+msgid "manuscript is anonymised"
+msgstr "manuscript is anonymised"
+
+#: .\apps\submissions\models.py:226
+msgid "AI use disclosure"
+msgstr "AI use disclosure"
+
+#: .\apps\submissions\models.py:232
+msgid "latest decision letter"
+msgstr "latest decision letter"
+
+#: .\apps\submissions\models.py:235
+msgid "multilingual metadata"
+msgstr "multilingual metadata"
+
+#: .\apps\submissions\models.py:238
+msgid "Title, abstract and keywords per language, captured in the wizard."
+msgstr "Title, abstract and keywords per language, captured in the wizard."
+
+#: .\apps\submissions\models.py:245
+msgid "submissions"
+msgstr "submissions"
+
+#: .\apps\submissions\models.py:355
+msgid "contribution"
+msgstr "contribution"
+
+#: .\apps\submissions\models.py:359
+msgid "submission author"
+msgstr "submission author"
+
+#: .\apps\submissions\models.py:360
+msgid "submission authors"
+msgstr "submission authors"
+
+#: .\apps\submissions\models.py:379
+msgid "Data"
+msgstr "Data"
+
+#: .\apps\submissions\models.py:380
+msgid "Supplementary material"
+msgstr "Supplementary material"
+
+#: .\apps\submissions\models.py:383
+#: .\templates\production\submission_detail.html:65
+msgid "Copyedited manuscript"
+msgstr "Copyedited manuscript"
+
+#: .\apps\submissions\models.py:384
+#: .\templates\production\submission_detail.html:66
+msgid "Proof"
+msgstr "Proof"
+
+#: .\apps\submissions\models.py:385
+#: .\templates\production\submission_detail.html:67
+msgid "Final version"
+msgstr "Final version"
+
+#: .\apps\submissions\models.py:399 .\apps\submissions\models.py:500
+#: .\apps\submissions\models.py:664 .\apps\submissions\models.py:704
+msgid "round"
+msgstr "round"
+
+#: .\apps\submissions\models.py:407
+msgid "original file name"
+msgstr "original file name"
+
+#: .\apps\submissions\models.py:410
+msgid "uploaded by"
+msgstr "uploaded by"
+
+#: .\apps\submissions\models.py:416
+msgid "version"
+msgstr "version"
+
+#: .\apps\submissions\models.py:417
+msgid "size"
+msgstr "size"
+
+#: .\apps\submissions\models.py:419
+msgid "visible to reviewers"
+msgstr "visible to reviewers"
+
+#: .\apps\submissions\models.py:422
+msgid "submission file"
+msgstr "submission file"
+
+#: .\apps\submissions\models.py:423
+msgid "submission files"
+msgstr "submission files"
+
+#: .\apps\submissions\models.py:447 .\templates\dashboard\home.html:66
+#: .\templates\production\queue.html:89
+msgid "Open"
+msgstr "Open"
+
+#: .\apps\submissions\models.py:448
+msgid "Closed"
+msgstr "Closed"
+
+#: .\apps\submissions\models.py:453
+msgid "round number"
+msgstr "round number"
+
+#: .\apps\submissions\models.py:454
+msgid "opened at"
+msgstr "opened at"
+
+#: .\apps\submissions\models.py:455
+msgid "closed at"
+msgstr "closed at"
+
+#: .\apps\submissions\models.py:461
+msgid "review round"
+msgstr "review round"
+
+#: .\apps\submissions\models.py:462
+msgid "review rounds"
+msgstr "review rounds"
+
+#: .\apps\submissions\models.py:487
+msgid "Invited"
+msgstr "Invited"
+
+#: .\apps\submissions\models.py:489 .\apps\submissions\models.py:497
+msgid "Declined"
+msgstr "Declined"
+
+#: .\apps\submissions\models.py:490
+msgid "Review submitted"
+msgstr "Review submitted"
+
+#: .\apps\submissions\models.py:491
+msgid "Cancelled"
+msgstr "Cancelled"
+
+#: .\apps\submissions\models.py:492
+msgid "Overdue"
+msgstr "Overdue"
+
+#: .\apps\submissions\models.py:504
+msgid "reviewer"
+msgstr "reviewer"
+
+#: .\apps\submissions\models.py:510
+msgid "invited by"
+msgstr "invited by"
+
+#: .\apps\submissions\models.py:516
+msgid "invited at"
+msgstr "invited at"
+
+#: .\apps\submissions\models.py:517
+msgid "responded at"
+msgstr "responded at"
+
+#: .\apps\submissions\models.py:519
+msgid "response"
+msgstr "response"
+
+#: .\apps\submissions\models.py:521
+msgid "decline reason"
+msgstr "decline reason"
+
+#: .\apps\submissions\models.py:522 .\apps\submissions\models.py:719
+#: .\apps\submissions\models.py:871
+msgid "due at"
+msgstr "due at"
+
+#: .\apps\submissions\models.py:523 .\apps\submissions\models.py:872
+msgid "completed at"
+msgstr "completed at"
+
+#: .\apps\submissions\models.py:524
+msgid "reminders sent"
+msgstr "reminders sent"
+
+#: .\apps\submissions\models.py:525
+msgid "last reminder"
+msgstr "last reminder"
+
+#: .\apps\submissions\models.py:526
+msgid "access token"
+msgstr "access token"
+
+#: .\apps\submissions\models.py:532
+msgid "review assignment"
+msgstr "review assignment"
+
+#: .\apps\submissions\models.py:533
+msgid "review assignments"
+msgstr "review assignments"
+
+#: .\apps\submissions\models.py:581 .\apps\submissions\models.py:650
+#: .\apps\submissions\workflow.py:116 .\templates\review\dashboard.html:27
+msgid "Accept"
+msgstr "Accept"
+
+#: .\apps\submissions\models.py:582 .\apps\submissions\models.py:651
+msgid "Minor revision"
+msgstr "Minor revision"
+
+#: .\apps\submissions\models.py:583 .\apps\submissions\models.py:652
+msgid "Major revision"
+msgstr "Major revision"
+
+#: .\apps\submissions\models.py:584 .\apps\submissions\models.py:653
+#: .\apps\submissions\workflow.py:123
+msgid "Reject"
+msgstr "Reject"
+
+#: .\apps\submissions\models.py:588
+msgid "Originality and novelty"
+msgstr "Originality and novelty"
+
+#: .\apps\submissions\models.py:589
+msgid "Relevance to the journal's scope"
+msgstr "Relevance to the journal's scope"
+
+#: .\apps\submissions\models.py:590
+msgid "Methodological rigour"
+msgstr "Methodological rigour"
+
+#: .\apps\submissions\models.py:591
+msgid "Data and results"
+msgstr "Data and results"
+
+#: .\apps\submissions\models.py:592
+msgid "Coverage of the literature"
+msgstr "Coverage of the literature"
+
+#: .\apps\submissions\models.py:593
+msgid "Writing and structure"
+msgstr "Writing and structure"
+
+#: .\apps\submissions\models.py:598
+msgid "assignment"
+msgstr "assignment"
+
+#: .\apps\submissions\models.py:603
+msgid "recommendation"
+msgstr "recommendation"
+
+#: .\apps\submissions\models.py:605
+msgid "scores"
+msgstr "scores"
+
+#: .\apps\submissions\models.py:606
+msgid "comments to the authors"
+msgstr "comments to the authors"
+
+#: .\apps\submissions\models.py:607
+msgid "confidential comments to the editor"
+msgstr "confidential comments to the editor"
+
+#: .\apps\submissions\models.py:609
+msgid "annotated file"
+msgstr "annotated file"
+
+#: .\apps\submissions\models.py:611
+msgid "attachment metadata stripped"
+msgstr "attachment metadata stripped"
+
+#: .\apps\submissions\models.py:614
+msgid "review quality (1–5)"
+msgstr "review quality (1–5)"
+
+#: .\apps\submissions\models.py:619
+msgid "draft"
+msgstr "draft"
+
+#: .\apps\submissions\models.py:622
+msgid "review"
+msgstr "review"
+
+#: .\apps\submissions\models.py:623
+msgid "reviews"
+msgstr "reviews"
+
+#: .\apps\submissions\models.py:648 .\apps\submissions\workflow.py:74
+msgid "Desk reject"
+msgstr "Desk reject"
+
+#: .\apps\submissions\models.py:649 .\apps\submissions\workflow.py:81
+msgid "Send to review"
+msgstr "Send to review"
+
+#: .\apps\submissions\models.py:654
+msgid "Reject with resubmission encouraged"
+msgstr "Reject with resubmission encouraged"
+
+#: .\apps\submissions\models.py:672
+msgid "decided by"
+msgstr "decided by"
+
+#: .\apps\submissions\models.py:678 .\apps\submissions\models.py:712
+msgid "decision"
+msgstr "decision"
+
+#: .\apps\submissions\models.py:679
+msgid "decision letter"
+msgstr "decision letter"
+
+#: .\apps\submissions\models.py:680
+msgid "decided at"
+msgstr "decided at"
+
+#: .\apps\submissions\models.py:681
+msgid "e-mailed at"
+msgstr "e-mailed at"
+
+#: .\apps\submissions\models.py:684
+msgid "editorial decision"
+msgstr "editorial decision"
+
+#: .\apps\submissions\models.py:685
+msgid "editorial decisions"
+msgstr "editorial decisions"
+
+#: .\apps\submissions\models.py:718
+msgid "major revision"
+msgstr "major revision"
+
+#: .\apps\submissions\models.py:720
+msgid "author responded at"
+msgstr "author responded at"
+
+#: .\apps\submissions\models.py:721
+msgid "response to reviewers"
+msgstr "response to reviewers"
+
+#: .\apps\submissions\models.py:722
+msgid "reminder sent"
+msgstr "reminder sent"
+
+#: .\apps\submissions\models.py:725
+msgid "revision request"
+msgstr "revision request"
+
+#: .\apps\submissions\models.py:726
+msgid "revision requests"
+msgstr "revision requests"
+
+#: .\apps\submissions\models.py:730
+msgid "major"
+msgstr "major"
+
+#: .\apps\submissions\models.py:730
+msgid "minor"
+msgstr "minor"
+
+#: .\apps\submissions\models.py:738
+msgid "Author ↔ Editor"
+msgstr "Author ↔ Editor"
+
+#: .\apps\submissions\models.py:739
+msgid "Editor ↔ Reviewer"
+msgstr "Editor ↔ Reviewer"
+
+#: .\apps\submissions\models.py:740
+msgid "Editor ↔ Production"
+msgstr "Editor ↔ Production"
+
+#: .\apps\submissions\models.py:741
+#: .\templates\dashboard\submission_detail.html:284
+msgid "Editors only"
+msgstr "Editors only"
+
+#: .\apps\submissions\models.py:751
+msgid "visibility"
+msgstr "visibility"
+
+#: .\apps\submissions\models.py:758
+msgid "created by"
+msgstr "created by"
+
+#: .\apps\submissions\models.py:764
+msgid "closed"
+msgstr "closed"
+
+#: .\apps\submissions\models.py:767 .\apps\submissions\models.py:779
+msgid "discussion"
+msgstr "discussion"
+
+#: .\apps\submissions\models.py:768
+msgid "discussions"
+msgstr "discussions"
+
+#: .\apps\submissions\models.py:790
+msgid "system message"
+msgstr "system message"
+
+#: .\apps\submissions\models.py:793
+msgid "discussion message"
+msgstr "discussion message"
+
+#: .\apps\submissions\models.py:794
+msgid "discussion messages"
+msgstr "discussion messages"
+
+#: .\apps\submissions\models.py:818
+msgid "editor note"
+msgstr "editor note"
+
+#: .\apps\submissions\models.py:819
+msgid "editor notes"
+msgstr "editor notes"
+
+#: .\apps\submissions\models.py:833
+msgid "Metadata completion"
+msgstr "Metadata completion"
+
+#: .\apps\submissions\models.py:834
+msgid "DOI assignment"
+msgstr "DOI assignment"
+
+#: .\apps\submissions\models.py:835
+msgid "Scheduled to issue"
+msgstr "Scheduled to issue"
+
+#: .\apps\submissions\models.py:839 .\templates\dashboard\home.html:71
+msgid "In progress"
+msgstr "In progress"
+
+#: .\apps\submissions\models.py:840
+msgid "Done"
+msgstr "Done"
+
+#: .\apps\submissions\models.py:841
+msgid "Blocked"
+msgstr "Blocked"
+
+#: .\apps\submissions\models.py:859
+msgid "stage"
+msgstr "stage"
+
+#: .\apps\submissions\models.py:862
+msgid "assignee"
+msgstr "assignee"
+
+#: .\apps\submissions\models.py:873
+msgid "notes"
+msgstr "notes"
+
+#: .\apps\submissions\models.py:876
+msgid "production task"
+msgstr "production task"
+
+#: .\apps\submissions\models.py:877
+msgid "production tasks"
+msgstr "production tasks"
+
+#: .\apps\submissions\services.py:71
+#, python-format
+msgid "The file is larger than %(limit)s MB."
+msgstr "The file is larger than %(limit)s MB."
+
+#: .\apps\submissions\services.py:79
+#, python-format
+msgid "Allowed file types for this slot: %(types)s."
+msgstr "Allowed file types for this slot: %(types)s."
+
+#: .\apps\submissions\services.py:89
+#, python-format
+msgid "The file content (%(detected)s) does not match its extension."
+msgstr "The file content (%(detected)s) does not match its extension."
+
+#: .\apps\submissions\services.py:118
+msgid "The uploaded file failed the virus scan."
+msgstr "The uploaded file failed the virus scan."
+
+#: .\apps\submissions\services.py:276
+msgid "This reviewer has already been invited to this round."
+msgstr "This reviewer has already been invited to this round."
+
+#: .\apps\submissions\services.py:278
+msgid "The submitting author cannot review their own manuscript."
+msgstr "The submitting author cannot review their own manuscript."
+
+#: .\apps\submissions\services.py:280
+msgid "This person is an author of the manuscript."
+msgstr "This person is an author of the manuscript."
+
+#: .\apps\submissions\services.py:385
+msgid "All reviews received; awaiting the editorial decision."
+msgstr "All reviews received; awaiting the editorial decision."
+
+#: .\apps\submissions\services.py:399
+msgid "I am pleased to inform you that your manuscript has been accepted."
+msgstr "I am pleased to inform you that your manuscript has been accepted."
+
+#: .\apps\submissions\services.py:400
+msgid "Your manuscript requires minor revisions before it can be accepted."
+msgstr "Your manuscript requires minor revisions before it can be accepted."
+
+#: .\apps\submissions\services.py:402
+msgid ""
+"Your manuscript requires major revisions before it can be considered "
+"further."
+msgstr ""
+"Your manuscript requires major revisions before it can be considered "
+"further."
+
+#: .\apps\submissions\services.py:404
+msgid "After careful consideration, we cannot accept your manuscript."
+msgstr "After careful consideration, we cannot accept your manuscript."
+
+#: .\apps\submissions\services.py:406
+msgid ""
+"After an initial editorial assessment, we cannot proceed with your "
+"manuscript."
+msgstr ""
+"After an initial editorial assessment, we cannot proceed with your "
+"manuscript."
+
+#: .\apps\submissions\services.py:409
+msgid ""
+"We cannot accept the manuscript in its present form, but we would welcome a "
+"resubmission."
+msgstr ""
+"We cannot accept the manuscript in its present form, but we would welcome a "
+"resubmission."
+
+#: .\apps\submissions\services.py:414
+msgid "Dear Author,"
+msgstr "Dear Author,"
+
+#: .\apps\submissions\services.py:418
+#, python-format
+msgid "Manuscript: %(title)s (%(reference)s)"
+msgstr "Manuscript: %(title)s (%(reference)s)"
+
+#: .\apps\submissions\services.py:423
+#, python-format
+msgid "Reviewer %(n)d"
+msgstr "Reviewer %(n)d"
+
+#: .\apps\submissions\services.py:429
+msgid "Yours sincerely,"
+msgstr "Yours sincerely,"
+
+#: .\apps\submissions\services.py:430
+msgid "Editorial Office"
+msgstr "Editorial Office"
+
+#: .\apps\submissions\tasks.py:46
+#, python-format
+msgid "Your submission %(ref)s has been received"
+msgstr "Your submission %(ref)s has been received"
+
+#: .\apps\submissions\tasks.py:49
+#, python-brace-format
+msgid ""
+"Dear author,\n"
+"\n"
+"Thank you for submitting **{title}** ({reference}) to {journal}.\n"
+"\n"
+"You can follow its progress in your dashboard: {dashboard_url}"
+msgstr ""
+"Dear author,\n"
+"\n"
+"Thank you for submitting **{title}** ({reference}) to {journal}.\n"
+"\n"
+"You can follow its progress in your dashboard: {dashboard_url}"
+
+#: .\apps\submissions\tasks.py:66
+#, python-format
+msgid "New submission %(ref)s"
+msgstr "New submission %(ref)s"
+
+#: .\apps\submissions\tasks.py:68
+#, python-brace-format
+msgid ""
+"A new manuscript **{title}** ({reference}) was submitted to the section {section}.\n"
+"\n"
+"Open it here: {detail_url}"
+msgstr ""
+"A new manuscript **{title}** ({reference}) was submitted to the section {section}.\n"
+"\n"
+"Open it here: {detail_url}"
+
+#: .\apps\submissions\tasks.py:90
+#, python-format
+msgid "You are handling %(ref)s"
+msgstr "You are handling %(ref)s"
+
+#: .\apps\submissions\tasks.py:92
+#, python-brace-format
+msgid ""
+"You have been assigned as handling editor for **{title}** ({reference}).\n"
+"\n"
+"Open it here: {detail_url}"
+msgstr ""
+"You have been assigned as handling editor for **{title}** ({reference}).\n"
+"\n"
+"Open it here: {detail_url}"
+
+#: .\apps\submissions\tasks.py:126
+#, python-format
+msgid "Invitation to review for %(journal)s"
+msgstr "Invitation to review for %(journal)s"
+
+#: .\apps\submissions\tasks.py:128
+#, python-brace-format
+msgid ""
+"Dear colleague,\n"
+"\n"
+"We invite you to review the manuscript **{title}** for {journal} (section: {section}). Reviews are due by {due_date}.\n"
+"\n"
+"[Accept]({accept_url}) · [Decline]({decline_url})\n"
+"\n"
+"The review is double-blind: the manuscript contains no author information."
+msgstr ""
+"Dear colleague,\n"
+"\n"
+"We invite you to review the manuscript **{title}** for {journal} (section: {section}). Reviews are due by {due_date}.\n"
+"\n"
+"[Accept]({accept_url}) · [Decline]({decline_url})\n"
+"\n"
+"The review is double-blind: the manuscript contains no author information."
+
+#: .\apps\submissions\tasks.py:151
+msgid "Thank you for your review"
+msgstr "Thank you for your review"
+
+#: .\apps\submissions\tasks.py:153
+#, python-brace-format
+msgid ""
+"Thank you for reviewing **{title}**. Your work is essential to the journal.\n"
+"\n"
+"You can download a reviewer certificate here: {certificate_url}"
+msgstr ""
+"Thank you for reviewing **{title}**. Your work is essential to the journal.\n"
+"\n"
+"You can download a reviewer certificate here: {certificate_url}"
+
+#: .\apps\submissions\tasks.py:176
+#, python-format
+msgid "Decision on %(ref)s"
+msgstr "Decision on %(ref)s"
+
+#: .\apps\submissions\tasks.py:207
+msgid "Your article is published"
+msgstr "Your article is published"
+
+#: .\apps\submissions\tasks.py:208
+#, python-brace-format
+msgid ""
+"Your article **{title}** is now published.\n"
+"\n"
+"DOI: {doi}\n"
+"URL: {url}"
+msgstr ""
+"Your article **{title}** is now published.\n"
+"\n"
+"DOI: {doi}\n"
+"URL: {url}"
+
+#: .\apps\submissions\tasks.py:224
+msgid "An account has been created for you"
+msgstr "An account has been created for you"
+
+#: .\apps\submissions\tasks.py:226
+#, python-brace-format
+msgid ""
+"An editorial account has been created for you. Set your password here: "
+"{reset_url}"
+msgstr ""
+"An editorial account has been created for you. Set your password here: "
+"{reset_url}"
+
+#: .\apps\submissions\tasks.py:259
+#, python-format
+msgid "Reminder: review due %(date)s"
+msgstr "Reminder: review due %(date)s"
+
+#: .\apps\submissions\tasks.py:262
+#, python-brace-format
+msgid ""
+"This is a reminder that your review of **{title}** is due on {due_date}.\n"
+"\n"
+"Open the review form: {review_url}"
+msgstr ""
+"This is a reminder that your review of **{title}** is due on {due_date}.\n"
+"\n"
+"Open the review form: {review_url}"
+
+#: .\apps\submissions\tasks.py:306
+#, python-format
+msgid "Revision of %(ref)s due soon"
+msgstr "Revision of %(ref)s due soon"
+
+#: .\apps\submissions\tasks.py:308
+#, python-brace-format
+msgid ""
+"Your revision of **{title}** ({reference}) is due on {due_date}.\n"
+"\n"
+"Upload it here: {dashboard_url}"
+msgstr ""
+"Your revision of **{title}** ({reference}) is due on {due_date}.\n"
+"\n"
+"Upload it here: {dashboard_url}"
+
+#: .\apps\submissions\tasks.py:332
+#, python-format
+msgid "Proof ready for %(ref)s"
+msgstr "Proof ready for %(ref)s"
+
+#: .\apps\submissions\tasks.py:334
+#, python-brace-format
+msgid ""
+"The proof of **{title}** ({reference}) is ready for your approval.\n"
+"\n"
+"Please review it by {deadline}: {dashboard_url}"
+msgstr ""
+"The proof of **{title}** ({reference}) is ready for your approval.\n"
+"\n"
+"Please review it by {deadline}: {dashboard_url}"
+
+#: .\apps\submissions\views.py:36
+msgid "Start"
+msgstr "Start"
+
+#: .\apps\submissions\views.py:37
+#: .\templates\dashboard\submission_detail.html:22
+#: .\templates\production\submission_detail.html:55
+#: .\templates\review\assignment_detail.html:28
+#: .\templates\submissions\wizard_step2.html:6
+#: .\templates\submissions\wizard_step5.html:43
+msgid "Files"
+msgstr "Files"
+
+#: .\apps\submissions\views.py:38 .\templates\submissions\wizard_step3.html:6
+msgid "Metadata"
+msgstr "Metadata"
+
+#: .\apps\submissions\views.py:39
+msgid "Reviewers & cover letter"
+msgstr "Reviewers & cover letter"
+
+#: .\apps\submissions\views.py:40
+msgid "Review & submit"
+msgstr "Review & submit"
+
+#: .\apps\submissions\views.py:50
+msgid "This submission can no longer be edited."
+msgstr "This submission can no longer be edited."
+
+#: .\apps\submissions\views.py:84
+msgid "You have reached the daily submission limit."
+msgstr "You have reached the daily submission limit."
+
+#: .\apps\submissions\views.py:93
+msgid "Untitled manuscript"
+msgstr "Untitled manuscript"
+
+#: .\apps\submissions\views.py:140
+#, python-format
+msgid ""
+"The manuscript has about %(count)s words; research articles should have at "
+"least 4,000."
+msgstr ""
+"The manuscript has about %(count)s words; research articles should have at "
+"least 4,000."
+
+#: .\apps\submissions\views.py:294
+msgid "Please complete every required item before submitting."
+msgstr "Please complete every required item before submitting."
+
+#: .\apps\submissions\views.py:299
+#, python-format
+msgid "Your manuscript has been submitted. Reference: %(ref)s"
+msgstr "Your manuscript has been submitted. Reference: %(ref)s"
+
+#: .\apps\submissions\views.py:322
+msgid "All declarations in step 1 must be confirmed."
+msgstr "All declarations in step 1 must be confirmed."
+
+#: .\apps\submissions\views.py:324
+msgid "An anonymised manuscript file is required."
+msgstr "An anonymised manuscript file is required."
+
+#: .\apps\submissions\views.py:326
+msgid "A title page file is required."
+msgstr "A title page file is required."
+
+#: .\apps\submissions\views.py:328
+#: .\templates\submissions\wizard_step3.html:18
+msgid "Uzbek"
+msgstr "Uzbek"
+
+#: .\apps\submissions\views.py:330
+#, python-format
+msgid "Title in %(lang)s is missing."
+msgstr "Title in %(lang)s is missing."
+
+#: .\apps\submissions\views.py:332
+#, python-format
+msgid "Abstract in %(lang)s is missing."
+msgstr "Abstract in %(lang)s is missing."
+
+#: .\apps\submissions\views.py:334
+#, python-format
+msgid "Keywords in %(lang)s are missing."
+msgstr "Keywords in %(lang)s are missing."
+
+#: .\apps\submissions\views.py:336
+msgid "At least one JEL code is required."
+msgstr "At least one JEL code is required."
+
+#: .\apps\submissions\views.py:338
+msgid "At least one author is required."
+msgstr "At least one author is required."
+
+#: .\apps\submissions\views.py:340
+msgid "A corresponding author must be marked."
+msgstr "A corresponding author must be marked."
+
+#: .\apps\submissions\views.py:349
+msgid "No revision is currently requested."
+msgstr "No revision is currently requested."
+
+#: .\apps\submissions\views.py:382
+msgid "Your revision has been submitted."
+msgstr "Your revision has been submitted."
+
+#: .\apps\submissions\views.py:408
+msgid "The manuscript has been withdrawn."
+msgstr "The manuscript has been withdrawn."
+
+#: .\apps\submissions\views.py:425
+msgid "The file has been removed."
+msgstr "The file has been removed."
+
+#: .\apps\submissions\workflow.py:60 .\templates\core\for_authors.html:30
+#: .\templates\includes\header.html:37 .\templates\journal\home.html:181
+msgid "Submit"
+msgstr "Submit"
+
+#: .\apps\submissions\workflow.py:67
+msgid "Assign editor"
+msgstr "Assign editor"
+
+#: .\apps\submissions\workflow.py:88
+msgid "All reviews received"
+msgstr "All reviews received"
+
+#: .\apps\submissions\workflow.py:95
+msgid "Request minor revision"
+msgstr "Request minor revision"
+
+#: .\apps\submissions\workflow.py:102
+msgid "Request major revision"
+msgstr "Request major revision"
+
+#: .\apps\submissions\workflow.py:109
+msgid "Submit revision"
+msgstr "Submit revision"
+
+#: .\apps\submissions\workflow.py:130
+msgid "Start copyediting"
+msgstr "Start copyediting"
+
+#: .\apps\submissions\workflow.py:137
+msgid "Send proof to author"
+msgstr "Send proof to author"
+
+#: .\apps\submissions\workflow.py:144
+msgid "Start typesetting"
+msgstr "Start typesetting"
+
+#: .\apps\submissions\workflow.py:151
+msgid "Mark ready to publish"
+msgstr "Mark ready to publish"
+
+#: .\apps\submissions\workflow.py:158
+#: .\templates\production\article_detail.html:78
+msgid "Publish Online First"
+msgstr "Publish Online First"
+
+#: .\apps\submissions\workflow.py:165
+msgid "Publish in issue"
+msgstr "Publish in issue"
+
+#: .\apps\submissions\workflow.py:180 .\templates\submissions\withdraw.html:15
+msgid "Withdraw"
+msgstr "Withdraw"
+
+#: .\apps\submissions\workflow.py:219
+#, python-format
+msgid "Unknown transition: %(name)s"
+msgstr "Unknown transition: %(name)s"
+
+#: .\apps\submissions\workflow.py:222
+#, python-format
+msgid "Cannot %(action)s a submission that is %(status)s."
+msgstr "Cannot %(action)s a submission that is %(status)s."
+
+#: .\apps\submissions\workflow.py:246
+#, python-format
+msgid "Status changed from %(old)s to %(new)s."
+msgstr "Status changed from %(old)s to %(new)s."
+
+#: .\apps\submissions\workflow.py:285
+msgid "A similarity check result is required before sending to review."
+msgstr "A similarity check result is required before sending to review."
+
+#: .\apps\submissions\workflow.py:292
+#, python-format
+msgid ""
+"Similarity is above the %(threshold)s%% threshold; an EIC override is "
+"required."
+msgstr ""
+"Similarity is above the %(threshold)s%% threshold; an EIC override is "
+"required."
+
+#: .\apps\submissions\workflow.py:381
+msgid "Workflow history"
+msgstr "Workflow history"
+
+#: .\templates\400.html:11 .\templates\403.html:11 .\templates\404.html:11
+#: .\templates\500.html:11 .\templates\errors\error.html:11
+msgid "Go to the home page"
+msgstr "Go to the home page"
+
+#: .\templates\400.html:12 .\templates\403.html:12 .\templates\404.html:12
+#: .\templates\500.html:12 .\templates\errors\error.html:12
+msgid "Search the journal"
+msgstr "Search the journal"
+
+#: .\templates\account\email_confirm.html:4
+#: .\templates\account\email_confirm.html:7
+msgid "Confirm your e-mail address"
+msgstr "Confirm your e-mail address"
+
+#: .\templates\account\email_confirm.html:12
+msgid "Confirm"
+msgstr "Confirm"
+
+#: .\templates\account\email_confirm.html:15
+msgid "This confirmation link is invalid or has expired."
+msgstr "This confirmation link is invalid or has expired."
+
+#: .\templates\account\login.html:3 .\templates\account\login.html:5
+#: .\templates\account\login.html:18 .\templates\includes\header.html:65
+#: .\templates\includes\header.html:102
+msgid "Sign in"
+msgstr "Sign in"
+
+#: .\templates\account\login.html:6
+msgid "Use the e-mail address you registered with."
+msgstr "Use the e-mail address you registered with."
+
+#: .\templates\account\login.html:24
+msgid "Sign in with ORCID"
+msgstr "Sign in with ORCID"
+
+#: .\templates\account\login.html:27
+msgid "Forgot your password?"
+msgstr "Forgot your password?"
+
+#: .\templates\account\login.html:28 .\templates\account\signup.html:3
+#: .\templates\account\signup.html:5
+msgid "Create an account"
+msgstr "Create an account"
+
+#: .\templates\account\logout.html:3 .\templates\account\logout.html:5
+#: .\templates\account\logout.html:9 .\templates\includes\header.html:59
+msgid "Sign out"
+msgstr "Sign out"
+
+#: .\templates\account\logout.html:6
+msgid "Are you sure you want to sign out?"
+msgstr "Are you sure you want to sign out?"
+
+#: .\templates\account\password_reset.html:3
+#: .\templates\account\password_reset.html:5
+msgid "Reset your password"
+msgstr "Reset your password"
+
+#: .\templates\account\password_reset.html:11
+msgid "Send the reset link"
+msgstr "Send the reset link"
+
+#: .\templates\account\signup.html:6
+msgid ""
+"An account lets you submit manuscripts and track their progress. "
+"Registration is free."
+msgstr ""
+"An account lets you submit manuscripts and track their progress. "
+"Registration is free."
+
+#: .\templates\account\signup.html:13
+msgid "Create account"
+msgstr "Create account"
+
+#: .\templates\account\signup.html:15
+msgid ""
+"We send a confirmation link to your e-mail address; the account is active "
+"once you confirm it."
+msgstr ""
+"We send a confirmation link to your e-mail address; the account is active "
+"once you confirm it."
+
+#: .\templates\account\signup.html:17
+msgid "I already have an account"
+msgstr "I already have an account"
+
+#: .\templates\account\verified_email_required.html:4
+#: .\templates\account\verified_email_required.html:7
+msgid "Verify your e-mail address"
+msgstr "Verify your e-mail address"
+
+#: .\templates\account\verified_email_required.html:8
+msgid ""
+"We have sent a confirmation link to your e-mail address. Please open it to "
+"activate your account."
+msgstr ""
+"We have sent a confirmation link to your e-mail address. Please open it to "
+"activate your account."
+
+#: .\templates\base.html:63
+msgid "Skip to main content"
+msgstr "Skip to main content"
+
+#: .\templates\core\_page_shell.html:7
+msgid "Section navigation"
+msgstr "Section navigation"
+
+#: .\templates\core\_page_shell.html:8
+msgid "In this section"
+msgstr "In this section"
+
+#: .\templates\core\_page_shell.html:20
+msgid "Last updated"
+msgstr "Last updated"
+
+#: .\templates\core\about.html:6
+msgid "Journal facts"
+msgstr "Journal facts"
+
+#: .\templates\core\about.html:9
+#: .\templates\dashboard\partials\queue_table.html:6
+#: .\templates\submissions\wizard_step5.html:17
+msgid "Title"
+msgstr "Title"
+
+#: .\templates\core\about.html:10
+msgid "Short code"
+msgstr "Short code"
+
+#: .\templates\core\about.html:18
+msgid "Founded"
+msgstr "Founded"
+
+#: .\templates\core\about.html:19
+msgid "Frequency"
+msgstr "Frequency"
+
+#: .\templates\core\about.html:20
+msgid "Access"
+msgstr "Access"
+
+#: .\templates\core\about.html:22
+msgid "Diamond open access — no charges for authors or readers"
+msgstr "Diamond open access — no charges for authors or readers"
+
+#: .\templates\core\about.html:25 .\templates\core\for_authors.html:37
+#: .\templates\dashboard\home.html:101 .\templates\journal\home.html:188
+msgid "Peer review"
+msgstr "Peer review"
+
+#: .\templates\core\about.html:27
+msgid "Double-blind, at least two reviewers"
+msgstr "Double-blind, at least two reviewers"
+
+#: .\templates\core\about.html:30
+msgid "Registration certificate"
+msgstr "Registration certificate"
+
+#: .\templates\core\about.html:36
+msgid "Editorial office"
+msgstr "Editorial office"
+
+#: .\templates\core\announcement_detail.html:6
+#: .\templates\journal\article_detail.html:18
+#: .\templates\journal\issue_detail.html:15
+msgid "Breadcrumb"
+msgstr "Breadcrumb"
+
+#: .\templates\core\announcement_detail.html:7
+#: .\templates\journal\article_detail.html:19
+#: .\templates\journal\issue_detail.html:16
+msgid "Home"
+msgstr "Home"
+
+#: .\templates\core\announcement_detail.html:8
+#: .\templates\core\announcement_list.html:3
+#: .\templates\core\announcement_list.html:6
+#: .\templates\includes\footer.html:44 .\templates\journal\home.html:97
+msgid "Announcements"
+msgstr "Announcements"
+
+#: .\templates\core\announcement_list.html:10
+msgid "Pinned"
+msgstr "Pinned"
+
+#: .\templates\core\announcement_list.html:19
+#: .\templates\journal\home.html:108
+msgid "There are no announcements at the moment."
+msgstr "There are no announcements at the moment."
+
+#: .\templates\core\checklist.html:7
+msgid ""
+"Tick every item before you open the submission wizard. Nothing is stored on "
+"the server."
+msgstr ""
+"Tick every item before you open the submission wizard. Nothing is stored on "
+"the server."
+
+#: .\templates\core\checklist.html:10
+msgid "Progress"
+msgstr "Progress"
+
+#: .\templates\core\checklist.html:25
+msgid "Go to the submission wizard"
+msgstr "Go to the submission wizard"
+
+#: .\templates\core\contact.html:12
+msgid "Address"
+msgstr "Address"
+
+#: .\templates\core\contact.html:19
+msgid "Telephone"
+msgstr "Telephone"
+
+#: .\templates\core\contact.html:24
+msgid "Write to the editorial office"
+msgstr "Write to the editorial office"
+
+#: .\templates\core\contact.html:41
+msgid "Send message"
+msgstr "Send message"
+
+#: .\templates\core\contact.html:42
+msgid "We usually reply within three working days."
+msgstr "We usually reply within three working days."
+
+#: .\templates\core\for_authors.html:9
+msgid "No fees"
+msgstr "No fees"
+
+#: .\templates\core\for_authors.html:10
+msgid ""
+"This journal charges no article processing charges, no submission fees and "
+"no page charges. Publication is free for authors and free for readers."
+msgstr ""
+"This journal charges no article processing charges, no submission fees and "
+"no page charges. Publication is free for authors and free for readers."
+
+#: .\templates\core\for_authors.html:11
+msgid "Read the fee policy"
+msgstr "Read the fee policy"
+
+#: .\templates\core\for_authors.html:15
+msgid "Check the scope"
+msgstr "Check the scope"
+
+#: .\templates\core\for_authors.html:17 .\templates\journal\home.html:167
+msgid "Aims & scope"
+msgstr "Aims & scope"
+
+#: .\templates\core\for_authors.html:20
+msgid "Prepare"
+msgstr "Prepare"
+
+#: .\templates\core\for_authors.html:22
+msgid "Guidelines"
+msgstr "Guidelines"
+
+#: .\templates\core\for_authors.html:25
+msgid "Check the list"
+msgstr "Check the list"
+
+#: .\templates\core\for_authors.html:27
+msgid "Checklist"
+msgstr "Checklist"
+
+#: .\templates\core\for_authors.html:32
+msgid "Submission wizard"
+msgstr "Submission wizard"
+
+#: .\templates\core\for_authors.html:35
+msgid "After submission"
+msgstr "After submission"
+
+#: .\templates\core\for_authors.html:43
+msgid "Author resources"
+msgstr "Author resources"
+
+#: .\templates\core\for_authors.html:48
+msgid "Start a submission"
+msgstr "Start a submission"
+
+#: .\templates\core\for_reviewers.html:5
+msgid "Reviewer resources"
+msgstr "Reviewer resources"
+
+#: .\templates\core\for_reviewers.html:10
+msgid "Reviewer dashboard"
+msgstr "Reviewer dashboard"
+
+#: .\templates\core\indexing.html:6
+msgid "Currently indexed in"
+msgstr "Currently indexed in"
+
+#: .\templates\core\indexing.html:18
+msgid "Indexing applications are in preparation."
+msgstr "Indexing applications are in preparation."
+
+#: .\templates\core\indexing.html:24
+msgid "Applications planned"
+msgstr "Applications planned"
+
+#: .\templates\core\indexing.html:31
+msgid ""
+"We do not display impact-factor style badges from unverified providers."
+msgstr ""
+"We do not display impact-factor style badges from unverified providers."
+
+#: .\templates\core\partials\bar_chart.html:8
+#: .\templates\core\partials\bar_chart.html:9
+msgid "Submissions and acceptances per month"
+msgstr "Submissions and acceptances per month"
+
+#: .\templates\core\partials\bar_chart.html:21
+msgid "Submissions"
+msgstr "Submissions"
+
+#: .\templates\core\statistics.html:3 .\templates\core\statistics.html:6
+#: .\templates\includes\footer.html:43
+msgid "Journal statistics"
+msgstr "Journal statistics"
+
+#: .\templates\core\statistics.html:7
+msgid ""
+"Editorial and usage indicators, recalculated nightly. Bot traffic is "
+"filtered using the COUNTER robots list."
+msgstr ""
+"Editorial and usage indicators, recalculated nightly. Bot traffic is "
+"filtered using the COUNTER robots list."
+
+#: .\templates\core\statistics.html:10
+msgid "Statistics will appear here once the first articles are published."
+msgstr "Statistics will appear here once the first articles are published."
+
+#: .\templates\core\statistics.html:14
+msgid "Articles published"
+msgstr "Articles published"
+
+#: .\templates\core\statistics.html:15
+#: .\templates\dashboard\submission_detail.html:67
+#: .\templates\submissions\wizard_step3.html:43
+#: .\templates\submissions\wizard_step5.html:29
+msgid "Authors"
+msgstr "Authors"
+
+#: .\templates\core\statistics.html:16
+msgid "Author countries"
+msgstr "Author countries"
+
+#: .\templates\core\statistics.html:17
+msgid "Downloads (12 months)"
+msgstr "Downloads (12 months)"
+
+#: .\templates\core\statistics.html:18 .\templates\dashboard\home.html:43
+#: .\templates\dashboard\reports.html:11 .\templates\dashboard\reports.html:38
+msgid "Acceptance rate"
+msgstr "Acceptance rate"
+
+#: .\templates\core\statistics.html:19
+msgid "Days to first decision"
+msgstr "Days to first decision"
+
+#: .\templates\core\statistics.html:20
+msgid "Median review time (days)"
+msgstr "Median review time (days)"
+
+#: .\templates\core\statistics.html:21
+msgid "Active reviewers (12 months)"
+msgstr "Active reviewers (12 months)"
+
+#: .\templates\core\statistics.html:25
+msgid "Submissions and acceptances by month"
+msgstr "Submissions and acceptances by month"
+
+#: .\templates\core\statistics.html:31
+msgid "Countries of authors"
+msgstr "Countries of authors"
+
+#: .\templates\core\templates_download.html:7
+#: .\templates\journal\article_detail.html:316
+#: .\templates\journal\home.html:120
+#: .\templates\journal\partials\article_card.html:39
+msgid "Downloads"
+msgstr "Downloads"
+
+#: .\templates\core\templates_download.html:11
+msgid "Manuscript template (DOCX)"
+msgstr "Manuscript template (DOCX)"
+
+#: .\templates\core\templates_download.html:12
+msgid "IMRaD structure, trilingual abstract block, APA 7 reference examples."
+msgstr "IMRaD structure, trilingual abstract block, APA 7 reference examples."
+
+#: .\templates\core\templates_download.html:14
+#: .\templates\core\templates_download.html:26
+msgid "Download DOCX"
+msgstr "Download DOCX"
+
+#: .\templates\core\templates_download.html:17
+msgid "Manuscript template (LaTeX)"
+msgstr "Manuscript template (LaTeX)"
+
+#: .\templates\core\templates_download.html:18
+msgid "Article class with the journal page setup and bibliography style."
+msgstr "Article class with the journal page setup and bibliography style."
+
+#: .\templates\core\templates_download.html:20
+msgid "Download TEX"
+msgstr "Download TEX"
+
+#: .\templates\core\templates_download.html:23
+msgid "Title page template"
+msgstr "Title page template"
+
+#: .\templates\core\templates_download.html:24
+msgid ""
+"Author names, affiliations, ORCID iDs, corresponding author, statements."
+msgstr ""
+"Author names, affiliations, ORCID iDs, corresponding author, statements."
+
+#: .\templates\core\templates_download.html:29
+msgid "Cover letter template"
+msgstr "Cover letter template"
+
+#: .\templates\core\templates_download.html:30
+msgid "Short structure for the letter to the editor."
+msgstr "Short structure for the letter to the editor."
+
+#: .\templates\core\templates_download.html:32
+msgid "Download TXT"
+msgstr "Download TXT"
+
+#: .\templates\dashboard\_base.html:7
+msgid "Dashboard navigation"
+msgstr "Dashboard navigation"
+
+#: .\templates\dashboard\_base.html:8 .\templates\dashboard\decide.html:3
+#: .\templates\dashboard\home.html:3 .\templates\dashboard\home.html:5
+#: .\templates\dashboard\profile.html:3 .\templates\dashboard\queue.html:3
+#: .\templates\dashboard\reports.html:3
+#: .\templates\dashboard\reviewer_finder.html:3
+#: .\templates\dashboard\submission_detail.html:3
+#: .\templates\dashboard\two_factor.html:3 .\templates\includes\header.html:51
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: .\templates\dashboard\_base.html:9
+msgid "Overview"
+msgstr "Overview"
+
+#: .\templates\dashboard\_base.html:10 .\templates\dashboard\home.html:84
+msgid "New submission"
+msgstr "New submission"
+
+#: .\templates\dashboard\_base.html:12 .\templates\review\dashboard.html:3
+#: .\templates\review\dashboard.html:6
+msgid "My reviews"
+msgstr "My reviews"
+
+#: .\templates\dashboard\_base.html:21
+msgid "In production"
+msgstr "In production"
+
+#: .\templates\dashboard\_base.html:22 .\templates\dashboard\reports.html:3
+msgid "Reports"
+msgstr "Reports"
+
+#: .\templates\dashboard\_base.html:23 .\templates\production\queue.html:3
+#: .\templates\production\queue.html:5
+#: .\templates\production\submission_detail.html:3
+msgid "Production"
+msgstr "Production"
+
+#: .\templates\dashboard\_base.html:25 .\templates\dashboard\profile.html:9
+msgid "Account"
+msgstr "Account"
+
+#: .\templates\dashboard\_base.html:26 .\templates\dashboard\profile.html:3
+#: .\templates\dashboard\profile.html:5 .\templates\includes\header.html:52
+msgid "Profile"
+msgstr "Profile"
+
+#: .\templates\dashboard\_base.html:27 .\templates\dashboard\two_factor.html:3
+#: .\templates\dashboard\two_factor.html:5 .\templates\includes\header.html:54
+msgid "Two-factor authentication"
+msgstr "Two-factor authentication"
+
+#: .\templates\dashboard\_base.html:29
+msgid "Django admin"
+msgstr "Django admin"
+
+#: .\templates\dashboard\decide.html:10
+msgid "Reviews in this round"
+msgstr "Reviews in this round"
+
+#: .\templates\dashboard\decide.html:15
+msgid "Average score"
+msgstr "Average score"
+
+#: .\templates\dashboard\decide.html:26
+msgid "Record the decision and notify the author"
+msgstr "Record the decision and notify the author"
+
+#: .\templates\dashboard\decide.html:28
+#: .\templates\dashboard\submission_detail.html:200
+#: .\templates\submissions\withdraw.html:16
+#: .\templates\submissions\wizard_step1.html:29
+msgid "Cancel"
+msgstr "Cancel"
+
+#: .\templates\dashboard\home.html:10
+msgid "Action needed"
+msgstr "Action needed"
+
+#: .\templates\dashboard\home.html:20 .\templates\dashboard\home.html:123
+msgid "Upload revision"
+msgstr "Upload revision"
+
+#: .\templates\dashboard\home.html:29
+msgid "Editorial queues"
+msgstr "Editorial queues"
+
+#: .\templates\dashboard\home.html:47 .\templates\dashboard\reports.html:15
+msgid "Median days to first decision"
+msgstr "Median days to first decision"
+
+#: .\templates\dashboard\home.html:57
+#: .\templates\dashboard\submission_detail.html:27
+msgid "Reviews"
+msgstr "Reviews"
+
+#: .\templates\dashboard\home.html:58
+msgid "All reviews"
+msgstr "All reviews"
+
+#: .\templates\dashboard\home.html:62
+msgid "Invitation"
+msgstr "Invitation"
+
+#: .\templates\dashboard\home.html:64 .\templates\dashboard\home.html:73
+#: .\templates\dashboard\submission_detail.html:175
+#: .\templates\production\submission_detail.html:16
+#: .\templates\review\assignment_detail.html:14
+#: .\templates\review\dashboard.html:17 .\templates\review\dashboard.html:46
+msgid "Due"
+msgstr "Due"
+
+#: .\templates\dashboard\home.html:73
+msgid "days"
+msgstr "days"
+
+#: .\templates\dashboard\home.html:75
+msgid "Write the review"
+msgstr "Write the review"
+
+#: .\templates\dashboard\home.html:82
+msgid "My submissions"
+msgstr "My submissions"
+
+#: .\templates\dashboard\home.html:102
+#, python-format
+msgid "%(counter)s round"
+msgid_plural "%(counter)s rounds"
+msgstr[0] "%(counter)s round"
+msgstr[1] "%(counter)s rounds"
+
+#: .\templates\dashboard\home.html:116
+msgid "Continue draft"
+msgstr "Continue draft"
+
+#: .\templates\dashboard\home.html:119
+msgid "Details"
+msgstr "Details"
+
+#: .\templates\dashboard\home.html:129
+msgid "You have not submitted anything yet."
+msgstr "You have not submitted anything yet."
+
+#: .\templates\dashboard\home.html:131 .\templates\includes\footer.html:34
+#: .\templates\submissions\wizard_intro.html:3
+#: .\templates\submissions\wizard_intro.html:6
+#: .\templates\submissions\wizard_step1.html:6
+msgid "Submit a manuscript"
+msgstr "Submit a manuscript"
+
+#: .\templates\dashboard\partials\queue_table.html:5
+msgid "Reference"
+msgstr "Reference"
+
+#: .\templates\dashboard\partials\queue_table.html:8
+#: .\templates\dashboard\submission_detail.html:174
+#: .\templates\production\submission_detail.html:15
+msgid "Status"
+msgstr "Status"
+
+#: .\templates\dashboard\partials\queue_table.html:9
+#: .\templates\dashboard\submission_detail.html:25
+msgid "Reviewers"
+msgstr "Reviewers"
+
+#: .\templates\dashboard\partials\queue_table.html:10
+msgid "Updated"
+msgstr "Updated"
+
+#: .\templates\dashboard\partials\queue_table.html:40
+msgid "This queue is empty."
+msgstr "This queue is empty."
+
+#: .\templates\dashboard\partials\reviewer_finder.html:6
+msgid "Expertise"
+msgstr "Expertise"
+
+#: .\templates\dashboard\partials\reviewer_finder.html:7
+msgid "Active"
+msgstr "Active"
+
+#: .\templates\dashboard\partials\reviewer_finder.html:8
+#: .\templates\review\dashboard.html:62
+msgid "Completed"
+msgstr "Completed"
+
+#: .\templates\dashboard\partials\reviewer_finder.html:9
+msgid "Quality"
+msgstr "Quality"
+
+#: .\templates\dashboard\partials\reviewer_finder.html:30
+msgid "Invite"
+msgstr "Invite"
+
+#: .\templates\dashboard\partials\reviewer_finder.html:37
+msgid "No matching reviewers. Invite someone by e-mail below."
+msgstr "No matching reviewers. Invite someone by e-mail below."
+
+#: .\templates\dashboard\profile.html:17
+msgid "Scholarly profile"
+msgstr "Scholarly profile"
+
+#: .\templates\dashboard\profile.html:24
+msgid "Save profile"
+msgstr "Save profile"
+
+#: .\templates\dashboard\queue.html:11
+#: .\templates\dashboard\reviewer_finder.html:18
+#: .\templates\includes\footer.html:42 .\templates\includes\header.html:20
+#: .\templates\includes\header.html:33 .\templates\includes\header.html:98
+#: .\templates\search\search.html:3 .\templates\search\search.html:6
+#: .\templates\search\search.html:76
+msgid "Search"
+msgstr "Search"
+
+#: .\templates\dashboard\queue.html:17
+msgid "Title or reference"
+msgstr "Title or reference"
+
+#: .\templates\dashboard\queue.html:18
+msgid "Filter"
+msgstr "Filter"
+
+#: .\templates\dashboard\reports.html:6
+msgid "Editorial reports"
+msgstr "Editorial reports"
+
+#: .\templates\dashboard\reports.html:7
+msgid "Export CSV"
+msgstr "Export CSV"
+
+#: .\templates\dashboard\reports.html:21
+msgid "Submissions and acceptances"
+msgstr "Submissions and acceptances"
+
+#: .\templates\dashboard\reports.html:27
+msgid "Monthly snapshots"
+msgstr "Monthly snapshots"
+
+#: .\templates\dashboard\reports.html:32
+msgid "Month"
+msgstr "Month"
+
+#: .\templates\dashboard\reports.html:33
+msgid "Received"
+msgstr "Received"
+
+#: .\templates\dashboard\reports.html:34
+msgid "Desk rejected"
+msgstr "Desk rejected"
+
+#: .\templates\dashboard\reports.html:35
+msgid "To review"
+msgstr "To review"
+
+#: .\templates\dashboard\reports.html:55
+msgid "No snapshots yet."
+msgstr "No snapshots yet."
+
+#: .\templates\dashboard\reviewer_finder.html:3
+#: .\templates\dashboard\reviewer_finder.html:5
+#: .\templates\dashboard\submission_detail.html:166
+msgid "Find reviewers"
+msgstr "Find reviewers"
+
+#: .\templates\dashboard\reviewer_finder.html:11
+msgid "Search reviewers"
+msgstr "Search reviewers"
+
+#: .\templates\dashboard\reviewer_finder.html:17
+msgid "Name, expertise, affiliation"
+msgstr "Name, expertise, affiliation"
+
+#: .\templates\dashboard\reviewer_finder.html:23
+msgid "Invite someone by e-mail"
+msgstr "Invite someone by e-mail"
+
+#: .\templates\dashboard\reviewer_finder.html:35
+msgid "Send the invitation"
+msgstr "Send the invitation"
+
+#: .\templates\dashboard\submission_detail.html:20
+msgid "Summary"
+msgstr "Summary"
+
+#: .\templates\dashboard\submission_detail.html:32
+msgid "Discussion"
+msgstr "Discussion"
+
+#: .\templates\dashboard\submission_detail.html:34
+#: .\templates\dashboard\submission_detail.html:307
+msgid "History"
+msgstr "History"
+
+#: .\templates\dashboard\submission_detail.html:38
+msgid "Handling editor"
+msgstr "Handling editor"
+
+#: .\templates\dashboard\submission_detail.html:38
+#: .\templates\production\article_detail.html:56
+msgid "not assigned"
+msgstr "not assigned"
+
+#: .\templates\dashboard\submission_detail.html:39
+#: .\templates\includes\language_switcher.html:4
+#: .\templates\journal\article_detail.html:131
+#: .\templates\review\assignment_detail.html:12
+#: .\templates\submissions\wizard_step5.html:20
+msgid "Language"
+msgstr "Language"
+
+#: .\templates\dashboard\submission_detail.html:40
+#: .\templates\review\assignment_detail.html:13
+#: .\templates\submissions\wizard_step5.html:21
+msgid "Word count"
+msgstr "Word count"
+
+#: .\templates\dashboard\submission_detail.html:41
+msgid "Similarity"
+msgstr "Similarity"
+
+#: .\templates\dashboard\submission_detail.html:46
+msgid "within threshold"
+msgstr "within threshold"
+
+#: .\templates\dashboard\submission_detail.html:48
+msgid "above threshold"
+msgstr "above threshold"
+
+#: .\templates\dashboard\submission_detail.html:51
+msgid "not checked"
+msgstr "not checked"
+
+#: .\templates\dashboard\submission_detail.html:54
+msgid "Rounds"
+msgstr "Rounds"
+
+#: .\templates\dashboard\submission_detail.html:60
+#: .\templates\journal\article_detail.html:139
+#: .\templates\review\assignment_detail.html:22
+msgid "Abstract"
+msgstr "Abstract"
+
+#: .\templates\dashboard\submission_detail.html:70
+msgid "Name"
+msgstr "Name"
+
+#: .\templates\dashboard\submission_detail.html:70
+msgid "Affiliation"
+msgstr "Affiliation"
+
+#: .\templates\dashboard\submission_detail.html:85
+msgid "Similarity check"
+msgstr "Similarity check"
+
+#: .\templates\dashboard\submission_detail.html:94
+msgid "Save the similarity result"
+msgstr "Save the similarity result"
+
+#: .\templates\dashboard\submission_detail.html:99
+msgid "Actions"
+msgstr "Actions"
+
+#: .\templates\dashboard\submission_detail.html:111
+#: .\templates\dashboard\submission_detail.html:263
+msgid "Record a decision"
+msgstr "Record a decision"
+
+#: .\templates\dashboard\submission_detail.html:116
+msgid "Private notes"
+msgstr "Private notes"
+
+#: .\templates\dashboard\submission_detail.html:125
+msgid "Visible to editors only"
+msgstr "Visible to editors only"
+
+#: .\templates\dashboard\submission_detail.html:126
+msgid "Add note"
+msgstr "Add note"
+
+#: .\templates\dashboard\submission_detail.html:140
+#: .\templates\production\submission_detail.html:63
+#: .\templates\submissions\wizard_step2.html:16
+msgid "Kind"
+msgstr "Kind"
+
+#: .\templates\dashboard\submission_detail.html:141
+#: .\templates\submissions\wizard_step2.html:17
+msgid "Version"
+msgstr "Version"
+
+#: .\templates\dashboard\submission_detail.html:142
+#: .\templates\submissions\wizard_step2.html:18
+msgid "Uploaded"
+msgstr "Uploaded"
+
+#: .\templates\dashboard\submission_detail.html:158
+msgid "No files."
+msgstr "No files."
+
+#: .\templates\dashboard\submission_detail.html:169
+#: .\templates\dashboard\submission_detail.html:218
+#: .\templates\review\assignment_detail.html:11
+msgid "Round"
+msgstr "Round"
+
+#: .\templates\dashboard\submission_detail.html:176
+msgid "Reminders"
+msgstr "Reminders"
+
+#: .\templates\dashboard\submission_detail.html:195
+msgid "Remind"
+msgstr "Remind"
+
+#: .\templates\dashboard\submission_detail.html:207
+msgid "No reviewers have been invited yet."
+msgstr "No reviewers have been invited yet."
+
+#: .\templates\dashboard\submission_detail.html:233
+msgid "To the authors"
+msgstr "To the authors"
+
+#: .\templates\dashboard\submission_detail.html:236
+msgid "Confidential to the editor"
+msgstr "Confidential to the editor"
+
+#: .\templates\dashboard\submission_detail.html:243
+msgid "Review quality"
+msgstr "Review quality"
+
+#: .\templates\dashboard\submission_detail.html:252
+msgid "Save"
+msgstr "Save"
+
+#: .\templates\dashboard\submission_detail.html:259
+msgid "No reviews yet."
+msgstr "No reviews yet."
+
+#: .\templates\dashboard\submission_detail.html:271
+msgid "No decisions have been recorded."
+msgstr "No decisions have been recorded."
+
+#: .\templates\dashboard\submission_detail.html:287
+msgid "Post message"
+msgstr "Post message"
+
+#: .\templates\dashboard\submission_detail.html:295
+msgid "System"
+msgstr "System"
+
+#: .\templates\dashboard\submission_detail.html:302
+msgid "No messages yet."
+msgstr "No messages yet."
+
+#: .\templates\dashboard\two_factor.html:6
+msgid ""
+"Editorial accounts must use a time-based one-time password (TOTP) app such "
+"as Aegis, Google Authenticator or 1Password."
+msgstr ""
+"Editorial accounts must use a time-based one-time password (TOTP) app such "
+"as Aegis, Google Authenticator or 1Password."
+
+#: .\templates\dashboard\two_factor.html:8
+msgid "Two-factor authentication is already active on this account."
+msgstr "Two-factor authentication is already active on this account."
+
+#: .\templates\dashboard\two_factor.html:12
+msgid "Recovery codes"
+msgstr "Recovery codes"
+
+#: .\templates\dashboard\two_factor.html:13
+msgid "Store these codes somewhere safe. Each one can be used once."
+msgstr "Store these codes somewhere safe. Each one can be used once."
+
+#: .\templates\dashboard\two_factor.html:23
+msgid "QR code for the authenticator app"
+msgstr "QR code for the authenticator app"
+
+#: .\templates\dashboard\two_factor.html:33
+msgid "Scan the QR code with your authenticator app."
+msgstr "Scan the QR code with your authenticator app."
+
+#: .\templates\dashboard\two_factor.html:34
+msgid "Enter the six-digit code the app shows."
+msgstr "Enter the six-digit code the app shows."
+
+#: .\templates\dashboard\two_factor.html:39
+msgid "Activate"
+msgstr "Activate"
+
+#: .\templates\errors\error.html:13 .\templates\errors\lockout.html:10
+msgid "Contact the editorial office"
+msgstr "Contact the editorial office"
+
+#: .\templates\errors\lockout.html:3 .\templates\errors\lockout.html:8
+msgid "Account temporarily locked"
+msgstr "Account temporarily locked"
+
+#: .\templates\errors\lockout.html:9
+msgid ""
+"Too many failed sign-in attempts were made from this address. Please try "
+"again in 30 minutes or contact the editorial office."
+msgstr ""
+"Too many failed sign-in attempts were made from this address. Please try "
+"again in 30 minutes or contact the editorial office."
+
+#: .\templates\includes\announcement_bar.html:8
+msgid "Notice"
+msgstr "Notice"
+
+#: .\templates\includes\announcement_bar.html:13
+msgid "Dismiss"
+msgstr "Dismiss"
+
+#: .\templates\includes\footer.html:6
+msgid "Journal"
+msgstr "Journal"
+
+#: .\templates\includes\footer.html:7
+msgid "About the journal"
+msgstr "About the journal"
+
+#: .\templates\includes\footer.html:17
+msgid "Certificate"
+msgstr "Certificate"
+
+#: .\templates\includes\footer.html:28
+msgid "Author Guidelines"
+msgstr "Author Guidelines"
+
+#: .\templates\includes\footer.html:29
+msgid "Manuscript template"
+msgstr "Manuscript template"
+
+#: .\templates\includes\footer.html:30
+msgid "Pre-submission checklist"
+msgstr "Pre-submission checklist"
+
+#: .\templates\includes\footer.html:31
+msgid "Article processing charges"
+msgstr "Article processing charges"
+
+#: .\templates\includes\footer.html:32
+msgid "Publication Ethics"
+msgstr "Publication Ethics"
+
+#: .\templates\includes\footer.html:33
+msgid "Policy on generative AI"
+msgstr "Policy on generative AI"
+
+#: .\templates\includes\footer.html:37
+msgid "Browse"
+msgstr "Browse"
+
+#: .\templates\includes\footer.html:38 .\templates\journal\home.html:42
+#: .\templates\journal\issue_empty.html:3
+#: .\templates\journal\issue_empty.html:6
+msgid "Current issue"
+msgstr "Current issue"
+
+#: .\templates\includes\footer.html:39 .\templates\includes\header.html:11
+#: .\templates\includes\header.html:93 .\templates\journal\archive.html:3
+#: .\templates\journal\archive.html:6
+#: .\templates\journal\article_detail.html:20
+#: .\templates\journal\issue_detail.html:17
+msgid "Archive"
+msgstr "Archive"
+
+#: .\templates\includes\footer.html:41 .\templates\journal\jel_detail.html:6
+#: .\templates\journal\jel_index.html:3 .\templates\journal\jel_index.html:6
+msgid "JEL classification"
+msgstr "JEL classification"
+
+#: .\templates\includes\footer.html:47
+msgid "Machine interfaces"
+msgstr "Machine interfaces"
+
+#: .\templates\includes\footer.html:48
+msgid "RSS feed"
+msgstr "RSS feed"
+
+#: .\templates\includes\footer.html:49
+msgid "Atom feed"
+msgstr "Atom feed"
+
+#: .\templates\includes\footer.html:50
+msgid "OAI-PMH"
+msgstr "OAI-PMH"
+
+#: .\templates\includes\footer.html:51
+msgid "JSON API"
+msgstr "JSON API"
+
+#: .\templates\includes\footer.html:52
+msgid "Sitemap"
+msgstr "Sitemap"
+
+#: .\templates\includes\footer.html:53
+msgid "LOCKSS manifest"
+msgstr "LOCKSS manifest"
+
+#: .\templates\includes\footer.html:54
+msgid "Archiving policy"
+msgstr "Archiving policy"
+
+#: .\templates\includes\footer.html:60
+msgid "Articles are published under"
+msgstr "Articles are published under"
+
+#: .\templates\includes\footer.html:63
+msgid "Authors retain copyright."
+msgstr "Authors retain copyright."
+
+#: .\templates\includes\footer.html:66
+msgid "Privacy"
+msgstr "Privacy"
+
+#: .\templates\includes\footer.html:67
+msgid "Ethics"
+msgstr "Ethics"
+
+#: .\templates\includes\header.html:9 .\templates\includes\header.html:91
+msgid "Primary"
+msgstr "Primary"
+
+#: .\templates\includes\header.html:10 .\templates\includes\header.html:92
+msgid "Current Issue"
+msgstr "Current Issue"
+
+#: .\templates\includes\header.html:72
+msgid "Menu"
+msgstr "Menu"
+
+#: .\templates\includes\header.html:100 .\templates\journal\home.html:32
+msgid "Submit your manuscript"
+msgstr "Submit your manuscript"
+
+#: .\templates\includes\wizard_steps.html:3
+msgid "Submission steps"
+msgstr "Submission steps"
+
+#: .\templates\includes\wordmark.html:2
+msgctxt "wordmark"
+msgid "ALGORITHM"
+msgstr "ALGORITHM"
+
+#: .\templates\includes\wordmark.html:4
+msgctxt "wordmark"
+msgid "Review of Economic Research"
+msgstr "Review of Economic Research"
+
+#: .\templates\journal\archive.html:7
+msgid "Every issue published by the journal, newest first."
+msgstr "Every issue published by the journal, newest first."
+
+#: .\templates\journal\archive.html:11 .\templates\search\search.html:34
+msgid "All years"
+msgstr "All years"
+
+#: .\templates\journal\archive.html:21 .\templates\production\queue.html:49
+msgid "Volume"
+msgstr "Volume"
+
+#: .\templates\journal\archive.html:35
+#: .\templates\journal\article_detail.html:91
+#: .\templates\production\article_detail.html:86
+#: .\templates\production\queue.html:66
+msgid "Issue"
+msgstr "Issue"
+
+#: .\templates\journal\archive.html:36 .\templates\journal\home.html:141
+#, python-format
+msgid "%(counter)s article"
+msgid_plural "%(counter)s articles"
+msgstr[0] "%(counter)s article"
+msgstr[1] "%(counter)s articles"
+
+#: .\templates\journal\archive.html:43
+msgid "No issues have been published yet."
+msgstr "No issues have been published yet."
+
+#: .\templates\journal\archive.html:45 .\templates\journal\issue_empty.html:10
+msgid "See Online First articles"
+msgstr "See Online First articles"
+
+#: .\templates\journal\article_detail.html:26
+#: .\templates\production\issue_builder.html:13
+msgid "Article"
+msgstr "Article"
+
+#: .\templates\journal\article_detail.html:30
+msgid "RETRACTED ARTICLE"
+msgstr "RETRACTED ARTICLE"
+
+#: .\templates\journal\article_detail.html:31
+msgid ""
+"This article has been retracted. The record is kept online in line with COPE"
+" guidance."
+msgstr ""
+"This article has been retracted. The record is kept online in line with COPE"
+" guidance."
+
+#: .\templates\journal\article_detail.html:40
+msgid "Open Access"
+msgstr "Open Access"
+
+#: .\templates\journal\article_detail.html:51
+msgid "Title in other languages"
+msgstr "Title in other languages"
+
+#: .\templates\journal\article_detail.html:71
+msgid "E-mail the corresponding author"
+msgstr "E-mail the corresponding author"
+
+#: .\templates\journal\article_detail.html:78
+msgid "Affiliation not provided"
+msgstr "Affiliation not provided"
+
+#: .\templates\journal\article_detail.html:94
+#: .\templates\production\issue_builder.html:13
+msgid "Pages"
+msgstr "Pages"
+
+#: .\templates\journal\article_detail.html:104
+msgid "Published online"
+msgstr "Published online"
+
+#: .\templates\journal\article_detail.html:109
+msgid "Received / Accepted"
+msgstr "Received / Accepted"
+
+#: .\templates\journal\article_detail.html:124
+#: .\templates\review\assignment_detail.html:15
+msgid "Keywords"
+msgstr "Keywords"
+
+#: .\templates\journal\article_detail.html:143
+msgid "Abstract language"
+msgstr "Abstract language"
+
+#: .\templates\journal\article_detail.html:161
+msgid "No abstract is available for this article."
+msgstr "No abstract is available for this article."
+
+#: .\templates\journal\article_detail.html:179
+msgid "Use of generative AI"
+msgstr "Use of generative AI"
+
+#: .\templates\journal\article_detail.html:182
+msgid "Acknowledgements"
+msgstr "Acknowledgements"
+
+#: .\templates\journal\article_detail.html:188
+msgid "How to cite"
+msgstr "How to cite"
+
+#: .\templates\journal\article_detail.html:221
+msgid "Google Scholar"
+msgstr "Google Scholar"
+
+#: .\templates\journal\article_detail.html:232
+msgid "Related articles"
+msgstr "Related articles"
+
+#: .\templates\journal\article_detail.html:242
+msgid "About the authors"
+msgstr "About the authors"
+
+#: .\templates\journal\article_detail.html:263
+#, python-format
+msgid "© %(holder)s."
+msgstr "© %(holder)s."
+
+#: .\templates\journal\article_detail.html:264
+msgid "This is an open access article distributed under the terms of the"
+msgstr "This is an open access article distributed under the terms of the"
+
+#: .\templates\journal\article_detail.html:267
+msgid ""
+"which permits unrestricted use, distribution and reproduction in any medium,"
+" provided the original work is properly cited."
+msgstr ""
+"which permits unrestricted use, distribution and reproduction in any medium,"
+" provided the original work is properly cited."
+
+#: .\templates\journal\article_detail.html:275
+msgid "Download PDF"
+msgstr "Download PDF"
+
+#: .\templates\journal\article_detail.html:289
+#: .\templates\journal\partials\cite_modal.html:12
+msgid "Cite this article"
+msgstr "Cite this article"
+
+#: .\templates\journal\article_detail.html:291
+msgid "Share"
+msgstr "Share"
+
+#: .\templates\journal\article_detail.html:296
+msgid "Copy link"
+msgstr "Copy link"
+
+#: .\templates\journal\article_detail.html:297
+#: .\templates\journal\partials\cite_modal.html:36
+msgid "Copied"
+msgstr "Copied"
+
+#: .\templates\journal\article_detail.html:313
+msgid "Metrics"
+msgstr "Metrics"
+
+#: .\templates\journal\article_detail.html:315
+#: .\templates\journal\home.html:120
+#: .\templates\journal\partials\article_card.html:38
+msgid "Views"
+msgstr "Views"
+
+#: .\templates\journal\article_detail.html:318
+msgid "Cited by"
+msgstr "Cited by"
+
+#: .\templates\journal\author_detail.html:13
+msgid "Published articles"
+msgstr "Published articles"
+
+#: .\templates\journal\author_detail.html:19
+msgid "No published articles yet."
+msgstr "No published articles yet."
+
+#: .\templates\journal\editorial_board.html:7
+#, python-format
+msgid "%(members)s members from %(countries)s countries"
+msgstr "%(members)s members from %(countries)s countries"
+
+#: .\templates\journal\editorial_board.html:10
+msgid ""
+"Some entries below are seeded demonstration data marked DEMO — replace. The "
+"editorial office replaces them in the admin panel."
+msgstr ""
+"Some entries below are seeded demonstration data marked DEMO — replace. The "
+"editorial office replaces them in the admin panel."
+
+#: .\templates\journal\editorial_board.html:54
+msgid "The board list is being prepared."
+msgstr "The board list is being prepared."
+
+#: .\templates\journal\home.html:20
+msgid "Open Access · CC BY 4.0"
+msgstr "Open Access · CC BY 4.0"
+
+#: .\templates\journal\home.html:21
+msgid "No APC"
+msgstr "No APC"
+
+#: .\templates\journal\home.html:22
+msgid "Double-blind peer review"
+msgstr "Double-blind peer review"
+
+#: .\templates\journal\home.html:25
+#, python-format
+msgid "%(days)s days to first decision"
+msgstr "%(days)s days to first decision"
+
+#: .\templates\journal\home.html:28
+#, python-format
+msgid "%(rate)s%% acceptance rate"
+msgstr "%(rate)s%% acceptance rate"
+
+#: .\templates\journal\home.html:33
+msgid "Author guidelines"
+msgstr "Author guidelines"
+
+#: .\templates\journal\home.html:45
+msgid "View full issue"
+msgstr "View full issue"
+
+#: .\templates\journal\home.html:66
+msgid "This issue has no articles yet."
+msgstr "This issue has no articles yet."
+
+#: .\templates\journal\home.html:72
+msgid ""
+"The first issue is being prepared. Accepted articles appear as Online First."
+msgstr ""
+"The first issue is being prepared. Accepted articles appear as Online First."
+
+#: .\templates\journal\home.html:82 .\templates\journal\home.html:99
+msgid "All"
+msgstr "All"
+
+#: .\templates\journal\home.html:113
+msgid "Most read"
+msgstr "Most read"
+
+#: .\templates\journal\home.html:114
+msgid "last 30 days"
+msgstr "last 30 days"
+
+#: .\templates\journal\home.html:123
+msgid "Usage statistics will appear once articles are published."
+msgstr "Usage statistics will appear once articles are published."
+
+#: .\templates\journal\home.html:133
+msgid "Browse by section"
+msgstr "Browse by section"
+
+#: .\templates\journal\home.html:146
+msgid "Browse by JEL classification"
+msgstr "Browse by JEL classification"
+
+#: .\templates\journal\home.html:147
+msgid "Full tree"
+msgstr "Full tree"
+
+#: .\templates\journal\home.html:159
+msgid "Publishing with us"
+msgstr "Publishing with us"
+
+#: .\templates\journal\home.html:163
+msgid "Step 1"
+msgstr "Step 1"
+
+#: .\templates\journal\home.html:164
+msgid "Read the scope"
+msgstr "Read the scope"
+
+#: .\templates\journal\home.html:165
+msgid "Check that your research fits one of our eight sections."
+msgstr "Check that your research fits one of our eight sections."
+
+#: .\templates\journal\home.html:170
+msgid "Step 2"
+msgstr "Step 2"
+
+#: .\templates\journal\home.html:171
+msgid "Prepare the manuscript"
+msgstr "Prepare the manuscript"
+
+#: .\templates\journal\home.html:172
+msgid "Use our template and APA 7 references; anonymise the file."
+msgstr "Use our template and APA 7 references; anonymise the file."
+
+#: .\templates\journal\home.html:174
+msgid "Templates"
+msgstr "Templates"
+
+#: .\templates\journal\home.html:177
+msgid "Step 3"
+msgstr "Step 3"
+
+#: .\templates\journal\home.html:178
+msgid "Submit online"
+msgstr "Submit online"
+
+#: .\templates\journal\home.html:179
+msgid "Five short steps; you can save and return at any time."
+msgstr "Five short steps; you can save and return at any time."
+
+#: .\templates\journal\home.html:184
+msgid "Step 4"
+msgstr "Step 4"
+
+#: .\templates\journal\home.html:185
+msgid "Double-blind review"
+msgstr "Double-blind review"
+
+#: .\templates\journal\home.html:186
+msgid "Two independent reviewers; first decision within about eight weeks."
+msgstr "Two independent reviewers; first decision within about eight weeks."
+
+#: .\templates\journal\home.html:196
+msgid "Indexed and archived in"
+msgstr "Indexed and archived in"
+
+#: .\templates\journal\issue_detail.html:34
+msgid "Articles"
+msgstr "Articles"
+
+#: .\templates\journal\issue_detail.html:41
+msgid "Download the full issue (PDF)"
+msgstr "Download the full issue (PDF)"
+
+#: .\templates\journal\issue_detail.html:56
+msgid "This issue has no articles."
+msgstr "This issue has no articles."
+
+#: .\templates\journal\issue_detail.html:60
+msgid "Issue navigation"
+msgstr "Issue navigation"
+
+#: .\templates\journal\issue_empty.html:8
+msgid ""
+"No issue has been published yet. Articles accepted for publication appear "
+"first as Online First."
+msgstr ""
+"No issue has been published yet. Articles accepted for publication appear "
+"first as Online First."
+
+#: .\templates\journal\jel_detail.html:12
+msgid "No articles are classified under this code yet."
+msgstr "No articles are classified under this code yet."
+
+#: .\templates\journal\jel_index.html:7
+msgid ""
+"Browse published research by the Journal of Economic Literature "
+"classification system."
+msgstr ""
+"Browse published research by the Journal of Economic Literature "
+"classification system."
+
+#: .\templates\journal\keyword_detail.html:6
+msgid "Keyword"
+msgstr "Keyword"
+
+#: .\templates\journal\keyword_detail.html:12
+msgid "No articles carry this keyword yet."
+msgstr "No articles carry this keyword yet."
+
+#: .\templates\journal\online_first.html:8
+msgid ""
+"These peer-reviewed articles have been accepted and are already citable by "
+"DOI. They will receive volume, issue and page numbers when they appear in an"
+" issue."
+msgstr ""
+"These peer-reviewed articles have been accepted and are already citable by "
+"DOI. They will receive volume, issue and page numbers when they appear in an"
+" issue."
+
+#: .\templates\journal\online_first.html:14
+msgid "There are no Online First articles at the moment."
+msgstr "There are no Online First articles at the moment."
+
+#: .\templates\journal\partials\article_card.html:37
+#: .\templates\search\partials\results.html:26
+msgid "Cite"
+msgstr "Cite"
+
+#: .\templates\journal\partials\cite_modal.html:16
+msgid "Close"
+msgstr "Close"
+
+#: .\templates\journal\partials\cite_modal.html:35
+msgid "Copy citation"
+msgstr "Copy citation"
+
+#: .\templates\journal\partials\pagination.html:4
+msgid "Pagination"
+msgstr "Pagination"
+
+#: .\templates\journal\partials\pagination.html:8
+msgid "Previous"
+msgstr "Previous"
+
+#: .\templates\journal\partials\pagination.html:11
+#, python-format
+msgid "Page %(current)s of %(total)s"
+msgstr "Page %(current)s of %(total)s"
+
+#: .\templates\journal\partials\pagination.html:15
+msgid "Next"
+msgstr "Next"
+
+#: .\templates\journal\section_detail.html:13
+msgid "No articles have been published in this section yet."
+msgstr "No articles have been published in this section yet."
+
+#: .\templates\production\article_detail.html:3
+msgid "Article production"
+msgstr "Article production"
+
+#: .\templates\production\article_detail.html:9
+msgid "Metadata completeness"
+msgstr "Metadata completeness"
+
+#: .\templates\production\article_detail.html:23
+msgid "Galleys"
+msgstr "Galleys"
+
+#: .\templates\production\article_detail.html:31
+msgid "Label"
+msgstr "Label"
+
+#: .\templates\production\article_detail.html:41
+#: .\templates\production\submission_detail.html:71
+msgid "File"
+msgstr "File"
+
+#: .\templates\production\article_detail.html:44
+msgid "Upload galley"
+msgstr "Upload galley"
+
+#: .\templates\production\article_detail.html:59
+msgid "Reserve the DOI"
+msgstr "Reserve the DOI"
+
+#: .\templates\production\article_detail.html:64
+msgid "Publication"
+msgstr "Publication"
+
+#: .\templates\production\article_detail.html:68
+msgid "Publication is blocked by:"
+msgstr "Publication is blocked by:"
+
+#: .\templates\production\article_detail.html:92
+msgid "First page"
+msgstr "First page"
+
+#: .\templates\production\article_detail.html:99
+msgid "Last page"
+msgstr "Last page"
+
+#: .\templates\production\article_detail.html:105
+msgid "Schedule into the issue"
+msgstr "Schedule into the issue"
+
+#: .\templates\production\issue_builder.html:3
+#: .\templates\production\issue_builder.html:5
+msgid "Issue builder"
+msgstr "Issue builder"
+
+#: .\templates\production\issue_builder.html:6
+msgid "in preparation"
+msgstr "in preparation"
+
+#: .\templates\production\issue_builder.html:13
+msgid "Ready"
+msgstr "Ready"
+
+#: .\templates\production\issue_builder.html:33
+msgid "from"
+msgstr "from"
+
+#: .\templates\production\issue_builder.html:37
+msgid "to"
+msgstr "to"
+
+#: .\templates\production\issue_builder.html:48
+msgid "No articles have been scheduled into this issue."
+msgstr "No articles have been scheduled into this issue."
+
+#: .\templates\production\issue_builder.html:54
+msgid "Save order and pages"
+msgstr "Save order and pages"
+
+#: .\templates\production\issue_builder.html:61
+msgid "Every article passes the completeness check."
+msgstr "Every article passes the completeness check."
+
+#: .\templates\production\issue_builder.html:63
+msgid "Some articles are incomplete; open them to fix the missing metadata."
+msgstr "Some articles are incomplete; open them to fix the missing metadata."
+
+#: .\templates\production\issue_builder.html:69
+msgid "Publish the issue"
+msgstr "Publish the issue"
+
+#: .\templates\production\issue_builder.html:73
+msgid "Unassigned articles"
+msgstr "Unassigned articles"
+
+#: .\templates\production\issue_builder.html:80
+msgid "None."
+msgstr "None."
+
+#: .\templates\production\queue.html:22
+msgid "Empty."
+msgstr "Empty."
+
+#: .\templates\production\queue.html:31
+msgid "Issues in preparation"
+msgstr "Issues in preparation"
+
+#: .\templates\production\queue.html:38
+msgid "Open the issue builder"
+msgstr "Open the issue builder"
+
+#: .\templates\production\queue.html:41
+msgid "No unpublished issues."
+msgstr "No unpublished issues."
+
+#: .\templates\production\queue.html:58 .\templates\search\search.html:32
+msgid "Year"
+msgstr "Year"
+
+#: .\templates\production\queue.html:75
+msgid "Create issue"
+msgstr "Create issue"
+
+#: .\templates\production\queue.html:92
+msgid "No Online First articles."
+msgstr "No Online First articles."
+
+#: .\templates\production\submission_detail.html:9
+msgid "Production checklist"
+msgstr "Production checklist"
+
+#: .\templates\production\submission_detail.html:14
+msgid "Stage"
+msgstr "Stage"
+
+#: .\templates\production\submission_detail.html:30
+msgid "Mark done"
+msgstr "Mark done"
+
+#: .\templates\production\submission_detail.html:41
+msgid "Stage actions"
+msgstr "Stage actions"
+
+#: .\templates\production\submission_detail.html:74
+msgid "Upload"
+msgstr "Upload"
+
+#: .\templates\production\submission_detail.html:85
+msgid "Article record"
+msgstr "Article record"
+
+#: .\templates\production\submission_detail.html:87
+msgid ""
+"Metadata, galleys, DOI and issue scheduling are managed on the article page."
+msgstr ""
+"Metadata, galleys, DOI and issue scheduling are managed on the article page."
+
+#: .\templates\production\submission_detail.html:89
+msgid "Open the article record"
+msgstr "Open the article record"
+
+#: .\templates\review\assignment_detail.html:3
+msgid "Manuscript for review"
+msgstr "Manuscript for review"
+
+#: .\templates\review\assignment_detail.html:6
+msgid ""
+"This review is double-blind. The manuscript below contains no information "
+"identifying the authors, and the authors will not learn your identity."
+msgstr ""
+"This review is double-blind. The manuscript below contains no information "
+"identifying the authors, and the authors will not learn your identity."
+
+#: .\templates\review\assignment_detail.html:35
+msgid "No files are available."
+msgstr "No files are available."
+
+#: .\templates\review\assignment_detail.html:45
+msgid "Accept the invitation"
+msgstr "Accept the invitation"
+
+#: .\templates\review\assignment_detail.html:46
+#: .\templates\review\dashboard.html:31
+msgid "Decline"
+msgstr "Decline"
+
+#: .\templates\review\assignment_detail.html:50
+#: .\templates\review\dashboard.html:54
+msgid "Open the review form"
+msgstr "Open the review form"
+
+#: .\templates\review\dashboard.html:8
+msgid "Download certificate"
+msgstr "Download certificate"
+
+#: .\templates\review\dashboard.html:12
+msgid "Invitations"
+msgstr "Invitations"
+
+#: .\templates\review\dashboard.html:23
+msgid "View the manuscript"
+msgstr "View the manuscript"
+
+#: .\templates\review\dashboard.html:35
+msgid "No open invitations."
+msgstr "No open invitations."
+
+#: .\templates\review\dashboard.html:40
+msgid "Active reviews"
+msgstr "Active reviews"
+
+#: .\templates\review\dashboard.html:48
+#, python-format
+msgid "%(counter)s day left"
+msgid_plural "%(counter)s days left"
+msgstr[0] "%(counter)s day left"
+msgstr[1] "%(counter)s days left"
+
+#: .\templates\review\dashboard.html:50
+msgid "overdue"
+msgstr "overdue"
+
+#: .\templates\review\dashboard.html:57
+msgid "No active reviews."
+msgstr "No active reviews."
+
+#: .\templates\review\dashboard.html:67
+msgid "Manuscript"
+msgstr "Manuscript"
+
+#: .\templates\review\dashboard.html:82
+msgid "No completed reviews yet."
+msgstr "No completed reviews yet."
+
+#: .\templates\review\respond_done.html:3
+msgid "Review invitation"
+msgstr "Review invitation"
+
+#: .\templates\review\respond_done.html:7
+msgid "You have already responded"
+msgstr "You have already responded"
+
+#: .\templates\review\respond_done.html:8
+msgid ""
+"This invitation has already been answered. Open your dashboard to see the "
+"details."
+msgstr ""
+"This invitation has already been answered. Open your dashboard to see the "
+"details."
+
+#: .\templates\review\respond_done.html:10
+msgid "Thank you for accepting"
+msgstr "Thank you for accepting"
+
+#: .\templates\review\respond_done.html:11
+msgid "Sign in to read the manuscript and complete the review form."
+msgstr "Sign in to read the manuscript and complete the review form."
+
+#: .\templates\review\respond_done.html:13
+msgid "Invitation declined"
+msgstr "Invitation declined"
+
+#: .\templates\review\respond_done.html:14
+msgid "Thank you for letting us know. We will approach another reviewer."
+msgstr "Thank you for letting us know. We will approach another reviewer."
+
+#: .\templates\review\respond_done.html:16
+msgid "Go to my reviews"
+msgstr "Go to my reviews"
+
+#: .\templates\review\review_form.html:3 .\templates\review\review_form.html:5
+msgid "Review form"
+msgstr "Review form"
+
+#: .\templates\review\review_form.html:10
+msgid "Assessment (1 = poor, 5 = excellent)"
+msgstr "Assessment (1 = poor, 5 = excellent)"
+
+#: .\templates\review\review_form.html:30
+msgid "Save draft"
+msgstr "Save draft"
+
+#: .\templates\review\review_form.html:31
+msgid "Submit the review"
+msgstr "Submit the review"
+
+#: .\templates\review\review_form.html:33
+msgid "Any file you upload is stripped of metadata before the editor sees it."
+msgstr ""
+"Any file you upload is stripped of metadata before the editor sees it."
+
+#: .\templates\search\partials\results.html:3
+#, python-format
+msgid "%(counter)s result"
+msgid_plural "%(counter)s results"
+msgstr[0] "%(counter)s result"
+msgstr[1] "%(counter)s results"
+
+#: .\templates\search\partials\results.html:31
+msgid "Nothing matched your search."
+msgstr "Nothing matched your search."
+
+#: .\templates\search\partials\results.html:32
+msgid "Try fewer words, a different language, or browse the archive."
+msgstr "Try fewer words, a different language, or browse the archive."
+
+#: .\templates\search\partials\results.html:33
+msgid "Browse the archive"
+msgstr "Browse the archive"
+
+#: .\templates\search\search.html:16
+msgid "Filters"
+msgstr "Filters"
+
+#: .\templates\search\search.html:20
+msgid "Hide"
+msgstr "Hide"
+
+#: .\templates\search\search.html:20
+msgid "Show"
+msgstr "Show"
+
+#: .\templates\search\search.html:26
+msgid "All sections"
+msgstr "All sections"
+
+#: .\templates\search\search.html:42
+msgid "All JEL codes"
+msgstr "All JEL codes"
+
+#: .\templates\search\search.html:55
+msgid "Sort by"
+msgstr "Sort by"
+
+#: .\templates\search\search.html:57
+msgid "Relevance"
+msgstr "Relevance"
+
+#: .\templates\search\search.html:58
+msgid "Newest first"
+msgstr "Newest first"
+
+#: .\templates\search\search.html:59
+msgid "Oldest first"
+msgstr "Oldest first"
+
+#: .\templates\search\search.html:60
+msgid "Most viewed"
+msgstr "Most viewed"
+
+#: .\templates\search\search.html:62
+msgid "Apply filters"
+msgstr "Apply filters"
+
+#: .\templates\search\search.html:63
+msgid "Reset"
+msgstr "Reset"
+
+#: .\templates\search\search.html:68
+msgid "Search query"
+msgstr "Search query"
+
+#: .\templates\search\search.html:74
+msgid "Title, abstract, keywords, authors, references"
+msgstr "Title, abstract, keywords, authors, references"
+
+#: .\templates\submissions\upload_revision.html:3
+#: .\templates\submissions\upload_revision.html:6
+msgid "Upload a revision"
+msgstr "Upload a revision"
+
+#: .\templates\submissions\upload_revision.html:10
+msgid "Decision letter"
+msgstr "Decision letter"
+
+#: .\templates\submissions\upload_revision.html:19
+msgid "Submit the revision"
+msgstr "Submit the revision"
+
+#: .\templates\submissions\withdraw.html:3
+#: .\templates\submissions\withdraw.html:6
+msgid "Withdraw the manuscript"
+msgstr "Withdraw the manuscript"
+
+#: .\templates\submissions\withdraw.html:8
+msgid ""
+"Withdrawing ends the editorial process. Reviewers who have accepted the "
+"invitation will be informed."
+msgstr ""
+"Withdrawing ends the editorial process. Reviewers who have accepted the "
+"invitation will be informed."
+
+#: .\templates\submissions\wizard_intro.html:7
+msgid ""
+"Submission takes five short steps. Your work is saved after every step, so "
+"you can leave and return at any time."
+msgstr ""
+"Submission takes five short steps. Your work is saved after every step, so "
+"you can leave and return at any time."
+
+#: .\templates\submissions\wizard_intro.html:9
+msgid "Before you start"
+msgstr "Before you start"
+
+#: .\templates\submissions\wizard_intro.html:11
+msgid "An anonymised manuscript (PDF or DOCX)"
+msgstr "An anonymised manuscript (PDF or DOCX)"
+
+#: .\templates\submissions\wizard_intro.html:12
+msgid "A separate title page with all authors and affiliations"
+msgstr "A separate title page with all authors and affiliations"
+
+#: .\templates\submissions\wizard_intro.html:13
+msgid "Title, abstract and keywords in English, Uzbek and Russian"
+msgstr "Title, abstract and keywords in English, Uzbek and Russian"
+
+#: .\templates\submissions\wizard_intro.html:14
+msgid "One to five JEL codes"
+msgstr "One to five JEL codes"
+
+#: .\templates\submissions\wizard_intro.html:15
+msgid "ORCID iDs of the authors"
+msgstr "ORCID iDs of the authors"
+
+#: .\templates\submissions\wizard_intro.html:18
+msgid "Open the full checklist"
+msgstr "Open the full checklist"
+
+#: .\templates\submissions\wizard_intro.html:23
+msgid "Continue a draft"
+msgstr "Continue a draft"
+
+#: .\templates\submissions\wizard_intro.html:30
+msgid "Last edited"
+msgstr "Last edited"
+
+#: .\templates\submissions\wizard_intro.html:30
+msgid "Step"
+msgstr "Step"
+
+#: .\templates\submissions\wizard_intro.html:33
+msgid "Continue"
+msgstr "Continue"
+
+#: .\templates\submissions\wizard_intro.html:39
+msgid "Start a new submission"
+msgstr "Start a new submission"
+
+#: .\templates\submissions\wizard_step1.html:3
+msgid "Submission — step 1"
+msgstr "Submission — step 1"
+
+#: .\templates\submissions\wizard_step1.html:16
+msgid "Author declarations"
+msgstr "Author declarations"
+
+#: .\templates\submissions\wizard_step1.html:28
+#: .\templates\submissions\wizard_step2.html:48
+#: .\templates\submissions\wizard_step3.html:67
+#: .\templates\submissions\wizard_step4.html:16
+msgid "Save and continue"
+msgstr "Save and continue"
+
+#: .\templates\submissions\wizard_step2.html:3
+msgid "Submission — step 2"
+msgstr "Submission — step 2"
+
+#: .\templates\submissions\wizard_step2.html:11
+msgid "Uploaded files"
+msgstr "Uploaded files"
+
+#: .\templates\submissions\wizard_step2.html:31
+msgid "Remove"
+msgstr "Remove"
+
+#: .\templates\submissions\wizard_step2.html:47
+#: .\templates\submissions\wizard_step3.html:66
+#: .\templates\submissions\wizard_step4.html:15
+#: .\templates\submissions\wizard_step5.html:55
+msgid "Back"
+msgstr "Back"
+
+#: .\templates\submissions\wizard_step3.html:3
+msgid "Submission — step 3"
+msgstr "Submission — step 3"
+
+#: .\templates\submissions\wizard_step3.html:23
+msgid "The Uzbek Cyrillic version is generated automatically."
+msgstr "The Uzbek Cyrillic version is generated automatically."
+
+#: .\templates\submissions\wizard_step3.html:55
+msgid ""
+"Add more authors by saving and returning to this step; mark exactly one "
+"corresponding author."
+msgstr ""
+"Add more authors by saving and returning to this step; mark exactly one "
+"corresponding author."
+
+#: .\templates\submissions\wizard_step3.html:58
+msgid "Statements and references"
+msgstr "Statements and references"
+
+#: .\templates\submissions\wizard_step4.html:3
+msgid "Submission — step 4"
+msgstr "Submission — step 4"
+
+#: .\templates\submissions\wizard_step4.html:6
+msgid "Reviewers and cover letter"
+msgstr "Reviewers and cover letter"
+
+#: .\templates\submissions\wizard_step5.html:3
+msgid "Submission — step 5"
+msgstr "Submission — step 5"
+
+#: .\templates\submissions\wizard_step5.html:6
+msgid "Review and submit"
+msgstr "Review and submit"
+
+#: .\templates\submissions\wizard_step5.html:10
+msgid "Please complete the following before submitting:"
+msgstr "Please complete the following before submitting:"
+
+#: .\templates\submissions\wizard_step5.html:19
+msgid "Type"
+msgstr "Type"
+
+#: .\templates\submissions\wizard_step5.html:34
+msgid "corresponding"
+msgstr "corresponding"
+
+#: .\templates\submissions\wizard_step5.html:58
+msgid "Submit the manuscript"
+msgstr "Submit the manuscript"

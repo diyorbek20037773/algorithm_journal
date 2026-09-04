@@ -1,0 +1,61 @@
+# Caddy reverse proxy for ALGORITHM: Review of Economic Research.
+# TLS certificates are obtained and renewed automatically from Let's Encrypt.
+
+{
+	email {$ACME_EMAIL}
+	# Uncomment while testing so you do not hit the Let's Encrypt rate limit:
+	# acme_ca https://acme-staging-v02.api.letsencrypt.org/directory
+}
+
+{$SITE_DOMAIN} {
+	encode zstd gzip
+
+	# --- Static and media, served directly by Caddy ------------------------
+	handle_path /static/* {
+		root * /srv/static
+		file_server
+		header Cache-Control "public, max-age=31536000, immutable"
+	}
+
+	handle_path /media/* {
+		root * /srv/media
+		file_server
+		header Cache-Control "public, max-age=86400"
+	}
+
+	# --- Everything else goes to Django ------------------------------------
+	handle {
+		reverse_proxy web:8000 {
+			header_up X-Forwarded-Proto {scheme}
+			header_up X-Real-IP {remote_host}
+		}
+	}
+
+	# --- Security headers ---------------------------------------------------
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		Permissions-Policy "geolocation=(), microphone=(), camera=(), interest-cohort=()"
+		-Server
+	}
+
+	log {
+		output file /data/access.log {
+			roll_size 20mb
+			roll_keep 10
+		}
+		format json
+	}
+}
+
+# Optional: redirect the secondary domain to the primary one.
+# algorithmreview.org, www.algorithmreview.org {
+# 	redir https://{$SITE_DOMAIN}{uri} permanent
+# }
+
+# Optional: self-hosted Matomo behind the analytics profile.
+# analytics.{$SITE_DOMAIN} {
+# 	reverse_proxy matomo:80
+# }

@@ -14,7 +14,9 @@ Rules implemented (Oʻzbek lotin yozuvi, 1995 alphabet):
 * the tutuq belgisi ``ʼ`` becomes ``ъ``;
 * capitalisation of the source token is preserved (Title Case and ALL CAPS);
 * a small exception dictionary handles loanwords whose accepted Cyrillic
-  spelling does not follow the letter-by-letter rules.
+  spelling does not follow the letter-by-letter rules;
+* format placeholders (``%(name)s``, ``{name}``), URLs, e-mail addresses and
+  HTML entities are passed through untouched, so interface strings stay valid.
 """
 
 from __future__ import annotations
@@ -141,6 +143,34 @@ _CYR_TO_LAT: tuple[tuple[str, str], ...] = (
 _LATIN_WORD_RE = re.compile(rf"[A-Za-z{re.escape(APOSTROPHES)}]+")
 _CYRILLIC_WORD_RE = re.compile(r"[А-Яа-яЁёЎўҚқҒғҲҳ]+")
 
+#: Fragments that must survive transliteration untouched: printf-style and
+#: brace placeholders, HTML entities and URLs.  Interface strings are full of
+#: them ("%(count)s articles", "{dashboard_url}"), and converting the Latin
+#: letters inside one would break the format string.
+_PROTECTED_RE = re.compile(
+    r"""(
+        %\([^)]*\)[sdfgeXxor]      # %(name)s
+      | %[sdfgeXxor%]              # %s, %d, %%
+      | \{[^{}]*\}                 # {placeholder}
+      | &[A-Za-z]+;                # &nbsp;
+      | https?://\S+               # URLs
+      | [\w.+-]+@[\w-]+\.[\w.]+    # e-mail addresses
+    )""",
+    re.VERBOSE,
+)
+
+
+def _transliterate_protected(text: str, convert) -> str:
+    """Apply ``convert`` to ``text``, leaving protected fragments untouched."""
+    out: list[str] = []
+    position = 0
+    for match in _PROTECTED_RE.finditer(text):
+        out.append(convert(text[position : match.start()]))
+        out.append(match.group(0))
+        position = match.end()
+    out.append(convert(text[position:]))
+    return "".join(out)
+
 
 def _normalise_apostrophes(text: str) -> str:
     """Collapse every apostrophe variant to ``ʻ`` (U+02BB)."""
@@ -238,11 +268,16 @@ def to_cyrillic(text: str | None) -> str:
     """
     if not text:
         return ""
-    return _LATIN_WORD_RE.sub(lambda m: _convert_latin_word(m.group(0)), text)
+    return _transliterate_protected(
+        text, lambda chunk: _LATIN_WORD_RE.sub(lambda m: _convert_latin_word(m.group(0)), chunk)
+    )
 
 
 def to_latin(text: str | None) -> str:
     """Transliterate Uzbek Cyrillic ``text`` into the Latin script."""
     if not text:
         return ""
-    return _CYRILLIC_WORD_RE.sub(lambda m: _convert_cyrillic_word(m.group(0)), text)
+    return _transliterate_protected(
+        text,
+        lambda chunk: _CYRILLIC_WORD_RE.sub(lambda m: _convert_cyrillic_word(m.group(0)), chunk),
+    )

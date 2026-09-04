@@ -1,0 +1,5232 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-05 01:00+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: ARER editorial office\n"
+"Language-Team: ARER\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\apps\accounts\admin.py:32
+msgid "Personal info"
+msgstr "Личные данные"
+
+#: .\apps\accounts\admin.py:33 .\apps\journal\models.py:332
+#: .\templates\dashboard\_base.html:15
+msgid "Editorial"
+msgstr "Редакция"
+
+#: .\apps\accounts\admin.py:35
+msgid "Permissions"
+msgstr "Права доступа"
+
+#: .\apps\accounts\admin.py:38
+msgid "Important dates"
+msgstr "Важные даты"
+
+#: .\apps\accounts\middleware.py:60
+msgid ""
+"Two-factor authentication is mandatory for editorial accounts. Please set it"
+" up to continue."
+msgstr ""
+"Для редакционных учётных записей двухфакторная аутентификация обязательна. "
+"Настройте её, чтобы продолжить."
+
+#: .\apps\accounts\models.py:20 .\templates\journal\author_detail.html:6
+#: .\templates\search\search.html:48
+msgid "Author"
+msgstr "Автор"
+
+#: .\apps\accounts\models.py:21 .\templates\dashboard\decide.html:14
+#: .\templates\dashboard\partials\reviewer_finder.html:5
+#: .\templates\dashboard\submission_detail.html:173
+#: .\templates\dashboard\submission_detail.html:222
+msgid "Reviewer"
+msgstr "Рецензент"
+
+#: .\apps\accounts\models.py:22
+msgid "Section editor"
+msgstr "Редактор рубрики"
+
+#: .\apps\accounts\models.py:23 .\apps\journal\models.py:750
+msgid "Editor-in-Chief"
+msgstr "Главный редактор"
+
+#: .\apps\accounts\models.py:24
+msgid "Production editor"
+msgstr "Выпускающий редактор"
+
+#: .\apps\accounts\models.py:25
+msgid "Administrator"
+msgstr "Администратор"
+
+#: .\apps\accounts\models.py:73
+msgid "e-mail address"
+msgstr "адрес электронной почты"
+
+#: .\apps\accounts\models.py:74 .\apps\journal\models.py:589
+#: .\apps\submissions\models.py:345
+msgid "given name"
+msgstr "имя"
+
+#: .\apps\accounts\models.py:75 .\apps\journal\models.py:590
+#: .\apps\submissions\models.py:346
+msgid "family name"
+msgstr "фамилия"
+
+#: .\apps\accounts\models.py:77
+msgid "preferred language"
+msgstr "предпочитаемый язык"
+
+#: .\apps\accounts\models.py:83
+msgid "available as reviewer"
+msgstr "доступен как рецензент"
+
+#: .\apps\accounts\models.py:85
+msgid "Flagged by an editor; controls appearance in the reviewer finder."
+msgstr "Отмечается редактором; определяет видимость в поиске рецензентов."
+
+#: .\apps\accounts\models.py:88
+msgid "must enrol in 2FA"
+msgstr "требуется настроить 2FA"
+
+#: .\apps\accounts\models.py:90
+msgid "Set for staff accounts created by seeding or by an administrator."
+msgstr ""
+"Устанавливается для служебных учётных записей, созданных сидированием или "
+"администратором."
+
+#: .\apps\accounts\models.py:92 .\apps\submissions\models.py:194
+msgid "last activity"
+msgstr "последняя активность"
+
+#: .\apps\accounts\models.py:100 .\apps\accounts\models.py:162
+msgid "user"
+msgstr "пользователь"
+
+#: .\apps\accounts\models.py:101
+msgid "users"
+msgstr "пользователи"
+
+#: .\apps\accounts\models.py:164 .\apps\journal\models.py:599
+#: .\apps\journal\models.py:785 .\apps\submissions\models.py:349
+msgid "ORCID iD"
+msgstr "ORCID iD"
+
+#: .\apps\accounts\models.py:165 .\apps\journal\models.py:600
+#: .\apps\submissions\models.py:350
+msgid "ORCID verified"
+msgstr "ORCID подтверждён"
+
+#: .\apps\accounts\models.py:166 .\apps\journal\models.py:601
+#: .\apps\journal\models.py:783 .\apps\submissions\models.py:351
+msgid "affiliation"
+msgstr "место работы"
+
+#: .\apps\accounts\models.py:167
+msgid "department"
+msgstr "подразделение"
+
+#: .\apps\accounts\models.py:168 .\apps\journal\models.py:603
+#: .\apps\submissions\models.py:353
+msgid "city"
+msgstr "город"
+
+#: .\apps\accounts\models.py:169 .\apps\journal\models.py:604
+#: .\apps\journal\models.py:784 .\apps\metrics\models.py:45
+#: .\apps\submissions\models.py:354
+msgid "country"
+msgstr "страна"
+
+#: .\apps\accounts\models.py:170 .\apps\journal\models.py:781
+msgid "academic degree"
+msgstr "учёная степень"
+
+#: .\apps\accounts\models.py:171 .\apps\journal\models.py:782
+msgid "academic title"
+msgstr "учёное звание"
+
+#: .\apps\accounts\models.py:172 .\apps\journal\models.py:605
+#: .\apps\journal\models.py:789
+msgid "biography"
+msgstr "биография"
+
+#: .\apps\accounts\models.py:173
+msgid "website"
+msgstr "веб-сайт"
+
+#: .\apps\accounts\models.py:174 .\apps\journal\models.py:786
+msgid "Scopus Author ID"
+msgstr "Scopus Author ID"
+
+#: .\apps\accounts\models.py:176
+msgid "areas of expertise"
+msgstr "области экспертизы"
+
+#: .\apps\accounts\models.py:178
+msgid "Comma-separated keywords used by the reviewer finder."
+msgstr "Ключевые слова через запятую, используемые при подборе рецензентов."
+
+#: .\apps\accounts\models.py:181 .\apps\journal\models.py:259
+#: .\apps\journal\models.py:358 .\apps\submissions\forms.py:145
+#: .\apps\submissions\models.py:155
+#: .\templates\dashboard\submission_detail.html:55
+#: .\templates\journal\article_detail.html:114
+#: .\templates\review\assignment_detail.html:17
+#: .\templates\submissions\wizard_step5.html:22
+msgid "JEL codes"
+msgstr "Коды JEL"
+
+#: .\apps\accounts\models.py:183
+msgid "reviews completed"
+msgstr "выполненные рецензии"
+
+#: .\apps\accounts\models.py:184
+msgid "reviews declined"
+msgstr "отклонённые приглашения"
+
+#: .\apps\accounts\models.py:185
+msgid "average review days"
+msgstr "среднее число дней на рецензию"
+
+#: .\apps\accounts\models.py:186
+msgid "average quality rating"
+msgstr "средняя оценка качества"
+
+#: .\apps\accounts\models.py:187
+msgid "accepts review invitations"
+msgstr "принимает приглашения рецензировать"
+
+#: .\apps\accounts\models.py:190
+msgid "profile"
+msgstr "профиль"
+
+#: .\apps\accounts\models.py:191
+msgid "profiles"
+msgstr "профили"
+
+#: .\apps\citations\services.py:192
+msgid "Unsupported export format."
+msgstr "Неподдерживаемый формат экспорта."
+
+#: .\apps\core\admin.py:27
+msgid "Identity"
+msgstr "Идентификация"
+
+#: .\apps\core\admin.py:31
+msgid "Identifiers"
+msgstr "Идентификаторы"
+
+#: .\apps\core\admin.py:44 .\templates\core\about.html:17
+#: .\templates\core\contact.html:10
+msgid "Publisher"
+msgstr "Издатель"
+
+#: .\apps\core\admin.py:46 .\templates\includes\footer.html:10
+msgid "Contact"
+msgstr "Контакты"
+
+#: .\apps\core\admin.py:49
+msgid "Branding"
+msgstr "Брендинг"
+
+#: .\apps\core\admin.py:51
+msgid "Policies"
+msgstr "Политики"
+
+#: .\apps\core\admin.py:55
+msgid "Integrations"
+msgstr "Интеграции"
+
+#: .\apps\core\forms.py:16
+msgid "Leave this field empty"
+msgstr "Оставьте это поле пустым"
+
+#: .\apps\core\forms.py:30
+msgid "Your name"
+msgstr "Ваше имя"
+
+#: .\apps\core\forms.py:31
+msgid "E-mail address"
+msgstr "Адрес электронной почты"
+
+#: .\apps\core\forms.py:32
+msgid "Subject"
+msgstr "Тема"
+
+#: .\apps\core\forms.py:33 .\apps\submissions\forms.py:489
+msgid "Message"
+msgstr "Сообщение"
+
+#: .\apps\core\forms.py:40
+msgid "Spam detected."
+msgstr "Обнаружен спам."
+
+#: .\apps\core\forms.py:47
+msgid "Please write at least 20 characters."
+msgstr "Напишите не менее 20 символов."
+
+#: .\apps\core\models.py:21
+msgid "created at"
+msgstr "создано"
+
+#: .\apps\core\models.py:22
+msgid "updated at"
+msgstr "обновлено"
+
+#: .\apps\core\models.py:37
+msgid "machine-generated fields"
+msgstr "поля, созданные машиной"
+
+#: .\apps\core\models.py:59
+msgid "journal name"
+msgstr "название журнала"
+
+#: .\apps\core\models.py:61
+msgid "journal subtitle"
+msgstr "подзаголовок журнала"
+
+#: .\apps\core\models.py:62
+msgid "short code"
+msgstr "краткий код"
+
+#: .\apps\core\models.py:64
+msgid "e-ISSN"
+msgstr "e-ISSN"
+
+#: .\apps\core\models.py:65
+msgid "print ISSN"
+msgstr "печатный ISSN"
+
+#: .\apps\core\models.py:67
+msgid "registration certificate number"
+msgstr "номер свидетельства о регистрации"
+
+#: .\apps\core\models.py:70
+msgid "registration certificate date"
+msgstr "дата свидетельства о регистрации"
+
+#: .\apps\core\models.py:73
+msgid "registration authority"
+msgstr "регистрирующий орган"
+
+#: .\apps\core\models.py:77
+msgid "publisher"
+msgstr "издатель"
+
+#: .\apps\core\models.py:79
+msgid "publisher address"
+msgstr "адрес издателя"
+
+#: .\apps\core\models.py:80
+msgid "founded year"
+msgstr "год основания"
+
+#: .\apps\core\models.py:81 .\templates\core\about.html:16
+msgid "DOI prefix"
+msgstr "Префикс DOI"
+
+#: .\apps\core\models.py:83
+msgid "publication frequency"
+msgstr "периодичность издания"
+
+#: .\apps\core\models.py:86
+msgid "contact e-mail"
+msgstr "контактный e-mail"
+
+#: .\apps\core\models.py:87
+msgid "contact phone"
+msgstr "контактный телефон"
+
+#: .\apps\core\models.py:88
+msgid "contact address"
+msgstr "контактный адрес"
+
+#: .\apps\core\models.py:92
+msgid "editor-in-chief"
+msgstr "главный редактор"
+
+#: .\apps\core\models.py:99 .\apps\core\models.py:176
+msgid "logo"
+msgstr "логотип"
+
+#: .\apps\core\models.py:100
+msgid "logo (dark)"
+msgstr "логотип (тёмный)"
+
+#: .\apps\core\models.py:101
+msgid "favicon"
+msgstr "фавикон"
+
+#: .\apps\core\models.py:103
+msgid "social links"
+msgstr "ссылки на соцсети"
+
+#: .\apps\core\models.py:104
+msgid "Google Scholar profile"
+msgstr "Профиль Google Scholar"
+
+#: .\apps\core\models.py:105
+msgid "Crossref member ID"
+msgstr "Идентификатор члена Crossref"
+
+#: .\apps\core\models.py:108
+msgid "maximum similarity (%)"
+msgstr "максимальные заимствования (%)"
+
+#: .\apps\core\models.py:113
+msgid "announcement bar text"
+msgstr "текст полосы объявлений"
+
+#: .\apps\core\models.py:115
+msgid "Matomo site ID"
+msgstr "Идентификатор сайта Matomo"
+
+#: .\apps\core\models.py:117 .\apps\core\models.py:186
+msgid "indexing services"
+msgstr "службы индексации"
+
+#: .\apps\core\models.py:119
+msgid "show Online First"
+msgstr "показывать Online First"
+
+#: .\apps\core\models.py:122 .\apps\core\models.py:123
+msgid "site settings"
+msgstr "настройки сайта"
+
+#: .\apps\core\models.py:147
+msgid "Site settings cannot be deleted."
+msgstr "Настройки сайта нельзя удалить."
+
+#: .\apps\core\models.py:158 .\templates\core\about.html:13
+#: .\templates\includes\footer.html:12 .\templates\journal\home.html:18
+msgid "pending"
+msgstr "ожидается"
+
+#: .\apps\core\models.py:174 .\apps\core\models.py:333
+#: .\apps\journal\models.py:47 .\apps\journal\models.py:70
+msgid "name"
+msgstr "название"
+
+#: .\apps\core\models.py:175 .\apps\core\models.py:215
+#: .\apps\core\models.py:301 .\apps\journal\models.py:69
+#: .\apps\journal\models.py:214 .\apps\journal\models.py:352
+msgid "slug"
+msgstr "слаг"
+
+#: .\apps\core\models.py:177 .\apps\core\models.py:266
+msgid "URL"
+msgstr "URL"
+
+#: .\apps\core\models.py:179 .\apps\core\models.py:274
+#: .\apps\core\models.py:389 .\apps\journal\models.py:73
+#: .\apps\journal\models.py:795
+msgid "active"
+msgstr "активен"
+
+#: .\apps\core\models.py:179
+msgid "Only active services are displayed publicly."
+msgstr "Публично отображаются только активные службы."
+
+#: .\apps\core\models.py:181 .\apps\core\models.py:273
+#: .\apps\journal\models.py:72 .\apps\journal\models.py:580
+#: .\apps\journal\models.py:664 .\apps\journal\models.py:720
+#: .\apps\journal\models.py:794 .\apps\submissions\models.py:336
+msgid "order"
+msgstr "порядок"
+
+#: .\apps\core\models.py:182 .\apps\submissions\models.py:815
+msgid "note"
+msgstr "примечание"
+
+#: .\apps\core\models.py:185
+msgid "indexing service"
+msgstr "служба индексации"
+
+#: .\apps\core\models.py:209 .\templates\includes\header.html:15
+#: .\templates\includes\header.html:97
+msgid "About"
+msgstr "О журнале"
+
+#: .\apps\core\models.py:210 .\templates\core\for_authors.html:3
+#: .\templates\includes\footer.html:27 .\templates\includes\header.html:13
+#: .\templates\includes\header.html:95
+msgid "For Authors"
+msgstr "Авторам"
+
+#: .\apps\core\models.py:211 .\templates\includes\header.html:14
+#: .\templates\includes\header.html:96
+msgid "For Reviewers"
+msgstr "Рецензентам"
+
+#: .\apps\core\models.py:212
+msgid "Footer"
+msgstr "Подвал"
+
+#: .\apps\core\models.py:213
+msgid "Not in menu"
+msgstr "Не в меню"
+
+#: .\apps\core\models.py:216 .\apps\core\models.py:300
+#: .\apps\journal\models.py:111 .\apps\journal\models.py:143
+#: .\apps\journal\models.py:349 .\apps\submissions\models.py:149
+msgid "title"
+msgstr "заголовок"
+
+#: .\apps\core\models.py:217 .\apps\core\models.py:302
+#: .\apps\core\models.py:383
+msgid "body (Markdown)"
+msgstr "текст (Markdown)"
+
+#: .\apps\core\models.py:220
+msgid "parent page"
+msgstr "родительская страница"
+
+#: .\apps\core\models.py:227 .\apps\core\models.py:268
+msgid "menu group"
+msgstr "группа меню"
+
+#: .\apps\core\models.py:229
+msgid "menu order"
+msgstr "порядок в меню"
+
+#: .\apps\core\models.py:230 .\apps\journal\models.py:146
+#: .\apps\journal\models.py:381 .\apps\metrics\models.py:96
+#: .\templates\production\issue_builder.html:6
+msgid "published"
+msgstr "опубликовано"
+
+#: .\apps\core\models.py:231
+msgid "SEO description"
+msgstr "SEO-описание"
+
+#: .\apps\core\models.py:233
+msgid "needs editorial review"
+msgstr "требует редакционной вычитки"
+
+#: .\apps\core\models.py:235
+msgid "Machine-drafted translations are flagged for proofreading."
+msgstr "Машинные переводы помечаются для вычитки."
+
+#: .\apps\core\models.py:241
+msgid "page"
+msgstr "страница"
+
+#: .\apps\core\models.py:242
+msgid "pages"
+msgstr "страницы"
+
+#: .\apps\core\models.py:265 .\apps\journal\models.py:246
+#: .\apps\journal\models.py:711
+msgid "label"
+msgstr "метка"
+
+#: .\apps\core\models.py:275
+msgid "open in a new tab"
+msgstr "открывать в новой вкладке"
+
+#: .\apps\core\models.py:278
+msgid "menu item"
+msgstr "элемент меню"
+
+#: .\apps\core\models.py:279
+msgid "menu items"
+msgstr "элементы меню"
+
+#: .\apps\core\models.py:303 .\apps\journal\models.py:145
+msgid "published at"
+msgstr "дата публикации"
+
+#: .\apps\core\models.py:304
+msgid "expires at"
+msgstr "срок действия"
+
+#: .\apps\core\models.py:305
+msgid "pinned"
+msgstr "закреплено"
+
+#: .\apps\core\models.py:310
+msgid "announcement"
+msgstr "объявление"
+
+#: .\apps\core\models.py:311
+msgid "announcements"
+msgstr "объявления"
+
+#: .\apps\core\models.py:334 .\apps\journal\models.py:597
+#: .\apps\journal\models.py:787 .\apps\submissions\models.py:347
+msgid "e-mail"
+msgstr "электронная почта"
+
+#: .\apps\core\models.py:335 .\apps\core\models.py:382
+#: .\apps\submissions\models.py:749
+msgid "subject"
+msgstr "тема"
+
+#: .\apps\core\models.py:336 .\apps\crossref\models.py:65
+#: .\apps\submissions\models.py:789
+msgid "message"
+msgstr "сообщение"
+
+#: .\apps\core\models.py:337 .\apps\core\models.py:428
+msgid "IP address"
+msgstr "IP-адрес"
+
+#: .\apps\core\models.py:338
+msgid "handled"
+msgstr "обработано"
+
+#: .\apps\core\models.py:341
+msgid "handled by"
+msgstr "обработал"
+
+#: .\apps\core\models.py:349
+msgid "contact message"
+msgstr "сообщение обратной связи"
+
+#: .\apps\core\models.py:350
+msgid "contact messages"
+msgstr "сообщения обратной связи"
+
+#: .\apps\core\models.py:361
+msgid "Account verification"
+msgstr "Подтверждение учётной записи"
+
+#: .\apps\core\models.py:364
+msgid "Submission received (author)"
+msgstr "Рукопись получена (автор)"
+
+#: .\apps\core\models.py:368
+msgid "Submission received (editor)"
+msgstr "Рукопись получена (редактор)"
+
+#: .\apps\core\models.py:370
+msgid "Editor assigned"
+msgstr "Назначен редактор"
+
+#: .\apps\core\models.py:371
+msgid "Reviewer invitation"
+msgstr "Приглашение рецензенту"
+
+#: .\apps\core\models.py:372
+msgid "Reviewer reminder"
+msgstr "Напоминание рецензенту"
+
+#: .\apps\core\models.py:373
+msgid "Reviewer thanks"
+msgstr "Благодарность рецензенту"
+
+#: .\apps\core\models.py:374 .\apps\core\models.py:408
+#: .\templates\dashboard\decide.html:3 .\templates\dashboard\decide.html:5
+msgid "Editorial decision"
+msgstr "Редакционное решение"
+
+#: .\apps\core\models.py:375
+msgid "Revision reminder"
+msgstr "Напоминание о доработке"
+
+#: .\apps\core\models.py:376
+msgid "Proof request"
+msgstr "Запрос на утверждение корректуры"
+
+#: .\apps\core\models.py:377
+msgid "Article published"
+msgstr "Статья опубликована"
+
+#: .\apps\core\models.py:378
+msgid "DOI registered"
+msgstr "DOI зарегистрирован"
+
+#: .\apps\core\models.py:379
+msgid "Contact form notification"
+msgstr "Уведомление из формы обратной связи"
+
+#: .\apps\core\models.py:381
+msgid "event"
+msgstr "событие"
+
+#: .\apps\core\models.py:385
+msgid "available placeholders"
+msgstr "доступные подстановки"
+
+#: .\apps\core\models.py:387
+msgid "Documented context variables, one per line."
+msgstr "Документированные переменные контекста, по одной в строке."
+
+#: .\apps\core\models.py:392
+msgid "e-mail template"
+msgstr "шаблон письма"
+
+#: .\apps\core\models.py:393
+msgid "e-mail templates"
+msgstr "шаблоны писем"
+
+#: .\apps\core\models.py:404
+msgid "Login"
+msgstr "Вход"
+
+#: .\apps\core\models.py:405
+msgid "Failed login"
+msgstr "Неудачный вход"
+
+#: .\apps\core\models.py:406
+msgid "Logout"
+msgstr "Выход"
+
+#: .\apps\core\models.py:407
+msgid "Role change"
+msgstr "Изменение роли"
+
+#: .\apps\core\models.py:409 .\templates\production\issue_builder.html:59
+msgid "Publish"
+msgstr "Публикация"
+
+#: .\apps\core\models.py:410
+msgid "Unpublish"
+msgstr "Снятие с публикации"
+
+#: .\apps\core\models.py:411
+msgid "Settings change"
+msgstr "Изменение настроек"
+
+#: .\apps\core\models.py:412
+msgid "File deletion"
+msgstr "Удаление файла"
+
+#: .\apps\core\models.py:413
+msgid "Workflow transition"
+msgstr "Переход рабочего процесса"
+
+#: .\apps\core\models.py:414
+msgid "Crossref deposit"
+msgstr "Депозит Crossref"
+
+#: .\apps\core\models.py:415
+msgid "Policy override"
+msgstr "Отступление от правила"
+
+#: .\apps\core\models.py:419
+msgid "actor"
+msgstr "исполнитель"
+
+#: .\apps\core\models.py:425
+msgid "action"
+msgstr "действие"
+
+#: .\apps\core\models.py:426
+msgid "target"
+msgstr "объект"
+
+#: .\apps\core\models.py:427
+msgid "changes"
+msgstr "изменения"
+
+#: .\apps\core\models.py:431
+msgid "audit log entry"
+msgstr "запись журнала аудита"
+
+#: .\apps\core\models.py:432
+msgid "audit log"
+msgstr "журнал аудита"
+
+#: .\apps\core\views.py:75 .\templates\400.html:3 .\templates\400.html:8
+msgid "Bad request"
+msgstr "Неверный запрос"
+
+#: .\apps\core\views.py:75 .\templates\400.html:9
+msgid "The request could not be understood."
+msgstr "Запрос не удалось разобрать."
+
+#: .\apps\core\views.py:81 .\templates\403.html:3 .\templates\403.html:8
+msgid "Access denied"
+msgstr "Доступ запрещён"
+
+#: .\apps\core\views.py:81 .\templates\403.html:9
+msgid "You do not have permission to view this page."
+msgstr "У вас нет прав для просмотра этой страницы."
+
+#: .\apps\core\views.py:87 .\templates\404.html:3 .\templates\404.html:8
+msgid "Page not found"
+msgstr "Страница не найдена"
+
+#: .\apps\core\views.py:87 .\templates\404.html:9
+msgid "This page does not exist or has moved."
+msgstr "Эта страница не существует или была перемещена."
+
+#: .\apps\core\views.py:95 .\templates\500.html:3 .\templates\500.html:8
+msgid "Server error"
+msgstr "Ошибка сервера"
+
+#: .\apps\core\views.py:96 .\templates\500.html:9
+msgid ""
+"Something went wrong on our side. The editorial office has been notified."
+msgstr "На нашей стороне произошла ошибка. Редакция уведомлена."
+
+#: .\apps\core\views_pages.py:66
+msgid ""
+"The manuscript is original, unpublished, and not under consideration "
+"elsewhere."
+msgstr ""
+"Рукопись оригинальна, не публиковалась и не рассматривается в других "
+"изданиях."
+
+#: .\apps\core\views_pages.py:67
+msgid ""
+"The article is between 4,000 and 10,000 words (2,000–4,000 for a short "
+"communication)."
+msgstr ""
+"Объём статьи — 4 000–10 000 слов (2 000–4 000 для краткого сообщения)."
+
+#: .\apps\core\views_pages.py:69
+msgid ""
+"The manuscript file is anonymised: no author names, affiliations, "
+"acknowledgements or self-identifying citations."
+msgstr ""
+"Файл рукописи обезличен: нет имён авторов, мест работы, благодарностей и "
+"самоидентифицирующих ссылок."
+
+#: .\apps\core\views_pages.py:72
+msgid ""
+"A separate title page lists all authors, affiliations with city and country,"
+" ORCID iDs and the corresponding author."
+msgstr ""
+"На отдельном титульном листе указаны все авторы, места работы с городом и "
+"страной, ORCID и корреспондирующий автор."
+
+#: .\apps\core\views_pages.py:75
+msgid ""
+"Title, abstract (150–250 words) and 5–8 keywords are provided in English, "
+"Uzbek and Russian."
+msgstr ""
+"Название, аннотация (150–250 слов) и 5–8 ключевых слов приведены на "
+"английском, узбекском и русском языках."
+
+#: .\apps\core\views_pages.py:77
+msgid "Between one and five JEL classification codes have been selected."
+msgstr "Выбрано от одного до пяти кодов классификации JEL."
+
+#: .\apps\core\views_pages.py:79
+msgid ""
+"The structure follows IMRaD: introduction, literature, methods, results, "
+"discussion, conclusion."
+msgstr ""
+"Структура соответствует IMRaD: введение, литература, методы, результаты, "
+"обсуждение, заключение."
+
+#: .\apps\core\views_pages.py:82
+msgid ""
+"References follow APA 7th edition, with DOIs where available; non-Latin "
+"sources include a transliteration and an English translation."
+msgstr ""
+"Список литературы оформлен по APA 7, с DOI при наличии; источники не на "
+"латинице снабжены транслитерацией и английским переводом."
+
+#: .\apps\core\views_pages.py:85
+msgid ""
+"Tables and figures are numbered, captioned and referred to in the text; "
+"figures are legible at print size."
+msgstr ""
+"Таблицы и рисунки пронумерованы, снабжены подписями и упомянуты в тексте; "
+"рисунки читаемы в печатном размере."
+
+#: .\apps\core\views_pages.py:87
+msgid ""
+"Funding, conflict of interest, data availability and generative-AI use are "
+"declared."
+msgstr ""
+"Заявлены финансирование, конфликт интересов, доступность данных и "
+"использование генеративного ИИ."
+
+#: .\apps\core\views_pages.py:88
+msgid ""
+"All co-authors have approved the submission and agree to publication under "
+"CC BY 4.0."
+msgstr "Все соавторы одобрили подачу и согласны на публикацию под CC BY 4.0."
+
+#: .\apps\core\views_pages.py:90
+msgid ""
+"Research involving human participants states the ethical approval or "
+"explains why none was required."
+msgstr ""
+"В исследованиях с участием людей указано этическое одобрение либо объяснено,"
+" почему оно не требовалось."
+
+#: .\apps\core\views_pages.py:118
+msgid "Too many messages have been sent from this address. Please try later."
+msgstr "С этого адреса отправлено слишком много сообщений. Попробуйте позже."
+
+#: .\apps\core\views_pages.py:137
+msgid "Thank you — your message has been sent."
+msgstr "Спасибо — ваше сообщение отправлено."
+
+#: .\apps\crossref\models.py:17 .\apps\submissions\models.py:495
+#: .\apps\submissions\models.py:838
+msgid "Pending"
+msgstr "Ожидает"
+
+#: .\apps\crossref\models.py:18 .\apps\submissions\models.py:42
+#: .\templates\dashboard\home.html:97
+#: .\templates\dashboard\submission_detail.html:11
+#: .\templates\review\dashboard.html:69
+msgid "Submitted"
+msgstr "Отправлено"
+
+#: .\apps\crossref\models.py:19
+msgid "Success"
+msgstr "Успешно"
+
+#: .\apps\crossref\models.py:20
+msgid "Failed"
+msgstr "Не удалось"
+
+#: .\apps\crossref\models.py:22
+msgid "batch ID"
+msgstr "идентификатор пакета"
+
+#: .\apps\crossref\models.py:23
+msgid "deposit XML"
+msgstr "XML депозита"
+
+#: .\apps\crossref\models.py:25 .\apps\journal\models.py:432
+msgid "articles"
+msgstr "статьи"
+
+#: .\apps\crossref\models.py:28 .\apps\crossref\models.py:64
+#: .\apps\journal\models.py:384 .\apps\submissions\models.py:167
+#: .\apps\submissions\models.py:457 .\apps\submissions\models.py:528
+#: .\apps\submissions\models.py:869
+msgid "status"
+msgstr "статус"
+
+#: .\apps\crossref\models.py:30
+msgid "response log"
+msgstr "журнал ответов"
+
+#: .\apps\crossref\models.py:31 .\apps\submissions\models.py:193
+#: .\apps\submissions\models.py:612
+msgid "submitted at"
+msgstr "дата отправки"
+
+#: .\apps\crossref\models.py:32
+msgid "resolved at"
+msgstr "дата разрешения"
+
+#: .\apps\crossref\models.py:33
+msgid "test deposit"
+msgstr "тестовый депозит"
+
+#: .\apps\crossref\models.py:34
+msgid "metadata update"
+msgstr "обновление метаданных"
+
+#: .\apps\crossref\models.py:37
+msgid "deposit batch"
+msgstr "пакет депозита"
+
+#: .\apps\crossref\models.py:38
+msgid "deposit batches"
+msgstr "пакеты депозита"
+
+#: .\apps\crossref\models.py:51 .\apps\journal\models.py:431
+#: .\apps\journal\models.py:578 .\apps\journal\models.py:662
+#: .\apps\journal\models.py:709 .\apps\journal\models.py:843
+#: .\apps\metrics\models.py:28 .\apps\metrics\models.py:66
+msgid "article"
+msgstr "статья"
+
+#: .\apps\crossref\models.py:57
+msgid "batch"
+msgstr "пакет"
+
+#: .\apps\crossref\models.py:63 .\apps\journal\models.py:367
+#: .\apps\journal\models.py:666
+msgid "DOI"
+msgstr "DOI"
+
+#: .\apps\crossref\models.py:68
+msgid "DOI registration"
+msgstr "регистрация DOI"
+
+#: .\apps\crossref\models.py:69
+msgid "DOI registrations"
+msgstr "регистрации DOI"
+
+#: .\apps\dashboard\forms.py:27 .\apps\submissions\forms.py:457
+msgid "Given name"
+msgstr "Имя"
+
+#: .\apps\dashboard\forms.py:28 .\apps\submissions\forms.py:460
+#: .\templates\search\search.html:54
+msgid "Family name"
+msgstr "Фамилия"
+
+#: .\apps\dashboard\forms.py:29
+msgid "Interface language"
+msgstr "Язык интерфейса"
+
+#: .\apps\dashboard\forms.py:72 .\apps\submissions\forms.py:271
+msgid "Enter an ORCID iD as 0000-0000-0000-0000."
+msgstr "Введите ORCID iD в формате 0000-0000-0000-0000."
+
+#: .\apps\dashboard\forms.py:80
+msgid "Six-digit code"
+msgstr "Шестизначный код"
+
+#: .\apps\dashboard\views.py:50 .\templates\dashboard\_base.html:16
+msgid "New"
+msgstr "Новые"
+
+#: .\apps\dashboard\views.py:51 .\apps\submissions\models.py:43
+#: .\templates\dashboard\_base.html:17
+msgid "Screening"
+msgstr "Отбор"
+
+#: .\apps\dashboard\views.py:52 .\templates\dashboard\_base.html:18
+msgid "In review"
+msgstr "На рецензировании"
+
+#: .\apps\dashboard\views.py:53 .\apps\submissions\models.py:45
+#: .\templates\dashboard\_base.html:19
+msgid "Awaiting decision"
+msgstr "Ожидают решения"
+
+#: .\apps\dashboard\views.py:56 .\templates\dashboard\_base.html:20
+msgid "Revisions"
+msgstr "Доработки"
+
+#: .\apps\dashboard\views.py:61
+msgid "Accepted / in production"
+msgstr "Приняты / в подготовке"
+
+#: .\apps\dashboard\views.py:212
+msgid "The similarity result has been recorded."
+msgstr "Результат проверки заимствований сохранён."
+
+#: .\apps\dashboard\views.py:214
+msgid "Please correct the similarity form."
+msgstr "Исправьте форму проверки заимствований."
+
+#: .\apps\dashboard\views.py:230
+msgid "Done."
+msgstr "Готово."
+
+#: .\apps\dashboard\views.py:234 .\apps\submissions\workflow.py:226
+msgid "You may not perform this action."
+msgstr "У вас нет прав на это действие."
+
+#: .\apps\dashboard\views.py:281
+msgid "Send the manuscript to review before inviting reviewers."
+msgstr ""
+"Прежде чем приглашать рецензентов, отправьте рукопись на рецензирование."
+
+#: .\apps\dashboard\views.py:286 .\apps\submissions\forms.py:473
+msgid "Choose a reviewer or enter an e-mail address."
+msgstr "Выберите рецензента или введите адрес электронной почты."
+
+#: .\apps\dashboard\views.py:306
+msgid "The invitation has been sent."
+msgstr "Приглашение отправлено."
+
+#: .\apps\dashboard\views.py:321
+msgid "The invitation has been cancelled."
+msgstr "Приглашение отменено."
+
+#: .\apps\dashboard\views.py:338
+msgid "A reminder has been sent."
+msgstr "Напоминание отправлено."
+
+#: .\apps\dashboard\views.py:353
+msgid "Thank you — the rating has been saved."
+msgstr "Спасибо — оценка сохранена."
+
+#: .\apps\dashboard\views.py:375
+msgid "The decision has been recorded and sent."
+msgstr "Решение зафиксировано и отправлено."
+
+#: .\apps\dashboard\views.py:416
+msgid "Correspondence"
+msgstr "Переписка"
+
+#: .\apps\dashboard\views.py:421
+msgid "Message posted."
+msgstr "Сообщение опубликовано."
+
+#: .\apps\dashboard\views.py:435
+msgid "Note saved."
+msgstr "Заметка сохранена."
+
+#: .\apps\dashboard\views.py:501
+msgid "Your profile has been updated."
+msgstr "Ваш профиль обновлён."
+
+#: .\apps\dashboard\views.py:550 .\templates\dashboard\two_factor.html:10
+msgid "Two-factor authentication is now active."
+msgstr "Двухфакторная аутентификация активирована."
+
+#: .\apps\dashboard\views.py:556
+msgid "That code is not valid. Please try again."
+msgstr "Этот код неверен. Попробуйте ещё раз."
+
+#: .\apps\journal\feeds.py:32 .\templates\base.html:47
+#: .\templates\base.html:51
+msgid "Latest articles"
+msgstr "Последние статьи"
+
+#: .\apps\journal\models.py:46 .\apps\journal\models.py:245
+msgid "code"
+msgstr "код"
+
+#: .\apps\journal\models.py:48
+msgid "licence URL"
+msgstr "URL лицензии"
+
+#: .\apps\journal\models.py:49
+msgid "badge SVG"
+msgstr "SVG значка"
+
+#: .\apps\journal\models.py:50
+msgid "default licence"
+msgstr "лицензия по умолчанию"
+
+#: .\apps\journal\models.py:53 .\apps\journal\models.py:389
+msgid "licence"
+msgstr "лицензия"
+
+#: .\apps\journal\models.py:54
+msgid "licences"
+msgstr "лицензии"
+
+#: .\apps\journal\models.py:71
+msgid "description"
+msgstr "описание"
+
+#: .\apps\journal\models.py:75
+msgid "research section"
+msgstr "научная рубрика"
+
+#: .\apps\journal\models.py:77
+msgid ""
+"Non-research sections (reviews, commentary) are excluded from the home grid."
+msgstr ""
+"Ненаучные рубрики (обзоры, комментарии) не показываются в сетке на главной."
+
+#: .\apps\journal\models.py:81
+msgid "section editors"
+msgstr "редакторы рубрики"
+
+#: .\apps\journal\models.py:85
+msgid "suggested JEL prefixes"
+msgstr "рекомендуемые префиксы JEL"
+
+#: .\apps\journal\models.py:88 .\apps\journal\models.py:343
+#: .\apps\submissions\models.py:141
+msgid "section"
+msgstr "рубрика"
+
+#: .\apps\journal\models.py:89 .\apps\journal\models.py:792
+msgid "sections"
+msgstr "рубрики"
+
+#: .\apps\journal\models.py:109
+msgid "volume number"
+msgstr "номер тома"
+
+#: .\apps\journal\models.py:110
+msgid "year"
+msgstr "год"
+
+#: .\apps\journal\models.py:114 .\apps\journal\models.py:138
+msgid "volume"
+msgstr "том"
+
+#: .\apps\journal\models.py:115
+msgid "volumes"
+msgstr "тома"
+
+#: .\apps\journal\models.py:141
+msgid "issue number"
+msgstr "номер выпуска"
+
+#: .\apps\journal\models.py:144
+msgid "editorial note"
+msgstr "редакционная заметка"
+
+#: .\apps\journal\models.py:147
+msgid "current issue"
+msgstr "текущий выпуск"
+
+#: .\apps\journal\models.py:148
+msgid "cover"
+msgstr "обложка"
+
+#: .\apps\journal\models.py:149
+msgid "issue DOI"
+msgstr "DOI выпуска"
+
+#: .\apps\journal\models.py:150
+msgid "page prefix"
+msgstr "префикс страниц"
+
+#: .\apps\journal\models.py:152
+msgid "full issue PDF"
+msgstr "PDF всего выпуска"
+
+#: .\apps\journal\models.py:158 .\apps\journal\models.py:336
+msgid "issue"
+msgstr "выпуск"
+
+#: .\apps\journal\models.py:159 .\templates\journal\archive.html:22
+msgid "issues"
+msgstr "выпуски"
+
+#: .\apps\journal\models.py:213 .\apps\journal\models.py:217
+msgid "keyword"
+msgstr "ключевое слово"
+
+#: .\apps\journal\models.py:218 .\apps\journal\models.py:355
+#: .\apps\submissions\models.py:152
+msgid "keywords"
+msgstr "ключевые слова"
+
+#: .\apps\journal\models.py:249
+msgid "parent"
+msgstr "родитель"
+
+#: .\apps\journal\models.py:255
+msgid "level"
+msgstr "уровень"
+
+#: .\apps\journal\models.py:258 .\templates\search\search.html:40
+msgid "JEL code"
+msgstr "код JEL"
+
+#: .\apps\journal\models.py:314 .\apps\submissions\models.py:41
+msgid "Draft"
+msgstr "Черновик"
+
+#: .\apps\journal\models.py:315 .\templates\includes\footer.html:40
+#: .\templates\includes\header.html:12 .\templates\includes\header.html:94
+#: .\templates\journal\article_detail.html:24
+#: .\templates\journal\article_detail.html:42 .\templates\journal\home.html:81
+#: .\templates\journal\online_first.html:3
+#: .\templates\journal\online_first.html:6
+#: .\templates\journal\partials\article_card.html:20
+#: .\templates\production\queue.html:80
+#: .\templates\search\partials\results.html:12
+msgid "Online First"
+msgstr "Online First"
+
+#: .\apps\journal\models.py:316 .\apps\submissions\models.py:54
+#: .\templates\dashboard\home.html:109
+#: .\templates\journal\article_detail.html:98 .\templates\journal\home.html:61
+#: .\templates\journal\issue_detail.html:33
+msgid "Published"
+msgstr "Опубликовано"
+
+#: .\apps\journal\models.py:317
+msgid "Retracted"
+msgstr "Отозвана"
+
+#: .\apps\journal\models.py:318 .\apps\submissions\models.py:56
+msgid "Withdrawn"
+msgstr "Изъята"
+
+#: .\apps\journal\models.py:321
+msgid "Not assigned"
+msgstr "Не назначен"
+
+#: .\apps\journal\models.py:322
+msgid "Reserved"
+msgstr "Зарезервирован"
+
+#: .\apps\journal\models.py:323
+msgid "Registered"
+msgstr "Зарегистрирован"
+
+#: .\apps\journal\models.py:324
+msgid "Registration failed"
+msgstr "Регистрация не удалась"
+
+#: .\apps\journal\models.py:325
+msgid "Metadata updated"
+msgstr "Метаданные обновлены"
+
+#: .\apps\journal\models.py:328 .\apps\submissions\models.py:117
+msgid "Research article"
+msgstr "Научная статья"
+
+#: .\apps\journal\models.py:329 .\apps\submissions\models.py:118
+msgid "Review article"
+msgstr "Обзорная статья"
+
+#: .\apps\journal\models.py:330 .\apps\submissions\models.py:119
+msgid "Short communication"
+msgstr "Краткое сообщение"
+
+#: .\apps\journal\models.py:331 .\apps\submissions\models.py:120
+msgid "Book review"
+msgstr "Рецензия на книгу"
+
+#: .\apps\journal\models.py:346 .\apps\submissions\models.py:146
+msgid "article type"
+msgstr "тип статьи"
+
+#: .\apps\journal\models.py:350
+msgid "subtitle"
+msgstr "подзаголовок"
+
+#: .\apps\journal\models.py:351 .\apps\submissions\models.py:150
+msgid "abstract"
+msgstr "аннотация"
+
+#: .\apps\journal\models.py:361
+msgid "article language"
+msgstr "язык статьи"
+
+#: .\apps\journal\models.py:369
+msgid "DOI status"
+msgstr "статус DOI"
+
+#: .\apps\journal\models.py:372
+msgid "first page"
+msgstr "первая страница"
+
+#: .\apps\journal\models.py:373
+msgid "last page"
+msgstr "последняя страница"
+
+#: .\apps\journal\models.py:374
+msgid "e-location ID"
+msgstr "идентификатор e-location"
+
+#: .\apps\journal\models.py:375
+msgid "article number"
+msgstr "номер статьи"
+
+#: .\apps\journal\models.py:377
+msgid "received"
+msgstr "получена"
+
+#: .\apps\journal\models.py:378
+msgid "revised"
+msgstr "доработана"
+
+#: .\apps\journal\models.py:379 .\apps\metrics\models.py:94
+msgid "accepted"
+msgstr "принята"
+
+#: .\apps\journal\models.py:380
+msgid "published online"
+msgstr "опубликована онлайн"
+
+#: .\apps\journal\models.py:396
+msgid "copyright holder"
+msgstr "правообладатель"
+
+#: .\apps\journal\models.py:398 .\apps\submissions\models.py:227
+msgid "funding statement"
+msgstr "заявление о финансировании"
+
+#: .\apps\journal\models.py:400 .\apps\submissions\models.py:229
+msgid "conflict of interest statement"
+msgstr "заявление о конфликте интересов"
+
+#: .\apps\journal\models.py:404 .\apps\submissions\models.py:231
+msgid "data availability statement"
+msgstr "заявление о доступности данных"
+
+#: .\apps\journal\models.py:406 .\apps\production\services.py:175
+msgid "AI use statement"
+msgstr "заявление об использовании ИИ"
+
+#: .\apps\journal\models.py:410
+msgid "acknowledgements"
+msgstr "благодарности"
+
+#: .\apps\journal\models.py:411
+msgid "retraction notice"
+msgstr "уведомление об отзыве"
+
+#: .\apps\journal\models.py:415 .\apps\submissions\models.py:244
+#: .\apps\submissions\models.py:334 .\apps\submissions\models.py:395
+#: .\apps\submissions\models.py:451 .\apps\submissions\models.py:658
+#: .\apps\submissions\models.py:698 .\apps\submissions\models.py:745
+#: .\apps\submissions\models.py:805 .\apps\submissions\models.py:855
+msgid "submission"
+msgstr "рукопись"
+
+#: .\apps\journal\models.py:422 .\apps\metrics\models.py:71
+msgid "views"
+msgstr "просмотры"
+
+#: .\apps\journal\models.py:423 .\apps\metrics\models.py:72
+msgid "downloads"
+msgstr "загрузки"
+
+#: .\apps\journal\models.py:424
+msgid "cited by (Crossref)"
+msgstr "цитирований (Crossref)"
+
+#: .\apps\journal\models.py:425
+msgid "cited-by updated"
+msgstr "цитирования обновлены"
+
+#: .\apps\journal\models.py:426
+msgid "featured"
+msgstr "избранная"
+
+#: .\apps\journal\models.py:583 .\apps\journal\models.py:771
+#: .\apps\submissions\models.py:339
+msgid "account"
+msgstr "учётная запись"
+
+#: .\apps\journal\models.py:592
+msgid "given name (native script)"
+msgstr "имя (в родной графике)"
+
+#: .\apps\journal\models.py:595
+msgid "family name (native script)"
+msgstr "фамилия (в родной графике)"
+
+#: .\apps\journal\models.py:598 .\apps\submissions\models.py:348
+msgid "corresponding author"
+msgstr "корреспондирующий автор"
+
+#: .\apps\journal\models.py:602 .\apps\submissions\models.py:352
+msgid "ROR ID"
+msgstr "ROR ID"
+
+#: .\apps\journal\models.py:606 .\apps\submissions\models.py:356
+msgid "CRediT roles"
+msgstr "роли CRediT"
+
+#: .\apps\journal\models.py:609 .\apps\submissions\models.py:783
+#: .\apps\submissions\models.py:809
+msgid "author"
+msgstr "автор"
+
+#: .\apps\journal\models.py:610
+msgid "authors"
+msgstr "авторы"
+
+#: .\apps\journal\models.py:665
+msgid "reference text"
+msgstr "текст источника"
+
+#: .\apps\journal\models.py:667
+msgid "structured data"
+msgstr "структурированные данные"
+
+#: .\apps\journal\models.py:670
+msgid "reference"
+msgstr "источник"
+
+#: .\apps\journal\models.py:671
+msgid "references"
+msgstr "список литературы"
+
+#: .\apps\journal\models.py:702
+#: .\templates\journal\partials\article_card.html:30
+msgid "PDF"
+msgstr "PDF"
+
+#: .\apps\journal\models.py:703
+msgid "PDF (Uzbek)"
+msgstr "PDF (узбекский)"
+
+#: .\apps\journal\models.py:704
+msgid "PDF (Russian)"
+msgstr "PDF (русский)"
+
+#: .\apps\journal\models.py:705
+msgid "JATS XML"
+msgstr "JATS XML"
+
+#: .\apps\journal\models.py:706 .\templates\production\article_detail.html:37
+msgid "Supplementary"
+msgstr "Дополнительные материалы"
+
+#: .\apps\journal\models.py:712
+msgid "language"
+msgstr "язык"
+
+#: .\apps\journal\models.py:713 .\apps\submissions\models.py:406
+msgid "file"
+msgstr "файл"
+
+#: .\apps\journal\models.py:715
+msgid "unstamped original"
+msgstr "оригинал без штампа"
+
+#: .\apps\journal\models.py:717 .\apps\submissions\models.py:418
+msgid "MIME type"
+msgstr "MIME-тип"
+
+#: .\apps\journal\models.py:718
+msgid "size in bytes"
+msgstr "размер в байтах"
+
+#: .\apps\journal\models.py:719 .\templates\production\article_detail.html:48
+msgid "primary"
+msgstr "основной"
+
+#: .\apps\journal\models.py:723 .\apps\metrics\models.py:35
+msgid "galley"
+msgstr "вёрстка"
+
+#: .\apps\journal\models.py:724
+msgid "galleys"
+msgstr "вёрстки"
+
+#: .\apps\journal\models.py:751
+msgid "Deputy Editor"
+msgstr "Заместитель главного редактора"
+
+#: .\apps\journal\models.py:752
+msgid "Managing Editor"
+msgstr "Ответственный секретарь"
+
+#: .\apps\journal\models.py:753
+msgid "Section Editor"
+msgstr "Редактор рубрики"
+
+#: .\apps\journal\models.py:754
+msgid "Editorial Board Member"
+msgstr "Член редколлегии"
+
+#: .\apps\journal\models.py:755
+msgid "International Advisory Board"
+msgstr "Международный консультативный совет"
+
+#: .\apps\journal\models.py:756 .\apps\journal\views.py:502
+#: .\templates\includes\footer.html:9
+msgid "Reviewer Board"
+msgstr "Совет рецензентов"
+
+#: .\apps\journal\models.py:777
+msgid "full name"
+msgstr "полное имя"
+
+#: .\apps\journal\models.py:779
+msgid "role"
+msgstr "роль"
+
+#: .\apps\journal\models.py:788
+msgid "photo"
+msgstr "фотография"
+
+#: .\apps\journal\models.py:790
+msgid "expertise"
+msgstr "экспертиза"
+
+#: .\apps\journal\models.py:797
+msgid "demo entry"
+msgstr "демонстрационная запись"
+
+#: .\apps\journal\models.py:799
+msgid "Seeded placeholder — replace with a real board member."
+msgstr "Демонстрационная запись — замените реальным членом редколлегии."
+
+#: .\apps\journal\models.py:803
+msgid "editorial board member"
+msgstr "член редколлегии"
+
+#: .\apps\journal\models.py:804
+msgid "editorial board members"
+msgstr "члены редколлегии"
+
+#: .\apps\journal\models.py:845
+msgid "total views"
+msgstr "всего просмотров"
+
+#: .\apps\journal\models.py:846
+msgid "total downloads"
+msgstr "всего загрузок"
+
+#: .\apps\journal\models.py:847
+msgid "views (30 days)"
+msgstr "просмотры (30 дней)"
+
+#: .\apps\journal\models.py:848
+msgid "downloads (30 days)"
+msgstr "загрузки (30 дней)"
+
+#: .\apps\journal\models.py:849
+msgid "computed at"
+msgstr "рассчитано"
+
+#: .\apps\journal\models.py:852 .\apps\journal\models.py:853
+msgid "article statistics"
+msgstr "статистика статьи"
+
+#: .\apps\journal\views.py:114
+msgid "Complete archive of published issues."
+msgstr "Полный архив опубликованных выпусков."
+
+#: .\apps\journal\views.py:142
+msgid ""
+"Peer-reviewed articles published ahead of their issue, already citable by "
+"DOI."
+msgstr ""
+"Рецензированные статьи, опубликованные до выхода выпуска и уже цитируемые по"
+" DOI."
+
+#: .\apps\journal\views.py:436
+msgid "Author not found."
+msgstr "Автор не найден."
+
+#: .\apps\journal\views.py:448
+#, python-format
+msgid "Articles by %(name)s"
+msgstr "Статьи автора %(name)s"
+
+#: .\apps\journal\views.py:493 .\templates\includes\footer.html:8
+msgid "Editorial Board"
+msgstr "Редакционная коллегия"
+
+#: .\apps\journal\views.py:494
+msgid "Editorial board of the journal."
+msgstr "Редакционная коллегия журнала."
+
+#: .\apps\journal\views.py:503
+msgid "Standing reviewer board of the journal."
+msgstr "Постоянный совет рецензентов журнала."
+
+#: .\apps\metrics\models.py:23
+msgid "View"
+msgstr "Просмотр"
+
+#: .\apps\metrics\models.py:24
+#: .\templates\dashboard\submission_detail.html:153
+msgid "Download"
+msgstr "Загрузка"
+
+#: .\apps\metrics\models.py:32 .\apps\submissions\models.py:405
+msgid "kind"
+msgstr "вид"
+
+#: .\apps\metrics\models.py:41
+msgid "occurred at"
+msgstr "время события"
+
+#: .\apps\metrics\models.py:42
+msgid "IP hash"
+msgstr "хеш IP"
+
+#: .\apps\metrics\models.py:43
+msgid "user agent hash"
+msgstr "хеш user agent"
+
+#: .\apps\metrics\models.py:44
+msgid "session hash"
+msgstr "хеш сессии"
+
+#: .\apps\metrics\models.py:46
+msgid "bot"
+msgstr "бот"
+
+#: .\apps\metrics\models.py:49
+msgid "access event"
+msgstr "событие доступа"
+
+#: .\apps\metrics\models.py:50
+msgid "access events"
+msgstr "события доступа"
+
+#: .\apps\metrics\models.py:70
+msgid "date"
+msgstr "дата"
+
+#: .\apps\metrics\models.py:75
+msgid "daily article statistic"
+msgstr "суточная статистика статьи"
+
+#: .\apps\metrics\models.py:76
+msgid "daily article statistics"
+msgstr "суточная статистика статей"
+
+#: .\apps\metrics\models.py:90
+msgid "month"
+msgstr "месяц"
+
+#: .\apps\metrics\models.py:90
+msgid "First day of the month."
+msgstr "Первый день месяца."
+
+#: .\apps\metrics\models.py:91
+msgid "submissions received"
+msgstr "полученные рукописи"
+
+#: .\apps\metrics\models.py:92
+msgid "desk rejected"
+msgstr "отклонено редактором"
+
+#: .\apps\metrics\models.py:93
+msgid "sent to review"
+msgstr "отправлено на рецензирование"
+
+#: .\apps\metrics\models.py:95
+msgid "rejected"
+msgstr "отклонено"
+
+#: .\apps\metrics\models.py:97
+msgid "acceptance rate (%)"
+msgstr "доля принятых (%)"
+
+#: .\apps\metrics\models.py:99
+msgid "median days to first decision"
+msgstr "медианное число дней до первого решения"
+
+#: .\apps\metrics\models.py:101
+msgid "median review days"
+msgstr "медианное число дней рецензирования"
+
+#: .\apps\metrics\models.py:102
+msgid "active reviewers"
+msgstr "активные рецензенты"
+
+#: .\apps\metrics\models.py:103
+msgid "author countries"
+msgstr "страны авторов"
+
+#: .\apps\metrics\models.py:106
+msgid "editorial KPI"
+msgstr "редакционный KPI"
+
+#: .\apps\metrics\models.py:107
+msgid "editorial KPIs"
+msgstr "редакционные KPI"
+
+#: .\apps\plagiarism\providers.py:59
+msgid "Manual (editor uploads report)"
+msgstr "Вручную (редактор загружает отчёт)"
+
+#: .\apps\plagiarism\providers.py:94
+msgid "iThenticate (Crossref Similarity Check)"
+msgstr "iThenticate (Crossref Similarity Check)"
+
+#: .\apps\production\services.py:168
+msgid "Title (English)"
+msgstr "Название (английский)"
+
+#: .\apps\production\services.py:169
+msgid "Title (Uzbek)"
+msgstr "Название (узбекский)"
+
+#: .\apps\production\services.py:170
+msgid "Title (Russian)"
+msgstr "Название (русский)"
+
+#: .\apps\production\services.py:171
+msgid "Abstract (English)"
+msgstr "Аннотация (английский)"
+
+#: .\apps\production\services.py:172
+msgid "Abstract (Uzbek)"
+msgstr "Аннотация (узбекский)"
+
+#: .\apps\production\services.py:173
+msgid "Abstract (Russian)"
+msgstr "Аннотация (русский)"
+
+#: .\apps\production\services.py:174
+msgid "Conflict of interest statement"
+msgstr "Заявление о конфликте интересов"
+
+#: .\apps\production\services.py:188
+msgid "At least one author"
+msgstr "Хотя бы один автор"
+
+#: .\apps\production\services.py:191
+msgid "Every author has an affiliation with country"
+msgstr "У каждого автора указано место работы со страной"
+
+#: .\apps\production\services.py:198
+msgid "Corresponding author with e-mail"
+msgstr "Корреспондирующий автор с e-mail"
+
+#: .\apps\production\services.py:205
+msgid "ORCID iD for every author"
+msgstr "ORCID iD у каждого автора"
+
+#: .\apps\production\services.py:213
+msgid "5–8 keywords"
+msgstr "5–8 ключевых слов"
+
+#: .\apps\production\services.py:221
+msgid "1–5 JEL codes"
+msgstr "1–5 кодов JEL"
+
+#: .\apps\production\services.py:226
+msgid "DOI assigned"
+msgstr "DOI назначен"
+
+#: .\apps\production\services.py:229
+msgid "Primary PDF galley"
+msgstr "Основная PDF-вёрстка"
+
+#: .\apps\production\services.py:236
+msgid "At least 10 references"
+msgstr "Не менее 10 источников"
+
+#: .\apps\production\services.py:242 .\templates\core\about.html:24
+#: .\templates\journal\article_detail.html:261
+msgid "Licence"
+msgstr "Лицензия"
+
+#: .\apps\production\services.py:245
+msgid "Received date"
+msgstr "Дата получения"
+
+#: .\apps\production\services.py:248
+msgid "Accepted date"
+msgstr "Дата принятия"
+
+#: .\apps\production\services.py:267
+#, python-format
+msgid "Cannot publish: %(items)s"
+msgstr "Публикация невозможна: %(items)s"
+
+#: .\apps\production\services.py:297
+msgid "The issue has no articles."
+msgstr "В выпуске нет статей."
+
+#: .\apps\production\services.py:306
+#, python-format
+msgid "Some articles are incomplete: %(items)s"
+msgstr "Некоторые статьи неполные: %(items)s"
+
+#: .\apps\production\views.py:88
+msgid "The manuscript has moved to the next stage."
+msgstr "Рукопись перешла на следующий этап."
+
+#: .\apps\production\views.py:107
+msgid "Stage marked as complete."
+msgstr "Этап отмечен как выполненный."
+
+#: .\apps\production\views.py:119 .\apps\production\views.py:142
+msgid "No file was selected."
+msgstr "Файл не выбран."
+
+#: .\apps\production\views.py:131
+msgid "File uploaded."
+msgstr "Файл загружен."
+
+#: .\apps\production\views.py:159
+msgid "Galley uploaded."
+msgstr "Вёрстка загружена."
+
+#: .\apps\production\views.py:186
+#, python-format
+msgid "DOI reserved: %(doi)s"
+msgstr "DOI зарезервирован: %(doi)s"
+
+#: .\apps\production\views.py:197
+msgid "The article is published as Online First."
+msgstr "Статья опубликована как Online First."
+
+#: .\apps\production\views.py:217
+#, python-format
+msgid "The article has been scheduled into %(issue)s."
+msgstr "Статья запланирована в выпуск %(issue)s."
+
+#: .\apps\production\views.py:264
+msgid "The issue order has been saved."
+msgstr "Порядок в выпуске сохранён."
+
+#: .\apps\production\views.py:275
+#, python-format
+msgid "Issue %(label)s is published."
+msgstr "Выпуск %(label)s опубликован."
+
+#: .\apps\production\views.py:292
+#, python-format
+msgid "Issue %(label)s created."
+msgstr "Выпуск %(label)s создан."
+
+#: .\apps\production\views.py:292
+#, python-format
+msgid "Issue %(label)s already exists."
+msgstr "Выпуск %(label)s уже существует."
+
+#: .\apps\review\views.py:123
+msgid "Thank you for accepting the review invitation."
+msgstr "Благодарим за принятие приглашения рецензировать."
+
+#: .\apps\review\views.py:128
+msgid "The invitation has been declined."
+msgstr "Приглашение отклонено."
+
+#: .\apps\review\views.py:148
+msgid "Accept the invitation before writing a review."
+msgstr "Примите приглашение, прежде чем писать рецензию."
+
+#: .\apps\review\views.py:167
+msgid "Draft saved."
+msgstr "Черновик сохранён."
+
+#: .\apps\review\views.py:173
+msgid "Thank you — your review has been submitted."
+msgstr "Спасибо — ваша рецензия отправлена."
+
+#: .\apps\review\views.py:217
+msgid "A certificate becomes available after your first review."
+msgstr "Сертификат становится доступен после первой рецензии."
+
+#: .\apps\submissions\forms.py:28
+msgid "The manuscript is original and has not been published before."
+msgstr "Рукопись оригинальна и ранее не публиковалась."
+
+#: .\apps\submissions\forms.py:31
+msgid "The manuscript is not under consideration by another journal."
+msgstr "Рукопись не рассматривается другим журналом."
+
+#: .\apps\submissions\forms.py:33
+msgid "The manuscript follows the author guidelines and reference style."
+msgstr ""
+"Рукопись соответствует руководству для авторов и стилю оформления ссылок."
+
+#: .\apps\submissions\forms.py:34
+msgid "The manuscript file contains no information identifying the authors."
+msgstr "Файл рукописи не содержит сведений, идентифицирующих авторов."
+
+#: .\apps\submissions\forms.py:35
+msgid "The research complies with the journal's publication ethics policy."
+msgstr "Исследование соответствует политике издательской этики журнала."
+
+#: .\apps\submissions\forms.py:36
+msgid "All authors agree to publication under the CC BY 4.0 licence."
+msgstr "Все авторы согласны на публикацию под лицензией CC BY 4.0."
+
+#: .\apps\submissions\forms.py:54
+msgid "Describe any use of generative AI, or write 'None'."
+msgstr "Опишите использование генеративного ИИ или напишите «Нет»."
+
+#: .\apps\submissions\forms.py:67
+#: .\templates\dashboard\partials\queue_table.html:7
+#: .\templates\journal\section_detail.html:6 .\templates\search\search.html:24
+#: .\templates\submissions\wizard_step5.html:18
+msgid "Section"
+msgstr "Рубрика"
+
+#: .\apps\submissions\forms.py:68
+msgid "Article type"
+msgstr "Тип статьи"
+
+#: .\apps\submissions\forms.py:69
+msgid "Manuscript language"
+msgstr "Язык рукописи"
+
+#: .\apps\submissions\forms.py:70
+msgid "Declaration on the use of generative AI"
+msgstr "Заявление об использовании генеративного ИИ"
+
+#: .\apps\submissions\forms.py:78
+msgid "Please state your use of generative AI, or write 'None'."
+msgstr "Укажите использование генеративного ИИ или напишите «Нет»."
+
+#: .\apps\submissions\forms.py:99 .\apps\submissions\models.py:376
+msgid "Anonymised manuscript"
+msgstr "Обезличенная рукопись"
+
+#: .\apps\submissions\forms.py:100
+#, python-format
+msgid "PDF or DOCX, at most %(size)s MB, with no author information."
+msgstr "PDF или DOCX, не более %(size)s МБ, без сведений об авторах."
+
+#: .\apps\submissions\forms.py:105 .\apps\submissions\models.py:377
+msgid "Title page"
+msgstr "Титульный лист"
+
+#: .\apps\submissions\forms.py:106
+msgid "Separate file listing all authors, affiliations and contact details."
+msgstr ""
+"Отдельный файл со всеми авторами, местами работы и контактными данными."
+
+#: .\apps\submissions\forms.py:108 .\apps\submissions\models.py:378
+msgid "Figures and tables"
+msgstr "Рисунки и таблицы"
+
+#: .\apps\submissions\forms.py:109
+msgid "Data or supplementary material"
+msgstr "Данные или дополнительные материалы"
+
+#: .\apps\submissions\forms.py:140 .\apps\submissions\views.py:328
+#: .\templates\submissions\wizard_step3.html:14
+msgid "English"
+msgstr "Английский"
+
+#: .\apps\submissions\forms.py:140
+msgid "Uzbek (Latin)"
+msgstr "Узбекский (латиница)"
+
+#: .\apps\submissions\forms.py:140 .\apps\submissions\views.py:328
+#: .\templates\submissions\wizard_step3.html:22
+msgid "Russian"
+msgstr "Русский"
+
+#: .\apps\submissions\forms.py:147
+msgid "Select between 1 and 5 codes."
+msgstr "Выберите от 1 до 5 кодов."
+
+#: .\apps\submissions\forms.py:150 .\templates\journal\article_detail.html:170
+msgid "Funding"
+msgstr "Финансирование"
+
+#: .\apps\submissions\forms.py:154 .\templates\journal\article_detail.html:173
+msgid "Conflict of interest"
+msgstr "Конфликт интересов"
+
+#: .\apps\submissions\forms.py:155 .\apps\submissions\views.py:173
+msgid "The authors declare no conflict of interest."
+msgstr "Авторы заявляют об отсутствии конфликта интересов."
+
+#: .\apps\submissions\forms.py:160 .\templates\journal\article_detail.html:176
+msgid "Data availability"
+msgstr "Доступность данных"
+
+#: .\apps\submissions\forms.py:165 .\templates\journal\article_detail.html:208
+msgid "References"
+msgstr "Список литературы"
+
+#: .\apps\submissions\forms.py:166
+msgid "One reference per line, APA 7th style."
+msgstr "По одному источнику в строке, стиль APA 7."
+
+#: .\apps\submissions\forms.py:176
+#, python-format
+msgid "Title (%(lang)s)"
+msgstr "Название (%(lang)s)"
+
+#: .\apps\submissions\forms.py:181
+#, python-format
+msgid "Abstract (%(lang)s)"
+msgstr "Аннотация (%(lang)s)"
+
+#: .\apps\submissions\forms.py:183
+#, python-format
+msgid "Between %(min)s and %(max)s words."
+msgstr "От %(min)s до %(max)s слов."
+
+#: .\apps\submissions\forms.py:187
+#, python-format
+msgid "Keywords (%(lang)s)"
+msgstr "Ключевые слова (%(lang)s)"
+
+#: .\apps\submissions\forms.py:189
+#, python-format
+msgid "%(min)s–%(max)s keywords, comma separated."
+msgstr "%(min)s–%(max)s ключевых слов через запятую."
+
+#: .\apps\submissions\forms.py:198
+#, python-format
+msgid "Select between %(min)s and %(max)s JEL codes."
+msgstr "Выберите от %(min)s до %(max)s кодов JEL."
+
+#: .\apps\submissions\forms.py:214
+#, python-format
+msgid ""
+"The abstract has %(count)s words; it must have between %(min)s and %(max)s."
+msgstr "В аннотации %(count)s слов; должно быть от %(min)s до %(max)s."
+
+#: .\apps\submissions\forms.py:228
+#, python-format
+msgid "Provide between %(min)s and %(max)s keywords (you gave %(count)s)."
+msgstr "Укажите от %(min)s до %(max)s ключевых слов (вы указали %(count)s)."
+
+#: .\apps\submissions\forms.py:290
+msgid "Suggested reviewers"
+msgstr "Предлагаемые рецензенты"
+
+#: .\apps\submissions\forms.py:291
+msgid "One per line: name, e-mail, affiliation."
+msgstr "По одному в строке: имя, e-mail, место работы."
+
+#: .\apps\submissions\forms.py:296
+msgid "Reviewers to exclude"
+msgstr "Исключаемые рецензенты"
+
+#: .\apps\submissions\forms.py:297
+msgid "One per line, with a short reason."
+msgstr "По одному в строке, с кратким обоснованием."
+
+#: .\apps\submissions\forms.py:305
+msgid "Cover letter"
+msgstr "Сопроводительное письмо"
+
+#: .\apps\submissions\forms.py:324 .\apps\submissions\models.py:381
+msgid "Revised manuscript"
+msgstr "Доработанная рукопись"
+
+#: .\apps\submissions\forms.py:325
+msgid "Response to reviewers (file)"
+msgstr "Ответ рецензентам (файл)"
+
+#: .\apps\submissions\forms.py:328 .\apps\submissions\models.py:382
+msgid "Response to reviewers"
+msgstr "Ответ рецензентам"
+
+#: .\apps\submissions\forms.py:359
+msgid "Similarity (%)"
+msgstr "Заимствования (%)"
+
+#: .\apps\submissions\forms.py:360
+msgid "Similarity report (PDF)"
+msgstr "Отчёт о заимствованиях (PDF)"
+
+#: .\apps\submissions\forms.py:361
+msgid "Justification for exceeding the threshold"
+msgstr "Обоснование превышения порога"
+
+#: .\apps\submissions\forms.py:378
+#, python-format
+msgid "Similarity above %(threshold)s%% requires a written justification."
+msgstr "Заимствования выше %(threshold)s%% требуют письменного обоснования."
+
+#: .\apps\submissions\forms.py:394 .\templates\dashboard\home.html:105
+#: .\templates\dashboard\submission_detail.html:29
+msgid "Decision"
+msgstr "Решение"
+
+#: .\apps\submissions\forms.py:394
+msgid "Letter to the author"
+msgstr "Письмо автору"
+
+#: .\apps\submissions\forms.py:409 .\templates\review\dashboard.html:68
+msgid "Recommendation"
+msgstr "Рекомендация"
+
+#: .\apps\submissions\forms.py:410
+msgid "Comments to the authors"
+msgstr "Комментарии авторам"
+
+#: .\apps\submissions\forms.py:411
+msgid "Confidential comments to the editor"
+msgstr "Конфиденциальные комментарии редактору"
+
+#: .\apps\submissions\forms.py:412
+msgid "Annotated file (optional)"
+msgstr "Файл с пометками (необязательно)"
+
+#: .\apps\submissions\forms.py:434
+msgid "Please write at least 100 characters of feedback for the authors."
+msgstr "Напишите авторам отзыв объёмом не менее 100 символов."
+
+#: .\apps\submissions\forms.py:454 .\templates\core\contact.html:14
+#: .\templates\dashboard\submission_detail.html:70
+#: .\templates\journal\article_detail.html:309
+msgid "E-mail"
+msgstr "Электронная почта"
+
+#: .\apps\submissions\forms.py:465
+msgid "Days to complete"
+msgstr "Дней на выполнение"
+
+#: .\apps\submissions\forms.py:481
+msgid "Reason for withdrawal"
+msgstr "Причина отзыва"
+
+#: .\apps\submissions\models.py:44
+msgid "Under review"
+msgstr "На рецензировании"
+
+#: .\apps\submissions\models.py:46
+msgid "Revision requested"
+msgstr "Запрошена доработка"
+
+#: .\apps\submissions\models.py:47
+msgid "Resubmitted"
+msgstr "Повторно подана"
+
+#: .\apps\submissions\models.py:48 .\apps\submissions\models.py:488
+#: .\apps\submissions\models.py:496
+#: .\templates\core\partials\bar_chart.html:22
+#: .\templates\dashboard\reports.html:36
+msgid "Accepted"
+msgstr "Принята"
+
+#: .\apps\submissions\models.py:49 .\apps\submissions\models.py:830
+msgid "Copyediting"
+msgstr "Литературное редактирование"
+
+#: .\apps\submissions\models.py:50 .\apps\submissions\models.py:831
+msgid "Author proof"
+msgstr "Авторская корректура"
+
+#: .\apps\submissions\models.py:51 .\apps\submissions\models.py:832
+msgid "Typesetting"
+msgstr "Вёрстка"
+
+#: .\apps\submissions\models.py:52
+msgid "Ready to publish"
+msgstr "Готова к публикации"
+
+#: .\apps\submissions\models.py:53
+msgid "Published (Online First)"
+msgstr "Опубликована (Online First)"
+
+#: .\apps\submissions\models.py:55 .\templates\dashboard\reports.html:37
+msgid "Rejected"
+msgstr "Отклонена"
+
+#: .\apps\submissions\models.py:123
+msgid "submission ID"
+msgstr "номер рукописи"
+
+#: .\apps\submissions\models.py:127
+msgid "published article"
+msgstr "опубликованная статья"
+
+#: .\apps\submissions\models.py:135
+msgid "submitter"
+msgstr "подавший"
+
+#: .\apps\submissions\models.py:152
+msgid "Comma-separated, 5–8 keywords."
+msgstr "5–8 ключевых слов через запятую."
+
+#: .\apps\submissions\models.py:158
+msgid "manuscript language"
+msgstr "язык рукописи"
+
+#: .\apps\submissions\models.py:163
+msgid "word count"
+msgstr "число слов"
+
+#: .\apps\submissions\models.py:164
+msgid "cover letter"
+msgstr "сопроводительное письмо"
+
+#: .\apps\submissions\models.py:173
+msgid "current round"
+msgstr "текущий раунд"
+
+#: .\apps\submissions\models.py:174
+msgid "wizard step"
+msgstr "шаг мастера"
+
+#: .\apps\submissions\models.py:178
+msgid "handling editor"
+msgstr "ответственный редактор"
+
+#: .\apps\submissions\models.py:186
+msgid "assigned by"
+msgstr "назначил"
+
+#: .\apps\submissions\models.py:195
+msgid "accepted at"
+msgstr "дата принятия"
+
+#: .\apps\submissions\models.py:197
+msgid "withdrawn"
+msgstr "отозвана"
+
+#: .\apps\submissions\models.py:198
+msgid "withdrawal reason"
+msgstr "причина отзыва"
+
+#: .\apps\submissions\models.py:201
+msgid "similarity (%)"
+msgstr "заимствования (%)"
+
+#: .\apps\submissions\models.py:207
+msgid "similarity report"
+msgstr "отчёт о заимствованиях"
+
+#: .\apps\submissions\models.py:211
+msgid "similarity checked by"
+msgstr "проверку выполнил"
+
+#: .\apps\submissions\models.py:217
+msgid "similarity checked at"
+msgstr "дата проверки заимствований"
+
+#: .\apps\submissions\models.py:219
+msgid "similarity override justification"
+msgstr "обоснование превышения порога заимствований"
+
+#: .\apps\submissions\models.py:222
+msgid "author declarations"
+msgstr "заявления автора"
+
+#: .\apps\submissions\models.py:223
+msgid "suggested reviewers"
+msgstr "предложенные рецензенты"
+
+#: .\apps\submissions\models.py:224
+msgid "opposed reviewers"
+msgstr "нежелательные рецензенты"
+
+#: .\apps\submissions\models.py:225
+msgid "manuscript is anonymised"
+msgstr "рукопись обезличена"
+
+#: .\apps\submissions\models.py:226
+msgid "AI use disclosure"
+msgstr "раскрытие использования ИИ"
+
+#: .\apps\submissions\models.py:232
+msgid "latest decision letter"
+msgstr "последнее письмо с решением"
+
+#: .\apps\submissions\models.py:235
+msgid "multilingual metadata"
+msgstr "многоязычные метаданные"
+
+#: .\apps\submissions\models.py:238
+msgid "Title, abstract and keywords per language, captured in the wizard."
+msgstr "Название, аннотация и ключевые слова по языкам, введённые в мастере."
+
+#: .\apps\submissions\models.py:245
+msgid "submissions"
+msgstr "рукописи"
+
+#: .\apps\submissions\models.py:355
+msgid "contribution"
+msgstr "вклад"
+
+#: .\apps\submissions\models.py:359
+msgid "submission author"
+msgstr "автор рукописи"
+
+#: .\apps\submissions\models.py:360
+msgid "submission authors"
+msgstr "авторы рукописи"
+
+#: .\apps\submissions\models.py:379
+msgid "Data"
+msgstr "Данные"
+
+#: .\apps\submissions\models.py:380
+msgid "Supplementary material"
+msgstr "Дополнительные материалы"
+
+#: .\apps\submissions\models.py:383
+#: .\templates\production\submission_detail.html:65
+msgid "Copyedited manuscript"
+msgstr "Отредактированная рукопись"
+
+#: .\apps\submissions\models.py:384
+#: .\templates\production\submission_detail.html:66
+msgid "Proof"
+msgstr "Корректура"
+
+#: .\apps\submissions\models.py:385
+#: .\templates\production\submission_detail.html:67
+msgid "Final version"
+msgstr "Окончательная версия"
+
+#: .\apps\submissions\models.py:399 .\apps\submissions\models.py:500
+#: .\apps\submissions\models.py:664 .\apps\submissions\models.py:704
+msgid "round"
+msgstr "раунд"
+
+#: .\apps\submissions\models.py:407
+msgid "original file name"
+msgstr "исходное имя файла"
+
+#: .\apps\submissions\models.py:410
+msgid "uploaded by"
+msgstr "загрузил"
+
+#: .\apps\submissions\models.py:416
+msgid "version"
+msgstr "версия"
+
+#: .\apps\submissions\models.py:417
+msgid "size"
+msgstr "размер"
+
+#: .\apps\submissions\models.py:419
+msgid "visible to reviewers"
+msgstr "видно рецензентам"
+
+#: .\apps\submissions\models.py:422
+msgid "submission file"
+msgstr "файл рукописи"
+
+#: .\apps\submissions\models.py:423
+msgid "submission files"
+msgstr "файлы рукописи"
+
+#: .\apps\submissions\models.py:447 .\templates\dashboard\home.html:66
+#: .\templates\production\queue.html:89
+msgid "Open"
+msgstr "Открыт"
+
+#: .\apps\submissions\models.py:448
+msgid "Closed"
+msgstr "Закрыт"
+
+#: .\apps\submissions\models.py:453
+msgid "round number"
+msgstr "номер раунда"
+
+#: .\apps\submissions\models.py:454
+msgid "opened at"
+msgstr "открыт"
+
+#: .\apps\submissions\models.py:455
+msgid "closed at"
+msgstr "закрыт"
+
+#: .\apps\submissions\models.py:461
+msgid "review round"
+msgstr "раунд рецензирования"
+
+#: .\apps\submissions\models.py:462
+msgid "review rounds"
+msgstr "раунды рецензирования"
+
+#: .\apps\submissions\models.py:487
+msgid "Invited"
+msgstr "Приглашён"
+
+#: .\apps\submissions\models.py:489 .\apps\submissions\models.py:497
+msgid "Declined"
+msgstr "Отклонено"
+
+#: .\apps\submissions\models.py:490
+msgid "Review submitted"
+msgstr "Рецензия отправлена"
+
+#: .\apps\submissions\models.py:491
+msgid "Cancelled"
+msgstr "Отменено"
+
+#: .\apps\submissions\models.py:492
+msgid "Overdue"
+msgstr "Просрочено"
+
+#: .\apps\submissions\models.py:504
+msgid "reviewer"
+msgstr "рецензент"
+
+#: .\apps\submissions\models.py:510
+msgid "invited by"
+msgstr "пригласил"
+
+#: .\apps\submissions\models.py:516
+msgid "invited at"
+msgstr "дата приглашения"
+
+#: .\apps\submissions\models.py:517
+msgid "responded at"
+msgstr "дата ответа"
+
+#: .\apps\submissions\models.py:519
+msgid "response"
+msgstr "ответ"
+
+#: .\apps\submissions\models.py:521
+msgid "decline reason"
+msgstr "причина отказа"
+
+#: .\apps\submissions\models.py:522 .\apps\submissions\models.py:719
+#: .\apps\submissions\models.py:871
+msgid "due at"
+msgstr "срок"
+
+#: .\apps\submissions\models.py:523 .\apps\submissions\models.py:872
+msgid "completed at"
+msgstr "дата завершения"
+
+#: .\apps\submissions\models.py:524
+msgid "reminders sent"
+msgstr "отправлено напоминаний"
+
+#: .\apps\submissions\models.py:525
+msgid "last reminder"
+msgstr "последнее напоминание"
+
+#: .\apps\submissions\models.py:526
+msgid "access token"
+msgstr "токен доступа"
+
+#: .\apps\submissions\models.py:532
+msgid "review assignment"
+msgstr "назначение на рецензию"
+
+#: .\apps\submissions\models.py:533
+msgid "review assignments"
+msgstr "назначения на рецензию"
+
+#: .\apps\submissions\models.py:581 .\apps\submissions\models.py:650
+#: .\apps\submissions\workflow.py:116 .\templates\review\dashboard.html:27
+msgid "Accept"
+msgstr "Принять"
+
+#: .\apps\submissions\models.py:582 .\apps\submissions\models.py:651
+msgid "Minor revision"
+msgstr "Малая доработка"
+
+#: .\apps\submissions\models.py:583 .\apps\submissions\models.py:652
+msgid "Major revision"
+msgstr "Существенная доработка"
+
+#: .\apps\submissions\models.py:584 .\apps\submissions\models.py:653
+#: .\apps\submissions\workflow.py:123
+msgid "Reject"
+msgstr "Отклонить"
+
+#: .\apps\submissions\models.py:588
+msgid "Originality and novelty"
+msgstr "Оригинальность и новизна"
+
+#: .\apps\submissions\models.py:589
+msgid "Relevance to the journal's scope"
+msgstr "Соответствие тематике журнала"
+
+#: .\apps\submissions\models.py:590
+msgid "Methodological rigour"
+msgstr "Методологическая строгость"
+
+#: .\apps\submissions\models.py:591
+msgid "Data and results"
+msgstr "Данные и результаты"
+
+#: .\apps\submissions\models.py:592
+msgid "Coverage of the literature"
+msgstr "Охват литературы"
+
+#: .\apps\submissions\models.py:593
+msgid "Writing and structure"
+msgstr "Изложение и структура"
+
+#: .\apps\submissions\models.py:598
+msgid "assignment"
+msgstr "назначение"
+
+#: .\apps\submissions\models.py:603
+msgid "recommendation"
+msgstr "рекомендация"
+
+#: .\apps\submissions\models.py:605
+msgid "scores"
+msgstr "оценки"
+
+#: .\apps\submissions\models.py:606
+msgid "comments to the authors"
+msgstr "комментарии авторам"
+
+#: .\apps\submissions\models.py:607
+msgid "confidential comments to the editor"
+msgstr "конфиденциальные комментарии редактору"
+
+#: .\apps\submissions\models.py:609
+msgid "annotated file"
+msgstr "файл с пометками"
+
+#: .\apps\submissions\models.py:611
+msgid "attachment metadata stripped"
+msgstr "метаданные вложения удалены"
+
+#: .\apps\submissions\models.py:614
+msgid "review quality (1–5)"
+msgstr "качество рецензии (1–5)"
+
+#: .\apps\submissions\models.py:619
+msgid "draft"
+msgstr "черновик"
+
+#: .\apps\submissions\models.py:622
+msgid "review"
+msgstr "рецензия"
+
+#: .\apps\submissions\models.py:623
+msgid "reviews"
+msgstr "рецензии"
+
+#: .\apps\submissions\models.py:648 .\apps\submissions\workflow.py:74
+msgid "Desk reject"
+msgstr "Отклонение редактором"
+
+#: .\apps\submissions\models.py:649 .\apps\submissions\workflow.py:81
+msgid "Send to review"
+msgstr "Отправить на рецензирование"
+
+#: .\apps\submissions\models.py:654
+msgid "Reject with resubmission encouraged"
+msgstr "Отклонить с предложением повторной подачи"
+
+#: .\apps\submissions\models.py:672
+msgid "decided by"
+msgstr "решение принял"
+
+#: .\apps\submissions\models.py:678 .\apps\submissions\models.py:712
+msgid "decision"
+msgstr "решение"
+
+#: .\apps\submissions\models.py:679
+msgid "decision letter"
+msgstr "письмо с решением"
+
+#: .\apps\submissions\models.py:680
+msgid "decided at"
+msgstr "дата решения"
+
+#: .\apps\submissions\models.py:681
+msgid "e-mailed at"
+msgstr "дата отправки письма"
+
+#: .\apps\submissions\models.py:684
+msgid "editorial decision"
+msgstr "редакционное решение"
+
+#: .\apps\submissions\models.py:685
+msgid "editorial decisions"
+msgstr "редакционные решения"
+
+#: .\apps\submissions\models.py:718
+msgid "major revision"
+msgstr "существенная доработка"
+
+#: .\apps\submissions\models.py:720
+msgid "author responded at"
+msgstr "дата ответа автора"
+
+#: .\apps\submissions\models.py:721
+msgid "response to reviewers"
+msgstr "ответ рецензентам"
+
+#: .\apps\submissions\models.py:722
+msgid "reminder sent"
+msgstr "напоминание отправлено"
+
+#: .\apps\submissions\models.py:725
+msgid "revision request"
+msgstr "запрос на доработку"
+
+#: .\apps\submissions\models.py:726
+msgid "revision requests"
+msgstr "запросы на доработку"
+
+#: .\apps\submissions\models.py:730
+msgid "major"
+msgstr "существенная"
+
+#: .\apps\submissions\models.py:730
+msgid "minor"
+msgstr "малая"
+
+#: .\apps\submissions\models.py:738
+msgid "Author ↔ Editor"
+msgstr "Автор ↔ Редактор"
+
+#: .\apps\submissions\models.py:739
+msgid "Editor ↔ Reviewer"
+msgstr "Редактор ↔ Рецензент"
+
+#: .\apps\submissions\models.py:740
+msgid "Editor ↔ Production"
+msgstr "Редактор ↔ Выпуск"
+
+#: .\apps\submissions\models.py:741
+#: .\templates\dashboard\submission_detail.html:284
+msgid "Editors only"
+msgstr "Только редакторы"
+
+#: .\apps\submissions\models.py:751
+msgid "visibility"
+msgstr "видимость"
+
+#: .\apps\submissions\models.py:758
+msgid "created by"
+msgstr "создал"
+
+#: .\apps\submissions\models.py:764
+msgid "closed"
+msgstr "закрыто"
+
+#: .\apps\submissions\models.py:767 .\apps\submissions\models.py:779
+msgid "discussion"
+msgstr "обсуждение"
+
+#: .\apps\submissions\models.py:768
+msgid "discussions"
+msgstr "обсуждения"
+
+#: .\apps\submissions\models.py:790
+msgid "system message"
+msgstr "системное сообщение"
+
+#: .\apps\submissions\models.py:793
+msgid "discussion message"
+msgstr "сообщение обсуждения"
+
+#: .\apps\submissions\models.py:794
+msgid "discussion messages"
+msgstr "сообщения обсуждения"
+
+#: .\apps\submissions\models.py:818
+msgid "editor note"
+msgstr "заметка редактора"
+
+#: .\apps\submissions\models.py:819
+msgid "editor notes"
+msgstr "заметки редактора"
+
+#: .\apps\submissions\models.py:833
+msgid "Metadata completion"
+msgstr "Заполнение метаданных"
+
+#: .\apps\submissions\models.py:834
+msgid "DOI assignment"
+msgstr "Назначение DOI"
+
+#: .\apps\submissions\models.py:835
+msgid "Scheduled to issue"
+msgstr "Запланировано в выпуск"
+
+#: .\apps\submissions\models.py:839 .\templates\dashboard\home.html:71
+msgid "In progress"
+msgstr "В работе"
+
+#: .\apps\submissions\models.py:840
+msgid "Done"
+msgstr "Выполнено"
+
+#: .\apps\submissions\models.py:841
+msgid "Blocked"
+msgstr "Заблокировано"
+
+#: .\apps\submissions\models.py:859
+msgid "stage"
+msgstr "этап"
+
+#: .\apps\submissions\models.py:862
+msgid "assignee"
+msgstr "исполнитель"
+
+#: .\apps\submissions\models.py:873
+msgid "notes"
+msgstr "заметки"
+
+#: .\apps\submissions\models.py:876
+msgid "production task"
+msgstr "задача выпуска"
+
+#: .\apps\submissions\models.py:877
+msgid "production tasks"
+msgstr "задачи выпуска"
+
+#: .\apps\submissions\services.py:71
+#, python-format
+msgid "The file is larger than %(limit)s MB."
+msgstr "Файл больше %(limit)s МБ."
+
+#: .\apps\submissions\services.py:79
+#, python-format
+msgid "Allowed file types for this slot: %(types)s."
+msgstr "Допустимые типы файлов для этого поля: %(types)s."
+
+#: .\apps\submissions\services.py:89
+#, python-format
+msgid "The file content (%(detected)s) does not match its extension."
+msgstr "Содержимое файла (%(detected)s) не соответствует его расширению."
+
+#: .\apps\submissions\services.py:118
+msgid "The uploaded file failed the virus scan."
+msgstr "Загруженный файл не прошёл антивирусную проверку."
+
+#: .\apps\submissions\services.py:276
+msgid "This reviewer has already been invited to this round."
+msgstr "Этот рецензент уже приглашён в данный раунд."
+
+#: .\apps\submissions\services.py:278
+msgid "The submitting author cannot review their own manuscript."
+msgstr "Автор, подавший рукопись, не может её рецензировать."
+
+#: .\apps\submissions\services.py:280
+msgid "This person is an author of the manuscript."
+msgstr "Это лицо является автором рукописи."
+
+#: .\apps\submissions\services.py:385
+msgid "All reviews received; awaiting the editorial decision."
+msgstr "Все рецензии получены; ожидается редакционное решение."
+
+#: .\apps\submissions\services.py:399
+msgid "I am pleased to inform you that your manuscript has been accepted."
+msgstr "С удовольствием сообщаем, что ваша рукопись принята."
+
+#: .\apps\submissions\services.py:400
+msgid "Your manuscript requires minor revisions before it can be accepted."
+msgstr "Ваша рукопись требует малой доработки перед принятием."
+
+#: .\apps\submissions\services.py:402
+msgid ""
+"Your manuscript requires major revisions before it can be considered "
+"further."
+msgstr ""
+"Ваша рукопись требует существенной доработки для дальнейшего рассмотрения."
+
+#: .\apps\submissions\services.py:404
+msgid "After careful consideration, we cannot accept your manuscript."
+msgstr "После внимательного рассмотрения мы не можем принять вашу рукопись."
+
+#: .\apps\submissions\services.py:406
+msgid ""
+"After an initial editorial assessment, we cannot proceed with your "
+"manuscript."
+msgstr ""
+"После первичной редакционной оценки мы не можем продолжить работу с вашей "
+"рукописью."
+
+#: .\apps\submissions\services.py:409
+msgid ""
+"We cannot accept the manuscript in its present form, but we would welcome a "
+"resubmission."
+msgstr ""
+"Мы не можем принять рукопись в нынешнем виде, но будем рады повторной "
+"подаче."
+
+#: .\apps\submissions\services.py:414
+msgid "Dear Author,"
+msgstr "Уважаемый автор,"
+
+#: .\apps\submissions\services.py:418
+#, python-format
+msgid "Manuscript: %(title)s (%(reference)s)"
+msgstr "Рукопись: %(title)s (%(reference)s)"
+
+#: .\apps\submissions\services.py:423
+#, python-format
+msgid "Reviewer %(n)d"
+msgstr "Рецензент %(n)d"
+
+#: .\apps\submissions\services.py:429
+msgid "Yours sincerely,"
+msgstr "С уважением,"
+
+#: .\apps\submissions\services.py:430
+msgid "Editorial Office"
+msgstr "Редакция"
+
+#: .\apps\submissions\tasks.py:46
+#, python-format
+msgid "Your submission %(ref)s has been received"
+msgstr "Ваша рукопись %(ref)s получена"
+
+#: .\apps\submissions\tasks.py:49
+#, python-brace-format
+msgid ""
+"Dear author,\n"
+"\n"
+"Thank you for submitting **{title}** ({reference}) to {journal}.\n"
+"\n"
+"You can follow its progress in your dashboard: {dashboard_url}"
+msgstr ""
+"Уважаемый автор,\n"
+"\n"
+"благодарим за отправку рукописи **{title}** ({reference}) в {journal}.\n"
+"\n"
+"Следить за её продвижением можно в личном кабинете: {dashboard_url}"
+
+#: .\apps\submissions\tasks.py:66
+#, python-format
+msgid "New submission %(ref)s"
+msgstr "Новая рукопись %(ref)s"
+
+#: .\apps\submissions\tasks.py:68
+#, python-brace-format
+msgid ""
+"A new manuscript **{title}** ({reference}) was submitted to the section {section}.\n"
+"\n"
+"Open it here: {detail_url}"
+msgstr ""
+"В рубрику {section} поступила новая рукопись **{title}** ({reference}).\n"
+"\n"
+"Открыть: {detail_url}"
+
+#: .\apps\submissions\tasks.py:90
+#, python-format
+msgid "You are handling %(ref)s"
+msgstr "Вы ведёте рукопись %(ref)s"
+
+#: .\apps\submissions\tasks.py:92
+#, python-brace-format
+msgid ""
+"You have been assigned as handling editor for **{title}** ({reference}).\n"
+"\n"
+"Open it here: {detail_url}"
+msgstr ""
+"Вы назначены ответственным редактором рукописи **{title}** ({reference}).\n"
+"\n"
+"Открыть: {detail_url}"
+
+#: .\apps\submissions\tasks.py:126
+#, python-format
+msgid "Invitation to review for %(journal)s"
+msgstr "Приглашение рецензировать для %(journal)s"
+
+#: .\apps\submissions\tasks.py:128
+#, python-brace-format
+msgid ""
+"Dear colleague,\n"
+"\n"
+"We invite you to review the manuscript **{title}** for {journal} (section: {section}). Reviews are due by {due_date}.\n"
+"\n"
+"[Accept]({accept_url}) · [Decline]({decline_url})\n"
+"\n"
+"The review is double-blind: the manuscript contains no author information."
+msgstr ""
+"Уважаемый коллега,\n"
+"\n"
+"приглашаем вас отрецензировать рукопись **{title}** для {journal} (рубрика: {section}). Срок рецензии — до {due_date}.\n"
+"\n"
+"[Принять]({accept_url}) · [Отклонить]({decline_url})\n"
+"\n"
+"Рецензирование двойное слепое: рукопись не содержит сведений об авторах."
+
+#: .\apps\submissions\tasks.py:151
+msgid "Thank you for your review"
+msgstr "Благодарим за рецензию"
+
+#: .\apps\submissions\tasks.py:153
+#, python-brace-format
+msgid ""
+"Thank you for reviewing **{title}**. Your work is essential to the journal.\n"
+"\n"
+"You can download a reviewer certificate here: {certificate_url}"
+msgstr ""
+"Благодарим за рецензию на **{title}**. Ваш труд крайне важен для журнала.\n"
+"\n"
+"Сертификат рецензента можно скачать здесь: {certificate_url}"
+
+#: .\apps\submissions\tasks.py:176
+#, python-format
+msgid "Decision on %(ref)s"
+msgstr "Решение по рукописи %(ref)s"
+
+#: .\apps\submissions\tasks.py:207
+msgid "Your article is published"
+msgstr "Ваша статья опубликована"
+
+#: .\apps\submissions\tasks.py:208
+#, python-brace-format
+msgid ""
+"Your article **{title}** is now published.\n"
+"\n"
+"DOI: {doi}\n"
+"URL: {url}"
+msgstr ""
+"Ваша статья **{title}** опубликована.\n"
+"\n"
+"DOI: {doi}\n"
+"URL: {url}"
+
+#: .\apps\submissions\tasks.py:224
+msgid "An account has been created for you"
+msgstr "Для вас создана учётная запись"
+
+#: .\apps\submissions\tasks.py:226
+#, python-brace-format
+msgid ""
+"An editorial account has been created for you. Set your password here: "
+"{reset_url}"
+msgstr ""
+"Для вас создана редакционная учётная запись. Задайте пароль здесь: "
+"{reset_url}"
+
+#: .\apps\submissions\tasks.py:259
+#, python-format
+msgid "Reminder: review due %(date)s"
+msgstr "Напоминание: срок рецензии %(date)s"
+
+#: .\apps\submissions\tasks.py:262
+#, python-brace-format
+msgid ""
+"This is a reminder that your review of **{title}** is due on {due_date}.\n"
+"\n"
+"Open the review form: {review_url}"
+msgstr ""
+"Напоминаем, что рецензия на **{title}** должна быть представлена до {due_date}.\n"
+"\n"
+"Открыть форму рецензии: {review_url}"
+
+#: .\apps\submissions\tasks.py:306
+#, python-format
+msgid "Revision of %(ref)s due soon"
+msgstr "Приближается срок доработки %(ref)s"
+
+#: .\apps\submissions\tasks.py:308
+#, python-brace-format
+msgid ""
+"Your revision of **{title}** ({reference}) is due on {due_date}.\n"
+"\n"
+"Upload it here: {dashboard_url}"
+msgstr ""
+"Доработанная версия рукописи **{title}** ({reference}) должна быть представлена до {due_date}.\n"
+"\n"
+"Загрузите её здесь: {dashboard_url}"
+
+#: .\apps\submissions\tasks.py:332
+#, python-format
+msgid "Proof ready for %(ref)s"
+msgstr "Корректура %(ref)s готова"
+
+#: .\apps\submissions\tasks.py:334
+#, python-brace-format
+msgid ""
+"The proof of **{title}** ({reference}) is ready for your approval.\n"
+"\n"
+"Please review it by {deadline}: {dashboard_url}"
+msgstr ""
+"Корректура рукописи **{title}** ({reference}) готова к вашему утверждению.\n"
+"\n"
+"Пожалуйста, проверьте её до {deadline}: {dashboard_url}"
+
+#: .\apps\submissions\views.py:36
+msgid "Start"
+msgstr "Начало"
+
+#: .\apps\submissions\views.py:37
+#: .\templates\dashboard\submission_detail.html:22
+#: .\templates\production\submission_detail.html:55
+#: .\templates\review\assignment_detail.html:28
+#: .\templates\submissions\wizard_step2.html:6
+#: .\templates\submissions\wizard_step5.html:43
+msgid "Files"
+msgstr "Файлы"
+
+#: .\apps\submissions\views.py:38 .\templates\submissions\wizard_step3.html:6
+msgid "Metadata"
+msgstr "Метаданные"
+
+#: .\apps\submissions\views.py:39
+msgid "Reviewers & cover letter"
+msgstr "Рецензенты и письмо"
+
+#: .\apps\submissions\views.py:40
+msgid "Review & submit"
+msgstr "Проверка и отправка"
+
+#: .\apps\submissions\views.py:50
+msgid "This submission can no longer be edited."
+msgstr "Эту рукопись больше нельзя редактировать."
+
+#: .\apps\submissions\views.py:84
+msgid "You have reached the daily submission limit."
+msgstr "Вы достигли суточного лимита подач."
+
+#: .\apps\submissions\views.py:93
+msgid "Untitled manuscript"
+msgstr "Рукопись без названия"
+
+#: .\apps\submissions\views.py:140
+#, python-format
+msgid ""
+"The manuscript has about %(count)s words; research articles should have at "
+"least 4,000."
+msgstr ""
+"В рукописи около %(count)s слов; в научной статье должно быть не менее 4 "
+"000."
+
+#: .\apps\submissions\views.py:294
+msgid "Please complete every required item before submitting."
+msgstr "Перед отправкой заполните все обязательные пункты."
+
+#: .\apps\submissions\views.py:299
+#, python-format
+msgid "Your manuscript has been submitted. Reference: %(ref)s"
+msgstr "Ваша рукопись отправлена. Номер: %(ref)s"
+
+#: .\apps\submissions\views.py:322
+msgid "All declarations in step 1 must be confirmed."
+msgstr "Все заявления на шаге 1 должны быть подтверждены."
+
+#: .\apps\submissions\views.py:324
+msgid "An anonymised manuscript file is required."
+msgstr "Требуется файл обезличенной рукописи."
+
+#: .\apps\submissions\views.py:326
+msgid "A title page file is required."
+msgstr "Требуется файл титульного листа."
+
+#: .\apps\submissions\views.py:328
+#: .\templates\submissions\wizard_step3.html:18
+msgid "Uzbek"
+msgstr "Узбекский"
+
+#: .\apps\submissions\views.py:330
+#, python-format
+msgid "Title in %(lang)s is missing."
+msgstr "Отсутствует название на языке: %(lang)s."
+
+#: .\apps\submissions\views.py:332
+#, python-format
+msgid "Abstract in %(lang)s is missing."
+msgstr "Отсутствует аннотация на языке: %(lang)s."
+
+#: .\apps\submissions\views.py:334
+#, python-format
+msgid "Keywords in %(lang)s are missing."
+msgstr "Отсутствуют ключевые слова на языке: %(lang)s."
+
+#: .\apps\submissions\views.py:336
+msgid "At least one JEL code is required."
+msgstr "Требуется хотя бы один код JEL."
+
+#: .\apps\submissions\views.py:338
+msgid "At least one author is required."
+msgstr "Требуется хотя бы один автор."
+
+#: .\apps\submissions\views.py:340
+msgid "A corresponding author must be marked."
+msgstr "Должен быть отмечен корреспондирующий автор."
+
+#: .\apps\submissions\views.py:349
+msgid "No revision is currently requested."
+msgstr "Доработка в настоящий момент не запрошена."
+
+#: .\apps\submissions\views.py:382
+msgid "Your revision has been submitted."
+msgstr "Ваша доработанная версия отправлена."
+
+#: .\apps\submissions\views.py:408
+msgid "The manuscript has been withdrawn."
+msgstr "Рукопись отозвана."
+
+#: .\apps\submissions\views.py:425
+msgid "The file has been removed."
+msgstr "Файл удалён."
+
+#: .\apps\submissions\workflow.py:60 .\templates\core\for_authors.html:30
+#: .\templates\includes\header.html:37 .\templates\journal\home.html:181
+msgid "Submit"
+msgstr "Отправить"
+
+#: .\apps\submissions\workflow.py:67
+msgid "Assign editor"
+msgstr "Назначить редактора"
+
+#: .\apps\submissions\workflow.py:88
+msgid "All reviews received"
+msgstr "Все рецензии получены"
+
+#: .\apps\submissions\workflow.py:95
+msgid "Request minor revision"
+msgstr "Запросить малую доработку"
+
+#: .\apps\submissions\workflow.py:102
+msgid "Request major revision"
+msgstr "Запросить существенную доработку"
+
+#: .\apps\submissions\workflow.py:109
+msgid "Submit revision"
+msgstr "Отправить доработку"
+
+#: .\apps\submissions\workflow.py:130
+msgid "Start copyediting"
+msgstr "Начать редактирование"
+
+#: .\apps\submissions\workflow.py:137
+msgid "Send proof to author"
+msgstr "Отправить корректуру автору"
+
+#: .\apps\submissions\workflow.py:144
+msgid "Start typesetting"
+msgstr "Начать вёрстку"
+
+#: .\apps\submissions\workflow.py:151
+msgid "Mark ready to publish"
+msgstr "Отметить как готовую к публикации"
+
+#: .\apps\submissions\workflow.py:158
+#: .\templates\production\article_detail.html:78
+msgid "Publish Online First"
+msgstr "Опубликовать как Online First"
+
+#: .\apps\submissions\workflow.py:165
+msgid "Publish in issue"
+msgstr "Опубликовать в выпуске"
+
+#: .\apps\submissions\workflow.py:180 .\templates\submissions\withdraw.html:15
+msgid "Withdraw"
+msgstr "Отозвать"
+
+#: .\apps\submissions\workflow.py:219
+#, python-format
+msgid "Unknown transition: %(name)s"
+msgstr "Неизвестный переход: %(name)s"
+
+#: .\apps\submissions\workflow.py:222
+#, python-format
+msgid "Cannot %(action)s a submission that is %(status)s."
+msgstr ""
+"Невозможно выполнить «%(action)s» для рукописи в состоянии %(status)s."
+
+#: .\apps\submissions\workflow.py:246
+#, python-format
+msgid "Status changed from %(old)s to %(new)s."
+msgstr "Статус изменён с %(old)s на %(new)s."
+
+#: .\apps\submissions\workflow.py:285
+msgid "A similarity check result is required before sending to review."
+msgstr ""
+"Перед отправкой на рецензирование требуется результат проверки "
+"заимствований."
+
+#: .\apps\submissions\workflow.py:292
+#, python-format
+msgid ""
+"Similarity is above the %(threshold)s%% threshold; an EIC override is "
+"required."
+msgstr ""
+"Заимствования выше порога %(threshold)s%%; требуется решение главного "
+"редактора."
+
+#: .\apps\submissions\workflow.py:381
+msgid "Workflow history"
+msgstr "История процесса"
+
+#: .\templates\400.html:11 .\templates\403.html:11 .\templates\404.html:11
+#: .\templates\500.html:11 .\templates\errors\error.html:11
+msgid "Go to the home page"
+msgstr "На главную страницу"
+
+#: .\templates\400.html:12 .\templates\403.html:12 .\templates\404.html:12
+#: .\templates\500.html:12 .\templates\errors\error.html:12
+msgid "Search the journal"
+msgstr "Поиск по журналу"
+
+#: .\templates\account\email_confirm.html:4
+#: .\templates\account\email_confirm.html:7
+msgid "Confirm your e-mail address"
+msgstr "Подтвердите адрес электронной почты"
+
+#: .\templates\account\email_confirm.html:12
+msgid "Confirm"
+msgstr "Подтвердить"
+
+#: .\templates\account\email_confirm.html:15
+msgid "This confirmation link is invalid or has expired."
+msgstr "Эта ссылка подтверждения недействительна или устарела."
+
+#: .\templates\account\login.html:3 .\templates\account\login.html:5
+#: .\templates\account\login.html:18 .\templates\includes\header.html:65
+#: .\templates\includes\header.html:102
+msgid "Sign in"
+msgstr "Войти"
+
+#: .\templates\account\login.html:6
+msgid "Use the e-mail address you registered with."
+msgstr "Используйте адрес электронной почты, указанный при регистрации."
+
+#: .\templates\account\login.html:24
+msgid "Sign in with ORCID"
+msgstr "Войти через ORCID"
+
+#: .\templates\account\login.html:27
+msgid "Forgot your password?"
+msgstr "Забыли пароль?"
+
+#: .\templates\account\login.html:28 .\templates\account\signup.html:3
+#: .\templates\account\signup.html:5
+msgid "Create an account"
+msgstr "Создать учётную запись"
+
+#: .\templates\account\logout.html:3 .\templates\account\logout.html:5
+#: .\templates\account\logout.html:9 .\templates\includes\header.html:59
+msgid "Sign out"
+msgstr "Выйти"
+
+#: .\templates\account\logout.html:6
+msgid "Are you sure you want to sign out?"
+msgstr "Вы действительно хотите выйти?"
+
+#: .\templates\account\password_reset.html:3
+#: .\templates\account\password_reset.html:5
+msgid "Reset your password"
+msgstr "Сброс пароля"
+
+#: .\templates\account\password_reset.html:11
+msgid "Send the reset link"
+msgstr "Отправить ссылку для сброса"
+
+#: .\templates\account\signup.html:6
+msgid ""
+"An account lets you submit manuscripts and track their progress. "
+"Registration is free."
+msgstr ""
+"Учётная запись позволяет подавать рукописи и следить за их продвижением. "
+"Регистрация бесплатна."
+
+#: .\templates\account\signup.html:13
+msgid "Create account"
+msgstr "Создать учётную запись"
+
+#: .\templates\account\signup.html:15
+msgid ""
+"We send a confirmation link to your e-mail address; the account is active "
+"once you confirm it."
+msgstr ""
+"Мы отправим ссылку подтверждения на вашу почту; после подтверждения учётная "
+"запись станет активной."
+
+#: .\templates\account\signup.html:17
+msgid "I already have an account"
+msgstr "У меня уже есть учётная запись"
+
+#: .\templates\account\verified_email_required.html:4
+#: .\templates\account\verified_email_required.html:7
+msgid "Verify your e-mail address"
+msgstr "Подтвердите адрес электронной почты"
+
+#: .\templates\account\verified_email_required.html:8
+msgid ""
+"We have sent a confirmation link to your e-mail address. Please open it to "
+"activate your account."
+msgstr ""
+"Мы отправили ссылку подтверждения на вашу почту. Откройте её, чтобы "
+"активировать учётную запись."
+
+#: .\templates\base.html:63
+msgid "Skip to main content"
+msgstr "Перейти к основному содержанию"
+
+#: .\templates\core\_page_shell.html:7
+msgid "Section navigation"
+msgstr "Навигация по разделу"
+
+#: .\templates\core\_page_shell.html:8
+msgid "In this section"
+msgstr "В этом разделе"
+
+#: .\templates\core\_page_shell.html:20
+msgid "Last updated"
+msgstr "Последнее обновление"
+
+#: .\templates\core\about.html:6
+msgid "Journal facts"
+msgstr "Сведения о журнале"
+
+#: .\templates\core\about.html:9
+#: .\templates\dashboard\partials\queue_table.html:6
+#: .\templates\submissions\wizard_step5.html:17
+msgid "Title"
+msgstr "Название"
+
+#: .\templates\core\about.html:10
+msgid "Short code"
+msgstr "Краткий код"
+
+#: .\templates\core\about.html:18
+msgid "Founded"
+msgstr "Основан"
+
+#: .\templates\core\about.html:19
+msgid "Frequency"
+msgstr "Периодичность"
+
+#: .\templates\core\about.html:20
+msgid "Access"
+msgstr "Доступ"
+
+#: .\templates\core\about.html:22
+msgid "Diamond open access — no charges for authors or readers"
+msgstr "Diamond open access — без платы для авторов и читателей"
+
+#: .\templates\core\about.html:25 .\templates\core\for_authors.html:37
+#: .\templates\dashboard\home.html:101 .\templates\journal\home.html:188
+msgid "Peer review"
+msgstr "Рецензирование"
+
+#: .\templates\core\about.html:27
+msgid "Double-blind, at least two reviewers"
+msgstr "Двойное слепое, не менее двух рецензентов"
+
+#: .\templates\core\about.html:30
+msgid "Registration certificate"
+msgstr "Свидетельство о регистрации"
+
+#: .\templates\core\about.html:36
+msgid "Editorial office"
+msgstr "Редакция"
+
+#: .\templates\core\announcement_detail.html:6
+#: .\templates\journal\article_detail.html:18
+#: .\templates\journal\issue_detail.html:15
+msgid "Breadcrumb"
+msgstr "Навигационная цепочка"
+
+#: .\templates\core\announcement_detail.html:7
+#: .\templates\journal\article_detail.html:19
+#: .\templates\journal\issue_detail.html:16
+msgid "Home"
+msgstr "Главная"
+
+#: .\templates\core\announcement_detail.html:8
+#: .\templates\core\announcement_list.html:3
+#: .\templates\core\announcement_list.html:6
+#: .\templates\includes\footer.html:44 .\templates\journal\home.html:97
+msgid "Announcements"
+msgstr "Объявления"
+
+#: .\templates\core\announcement_list.html:10
+msgid "Pinned"
+msgstr "Закреплено"
+
+#: .\templates\core\announcement_list.html:19
+#: .\templates\journal\home.html:108
+msgid "There are no announcements at the moment."
+msgstr "Объявлений пока нет."
+
+#: .\templates\core\checklist.html:7
+msgid ""
+"Tick every item before you open the submission wizard. Nothing is stored on "
+"the server."
+msgstr ""
+"Отметьте каждый пункт до открытия мастера подачи. Ничего не сохраняется на "
+"сервере."
+
+#: .\templates\core\checklist.html:10
+msgid "Progress"
+msgstr "Прогресс"
+
+#: .\templates\core\checklist.html:25
+msgid "Go to the submission wizard"
+msgstr "Перейти к мастеру подачи"
+
+#: .\templates\core\contact.html:12
+msgid "Address"
+msgstr "Адрес"
+
+#: .\templates\core\contact.html:19
+msgid "Telephone"
+msgstr "Телефон"
+
+#: .\templates\core\contact.html:24
+msgid "Write to the editorial office"
+msgstr "Написать в редакцию"
+
+#: .\templates\core\contact.html:41
+msgid "Send message"
+msgstr "Отправить сообщение"
+
+#: .\templates\core\contact.html:42
+msgid "We usually reply within three working days."
+msgstr "Обычно мы отвечаем в течение трёх рабочих дней."
+
+#: .\templates\core\for_authors.html:9
+msgid "No fees"
+msgstr "Без оплаты"
+
+#: .\templates\core\for_authors.html:10
+msgid ""
+"This journal charges no article processing charges, no submission fees and "
+"no page charges. Publication is free for authors and free for readers."
+msgstr ""
+"Журнал не взимает плату за обработку статьи, за подачу и за страницы. "
+"Публикация бесплатна и для авторов, и для читателей."
+
+#: .\templates\core\for_authors.html:11
+msgid "Read the fee policy"
+msgstr "Прочитать политику оплаты"
+
+#: .\templates\core\for_authors.html:15
+msgid "Check the scope"
+msgstr "Проверьте тематику"
+
+#: .\templates\core\for_authors.html:17 .\templates\journal\home.html:167
+msgid "Aims & scope"
+msgstr "Цели и тематика"
+
+#: .\templates\core\for_authors.html:20
+msgid "Prepare"
+msgstr "Подготовьте"
+
+#: .\templates\core\for_authors.html:22
+msgid "Guidelines"
+msgstr "Руководство"
+
+#: .\templates\core\for_authors.html:25
+msgid "Check the list"
+msgstr "Проверьте по списку"
+
+#: .\templates\core\for_authors.html:27
+msgid "Checklist"
+msgstr "Чек-лист"
+
+#: .\templates\core\for_authors.html:32
+msgid "Submission wizard"
+msgstr "Мастер подачи"
+
+#: .\templates\core\for_authors.html:35
+msgid "After submission"
+msgstr "После подачи"
+
+#: .\templates\core\for_authors.html:43
+msgid "Author resources"
+msgstr "Материалы для авторов"
+
+#: .\templates\core\for_authors.html:48
+msgid "Start a submission"
+msgstr "Начать подачу"
+
+#: .\templates\core\for_reviewers.html:5
+msgid "Reviewer resources"
+msgstr "Материалы для рецензентов"
+
+#: .\templates\core\for_reviewers.html:10
+msgid "Reviewer dashboard"
+msgstr "Кабинет рецензента"
+
+#: .\templates\core\indexing.html:6
+msgid "Currently indexed in"
+msgstr "В настоящее время индексируется в"
+
+#: .\templates\core\indexing.html:18
+msgid "Indexing applications are in preparation."
+msgstr "Заявки на индексацию готовятся."
+
+#: .\templates\core\indexing.html:24
+msgid "Applications planned"
+msgstr "Планируемые заявки"
+
+#: .\templates\core\indexing.html:31
+msgid ""
+"We do not display impact-factor style badges from unverified providers."
+msgstr ""
+"Мы не показываем значки в стиле импакт-фактора от непроверенных поставщиков."
+
+#: .\templates\core\partials\bar_chart.html:8
+#: .\templates\core\partials\bar_chart.html:9
+msgid "Submissions and acceptances per month"
+msgstr "Поданные и принятые статьи по месяцам"
+
+#: .\templates\core\partials\bar_chart.html:21
+msgid "Submissions"
+msgstr "Поданные"
+
+#: .\templates\core\statistics.html:3 .\templates\core\statistics.html:6
+#: .\templates\includes\footer.html:43
+msgid "Journal statistics"
+msgstr "Статистика журнала"
+
+#: .\templates\core\statistics.html:7
+msgid ""
+"Editorial and usage indicators, recalculated nightly. Bot traffic is "
+"filtered using the COUNTER robots list."
+msgstr ""
+"Редакционные показатели и статистика использования, пересчитываемые "
+"еженощно. Трафик ботов фильтруется по списку роботов COUNTER."
+
+#: .\templates\core\statistics.html:10
+msgid "Statistics will appear here once the first articles are published."
+msgstr "Статистика появится здесь после публикации первых статей."
+
+#: .\templates\core\statistics.html:14
+msgid "Articles published"
+msgstr "Опубликовано статей"
+
+#: .\templates\core\statistics.html:15
+#: .\templates\dashboard\submission_detail.html:67
+#: .\templates\submissions\wizard_step3.html:43
+#: .\templates\submissions\wizard_step5.html:29
+msgid "Authors"
+msgstr "Авторы"
+
+#: .\templates\core\statistics.html:16
+msgid "Author countries"
+msgstr "Страны авторов"
+
+#: .\templates\core\statistics.html:17
+msgid "Downloads (12 months)"
+msgstr "Загрузки (12 месяцев)"
+
+#: .\templates\core\statistics.html:18 .\templates\dashboard\home.html:43
+#: .\templates\dashboard\reports.html:11 .\templates\dashboard\reports.html:38
+msgid "Acceptance rate"
+msgstr "Доля принятых"
+
+#: .\templates\core\statistics.html:19
+msgid "Days to first decision"
+msgstr "Дней до первого решения"
+
+#: .\templates\core\statistics.html:20
+msgid "Median review time (days)"
+msgstr "Медианное время рецензии (дней)"
+
+#: .\templates\core\statistics.html:21
+msgid "Active reviewers (12 months)"
+msgstr "Активные рецензенты (12 месяцев)"
+
+#: .\templates\core\statistics.html:25
+msgid "Submissions and acceptances by month"
+msgstr "Поданные и принятые по месяцам"
+
+#: .\templates\core\statistics.html:31
+msgid "Countries of authors"
+msgstr "Страны авторов"
+
+#: .\templates\core\templates_download.html:7
+#: .\templates\journal\article_detail.html:316
+#: .\templates\journal\home.html:120
+#: .\templates\journal\partials\article_card.html:39
+msgid "Downloads"
+msgstr "Загрузки"
+
+#: .\templates\core\templates_download.html:11
+msgid "Manuscript template (DOCX)"
+msgstr "Шаблон рукописи (DOCX)"
+
+#: .\templates\core\templates_download.html:12
+msgid "IMRaD structure, trilingual abstract block, APA 7 reference examples."
+msgstr "Структура IMRaD, блок трёхъязычной аннотации, примеры ссылок APA 7."
+
+#: .\templates\core\templates_download.html:14
+#: .\templates\core\templates_download.html:26
+msgid "Download DOCX"
+msgstr "Скачать DOCX"
+
+#: .\templates\core\templates_download.html:17
+msgid "Manuscript template (LaTeX)"
+msgstr "Шаблон рукописи (LaTeX)"
+
+#: .\templates\core\templates_download.html:18
+msgid "Article class with the journal page setup and bibliography style."
+msgstr "Класс article с настройками полосы журнала и стилем библиографии."
+
+#: .\templates\core\templates_download.html:20
+msgid "Download TEX"
+msgstr "Скачать TEX"
+
+#: .\templates\core\templates_download.html:23
+msgid "Title page template"
+msgstr "Шаблон титульного листа"
+
+#: .\templates\core\templates_download.html:24
+msgid ""
+"Author names, affiliations, ORCID iDs, corresponding author, statements."
+msgstr ""
+"Имена авторов, места работы, ORCID, корреспондирующий автор, заявления."
+
+#: .\templates\core\templates_download.html:29
+msgid "Cover letter template"
+msgstr "Шаблон сопроводительного письма"
+
+#: .\templates\core\templates_download.html:30
+msgid "Short structure for the letter to the editor."
+msgstr "Краткая структура письма редактору."
+
+#: .\templates\core\templates_download.html:32
+msgid "Download TXT"
+msgstr "Скачать TXT"
+
+#: .\templates\dashboard\_base.html:7
+msgid "Dashboard navigation"
+msgstr "Навигация по кабинету"
+
+#: .\templates\dashboard\_base.html:8 .\templates\dashboard\decide.html:3
+#: .\templates\dashboard\home.html:3 .\templates\dashboard\home.html:5
+#: .\templates\dashboard\profile.html:3 .\templates\dashboard\queue.html:3
+#: .\templates\dashboard\reports.html:3
+#: .\templates\dashboard\reviewer_finder.html:3
+#: .\templates\dashboard\submission_detail.html:3
+#: .\templates\dashboard\two_factor.html:3 .\templates\includes\header.html:51
+msgid "Dashboard"
+msgstr "Личный кабинет"
+
+#: .\templates\dashboard\_base.html:9
+msgid "Overview"
+msgstr "Обзор"
+
+#: .\templates\dashboard\_base.html:10 .\templates\dashboard\home.html:84
+msgid "New submission"
+msgstr "Новая рукопись"
+
+#: .\templates\dashboard\_base.html:12 .\templates\review\dashboard.html:3
+#: .\templates\review\dashboard.html:6
+msgid "My reviews"
+msgstr "Мои рецензии"
+
+#: .\templates\dashboard\_base.html:21
+msgid "In production"
+msgstr "В подготовке"
+
+#: .\templates\dashboard\_base.html:22 .\templates\dashboard\reports.html:3
+msgid "Reports"
+msgstr "Отчёты"
+
+#: .\templates\dashboard\_base.html:23 .\templates\production\queue.html:3
+#: .\templates\production\queue.html:5
+#: .\templates\production\submission_detail.html:3
+msgid "Production"
+msgstr "Выпуск"
+
+#: .\templates\dashboard\_base.html:25 .\templates\dashboard\profile.html:9
+msgid "Account"
+msgstr "Учётная запись"
+
+#: .\templates\dashboard\_base.html:26 .\templates\dashboard\profile.html:3
+#: .\templates\dashboard\profile.html:5 .\templates\includes\header.html:52
+msgid "Profile"
+msgstr "Профиль"
+
+#: .\templates\dashboard\_base.html:27 .\templates\dashboard\two_factor.html:3
+#: .\templates\dashboard\two_factor.html:5 .\templates\includes\header.html:54
+msgid "Two-factor authentication"
+msgstr "Двухфакторная аутентификация"
+
+#: .\templates\dashboard\_base.html:29
+msgid "Django admin"
+msgstr "Админка Django"
+
+#: .\templates\dashboard\decide.html:10
+msgid "Reviews in this round"
+msgstr "Рецензии этого раунда"
+
+#: .\templates\dashboard\decide.html:15
+msgid "Average score"
+msgstr "Средняя оценка"
+
+#: .\templates\dashboard\decide.html:26
+msgid "Record the decision and notify the author"
+msgstr "Зафиксировать решение и уведомить автора"
+
+#: .\templates\dashboard\decide.html:28
+#: .\templates\dashboard\submission_detail.html:200
+#: .\templates\submissions\withdraw.html:16
+#: .\templates\submissions\wizard_step1.html:29
+msgid "Cancel"
+msgstr "Отмена"
+
+#: .\templates\dashboard\home.html:10
+msgid "Action needed"
+msgstr "Требуется действие"
+
+#: .\templates\dashboard\home.html:20 .\templates\dashboard\home.html:123
+msgid "Upload revision"
+msgstr "Загрузить доработку"
+
+#: .\templates\dashboard\home.html:29
+msgid "Editorial queues"
+msgstr "Редакционные очереди"
+
+#: .\templates\dashboard\home.html:47 .\templates\dashboard\reports.html:15
+msgid "Median days to first decision"
+msgstr "Медианное число дней до первого решения"
+
+#: .\templates\dashboard\home.html:57
+#: .\templates\dashboard\submission_detail.html:27
+msgid "Reviews"
+msgstr "Рецензии"
+
+#: .\templates\dashboard\home.html:58
+msgid "All reviews"
+msgstr "Все рецензии"
+
+#: .\templates\dashboard\home.html:62
+msgid "Invitation"
+msgstr "Приглашение"
+
+#: .\templates\dashboard\home.html:64 .\templates\dashboard\home.html:73
+#: .\templates\dashboard\submission_detail.html:175
+#: .\templates\production\submission_detail.html:16
+#: .\templates\review\assignment_detail.html:14
+#: .\templates\review\dashboard.html:17 .\templates\review\dashboard.html:46
+msgid "Due"
+msgstr "Срок"
+
+#: .\templates\dashboard\home.html:73
+msgid "days"
+msgstr "дней"
+
+#: .\templates\dashboard\home.html:75
+msgid "Write the review"
+msgstr "Написать рецензию"
+
+#: .\templates\dashboard\home.html:82
+msgid "My submissions"
+msgstr "Мои рукописи"
+
+#: .\templates\dashboard\home.html:102
+#, python-format
+msgid "%(counter)s round"
+msgid_plural "%(counter)s rounds"
+msgstr[0] "%(counter)s раунд"
+msgstr[1] "%(counter)s раундов"
+
+#: .\templates\dashboard\home.html:116
+msgid "Continue draft"
+msgstr "Продолжить черновик"
+
+#: .\templates\dashboard\home.html:119
+msgid "Details"
+msgstr "Подробности"
+
+#: .\templates\dashboard\home.html:129
+msgid "You have not submitted anything yet."
+msgstr "Вы пока ничего не подавали."
+
+#: .\templates\dashboard\home.html:131 .\templates\includes\footer.html:34
+#: .\templates\submissions\wizard_intro.html:3
+#: .\templates\submissions\wizard_intro.html:6
+#: .\templates\submissions\wizard_step1.html:6
+msgid "Submit a manuscript"
+msgstr "Подать рукопись"
+
+#: .\templates\dashboard\partials\queue_table.html:5
+msgid "Reference"
+msgstr "Номер"
+
+#: .\templates\dashboard\partials\queue_table.html:8
+#: .\templates\dashboard\submission_detail.html:174
+#: .\templates\production\submission_detail.html:15
+msgid "Status"
+msgstr "Статус"
+
+#: .\templates\dashboard\partials\queue_table.html:9
+#: .\templates\dashboard\submission_detail.html:25
+msgid "Reviewers"
+msgstr "Рецензенты"
+
+#: .\templates\dashboard\partials\queue_table.html:10
+msgid "Updated"
+msgstr "Обновлено"
+
+#: .\templates\dashboard\partials\queue_table.html:40
+msgid "This queue is empty."
+msgstr "Эта очередь пуста."
+
+#: .\templates\dashboard\partials\reviewer_finder.html:6
+msgid "Expertise"
+msgstr "Экспертиза"
+
+#: .\templates\dashboard\partials\reviewer_finder.html:7
+msgid "Active"
+msgstr "Активные"
+
+#: .\templates\dashboard\partials\reviewer_finder.html:8
+#: .\templates\review\dashboard.html:62
+msgid "Completed"
+msgstr "Завершённые"
+
+#: .\templates\dashboard\partials\reviewer_finder.html:9
+msgid "Quality"
+msgstr "Качество"
+
+#: .\templates\dashboard\partials\reviewer_finder.html:30
+msgid "Invite"
+msgstr "Пригласить"
+
+#: .\templates\dashboard\partials\reviewer_finder.html:37
+msgid "No matching reviewers. Invite someone by e-mail below."
+msgstr ""
+"Подходящих рецензентов не найдено. Пригласите кого-нибудь по e-mail ниже."
+
+#: .\templates\dashboard\profile.html:17
+msgid "Scholarly profile"
+msgstr "Научный профиль"
+
+#: .\templates\dashboard\profile.html:24
+msgid "Save profile"
+msgstr "Сохранить профиль"
+
+#: .\templates\dashboard\queue.html:11
+#: .\templates\dashboard\reviewer_finder.html:18
+#: .\templates\includes\footer.html:42 .\templates\includes\header.html:20
+#: .\templates\includes\header.html:33 .\templates\includes\header.html:98
+#: .\templates\search\search.html:3 .\templates\search\search.html:6
+#: .\templates\search\search.html:76
+msgid "Search"
+msgstr "Поиск"
+
+#: .\templates\dashboard\queue.html:17
+msgid "Title or reference"
+msgstr "Название или номер"
+
+#: .\templates\dashboard\queue.html:18
+msgid "Filter"
+msgstr "Фильтр"
+
+#: .\templates\dashboard\reports.html:6
+msgid "Editorial reports"
+msgstr "Редакционные отчёты"
+
+#: .\templates\dashboard\reports.html:7
+msgid "Export CSV"
+msgstr "Экспорт CSV"
+
+#: .\templates\dashboard\reports.html:21
+msgid "Submissions and acceptances"
+msgstr "Поданные и принятые"
+
+#: .\templates\dashboard\reports.html:27
+msgid "Monthly snapshots"
+msgstr "Ежемесячные срезы"
+
+#: .\templates\dashboard\reports.html:32
+msgid "Month"
+msgstr "Месяц"
+
+#: .\templates\dashboard\reports.html:33
+msgid "Received"
+msgstr "Получено"
+
+#: .\templates\dashboard\reports.html:34
+msgid "Desk rejected"
+msgstr "Отклонено редактором"
+
+#: .\templates\dashboard\reports.html:35
+msgid "To review"
+msgstr "На рецензирование"
+
+#: .\templates\dashboard\reports.html:55
+msgid "No snapshots yet."
+msgstr "Срезов пока нет."
+
+#: .\templates\dashboard\reviewer_finder.html:3
+#: .\templates\dashboard\reviewer_finder.html:5
+#: .\templates\dashboard\submission_detail.html:166
+msgid "Find reviewers"
+msgstr "Найти рецензентов"
+
+#: .\templates\dashboard\reviewer_finder.html:11
+msgid "Search reviewers"
+msgstr "Поиск рецензентов"
+
+#: .\templates\dashboard\reviewer_finder.html:17
+msgid "Name, expertise, affiliation"
+msgstr "Имя, экспертиза, место работы"
+
+#: .\templates\dashboard\reviewer_finder.html:23
+msgid "Invite someone by e-mail"
+msgstr "Пригласить по электронной почте"
+
+#: .\templates\dashboard\reviewer_finder.html:35
+msgid "Send the invitation"
+msgstr "Отправить приглашение"
+
+#: .\templates\dashboard\submission_detail.html:20
+msgid "Summary"
+msgstr "Сводка"
+
+#: .\templates\dashboard\submission_detail.html:32
+msgid "Discussion"
+msgstr "Обсуждение"
+
+#: .\templates\dashboard\submission_detail.html:34
+#: .\templates\dashboard\submission_detail.html:307
+msgid "History"
+msgstr "История"
+
+#: .\templates\dashboard\submission_detail.html:38
+msgid "Handling editor"
+msgstr "Ответственный редактор"
+
+#: .\templates\dashboard\submission_detail.html:38
+#: .\templates\production\article_detail.html:56
+msgid "not assigned"
+msgstr "не назначен"
+
+#: .\templates\dashboard\submission_detail.html:39
+#: .\templates\includes\language_switcher.html:4
+#: .\templates\journal\article_detail.html:131
+#: .\templates\review\assignment_detail.html:12
+#: .\templates\submissions\wizard_step5.html:20
+msgid "Language"
+msgstr "Язык"
+
+#: .\templates\dashboard\submission_detail.html:40
+#: .\templates\review\assignment_detail.html:13
+#: .\templates\submissions\wizard_step5.html:21
+msgid "Word count"
+msgstr "Число слов"
+
+#: .\templates\dashboard\submission_detail.html:41
+msgid "Similarity"
+msgstr "Заимствования"
+
+#: .\templates\dashboard\submission_detail.html:46
+msgid "within threshold"
+msgstr "в пределах порога"
+
+#: .\templates\dashboard\submission_detail.html:48
+msgid "above threshold"
+msgstr "выше порога"
+
+#: .\templates\dashboard\submission_detail.html:51
+msgid "not checked"
+msgstr "не проверено"
+
+#: .\templates\dashboard\submission_detail.html:54
+msgid "Rounds"
+msgstr "Раунды"
+
+#: .\templates\dashboard\submission_detail.html:60
+#: .\templates\journal\article_detail.html:139
+#: .\templates\review\assignment_detail.html:22
+msgid "Abstract"
+msgstr "Аннотация"
+
+#: .\templates\dashboard\submission_detail.html:70
+msgid "Name"
+msgstr "Имя"
+
+#: .\templates\dashboard\submission_detail.html:70
+msgid "Affiliation"
+msgstr "Место работы"
+
+#: .\templates\dashboard\submission_detail.html:85
+msgid "Similarity check"
+msgstr "Проверка заимствований"
+
+#: .\templates\dashboard\submission_detail.html:94
+msgid "Save the similarity result"
+msgstr "Сохранить результат проверки"
+
+#: .\templates\dashboard\submission_detail.html:99
+msgid "Actions"
+msgstr "Действия"
+
+#: .\templates\dashboard\submission_detail.html:111
+#: .\templates\dashboard\submission_detail.html:263
+msgid "Record a decision"
+msgstr "Зафиксировать решение"
+
+#: .\templates\dashboard\submission_detail.html:116
+msgid "Private notes"
+msgstr "Внутренние заметки"
+
+#: .\templates\dashboard\submission_detail.html:125
+msgid "Visible to editors only"
+msgstr "Видно только редакторам"
+
+#: .\templates\dashboard\submission_detail.html:126
+msgid "Add note"
+msgstr "Добавить заметку"
+
+#: .\templates\dashboard\submission_detail.html:140
+#: .\templates\production\submission_detail.html:63
+#: .\templates\submissions\wizard_step2.html:16
+msgid "Kind"
+msgstr "Вид"
+
+#: .\templates\dashboard\submission_detail.html:141
+#: .\templates\submissions\wizard_step2.html:17
+msgid "Version"
+msgstr "Версия"
+
+#: .\templates\dashboard\submission_detail.html:142
+#: .\templates\submissions\wizard_step2.html:18
+msgid "Uploaded"
+msgstr "Загружено"
+
+#: .\templates\dashboard\submission_detail.html:158
+msgid "No files."
+msgstr "Файлов нет."
+
+#: .\templates\dashboard\submission_detail.html:169
+#: .\templates\dashboard\submission_detail.html:218
+#: .\templates\review\assignment_detail.html:11
+msgid "Round"
+msgstr "Раунд"
+
+#: .\templates\dashboard\submission_detail.html:176
+msgid "Reminders"
+msgstr "Напоминания"
+
+#: .\templates\dashboard\submission_detail.html:195
+msgid "Remind"
+msgstr "Напомнить"
+
+#: .\templates\dashboard\submission_detail.html:207
+msgid "No reviewers have been invited yet."
+msgstr "Рецензенты ещё не приглашены."
+
+#: .\templates\dashboard\submission_detail.html:233
+msgid "To the authors"
+msgstr "Авторам"
+
+#: .\templates\dashboard\submission_detail.html:236
+msgid "Confidential to the editor"
+msgstr "Конфиденциально редактору"
+
+#: .\templates\dashboard\submission_detail.html:243
+msgid "Review quality"
+msgstr "Качество рецензии"
+
+#: .\templates\dashboard\submission_detail.html:252
+msgid "Save"
+msgstr "Сохранить"
+
+#: .\templates\dashboard\submission_detail.html:259
+msgid "No reviews yet."
+msgstr "Рецензий пока нет."
+
+#: .\templates\dashboard\submission_detail.html:271
+msgid "No decisions have been recorded."
+msgstr "Решения не зафиксированы."
+
+#: .\templates\dashboard\submission_detail.html:287
+msgid "Post message"
+msgstr "Опубликовать сообщение"
+
+#: .\templates\dashboard\submission_detail.html:295
+msgid "System"
+msgstr "Система"
+
+#: .\templates\dashboard\submission_detail.html:302
+msgid "No messages yet."
+msgstr "Сообщений пока нет."
+
+#: .\templates\dashboard\two_factor.html:6
+msgid ""
+"Editorial accounts must use a time-based one-time password (TOTP) app such "
+"as Aegis, Google Authenticator or 1Password."
+msgstr ""
+"Редакционные учётные записи обязаны использовать приложение TOTP, например "
+"Aegis, Google Authenticator или 1Password."
+
+#: .\templates\dashboard\two_factor.html:8
+msgid "Two-factor authentication is already active on this account."
+msgstr "Двухфакторная аутентификация уже активна для этой учётной записи."
+
+#: .\templates\dashboard\two_factor.html:12
+msgid "Recovery codes"
+msgstr "Коды восстановления"
+
+#: .\templates\dashboard\two_factor.html:13
+msgid "Store these codes somewhere safe. Each one can be used once."
+msgstr ""
+"Храните эти коды в надёжном месте. Каждый можно использовать один раз."
+
+#: .\templates\dashboard\two_factor.html:23
+msgid "QR code for the authenticator app"
+msgstr "QR-код для приложения-аутентификатора"
+
+#: .\templates\dashboard\two_factor.html:33
+msgid "Scan the QR code with your authenticator app."
+msgstr "Отсканируйте QR-код приложением-аутентификатором."
+
+#: .\templates\dashboard\two_factor.html:34
+msgid "Enter the six-digit code the app shows."
+msgstr "Введите шестизначный код, который показывает приложение."
+
+#: .\templates\dashboard\two_factor.html:39
+msgid "Activate"
+msgstr "Активировать"
+
+#: .\templates\errors\error.html:13 .\templates\errors\lockout.html:10
+msgid "Contact the editorial office"
+msgstr "Связаться с редакцией"
+
+#: .\templates\errors\lockout.html:3 .\templates\errors\lockout.html:8
+msgid "Account temporarily locked"
+msgstr "Учётная запись временно заблокирована"
+
+#: .\templates\errors\lockout.html:9
+msgid ""
+"Too many failed sign-in attempts were made from this address. Please try "
+"again in 30 minutes or contact the editorial office."
+msgstr ""
+"С этого адреса было слишком много неудачных попыток входа. Повторите через "
+"30 минут или свяжитесь с редакцией."
+
+#: .\templates\includes\announcement_bar.html:8
+msgid "Notice"
+msgstr "Внимание"
+
+#: .\templates\includes\announcement_bar.html:13
+msgid "Dismiss"
+msgstr "Закрыть"
+
+#: .\templates\includes\footer.html:6
+msgid "Journal"
+msgstr "Журнал"
+
+#: .\templates\includes\footer.html:7
+msgid "About the journal"
+msgstr "О журнале"
+
+#: .\templates\includes\footer.html:17
+msgid "Certificate"
+msgstr "Свидетельство"
+
+#: .\templates\includes\footer.html:28
+msgid "Author Guidelines"
+msgstr "Руководство для авторов"
+
+#: .\templates\includes\footer.html:29
+msgid "Manuscript template"
+msgstr "Шаблон рукописи"
+
+#: .\templates\includes\footer.html:30
+msgid "Pre-submission checklist"
+msgstr "Чек-лист перед подачей"
+
+#: .\templates\includes\footer.html:31
+msgid "Article processing charges"
+msgstr "Плата за публикацию"
+
+#: .\templates\includes\footer.html:32
+msgid "Publication Ethics"
+msgstr "Издательская этика"
+
+#: .\templates\includes\footer.html:33
+msgid "Policy on generative AI"
+msgstr "Политика в отношении генеративного ИИ"
+
+#: .\templates\includes\footer.html:37
+msgid "Browse"
+msgstr "Навигация"
+
+#: .\templates\includes\footer.html:38 .\templates\journal\home.html:42
+#: .\templates\journal\issue_empty.html:3
+#: .\templates\journal\issue_empty.html:6
+msgid "Current issue"
+msgstr "Текущий выпуск"
+
+#: .\templates\includes\footer.html:39 .\templates\includes\header.html:11
+#: .\templates\includes\header.html:93 .\templates\journal\archive.html:3
+#: .\templates\journal\archive.html:6
+#: .\templates\journal\article_detail.html:20
+#: .\templates\journal\issue_detail.html:17
+msgid "Archive"
+msgstr "Архив"
+
+#: .\templates\includes\footer.html:41 .\templates\journal\jel_detail.html:6
+#: .\templates\journal\jel_index.html:3 .\templates\journal\jel_index.html:6
+msgid "JEL classification"
+msgstr "Классификация JEL"
+
+#: .\templates\includes\footer.html:47
+msgid "Machine interfaces"
+msgstr "Машинные интерфейсы"
+
+#: .\templates\includes\footer.html:48
+msgid "RSS feed"
+msgstr "RSS-лента"
+
+#: .\templates\includes\footer.html:49
+msgid "Atom feed"
+msgstr "Atom-лента"
+
+#: .\templates\includes\footer.html:50
+msgid "OAI-PMH"
+msgstr "OAI-PMH"
+
+#: .\templates\includes\footer.html:51
+msgid "JSON API"
+msgstr "JSON API"
+
+#: .\templates\includes\footer.html:52
+msgid "Sitemap"
+msgstr "Карта сайта"
+
+#: .\templates\includes\footer.html:53
+msgid "LOCKSS manifest"
+msgstr "Манифест LOCKSS"
+
+#: .\templates\includes\footer.html:54
+msgid "Archiving policy"
+msgstr "Политика архивирования"
+
+#: .\templates\includes\footer.html:60
+msgid "Articles are published under"
+msgstr "Статьи публикуются под лицензией"
+
+#: .\templates\includes\footer.html:63
+msgid "Authors retain copyright."
+msgstr "Авторское право остаётся у авторов."
+
+#: .\templates\includes\footer.html:66
+msgid "Privacy"
+msgstr "Конфиденциальность"
+
+#: .\templates\includes\footer.html:67
+msgid "Ethics"
+msgstr "Этика"
+
+#: .\templates\includes\header.html:9 .\templates\includes\header.html:91
+msgid "Primary"
+msgstr "Основное"
+
+#: .\templates\includes\header.html:10 .\templates\includes\header.html:92
+msgid "Current Issue"
+msgstr "Текущий выпуск"
+
+#: .\templates\includes\header.html:72
+msgid "Menu"
+msgstr "Меню"
+
+#: .\templates\includes\header.html:100 .\templates\journal\home.html:32
+msgid "Submit your manuscript"
+msgstr "Подайте вашу рукопись"
+
+#: .\templates\includes\wizard_steps.html:3
+msgid "Submission steps"
+msgstr "Шаги подачи"
+
+#: .\templates\includes\wordmark.html:2
+msgctxt "wordmark"
+msgid "ALGORITHM"
+msgstr "АЛГОРИТМ"
+
+#: .\templates\includes\wordmark.html:4
+msgctxt "wordmark"
+msgid "Review of Economic Research"
+msgstr "Обзор экономических исследований"
+
+#: .\templates\journal\archive.html:7
+msgid "Every issue published by the journal, newest first."
+msgstr "Все выпуски журнала, начиная с новейшего."
+
+#: .\templates\journal\archive.html:11 .\templates\search\search.html:34
+msgid "All years"
+msgstr "Все годы"
+
+#: .\templates\journal\archive.html:21 .\templates\production\queue.html:49
+msgid "Volume"
+msgstr "Том"
+
+#: .\templates\journal\archive.html:35
+#: .\templates\journal\article_detail.html:91
+#: .\templates\production\article_detail.html:86
+#: .\templates\production\queue.html:66
+msgid "Issue"
+msgstr "Выпуск"
+
+#: .\templates\journal\archive.html:36 .\templates\journal\home.html:141
+#, python-format
+msgid "%(counter)s article"
+msgid_plural "%(counter)s articles"
+msgstr[0] "%(counter)s статья"
+msgstr[1] "%(counter)s статей"
+
+#: .\templates\journal\archive.html:43
+msgid "No issues have been published yet."
+msgstr "Пока не опубликовано ни одного выпуска."
+
+#: .\templates\journal\archive.html:45 .\templates\journal\issue_empty.html:10
+msgid "See Online First articles"
+msgstr "Посмотреть статьи Online First"
+
+#: .\templates\journal\article_detail.html:26
+#: .\templates\production\issue_builder.html:13
+msgid "Article"
+msgstr "Статья"
+
+#: .\templates\journal\article_detail.html:30
+msgid "RETRACTED ARTICLE"
+msgstr "ОТОЗВАННАЯ СТАТЬЯ"
+
+#: .\templates\journal\article_detail.html:31
+msgid ""
+"This article has been retracted. The record is kept online in line with COPE"
+" guidance."
+msgstr ""
+"Эта статья отозвана. Запись сохраняется в сети в соответствии с "
+"рекомендациями COPE."
+
+#: .\templates\journal\article_detail.html:40
+msgid "Open Access"
+msgstr "Открытый доступ"
+
+#: .\templates\journal\article_detail.html:51
+msgid "Title in other languages"
+msgstr "Название на других языках"
+
+#: .\templates\journal\article_detail.html:71
+msgid "E-mail the corresponding author"
+msgstr "Написать корреспондирующему автору"
+
+#: .\templates\journal\article_detail.html:78
+msgid "Affiliation not provided"
+msgstr "Место работы не указано"
+
+#: .\templates\journal\article_detail.html:94
+#: .\templates\production\issue_builder.html:13
+msgid "Pages"
+msgstr "Страницы"
+
+#: .\templates\journal\article_detail.html:104
+msgid "Published online"
+msgstr "Опубликовано онлайн"
+
+#: .\templates\journal\article_detail.html:109
+msgid "Received / Accepted"
+msgstr "Получена / принята"
+
+#: .\templates\journal\article_detail.html:124
+#: .\templates\review\assignment_detail.html:15
+msgid "Keywords"
+msgstr "Ключевые слова"
+
+#: .\templates\journal\article_detail.html:143
+msgid "Abstract language"
+msgstr "Язык аннотации"
+
+#: .\templates\journal\article_detail.html:161
+msgid "No abstract is available for this article."
+msgstr "Для этой статьи аннотация отсутствует."
+
+#: .\templates\journal\article_detail.html:179
+msgid "Use of generative AI"
+msgstr "Использование генеративного ИИ"
+
+#: .\templates\journal\article_detail.html:182
+msgid "Acknowledgements"
+msgstr "Благодарности"
+
+#: .\templates\journal\article_detail.html:188
+msgid "How to cite"
+msgstr "Как цитировать"
+
+#: .\templates\journal\article_detail.html:221
+msgid "Google Scholar"
+msgstr "Google Scholar"
+
+#: .\templates\journal\article_detail.html:232
+msgid "Related articles"
+msgstr "Похожие статьи"
+
+#: .\templates\journal\article_detail.html:242
+msgid "About the authors"
+msgstr "Об авторах"
+
+#: .\templates\journal\article_detail.html:263
+#, python-format
+msgid "© %(holder)s."
+msgstr "© %(holder)s."
+
+#: .\templates\journal\article_detail.html:264
+msgid "This is an open access article distributed under the terms of the"
+msgstr "Это статья открытого доступа, распространяемая на условиях"
+
+#: .\templates\journal\article_detail.html:267
+msgid ""
+"which permits unrestricted use, distribution and reproduction in any medium,"
+" provided the original work is properly cited."
+msgstr ""
+"которая разрешает неограниченное использование, распространение и "
+"воспроизведение на любом носителе при условии корректного цитирования "
+"оригинальной работы."
+
+#: .\templates\journal\article_detail.html:275
+msgid "Download PDF"
+msgstr "Скачать PDF"
+
+#: .\templates\journal\article_detail.html:289
+#: .\templates\journal\partials\cite_modal.html:12
+msgid "Cite this article"
+msgstr "Цитировать статью"
+
+#: .\templates\journal\article_detail.html:291
+msgid "Share"
+msgstr "Поделиться"
+
+#: .\templates\journal\article_detail.html:296
+msgid "Copy link"
+msgstr "Скопировать ссылку"
+
+#: .\templates\journal\article_detail.html:297
+#: .\templates\journal\partials\cite_modal.html:36
+msgid "Copied"
+msgstr "Скопировано"
+
+#: .\templates\journal\article_detail.html:313
+msgid "Metrics"
+msgstr "Показатели"
+
+#: .\templates\journal\article_detail.html:315
+#: .\templates\journal\home.html:120
+#: .\templates\journal\partials\article_card.html:38
+msgid "Views"
+msgstr "Просмотры"
+
+#: .\templates\journal\article_detail.html:318
+msgid "Cited by"
+msgstr "Цитирований"
+
+#: .\templates\journal\author_detail.html:13
+msgid "Published articles"
+msgstr "Опубликованные статьи"
+
+#: .\templates\journal\author_detail.html:19
+msgid "No published articles yet."
+msgstr "Опубликованных статей пока нет."
+
+#: .\templates\journal\editorial_board.html:7
+#, python-format
+msgid "%(members)s members from %(countries)s countries"
+msgstr "%(members)s членов из %(countries)s стран"
+
+#: .\templates\journal\editorial_board.html:10
+msgid ""
+"Some entries below are seeded demonstration data marked DEMO — replace. The "
+"editorial office replaces them in the admin panel."
+msgstr ""
+"Некоторые записи ниже — демонстрационные данные с пометкой «DEMO — replace»."
+" Редакция заменяет их в админ-панели."
+
+#: .\templates\journal\editorial_board.html:54
+msgid "The board list is being prepared."
+msgstr "Список редколлегии готовится."
+
+#: .\templates\journal\home.html:20
+msgid "Open Access · CC BY 4.0"
+msgstr "Открытый доступ · CC BY 4.0"
+
+#: .\templates\journal\home.html:21
+msgid "No APC"
+msgstr "Без APC"
+
+#: .\templates\journal\home.html:22
+msgid "Double-blind peer review"
+msgstr "Двойное слепое рецензирование"
+
+#: .\templates\journal\home.html:25
+#, python-format
+msgid "%(days)s days to first decision"
+msgstr "%(days)s дней до первого решения"
+
+#: .\templates\journal\home.html:28
+#, python-format
+msgid "%(rate)s%% acceptance rate"
+msgstr "доля принятых %(rate)s%%"
+
+#: .\templates\journal\home.html:33
+msgid "Author guidelines"
+msgstr "Руководство для авторов"
+
+#: .\templates\journal\home.html:45
+msgid "View full issue"
+msgstr "Посмотреть весь выпуск"
+
+#: .\templates\journal\home.html:66
+msgid "This issue has no articles yet."
+msgstr "В этом выпуске пока нет статей."
+
+#: .\templates\journal\home.html:72
+msgid ""
+"The first issue is being prepared. Accepted articles appear as Online First."
+msgstr ""
+"Первый выпуск готовится. Принятые статьи публикуются как Online First."
+
+#: .\templates\journal\home.html:82 .\templates\journal\home.html:99
+msgid "All"
+msgstr "Все"
+
+#: .\templates\journal\home.html:113
+msgid "Most read"
+msgstr "Самые читаемые"
+
+#: .\templates\journal\home.html:114
+msgid "last 30 days"
+msgstr "последние 30 дней"
+
+#: .\templates\journal\home.html:123
+msgid "Usage statistics will appear once articles are published."
+msgstr "Статистика использования появится после публикации статей."
+
+#: .\templates\journal\home.html:133
+msgid "Browse by section"
+msgstr "Просмотр по рубрикам"
+
+#: .\templates\journal\home.html:146
+msgid "Browse by JEL classification"
+msgstr "Просмотр по классификации JEL"
+
+#: .\templates\journal\home.html:147
+msgid "Full tree"
+msgstr "Полное дерево"
+
+#: .\templates\journal\home.html:159
+msgid "Publishing with us"
+msgstr "Публикация у нас"
+
+#: .\templates\journal\home.html:163
+msgid "Step 1"
+msgstr "Шаг 1"
+
+#: .\templates\journal\home.html:164
+msgid "Read the scope"
+msgstr "Ознакомьтесь с тематикой"
+
+#: .\templates\journal\home.html:165
+msgid "Check that your research fits one of our eight sections."
+msgstr "Убедитесь, что ваше исследование относится к одной из восьми рубрик."
+
+#: .\templates\journal\home.html:170
+msgid "Step 2"
+msgstr "Шаг 2"
+
+#: .\templates\journal\home.html:171
+msgid "Prepare the manuscript"
+msgstr "Подготовьте рукопись"
+
+#: .\templates\journal\home.html:172
+msgid "Use our template and APA 7 references; anonymise the file."
+msgstr "Используйте наш шаблон и ссылки APA 7; обезличьте файл."
+
+#: .\templates\journal\home.html:174
+msgid "Templates"
+msgstr "Шаблоны"
+
+#: .\templates\journal\home.html:177
+msgid "Step 3"
+msgstr "Шаг 3"
+
+#: .\templates\journal\home.html:178
+msgid "Submit online"
+msgstr "Подайте онлайн"
+
+#: .\templates\journal\home.html:179
+msgid "Five short steps; you can save and return at any time."
+msgstr "Пять коротких шагов; можно сохранить и вернуться в любой момент."
+
+#: .\templates\journal\home.html:184
+msgid "Step 4"
+msgstr "Шаг 4"
+
+#: .\templates\journal\home.html:185
+msgid "Double-blind review"
+msgstr "Двойное слепое рецензирование"
+
+#: .\templates\journal\home.html:186
+msgid "Two independent reviewers; first decision within about eight weeks."
+msgstr "Два независимых рецензента; первое решение примерно за восемь недель."
+
+#: .\templates\journal\home.html:196
+msgid "Indexed and archived in"
+msgstr "Индексируется и архивируется в"
+
+#: .\templates\journal\issue_detail.html:34
+msgid "Articles"
+msgstr "Статьи"
+
+#: .\templates\journal\issue_detail.html:41
+msgid "Download the full issue (PDF)"
+msgstr "Скачать весь выпуск (PDF)"
+
+#: .\templates\journal\issue_detail.html:56
+msgid "This issue has no articles."
+msgstr "В этом выпуске нет статей."
+
+#: .\templates\journal\issue_detail.html:60
+msgid "Issue navigation"
+msgstr "Навигация по выпускам"
+
+#: .\templates\journal\issue_empty.html:8
+msgid ""
+"No issue has been published yet. Articles accepted for publication appear "
+"first as Online First."
+msgstr ""
+"Пока не опубликовано ни одного выпуска. Принятые статьи сначала выходят как "
+"Online First."
+
+#: .\templates\journal\jel_detail.html:12
+msgid "No articles are classified under this code yet."
+msgstr "По этому коду пока нет статей."
+
+#: .\templates\journal\jel_index.html:7
+msgid ""
+"Browse published research by the Journal of Economic Literature "
+"classification system."
+msgstr ""
+"Просматривайте опубликованные исследования по классификации Journal of "
+"Economic Literature."
+
+#: .\templates\journal\keyword_detail.html:6
+msgid "Keyword"
+msgstr "Ключевое слово"
+
+#: .\templates\journal\keyword_detail.html:12
+msgid "No articles carry this keyword yet."
+msgstr "Статей с этим ключевым словом пока нет."
+
+#: .\templates\journal\online_first.html:8
+msgid ""
+"These peer-reviewed articles have been accepted and are already citable by "
+"DOI. They will receive volume, issue and page numbers when they appear in an"
+" issue."
+msgstr ""
+"Эти рецензированные статьи приняты и уже цитируемы по DOI. Том, выпуск и "
+"страницы они получат при включении в выпуск."
+
+#: .\templates\journal\online_first.html:14
+msgid "There are no Online First articles at the moment."
+msgstr "Статей Online First сейчас нет."
+
+#: .\templates\journal\partials\article_card.html:37
+#: .\templates\search\partials\results.html:26
+msgid "Cite"
+msgstr "Цитировать"
+
+#: .\templates\journal\partials\cite_modal.html:16
+msgid "Close"
+msgstr "Закрыть"
+
+#: .\templates\journal\partials\cite_modal.html:35
+msgid "Copy citation"
+msgstr "Скопировать ссылку на статью"
+
+#: .\templates\journal\partials\pagination.html:4
+msgid "Pagination"
+msgstr "Постраничная навигация"
+
+#: .\templates\journal\partials\pagination.html:8
+msgid "Previous"
+msgstr "Предыдущая"
+
+#: .\templates\journal\partials\pagination.html:11
+#, python-format
+msgid "Page %(current)s of %(total)s"
+msgstr "Страница %(current)s из %(total)s"
+
+#: .\templates\journal\partials\pagination.html:15
+msgid "Next"
+msgstr "Следующая"
+
+#: .\templates\journal\section_detail.html:13
+msgid "No articles have been published in this section yet."
+msgstr "В этой рубрике пока не опубликовано статей."
+
+#: .\templates\production\article_detail.html:3
+msgid "Article production"
+msgstr "Подготовка статьи к выпуску"
+
+#: .\templates\production\article_detail.html:9
+msgid "Metadata completeness"
+msgstr "Полнота метаданных"
+
+#: .\templates\production\article_detail.html:23
+msgid "Galleys"
+msgstr "Вёрстки"
+
+#: .\templates\production\article_detail.html:31
+msgid "Label"
+msgstr "Метка"
+
+#: .\templates\production\article_detail.html:41
+#: .\templates\production\submission_detail.html:71
+msgid "File"
+msgstr "Файл"
+
+#: .\templates\production\article_detail.html:44
+msgid "Upload galley"
+msgstr "Загрузить вёрстку"
+
+#: .\templates\production\article_detail.html:59
+msgid "Reserve the DOI"
+msgstr "Зарезервировать DOI"
+
+#: .\templates\production\article_detail.html:64
+msgid "Publication"
+msgstr "Публикация"
+
+#: .\templates\production\article_detail.html:68
+msgid "Publication is blocked by:"
+msgstr "Публикация заблокирована из-за:"
+
+#: .\templates\production\article_detail.html:92
+msgid "First page"
+msgstr "Первая страница"
+
+#: .\templates\production\article_detail.html:99
+msgid "Last page"
+msgstr "Последняя страница"
+
+#: .\templates\production\article_detail.html:105
+msgid "Schedule into the issue"
+msgstr "Запланировать в выпуск"
+
+#: .\templates\production\issue_builder.html:3
+#: .\templates\production\issue_builder.html:5
+msgid "Issue builder"
+msgstr "Сборка выпуска"
+
+#: .\templates\production\issue_builder.html:6
+msgid "in preparation"
+msgstr "готовится"
+
+#: .\templates\production\issue_builder.html:13
+msgid "Ready"
+msgstr "Готово"
+
+#: .\templates\production\issue_builder.html:33
+msgid "from"
+msgstr "с"
+
+#: .\templates\production\issue_builder.html:37
+msgid "to"
+msgstr "по"
+
+#: .\templates\production\issue_builder.html:48
+msgid "No articles have been scheduled into this issue."
+msgstr "В этот выпуск ещё не запланировано ни одной статьи."
+
+#: .\templates\production\issue_builder.html:54
+msgid "Save order and pages"
+msgstr "Сохранить порядок и страницы"
+
+#: .\templates\production\issue_builder.html:61
+msgid "Every article passes the completeness check."
+msgstr "Все статьи прошли проверку полноты."
+
+#: .\templates\production\issue_builder.html:63
+msgid "Some articles are incomplete; open them to fix the missing metadata."
+msgstr "Некоторые статьи неполные; откройте их, чтобы дополнить метаданные."
+
+#: .\templates\production\issue_builder.html:69
+msgid "Publish the issue"
+msgstr "Опубликовать выпуск"
+
+#: .\templates\production\issue_builder.html:73
+msgid "Unassigned articles"
+msgstr "Статьи без выпуска"
+
+#: .\templates\production\issue_builder.html:80
+msgid "None."
+msgstr "Нет."
+
+#: .\templates\production\queue.html:22
+msgid "Empty."
+msgstr "Пусто."
+
+#: .\templates\production\queue.html:31
+msgid "Issues in preparation"
+msgstr "Готовящиеся выпуски"
+
+#: .\templates\production\queue.html:38
+msgid "Open the issue builder"
+msgstr "Открыть сборку выпуска"
+
+#: .\templates\production\queue.html:41
+msgid "No unpublished issues."
+msgstr "Неопубликованных выпусков нет."
+
+#: .\templates\production\queue.html:58 .\templates\search\search.html:32
+msgid "Year"
+msgstr "Год"
+
+#: .\templates\production\queue.html:75
+msgid "Create issue"
+msgstr "Создать выпуск"
+
+#: .\templates\production\queue.html:92
+msgid "No Online First articles."
+msgstr "Статей Online First нет."
+
+#: .\templates\production\submission_detail.html:9
+msgid "Production checklist"
+msgstr "Чек-лист выпуска"
+
+#: .\templates\production\submission_detail.html:14
+msgid "Stage"
+msgstr "Этап"
+
+#: .\templates\production\submission_detail.html:30
+msgid "Mark done"
+msgstr "Отметить выполненным"
+
+#: .\templates\production\submission_detail.html:41
+msgid "Stage actions"
+msgstr "Действия этапа"
+
+#: .\templates\production\submission_detail.html:74
+msgid "Upload"
+msgstr "Загрузить"
+
+#: .\templates\production\submission_detail.html:85
+msgid "Article record"
+msgstr "Запись статьи"
+
+#: .\templates\production\submission_detail.html:87
+msgid ""
+"Metadata, galleys, DOI and issue scheduling are managed on the article page."
+msgstr ""
+"Метаданные, вёрстки, DOI и планирование в выпуск управляются на странице "
+"статьи."
+
+#: .\templates\production\submission_detail.html:89
+msgid "Open the article record"
+msgstr "Открыть запись статьи"
+
+#: .\templates\review\assignment_detail.html:3
+msgid "Manuscript for review"
+msgstr "Рукопись на рецензирование"
+
+#: .\templates\review\assignment_detail.html:6
+msgid ""
+"This review is double-blind. The manuscript below contains no information "
+"identifying the authors, and the authors will not learn your identity."
+msgstr ""
+"Это рецензирование двойное слепое. В рукописи ниже нет сведений об авторах, "
+"а авторы не узнают вашу личность."
+
+#: .\templates\review\assignment_detail.html:35
+msgid "No files are available."
+msgstr "Файлы недоступны."
+
+#: .\templates\review\assignment_detail.html:45
+msgid "Accept the invitation"
+msgstr "Принять приглашение"
+
+#: .\templates\review\assignment_detail.html:46
+#: .\templates\review\dashboard.html:31
+msgid "Decline"
+msgstr "Отклонить"
+
+#: .\templates\review\assignment_detail.html:50
+#: .\templates\review\dashboard.html:54
+msgid "Open the review form"
+msgstr "Открыть форму рецензии"
+
+#: .\templates\review\dashboard.html:8
+msgid "Download certificate"
+msgstr "Скачать сертификат"
+
+#: .\templates\review\dashboard.html:12
+msgid "Invitations"
+msgstr "Приглашения"
+
+#: .\templates\review\dashboard.html:23
+msgid "View the manuscript"
+msgstr "Посмотреть рукопись"
+
+#: .\templates\review\dashboard.html:35
+msgid "No open invitations."
+msgstr "Открытых приглашений нет."
+
+#: .\templates\review\dashboard.html:40
+msgid "Active reviews"
+msgstr "Активные рецензии"
+
+#: .\templates\review\dashboard.html:48
+#, python-format
+msgid "%(counter)s day left"
+msgid_plural "%(counter)s days left"
+msgstr[0] "остался %(counter)s день"
+msgstr[1] "осталось %(counter)s дней"
+
+#: .\templates\review\dashboard.html:50
+msgid "overdue"
+msgstr "просрочено"
+
+#: .\templates\review\dashboard.html:57
+msgid "No active reviews."
+msgstr "Активных рецензий нет."
+
+#: .\templates\review\dashboard.html:67
+msgid "Manuscript"
+msgstr "Рукопись"
+
+#: .\templates\review\dashboard.html:82
+msgid "No completed reviews yet."
+msgstr "Завершённых рецензий пока нет."
+
+#: .\templates\review\respond_done.html:3
+msgid "Review invitation"
+msgstr "Приглашение рецензировать"
+
+#: .\templates\review\respond_done.html:7
+msgid "You have already responded"
+msgstr "Вы уже ответили"
+
+#: .\templates\review\respond_done.html:8
+msgid ""
+"This invitation has already been answered. Open your dashboard to see the "
+"details."
+msgstr ""
+"На это приглашение уже дан ответ. Откройте кабинет, чтобы посмотреть детали."
+
+#: .\templates\review\respond_done.html:10
+msgid "Thank you for accepting"
+msgstr "Благодарим за согласие"
+
+#: .\templates\review\respond_done.html:11
+msgid "Sign in to read the manuscript and complete the review form."
+msgstr "Войдите, чтобы прочитать рукопись и заполнить форму рецензии."
+
+#: .\templates\review\respond_done.html:13
+msgid "Invitation declined"
+msgstr "Приглашение отклонено"
+
+#: .\templates\review\respond_done.html:14
+msgid "Thank you for letting us know. We will approach another reviewer."
+msgstr "Спасибо, что сообщили. Мы обратимся к другому рецензенту."
+
+#: .\templates\review\respond_done.html:16
+msgid "Go to my reviews"
+msgstr "Перейти к моим рецензиям"
+
+#: .\templates\review\review_form.html:3 .\templates\review\review_form.html:5
+msgid "Review form"
+msgstr "Форма рецензии"
+
+#: .\templates\review\review_form.html:10
+msgid "Assessment (1 = poor, 5 = excellent)"
+msgstr "Оценка (1 = плохо, 5 = отлично)"
+
+#: .\templates\review\review_form.html:30
+msgid "Save draft"
+msgstr "Сохранить черновик"
+
+#: .\templates\review\review_form.html:31
+msgid "Submit the review"
+msgstr "Отправить рецензию"
+
+#: .\templates\review\review_form.html:33
+msgid "Any file you upload is stripped of metadata before the editor sees it."
+msgstr ""
+"Любой загруженный вами файл очищается от метаданных до того, как его увидит "
+"редактор."
+
+#: .\templates\search\partials\results.html:3
+#, python-format
+msgid "%(counter)s result"
+msgid_plural "%(counter)s results"
+msgstr[0] "%(counter)s результат"
+msgstr[1] "%(counter)s результатов"
+
+#: .\templates\search\partials\results.html:31
+msgid "Nothing matched your search."
+msgstr "По вашему запросу ничего не найдено."
+
+#: .\templates\search\partials\results.html:32
+msgid "Try fewer words, a different language, or browse the archive."
+msgstr "Попробуйте меньше слов, другой язык или просмотрите архив."
+
+#: .\templates\search\partials\results.html:33
+msgid "Browse the archive"
+msgstr "Просмотреть архив"
+
+#: .\templates\search\search.html:16
+msgid "Filters"
+msgstr "Фильтры"
+
+#: .\templates\search\search.html:20
+msgid "Hide"
+msgstr "Скрыть"
+
+#: .\templates\search\search.html:20
+msgid "Show"
+msgstr "Показать"
+
+#: .\templates\search\search.html:26
+msgid "All sections"
+msgstr "Все рубрики"
+
+#: .\templates\search\search.html:42
+msgid "All JEL codes"
+msgstr "Все коды JEL"
+
+#: .\templates\search\search.html:55
+msgid "Sort by"
+msgstr "Сортировка"
+
+#: .\templates\search\search.html:57
+msgid "Relevance"
+msgstr "По релевантности"
+
+#: .\templates\search\search.html:58
+msgid "Newest first"
+msgstr "Сначала новые"
+
+#: .\templates\search\search.html:59
+msgid "Oldest first"
+msgstr "Сначала старые"
+
+#: .\templates\search\search.html:60
+msgid "Most viewed"
+msgstr "Самые просматриваемые"
+
+#: .\templates\search\search.html:62
+msgid "Apply filters"
+msgstr "Применить фильтры"
+
+#: .\templates\search\search.html:63
+msgid "Reset"
+msgstr "Сбросить"
+
+#: .\templates\search\search.html:68
+msgid "Search query"
+msgstr "Поисковый запрос"
+
+#: .\templates\search\search.html:74
+msgid "Title, abstract, keywords, authors, references"
+msgstr "Название, аннотация, ключевые слова, авторы, список литературы"
+
+#: .\templates\submissions\upload_revision.html:3
+#: .\templates\submissions\upload_revision.html:6
+msgid "Upload a revision"
+msgstr "Загрузить доработку"
+
+#: .\templates\submissions\upload_revision.html:10
+msgid "Decision letter"
+msgstr "Письмо с решением"
+
+#: .\templates\submissions\upload_revision.html:19
+msgid "Submit the revision"
+msgstr "Отправить доработку"
+
+#: .\templates\submissions\withdraw.html:3
+#: .\templates\submissions\withdraw.html:6
+msgid "Withdraw the manuscript"
+msgstr "Отозвать рукопись"
+
+#: .\templates\submissions\withdraw.html:8
+msgid ""
+"Withdrawing ends the editorial process. Reviewers who have accepted the "
+"invitation will be informed."
+msgstr ""
+"Отзыв завершает редакционный процесс. Рецензентам, принявшим приглашение, "
+"будет сообщено."
+
+#: .\templates\submissions\wizard_intro.html:7
+msgid ""
+"Submission takes five short steps. Your work is saved after every step, so "
+"you can leave and return at any time."
+msgstr ""
+"Подача состоит из пяти коротких шагов. Работа сохраняется после каждого "
+"шага, поэтому вы можете вернуться в любой момент."
+
+#: .\templates\submissions\wizard_intro.html:9
+msgid "Before you start"
+msgstr "Перед началом"
+
+#: .\templates\submissions\wizard_intro.html:11
+msgid "An anonymised manuscript (PDF or DOCX)"
+msgstr "Обезличенная рукопись (PDF или DOCX)"
+
+#: .\templates\submissions\wizard_intro.html:12
+msgid "A separate title page with all authors and affiliations"
+msgstr "Отдельный титульный лист со всеми авторами и местами работы"
+
+#: .\templates\submissions\wizard_intro.html:13
+msgid "Title, abstract and keywords in English, Uzbek and Russian"
+msgstr ""
+"Название, аннотация и ключевые слова на английском, узбекском и русском"
+
+#: .\templates\submissions\wizard_intro.html:14
+msgid "One to five JEL codes"
+msgstr "От одного до пяти кодов JEL"
+
+#: .\templates\submissions\wizard_intro.html:15
+msgid "ORCID iDs of the authors"
+msgstr "ORCID авторов"
+
+#: .\templates\submissions\wizard_intro.html:18
+msgid "Open the full checklist"
+msgstr "Открыть полный чек-лист"
+
+#: .\templates\submissions\wizard_intro.html:23
+msgid "Continue a draft"
+msgstr "Продолжить черновик"
+
+#: .\templates\submissions\wizard_intro.html:30
+msgid "Last edited"
+msgstr "Последнее изменение"
+
+#: .\templates\submissions\wizard_intro.html:30
+msgid "Step"
+msgstr "Шаг"
+
+#: .\templates\submissions\wizard_intro.html:33
+msgid "Continue"
+msgstr "Продолжить"
+
+#: .\templates\submissions\wizard_intro.html:39
+msgid "Start a new submission"
+msgstr "Начать новую подачу"
+
+#: .\templates\submissions\wizard_step1.html:3
+msgid "Submission — step 1"
+msgstr "Подача — шаг 1"
+
+#: .\templates\submissions\wizard_step1.html:16
+msgid "Author declarations"
+msgstr "Заявления автора"
+
+#: .\templates\submissions\wizard_step1.html:28
+#: .\templates\submissions\wizard_step2.html:48
+#: .\templates\submissions\wizard_step3.html:67
+#: .\templates\submissions\wizard_step4.html:16
+msgid "Save and continue"
+msgstr "Сохранить и продолжить"
+
+#: .\templates\submissions\wizard_step2.html:3
+msgid "Submission — step 2"
+msgstr "Подача — шаг 2"
+
+#: .\templates\submissions\wizard_step2.html:11
+msgid "Uploaded files"
+msgstr "Загруженные файлы"
+
+#: .\templates\submissions\wizard_step2.html:31
+msgid "Remove"
+msgstr "Удалить"
+
+#: .\templates\submissions\wizard_step2.html:47
+#: .\templates\submissions\wizard_step3.html:66
+#: .\templates\submissions\wizard_step4.html:15
+#: .\templates\submissions\wizard_step5.html:55
+msgid "Back"
+msgstr "Назад"
+
+#: .\templates\submissions\wizard_step3.html:3
+msgid "Submission — step 3"
+msgstr "Подача — шаг 3"
+
+#: .\templates\submissions\wizard_step3.html:23
+msgid "The Uzbek Cyrillic version is generated automatically."
+msgstr "Узбекская кириллическая версия создаётся автоматически."
+
+#: .\templates\submissions\wizard_step3.html:55
+msgid ""
+"Add more authors by saving and returning to this step; mark exactly one "
+"corresponding author."
+msgstr ""
+"Чтобы добавить авторов, сохраните и вернитесь к этому шагу; отметьте ровно "
+"одного корреспондирующего автора."
+
+#: .\templates\submissions\wizard_step3.html:58
+msgid "Statements and references"
+msgstr "Заявления и список литературы"
+
+#: .\templates\submissions\wizard_step4.html:3
+msgid "Submission — step 4"
+msgstr "Подача — шаг 4"
+
+#: .\templates\submissions\wizard_step4.html:6
+msgid "Reviewers and cover letter"
+msgstr "Рецензенты и сопроводительное письмо"
+
+#: .\templates\submissions\wizard_step5.html:3
+msgid "Submission — step 5"
+msgstr "Подача — шаг 5"
+
+#: .\templates\submissions\wizard_step5.html:6
+msgid "Review and submit"
+msgstr "Проверка и отправка"
+
+#: .\templates\submissions\wizard_step5.html:10
+msgid "Please complete the following before submitting:"
+msgstr "Перед отправкой заполните следующее:"
+
+#: .\templates\submissions\wizard_step5.html:19
+msgid "Type"
+msgstr "Тип"
+
+#: .\templates\submissions\wizard_step5.html:34
+msgid "corresponding"
+msgstr "корреспондирующий"
+
+#: .\templates\submissions\wizard_step5.html:58
+msgid "Submit the manuscript"
+msgstr "Отправить рукопись"

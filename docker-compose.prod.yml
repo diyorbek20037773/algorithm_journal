@@ -1,0 +1,168 @@
+# Production stack for ALGORITHM: Review of Economic Research
+#
+#   cp .env.example .env      # then fill in the production values
+#   docker compose -f docker-compose.prod.yml up -d --build
+#
+# Caddy terminates TLS and obtains certificates automatically; see Caddyfile.
+name: arer-prod
+
+x-django: &django
+  build:
+    context: .
+    target: runtime
+  image: arer-web:prod
+  restart: unless-stopped
+  env_file: .env
+  environment:
+    DJANGO_SETTINGS_MODULE: config.settings.prod
+    POSTGRES_HOST: db
+    DATABASE_URL: postgres://${POSTGRES_USER:-arer}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-arer}
+    REDIS_URL: redis://redis:6379/0
+    CELERY_BROKER_URL: redis://redis:6379/1
+    CELERY_RESULT_BACKEND: redis://redis:6379/2
+  volumes:
+    - media:/app/media
+    - static:/app/staticfiles
+    - exports:/app/exports
+  depends_on:
+    db:
+      condition: service_healthy
+    redis:
+      condition: service_healthy
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-arer}
+      POSTGRES_USER: ${POSTGRES_USER:-arer}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD must be set}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-arer} -d ${POSTGRES_DB:-arer}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    # Not published on the host: only the internal network reaches Postgres.
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--save", "60", "1", "--appendonly", "no", "--loglevel", "warning"]
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+
+  web:
+    <<: *django
+    command: ["prod"]
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:8000/healthz/ || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+  worker:
+    <<: *django
+    command: ["worker"]
+    healthcheck:
+      test: ["CMD-SHELL", "celery -A config inspect ping -d celery@$$HOSTNAME || exit 1"]
+      interval: 60s
+      timeout: 20s
+      retries: 3
+      start_period: 60s
+
+  beat:
+    <<: *django
+    command: ["beat"]
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    environment:
+      SITE_DOMAIN: ${SITE_DOMAIN:?SITE_DOMAIN must be set}
+      ACME_EMAIL: ${ACME_EMAIL:-admin@example.org}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - static:/srv/static:ro
+      - media:/srv/media:ro
+      - caddydata:/data
+      - caddyconfig:/config
+    depends_on:
+      - web
+
+  # Nightly database and media backup with 30-day retention.
+  backup:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      PGHOST: db
+      PGUSER: ${POSTGRES_USER:-arer}
+      PGPASSWORD: ${POSTGRES_PASSWORD}
+      PGDATABASE: ${POSTGRES_DB:-arer}
+      BACKUP_RETENTION_DAYS: ${BACKUP_RETENTION_DAYS:-30}
+    volumes:
+      - ./scripts:/scripts:ro
+      - backups:/backups
+      - media:/app/media:ro
+    entrypoint: ["/bin/sh", "-c"]
+    command: >-
+      "apk add --no-cache bash tar gzip >/dev/null 2>&1;
+       while true; do
+         sh /scripts/backup.sh || echo 'backup failed';
+         sleep 86400;
+       done"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  # Optional self-hosted analytics: docker compose --profile analytics up -d
+  matomo-db:
+    image: mariadb:11
+    profiles: ["analytics"]
+    restart: unless-stopped
+    environment:
+      MARIADB_DATABASE: matomo
+      MARIADB_USER: matomo
+      MARIADB_PASSWORD: ${MATOMO_DB_PASSWORD:-matomo}
+      MARIADB_ROOT_PASSWORD: ${MATOMO_DB_ROOT_PASSWORD:-matomo_root}
+    volumes:
+      - matomodb:/var/lib/mysql
+
+  matomo:
+    image: matomo:5-apache
+    profiles: ["analytics"]
+    restart: unless-stopped
+    environment:
+      MATOMO_DATABASE_HOST: matomo-db
+      MATOMO_DATABASE_USERNAME: matomo
+      MATOMO_DATABASE_PASSWORD: ${MATOMO_DB_PASSWORD:-matomo}
+      MATOMO_DATABASE_DBNAME: matomo
+    volumes:
+      - matomo:/var/www/html
+    depends_on:
+      - matomo-db
+
+volumes:
+  pgdata:
+  redisdata:
+  media:
+  static:
+  exports:
+  backups:
+  caddydata:
+  caddyconfig:
+  matomodb:
+  matomo:

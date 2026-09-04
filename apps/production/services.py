@@ -11,6 +11,7 @@ from django.core.cache import cache
 from django.core.exceptions import ValidationError
 from django.db import transaction
 from django.utils import timezone
+from django.utils.text import slugify
 from django.utils.translation import gettext as _
 
 from apps.core.models import AuditLog
@@ -99,14 +100,7 @@ def create_article_from_submission(submission: Submission) -> Article:
             credit_roles=author.credit_roles,
         )
 
-    keywords = metadata.get("keywords", {})
-    for language in ("en", "uz", "uz-cyrl", "ru"):
-        for name in keywords.get(language, []) or []:
-            keyword = _get_or_create_keyword(name, language)
-            article.keywords.add(keyword)
-    if not article.keywords.exists():
-        for name in submission.keywords_list:
-            article.keywords.add(_get_or_create_keyword(name, "en"))
+    _copy_keywords(article, metadata.get("keywords", {}), submission.keywords_list)
 
     article.jel_codes.set(submission.jel_codes.all())
 
@@ -118,20 +112,27 @@ def create_article_from_submission(submission: Submission) -> Article:
     return article
 
 
-def _get_or_create_keyword(name: str, language: str) -> Keyword:
-    """Find or create a keyword, storing the value in the right language field."""
-    field = f"name_{language.replace('-', '_')}"
-    existing = Keyword.objects.filter(**{f"{field}__iexact": name}).first()
-    if existing is not None:
-        return existing
-    keyword = Keyword(name=name)
-    setattr(keyword, field, name)
-    if language != "en":
-        keyword.name_en = keyword.name_en or name
-    else:
-        keyword.name_en = name
-    keyword.save()
-    return keyword
+def _copy_keywords(article: Article, keywords: dict[str, list[str]], fallback: list[str]) -> None:
+    """Attach one :class:`Keyword` per concept, carrying every language.
+
+    The wizard stores parallel lists per language, so the lists are aligned by
+    index: position *i* of the English list is the same keyword as position *i*
+    of the Uzbek and Russian lists.  Creating a separate row per language would
+    push the article past the 5–8 keyword policy.
+    """
+    english = keywords.get("en") or fallback
+    article.keywords.clear()
+    for position, name_en in enumerate(english):
+        slug = slugify(name_en)[:130] or f"kw-{article.pk}-{position}"
+        keyword, _created = Keyword.objects.get_or_create(slug=slug)
+        keyword.name_en = name_en
+        for code in ("uz", "uz-cyrl", "ru"):
+            values = keywords.get(code) or []
+            if position < len(values):
+                setattr(keyword, f"name_{code.replace('-', '_')}", values[position])
+        keyword.name = name_en
+        keyword.save()
+        article.keywords.add(keyword)
 
 
 def _reference_lines(submission: Submission) -> list[str]:
