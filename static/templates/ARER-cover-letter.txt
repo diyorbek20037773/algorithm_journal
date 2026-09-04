@@ -1,0 +1,38 @@
+ALGORITHM: Review of Economic Research
+Cover letter template
+
+--------------------------------------------------------------------------
+Dear Editors,
+
+We submit our manuscript "<TITLE>" for consideration as a <research article /
+review article / short communication> in the section <SECTION>.
+
+What the paper does
+    One or two sentences on the research question and the contribution.
+
+Why it fits the journal
+    One or two sentences relating the work to the journal's aims and scope,
+    and to its international readership.
+
+Declarations
+    The manuscript is original, has not been published before, and is not
+    under consideration by another journal.
+    All authors have read and approved this version and agree to publication
+    under the CC BY 4.0 licence.
+    <Prior dissemination, if any: working paper, preprint, conference paper,
+     thesis chapter — give the reference.>
+    <Conflicts of interest, if any.>
+    <Use of generative AI, if any.>
+
+Suggested reviewers (optional)
+    1. Name, affiliation, e-mail — expertise
+    2. Name, affiliation, e-mail — expertise
+
+Reviewers we ask you to avoid (optional, with a short reason)
+    1. Name, affiliation — reason
+
+Yours sincerely,
+<Corresponding author name>
+<Affiliation>
+<E-mail>
+--------------------------------------------------------------------------

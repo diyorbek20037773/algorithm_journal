@@ -1,0 +1,126 @@
+% =====================================================================
+% ALGORITHM: Review of Economic Research (ARER) — manuscript template
+%
+% Compile with XeLaTeX if your text contains Uzbek Latin (oʻ, gʻ) or
+% Cyrillic; pdfLaTeX is sufficient for plain English.
+%
+% Do NOT put author names in this file: they go on the title page.
+% =====================================================================
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage[hidelinks]{hyperref}
+\usepackage[round,authoryear]{natbib}
+\bibliographystyle{apalike}
+
+\onehalfspacing
+\setlength{\parindent}{1.25em}
+
+\title{\textbf{Title of the Article in English}}
+\date{}                      % no date in the anonymised file
+\author{}                    % intentionally empty: see the title page
+
+\begin{document}
+\maketitle
+
+% ---------------------------------------------------------------- abstracts
+\begin{abstract}
+\noindent 150--250 words, one paragraph, no citations and no abbreviations.
+State the purpose, the data and method, the main result and the conclusion.
+
+\medskip
+\noindent\textbf{Keywords:} keyword one; keyword two; keyword three;
+keyword four; keyword five
+
+\noindent\textbf{JEL classification:} E52; G21; O33
+\end{abstract}
+
+\section*{Annotatsiya (oʻzbekcha)}
+150--250 soʻz. Tadqiqot maqsadi, maʼlumot va usul, asosiy natija hamda
+xulosani bayon eting.
+
+\noindent\textbf{Kalit soʻzlar:} birinchi; ikkinchi; uchinchi; toʻrtinchi;
+beshinchi
+
+\section*{Аннотация (на русском)}
+150--250 слов. Изложите цель исследования, данные и метод, основной
+результат и вывод.
+
+\noindent\textbf{Ключевые слова:} первое; второе; третье; четвёртое; пятое
+
+\newpage
+
+% ------------------------------------------------------------------- body
+\section{Introduction}
+State the research question, why it matters, what is new here, and how the
+paper is organised.
+
+\section{Literature review}
+What is already known and the specific gap this paper fills. Cite
+international literature, not only regional sources \citep{acemoglu2012}.
+
+\section{Data and methodology}
+Data sources, sample, variables, model specification, identification
+strategy and software, in enough detail for the work to be reproduced.
+
+\section{Results}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Descriptive statistics}
+  \label{tab:descriptives}
+  \begin{tabular}{lrrr}
+    \toprule
+    Variable & Mean & Std.\ dev. & $N$ \\
+    \midrule
+    Example 1 & 0.00 & 0.00 & 0 \\
+    Example 2 & 0.00 & 0.00 & 0 \\
+    \bottomrule
+  \end{tabular}
+
+  \smallskip
+  \footnotesize Source: authors' calculations. Units: \dots
+\end{table}
+
+\section{Discussion}
+Interpretation, comparison with earlier findings, mechanisms and
+limitations. Do not overstate causality.
+
+\section{Conclusion}
+Answer the research question and draw only the implications the evidence
+supports.
+
+% -------------------------------------------------------------- statements
+\section*{Statements}
+\noindent\textbf{Funding:} This research received no specific grant from any
+funding agency.\\
+\textbf{Conflict of interest:} The authors declare no conflict of interest.\\
+\textbf{Data availability:} Data and replication code are available from the
+corresponding author on reasonable request.\\
+\textbf{Use of generative AI:} No generative AI tools were used in the
+preparation of this article.
+
+% ------------------------------------------------------------- references
+\begin{thebibliography}{99}
+\bibitem[Acemoglu and Robinson(2012)]{acemoglu2012}
+Acemoglu, D. and Robinson, J.~A. (2012).
+\newblock \emph{Why Nations Fail}. Crown Business, New York.
+
+\bibitem[Autor(2015)]{autor2015}
+Autor, D.~H. (2015).
+\newblock Why are there still so many jobs?
+\newblock \emph{Journal of Economic Perspectives}, 29(3):3--30.
+\newblock \url{https://doi.org/10.1257/jep.29.3.3}
+
+\bibitem[Karimov(2023)]{karimov2023}
+Karimov, A.~A. (2023).
+\newblock Raqamli iqtisodiyot va mehnat bozori [The digital economy and the
+labour market].
+\newblock \emph{Iqtisodiyot va Taʼlim}, 24(3):45--58. (in Uzbek)
+\end{thebibliography}
+
+\end{document}

@@ -56,3 +56,8 @@ algorithm_journal_kit.zip
 
 # Local toolchain downloaded for Windows development (gettext binaries)
 /.tools/
+
+# Test run artefacts: the media root pytest writes generated galleys and
+# Crossref deposits into, and the screenshot script's log.
+.pytest-media/
+.shots.log

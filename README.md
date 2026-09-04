@@ -131,6 +131,7 @@ tests/       pytest suites mirrored per app plus end-to-end
 | [`docs/ADMIN_GUIDE_uz.md`](docs/ADMIN_GUIDE_uz.md) | Administrator guide (Uzbek) |
 | [`docs/EDITOR_GUIDE_en.md`](docs/EDITOR_GUIDE_en.md) | Editorial workflow guide (English) |
 | [`docs/EDITOR_GUIDE_uz.md`](docs/EDITOR_GUIDE_uz.md) | Editorial workflow guide (Uzbek) |
+| [`docs/PERFORMANCE.md`](docs/PERFORMANCE.md) | Measured query counts, bundle sizes and axe-core results |
 | [`HANDOFF.md`](HANDOFF.md) | Hand-over notes in Uzbek: what is done, what needs real credentials |
 
 ## Before going live
