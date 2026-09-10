@@ -139,6 +139,17 @@ class User(AbstractUser):
         return self.is_superuser or bool(self.role_names & set(STAFF_ROLES))
 
     @property
+    def can_access_production(self) -> bool:
+        """True for the roles the production queue actually admits.
+
+        Section editors are editorial staff but have no business in production,
+        so a navigation link gated on :attr:`is_editorial_staff` sends them to a
+        403. This mirrors ``ProductionRequiredMixin`` so the menu and the view
+        can never disagree.
+        """
+        return self.has_role(Role.PRODUCTION_EDITOR, Role.EDITOR_IN_CHIEF, Role.ADMIN)
+
+    @property
     def requires_2fa(self) -> bool:
         """True when policy demands a confirmed TOTP device for this account."""
         return self.is_editorial_staff or self.is_staff

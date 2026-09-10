@@ -20,6 +20,8 @@
         <a class="footer-link" href="{% url 'dashboard:queue' 'revisions' %}">{% translate "Revisions" %}</a>
         <a class="footer-link" href="{% url 'dashboard:queue' 'production' %}">{% translate "In production" %}</a>
         <a class="footer-link" href="{% url 'dashboard:reports' %}">{% translate "Reports" %}</a>
+      {% endif %}
+      {% if user.can_access_production %}
         <a class="footer-link" href="{% url 'production:queue' %}">{% translate "Production" %}</a>
       {% endif %}
       <p class="footer-heading mt-5">{% translate "Account" %}</p>

@@ -320,3 +320,29 @@ def test_overdue_detection(submission, author_user, editor_user, reviewers, site
     assignment.due_at = timezone.now() - dt.timedelta(days=2)
     assignment.save()
     assert assignment.is_overdue
+
+
+def test_every_status_maps_to_a_real_colour_token(db, submission) -> None:
+    """The status chip must name a token the stylesheet actually defines.
+
+    ``status_display_class`` is interpolated straight into ``var(--color-…)``.
+    Two of its values — "info" and "subtle" — named nothing, so the dot beside
+    the label had an invalid background and simply did not render: every draft,
+    submitted, screening, under-review and resubmitted manuscript showed a
+    status chip with no status colour at all.
+    """
+    import re
+    from pathlib import Path
+
+    from django.conf import settings
+
+    css = (Path(settings.BASE_DIR) / "static" / "src" / "css" / "input.css").read_text(
+        encoding="utf-8"
+    )
+    defined = set(re.findall(r"--color-([a-z0-9-]+):", css))
+    assert "accent" in defined, "the token list failed to parse"
+
+    for status, _label in SubmissionStatus.choices:
+        submission.status = status
+        token = submission.status_display_class
+        assert token in defined, f"{status} maps to unknown token --color-{token}"

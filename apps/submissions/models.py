@@ -309,22 +309,28 @@ class Submission(TimeStampedModel):
 
     @property
     def status_display_class(self) -> str:
-        """CSS modifier used by the status chip component."""
+        """Design-system colour token for the status chip.
+
+        The value is interpolated into ``var(--color-…)``, so it must name a
+        token that actually exists. "info" and "subtle" did not, which left the
+        chip on every draft, submitted, screening and under-review manuscript
+        with an invalid background — an invisible dot beside the label.
+        """
         mapping = {
-            SubmissionStatus.DRAFT: "subtle",
-            SubmissionStatus.SUBMITTED: "info",
-            SubmissionStatus.SCREENING: "info",
-            SubmissionStatus.UNDER_REVIEW: "info",
+            SubmissionStatus.DRAFT: "ink-3",
+            SubmissionStatus.SUBMITTED: "accent",
+            SubmissionStatus.SCREENING: "accent",
+            SubmissionStatus.UNDER_REVIEW: "accent",
             SubmissionStatus.AWAITING_DECISION: "warning",
             SubmissionStatus.REVISION_REQUESTED: "warning",
-            SubmissionStatus.RESUBMITTED: "info",
+            SubmissionStatus.RESUBMITTED: "accent",
             SubmissionStatus.ACCEPTED: "success",
             SubmissionStatus.PUBLISHED: "success",
             SubmissionStatus.PUBLISHED_ONLINE_FIRST: "success",
             SubmissionStatus.REJECTED: "danger",
             SubmissionStatus.WITHDRAWN: "danger",
         }
-        return mapping.get(self.status, "info")
+        return mapping.get(self.status, "accent")
 
 
 class SubmissionAuthor(TimeStampedModel):

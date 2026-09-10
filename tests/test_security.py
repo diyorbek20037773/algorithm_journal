@@ -206,3 +206,24 @@ def test_pdf_metadata_is_stripped_from_reviewer_attachments(tmp_path) -> None:
         assert "Secret Author" not in " ".join(info.values())
         with cleaned.open_metadata() as meta:
             assert "Secret Author" not in str(dict(meta))
+
+
+def test_navigation_never_offers_a_page_the_user_cannot_open(
+    client_editor, client_eic, editor_user, eic_user, site_settings
+) -> None:
+    """A link a section editor can see must not answer 403.
+
+    The production queue admits production editors, the EIC and admins. The
+    dashboard sidebar offered it to every member of editorial staff, so a
+    section editor was shown a link straight to a permission error.
+    """
+    assert not editor_user.can_access_production
+    assert eic_user.can_access_production
+
+    editor_html = client_editor.get("/en/dashboard/").content.decode()
+    assert 'href="/en/production/"' not in editor_html
+    assert client_editor.get("/en/production/").status_code == 403
+
+    eic_html = client_eic.get("/en/dashboard/").content.decode()
+    assert 'href="/en/production/"' in eic_html
+    assert client_eic.get("/en/production/").status_code == 200
