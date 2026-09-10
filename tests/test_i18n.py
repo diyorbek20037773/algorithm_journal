@@ -134,3 +134,24 @@ def test_module_level_lists_are_translated_per_request(
         assert str(dict(REQUIRED_METADATA)["title_en"]) == "Название (английский)"
     with translation.override("uz"):
         assert str(dict(REQUIRED_METADATA)["title_en"]) == "Sarlavha (inglizcha)"
+
+
+def test_month_names_are_cyrillic_on_cyrillic_pages(client_anon, article, site_settings) -> None:
+    """A date on a Cyrillic page must not borrow the Latin Uzbek month name.
+
+    Django ships a catalogue for ``uz`` but none for ``uz_Cyrl``, so without
+    the msgids re-declared in ``apps/core/dates.py`` the ``F`` date format
+    falls through to Latin and renders "Mart 2026" in the middle of an
+    otherwise Cyrillic page.
+    """
+    from django.utils import dateformat
+
+    published = article.display_date
+    with translation.override("uz-cyrl"):
+        rendered = dateformat.format(published, "F Y")
+    assert rendered.split()[0].isalpha()
+    assert not rendered.isascii(), f"month name is still Latin: {rendered}"
+
+    with translation.override("uz"):
+        latin = dateformat.format(published, "F Y")
+    assert latin.isascii()

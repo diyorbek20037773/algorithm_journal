@@ -34,7 +34,21 @@ _APOSTROPHE_CLASS = f"[{re.escape(APOSTROPHES)}]"
 EXCEPTIONS_LAT_CYR: dict[str, str] = {
     "algoritm": "алгоритм",
     "arxiv": "архив",
+    # Month names.  Django ships no uz_Cyrl catalogue, so `{{ d|date:"F Y" }}`
+    # on a Cyrillic page falls back to Latin Uzbek ("Mart 2026").  The msgids
+    # are re-declared in apps/core/dates.py and translated through here.
+    "yanvar": "январ",
+    "fevral": "феврал",
+    "mart": "март",
+    "aprel": "апрел",
+    "iyun": "июн",
+    "iyul": "июл",
     "avgust": "август",
+    "sentabr": "сентябр",
+    "oktabr": "октябр",
+    "noyabr": "ноябр",
+    "dekabr": "декабр",
+    "noy": "ноя",
     "byudjet": "бюджет",
     "dotsent": "доцент",
     "ekonometrika": "эконометрика",
@@ -48,11 +62,9 @@ EXCEPTIONS_LAT_CYR: dict[str, str] = {
     "konferensiya": "конференция",
     "litsenziya": "лицензия",
     "maqola": "мақола",
-    "oktyabr": "октябрь",
     "professor": "профессор",
     "publikatsiya": "публикация",
     "redaksiya": "редакция",
-    "sentyabr": "сентябрь",
     "statistika": "статистика",
     "tsivilizatsiya": "цивилизация",
     "universitet": "университет",

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-10 15:28+0500\n"
+"POT-Creation-Date: 2026-09-10 15:36+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: ARER editorial office\n"
 "Language-Team: ARER\n"
@@ -251,6 +251,106 @@ msgstr "Siyosatlar"
 #: apps/core/admin.py:55
 msgid "Integrations"
 msgstr "Integratsiyalar"
+
+#: apps/core/dates.py:25
+msgid "January"
+msgstr "Yanvar"
+
+#: apps/core/dates.py:26
+msgid "February"
+msgstr "Fevral"
+
+#: apps/core/dates.py:27
+#| msgid "Search"
+msgid "March"
+msgstr "Mart"
+
+#: apps/core/dates.py:28
+msgid "April"
+msgstr "Aprel"
+
+#: apps/core/dates.py:29
+msgid "May"
+msgstr "May"
+
+#: apps/core/dates.py:30
+msgid "June"
+msgstr "Iyun"
+
+#: apps/core/dates.py:31
+msgid "July"
+msgstr "Iyul"
+
+#: apps/core/dates.py:32
+msgid "August"
+msgstr "Avgust"
+
+#: apps/core/dates.py:33
+msgid "September"
+msgstr "Sentabr"
+
+#: apps/core/dates.py:34
+msgid "October"
+msgstr "Oktabr"
+
+#: apps/core/dates.py:35
+msgid "November"
+msgstr "Noyabr"
+
+#: apps/core/dates.py:36
+msgid "December"
+msgstr "Dekabr"
+
+#: apps/core/dates.py:42
+msgid "jan"
+msgstr "yan"
+
+#: apps/core/dates.py:43
+msgid "feb"
+msgstr "fev"
+
+#: apps/core/dates.py:44
+#| msgid "major"
+msgid "mar"
+msgstr "mar"
+
+#: apps/core/dates.py:45
+msgid "apr"
+msgstr "apr"
+
+#: apps/core/dates.py:46
+#| msgid "primary"
+msgid "may"
+msgstr "may"
+
+#: apps/core/dates.py:47
+msgid "jun"
+msgstr "iyn"
+
+#: apps/core/dates.py:48
+msgid "jul"
+msgstr "iyl"
+
+#: apps/core/dates.py:49
+msgid "aug"
+msgstr "avg"
+
+#: apps/core/dates.py:50
+msgid "sep"
+msgstr "sen"
+
+#: apps/core/dates.py:51
+#| msgid "bot"
+msgid "oct"
+msgstr "okt"
+
+#: apps/core/dates.py:52
+msgid "nov"
+msgstr "noy"
+
+#: apps/core/dates.py:53
+msgid "dec"
+msgstr "dek"
 
 #: apps/core/forms.py:16
 msgid "Leave this field empty"
@@ -775,7 +875,6 @@ msgid ""
 msgstr "Bizning tomonda xatolik yuz berdi. Tahririyatga xabar berildi."
 
 #: apps/core/views_pages.py:70
-#| msgid "The manuscript is original and has not been published before."
 msgid ""
 "The manuscript is original, unpublished, and not under consideration "
 "elsewhere."
@@ -790,8 +889,6 @@ msgstr ""
 "Maqola hajmi 4 000–10 000 soʻz (qisqa maʼlumot uchun 2 000–4 000 soʻz)."
 
 #: apps/core/views_pages.py:73
-#| msgid ""
-#| "The manuscript file contains no information identifying the authors."
 msgid ""
 "The manuscript file is anonymised: no author names, affiliations, "
 "acknowledgements or self-identifying citations."
@@ -800,8 +897,6 @@ msgstr ""
 "minnatdorchilik va oʻzini oshkor qiluvchi iqtiboslar yoʻq."
 
 #: apps/core/views_pages.py:76
-#| msgid ""
-#| "Separate file listing all authors, affiliations and contact details."
 msgid ""
 "A separate title page lists all authors, affiliations with city and country,"
 " ORCID iDs and the corresponding author."
@@ -810,7 +905,6 @@ msgstr ""
 "joylari, ORCID identifikatorlari va masʼul muallif koʻrsatilgan."
 
 #: apps/core/views_pages.py:79
-#| msgid "Title, abstract and keywords in English, Uzbek and Russian"
 msgid ""
 "Title, abstract (150–250 words) and 5–8 keywords are provided in English, "
 "Uzbek and Russian."
@@ -855,7 +949,6 @@ msgstr ""
 "SI dan foydalanish bayon etilgan."
 
 #: apps/core/views_pages.py:92
-#| msgid "All authors agree to publication under the CC BY 4.0 licence."
 msgid ""
 "All co-authors have approved the submission and agree to publication under "
 "CC BY 4.0."
@@ -1066,7 +1159,6 @@ msgid "Revisions"
 msgstr "Qayta ishlash"
 
 #: apps/dashboard/views.py:67
-#| msgid "Article production"
 msgid "Accepted / in production"
 msgstr "Qabul qilingan / nashrda"
 
@@ -1773,37 +1865,30 @@ msgid "iThenticate (Crossref Similarity Check)"
 msgstr "iThenticate (Crossref Similarity Check)"
 
 #: apps/production/services.py:172
-#| msgid "Title (%(lang)s)"
 msgid "Title (English)"
 msgstr "Sarlavha (inglizcha)"
 
 #: apps/production/services.py:173
-#| msgid "PDF (Uzbek)"
 msgid "Title (Uzbek)"
 msgstr "Sarlavha (oʻzbekcha)"
 
 #: apps/production/services.py:174
-#| msgid "PDF (Russian)"
 msgid "Title (Russian)"
 msgstr "Sarlavha (ruscha)"
 
 #: apps/production/services.py:175
-#| msgid "Abstract (%(lang)s)"
 msgid "Abstract (English)"
 msgstr "Annotatsiya (inglizcha)"
 
 #: apps/production/services.py:176
-#| msgid "Abstract"
 msgid "Abstract (Uzbek)"
 msgstr "Annotatsiya (oʻzbekcha)"
 
 #: apps/production/services.py:177
-#| msgid "Abstract (%(lang)s)"
 msgid "Abstract (Russian)"
 msgstr "Annotatsiya (ruscha)"
 
 #: apps/production/services.py:178
-#| msgid "conflict of interest statement"
 msgid "Conflict of interest statement"
 msgstr "Manfaatlar toʻqnashuvi bayonoti"
 
