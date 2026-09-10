@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-10 15:12+0500\n"
+"POT-Creation-Date: 2026-09-10 15:28+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: ARER editorial office\n"
 "Language-Team: ARER\n"
@@ -770,7 +770,8 @@ msgid ""
 msgstr ""
 "Something went wrong on our side. The editorial office has been notified."
 
-#: apps/core/views_pages.py:66
+#: apps/core/views_pages.py:70
+#| msgid "The manuscript is original and has not been published before."
 msgid ""
 "The manuscript is original, unpublished, and not under consideration "
 "elsewhere."
@@ -778,7 +779,7 @@ msgstr ""
 "The manuscript is original, unpublished, and not under consideration "
 "elsewhere."
 
-#: apps/core/views_pages.py:67
+#: apps/core/views_pages.py:71
 msgid ""
 "The article is between 4,000 and 10,000 words (2,000–4,000 for a short "
 "communication)."
@@ -786,7 +787,9 @@ msgstr ""
 "The article is between 4,000 and 10,000 words (2,000–4,000 for a short "
 "communication)."
 
-#: apps/core/views_pages.py:69
+#: apps/core/views_pages.py:73
+#| msgid ""
+#| "The manuscript file contains no information identifying the authors."
 msgid ""
 "The manuscript file is anonymised: no author names, affiliations, "
 "acknowledgements or self-identifying citations."
@@ -794,7 +797,9 @@ msgstr ""
 "The manuscript file is anonymised: no author names, affiliations, "
 "acknowledgements or self-identifying citations."
 
-#: apps/core/views_pages.py:72
+#: apps/core/views_pages.py:76
+#| msgid ""
+#| "Separate file listing all authors, affiliations and contact details."
 msgid ""
 "A separate title page lists all authors, affiliations with city and country,"
 " ORCID iDs and the corresponding author."
@@ -802,7 +807,8 @@ msgstr ""
 "A separate title page lists all authors, affiliations with city and country,"
 " ORCID iDs and the corresponding author."
 
-#: apps/core/views_pages.py:75
+#: apps/core/views_pages.py:79
+#| msgid "Title, abstract and keywords in English, Uzbek and Russian"
 msgid ""
 "Title, abstract (150–250 words) and 5–8 keywords are provided in English, "
 "Uzbek and Russian."
@@ -810,11 +816,11 @@ msgstr ""
 "Title, abstract (150–250 words) and 5–8 keywords are provided in English, "
 "Uzbek and Russian."
 
-#: apps/core/views_pages.py:77
+#: apps/core/views_pages.py:81
 msgid "Between one and five JEL classification codes have been selected."
 msgstr "Between one and five JEL classification codes have been selected."
 
-#: apps/core/views_pages.py:79
+#: apps/core/views_pages.py:83
 msgid ""
 "The structure follows IMRaD: introduction, literature, methods, results, "
 "discussion, conclusion."
@@ -822,7 +828,7 @@ msgstr ""
 "The structure follows IMRaD: introduction, literature, methods, results, "
 "discussion, conclusion."
 
-#: apps/core/views_pages.py:82
+#: apps/core/views_pages.py:86
 msgid ""
 "References follow APA 7th edition, with DOIs where available; non-Latin "
 "sources include a transliteration and an English translation."
@@ -830,7 +836,7 @@ msgstr ""
 "References follow APA 7th edition, with DOIs where available; non-Latin "
 "sources include a transliteration and an English translation."
 
-#: apps/core/views_pages.py:85
+#: apps/core/views_pages.py:89
 msgid ""
 "Tables and figures are numbered, captioned and referred to in the text; "
 "figures are legible at print size."
@@ -838,7 +844,7 @@ msgstr ""
 "Tables and figures are numbered, captioned and referred to in the text; "
 "figures are legible at print size."
 
-#: apps/core/views_pages.py:87
+#: apps/core/views_pages.py:91
 msgid ""
 "Funding, conflict of interest, data availability and generative-AI use are "
 "declared."
@@ -846,7 +852,8 @@ msgstr ""
 "Funding, conflict of interest, data availability and generative-AI use are "
 "declared."
 
-#: apps/core/views_pages.py:88
+#: apps/core/views_pages.py:92
+#| msgid "All authors agree to publication under the CC BY 4.0 licence."
 msgid ""
 "All co-authors have approved the submission and agree to publication under "
 "CC BY 4.0."
@@ -854,7 +861,7 @@ msgstr ""
 "All co-authors have approved the submission and agree to publication under "
 "CC BY 4.0."
 
-#: apps/core/views_pages.py:90
+#: apps/core/views_pages.py:94
 msgid ""
 "Research involving human participants states the ethical approval or "
 "explains why none was required."
@@ -862,11 +869,11 @@ msgstr ""
 "Research involving human participants states the ethical approval or "
 "explains why none was required."
 
-#: apps/core/views_pages.py:118
+#: apps/core/views_pages.py:122
 msgid "Too many messages have been sent from this address. Please try later."
 msgstr "Too many messages have been sent from this address. Please try later."
 
-#: apps/core/views_pages.py:137
+#: apps/core/views_pages.py:141
 msgid "Thank you — your message has been sent."
 msgstr "Thank you — your message has been sent."
 
@@ -876,7 +883,7 @@ msgid "Pending"
 msgstr "Pending"
 
 #: apps/crossref/models.py:18 apps/submissions/models.py:42
-#: templates/dashboard/home.html:160
+#: templates/dashboard/home.html:166
 #: templates/dashboard/submission_detail.html:11
 #: templates/review/dashboard.html:69
 msgid "Submitted"
@@ -984,153 +991,148 @@ msgid "Six-digit code"
 msgstr "Six-digit code"
 
 #: apps/dashboard/services.py:108
-#| msgid "Reviewer"
 msgid "Review overdue"
 msgstr "Review overdue"
 
 #: apps/dashboard/services.py:110
-#| msgid "Revision reminder"
 msgid "Send reminder"
 msgstr "Send reminder"
 
 #: apps/dashboard/services.py:147
-#| msgid "Invitation declined"
 msgid "Invitation unanswered"
 msgstr "Invitation unanswered"
 
 #: apps/dashboard/services.py:149
-#| msgid "Find reviewers"
 msgid "Find another reviewer"
 msgstr "Find another reviewer"
 
 #: apps/dashboard/services.py:177 apps/submissions/models.py:447
-#: templates/dashboard/home.html:104 templates/production/queue.html:89
+#: templates/dashboard/home.html:110 templates/production/queue.html:89
 msgid "Open"
 msgstr "Open"
 
-#: apps/dashboard/services.py:198
-#| msgid "Awaiting decision"
+#: apps/dashboard/services.py:199
 msgid "Awaiting your decision"
 msgstr "Awaiting your decision"
 
-#: apps/dashboard/services.py:205
+#: apps/dashboard/services.py:206
 msgid "Not yet screened"
 msgstr "Not yet screened"
 
-#: apps/dashboard/services.py:213
-#| msgid "last activity"
+#: apps/dashboard/services.py:214
 msgid "No activity"
 msgstr "No activity"
 
-#: apps/dashboard/services.py:276 templates/dashboard/reports.html:15
+#: apps/dashboard/services.py:288 templates/dashboard/reports.html:15
 msgid "Median days to first decision"
 msgstr "Median days to first decision"
 
-#: apps/dashboard/services.py:278
+#: apps/dashboard/services.py:290
 #, python-format
 msgid "target ≤ %(days)s days"
 msgstr "target ≤ %(days)s days"
 
-#: apps/dashboard/services.py:288 templates/core/statistics.html:18
+#: apps/dashboard/services.py:300 templates/core/statistics.html:18
 #: templates/dashboard/reports.html:11 templates/dashboard/reports.html:38
 msgid "Acceptance rate"
 msgstr "Acceptance rate"
 
-#: apps/dashboard/services.py:290
+#: apps/dashboard/services.py:302
 msgid "share of decided manuscripts accepted"
 msgstr "share of decided manuscripts accepted"
 
-#: apps/dashboard/views.py:50 templates/dashboard/_base.html:16
+#: apps/dashboard/views.py:56 templates/dashboard/_base.html:16
 msgid "New"
 msgstr "New"
 
-#: apps/dashboard/views.py:51 apps/submissions/models.py:43
+#: apps/dashboard/views.py:57 apps/submissions/models.py:43
 #: templates/dashboard/_base.html:17
 msgid "Screening"
 msgstr "Screening"
 
-#: apps/dashboard/views.py:52 templates/dashboard/_base.html:18
+#: apps/dashboard/views.py:58 templates/dashboard/_base.html:18
 msgid "In review"
 msgstr "In review"
 
-#: apps/dashboard/views.py:53 apps/submissions/models.py:45
+#: apps/dashboard/views.py:59 apps/submissions/models.py:45
 #: templates/dashboard/_base.html:19
 msgid "Awaiting decision"
 msgstr "Awaiting decision"
 
-#: apps/dashboard/views.py:56 templates/dashboard/_base.html:20
+#: apps/dashboard/views.py:62 templates/dashboard/_base.html:20
 msgid "Revisions"
 msgstr "Revisions"
 
-#: apps/dashboard/views.py:61
+#: apps/dashboard/views.py:67
+#| msgid "Article production"
 msgid "Accepted / in production"
 msgstr "Accepted / in production"
 
-#: apps/dashboard/views.py:207
+#: apps/dashboard/views.py:215
 msgid "The similarity result has been recorded."
 msgstr "The similarity result has been recorded."
 
-#: apps/dashboard/views.py:209
+#: apps/dashboard/views.py:217
 msgid "Please correct the similarity form."
 msgstr "Please correct the similarity form."
 
-#: apps/dashboard/views.py:225
+#: apps/dashboard/views.py:233
 msgid "Done."
 msgstr "Done."
 
-#: apps/dashboard/views.py:229 apps/submissions/workflow.py:226
+#: apps/dashboard/views.py:237 apps/submissions/workflow.py:226
 msgid "You may not perform this action."
 msgstr "You may not perform this action."
 
-#: apps/dashboard/views.py:276
+#: apps/dashboard/views.py:284
 msgid "Send the manuscript to review before inviting reviewers."
 msgstr "Send the manuscript to review before inviting reviewers."
 
-#: apps/dashboard/views.py:281 apps/submissions/forms.py:473
+#: apps/dashboard/views.py:289 apps/submissions/forms.py:473
 msgid "Choose a reviewer or enter an e-mail address."
 msgstr "Choose a reviewer or enter an e-mail address."
 
-#: apps/dashboard/views.py:301
+#: apps/dashboard/views.py:309
 msgid "The invitation has been sent."
 msgstr "The invitation has been sent."
 
-#: apps/dashboard/views.py:316
+#: apps/dashboard/views.py:324
 msgid "The invitation has been cancelled."
 msgstr "The invitation has been cancelled."
 
-#: apps/dashboard/views.py:333
+#: apps/dashboard/views.py:341
 msgid "A reminder has been sent."
 msgstr "A reminder has been sent."
 
-#: apps/dashboard/views.py:348
+#: apps/dashboard/views.py:356
 msgid "Thank you — the rating has been saved."
 msgstr "Thank you — the rating has been saved."
 
-#: apps/dashboard/views.py:370
+#: apps/dashboard/views.py:378
 msgid "The decision has been recorded and sent."
 msgstr "The decision has been recorded and sent."
 
-#: apps/dashboard/views.py:411
+#: apps/dashboard/views.py:419
 msgid "Correspondence"
 msgstr "Correspondence"
 
-#: apps/dashboard/views.py:416
+#: apps/dashboard/views.py:424
 msgid "Message posted."
 msgstr "Message posted."
 
-#: apps/dashboard/views.py:430
+#: apps/dashboard/views.py:438
 msgid "Note saved."
 msgstr "Note saved."
 
-#: apps/dashboard/views.py:496
+#: apps/dashboard/views.py:504
 msgid "Your profile has been updated."
 msgstr "Your profile has been updated."
 
-#: apps/dashboard/views.py:545 templates/dashboard/two_factor.html:10
+#: apps/dashboard/views.py:553 templates/dashboard/two_factor.html:10
 msgid "Two-factor authentication is now active."
 msgstr "Two-factor authentication is now active."
 
-#: apps/dashboard/views.py:551
+#: apps/dashboard/views.py:559
 msgid "That code is not valid. Please try again."
 msgstr "That code is not valid. Please try again."
 
@@ -1282,7 +1284,7 @@ msgid "Online First"
 msgstr "Online First"
 
 #: apps/journal/models.py:316 apps/submissions/models.py:54
-#: templates/dashboard/home.html:172 templates/journal/article_detail.html:98
+#: templates/dashboard/home.html:178 templates/journal/article_detail.html:98
 #: templates/journal/home.html:61 templates/journal/issue_detail.html:33
 msgid "Published"
 msgstr "Published"
@@ -1399,7 +1401,7 @@ msgstr "conflict of interest statement"
 msgid "data availability statement"
 msgstr "data availability statement"
 
-#: apps/journal/models.py:406 apps/production/services.py:175
+#: apps/journal/models.py:406 apps/production/services.py:179
 msgid "AI use statement"
 msgstr "AI use statement"
 
@@ -1767,93 +1769,100 @@ msgstr "Manual (editor uploads report)"
 msgid "iThenticate (Crossref Similarity Check)"
 msgstr "iThenticate (Crossref Similarity Check)"
 
-#: apps/production/services.py:168
+#: apps/production/services.py:172
+#| msgid "Title (%(lang)s)"
 msgid "Title (English)"
 msgstr "Title (English)"
 
-#: apps/production/services.py:169
+#: apps/production/services.py:173
+#| msgid "PDF (Uzbek)"
 msgid "Title (Uzbek)"
 msgstr "Title (Uzbek)"
 
-#: apps/production/services.py:170
+#: apps/production/services.py:174
+#| msgid "PDF (Russian)"
 msgid "Title (Russian)"
 msgstr "Title (Russian)"
 
-#: apps/production/services.py:171
+#: apps/production/services.py:175
+#| msgid "Abstract (%(lang)s)"
 msgid "Abstract (English)"
 msgstr "Abstract (English)"
 
-#: apps/production/services.py:172
+#: apps/production/services.py:176
+#| msgid "Abstract"
 msgid "Abstract (Uzbek)"
 msgstr "Abstract (Uzbek)"
 
-#: apps/production/services.py:173
+#: apps/production/services.py:177
+#| msgid "Abstract (%(lang)s)"
 msgid "Abstract (Russian)"
 msgstr "Abstract (Russian)"
 
-#: apps/production/services.py:174
+#: apps/production/services.py:178
+#| msgid "conflict of interest statement"
 msgid "Conflict of interest statement"
 msgstr "Conflict of interest statement"
 
-#: apps/production/services.py:188
+#: apps/production/services.py:192
 msgid "At least one author"
 msgstr "At least one author"
 
-#: apps/production/services.py:191
+#: apps/production/services.py:195
 msgid "Every author has an affiliation with country"
 msgstr "Every author has an affiliation with country"
 
-#: apps/production/services.py:198
+#: apps/production/services.py:202
 msgid "Corresponding author with e-mail"
 msgstr "Corresponding author with e-mail"
 
-#: apps/production/services.py:205
+#: apps/production/services.py:209
 msgid "ORCID iD for every author"
 msgstr "ORCID iD for every author"
 
-#: apps/production/services.py:213
+#: apps/production/services.py:217
 msgid "5–8 keywords"
 msgstr "5–8 keywords"
 
-#: apps/production/services.py:221
+#: apps/production/services.py:225
 msgid "1–5 JEL codes"
 msgstr "1–5 JEL codes"
 
-#: apps/production/services.py:226
+#: apps/production/services.py:230
 msgid "DOI assigned"
 msgstr "DOI assigned"
 
-#: apps/production/services.py:229
+#: apps/production/services.py:233
 msgid "Primary PDF galley"
 msgstr "Primary PDF galley"
 
-#: apps/production/services.py:236
+#: apps/production/services.py:240
 msgid "At least 10 references"
 msgstr "At least 10 references"
 
-#: apps/production/services.py:242 templates/core/about.html:24
+#: apps/production/services.py:246 templates/core/about.html:24
 #: templates/journal/article_detail.html:261
 msgid "Licence"
 msgstr "Licence"
 
-#: apps/production/services.py:245
+#: apps/production/services.py:249
 msgid "Received date"
 msgstr "Received date"
 
-#: apps/production/services.py:248
+#: apps/production/services.py:252
 msgid "Accepted date"
 msgstr "Accepted date"
 
-#: apps/production/services.py:267
+#: apps/production/services.py:271
 #, python-format
 msgid "Cannot publish: %(items)s"
 msgstr "Cannot publish: %(items)s"
 
-#: apps/production/services.py:297
+#: apps/production/services.py:301
 msgid "The issue has no articles."
 msgstr "The issue has no articles."
 
-#: apps/production/services.py:306
+#: apps/production/services.py:310
 #, python-format
 msgid "Some articles are incomplete: %(items)s"
 msgstr "Some articles are incomplete: %(items)s"
@@ -2144,7 +2153,7 @@ msgstr "Justification for exceeding the threshold"
 msgid "Similarity above %(threshold)s%% requires a written justification."
 msgstr "Similarity above %(threshold)s%% requires a written justification."
 
-#: apps/submissions/forms.py:394 templates/dashboard/home.html:168
+#: apps/submissions/forms.py:394 templates/dashboard/home.html:174
 #: templates/dashboard/submission_detail.html:29
 msgid "Decision"
 msgstr "Decision"
@@ -2733,7 +2742,7 @@ msgstr "DOI assignment"
 msgid "Scheduled to issue"
 msgstr "Scheduled to issue"
 
-#: apps/submissions/models.py:839 templates/dashboard/home.html:109
+#: apps/submissions/models.py:839 templates/dashboard/home.html:115
 msgid "In progress"
 msgstr "In progress"
 
@@ -3378,7 +3387,7 @@ msgid "Diamond open access — no charges for authors or readers"
 msgstr "Diamond open access — no charges for authors or readers"
 
 #: templates/core/about.html:25 templates/core/for_authors.html:37
-#: templates/dashboard/home.html:164 templates/journal/home.html:188
+#: templates/dashboard/home.html:170 templates/journal/home.html:188
 msgid "Peer review"
 msgstr "Peer review"
 
@@ -3675,7 +3684,7 @@ msgstr "Dashboard"
 msgid "Overview"
 msgstr "Overview"
 
-#: templates/dashboard/_base.html:10 templates/dashboard/home.html:147
+#: templates/dashboard/_base.html:10 templates/dashboard/home.html:153
 msgid "New submission"
 msgstr "New submission"
 
@@ -3688,7 +3697,7 @@ msgstr "My reviews"
 msgid "In production"
 msgstr "In production"
 
-#: templates/dashboard/_base.html:22 templates/dashboard/home.html:77
+#: templates/dashboard/_base.html:22 templates/dashboard/home.html:83
 #: templates/dashboard/reports.html:3
 msgid "Reports"
 msgstr "Reports"
@@ -3740,56 +3749,57 @@ msgstr "Cancel"
 msgid "Needs attention"
 msgstr "Needs attention"
 
-#: templates/dashboard/home.html:19
+#: templates/dashboard/home.html:21
 #, python-format
-#| msgid "%(counter)s article"
-#| msgid_plural "%(counter)s articles"
+msgid "showing %(shown)s of %(total)s"
+msgstr "showing %(shown)s of %(total)s"
+
+#: templates/dashboard/home.html:23
+#, python-format
 msgid "%(counter)s item"
 msgid_plural "%(counter)s items"
 msgstr[0] "%(counter)s item"
 msgstr[1] "%(counter)s items"
 
-#: templates/dashboard/home.html:35 templates/dashboard/home.html:111
+#: templates/dashboard/home.html:41 templates/dashboard/home.html:117
 msgid "days"
 msgstr "days"
 
-#: templates/dashboard/home.html:50
+#: templates/dashboard/home.html:56
 msgid "Nothing is overdue. Every manuscript is inside its target."
 msgstr "Nothing is overdue. Every manuscript is inside its target."
 
-#: templates/dashboard/home.html:55
+#: templates/dashboard/home.html:61
 msgid "Editorial queues"
 msgstr "Editorial queues"
 
-#: templates/dashboard/home.html:65
+#: templates/dashboard/home.html:71
 #, python-format
 msgid "oldest waiting %(days)s days"
 msgstr "oldest waiting %(days)s days"
 
-#: templates/dashboard/home.html:67
-#| msgid "Empty."
+#: templates/dashboard/home.html:73
 msgid "empty"
 msgstr "empty"
 
-#: templates/dashboard/home.html:76
-#| msgid "current round"
+#: templates/dashboard/home.html:82
 msgid "Turnaround"
 msgstr "Turnaround"
 
-#: templates/dashboard/home.html:95
+#: templates/dashboard/home.html:101
 #: templates/dashboard/submission_detail.html:27
 msgid "Reviews"
 msgstr "Reviews"
 
-#: templates/dashboard/home.html:96
+#: templates/dashboard/home.html:102
 msgid "All reviews"
 msgstr "All reviews"
 
-#: templates/dashboard/home.html:100
+#: templates/dashboard/home.html:106
 msgid "Invitation"
 msgstr "Invitation"
 
-#: templates/dashboard/home.html:102 templates/dashboard/home.html:111
+#: templates/dashboard/home.html:108 templates/dashboard/home.html:117
 #: templates/dashboard/submission_detail.html:175
 #: templates/production/submission_detail.html:16
 #: templates/review/assignment_detail.html:14
@@ -3797,43 +3807,42 @@ msgstr "Invitation"
 msgid "Due"
 msgstr "Due"
 
-#: templates/dashboard/home.html:113
+#: templates/dashboard/home.html:119
 msgid "Write the review"
 msgstr "Write the review"
 
-#: templates/dashboard/home.html:121
-#| msgid "manuscript is anonymised"
+#: templates/dashboard/home.html:127
 msgid "Your manuscripts need you"
 msgstr "Your manuscripts need you"
 
-#: templates/dashboard/home.html:131 templates/dashboard/home.html:186
+#: templates/dashboard/home.html:137 templates/dashboard/home.html:192
 msgid "Upload revision"
 msgstr "Upload revision"
 
-#: templates/dashboard/home.html:145
+#: templates/dashboard/home.html:151
 msgid "My submissions"
 msgstr "My submissions"
 
-#: templates/dashboard/home.html:165
+#: templates/dashboard/home.html:171
 #, python-format
 msgid "%(counter)s round"
 msgid_plural "%(counter)s rounds"
 msgstr[0] "%(counter)s round"
 msgstr[1] "%(counter)s rounds"
 
-#: templates/dashboard/home.html:179
+#: templates/dashboard/home.html:185
 msgid "Continue draft"
 msgstr "Continue draft"
 
-#: templates/dashboard/home.html:182
+#: templates/dashboard/home.html:188
 msgid "Details"
 msgstr "Details"
 
-#: templates/dashboard/home.html:192
+#: templates/dashboard/home.html:198
 msgid "You have not submitted anything yet."
 msgstr "You have not submitted anything yet."
 
-#: templates/dashboard/home.html:194 templates/includes/footer.html:34
+#: templates/dashboard/home.html:200 templates/includes/footer.html:34
 #: templates/submissions/wizard_intro.html:3
 #: templates/submissions/wizard_intro.html:6
 #: templates/submissions/wizard_step1.html:6

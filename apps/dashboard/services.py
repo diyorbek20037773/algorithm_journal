@@ -181,11 +181,12 @@ def _submissions_waiting(
     ]
 
 
-def attention_items(user: User, limit: int = 8) -> list[AttentionItem]:
+def attention_items(user: User, limit: int | None = 8) -> list[AttentionItem]:
     """Everything that is late, worst first.
 
     Ordering is by severity and then by how long the item has waited, so the
-    manuscript that has been ignored longest is always at the top.
+    manuscript that has been ignored longest is always at the top. ``limit``
+    of ``None`` returns the whole list.
     """
     if not user.is_editorial_staff:
         return []
@@ -224,7 +225,18 @@ def attention_items(user: User, limit: int = 8) -> list[AttentionItem]:
             continue
         seen.add(item.submission_pk)
         unique.append(item)
-    return unique[:limit]
+    return unique if limit is None else unique[:limit]
+
+
+def attention_summary(user: User, limit: int = 8) -> tuple[list[AttentionItem], int]:
+    """The visible slice of the attention list, and how long the list really is.
+
+    The list is capped so the page stays readable, but the cap must be visible:
+    a header reading "8 items" when fourteen manuscripts are late tells the
+    editor the opposite of the truth.
+    """
+    everything = attention_items(user, limit=None)
+    return everything[:limit], len(everything)
 
 
 def queue_summary(

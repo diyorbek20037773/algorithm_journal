@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-10 15:12+0500\n"
+"POT-Creation-Date: 2026-09-10 15:28+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: ARER editorial office\n"
 "Language-Team: ARER\n"
@@ -774,21 +774,24 @@ msgid ""
 "Something went wrong on our side. The editorial office has been notified."
 msgstr "Bizning tomonda xatolik yuz berdi. Tahririyatga xabar berildi."
 
-#: apps/core/views_pages.py:66
+#: apps/core/views_pages.py:70
+#| msgid "The manuscript is original and has not been published before."
 msgid ""
 "The manuscript is original, unpublished, and not under consideration "
 "elsewhere."
 msgstr ""
 "Qoʻlyozma original, chop etilmagan va boshqa joyda koʻrib chiqilmayapti."
 
-#: apps/core/views_pages.py:67
+#: apps/core/views_pages.py:71
 msgid ""
 "The article is between 4,000 and 10,000 words (2,000–4,000 for a short "
 "communication)."
 msgstr ""
 "Maqola hajmi 4 000–10 000 soʻz (qisqa maʼlumot uchun 2 000–4 000 soʻz)."
 
-#: apps/core/views_pages.py:69
+#: apps/core/views_pages.py:73
+#| msgid ""
+#| "The manuscript file contains no information identifying the authors."
 msgid ""
 "The manuscript file is anonymised: no author names, affiliations, "
 "acknowledgements or self-identifying citations."
@@ -796,7 +799,9 @@ msgstr ""
 "Qoʻlyozma fayli anonimlashtirilgan: mualliflar ismi, ish joyi, "
 "minnatdorchilik va oʻzini oshkor qiluvchi iqtiboslar yoʻq."
 
-#: apps/core/views_pages.py:72
+#: apps/core/views_pages.py:76
+#| msgid ""
+#| "Separate file listing all authors, affiliations and contact details."
 msgid ""
 "A separate title page lists all authors, affiliations with city and country,"
 " ORCID iDs and the corresponding author."
@@ -804,7 +809,8 @@ msgstr ""
 "Alohida sarlavha sahifasida barcha mualliflar, shahar va mamlakat bilan ish "
 "joylari, ORCID identifikatorlari va masʼul muallif koʻrsatilgan."
 
-#: apps/core/views_pages.py:75
+#: apps/core/views_pages.py:79
+#| msgid "Title, abstract and keywords in English, Uzbek and Russian"
 msgid ""
 "Title, abstract (150–250 words) and 5–8 keywords are provided in English, "
 "Uzbek and Russian."
@@ -812,11 +818,11 @@ msgstr ""
 "Sarlavha, annotatsiya (150–250 soʻz) va 5–8 kalit soʻz ingliz, oʻzbek va rus"
 " tillarida berilgan."
 
-#: apps/core/views_pages.py:77
+#: apps/core/views_pages.py:81
 msgid "Between one and five JEL classification codes have been selected."
 msgstr "Bir dan besh gacha JEL tasnif kodi tanlangan."
 
-#: apps/core/views_pages.py:79
+#: apps/core/views_pages.py:83
 msgid ""
 "The structure follows IMRaD: introduction, literature, methods, results, "
 "discussion, conclusion."
@@ -824,7 +830,7 @@ msgstr ""
 "Tuzilish IMRaD ga mos: kirish, adabiyotlar, usullar, natijalar, muhokama, "
 "xulosa."
 
-#: apps/core/views_pages.py:82
+#: apps/core/views_pages.py:86
 msgid ""
 "References follow APA 7th edition, with DOIs where available; non-Latin "
 "sources include a transliteration and an English translation."
@@ -832,7 +838,7 @@ msgstr ""
 "Adabiyotlar APA 7-nashriga muvofiq, mavjud boʻlsa DOI bilan; lotin boʻlmagan"
 " manbalar transliteratsiya va inglizcha tarjima bilan berilgan."
 
-#: apps/core/views_pages.py:85
+#: apps/core/views_pages.py:89
 msgid ""
 "Tables and figures are numbered, captioned and referred to in the text; "
 "figures are legible at print size."
@@ -840,7 +846,7 @@ msgstr ""
 "Jadval va rasmlar raqamlangan, izohlangan va matnda havola qilingan; rasmlar"
 " chop etish oʻlchamida oʻqiladi."
 
-#: apps/core/views_pages.py:87
+#: apps/core/views_pages.py:91
 msgid ""
 "Funding, conflict of interest, data availability and generative-AI use are "
 "declared."
@@ -848,7 +854,8 @@ msgstr ""
 "Moliyalashtirish, manfaatlar toʻqnashuvi, maʼlumot mavjudligi va generativ "
 "SI dan foydalanish bayon etilgan."
 
-#: apps/core/views_pages.py:88
+#: apps/core/views_pages.py:92
+#| msgid "All authors agree to publication under the CC BY 4.0 licence."
 msgid ""
 "All co-authors have approved the submission and agree to publication under "
 "CC BY 4.0."
@@ -856,7 +863,7 @@ msgstr ""
 "Barcha hammualliflar yuborishni maʼqullagan va CC BY 4.0 ostida chop etishga"
 " rozi."
 
-#: apps/core/views_pages.py:90
+#: apps/core/views_pages.py:94
 msgid ""
 "Research involving human participants states the ethical approval or "
 "explains why none was required."
@@ -864,11 +871,11 @@ msgstr ""
 "Insonlar ishtirokidagi tadqiqotda etik ruxsat koʻrsatilgan yoki nega talab "
 "qilinmagani tushuntirilgan."
 
-#: apps/core/views_pages.py:118
+#: apps/core/views_pages.py:122
 msgid "Too many messages have been sent from this address. Please try later."
 msgstr "Bu manzildan juda koʻp xabar yuborildi. Keyinroq urinib koʻring."
 
-#: apps/core/views_pages.py:137
+#: apps/core/views_pages.py:141
 msgid "Thank you — your message has been sent."
 msgstr "Rahmat — xabaringiz yuborildi."
 
@@ -878,7 +885,7 @@ msgid "Pending"
 msgstr "Kutilmoqda"
 
 #: apps/crossref/models.py:18 apps/submissions/models.py:42
-#: templates/dashboard/home.html:160
+#: templates/dashboard/home.html:166
 #: templates/dashboard/submission_detail.html:11
 #: templates/review/dashboard.html:69
 msgid "Submitted"
@@ -986,153 +993,148 @@ msgid "Six-digit code"
 msgstr "Olti xonali kod"
 
 #: apps/dashboard/services.py:108
-#| msgid "Reviewer"
 msgid "Review overdue"
 msgstr "Taqriz muddati oʻtdi"
 
 #: apps/dashboard/services.py:110
-#| msgid "Revision reminder"
 msgid "Send reminder"
 msgstr "Eslatma yuborish"
 
 #: apps/dashboard/services.py:147
-#| msgid "Invitation declined"
 msgid "Invitation unanswered"
 msgstr "Taklifga javob yoʻq"
 
 #: apps/dashboard/services.py:149
-#| msgid "Find reviewers"
 msgid "Find another reviewer"
 msgstr "Boshqa taqrizchi topish"
 
 #: apps/dashboard/services.py:177 apps/submissions/models.py:447
-#: templates/dashboard/home.html:104 templates/production/queue.html:89
+#: templates/dashboard/home.html:110 templates/production/queue.html:89
 msgid "Open"
 msgstr "Ochiq"
 
-#: apps/dashboard/services.py:198
-#| msgid "Awaiting decision"
+#: apps/dashboard/services.py:199
 msgid "Awaiting your decision"
 msgstr "Sizning qaroringiz kutilmoqda"
 
-#: apps/dashboard/services.py:205
+#: apps/dashboard/services.py:206
 msgid "Not yet screened"
 msgstr "Hali koʻrikdan oʻtmagan"
 
-#: apps/dashboard/services.py:213
-#| msgid "last activity"
+#: apps/dashboard/services.py:214
 msgid "No activity"
 msgstr "Harakat yoʻq"
 
-#: apps/dashboard/services.py:276 templates/dashboard/reports.html:15
+#: apps/dashboard/services.py:288 templates/dashboard/reports.html:15
 msgid "Median days to first decision"
 msgstr "Birinchi qarorgacha median kunlar"
 
-#: apps/dashboard/services.py:278
+#: apps/dashboard/services.py:290
 #, python-format
 msgid "target ≤ %(days)s days"
 msgstr "maqsad ≤ %(days)s kun"
 
-#: apps/dashboard/services.py:288 templates/core/statistics.html:18
+#: apps/dashboard/services.py:300 templates/core/statistics.html:18
 #: templates/dashboard/reports.html:11 templates/dashboard/reports.html:38
 msgid "Acceptance rate"
 msgstr "Qabul qilish darajasi"
 
-#: apps/dashboard/services.py:290
+#: apps/dashboard/services.py:302
 msgid "share of decided manuscripts accepted"
 msgstr "qaror qabul qilingan qoʻlyozmalardan qabul qilinganlari ulushi"
 
-#: apps/dashboard/views.py:50 templates/dashboard/_base.html:16
+#: apps/dashboard/views.py:56 templates/dashboard/_base.html:16
 msgid "New"
 msgstr "Yangi"
 
-#: apps/dashboard/views.py:51 apps/submissions/models.py:43
+#: apps/dashboard/views.py:57 apps/submissions/models.py:43
 #: templates/dashboard/_base.html:17
 msgid "Screening"
 msgstr "Dastlabki koʻrik"
 
-#: apps/dashboard/views.py:52 templates/dashboard/_base.html:18
+#: apps/dashboard/views.py:58 templates/dashboard/_base.html:18
 msgid "In review"
 msgstr "Taqrizda"
 
-#: apps/dashboard/views.py:53 apps/submissions/models.py:45
+#: apps/dashboard/views.py:59 apps/submissions/models.py:45
 #: templates/dashboard/_base.html:19
 msgid "Awaiting decision"
 msgstr "Qaror kutilmoqda"
 
-#: apps/dashboard/views.py:56 templates/dashboard/_base.html:20
+#: apps/dashboard/views.py:62 templates/dashboard/_base.html:20
 msgid "Revisions"
 msgstr "Qayta ishlash"
 
-#: apps/dashboard/views.py:61
+#: apps/dashboard/views.py:67
+#| msgid "Article production"
 msgid "Accepted / in production"
 msgstr "Qabul qilingan / nashrda"
 
-#: apps/dashboard/views.py:207
+#: apps/dashboard/views.py:215
 msgid "The similarity result has been recorded."
 msgstr "Oʻxshashlik natijasi qayd etildi."
 
-#: apps/dashboard/views.py:209
+#: apps/dashboard/views.py:217
 msgid "Please correct the similarity form."
 msgstr "Oʻxshashlik shaklini toʻgʻrilang."
 
-#: apps/dashboard/views.py:225
+#: apps/dashboard/views.py:233
 msgid "Done."
 msgstr "Bajarildi."
 
-#: apps/dashboard/views.py:229 apps/submissions/workflow.py:226
+#: apps/dashboard/views.py:237 apps/submissions/workflow.py:226
 msgid "You may not perform this action."
 msgstr "Bu amalni bajarish huquqingiz yoʻq."
 
-#: apps/dashboard/views.py:276
+#: apps/dashboard/views.py:284
 msgid "Send the manuscript to review before inviting reviewers."
 msgstr "Taqrizchilarni taklif qilishdan oldin qoʻlyozmani taqrizga yuboring."
 
-#: apps/dashboard/views.py:281 apps/submissions/forms.py:473
+#: apps/dashboard/views.py:289 apps/submissions/forms.py:473
 msgid "Choose a reviewer or enter an e-mail address."
 msgstr "Taqrizchini tanlang yoki elektron pochta manzilini kiriting."
 
-#: apps/dashboard/views.py:301
+#: apps/dashboard/views.py:309
 msgid "The invitation has been sent."
 msgstr "Taklif yuborildi."
 
-#: apps/dashboard/views.py:316
+#: apps/dashboard/views.py:324
 msgid "The invitation has been cancelled."
 msgstr "Taklif bekor qilindi."
 
-#: apps/dashboard/views.py:333
+#: apps/dashboard/views.py:341
 msgid "A reminder has been sent."
 msgstr "Eslatma yuborildi."
 
-#: apps/dashboard/views.py:348
+#: apps/dashboard/views.py:356
 msgid "Thank you — the rating has been saved."
 msgstr "Rahmat — baho saqlandi."
 
-#: apps/dashboard/views.py:370
+#: apps/dashboard/views.py:378
 msgid "The decision has been recorded and sent."
 msgstr "Qaror qayd etildi va yuborildi."
 
-#: apps/dashboard/views.py:411
+#: apps/dashboard/views.py:419
 msgid "Correspondence"
 msgstr "Yozishmalar"
 
-#: apps/dashboard/views.py:416
+#: apps/dashboard/views.py:424
 msgid "Message posted."
 msgstr "Xabar joylandi."
 
-#: apps/dashboard/views.py:430
+#: apps/dashboard/views.py:438
 msgid "Note saved."
 msgstr "Izoh saqlandi."
 
-#: apps/dashboard/views.py:496
+#: apps/dashboard/views.py:504
 msgid "Your profile has been updated."
 msgstr "Profilingiz yangilandi."
 
-#: apps/dashboard/views.py:545 templates/dashboard/two_factor.html:10
+#: apps/dashboard/views.py:553 templates/dashboard/two_factor.html:10
 msgid "Two-factor authentication is now active."
 msgstr "Ikki bosqichli autentifikatsiya faollashtirildi."
 
-#: apps/dashboard/views.py:551
+#: apps/dashboard/views.py:559
 msgid "That code is not valid. Please try again."
 msgstr "Bu kod notoʻgʻri. Qayta urinib koʻring."
 
@@ -1285,7 +1287,7 @@ msgid "Online First"
 msgstr "Online First"
 
 #: apps/journal/models.py:316 apps/submissions/models.py:54
-#: templates/dashboard/home.html:172 templates/journal/article_detail.html:98
+#: templates/dashboard/home.html:178 templates/journal/article_detail.html:98
 #: templates/journal/home.html:61 templates/journal/issue_detail.html:33
 msgid "Published"
 msgstr "Chop etilgan"
@@ -1402,7 +1404,7 @@ msgstr "manfaatlar toʻqnashuvi bayonoti"
 msgid "data availability statement"
 msgstr "maʼlumot mavjudligi bayonoti"
 
-#: apps/journal/models.py:406 apps/production/services.py:175
+#: apps/journal/models.py:406 apps/production/services.py:179
 msgid "AI use statement"
 msgstr "SI dan foydalanish bayonoti"
 
@@ -1770,93 +1772,100 @@ msgstr "Qoʻlda (muharrir hisobotni yuklaydi)"
 msgid "iThenticate (Crossref Similarity Check)"
 msgstr "iThenticate (Crossref Similarity Check)"
 
-#: apps/production/services.py:168
+#: apps/production/services.py:172
+#| msgid "Title (%(lang)s)"
 msgid "Title (English)"
 msgstr "Sarlavha (inglizcha)"
 
-#: apps/production/services.py:169
+#: apps/production/services.py:173
+#| msgid "PDF (Uzbek)"
 msgid "Title (Uzbek)"
 msgstr "Sarlavha (oʻzbekcha)"
 
-#: apps/production/services.py:170
+#: apps/production/services.py:174
+#| msgid "PDF (Russian)"
 msgid "Title (Russian)"
 msgstr "Sarlavha (ruscha)"
 
-#: apps/production/services.py:171
+#: apps/production/services.py:175
+#| msgid "Abstract (%(lang)s)"
 msgid "Abstract (English)"
 msgstr "Annotatsiya (inglizcha)"
 
-#: apps/production/services.py:172
+#: apps/production/services.py:176
+#| msgid "Abstract"
 msgid "Abstract (Uzbek)"
 msgstr "Annotatsiya (oʻzbekcha)"
 
-#: apps/production/services.py:173
+#: apps/production/services.py:177
+#| msgid "Abstract (%(lang)s)"
 msgid "Abstract (Russian)"
 msgstr "Annotatsiya (ruscha)"
 
-#: apps/production/services.py:174
+#: apps/production/services.py:178
+#| msgid "conflict of interest statement"
 msgid "Conflict of interest statement"
 msgstr "Manfaatlar toʻqnashuvi bayonoti"
 
-#: apps/production/services.py:188
+#: apps/production/services.py:192
 msgid "At least one author"
 msgstr "Kamida bitta muallif"
 
-#: apps/production/services.py:191
+#: apps/production/services.py:195
 msgid "Every author has an affiliation with country"
 msgstr "Har bir muallifda mamlakat bilan ish joyi bor"
 
-#: apps/production/services.py:198
+#: apps/production/services.py:202
 msgid "Corresponding author with e-mail"
 msgstr "Elektron pochtali masʼul muallif"
 
-#: apps/production/services.py:205
+#: apps/production/services.py:209
 msgid "ORCID iD for every author"
 msgstr "Har bir muallif uchun ORCID iD"
 
-#: apps/production/services.py:213
+#: apps/production/services.py:217
 msgid "5–8 keywords"
 msgstr "5–8 kalit soʻz"
 
-#: apps/production/services.py:221
+#: apps/production/services.py:225
 msgid "1–5 JEL codes"
 msgstr "1–5 JEL kodi"
 
-#: apps/production/services.py:226
+#: apps/production/services.py:230
 msgid "DOI assigned"
 msgstr "DOI tayinlangan"
 
-#: apps/production/services.py:229
+#: apps/production/services.py:233
 msgid "Primary PDF galley"
 msgstr "Asosiy PDF nashr fayli"
 
-#: apps/production/services.py:236
+#: apps/production/services.py:240
 msgid "At least 10 references"
 msgstr "Kamida 10 ta manba"
 
-#: apps/production/services.py:242 templates/core/about.html:24
+#: apps/production/services.py:246 templates/core/about.html:24
 #: templates/journal/article_detail.html:261
 msgid "Licence"
 msgstr "Litsenziya"
 
-#: apps/production/services.py:245
+#: apps/production/services.py:249
 msgid "Received date"
 msgstr "Qabul qilingan sana"
 
-#: apps/production/services.py:248
+#: apps/production/services.py:252
 msgid "Accepted date"
 msgstr "Tasdiqlangan sana"
 
-#: apps/production/services.py:267
+#: apps/production/services.py:271
 #, python-format
 msgid "Cannot publish: %(items)s"
 msgstr "Chop etib boʻlmaydi: %(items)s"
 
-#: apps/production/services.py:297
+#: apps/production/services.py:301
 msgid "The issue has no articles."
 msgstr "Sonda maqolalar yoʻq."
 
-#: apps/production/services.py:306
+#: apps/production/services.py:310
 #, python-format
 msgid "Some articles are incomplete: %(items)s"
 msgstr "Baʼzi maqolalar toʻliq emas: %(items)s"
@@ -2152,7 +2161,7 @@ msgstr "Chegaradan oshib ketishning asosi"
 msgid "Similarity above %(threshold)s%% requires a written justification."
 msgstr "%(threshold)s%% dan yuqori oʻxshashlik yozma asos talab qiladi."
 
-#: apps/submissions/forms.py:394 templates/dashboard/home.html:168
+#: apps/submissions/forms.py:394 templates/dashboard/home.html:174
 #: templates/dashboard/submission_detail.html:29
 msgid "Decision"
 msgstr "Qaror"
@@ -2743,7 +2752,7 @@ msgstr "DOI tayinlash"
 msgid "Scheduled to issue"
 msgstr "Songa rejalashtirilgan"
 
-#: apps/submissions/models.py:839 templates/dashboard/home.html:109
+#: apps/submissions/models.py:839 templates/dashboard/home.html:115
 msgid "In progress"
 msgstr "Jarayonda"
 
@@ -3390,7 +3399,7 @@ msgid "Diamond open access — no charges for authors or readers"
 msgstr "Diamond ochiq kirish — mualliflar va oʻquvchilar uchun toʻlovsiz"
 
 #: templates/core/about.html:25 templates/core/for_authors.html:37
-#: templates/dashboard/home.html:164 templates/journal/home.html:188
+#: templates/dashboard/home.html:170 templates/journal/home.html:188
 msgid "Peer review"
 msgstr "Taqriz"
 
@@ -3690,7 +3699,7 @@ msgstr "Boshqaruv paneli"
 msgid "Overview"
 msgstr "Umumiy koʻrinish"
 
-#: templates/dashboard/_base.html:10 templates/dashboard/home.html:147
+#: templates/dashboard/_base.html:10 templates/dashboard/home.html:153
 msgid "New submission"
 msgstr "Yangi qoʻlyozma"
 
@@ -3703,7 +3712,7 @@ msgstr "Mening taqrizlarim"
 msgid "In production"
 msgstr "Nashrda"
 
-#: templates/dashboard/_base.html:22 templates/dashboard/home.html:77
+#: templates/dashboard/_base.html:22 templates/dashboard/home.html:83
 #: templates/dashboard/reports.html:3
 msgid "Reports"
 msgstr "Hisobotlar"
@@ -3755,56 +3764,57 @@ msgstr "Bekor qilish"
 msgid "Needs attention"
 msgstr "Eʼtibor talab qiladi"
 
-#: templates/dashboard/home.html:19
+#: templates/dashboard/home.html:21
 #, python-format
-#| msgid "%(counter)s article"
-#| msgid_plural "%(counter)s articles"
+msgid "showing %(shown)s of %(total)s"
+msgstr "%(total)s tadan %(shown)s tasi koʻrsatilmoqda"
+
+#: templates/dashboard/home.html:23
+#, python-format
 msgid "%(counter)s item"
 msgid_plural "%(counter)s items"
 msgstr[0] "%(counter)s ta element"
 msgstr[1] "%(counter)s ta element"
 
-#: templates/dashboard/home.html:35 templates/dashboard/home.html:111
+#: templates/dashboard/home.html:41 templates/dashboard/home.html:117
 msgid "days"
 msgstr "kun"
 
-#: templates/dashboard/home.html:50
+#: templates/dashboard/home.html:56
 msgid "Nothing is overdue. Every manuscript is inside its target."
 msgstr "Muddati oʻtgan ish yoʻq. Har bir qoʻlyozma belgilangan muddat ichida."
 
-#: templates/dashboard/home.html:55
+#: templates/dashboard/home.html:61
 msgid "Editorial queues"
 msgstr "Tahririy navbatlar"
 
-#: templates/dashboard/home.html:65
+#: templates/dashboard/home.html:71
 #, python-format
 msgid "oldest waiting %(days)s days"
 msgstr "eng eskisi %(days)s kundan beri kutmoqda"
 
-#: templates/dashboard/home.html:67
-#| msgid "Empty."
+#: templates/dashboard/home.html:73
 msgid "empty"
 msgstr "boʻsh"
 
-#: templates/dashboard/home.html:76
-#| msgid "current round"
+#: templates/dashboard/home.html:82
 msgid "Turnaround"
 msgstr "Koʻrib chiqish muddati"
 
-#: templates/dashboard/home.html:95
+#: templates/dashboard/home.html:101
 #: templates/dashboard/submission_detail.html:27
 msgid "Reviews"
 msgstr "Taqrizlar"
 
-#: templates/dashboard/home.html:96
+#: templates/dashboard/home.html:102
 msgid "All reviews"
 msgstr "Barcha taqrizlar"
 
-#: templates/dashboard/home.html:100
+#: templates/dashboard/home.html:106
 msgid "Invitation"
 msgstr "Taklif"
 
-#: templates/dashboard/home.html:102 templates/dashboard/home.html:111
+#: templates/dashboard/home.html:108 templates/dashboard/home.html:117
 #: templates/dashboard/submission_detail.html:175
 #: templates/production/submission_detail.html:16
 #: templates/review/assignment_detail.html:14
@@ -3812,43 +3822,42 @@ msgstr "Taklif"
 msgid "Due"
 msgstr "Muddat"
 
-#: templates/dashboard/home.html:113
+#: templates/dashboard/home.html:119
 msgid "Write the review"
 msgstr "Taqriz yozish"
 
-#: templates/dashboard/home.html:121
-#| msgid "manuscript is anonymised"
+#: templates/dashboard/home.html:127
 msgid "Your manuscripts need you"
 msgstr "Qoʻlyozmalaringiz sizni kutmoqda"
 
-#: templates/dashboard/home.html:131 templates/dashboard/home.html:186
+#: templates/dashboard/home.html:137 templates/dashboard/home.html:192
 msgid "Upload revision"
 msgstr "Qayta ishlangan variantni yuklash"
 
-#: templates/dashboard/home.html:145
+#: templates/dashboard/home.html:151
 msgid "My submissions"
 msgstr "Mening qoʻlyozmalarim"
 
-#: templates/dashboard/home.html:165
+#: templates/dashboard/home.html:171
 #, python-format
 msgid "%(counter)s round"
 msgid_plural "%(counter)s rounds"
 msgstr[0] "%(counter)s bosqich"
 msgstr[1] "%(counter)s bosqich"
 
-#: templates/dashboard/home.html:179
+#: templates/dashboard/home.html:185
 msgid "Continue draft"
 msgstr "Qoralamani davom ettirish"
 
-#: templates/dashboard/home.html:182
+#: templates/dashboard/home.html:188
 msgid "Details"
 msgstr "Tafsilotlar"
 
-#: templates/dashboard/home.html:192
+#: templates/dashboard/home.html:198
 msgid "You have not submitted anything yet."
 msgstr "Siz hali hech narsa yubormagansiz."
 
-#: templates/dashboard/home.html:194 templates/includes/footer.html:34
+#: templates/dashboard/home.html:200 templates/includes/footer.html:34
 #: templates/submissions/wizard_intro.html:3
 #: templates/submissions/wizard_intro.html:6
 #: templates/submissions/wizard_step1.html:6

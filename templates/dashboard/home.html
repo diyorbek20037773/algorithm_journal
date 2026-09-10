@@ -16,7 +16,13 @@
     <section class="mb-10">
       <div class="section-heading">
         <h2>{% translate "Needs attention" %}</h2>
-        <span class="meta">{% blocktranslate count counter=attention_items|length %}{{ counter }} item{% plural %}{{ counter }} items{% endblocktranslate %}</span>
+        <span class="meta">
+          {% if attention_total > attention_items|length %}
+            {% blocktranslate with shown=attention_items|length total=attention_total %}showing {{ shown }} of {{ total }}{% endblocktranslate %}
+          {% else %}
+            {% blocktranslate count counter=attention_total %}{{ counter }} item{% plural %}{{ counter }} items{% endblocktranslate %}
+          {% endif %}
+        </span>
       </div>
       <ul class="attention-list">
         {% for item in attention_items %}

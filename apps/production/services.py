@@ -12,8 +12,11 @@ from django.core.exceptions import ValidationError
 from django.db import transaction
 from django.utils import timezone
 from django.utils.text import slugify
-from django.utils.translation import gettext as _
-from django.utils.translation import gettext_lazy as _lazy
+
+# gettext_lazy, aliased to the conventional `_`: xgettext only extracts the
+# names it knows, so a custom alias such as `_lazy` silently drops every
+# string in this module out of the catalogues.
+from django.utils.translation import gettext_lazy as _
 
 from apps.core.models import AuditLog
 from apps.core.services import get_site_settings, log_action
@@ -166,14 +169,14 @@ def reserve_doi(article: Article, *, user=None, request=None) -> str:
 
 #: Metadata a completeness check requires before publication (SPEC §16).
 REQUIRED_METADATA: list[tuple[str, str]] = [
-    ("title_en", _lazy("Title (English)")),
-    ("title_uz", _lazy("Title (Uzbek)")),
-    ("title_ru", _lazy("Title (Russian)")),
-    ("abstract_en", _lazy("Abstract (English)")),
-    ("abstract_uz", _lazy("Abstract (Uzbek)")),
-    ("abstract_ru", _lazy("Abstract (Russian)")),
-    ("conflict_of_interest_statement", _lazy("Conflict of interest statement")),
-    ("ai_use_statement", _lazy("AI use statement")),
+    ("title_en", _("Title (English)")),
+    ("title_uz", _("Title (Uzbek)")),
+    ("title_ru", _("Title (Russian)")),
+    ("abstract_en", _("Abstract (English)")),
+    ("abstract_uz", _("Abstract (Uzbek)")),
+    ("abstract_ru", _("Abstract (Russian)")),
+    ("conflict_of_interest_statement", _("Conflict of interest statement")),
+    ("ai_use_statement", _("AI use statement")),
 ]
 
 

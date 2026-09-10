@@ -186,3 +186,20 @@ def test_turnaround_is_judged_against_the_target(median, expected) -> None:
 def test_scorecard_is_empty_without_data() -> None:
     """No KPI window means no cards, rather than a row of dashes."""
     assert services.kpi_scorecard(None) == []
+
+
+def test_summary_reports_the_true_total_when_truncated(editor_user, section, author_user) -> None:
+    """The cap must be visible: three shown out of five late, not "three late"."""
+    for index in range(5):
+        submission = Submission.objects.create(
+            title=f"Late {index}",
+            submitter=author_user,
+            section=section,
+            status=SubmissionStatus.AWAITING_DECISION,
+        )
+        _age(submission, 20 + index, SubmissionStatus.AWAITING_DECISION)
+
+    items, total = services.attention_summary(editor_user, limit=3)
+
+    assert len(items) == 3
+    assert total == 5

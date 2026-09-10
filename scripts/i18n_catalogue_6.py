@@ -30,6 +30,10 @@ PART_6: dict[str, tuple[str, str]] = {
         "самая старая ждёт %(days)s дней",
     ),
     "empty": ("boʻsh", "пусто"),
+    "showing %(shown)s of %(total)s": (
+        "%(total)s tadan %(shown)s tasi koʻrsatilmoqda",
+        "показано %(shown)s из %(total)s",
+    ),
     "Turnaround": ("Koʻrib chiqish muddati", "Сроки обработки"),
     "target ≤ %(days)s days": ("maqsad ≤ %(days)s kun", "цель ≤ %(days)s дней"),
     "share of decided manuscripts accepted": (

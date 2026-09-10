@@ -12,8 +12,11 @@ from django.http import FileResponse, HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.template.response import TemplateResponse
 from django.utils import timezone
-from django.utils.translation import gettext as _
-from django.utils.translation import gettext_lazy as _lazy
+
+# gettext_lazy, aliased to the conventional `_`: xgettext only extracts the
+# names it knows, so a custom alias such as `_lazy` silently drops every
+# string in this module out of the catalogues.
+from django.utils.translation import gettext_lazy as _
 from django.views.decorators.http import require_POST
 
 from apps.accounts.models import Role, User
@@ -50,18 +53,18 @@ PAGE_SIZE = 20
 #: use lazy translation: this list is built at import time, when no request
 #: language is active, so eager gettext would freeze every label in English.
 EDITOR_QUEUES: list[tuple[str, Any, list[str]]] = [
-    ("new", _lazy("New"), [SubmissionStatus.SUBMITTED]),
-    ("screening", _lazy("Screening"), [SubmissionStatus.SCREENING]),
-    ("in_review", _lazy("In review"), [SubmissionStatus.UNDER_REVIEW]),
-    ("decision", _lazy("Awaiting decision"), [SubmissionStatus.AWAITING_DECISION]),
+    ("new", _("New"), [SubmissionStatus.SUBMITTED]),
+    ("screening", _("Screening"), [SubmissionStatus.SCREENING]),
+    ("in_review", _("In review"), [SubmissionStatus.UNDER_REVIEW]),
+    ("decision", _("Awaiting decision"), [SubmissionStatus.AWAITING_DECISION]),
     (
         "revisions",
-        _lazy("Revisions"),
+        _("Revisions"),
         [SubmissionStatus.REVISION_REQUESTED, SubmissionStatus.RESUBMITTED],
     ),
     (
         "production",
-        _lazy("Accepted / in production"),
+        _("Accepted / in production"),
         [
             SubmissionStatus.ACCEPTED,
             SubmissionStatus.COPYEDITING,
@@ -106,7 +109,9 @@ def home(request: HttpRequest) -> HttpResponse:
         from apps.metrics.services import compute_kpi_window
 
         context["editor_queues"] = dashboard_services.queue_summary(user, EDITOR_QUEUES)
-        context["attention_items"] = dashboard_services.attention_items(user)
+        items, total = dashboard_services.attention_summary(user)
+        context["attention_items"] = items
+        context["attention_total"] = total
         kpis = compute_kpi_window()
         context["kpis"] = kpis
         context["kpi_cards"] = dashboard_services.kpi_scorecard(kpis)
