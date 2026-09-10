@@ -48,7 +48,12 @@ survives the longer strings and the second script.
 ## Responsive set
 
 `responsive/<page>-<width>.png` for home, issue, article and dashboard at
-**360, 768, 1280 and 1920 px** (SPEC §15.13).
+**320, 360, 768, 1280 and 1920 px** — 320 px is the narrowest width the
+client's terms of reference name (§8), and the width at which the header
+used to push every page off the side of the screen.
+
+A screenshot cannot show horizontal scroll, so the arithmetic check lives in
+`tests/test_e2e_flow.py::test_no_horizontal_scroll_on_a_narrow_phone`.
 
 ## Accessibility
 
