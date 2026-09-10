@@ -35,6 +35,9 @@ PART_6: dict[str, tuple[str, str]] = {
         "показано %(shown)s из %(total)s",
     ),
     "Turnaround": ("Koʻrib chiqish muddati", "Сроки обработки"),
+    # --- article full text (TZ §6.1) ---------------------------------------
+    "Full text": ("Toʻliq matn", "Полный текст"),
+    "Full text (HTML)": ("Toʻliq matn (HTML)", "Полный текст (HTML)"),
     "target ≤ %(days)s days": ("maqsad ≤ %(days)s kun", "цель ≤ %(days)s дней"),
     "share of decided manuscripts accepted": (
         "qaror qabul qilingan qoʻlyozmalardan qabul qilinganlari ulushi",

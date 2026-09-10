@@ -271,3 +271,33 @@ def test_browser_flow(live_server, page, site_settings, article, about_pages) ->
     page.goto(f"{live_server.url}/en/article/{article.pk}/")
     href = page.get_attribute("a:has-text('Download PDF')", "href")
     assert href == f"/article/{article.pk}/pdf/"
+
+
+@pytest.mark.e2e
+def test_no_horizontal_scroll_on_a_narrow_phone(
+    live_server, page, site_settings, article, about_pages
+) -> None:
+    """No page may scroll sideways at 320 px, the narrowest width the TZ names.
+
+    Every page did, until this was measured: the header's language switcher,
+    a stray multi-line Django comment rendered as an anonymous flex item, a
+    grid track that would not shrink, and bare DOIs with no break opportunity.
+    A screenshot at 360 px looks fine while the page still scrolls, so the
+    check has to be arithmetic rather than visual.
+    """
+    page.set_viewport_size({"width": 320, "height": 800})
+    paths = [
+        "/en/",
+        "/en/issues/",
+        f"/en/article/{article.pk}/",
+        "/en/search/?q=trade",
+        "/en/about/editorial-board/",
+    ]
+    for path in paths:
+        page.goto(f"{live_server.url}{path}", wait_until="networkidle")
+        scroll_width, client_width = page.evaluate(
+            "() => [document.documentElement.scrollWidth, document.documentElement.clientWidth]"
+        )
+        assert scroll_width - client_width <= 1, (
+            f"{path} scrolls sideways at 320 px: {scroll_width} > {client_width}"
+        )

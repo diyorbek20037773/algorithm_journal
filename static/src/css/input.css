@@ -796,6 +796,34 @@
     border-radius: var(--radius-card);
   }
 
+  /* Citations and references carry bare DOIs and URLs, which offer no break
+     opportunity of their own and otherwise push a phone screen sideways. */
+  .citation-text,
+  .reference-list li,
+  .article-fulltext {
+    overflow-wrap: anywhere;
+  }
+
+  /* --- article full text (HTML galley) ---
+     Typeset output is not written to fit a phone, so the one thing that can
+     overflow — a wide table — gets its own scroller rather than pushing the
+     page sideways. */
+  .article-fulltext {
+    max-width: none;
+  }
+
+  .article-fulltext table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+  }
+
+  .article-fulltext img {
+    max-width: 100%;
+    height: auto;
+  }
+
   /* --- editorial dashboard ---------------------------------------------
      Severity is carried on `data-severity` so the same markup serves the
      "late" and "approaching" cases; the colour is the only difference, and it
@@ -936,6 +964,9 @@
     display: flex;
     align-items: baseline;
     justify-content: space-between;
+    /* The trailing control (a link, a count, a row of language tabs) has to be
+       allowed to drop below the heading on a narrow phone. */
+    flex-wrap: wrap;
     gap: 1rem;
     margin-bottom: 1rem;
     padding-bottom: 0.5rem;

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-10 15:36+0500\n"
+"POT-Creation-Date: 2026-09-10 17:11+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: ARER editorial office\n"
 "Language-Team: ARER\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "Personal info"
 msgstr "Shaxsiy maʼlumotlar"
 
-#: apps/accounts/admin.py:33 apps/journal/models.py:332
+#: apps/accounts/admin.py:33 apps/journal/models.py:333
 #: templates/dashboard/_base.html:15
 msgid "Editorial"
 msgstr "Tahririyat"
@@ -59,7 +59,7 @@ msgstr "Taqrizchi"
 msgid "Section editor"
 msgstr "Boʻlim muharriri"
 
-#: apps/accounts/models.py:23 apps/journal/models.py:750
+#: apps/accounts/models.py:23 apps/journal/models.py:781
 msgid "Editor-in-Chief"
 msgstr "Bosh muharrir"
 
@@ -75,13 +75,13 @@ msgstr "Administrator"
 msgid "e-mail address"
 msgstr "elektron pochta manzili"
 
-#: apps/accounts/models.py:74 apps/journal/models.py:589
-#: apps/submissions/models.py:345
+#: apps/accounts/models.py:74 apps/journal/models.py:619
+#: apps/submissions/models.py:351
 msgid "given name"
 msgstr "ism"
 
-#: apps/accounts/models.py:75 apps/journal/models.py:590
-#: apps/submissions/models.py:346
+#: apps/accounts/models.py:75 apps/journal/models.py:620
+#: apps/submissions/models.py:352
 msgid "family name"
 msgstr "familiya"
 
@@ -113,7 +113,7 @@ msgstr ""
 msgid "last activity"
 msgstr "oxirgi faollik"
 
-#: apps/accounts/models.py:100 apps/accounts/models.py:162
+#: apps/accounts/models.py:100 apps/accounts/models.py:173
 msgid "user"
 msgstr "foydalanuvchi"
 
@@ -121,101 +121,101 @@ msgstr "foydalanuvchi"
 msgid "users"
 msgstr "foydalanuvchilar"
 
-#: apps/accounts/models.py:164 apps/journal/models.py:599
-#: apps/journal/models.py:785 apps/submissions/models.py:349
+#: apps/accounts/models.py:175 apps/journal/models.py:629
+#: apps/journal/models.py:816 apps/submissions/models.py:355
 msgid "ORCID iD"
 msgstr "ORCID iD"
 
-#: apps/accounts/models.py:165 apps/journal/models.py:600
-#: apps/submissions/models.py:350
+#: apps/accounts/models.py:176 apps/journal/models.py:630
+#: apps/submissions/models.py:356
 msgid "ORCID verified"
 msgstr "ORCID tasdiqlangan"
 
-#: apps/accounts/models.py:166 apps/journal/models.py:601
-#: apps/journal/models.py:783 apps/submissions/models.py:351
+#: apps/accounts/models.py:177 apps/journal/models.py:631
+#: apps/journal/models.py:814 apps/submissions/models.py:357
 msgid "affiliation"
 msgstr "ish joyi"
 
-#: apps/accounts/models.py:167
+#: apps/accounts/models.py:178
 msgid "department"
 msgstr "boʻlim"
 
-#: apps/accounts/models.py:168 apps/journal/models.py:603
-#: apps/submissions/models.py:353
+#: apps/accounts/models.py:179 apps/journal/models.py:633
+#: apps/submissions/models.py:359
 msgid "city"
 msgstr "shahar"
 
-#: apps/accounts/models.py:169 apps/journal/models.py:604
-#: apps/journal/models.py:784 apps/metrics/models.py:45
-#: apps/submissions/models.py:354
+#: apps/accounts/models.py:180 apps/journal/models.py:634
+#: apps/journal/models.py:815 apps/metrics/models.py:45
+#: apps/submissions/models.py:360
 msgid "country"
 msgstr "mamlakat"
 
-#: apps/accounts/models.py:170 apps/journal/models.py:781
+#: apps/accounts/models.py:181 apps/journal/models.py:812
 msgid "academic degree"
 msgstr "ilmiy daraja"
 
-#: apps/accounts/models.py:171 apps/journal/models.py:782
+#: apps/accounts/models.py:182 apps/journal/models.py:813
 msgid "academic title"
 msgstr "ilmiy unvon"
 
-#: apps/accounts/models.py:172 apps/journal/models.py:605
-#: apps/journal/models.py:789
+#: apps/accounts/models.py:183 apps/journal/models.py:635
+#: apps/journal/models.py:820
 msgid "biography"
 msgstr "tarjimayi hol"
 
-#: apps/accounts/models.py:173
+#: apps/accounts/models.py:184
 msgid "website"
 msgstr "veb-sayt"
 
-#: apps/accounts/models.py:174 apps/journal/models.py:786
+#: apps/accounts/models.py:185 apps/journal/models.py:817
 msgid "Scopus Author ID"
 msgstr "Scopus Author ID"
 
-#: apps/accounts/models.py:176
+#: apps/accounts/models.py:187
 msgid "areas of expertise"
 msgstr "mutaxassislik sohalari"
 
-#: apps/accounts/models.py:178
+#: apps/accounts/models.py:189
 msgid "Comma-separated keywords used by the reviewer finder."
 msgstr ""
 "Taqrizchi qidiruvida ishlatiladigan, vergul bilan ajratilgan kalit soʻzlar."
 
-#: apps/accounts/models.py:181 apps/journal/models.py:259
-#: apps/journal/models.py:358 apps/submissions/forms.py:145
+#: apps/accounts/models.py:192 apps/journal/models.py:260
+#: apps/journal/models.py:359 apps/submissions/forms.py:145
 #: apps/submissions/models.py:155
 #: templates/dashboard/submission_detail.html:55
-#: templates/journal/article_detail.html:114
+#: templates/journal/article_detail.html:115
 #: templates/review/assignment_detail.html:17
 #: templates/submissions/wizard_step5.html:22
 msgid "JEL codes"
 msgstr "JEL kodlari"
 
-#: apps/accounts/models.py:183
+#: apps/accounts/models.py:194
 msgid "reviews completed"
 msgstr "bajarilgan taqrizlar"
 
-#: apps/accounts/models.py:184
+#: apps/accounts/models.py:195
 msgid "reviews declined"
 msgstr "rad etilgan taqrizlar"
 
-#: apps/accounts/models.py:185
+#: apps/accounts/models.py:196
 msgid "average review days"
 msgstr "oʻrtacha taqriz kunlari"
 
-#: apps/accounts/models.py:186
+#: apps/accounts/models.py:197
 msgid "average quality rating"
 msgstr "oʻrtacha sifat bahosi"
 
-#: apps/accounts/models.py:187
+#: apps/accounts/models.py:198
 msgid "accepts review invitations"
 msgstr "taqriz takliflarini qabul qiladi"
 
-#: apps/accounts/models.py:190
+#: apps/accounts/models.py:201
 msgid "profile"
 msgstr "profil"
 
-#: apps/accounts/models.py:191
+#: apps/accounts/models.py:202
 msgid "profiles"
 msgstr "profillar"
 
@@ -261,7 +261,6 @@ msgid "February"
 msgstr "Fevral"
 
 #: apps/core/dates.py:27
-#| msgid "Search"
 msgid "March"
 msgstr "Mart"
 
@@ -310,7 +309,6 @@ msgid "feb"
 msgstr "fev"
 
 #: apps/core/dates.py:44
-#| msgid "major"
 msgid "mar"
 msgstr "mar"
 
@@ -319,7 +317,6 @@ msgid "apr"
 msgstr "apr"
 
 #: apps/core/dates.py:46
-#| msgid "primary"
 msgid "may"
 msgstr "may"
 
@@ -340,7 +337,6 @@ msgid "sep"
 msgstr "sen"
 
 #: apps/core/dates.py:51
-#| msgid "bot"
 msgid "oct"
 msgstr "okt"
 
@@ -517,14 +513,14 @@ msgstr "Sayt sozlamalarini oʻchirib boʻlmaydi."
 msgid "pending"
 msgstr "kutilmoqda"
 
-#: apps/core/models.py:174 apps/core/models.py:333 apps/journal/models.py:47
-#: apps/journal/models.py:70
+#: apps/core/models.py:174 apps/core/models.py:333 apps/journal/models.py:48
+#: apps/journal/models.py:71
 msgid "name"
 msgstr "nomi"
 
 #: apps/core/models.py:175 apps/core/models.py:215 apps/core/models.py:301
-#: apps/journal/models.py:69 apps/journal/models.py:214
-#: apps/journal/models.py:352
+#: apps/journal/models.py:70 apps/journal/models.py:215
+#: apps/journal/models.py:353
 msgid "slug"
 msgstr "slug"
 
@@ -533,7 +529,7 @@ msgid "URL"
 msgstr "URL"
 
 #: apps/core/models.py:179 apps/core/models.py:274 apps/core/models.py:389
-#: apps/journal/models.py:73 apps/journal/models.py:795
+#: apps/journal/models.py:74 apps/journal/models.py:826
 msgid "active"
 msgstr "faol"
 
@@ -541,14 +537,14 @@ msgstr "faol"
 msgid "Only active services are displayed publicly."
 msgstr "Faqat faol xizmatlar ommaga koʻrsatiladi."
 
-#: apps/core/models.py:181 apps/core/models.py:273 apps/journal/models.py:72
-#: apps/journal/models.py:580 apps/journal/models.py:664
-#: apps/journal/models.py:720 apps/journal/models.py:794
-#: apps/submissions/models.py:336
+#: apps/core/models.py:181 apps/core/models.py:273 apps/journal/models.py:73
+#: apps/journal/models.py:610 apps/journal/models.py:694
+#: apps/journal/models.py:751 apps/journal/models.py:825
+#: apps/submissions/models.py:342
 msgid "order"
 msgstr "tartib"
 
-#: apps/core/models.py:182 apps/submissions/models.py:815
+#: apps/core/models.py:182 apps/submissions/models.py:821
 msgid "note"
 msgstr "izoh"
 
@@ -557,18 +553,18 @@ msgid "indexing service"
 msgstr "indeksatsiya xizmati"
 
 #: apps/core/models.py:209 templates/includes/header.html:15
-#: templates/includes/header.html:97
+#: templates/includes/header.html:103
 msgid "About"
 msgstr "Jurnal haqida"
 
 #: apps/core/models.py:210 templates/core/for_authors.html:3
 #: templates/includes/footer.html:27 templates/includes/header.html:13
-#: templates/includes/header.html:95
+#: templates/includes/header.html:101
 msgid "For Authors"
 msgstr "Mualliflar uchun"
 
 #: apps/core/models.py:211 templates/includes/header.html:14
-#: templates/includes/header.html:96
+#: templates/includes/header.html:102
 msgid "For Reviewers"
 msgstr "Taqrizchilar uchun"
 
@@ -580,8 +576,8 @@ msgstr "Pastki panel"
 msgid "Not in menu"
 msgstr "Menyuda emas"
 
-#: apps/core/models.py:216 apps/core/models.py:300 apps/journal/models.py:111
-#: apps/journal/models.py:143 apps/journal/models.py:349
+#: apps/core/models.py:216 apps/core/models.py:300 apps/journal/models.py:112
+#: apps/journal/models.py:144 apps/journal/models.py:350
 #: apps/submissions/models.py:149
 msgid "title"
 msgstr "sarlavha"
@@ -602,8 +598,8 @@ msgstr "menyu guruhi"
 msgid "menu order"
 msgstr "menyu tartibi"
 
-#: apps/core/models.py:230 apps/journal/models.py:146
-#: apps/journal/models.py:381 apps/metrics/models.py:96
+#: apps/core/models.py:230 apps/journal/models.py:147
+#: apps/journal/models.py:382 apps/metrics/models.py:96
 #: templates/production/issue_builder.html:6
 msgid "published"
 msgstr "chop etilgan"
@@ -628,8 +624,8 @@ msgstr "sahifa"
 msgid "pages"
 msgstr "sahifalar"
 
-#: apps/core/models.py:265 apps/journal/models.py:246
-#: apps/journal/models.py:711
+#: apps/core/models.py:265 apps/journal/models.py:247
+#: apps/journal/models.py:742
 msgid "label"
 msgstr "yorliq"
 
@@ -645,7 +641,7 @@ msgstr "menyu elementi"
 msgid "menu items"
 msgstr "menyu elementlari"
 
-#: apps/core/models.py:303 apps/journal/models.py:145
+#: apps/core/models.py:303 apps/journal/models.py:146
 msgid "published at"
 msgstr "chop etilgan sana"
 
@@ -665,18 +661,18 @@ msgstr "eʼlon"
 msgid "announcements"
 msgstr "eʼlonlar"
 
-#: apps/core/models.py:334 apps/journal/models.py:597
-#: apps/journal/models.py:787 apps/submissions/models.py:347
+#: apps/core/models.py:334 apps/journal/models.py:627
+#: apps/journal/models.py:818 apps/submissions/models.py:353
 msgid "e-mail"
 msgstr "elektron pochta"
 
 #: apps/core/models.py:335 apps/core/models.py:382
-#: apps/submissions/models.py:749
+#: apps/submissions/models.py:755
 msgid "subject"
 msgstr "mavzu"
 
 #: apps/core/models.py:336 apps/crossref/models.py:65
-#: apps/submissions/models.py:789
+#: apps/submissions/models.py:795
 msgid "message"
 msgstr "xabar"
 
@@ -972,8 +968,8 @@ msgstr "Bu manzildan juda koʻp xabar yuborildi. Keyinroq urinib koʻring."
 msgid "Thank you — your message has been sent."
 msgstr "Rahmat — xabaringiz yuborildi."
 
-#: apps/crossref/models.py:17 apps/submissions/models.py:495
-#: apps/submissions/models.py:838
+#: apps/crossref/models.py:17 apps/submissions/models.py:501
+#: apps/submissions/models.py:844
 msgid "Pending"
 msgstr "Kutilmoqda"
 
@@ -1000,14 +996,14 @@ msgstr "paket ID"
 msgid "deposit XML"
 msgstr "depozit XML"
 
-#: apps/crossref/models.py:25 apps/journal/models.py:432
+#: apps/crossref/models.py:25 apps/journal/models.py:433
 msgid "articles"
 msgstr "maqolalar"
 
 #: apps/crossref/models.py:28 apps/crossref/models.py:64
-#: apps/journal/models.py:384 apps/submissions/models.py:167
-#: apps/submissions/models.py:457 apps/submissions/models.py:528
-#: apps/submissions/models.py:869
+#: apps/journal/models.py:385 apps/submissions/models.py:167
+#: apps/submissions/models.py:463 apps/submissions/models.py:534
+#: apps/submissions/models.py:875
 msgid "status"
 msgstr "holat"
 
@@ -1016,7 +1012,7 @@ msgid "response log"
 msgstr "javob jurnali"
 
 #: apps/crossref/models.py:31 apps/submissions/models.py:193
-#: apps/submissions/models.py:612
+#: apps/submissions/models.py:618
 msgid "submitted at"
 msgstr "yuborilgan sana"
 
@@ -1040,9 +1036,9 @@ msgstr "depozit paketi"
 msgid "deposit batches"
 msgstr "depozit paketlari"
 
-#: apps/crossref/models.py:51 apps/journal/models.py:431
-#: apps/journal/models.py:578 apps/journal/models.py:662
-#: apps/journal/models.py:709 apps/journal/models.py:843
+#: apps/crossref/models.py:51 apps/journal/models.py:432
+#: apps/journal/models.py:608 apps/journal/models.py:692
+#: apps/journal/models.py:740 apps/journal/models.py:874
 #: apps/metrics/models.py:28 apps/metrics/models.py:66
 msgid "article"
 msgstr "maqola"
@@ -1051,8 +1047,8 @@ msgstr "maqola"
 msgid "batch"
 msgstr "paket"
 
-#: apps/crossref/models.py:63 apps/journal/models.py:367
-#: apps/journal/models.py:666
+#: apps/crossref/models.py:63 apps/journal/models.py:368
+#: apps/journal/models.py:696
 msgid "DOI"
 msgstr "DOI"
 
@@ -1101,7 +1097,7 @@ msgstr "Taklifga javob yoʻq"
 msgid "Find another reviewer"
 msgstr "Boshqa taqrizchi topish"
 
-#: apps/dashboard/services.py:177 apps/submissions/models.py:447
+#: apps/dashboard/services.py:177 apps/submissions/models.py:453
 #: templates/dashboard/home.html:110 templates/production/queue.html:89
 msgid "Open"
 msgstr "Ochiq"
@@ -1234,143 +1230,143 @@ msgstr "Bu kod notoʻgʻri. Qayta urinib koʻring."
 msgid "Latest articles"
 msgstr "Soʻnggi maqolalar"
 
-#: apps/journal/models.py:46 apps/journal/models.py:245
+#: apps/journal/models.py:47 apps/journal/models.py:246
 msgid "code"
 msgstr "kod"
 
-#: apps/journal/models.py:48
+#: apps/journal/models.py:49
 msgid "licence URL"
 msgstr "litsenziya URL manzili"
 
-#: apps/journal/models.py:49
+#: apps/journal/models.py:50
 msgid "badge SVG"
 msgstr "nishon SVG"
 
-#: apps/journal/models.py:50
+#: apps/journal/models.py:51
 msgid "default licence"
 msgstr "standart litsenziya"
 
-#: apps/journal/models.py:53 apps/journal/models.py:389
+#: apps/journal/models.py:54 apps/journal/models.py:390
 msgid "licence"
 msgstr "litsenziya"
 
-#: apps/journal/models.py:54
+#: apps/journal/models.py:55
 msgid "licences"
 msgstr "litsenziyalar"
 
-#: apps/journal/models.py:71
+#: apps/journal/models.py:72
 msgid "description"
 msgstr "tavsif"
 
-#: apps/journal/models.py:75
+#: apps/journal/models.py:76
 msgid "research section"
 msgstr "ilmiy boʻlim"
 
-#: apps/journal/models.py:77
+#: apps/journal/models.py:78
 msgid ""
 "Non-research sections (reviews, commentary) are excluded from the home grid."
 msgstr ""
 "Ilmiy boʻlmagan boʻlimlar (sharhlar, mulohazalar) bosh sahifa panjarasiga "
 "kirmaydi."
 
-#: apps/journal/models.py:81
+#: apps/journal/models.py:82
 msgid "section editors"
 msgstr "boʻlim muharrirlari"
 
-#: apps/journal/models.py:85
+#: apps/journal/models.py:86
 msgid "suggested JEL prefixes"
 msgstr "tavsiya etilgan JEL prefikslari"
 
-#: apps/journal/models.py:88 apps/journal/models.py:343
+#: apps/journal/models.py:89 apps/journal/models.py:344
 #: apps/submissions/models.py:141
 msgid "section"
 msgstr "boʻlim"
 
-#: apps/journal/models.py:89 apps/journal/models.py:792
+#: apps/journal/models.py:90 apps/journal/models.py:823
 msgid "sections"
 msgstr "boʻlimlar"
 
-#: apps/journal/models.py:109
+#: apps/journal/models.py:110
 msgid "volume number"
 msgstr "jild raqami"
 
-#: apps/journal/models.py:110
+#: apps/journal/models.py:111
 msgid "year"
 msgstr "yil"
 
-#: apps/journal/models.py:114 apps/journal/models.py:138
+#: apps/journal/models.py:115 apps/journal/models.py:139
 msgid "volume"
 msgstr "jild"
 
-#: apps/journal/models.py:115
+#: apps/journal/models.py:116
 msgid "volumes"
 msgstr "jildlar"
 
-#: apps/journal/models.py:141
+#: apps/journal/models.py:142
 msgid "issue number"
 msgstr "son raqami"
 
-#: apps/journal/models.py:144
+#: apps/journal/models.py:145
 msgid "editorial note"
 msgstr "tahririy soʻzboshi"
 
-#: apps/journal/models.py:147
+#: apps/journal/models.py:148
 msgid "current issue"
 msgstr "joriy son"
 
-#: apps/journal/models.py:148
+#: apps/journal/models.py:149
 msgid "cover"
 msgstr "muqova"
 
-#: apps/journal/models.py:149
+#: apps/journal/models.py:150
 msgid "issue DOI"
 msgstr "son DOI si"
 
-#: apps/journal/models.py:150
+#: apps/journal/models.py:151
 msgid "page prefix"
 msgstr "sahifa prefiksi"
 
-#: apps/journal/models.py:152
+#: apps/journal/models.py:153
 msgid "full issue PDF"
 msgstr "toʻliq son PDF"
 
-#: apps/journal/models.py:158 apps/journal/models.py:336
+#: apps/journal/models.py:159 apps/journal/models.py:337
 msgid "issue"
 msgstr "son"
 
-#: apps/journal/models.py:159 templates/journal/archive.html:22
+#: apps/journal/models.py:160 templates/journal/archive.html:22
 msgid "issues"
 msgstr "sonlar"
 
-#: apps/journal/models.py:213 apps/journal/models.py:217
+#: apps/journal/models.py:214 apps/journal/models.py:218
 msgid "keyword"
 msgstr "kalit soʻz"
 
-#: apps/journal/models.py:218 apps/journal/models.py:355
+#: apps/journal/models.py:219 apps/journal/models.py:356
 #: apps/submissions/models.py:152
 msgid "keywords"
 msgstr "kalit soʻzlar"
 
-#: apps/journal/models.py:249
+#: apps/journal/models.py:250
 msgid "parent"
 msgstr "ota element"
 
-#: apps/journal/models.py:255
+#: apps/journal/models.py:256
 msgid "level"
 msgstr "daraja"
 
-#: apps/journal/models.py:258 templates/search/search.html:40
+#: apps/journal/models.py:259 templates/search/search.html:40
 msgid "JEL code"
 msgstr "JEL kodi"
 
-#: apps/journal/models.py:314 apps/submissions/models.py:41
+#: apps/journal/models.py:315 apps/submissions/models.py:41
 msgid "Draft"
 msgstr "Qoralama"
 
-#: apps/journal/models.py:315 templates/includes/footer.html:40
-#: templates/includes/header.html:12 templates/includes/header.html:94
+#: apps/journal/models.py:316 templates/includes/footer.html:40
+#: templates/includes/header.html:12 templates/includes/header.html:100
 #: templates/journal/article_detail.html:24
-#: templates/journal/article_detail.html:42 templates/journal/home.html:81
+#: templates/journal/article_detail.html:43 templates/journal/home.html:81
 #: templates/journal/online_first.html:3 templates/journal/online_first.html:6
 #: templates/journal/partials/article_card.html:20
 #: templates/production/queue.html:80
@@ -1378,344 +1374,348 @@ msgstr "Qoralama"
 msgid "Online First"
 msgstr "Online First"
 
-#: apps/journal/models.py:316 apps/submissions/models.py:54
-#: templates/dashboard/home.html:178 templates/journal/article_detail.html:98
+#: apps/journal/models.py:317 apps/submissions/models.py:54
+#: templates/dashboard/home.html:178 templates/journal/article_detail.html:99
 #: templates/journal/home.html:61 templates/journal/issue_detail.html:33
 msgid "Published"
 msgstr "Chop etilgan"
 
-#: apps/journal/models.py:317
+#: apps/journal/models.py:318
 msgid "Retracted"
 msgstr "Chaqirib olingan"
 
-#: apps/journal/models.py:318 apps/submissions/models.py:56
+#: apps/journal/models.py:319 apps/submissions/models.py:56
 msgid "Withdrawn"
 msgstr "Qaytarib olingan"
 
-#: apps/journal/models.py:321
+#: apps/journal/models.py:322
 msgid "Not assigned"
 msgstr "Tayinlanmagan"
 
-#: apps/journal/models.py:322
+#: apps/journal/models.py:323
 msgid "Reserved"
 msgstr "Zaxiralangan"
 
-#: apps/journal/models.py:323
+#: apps/journal/models.py:324
 msgid "Registered"
 msgstr "Roʻyxatdan oʻtgan"
 
-#: apps/journal/models.py:324
+#: apps/journal/models.py:325
 msgid "Registration failed"
 msgstr "Roʻyxatga olish muvaffaqiyatsiz"
 
-#: apps/journal/models.py:325
+#: apps/journal/models.py:326
 msgid "Metadata updated"
 msgstr "Metamaʼlumot yangilandi"
 
-#: apps/journal/models.py:328 apps/submissions/models.py:117
+#: apps/journal/models.py:329 apps/submissions/models.py:117
 msgid "Research article"
 msgstr "Ilmiy maqola"
 
-#: apps/journal/models.py:329 apps/submissions/models.py:118
+#: apps/journal/models.py:330 apps/submissions/models.py:118
 msgid "Review article"
 msgstr "Sharh maqolasi"
 
-#: apps/journal/models.py:330 apps/submissions/models.py:119
+#: apps/journal/models.py:331 apps/submissions/models.py:119
 msgid "Short communication"
 msgstr "Qisqa maʼlumot"
 
-#: apps/journal/models.py:331 apps/submissions/models.py:120
+#: apps/journal/models.py:332 apps/submissions/models.py:120
 msgid "Book review"
 msgstr "Kitob taqrizi"
 
-#: apps/journal/models.py:346 apps/submissions/models.py:146
+#: apps/journal/models.py:347 apps/submissions/models.py:146
 msgid "article type"
 msgstr "maqola turi"
 
-#: apps/journal/models.py:350
+#: apps/journal/models.py:351
 msgid "subtitle"
 msgstr "qoʻshimcha sarlavha"
 
-#: apps/journal/models.py:351 apps/submissions/models.py:150
+#: apps/journal/models.py:352 apps/submissions/models.py:150
 msgid "abstract"
 msgstr "annotatsiya"
 
-#: apps/journal/models.py:361
+#: apps/journal/models.py:362
 msgid "article language"
 msgstr "maqola tili"
 
-#: apps/journal/models.py:369
+#: apps/journal/models.py:370
 msgid "DOI status"
 msgstr "DOI holati"
 
-#: apps/journal/models.py:372
+#: apps/journal/models.py:373
 msgid "first page"
 msgstr "birinchi sahifa"
 
-#: apps/journal/models.py:373
+#: apps/journal/models.py:374
 msgid "last page"
 msgstr "oxirgi sahifa"
 
-#: apps/journal/models.py:374
+#: apps/journal/models.py:375
 msgid "e-location ID"
 msgstr "e-lokatsiya ID"
 
-#: apps/journal/models.py:375
+#: apps/journal/models.py:376
 msgid "article number"
 msgstr "maqola raqami"
 
-#: apps/journal/models.py:377
+#: apps/journal/models.py:378
 msgid "received"
 msgstr "qabul qilingan"
 
-#: apps/journal/models.py:378
+#: apps/journal/models.py:379
 msgid "revised"
 msgstr "qayta ishlangan"
 
-#: apps/journal/models.py:379 apps/metrics/models.py:94
+#: apps/journal/models.py:380 apps/metrics/models.py:94
 msgid "accepted"
 msgstr "qabul qilingan (tasdiqlangan)"
 
-#: apps/journal/models.py:380
+#: apps/journal/models.py:381
 msgid "published online"
 msgstr "onlayn chop etilgan"
 
-#: apps/journal/models.py:396
+#: apps/journal/models.py:397
 msgid "copyright holder"
 msgstr "mualliflik huquqi egasi"
 
-#: apps/journal/models.py:398 apps/submissions/models.py:227
+#: apps/journal/models.py:399 apps/submissions/models.py:227
 msgid "funding statement"
 msgstr "moliyalashtirish bayonoti"
 
-#: apps/journal/models.py:400 apps/submissions/models.py:229
+#: apps/journal/models.py:401 apps/submissions/models.py:229
 msgid "conflict of interest statement"
 msgstr "manfaatlar toʻqnashuvi bayonoti"
 
-#: apps/journal/models.py:404 apps/submissions/models.py:231
+#: apps/journal/models.py:405 apps/submissions/models.py:231
 msgid "data availability statement"
 msgstr "maʼlumot mavjudligi bayonoti"
 
-#: apps/journal/models.py:406 apps/production/services.py:179
+#: apps/journal/models.py:407 apps/production/services.py:179
 msgid "AI use statement"
 msgstr "SI dan foydalanish bayonoti"
 
-#: apps/journal/models.py:410
+#: apps/journal/models.py:411
 msgid "acknowledgements"
 msgstr "minnatdorchilik"
 
-#: apps/journal/models.py:411
+#: apps/journal/models.py:412
 msgid "retraction notice"
 msgstr "chaqirib olish bildirishnomasi"
 
-#: apps/journal/models.py:415 apps/submissions/models.py:244
-#: apps/submissions/models.py:334 apps/submissions/models.py:395
-#: apps/submissions/models.py:451 apps/submissions/models.py:658
-#: apps/submissions/models.py:698 apps/submissions/models.py:745
-#: apps/submissions/models.py:805 apps/submissions/models.py:855
+#: apps/journal/models.py:416 apps/submissions/models.py:244
+#: apps/submissions/models.py:340 apps/submissions/models.py:401
+#: apps/submissions/models.py:457 apps/submissions/models.py:664
+#: apps/submissions/models.py:704 apps/submissions/models.py:751
+#: apps/submissions/models.py:811 apps/submissions/models.py:861
 msgid "submission"
 msgstr "qoʻlyozma"
 
-#: apps/journal/models.py:422 apps/metrics/models.py:71
+#: apps/journal/models.py:423 apps/metrics/models.py:71
 msgid "views"
 msgstr "koʻrishlar"
 
-#: apps/journal/models.py:423 apps/metrics/models.py:72
+#: apps/journal/models.py:424 apps/metrics/models.py:72
 msgid "downloads"
 msgstr "yuklab olishlar"
 
-#: apps/journal/models.py:424
+#: apps/journal/models.py:425
 msgid "cited by (Crossref)"
 msgstr "iqtibos (Crossref)"
 
-#: apps/journal/models.py:425
+#: apps/journal/models.py:426
 msgid "cited-by updated"
 msgstr "iqtibos yangilangan"
 
-#: apps/journal/models.py:426
+#: apps/journal/models.py:427
 msgid "featured"
 msgstr "tanlangan"
 
-#: apps/journal/models.py:583 apps/journal/models.py:771
-#: apps/submissions/models.py:339
+#: apps/journal/models.py:613 apps/journal/models.py:802
+#: apps/submissions/models.py:345
 msgid "account"
 msgstr "hisob"
 
-#: apps/journal/models.py:592
+#: apps/journal/models.py:622
 msgid "given name (native script)"
 msgstr "ism (milliy yozuv)"
 
-#: apps/journal/models.py:595
+#: apps/journal/models.py:625
 msgid "family name (native script)"
 msgstr "familiya (milliy yozuv)"
 
-#: apps/journal/models.py:598 apps/submissions/models.py:348
+#: apps/journal/models.py:628 apps/submissions/models.py:354
 msgid "corresponding author"
 msgstr "masʼul muallif"
 
-#: apps/journal/models.py:602 apps/submissions/models.py:352
+#: apps/journal/models.py:632 apps/submissions/models.py:358
 msgid "ROR ID"
 msgstr "ROR ID"
 
-#: apps/journal/models.py:606 apps/submissions/models.py:356
+#: apps/journal/models.py:636 apps/submissions/models.py:362
 msgid "CRediT roles"
 msgstr "CRediT rollari"
 
-#: apps/journal/models.py:609 apps/submissions/models.py:783
-#: apps/submissions/models.py:809
+#: apps/journal/models.py:639 apps/submissions/models.py:789
+#: apps/submissions/models.py:815
 msgid "author"
 msgstr "muallif"
 
-#: apps/journal/models.py:610
+#: apps/journal/models.py:640
 msgid "authors"
 msgstr "mualliflar"
 
-#: apps/journal/models.py:665
+#: apps/journal/models.py:695
 msgid "reference text"
 msgstr "manba matni"
 
-#: apps/journal/models.py:667
+#: apps/journal/models.py:697
 msgid "structured data"
 msgstr "tuzilmali maʼlumot"
 
-#: apps/journal/models.py:670
+#: apps/journal/models.py:700
 msgid "reference"
 msgstr "manba"
 
-#: apps/journal/models.py:671
+#: apps/journal/models.py:701
 msgid "references"
 msgstr "adabiyotlar"
 
-#: apps/journal/models.py:702 templates/journal/partials/article_card.html:30
+#: apps/journal/models.py:732 templates/journal/partials/article_card.html:30
 msgid "PDF"
 msgstr "PDF"
 
-#: apps/journal/models.py:703
+#: apps/journal/models.py:733
 msgid "PDF (Uzbek)"
 msgstr "PDF (oʻzbekcha)"
 
-#: apps/journal/models.py:704
+#: apps/journal/models.py:734
 msgid "PDF (Russian)"
 msgstr "PDF (ruscha)"
 
-#: apps/journal/models.py:705
+#: apps/journal/models.py:735
+msgid "Full text (HTML)"
+msgstr "Toʻliq matn (HTML)"
+
+#: apps/journal/models.py:736
 msgid "JATS XML"
 msgstr "JATS XML"
 
-#: apps/journal/models.py:706 templates/production/article_detail.html:37
+#: apps/journal/models.py:737 templates/production/article_detail.html:37
 msgid "Supplementary"
 msgstr "Qoʻshimcha"
 
-#: apps/journal/models.py:712
+#: apps/journal/models.py:743
 msgid "language"
 msgstr "til"
 
-#: apps/journal/models.py:713 apps/submissions/models.py:406
+#: apps/journal/models.py:744 apps/submissions/models.py:412
 msgid "file"
 msgstr "fayl"
 
-#: apps/journal/models.py:715
+#: apps/journal/models.py:746
 msgid "unstamped original"
 msgstr "shtampsiz asl nusxa"
 
-#: apps/journal/models.py:717 apps/submissions/models.py:418
+#: apps/journal/models.py:748 apps/submissions/models.py:424
 msgid "MIME type"
 msgstr "MIME turi"
 
-#: apps/journal/models.py:718
+#: apps/journal/models.py:749
 msgid "size in bytes"
 msgstr "hajmi (bayt)"
 
-#: apps/journal/models.py:719 templates/production/article_detail.html:48
+#: apps/journal/models.py:750 templates/production/article_detail.html:48
 msgid "primary"
 msgstr "asosiy"
 
-#: apps/journal/models.py:723 apps/metrics/models.py:35
+#: apps/journal/models.py:754 apps/metrics/models.py:35
 msgid "galley"
 msgstr "nashr fayli"
 
-#: apps/journal/models.py:724
+#: apps/journal/models.py:755
 msgid "galleys"
 msgstr "nashr fayllari"
 
-#: apps/journal/models.py:751
+#: apps/journal/models.py:782
 msgid "Deputy Editor"
 msgstr "Bosh muharrir oʻrinbosari"
 
-#: apps/journal/models.py:752
+#: apps/journal/models.py:783
 msgid "Managing Editor"
 msgstr "Masʼul kotib"
 
-#: apps/journal/models.py:753
+#: apps/journal/models.py:784
 msgid "Section Editor"
 msgstr "Boʻlim muharriri"
 
-#: apps/journal/models.py:754
+#: apps/journal/models.py:785
 msgid "Editorial Board Member"
 msgstr "Tahrir hayʼati aʼzosi"
 
-#: apps/journal/models.py:755
+#: apps/journal/models.py:786
 msgid "International Advisory Board"
 msgstr "Xalqaro maslahat kengashi"
 
-#: apps/journal/models.py:756 apps/journal/views.py:502
+#: apps/journal/models.py:787 apps/journal/views.py:503
 #: templates/includes/footer.html:9
 msgid "Reviewer Board"
 msgstr "Taqrizchilar kengashi"
 
-#: apps/journal/models.py:777
+#: apps/journal/models.py:808
 msgid "full name"
 msgstr "toʻliq ism"
 
-#: apps/journal/models.py:779
+#: apps/journal/models.py:810
 msgid "role"
 msgstr "rol"
 
-#: apps/journal/models.py:788
+#: apps/journal/models.py:819
 msgid "photo"
 msgstr "surat"
 
-#: apps/journal/models.py:790
+#: apps/journal/models.py:821
 msgid "expertise"
 msgstr "mutaxassislik"
 
-#: apps/journal/models.py:797
+#: apps/journal/models.py:828
 msgid "demo entry"
 msgstr "namuna yozuv"
 
-#: apps/journal/models.py:799
+#: apps/journal/models.py:830
 msgid "Seeded placeholder — replace with a real board member."
 msgstr "Namuna yozuv — haqiqiy hayʼat aʼzosi bilan almashtiring."
 
-#: apps/journal/models.py:803
+#: apps/journal/models.py:834
 msgid "editorial board member"
 msgstr "tahrir hayʼati aʼzosi"
 
-#: apps/journal/models.py:804
+#: apps/journal/models.py:835
 msgid "editorial board members"
 msgstr "tahrir hayʼati aʼzolari"
 
-#: apps/journal/models.py:845
+#: apps/journal/models.py:876
 msgid "total views"
 msgstr "jami koʻrishlar"
 
-#: apps/journal/models.py:846
+#: apps/journal/models.py:877
 msgid "total downloads"
 msgstr "jami yuklab olishlar"
 
-#: apps/journal/models.py:847
+#: apps/journal/models.py:878
 msgid "views (30 days)"
 msgstr "koʻrishlar (30 kun)"
 
-#: apps/journal/models.py:848
+#: apps/journal/models.py:879
 msgid "downloads (30 days)"
 msgstr "yuklab olishlar (30 kun)"
 
-#: apps/journal/models.py:849
+#: apps/journal/models.py:880
 msgid "computed at"
 msgstr "hisoblangan vaqt"
 
-#: apps/journal/models.py:852 apps/journal/models.py:853
+#: apps/journal/models.py:883 apps/journal/models.py:884
 msgid "article statistics"
 msgstr "maqola statistikasi"
 
@@ -1731,24 +1731,24 @@ msgstr ""
 "Songa kirishidan oldin chop etilgan, DOI orqali iqtibos qilinadigan "
 "taqrizdan oʻtgan maqolalar."
 
-#: apps/journal/views.py:436
+#: apps/journal/views.py:437
 msgid "Author not found."
 msgstr "Muallif topilmadi."
 
-#: apps/journal/views.py:448
+#: apps/journal/views.py:449
 #, python-format
 msgid "Articles by %(name)s"
 msgstr "%(name)s maqolalari"
 
-#: apps/journal/views.py:493 templates/includes/footer.html:8
+#: apps/journal/views.py:494 templates/includes/footer.html:8
 msgid "Editorial Board"
 msgstr "Tahrir hayʼati"
 
-#: apps/journal/views.py:494
+#: apps/journal/views.py:495
 msgid "Editorial board of the journal."
 msgstr "Jurnalning tahrir hayʼati."
 
-#: apps/journal/views.py:503
+#: apps/journal/views.py:504
 msgid "Standing reviewer board of the journal."
 msgstr "Jurnalning doimiy taqrizchilar kengashi."
 
@@ -1760,7 +1760,7 @@ msgstr "Koʻrish"
 msgid "Download"
 msgstr "Yuklab olish"
 
-#: apps/metrics/models.py:32 apps/submissions/models.py:405
+#: apps/metrics/models.py:32 apps/submissions/models.py:411
 msgid "kind"
 msgstr "turi"
 
@@ -1929,7 +1929,7 @@ msgid "At least 10 references"
 msgstr "Kamida 10 ta manba"
 
 #: apps/production/services.py:246 templates/core/about.html:24
-#: templates/journal/article_detail.html:261
+#: templates/journal/article_detail.html:279
 msgid "Licence"
 msgstr "Litsenziya"
 
@@ -2084,7 +2084,7 @@ msgid "Please state your use of generative AI, or write 'None'."
 msgstr ""
 "Generativ SI dan foydalanishingizni koʻrsating yoki «Yoʻq» deb yozing."
 
-#: apps/submissions/forms.py:99 apps/submissions/models.py:376
+#: apps/submissions/forms.py:99 apps/submissions/models.py:382
 msgid "Anonymised manuscript"
 msgstr "Anonimlashtirilgan qoʻlyozma"
 
@@ -2093,7 +2093,7 @@ msgstr "Anonimlashtirilgan qoʻlyozma"
 msgid "PDF or DOCX, at most %(size)s MB, with no author information."
 msgstr "PDF yoki DOCX, koʻpi bilan %(size)s MB, muallif maʼlumotlarisiz."
 
-#: apps/submissions/forms.py:105 apps/submissions/models.py:377
+#: apps/submissions/forms.py:105 apps/submissions/models.py:383
 msgid "Title page"
 msgstr "Sarlavha sahifasi"
 
@@ -2103,7 +2103,7 @@ msgstr ""
 "Barcha mualliflar, ish joylari va aloqa maʼlumotlari keltirilgan alohida "
 "fayl."
 
-#: apps/submissions/forms.py:108 apps/submissions/models.py:378
+#: apps/submissions/forms.py:108 apps/submissions/models.py:384
 msgid "Figures and tables"
 msgstr "Rasm va jadvallar"
 
@@ -2129,11 +2129,11 @@ msgstr "Ruscha"
 msgid "Select between 1 and 5 codes."
 msgstr "1 dan 5 tagacha kod tanlang."
 
-#: apps/submissions/forms.py:150 templates/journal/article_detail.html:170
+#: apps/submissions/forms.py:150 templates/journal/article_detail.html:188
 msgid "Funding"
 msgstr "Moliyalashtirish"
 
-#: apps/submissions/forms.py:154 templates/journal/article_detail.html:173
+#: apps/submissions/forms.py:154 templates/journal/article_detail.html:191
 msgid "Conflict of interest"
 msgstr "Manfaatlar toʻqnashuvi"
 
@@ -2141,11 +2141,11 @@ msgstr "Manfaatlar toʻqnashuvi"
 msgid "The authors declare no conflict of interest."
 msgstr "Mualliflar manfaatlar toʻqnashuvi yoʻqligini bildiradi."
 
-#: apps/submissions/forms.py:160 templates/journal/article_detail.html:176
+#: apps/submissions/forms.py:160 templates/journal/article_detail.html:194
 msgid "Data availability"
 msgstr "Maʼlumot mavjudligi"
 
-#: apps/submissions/forms.py:165 templates/journal/article_detail.html:208
+#: apps/submissions/forms.py:165 templates/journal/article_detail.html:226
 msgid "References"
 msgstr "Adabiyotlar"
 
@@ -2217,7 +2217,7 @@ msgstr "Har qatorda bittadan, qisqa sabab bilan."
 msgid "Cover letter"
 msgstr "Muqova xati"
 
-#: apps/submissions/forms.py:324 apps/submissions/models.py:381
+#: apps/submissions/forms.py:324 apps/submissions/models.py:387
 msgid "Revised manuscript"
 msgstr "Qayta ishlangan qoʻlyozma"
 
@@ -2225,7 +2225,7 @@ msgstr "Qayta ishlangan qoʻlyozma"
 msgid "Response to reviewers (file)"
 msgstr "Taqrizchilarga javob (fayl)"
 
-#: apps/submissions/forms.py:328 apps/submissions/models.py:382
+#: apps/submissions/forms.py:328 apps/submissions/models.py:388
 msgid "Response to reviewers"
 msgstr "Taqrizchilarga javob"
 
@@ -2277,7 +2277,7 @@ msgstr "Mualliflar uchun kamida 100 ta belgidan iborat fikr yozing."
 
 #: apps/submissions/forms.py:454 templates/core/contact.html:14
 #: templates/dashboard/submission_detail.html:70
-#: templates/journal/article_detail.html:309
+#: templates/journal/article_detail.html:327
 msgid "E-mail"
 msgstr "Elektron pochta"
 
@@ -2301,21 +2301,21 @@ msgstr "Qayta ishlash soʻralgan"
 msgid "Resubmitted"
 msgstr "Qayta yuborilgan"
 
-#: apps/submissions/models.py:48 apps/submissions/models.py:488
-#: apps/submissions/models.py:496 templates/core/partials/bar_chart.html:22
+#: apps/submissions/models.py:48 apps/submissions/models.py:494
+#: apps/submissions/models.py:502 templates/core/partials/bar_chart.html:22
 #: templates/dashboard/reports.html:36
 msgid "Accepted"
 msgstr "Qabul qilingan"
 
-#: apps/submissions/models.py:49 apps/submissions/models.py:830
+#: apps/submissions/models.py:49 apps/submissions/models.py:836
 msgid "Copyediting"
 msgstr "Tahrir"
 
-#: apps/submissions/models.py:50 apps/submissions/models.py:831
+#: apps/submissions/models.py:50 apps/submissions/models.py:837
 msgid "Author proof"
 msgstr "Muallif korrekturasi"
 
-#: apps/submissions/models.py:51 apps/submissions/models.py:832
+#: apps/submissions/models.py:51 apps/submissions/models.py:838
 msgid "Typesetting"
 msgstr "Sahifalash"
 
@@ -2445,427 +2445,427 @@ msgstr ""
 msgid "submissions"
 msgstr "qoʻlyozmalar"
 
-#: apps/submissions/models.py:355
+#: apps/submissions/models.py:361
 msgid "contribution"
 msgstr "hissa"
 
-#: apps/submissions/models.py:359
+#: apps/submissions/models.py:365
 msgid "submission author"
 msgstr "qoʻlyozma muallifi"
 
-#: apps/submissions/models.py:360
+#: apps/submissions/models.py:366
 msgid "submission authors"
 msgstr "qoʻlyozma mualliflari"
 
-#: apps/submissions/models.py:379
+#: apps/submissions/models.py:385
 msgid "Data"
 msgstr "Maʼlumotlar"
 
-#: apps/submissions/models.py:380
+#: apps/submissions/models.py:386
 msgid "Supplementary material"
 msgstr "Qoʻshimcha material"
 
-#: apps/submissions/models.py:383
+#: apps/submissions/models.py:389
 #: templates/production/submission_detail.html:65
 msgid "Copyedited manuscript"
 msgstr "Tahrirlangan qoʻlyozma"
 
-#: apps/submissions/models.py:384
+#: apps/submissions/models.py:390
 #: templates/production/submission_detail.html:66
 msgid "Proof"
 msgstr "Korrektura"
 
-#: apps/submissions/models.py:385
+#: apps/submissions/models.py:391
 #: templates/production/submission_detail.html:67
 msgid "Final version"
 msgstr "Yakuniy variant"
 
-#: apps/submissions/models.py:399 apps/submissions/models.py:500
-#: apps/submissions/models.py:664 apps/submissions/models.py:704
+#: apps/submissions/models.py:405 apps/submissions/models.py:506
+#: apps/submissions/models.py:670 apps/submissions/models.py:710
 msgid "round"
 msgstr "bosqich"
 
-#: apps/submissions/models.py:407
+#: apps/submissions/models.py:413
 msgid "original file name"
 msgstr "asl fayl nomi"
 
-#: apps/submissions/models.py:410
+#: apps/submissions/models.py:416
 msgid "uploaded by"
 msgstr "yuklagan"
 
-#: apps/submissions/models.py:416
+#: apps/submissions/models.py:422
 msgid "version"
 msgstr "versiya"
 
-#: apps/submissions/models.py:417
+#: apps/submissions/models.py:423
 msgid "size"
 msgstr "hajmi"
 
-#: apps/submissions/models.py:419
+#: apps/submissions/models.py:425
 msgid "visible to reviewers"
 msgstr "taqrizchilarga koʻrinadi"
 
-#: apps/submissions/models.py:422
+#: apps/submissions/models.py:428
 msgid "submission file"
 msgstr "qoʻlyozma fayli"
 
-#: apps/submissions/models.py:423
+#: apps/submissions/models.py:429
 msgid "submission files"
 msgstr "qoʻlyozma fayllari"
 
-#: apps/submissions/models.py:448
+#: apps/submissions/models.py:454
 msgid "Closed"
 msgstr "Yopiq"
 
-#: apps/submissions/models.py:453
+#: apps/submissions/models.py:459
 msgid "round number"
 msgstr "bosqich raqami"
 
-#: apps/submissions/models.py:454
+#: apps/submissions/models.py:460
 msgid "opened at"
 msgstr "ochilgan vaqt"
 
-#: apps/submissions/models.py:455
+#: apps/submissions/models.py:461
 msgid "closed at"
 msgstr "yopilgan vaqt"
 
-#: apps/submissions/models.py:461
+#: apps/submissions/models.py:467
 msgid "review round"
 msgstr "taqriz bosqichi"
 
-#: apps/submissions/models.py:462
+#: apps/submissions/models.py:468
 msgid "review rounds"
 msgstr "taqriz bosqichlari"
 
-#: apps/submissions/models.py:487
+#: apps/submissions/models.py:493
 msgid "Invited"
 msgstr "Taklif qilingan"
 
-#: apps/submissions/models.py:489 apps/submissions/models.py:497
+#: apps/submissions/models.py:495 apps/submissions/models.py:503
 msgid "Declined"
 msgstr "Rad etilgan"
 
-#: apps/submissions/models.py:490
+#: apps/submissions/models.py:496
 msgid "Review submitted"
 msgstr "Taqriz yuborilgan"
 
-#: apps/submissions/models.py:491
+#: apps/submissions/models.py:497
 msgid "Cancelled"
 msgstr "Bekor qilingan"
 
-#: apps/submissions/models.py:492
+#: apps/submissions/models.py:498
 msgid "Overdue"
 msgstr "Muddati oʻtgan"
 
-#: apps/submissions/models.py:504
+#: apps/submissions/models.py:510
 msgid "reviewer"
 msgstr "taqrizchi"
 
-#: apps/submissions/models.py:510
+#: apps/submissions/models.py:516
 msgid "invited by"
 msgstr "taklif qilgan"
 
-#: apps/submissions/models.py:516
+#: apps/submissions/models.py:522
 msgid "invited at"
 msgstr "taklif qilingan vaqt"
 
-#: apps/submissions/models.py:517
+#: apps/submissions/models.py:523
 msgid "responded at"
 msgstr "javob bergan vaqt"
 
-#: apps/submissions/models.py:519
+#: apps/submissions/models.py:525
 msgid "response"
 msgstr "javob"
 
-#: apps/submissions/models.py:521
+#: apps/submissions/models.py:527
 msgid "decline reason"
 msgstr "rad etish sababi"
 
-#: apps/submissions/models.py:522 apps/submissions/models.py:719
-#: apps/submissions/models.py:871
+#: apps/submissions/models.py:528 apps/submissions/models.py:725
+#: apps/submissions/models.py:877
 msgid "due at"
 msgstr "muddati"
 
-#: apps/submissions/models.py:523 apps/submissions/models.py:872
+#: apps/submissions/models.py:529 apps/submissions/models.py:878
 msgid "completed at"
 msgstr "yakunlangan vaqt"
 
-#: apps/submissions/models.py:524
+#: apps/submissions/models.py:530
 msgid "reminders sent"
 msgstr "yuborilgan eslatmalar"
 
-#: apps/submissions/models.py:525
+#: apps/submissions/models.py:531
 msgid "last reminder"
 msgstr "oxirgi eslatma"
 
-#: apps/submissions/models.py:526
+#: apps/submissions/models.py:532
 msgid "access token"
 msgstr "kirish tokeni"
 
-#: apps/submissions/models.py:532
+#: apps/submissions/models.py:538
 msgid "review assignment"
 msgstr "taqriz topshirigʻi"
 
-#: apps/submissions/models.py:533
+#: apps/submissions/models.py:539
 msgid "review assignments"
 msgstr "taqriz topshiriqlari"
 
-#: apps/submissions/models.py:581 apps/submissions/models.py:650
+#: apps/submissions/models.py:587 apps/submissions/models.py:656
 #: apps/submissions/workflow.py:116 templates/review/dashboard.html:27
 msgid "Accept"
 msgstr "Qabul qilish"
 
-#: apps/submissions/models.py:582 apps/submissions/models.py:651
+#: apps/submissions/models.py:588 apps/submissions/models.py:657
 msgid "Minor revision"
 msgstr "Kichik qayta ishlash"
 
-#: apps/submissions/models.py:583 apps/submissions/models.py:652
+#: apps/submissions/models.py:589 apps/submissions/models.py:658
 msgid "Major revision"
 msgstr "Katta qayta ishlash"
 
-#: apps/submissions/models.py:584 apps/submissions/models.py:653
+#: apps/submissions/models.py:590 apps/submissions/models.py:659
 #: apps/submissions/workflow.py:123
 msgid "Reject"
 msgstr "Rad etish"
 
-#: apps/submissions/models.py:588
+#: apps/submissions/models.py:594
 msgid "Originality and novelty"
 msgstr "Originallik va yangilik"
 
-#: apps/submissions/models.py:589
+#: apps/submissions/models.py:595
 msgid "Relevance to the journal's scope"
 msgstr "Jurnal yoʻnalishiga muvofiqlik"
 
-#: apps/submissions/models.py:590
+#: apps/submissions/models.py:596
 msgid "Methodological rigour"
 msgstr "Metodologik puxtalik"
 
-#: apps/submissions/models.py:591
+#: apps/submissions/models.py:597
 msgid "Data and results"
 msgstr "Maʼlumot va natijalar"
 
-#: apps/submissions/models.py:592
+#: apps/submissions/models.py:598
 msgid "Coverage of the literature"
 msgstr "Adabiyot qamrovi"
 
-#: apps/submissions/models.py:593
+#: apps/submissions/models.py:599
 msgid "Writing and structure"
 msgstr "Yozilish va tuzilish"
 
-#: apps/submissions/models.py:598
+#: apps/submissions/models.py:604
 msgid "assignment"
 msgstr "topshiriq"
 
-#: apps/submissions/models.py:603
+#: apps/submissions/models.py:609
 msgid "recommendation"
 msgstr "tavsiya"
 
-#: apps/submissions/models.py:605
+#: apps/submissions/models.py:611
 msgid "scores"
 msgstr "baholar"
 
-#: apps/submissions/models.py:606
+#: apps/submissions/models.py:612
 msgid "comments to the authors"
 msgstr "mualliflarga izohlar"
 
-#: apps/submissions/models.py:607
+#: apps/submissions/models.py:613
 msgid "confidential comments to the editor"
 msgstr "muharrirga maxfiy izohlar"
 
-#: apps/submissions/models.py:609
+#: apps/submissions/models.py:615
 msgid "annotated file"
 msgstr "izohlangan fayl"
 
-#: apps/submissions/models.py:611
+#: apps/submissions/models.py:617
 msgid "attachment metadata stripped"
 msgstr "ilova metamaʼlumotlari tozalangan"
 
-#: apps/submissions/models.py:614
+#: apps/submissions/models.py:620
 msgid "review quality (1–5)"
 msgstr "taqriz sifati (1–5)"
 
-#: apps/submissions/models.py:619
+#: apps/submissions/models.py:625
 msgid "draft"
 msgstr "qoralama"
 
-#: apps/submissions/models.py:622
+#: apps/submissions/models.py:628
 msgid "review"
 msgstr "taqriz"
 
-#: apps/submissions/models.py:623
+#: apps/submissions/models.py:629
 msgid "reviews"
 msgstr "taqrizlar"
 
-#: apps/submissions/models.py:648 apps/submissions/workflow.py:74
+#: apps/submissions/models.py:654 apps/submissions/workflow.py:74
 msgid "Desk reject"
 msgstr "Muharrir rad etishi"
 
-#: apps/submissions/models.py:649 apps/submissions/workflow.py:81
+#: apps/submissions/models.py:655 apps/submissions/workflow.py:81
 msgid "Send to review"
 msgstr "Taqrizga yuborish"
 
-#: apps/submissions/models.py:654
+#: apps/submissions/models.py:660
 msgid "Reject with resubmission encouraged"
 msgstr "Qayta yuborish tavsiyasi bilan rad etish"
 
-#: apps/submissions/models.py:672
+#: apps/submissions/models.py:678
 msgid "decided by"
 msgstr "qaror qabul qilgan"
 
-#: apps/submissions/models.py:678 apps/submissions/models.py:712
+#: apps/submissions/models.py:684 apps/submissions/models.py:718
 msgid "decision"
 msgstr "qaror"
 
-#: apps/submissions/models.py:679
+#: apps/submissions/models.py:685
 msgid "decision letter"
 msgstr "qaror xati"
 
-#: apps/submissions/models.py:680
+#: apps/submissions/models.py:686
 msgid "decided at"
 msgstr "qaror sanasi"
 
-#: apps/submissions/models.py:681
+#: apps/submissions/models.py:687
 msgid "e-mailed at"
 msgstr "xat yuborilgan vaqt"
 
-#: apps/submissions/models.py:684
+#: apps/submissions/models.py:690
 msgid "editorial decision"
 msgstr "tahririy qaror"
 
-#: apps/submissions/models.py:685
+#: apps/submissions/models.py:691
 msgid "editorial decisions"
 msgstr "tahririy qarorlar"
 
-#: apps/submissions/models.py:718
+#: apps/submissions/models.py:724
 msgid "major revision"
 msgstr "katta qayta ishlash"
 
-#: apps/submissions/models.py:720
+#: apps/submissions/models.py:726
 msgid "author responded at"
 msgstr "muallif javob bergan vaqt"
 
-#: apps/submissions/models.py:721
+#: apps/submissions/models.py:727
 msgid "response to reviewers"
 msgstr "taqrizchilarga javob"
 
-#: apps/submissions/models.py:722
+#: apps/submissions/models.py:728
 msgid "reminder sent"
 msgstr "eslatma yuborilgan"
 
-#: apps/submissions/models.py:725
+#: apps/submissions/models.py:731
 msgid "revision request"
 msgstr "qayta ishlash soʻrovi"
 
-#: apps/submissions/models.py:726
+#: apps/submissions/models.py:732
 msgid "revision requests"
 msgstr "qayta ishlash soʻrovlari"
 
-#: apps/submissions/models.py:730
+#: apps/submissions/models.py:736
 msgid "major"
 msgstr "katta"
 
-#: apps/submissions/models.py:730
+#: apps/submissions/models.py:736
 msgid "minor"
 msgstr "kichik"
 
-#: apps/submissions/models.py:738
+#: apps/submissions/models.py:744
 msgid "Author ↔ Editor"
 msgstr "Muallif ↔ Muharrir"
 
-#: apps/submissions/models.py:739
+#: apps/submissions/models.py:745
 msgid "Editor ↔ Reviewer"
 msgstr "Muharrir ↔ Taqrizchi"
 
-#: apps/submissions/models.py:740
+#: apps/submissions/models.py:746
 msgid "Editor ↔ Production"
 msgstr "Muharrir ↔ Nashr"
 
-#: apps/submissions/models.py:741
+#: apps/submissions/models.py:747
 #: templates/dashboard/submission_detail.html:284
 msgid "Editors only"
 msgstr "Faqat muharrirlar"
 
-#: apps/submissions/models.py:751
+#: apps/submissions/models.py:757
 msgid "visibility"
 msgstr "koʻrinuvchanlik"
 
-#: apps/submissions/models.py:758
+#: apps/submissions/models.py:764
 msgid "created by"
 msgstr "yaratgan"
 
-#: apps/submissions/models.py:764
+#: apps/submissions/models.py:770
 msgid "closed"
 msgstr "yopilgan"
 
-#: apps/submissions/models.py:767 apps/submissions/models.py:779
+#: apps/submissions/models.py:773 apps/submissions/models.py:785
 msgid "discussion"
 msgstr "muhokama"
 
-#: apps/submissions/models.py:768
+#: apps/submissions/models.py:774
 msgid "discussions"
 msgstr "muhokamalar"
 
-#: apps/submissions/models.py:790
+#: apps/submissions/models.py:796
 msgid "system message"
 msgstr "tizim xabari"
 
-#: apps/submissions/models.py:793
+#: apps/submissions/models.py:799
 msgid "discussion message"
 msgstr "muhokama xabari"
 
-#: apps/submissions/models.py:794
+#: apps/submissions/models.py:800
 msgid "discussion messages"
 msgstr "muhokama xabarlari"
 
-#: apps/submissions/models.py:818
+#: apps/submissions/models.py:824
 msgid "editor note"
 msgstr "muharrir izohi"
 
-#: apps/submissions/models.py:819
+#: apps/submissions/models.py:825
 msgid "editor notes"
 msgstr "muharrir izohlari"
 
-#: apps/submissions/models.py:833
+#: apps/submissions/models.py:839
 msgid "Metadata completion"
 msgstr "Metamaʼlumotlarni toʻldirish"
 
-#: apps/submissions/models.py:834
+#: apps/submissions/models.py:840
 msgid "DOI assignment"
 msgstr "DOI tayinlash"
 
-#: apps/submissions/models.py:835
+#: apps/submissions/models.py:841
 msgid "Scheduled to issue"
 msgstr "Songa rejalashtirilgan"
 
-#: apps/submissions/models.py:839 templates/dashboard/home.html:115
+#: apps/submissions/models.py:845 templates/dashboard/home.html:115
 msgid "In progress"
 msgstr "Jarayonda"
 
-#: apps/submissions/models.py:840
+#: apps/submissions/models.py:846
 msgid "Done"
 msgstr "Bajarildi"
 
-#: apps/submissions/models.py:841
+#: apps/submissions/models.py:847
 msgid "Blocked"
 msgstr "Toʻxtatilgan"
 
-#: apps/submissions/models.py:859
+#: apps/submissions/models.py:865
 msgid "stage"
 msgstr "bosqich"
 
-#: apps/submissions/models.py:862
+#: apps/submissions/models.py:868
 msgid "assignee"
 msgstr "masʼul"
 
-#: apps/submissions/models.py:873
+#: apps/submissions/models.py:879
 msgid "notes"
 msgstr "izohlar"
 
-#: apps/submissions/models.py:876
+#: apps/submissions/models.py:882
 msgid "production task"
 msgstr "nashr vazifasi"
 
-#: apps/submissions/models.py:877
+#: apps/submissions/models.py:883
 msgid "production tasks"
 msgstr "nashr vazifalari"
 
@@ -3250,7 +3250,7 @@ msgid "The file has been removed."
 msgstr "Fayl oʻchirildi."
 
 #: apps/submissions/workflow.py:60 templates/core/for_authors.html:30
-#: templates/includes/header.html:37 templates/journal/home.html:181
+#: templates/includes/header.html:43 templates/journal/home.html:181
 msgid "Submit"
 msgstr "Yuborish"
 
@@ -3361,8 +3361,8 @@ msgid "This confirmation link is invalid or has expired."
 msgstr "Bu tasdiqlash havolasi yaroqsiz yoki muddati oʻtgan."
 
 #: templates/account/login.html:3 templates/account/login.html:5
-#: templates/account/login.html:18 templates/includes/header.html:65
-#: templates/includes/header.html:102
+#: templates/account/login.html:18 templates/includes/header.html:71
+#: templates/includes/header.html:108
 msgid "Sign in"
 msgstr "Kirish"
 
@@ -3384,7 +3384,7 @@ msgid "Create an account"
 msgstr "Hisob yaratish"
 
 #: templates/account/logout.html:3 templates/account/logout.html:5
-#: templates/account/logout.html:9 templates/includes/header.html:59
+#: templates/account/logout.html:9 templates/includes/header.html:65
 msgid "Sign out"
 msgstr "Chiqish"
 
@@ -3712,7 +3712,7 @@ msgid "Countries of authors"
 msgstr "Mualliflar mamlakatlari"
 
 #: templates/core/templates_download.html:7
-#: templates/journal/article_detail.html:316 templates/journal/home.html:120
+#: templates/journal/article_detail.html:334 templates/journal/home.html:120
 #: templates/journal/partials/article_card.html:39
 msgid "Downloads"
 msgstr "Yuklab olishlar"
@@ -3776,7 +3776,7 @@ msgstr "Panel navigatsiyasi"
 #: templates/dashboard/reports.html:3
 #: templates/dashboard/reviewer_finder.html:3
 #: templates/dashboard/submission_detail.html:3
-#: templates/dashboard/two_factor.html:3 templates/includes/header.html:51
+#: templates/dashboard/two_factor.html:3 templates/includes/header.html:57
 msgid "Dashboard"
 msgstr "Boshqaruv paneli"
 
@@ -3802,27 +3802,27 @@ msgstr "Nashrda"
 msgid "Reports"
 msgstr "Hisobotlar"
 
-#: templates/dashboard/_base.html:23 templates/production/queue.html:3
+#: templates/dashboard/_base.html:25 templates/production/queue.html:3
 #: templates/production/queue.html:5
 #: templates/production/submission_detail.html:3
 msgid "Production"
 msgstr "Nashr"
 
-#: templates/dashboard/_base.html:25 templates/dashboard/profile.html:9
+#: templates/dashboard/_base.html:27 templates/dashboard/profile.html:9
 msgid "Account"
 msgstr "Hisob"
 
-#: templates/dashboard/_base.html:26 templates/dashboard/profile.html:3
-#: templates/dashboard/profile.html:5 templates/includes/header.html:52
+#: templates/dashboard/_base.html:28 templates/dashboard/profile.html:3
+#: templates/dashboard/profile.html:5 templates/includes/header.html:58
 msgid "Profile"
 msgstr "Profil"
 
-#: templates/dashboard/_base.html:27 templates/dashboard/two_factor.html:3
-#: templates/dashboard/two_factor.html:5 templates/includes/header.html:54
+#: templates/dashboard/_base.html:29 templates/dashboard/two_factor.html:3
+#: templates/dashboard/two_factor.html:5 templates/includes/header.html:60
 msgid "Two-factor authentication"
 msgstr "Ikki bosqichli autentifikatsiya"
 
-#: templates/dashboard/_base.html:29
+#: templates/dashboard/_base.html:31
 msgid "Django admin"
 msgstr "Django admin paneli"
 
@@ -4008,7 +4008,7 @@ msgstr "Profilni saqlash"
 #: templates/dashboard/queue.html:11
 #: templates/dashboard/reviewer_finder.html:18
 #: templates/includes/footer.html:42 templates/includes/header.html:20
-#: templates/includes/header.html:33 templates/includes/header.html:98
+#: templates/includes/header.html:33 templates/includes/header.html:104
 #: templates/search/search.html:3 templates/search/search.html:6
 #: templates/search/search.html:76
 msgid "Search"
@@ -4104,7 +4104,7 @@ msgstr "tayinlanmagan"
 
 #: templates/dashboard/submission_detail.html:39
 #: templates/includes/language_switcher.html:4
-#: templates/journal/article_detail.html:131
+#: templates/journal/article_detail.html:132
 #: templates/review/assignment_detail.html:12
 #: templates/submissions/wizard_step5.html:20
 msgid "Language"
@@ -4137,7 +4137,7 @@ msgid "Rounds"
 msgstr "Bosqichlar"
 
 #: templates/dashboard/submission_detail.html:60
-#: templates/journal/article_detail.html:139
+#: templates/journal/article_detail.html:140
 #: templates/review/assignment_detail.html:22
 msgid "Abstract"
 msgstr "Annotatsiya"
@@ -4359,7 +4359,7 @@ msgid "Current issue"
 msgstr "Joriy son"
 
 #: templates/includes/footer.html:39 templates/includes/header.html:11
-#: templates/includes/header.html:93 templates/journal/archive.html:3
+#: templates/includes/header.html:99 templates/journal/archive.html:3
 #: templates/journal/archive.html:6 templates/journal/article_detail.html:20
 #: templates/journal/issue_detail.html:17
 msgid "Archive"
@@ -4418,19 +4418,19 @@ msgstr "Maxfiylik"
 msgid "Ethics"
 msgstr "Etika"
 
-#: templates/includes/header.html:9 templates/includes/header.html:91
+#: templates/includes/header.html:9 templates/includes/header.html:97
 msgid "Primary"
 msgstr "Asosiy"
 
-#: templates/includes/header.html:10 templates/includes/header.html:92
+#: templates/includes/header.html:10 templates/includes/header.html:98
 msgid "Current Issue"
 msgstr "Joriy son"
 
-#: templates/includes/header.html:72
+#: templates/includes/header.html:78
 msgid "Menu"
 msgstr "Menyu"
 
-#: templates/includes/header.html:100 templates/journal/home.html:32
+#: templates/includes/header.html:106 templates/journal/home.html:32
 msgid "Submit your manuscript"
 msgstr "Qoʻlyozmangizni yuboring"
 
@@ -4460,7 +4460,7 @@ msgstr "Barcha yillar"
 msgid "Volume"
 msgstr "Jild"
 
-#: templates/journal/archive.html:35 templates/journal/article_detail.html:91
+#: templates/journal/archive.html:35 templates/journal/article_detail.html:92
 #: templates/production/article_detail.html:86
 #: templates/production/queue.html:66
 msgid "Issue"
@@ -4498,84 +4498,94 @@ msgstr ""
 "Ushbu maqola chaqirib olingan. Yozuv COPE tavsiyalariga muvofiq saytda "
 "saqlanadi."
 
-#: templates/journal/article_detail.html:40
+#: templates/journal/article_detail.html:41
 msgid "Open Access"
 msgstr "Ochiq kirish"
 
-#: templates/journal/article_detail.html:51
+#: templates/journal/article_detail.html:52
 msgid "Title in other languages"
 msgstr "Boshqa tillardagi sarlavha"
 
-#: templates/journal/article_detail.html:71
+#: templates/journal/article_detail.html:72
 msgid "E-mail the corresponding author"
 msgstr "Masʼul muallifga xat yozish"
 
-#: templates/journal/article_detail.html:78
+#: templates/journal/article_detail.html:79
 msgid "Affiliation not provided"
 msgstr "Ish joyi koʻrsatilmagan"
 
-#: templates/journal/article_detail.html:94
+#: templates/journal/article_detail.html:95
 #: templates/production/issue_builder.html:13
 msgid "Pages"
 msgstr "Sahifalar"
 
-#: templates/journal/article_detail.html:104
+#: templates/journal/article_detail.html:105
 msgid "Published online"
 msgstr "Onlayn chop etilgan"
 
-#: templates/journal/article_detail.html:109
+#: templates/journal/article_detail.html:110
 msgid "Received / Accepted"
 msgstr "Qabul qilingan / tasdiqlangan"
 
-#: templates/journal/article_detail.html:124
+#: templates/journal/article_detail.html:125
 #: templates/review/assignment_detail.html:15
 msgid "Keywords"
 msgstr "Kalit soʻzlar"
 
-#: templates/journal/article_detail.html:143
+#: templates/journal/article_detail.html:144
 msgid "Abstract language"
 msgstr "Annotatsiya tili"
 
-#: templates/journal/article_detail.html:161
+#: templates/journal/article_detail.html:162
 msgid "No abstract is available for this article."
 msgstr "Bu maqola uchun annotatsiya mavjud emas."
 
-#: templates/journal/article_detail.html:179
+#: templates/journal/article_detail.html:172
+#| msgid "Full tree"
+msgid "Full text"
+msgstr "Toʻliq matn"
+
+#: templates/journal/article_detail.html:174
+#: templates/journal/article_detail.html:293
+msgid "Download PDF"
+msgstr "PDF yuklab olish"
+
+#: templates/journal/article_detail.html:197
 msgid "Use of generative AI"
 msgstr "Generativ SI dan foydalanish"
 
-#: templates/journal/article_detail.html:182
+#: templates/journal/article_detail.html:200
 msgid "Acknowledgements"
 msgstr "Minnatdorchilik"
 
-#: templates/journal/article_detail.html:188
+#: templates/journal/article_detail.html:206
 msgid "How to cite"
 msgstr "Qanday iqtibos qilish kerak"
 
-#: templates/journal/article_detail.html:221
+#: templates/journal/article_detail.html:239
 msgid "Google Scholar"
 msgstr "Google Scholar"
 
-#: templates/journal/article_detail.html:232
+#: templates/journal/article_detail.html:250
 msgid "Related articles"
 msgstr "Aloqador maqolalar"
 
-#: templates/journal/article_detail.html:242
+#: templates/journal/article_detail.html:260
 msgid "About the authors"
 msgstr "Mualliflar haqida"
 
-#: templates/journal/article_detail.html:263
+#: templates/journal/article_detail.html:281
 #, python-format
 msgid "© %(holder)s."
 msgstr "© %(holder)s."
 
-#: templates/journal/article_detail.html:264
+#: templates/journal/article_detail.html:282
 msgid "This is an open access article distributed under the terms of the"
 msgstr ""
 "Bu ochiq kirishli maqola boʻlib, quyidagi litsenziya shartlari asosida "
 "tarqatiladi:"
 
-#: templates/journal/article_detail.html:267
+#: templates/journal/article_detail.html:285
 msgid ""
 "which permits unrestricted use, distribution and reproduction in any medium,"
 " provided the original work is properly cited."
@@ -4583,38 +4593,34 @@ msgstr ""
 "u asl ishga toʻgʻri iqtibos berilgan holda istalgan muhitda cheklovsiz "
 "foydalanish, tarqatish va qayta chop etishga ruxsat beradi."
 
-#: templates/journal/article_detail.html:275
-msgid "Download PDF"
-msgstr "PDF yuklab olish"
-
-#: templates/journal/article_detail.html:289
+#: templates/journal/article_detail.html:307
 #: templates/journal/partials/cite_modal.html:12
 msgid "Cite this article"
 msgstr "Ushbu maqolaga iqtibos"
 
-#: templates/journal/article_detail.html:291
+#: templates/journal/article_detail.html:309
 msgid "Share"
 msgstr "Ulashish"
 
-#: templates/journal/article_detail.html:296
+#: templates/journal/article_detail.html:314
 msgid "Copy link"
 msgstr "Havolani nusxalash"
 
-#: templates/journal/article_detail.html:297
+#: templates/journal/article_detail.html:315
 #: templates/journal/partials/cite_modal.html:36
 msgid "Copied"
 msgstr "Nusxalandi"
 
-#: templates/journal/article_detail.html:313
+#: templates/journal/article_detail.html:331
 msgid "Metrics"
 msgstr "Koʻrsatkichlar"
 
-#: templates/journal/article_detail.html:315 templates/journal/home.html:120
+#: templates/journal/article_detail.html:333 templates/journal/home.html:120
 #: templates/journal/partials/article_card.html:38
 msgid "Views"
 msgstr "Koʻrishlar"
 
-#: templates/journal/article_detail.html:318
+#: templates/journal/article_detail.html:336
 msgid "Cited by"
 msgstr "Iqtibos qilingan"
 

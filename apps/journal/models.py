@@ -8,6 +8,7 @@ from datetime import date
 from typing import Any, ClassVar
 
 from django.conf import settings
+from django.core.cache import cache
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.urls import reverse
@@ -16,7 +17,7 @@ from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 from django_countries.fields import CountryField
 
-from apps.core.markdown import render_markdown, strip_markdown
+from apps.core.markdown import render_markdown, sanitize_html, strip_markdown
 from apps.core.models import AutoTranslitMixin, TimeStampedModel
 
 DOI_RE = re.compile(r"10\.\d{4,9}/[-._;()/:a-zA-Z0-9]+")
@@ -508,6 +509,35 @@ class Article(TimeStampedModel, AutoTranslitMixin):
         )
 
     @property
+    def html_galley(self) -> Galley | None:
+        """The HTML full-text rendition, when one was uploaded."""
+        return next((g for g in self.galleys.all() if g.mime == "text/html"), None)
+
+    def full_text_html(self) -> str:
+        """Sanitised HTML full text, ready to render inside the article page.
+
+        The file is editorial output rather than reader input, but it still
+        passes through the same allow-list as every other editor-authored
+        fragment: a typesetting tool that emits a stray ``<script>`` should not
+        be able to put it on a published page.
+        """
+        galley = self.html_galley
+        if galley is None or not galley.file:
+            return ""
+        cache_key = f"article:{self.pk}:fulltext:{galley.pk}"
+        cached = cache.get(cache_key)
+        if cached is not None:
+            return cached
+        try:
+            with galley.file.open("rb") as handle:
+                raw = handle.read().decode("utf-8", errors="replace")
+        except (OSError, ValueError):
+            return ""
+        cleaned = sanitize_html(raw)
+        cache.set(cache_key, cleaned, 60 * 60 * 24)
+        return cleaned
+
+    @property
     def display_date(self) -> date | None:
         """Best available publication date."""
         return self.published_at or self.published_online_at
@@ -702,6 +732,7 @@ class Galley(TimeStampedModel):
         PDF = "PDF", _("PDF")
         PDF_UZ = "PDF-UZ", _("PDF (Uzbek)")
         PDF_RU = "PDF-RU", _("PDF (Russian)")
+        HTML = "HTML", _("Full text (HTML)")
         XML = "XML", _("JATS XML")
         SUPPLEMENTARY = "SUPP", _("Supplementary")
 

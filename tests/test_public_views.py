@@ -243,3 +243,66 @@ def test_statistics_page(client_anon, article, about_pages) -> None:
 def test_error_page_404(client_anon, about_pages) -> None:
     """An unknown URL returns 404."""
     assert client_anon.get("/en/no-such-page-here/").status_code == 404
+
+
+def test_article_page_shows_html_full_text(client_anon, article, site_settings) -> None:
+    """The client's TZ §6.1 requires an HTML full text beside the PDF."""
+    from django.core.files.base import ContentFile
+
+    from apps.journal.models import Galley
+
+    galley = Galley(
+        article=article,
+        label=Galley.Label.HTML,
+        language="en",
+        mime="text/html",
+        order=2,
+    )
+    body = b"<h2>1. Introduction</h2><p>Body text.</p><script>alert(1)</script>"
+    galley.file.save("full.html", ContentFile(body), save=False)
+    galley.size = len(body)
+    galley.save()
+
+    html = client_anon.get(f"/en/article/{article.pk}/").content.decode()
+
+    assert "1. Introduction" in html
+    assert "Body text." in html
+    # Galley HTML goes through the same allow-list as every editor-authored
+    # fragment, so a stray script tag cannot reach a published page.
+    assert "alert(1)" not in html
+    assert "citation_fulltext_html_url" in html
+
+
+def test_article_page_without_html_galley_has_no_full_text_section(
+    client_anon, article, site_settings
+) -> None:
+    """Articles that ship only a PDF must not render an empty full-text block."""
+    html = client_anon.get(f"/en/article/{article.pk}/").content.decode()
+    assert 'id="full-text"' not in html
+    assert "citation_fulltext_html_url" not in html
+
+
+def test_no_multiline_django_comments_in_templates() -> None:
+    """``{# … #}`` is single-line only; spanning lines renders it as text.
+
+    Django's short comment tag does not span newlines, so a multi-line one is
+    printed verbatim into the page. It has bitten this project three times:
+    once as visible text on the dashboard, and twice inside flex rows, where
+    the stray text became an anonymous flex item ~100 px wide and pushed the
+    header off the side of every phone screen. Use ``{% comment %}`` instead.
+    """
+    import re
+    from pathlib import Path
+
+    from django.conf import settings
+
+    offenders = []
+    for path in (Path(settings.BASE_DIR) / "templates").rglob("*.html"):
+        text = path.read_text(encoding="utf-8")
+        for match in re.finditer(r"\{#", text):
+            rest = text[match.start() :]
+            close = rest.find("#}")
+            if close != -1 and "\n" in rest[:close]:
+                line = text[: match.start()].count("\n") + 1
+                offenders.append(f"{path.name}:{line}")
+    assert not offenders, f"multi-line {{# #}} comments: {offenders}"

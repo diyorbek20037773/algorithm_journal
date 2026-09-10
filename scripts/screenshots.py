@@ -3,7 +3,7 @@
 
 Starts a live Django server against the development database, walks the public
 site in English and Uzbek Cyrillic, signs in as each role to capture the
-dashboards, and takes the responsive set at 360, 768, 1280 and 1920 pixels
+dashboards, and takes the responsive set at 320, 360, 768, 1280 and 1920 pixels
 (SPEC §15.13).  It also runs axe-core over the key pages and writes the
 accessibility findings to ``docs/screenshots/accessibility.json``.
 
@@ -61,7 +61,8 @@ RESPONSIVE_PAGES: list[tuple[str, str]] = [
     ("article", "/en/article/{article}/"),
     ("dashboard", "/en/dashboard/"),
 ]
-BREAKPOINTS = [360, 768, 1280, 1920]
+#: 320 px is the narrowest screen the client's terms of reference name (§8).
+BREAKPOINTS = [320, 360, 768, 1280, 1920]
 
 #: Pages checked with axe-core.
 AXE_PAGES: list[tuple[str, str]] = [

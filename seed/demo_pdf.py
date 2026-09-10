@@ -240,3 +240,36 @@ def build_article_pdf(article: Any) -> bytes:
     pdf.showPage()
     pdf.save()
     return buffer.getvalue()
+
+
+def build_article_html(article: Any) -> bytes:
+    """Render the same demonstration body as an HTML full-text galley.
+
+    The client's terms of reference (§6.1) require an HTML full text beside the
+    PDF, so the demonstration data has to exercise that path too. The markup is
+    deliberately plain — headings, paragraphs and one table — because the
+    article page sanitises galley HTML against the project's allow-list before
+    rendering it.
+    """
+    from html import escape
+
+    parts: list[str] = []
+    abstract = getattr(article, "abstract_en", "") or getattr(article, "abstract", "")
+    if abstract:
+        parts.append(f"<h2>Abstract</h2>\n<p>{escape(str(abstract))}</p>")
+    for heading, text in BODY_SECTIONS:
+        parts.append(f"<h2>{escape(heading)}</h2>\n<p>{escape(text)}</p>")
+    parts.append(
+        "<h2>Table 1. Descriptive statistics</h2>\n"
+        "<table>\n"
+        "  <thead><tr><th>Variable</th><th>Mean</th><th>Std. dev.</th><th>N</th></tr></thead>\n"
+        "  <tbody>\n"
+        "    <tr><td>Log output per worker</td><td>3.42</td><td>0.81</td><td>4,120</td></tr>\n"
+        "    <tr><td>Capital intensity</td><td>1.07</td><td>0.44</td><td>4,120</td></tr>\n"
+        "    <tr><td>Firm age (years)</td><td>11.6</td><td>7.9</td><td>4,120</td></tr>\n"
+        "  </tbody>\n"
+        "</table>\n"
+        "<p><em>Note: figures are illustrative and describe the demonstration "
+        "dataset, not a research finding.</em></p>"
+    )
+    return "\n".join(parts).encode("utf-8")

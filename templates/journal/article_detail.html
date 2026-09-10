@@ -33,7 +33,8 @@
     {% endif %}
     <div class="grid gap-10 lg:grid-cols-[1fr_300px] items-start">
       {# --- Main column ------------------------------------------------ #}
-      <div class="max-w-[760px]">
+      {# min-w-0 stops a long DOI widening the grid track on a phone. #}
+      <div class="max-w-[760px] min-w-0">
         <div class="flex flex-wrap items-center gap-2 mb-3">
           <a class="eyebrow" href="{{ article.section.get_absolute_url }}">{{ article.section.name }}</a>
           <span class="chip">{{ article.get_article_type_display }}</span>
@@ -84,7 +85,7 @@
           {% if article.doi %}
             <dt>DOI</dt>
             <dd>
-              <a class="meta" href="{{ article.doi_url }}" rel="noopener">https://doi.org/{{ article.doi }}</a>
+              <a class="meta break-all" href="{{ article.doi_url }}" rel="noopener">https://doi.org/{{ article.doi }}</a>
             </dd>
           {% endif %}
           {% if article.issue %}
@@ -138,7 +139,7 @@
           <div class="section-heading">
             <h2>{% translate "Abstract" %}</h2>
             {% if abstract_translations|length > 1 %}
-              <div class="flex gap-1"
+              <div class="flex flex-wrap gap-1"
                    role="tablist"
                    aria-label="{% translate 'Abstract language' %}">
                 {% for item in abstract_translations %}
@@ -164,6 +165,22 @@
             <div class="prose-journal">{{ article.abstract|linebreaks }}</div>
           </noscript>
         </section>
+        {# --- Full text (HTML galley), required by the client TZ §6.1 --- #}
+        {% if full_text %}
+          <section class="mt-10" id="full-text">
+            <div class="section-heading">
+              <h2>{% translate "Full text" %}</h2>
+              {% if primary_galley %}
+                <a class="btn btn-ghost btn-sm" href="{{ article.pdf_url }}">{% translate "Download PDF" %}</a>
+              {% endif %}
+            </div>
+            {% comment %}
+              Sanitised in Article.full_text_html() against the same allow-list
+              as every other editor-authored fragment.
+            {% endcomment %}
+            <div class="prose-journal article-fulltext">{{ full_text|safe }}</div>
+          </section>
+        {% endif %}
         {# --- Statements --- #}
         <section class="mt-10 space-y-4">
           {% if article.funding_statement %}
@@ -188,7 +205,7 @@
             <h2>{% translate "How to cite" %}</h2>
           </div>
           <div class="card-muted">
-            <p class="text-sm leading-relaxed" id="apa-citation">{{ article.citation_apa }}</p>
+            <p class="citation-text text-sm leading-relaxed" id="apa-citation">{{ article.citation_apa }}</p>
             <div class="flex flex-wrap gap-2 mt-4">
               <a class="btn btn-secondary btn-sm"
                  href="{% url 'journal:article_export' article.pk 'bibtex' %}">BibTeX</a>
@@ -208,7 +225,7 @@
               <h2>{% translate "References" %}</h2>
               <span class="meta">{{ references|length }}</span>
             </div>
-            <ol class="space-y-3 list-decimal ml-5">
+            <ol class="reference-list space-y-3 list-decimal ml-5">
               {% for reference in references %}
                 <li itemprop="citation" class="text-sm leading-relaxed">
                   {{ reference.raw_text }}

@@ -43,7 +43,7 @@ from apps.journal.models import (
 )
 from seed import articles as article_seed
 from seed import content as content_seed
-from seed.demo_pdf import build_article_pdf
+from seed.demo_pdf import build_article_html, build_article_pdf
 from seed.demo_submissions import create_demo_submissions
 from seed.jel_loader import load_jel
 
@@ -604,21 +604,41 @@ class Command(BaseCommand):
             reference.save()  # triggers DOI auto-detection
 
     def _seed_galley(self, article: Article) -> None:
-        """Generate and attach a real PDF galley."""
-        if article.galleys.filter(is_primary=True).exists():
-            return
-        payload = build_article_pdf(article)
-        galley = Galley(
-            article=article,
-            label=Galley.Label.PDF,
-            language="en",
-            mime="application/pdf",
-            is_primary=True,
-            order=1,
-            size=len(payload),
-        )
-        galley.file.save(f"arer-{article.pk}.pdf", ContentFile(payload), save=False)
-        galley.save()
+        """Generate and attach the PDF and HTML renditions.
+
+        Each rendition is guarded separately so re-running the seed after a new
+        rendition was added backfills it rather than skipping the article
+        because its PDF already exists.
+        """
+        if not article.galleys.filter(is_primary=True).exists():
+            payload = build_article_pdf(article)
+            galley = Galley(
+                article=article,
+                label=Galley.Label.PDF,
+                language="en",
+                mime="application/pdf",
+                is_primary=True,
+                order=1,
+                size=len(payload),
+            )
+            galley.file.save(f"arer-{article.pk}.pdf", ContentFile(payload), save=False)
+            galley.save()
+
+        # The client's TZ §6.1 requires an HTML full text beside the PDF, so
+        # the demonstration data has to exercise that rendition too.
+        if not article.galleys.filter(label=Galley.Label.HTML).exists():
+            html_payload = build_article_html(article)
+            html_galley = Galley(
+                article=article,
+                label=Galley.Label.HTML,
+                language="en",
+                mime="text/html",
+                is_primary=False,
+                order=2,
+                size=len(html_payload),
+            )
+            html_galley.file.save(f"arer-{article.pk}.html", ContentFile(html_payload), save=False)
+            html_galley.save()
 
     # ------------------------------------------------------------- statistics
     def seed_statistics(self) -> None:

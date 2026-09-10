@@ -241,6 +241,7 @@ class ArticleDetailView(DetailView):
         context["references"] = list(article.references.all())
         context["galleys"] = list(article.galleys.all())
         context["primary_galley"] = article.primary_galley
+        context["full_text"] = article.full_text_html()
         context["highwire_tags"] = highwire_tags(article)
         context["json_ld"] = json_ld(article)
         context["citation_styles"] = available_styles()

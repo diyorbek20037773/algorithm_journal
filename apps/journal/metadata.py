@@ -55,6 +55,12 @@ def highwire_tags(article: Article) -> list[dict[str, str]]:
     add("citation_doi", article.doi)
     add("citation_abstract_html_url", f"{settings.SITE_URL}{article.get_absolute_url()}")
     add("citation_pdf_url", article.absolute_pdf_url)
+    # Google Scholar prefers the HTML rendition when a journal offers one.
+    if article.html_galley is not None:
+        add(
+            "citation_fulltext_html_url",
+            f"{settings.SITE_URL}{article.get_absolute_url()}#full-text",
+        )
     add("citation_abstract", article.abstract_plain)
     keywords = "; ".join(k.name for k in article.keywords.all())
     add("citation_keywords", keywords)

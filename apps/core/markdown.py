@@ -86,7 +86,19 @@ def render_markdown(text: str | None) -> str:
     """
     if not text:
         return ""
-    html = _parser().render(text)
+    return sanitize_html(_parser().render(text))
+
+
+def sanitize_html(html: str | None) -> str:
+    """Strip everything outside the allow-list from ``html``.
+
+    Used for Markdown output and for HTML full-text galleys alike. A galley is
+    editorial output rather than reader input, but a typesetting tool that
+    emits a stray ``<script>`` still must not be able to put it on a published
+    page.
+    """
+    if not html:
+        return ""
     return nh3.clean(
         html,
         tags=ALLOWED_TAGS,

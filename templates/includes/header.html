@@ -32,7 +32,12 @@
         </svg>
         <span class="hidden xl:inline">{% translate "Search" %}</span>
       </a>
-      {% include "includes/language_switcher.html" %}
+      {% comment %}
+        The switcher carries four languages, which is wider than a 320 px phone
+        can spare beside the wordmark and the menu button. Below md it moves
+        into the mobile drawer instead.
+      {% endcomment %}
+      <div class="hidden md:flex">{% include "includes/language_switcher.html" %}</div>
       <a class="btn btn-primary btn-sm hidden sm:inline-flex"
          href="{% url 'submissions:wizard_start' %}">{% translate "Submit" %}</a>
       {% if user.is_authenticated %}
@@ -101,6 +106,7 @@
       {% if not user.is_authenticated %}
         <a class="nav-link mt-1" href="{% url 'account_login' %}">{% translate "Sign in" %}</a>
       {% endif %}
+      <div class="mt-3 md:hidden">{% include "includes/language_switcher.html" %}</div>
     </nav>
   </div>
 </header>
