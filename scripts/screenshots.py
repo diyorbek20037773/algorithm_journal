@@ -153,10 +153,25 @@ def login_cookie(email: str, port: int) -> dict[str, str]:
     }
 
 
+def _require_ok(response, url: str) -> None:
+    """Abort unless the page really rendered.
+
+    Without this the script happily photographs Django's debug traceback: one
+    unreachable dependency turned every committed screenshot into a picture of
+    a stack trace, and the axe-core sweep reported "0 violations" because a
+    traceback page has none. A broken deliverable that looks like a working one
+    is worse than a loud failure.
+    """
+    status = response.status if response is not None else 0
+    if status != 200:
+        raise SystemExit(f"{url} returned HTTP {status}; refusing to screenshot it")
+
+
 def capture(page, url: str, target: Path, full: bool = True) -> None:
     """Navigate to ``url`` and write a screenshot to ``target``."""
     target.parent.mkdir(parents=True, exist_ok=True)
-    page.goto(url, wait_until="networkidle", timeout=30_000)
+    response = page.goto(url, wait_until="networkidle", timeout=30_000)
+    _require_ok(response, url)
     page.wait_for_timeout(300)
     page.screenshot(path=str(target), full_page=full)
     print(f"  {target.relative_to(BASE_DIR)}")
@@ -164,7 +179,8 @@ def capture(page, url: str, target: Path, full: bool = True) -> None:
 
 def run_axe(page, url: str) -> dict:
     """Run axe-core against ``url`` and return the violation summary."""
-    page.goto(url, wait_until="networkidle", timeout=30_000)
+    response = page.goto(url, wait_until="networkidle", timeout=30_000)
+    _require_ok(response, url)
     try:
         page.add_script_tag(url=AXE_CDN)
     except Exception:
