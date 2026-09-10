@@ -9,6 +9,11 @@ tilida: [`SPEC.md`](SPEC.md) — muhandislik talablari, [`DESIGN_BRIEF.md`](DESI
 [`DECISIONS.md`](DECISIONS.md) — qabul qilingan muhandislik qarorlari,
 [`docs/`](docs/) — oʻrnatish, zaxira, integratsiya va foydalanuvchi qoʻllanmalari.
 
+**Texnik topshiriq boʻyicha band-band tekshiruv:**
+[`docs/TZ_COMPLIANCE_uz.md`](docs/TZ_COMPLIANCE_uz.md) — mijozning texnik
+topshirigʻining har bir bandi, ✅/⚠️/❌ bilan, sabablari va nima kerakligi
+koʻrsatilgan holda.
+
 ---
 
 ## 1. Nima qilindi
