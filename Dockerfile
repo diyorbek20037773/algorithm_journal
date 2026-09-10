@@ -21,14 +21,17 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
         libfreetype6-dev \
     && rm -rf /var/lib/apt/lists/*
 
-COPY --from=ghcr.io/astral-sh/uv:0.5.11 /uv /usr/local/bin/uv
+COPY --from=ghcr.io/astral-sh/uv:0.12.9 /uv /usr/local/bin/uv
 
 WORKDIR /app
-COPY pyproject.toml README.md ./
-COPY uv.lock* ./
+COPY pyproject.toml README.md uv.lock ./
 
+# Install the exact versions uv.lock pins, into the standalone /opt/venv the
+# runtime stage copies.  `uv export` reads the lock without needing the project
+# venv layout that `uv sync` expects.
 RUN uv venv /opt/venv \
-    && uv pip install --python /opt/venv/bin/python -r pyproject.toml --extra dev
+    && uv export --frozen --extra dev --no-hashes --no-emit-project -o /tmp/requirements.txt \
+    && uv pip install --python /opt/venv/bin/python -r /tmp/requirements.txt
 
 # -----------------------------------------------------------------------------
 FROM python:3.12-slim-bookworm AS runtime

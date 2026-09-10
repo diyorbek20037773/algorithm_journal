@@ -50,13 +50,27 @@ def test_csl_json_structure(article, site_settings) -> None:
 
 
 def test_bibtex_parses(article, site_settings) -> None:
-    """The BibTeX export is parseable by bibtexparser."""
+    """The BibTeX export is parseable by bibtexparser.
+
+    Version 2 replaced ``loads`` with ``parse_string`` and moved the entry type
+    onto an attribute.  The point of the test is that our output is valid
+    BibTeX, not which parser release is installed, so it reads both shapes.
+    """
     import bibtexparser
 
-    database = bibtexparser.loads(to_bibtex(article))
-    assert len(database.entries) == 1
-    entry = database.entries[0]
-    assert entry["ENTRYTYPE"] == "article"
+    text = to_bibtex(article)
+    if hasattr(bibtexparser, "parse_string"):  # bibtexparser 2.x
+        library = bibtexparser.parse_string(text)
+        assert not library.failed_blocks
+        assert len(library.entries) == 1
+        entry = library.entries[0]
+        entry_type = entry.entry_type
+    else:  # bibtexparser 1.x
+        database = bibtexparser.loads(text)
+        assert len(database.entries) == 1
+        entry = database.entries[0]
+        entry_type = entry["ENTRYTYPE"]
+    assert entry_type == "article"
     assert "Karimov" in entry["author"]
     assert entry["doi"] == article.doi
     assert entry["year"] == "2026"
