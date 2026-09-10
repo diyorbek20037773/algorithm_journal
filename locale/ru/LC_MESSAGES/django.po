@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-10 17:11+0500\n"
+"POT-Creation-Date: 2026-09-10 17:37+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: ARER editorial office\n"
 "Language-Team: ARER\n"
@@ -1110,7 +1110,7 @@ msgstr "Ещё не прошла первичную проверку"
 msgid "No activity"
 msgstr "Нет активности"
 
-#: apps/dashboard/services.py:288 templates/dashboard/reports.html:15
+#: apps/dashboard/services.py:288 templates/dashboard/reports.html:29
 msgid "Median days to first decision"
 msgstr "Медианное число дней до первого решения"
 
@@ -1120,7 +1120,7 @@ msgid "target ≤ %(days)s days"
 msgstr "цель ≤ %(days)s дней"
 
 #: apps/dashboard/services.py:300 templates/core/statistics.html:18
-#: templates/dashboard/reports.html:11 templates/dashboard/reports.html:38
+#: templates/dashboard/reports.html:25 templates/dashboard/reports.html:81
 msgid "Acceptance rate"
 msgstr "Доля принятых"
 
@@ -2295,7 +2295,7 @@ msgstr "Повторно подана"
 
 #: apps/submissions/models.py:48 apps/submissions/models.py:494
 #: apps/submissions/models.py:502 templates/core/partials/bar_chart.html:22
-#: templates/dashboard/reports.html:36
+#: templates/dashboard/reports.html:79
 msgid "Accepted"
 msgstr "Принята"
 
@@ -2319,7 +2319,7 @@ msgstr "Готова к публикации"
 msgid "Published (Online First)"
 msgstr "Опубликована (Online First)"
 
-#: apps/submissions/models.py:55 templates/dashboard/reports.html:37
+#: apps/submissions/models.py:55 templates/dashboard/reports.html:80
 msgid "Rejected"
 msgstr "Отклонена"
 
@@ -3664,7 +3664,7 @@ msgstr "Статистика появится здесь после публик
 msgid "Articles published"
 msgstr "Опубликовано статей"
 
-#: templates/core/statistics.html:15
+#: templates/core/statistics.html:15 templates/dashboard/reports.html:48
 #: templates/dashboard/submission_detail.html:67
 #: templates/submissions/wizard_step3.html:43
 #: templates/submissions/wizard_step5.html:29
@@ -4017,31 +4017,76 @@ msgstr "Редакционные отчёты"
 msgid "Export CSV"
 msgstr "Экспорт CSV"
 
-#: templates/dashboard/reports.html:21
+#: templates/dashboard/reports.html:11
+#| msgid "submissions received"
+msgid "Submissions received"
+msgstr "Поступило рукописей"
+
+#: templates/dashboard/reports.html:13
+#| msgid "Downloads (12 months)"
+msgid "last 12 months"
+msgstr "за последние 12 месяцев"
+
+#: templates/dashboard/reports.html:16
+#| msgid "Rejected"
+msgid "Rejection rate"
+msgstr "Доля отклонённых"
+
+#: templates/dashboard/reports.html:20
+#, python-format
+#| msgid "desk rejected"
+msgid "%(rate)s%% desk rejected"
+msgstr "%(rate)s%% отклонено на первичном этапе"
+
+#: templates/dashboard/reports.html:33
+#| msgid "median review days"
+msgid "Median days a reviewer takes"
+msgstr "Медианный срок рецензента (дней)"
+
+#: templates/dashboard/reports.html:35
+#| msgid "Accept the invitation"
+msgid "from accepting the invitation to filing"
+msgstr "от принятия приглашения до сдачи рецензии"
+
+#: templates/dashboard/reports.html:41
+#| msgid "To the authors"
+msgid "Where the authors are"
+msgstr "География авторов"
+
+#: templates/dashboard/reports.html:42
+msgid "submitting authors, last 12 months"
+msgstr "авторы поданных рукописей, за последние 12 месяцев"
+
+#: templates/dashboard/reports.html:47
+#| msgid "country"
+msgid "Country"
+msgstr "Страна"
+
+#: templates/dashboard/reports.html:64
 msgid "Submissions and acceptances"
 msgstr "Поданные и принятые"
 
-#: templates/dashboard/reports.html:27
+#: templates/dashboard/reports.html:70
 msgid "Monthly snapshots"
 msgstr "Ежемесячные срезы"
 
-#: templates/dashboard/reports.html:32
+#: templates/dashboard/reports.html:75
 msgid "Month"
 msgstr "Месяц"
 
-#: templates/dashboard/reports.html:33
+#: templates/dashboard/reports.html:76
 msgid "Received"
 msgstr "Получено"
 
-#: templates/dashboard/reports.html:34
+#: templates/dashboard/reports.html:77
 msgid "Desk rejected"
 msgstr "Отклонено редактором"
 
-#: templates/dashboard/reports.html:35
+#: templates/dashboard/reports.html:78
 msgid "To review"
 msgstr "На рецензирование"
 
-#: templates/dashboard/reports.html:55
+#: templates/dashboard/reports.html:98
 msgid "No snapshots yet."
 msgstr "Срезов пока нет."
 
@@ -4529,7 +4574,6 @@ msgid "No abstract is available for this article."
 msgstr "Для этой статьи аннотация отсутствует."
 
 #: templates/journal/article_detail.html:172
-#| msgid "Full tree"
 msgid "Full text"
 msgstr "Полный текст"
 

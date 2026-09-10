@@ -44,6 +44,7 @@ survives the longer strings and the second script.
 | `13-dashboard-author.png` | Author dashboard with status timeline | author |
 | `14-production-issue-builder.png` | Issue builder | production editor |
 | `17-production-queue.png` | Production queue | production editor |
+| `18-reports.png` | Editorial reports: the four figures TZ §6.5 names | EIC |
 
 ## Responsive set
 

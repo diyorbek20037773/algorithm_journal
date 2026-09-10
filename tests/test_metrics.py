@@ -141,3 +141,74 @@ def test_monthly_series_has_chart_geometry(article, site_settings) -> None:
     for point in series:
         for key in ("x_submissions", "y_submissions", "h_submissions", "x_label"):
             assert key in point
+
+
+def test_editorial_kpis_cover_what_the_terms_of_reference_ask_for(
+    db, submission, editor_user, author_user
+) -> None:
+    """TZ §6.5 names four figures the editorial office must be able to read off.
+
+    Submissions received, the rejection rate, how long review takes, and where
+    the authors are. Only acceptance rate and time to first decision existed,
+    which left an editor to work the rest out by hand — and a Scopus
+    application asks for exactly these numbers.
+    """
+    from apps.metrics.services import compute_kpi_window
+
+    kpis = compute_kpi_window()
+
+    for key in (
+        "submissions_received",
+        "acceptance_rate",
+        "rejection_rate",
+        "desk_rejection_rate",
+        "median_days_to_first_decision",
+        "median_review_days",
+        "author_countries",
+    ):
+        assert key in kpis, f"KPI window is missing {key}"
+
+
+def test_rejection_and_acceptance_rates_are_complements(db, submission, editor_user) -> None:
+    """Every decided manuscript is either accepted or rejected."""
+    from apps.submissions.models import EditorialDecision
+
+    EditorialDecision.objects.create(
+        submission=submission,
+        decision=EditorialDecision.Decision.ACCEPT,
+        decided_by=editor_user,
+        letter="Accepted.",
+    )
+    EditorialDecision.objects.create(
+        submission=submission,
+        decision=EditorialDecision.Decision.DESK_REJECT,
+        decided_by=editor_user,
+        letter="Out of scope.",
+    )
+
+    from apps.metrics.services import compute_kpi_window
+
+    kpis = compute_kpi_window()
+
+    assert kpis["acceptance_rate"] == 50.0
+    assert kpis["rejection_rate"] == 50.0
+    assert kpis["desk_rejection_rate"] == 50.0
+
+
+def test_author_countries_are_counted(db, submission) -> None:
+    """The country breakdown counts submitting authors, most frequent first."""
+    from apps.metrics.services import author_country_distribution
+    from apps.submissions.models import SubmissionAuthor
+
+    SubmissionAuthor.objects.create(
+        submission=submission, order=2, given_name="A", family_name="B", country="KZ"
+    )
+    SubmissionAuthor.objects.create(
+        submission=submission, order=3, given_name="C", family_name="D", country="KZ"
+    )
+
+    rows = author_country_distribution()
+
+    assert rows
+    assert rows[0]["country"] == "KZ"
+    assert rows[0]["total"] >= 2

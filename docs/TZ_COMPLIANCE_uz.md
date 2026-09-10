@@ -101,7 +101,7 @@ lekin **tahririyat ularni o'z nomidan tasdiqlashi kerak**.
 | 6.2 Rollar va oqim | ✅ | 6 ta rol; ikki tomonlama anonimlik 10 ta test bilan isbotlangan; har bosqichda avtomatik xat; barcha taqrizlar saqlanadi |
 | 6.3 Plagiat tekshiruvi | ✅ | Ulanadigan provayder: standart — qo'lda (muharrir hisobotni yuklaydi), iThenticate klassi tayyor. Maksimal foiz yo'riqnomada e'lon qilinadi |
 | 6.4 Qidiruv va navigatsiya | ✅ | PostgreSQL to'liq matn + trigram; yil/jild/son/bo'lim/muallif/kalit so'z filtrlari; muallif sahifalari |
-| 6.5 Statistika | ✅ | Maqola bo'yicha ko'rish/yuklab olish; tahririyat hisobotida rad etish darajasi, o'rtacha taqriz muddati, mualliflar geografiyasi |
+| 6.5 Statistika | ✅ | Maqola bo'yicha ko'rish/yuklab olish. Tahririyat hisoboti (`/dashboard/reports/`): qabul qilingan qo'lyozmalar soni, **rad etish darajasi** (dastlabki bosqichdagisi alohida), qabul darajasi, birinchi qarorgacha median kun, **taqrizchining median muddati**, **mualliflar geografiyasi** — TZ §6.5 da nomlangan to'rtta ko'rsatkichning hammasi. CSV eksport bilan |
 
 ## 7. Metama'lumotlar va integratsiyalar
 

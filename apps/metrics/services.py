@@ -158,28 +158,65 @@ def home_kpis() -> dict[str, Any] | None:
 
 
 def compute_kpi_window(months: int = 12) -> dict[str, Any]:
-    """Compute acceptance rate and decision speed over a rolling window."""
-    from apps.submissions.models import EditorialDecision, Submission
+    """Editorial performance over a rolling window.
+
+    The client's terms of reference §6.5 name the figures an editorial office
+    has to be able to read off: how many manuscripts arrived, the rejection
+    rate, how long review takes, and where the authors are. A Scopus
+    application asks for the same numbers, so they are computed here rather
+    than left to be worked out by hand from the monthly table.
+    """
+    from apps.submissions.models import EditorialDecision, Review, Submission
 
     since = timezone.now() - timedelta(days=30 * months)
     decisions = EditorialDecision.objects.filter(decided_at__gte=since)
     accepted = decisions.filter(decision=EditorialDecision.Decision.ACCEPT).count()
-    rejected = decisions.filter(
-        decision__in=[EditorialDecision.Decision.REJECT, EditorialDecision.Decision.DESK_REJECT]
-    ).count()
-    total = accepted + rejected
+    desk_rejected = decisions.filter(decision=EditorialDecision.Decision.DESK_REJECT).count()
+    rejected = decisions.filter(decision=EditorialDecision.Decision.REJECT).count()
+    total = accepted + rejected + desk_rejected
     acceptance_rate = round(accepted / total * 100, 1) if total else None
+    rejection_rate = round((rejected + desk_rejected) / total * 100, 1) if total else None
+    desk_rejection_rate = round(desk_rejected / total * 100, 1) if total else None
 
+    submissions = Submission.objects.filter(submitted_at__gte=since)
     durations: list[float] = []
-    for submission in Submission.objects.filter(submitted_at__gte=since).prefetch_related(
-        "decisions"
-    ):
+    for submission in submissions.prefetch_related("decisions"):
         first = submission.decisions.order_by("decided_at").first()
         if first and submission.submitted_at:
             durations.append((first.decided_at - submission.submitted_at).days)
     median_days = round(statistics.median(durations), 1) if durations else None
 
-    return {"acceptance_rate": acceptance_rate, "median_days_to_first_decision": median_days}
+    # Reviewer turnaround is a different question from editorial turnaround: it
+    # measures the reviewer alone, from accepting the invitation to filing.
+    review_days: list[float] = []
+    for review in Review.objects.filter(submitted_at__gte=since).select_related("assignment"):
+        responded = review.assignment.responded_at if review.assignment_id else None
+        if responded and review.submitted_at:
+            review_days.append((review.submitted_at - responded).days)
+    median_review_days = round(statistics.median(review_days), 1) if review_days else None
+
+    return {
+        "submissions_received": submissions.count(),
+        "acceptance_rate": acceptance_rate,
+        "rejection_rate": rejection_rate,
+        "desk_rejection_rate": desk_rejection_rate,
+        "median_days_to_first_decision": median_days,
+        "median_review_days": median_review_days,
+        "author_countries": author_country_distribution(since),
+    }
+
+
+def author_country_distribution(since=None, limit: int = 15) -> list[dict[str, Any]]:
+    """Submitting authors grouped by country, most frequent first."""
+    from apps.submissions.models import SubmissionAuthor
+
+    rows = SubmissionAuthor.objects.exclude(country="")
+    if since is not None:
+        rows = rows.filter(submission__submitted_at__gte=since)
+    counted = (
+        rows.values("country").annotate(total=Count("id")).order_by("-total", "country")[:limit]
+    )
+    return [{"country": row["country"], "total": row["total"]} for row in counted]
 
 
 def public_statistics() -> dict[str, Any]:

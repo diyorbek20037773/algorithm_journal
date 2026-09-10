@@ -35,6 +35,29 @@ PART_6: dict[str, tuple[str, str]] = {
         "показано %(shown)s из %(total)s",
     ),
     "Turnaround": ("Koʻrib chiqish muddati", "Сроки обработки"),
+    # --- editorial reports (TZ §6.5) ---------------------------------------
+    "Submissions received": ("Qabul qilingan qoʻlyozmalar", "Поступило рукописей"),
+    "last 12 months": ("soʻnggi 12 oy", "за последние 12 месяцев"),
+    "Rejection rate": ("Rad etish darajasi", "Доля отклонённых"),
+    "%(rate)s%% desk rejected": (
+        "%(rate)s%% dastlabki bosqichda rad etilgan",
+        "%(rate)s%% отклонено на первичном этапе",
+    ),
+    "Median days a reviewer takes": (
+        "Taqrizchining median muddati (kun)",
+        "Медианный срок рецензента (дней)",
+    ),
+    "from accepting the invitation to filing": (
+        "taklifni qabul qilishdan taqrizni topshirishgacha",
+        "от принятия приглашения до сдачи рецензии",
+    ),
+    "Where the authors are": ("Mualliflar geografiyasi", "География авторов"),
+    "submitting authors, last 12 months": (
+        "qoʻlyozma yuborgan mualliflar, soʻnggi 12 oy",
+        "авторы поданных рукописей, за последние 12 месяцев",
+    ),
+    "Country": ("Mamlakat", "Страна"),
+    "Authors": ("Mualliflar", "Авторы"),
     # --- article full text (TZ §6.1) ---------------------------------------
     "Full text": ("Toʻliq matn", "Полный текст"),
     "Full text (HTML)": ("Toʻliq matn (HTML)", "Полный текст (HTML)"),

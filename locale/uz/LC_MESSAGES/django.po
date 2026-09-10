@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-10 17:11+0500\n"
+"POT-Creation-Date: 2026-09-10 17:37+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: ARER editorial office\n"
 "Language-Team: ARER\n"
@@ -1114,7 +1114,7 @@ msgstr "Hali koʻrikdan oʻtmagan"
 msgid "No activity"
 msgstr "Harakat yoʻq"
 
-#: apps/dashboard/services.py:288 templates/dashboard/reports.html:15
+#: apps/dashboard/services.py:288 templates/dashboard/reports.html:29
 msgid "Median days to first decision"
 msgstr "Birinchi qarorgacha median kunlar"
 
@@ -1124,7 +1124,7 @@ msgid "target ≤ %(days)s days"
 msgstr "maqsad ≤ %(days)s kun"
 
 #: apps/dashboard/services.py:300 templates/core/statistics.html:18
-#: templates/dashboard/reports.html:11 templates/dashboard/reports.html:38
+#: templates/dashboard/reports.html:25 templates/dashboard/reports.html:81
 msgid "Acceptance rate"
 msgstr "Qabul qilish darajasi"
 
@@ -2303,7 +2303,7 @@ msgstr "Qayta yuborilgan"
 
 #: apps/submissions/models.py:48 apps/submissions/models.py:494
 #: apps/submissions/models.py:502 templates/core/partials/bar_chart.html:22
-#: templates/dashboard/reports.html:36
+#: templates/dashboard/reports.html:79
 msgid "Accepted"
 msgstr "Qabul qilingan"
 
@@ -2327,7 +2327,7 @@ msgstr "Chop etishga tayyor"
 msgid "Published (Online First)"
 msgstr "Chop etilgan (Online First)"
 
-#: apps/submissions/models.py:55 templates/dashboard/reports.html:37
+#: apps/submissions/models.py:55 templates/dashboard/reports.html:80
 msgid "Rejected"
 msgstr "Rad etilgan"
 
@@ -3676,7 +3676,7 @@ msgstr "Statistika birinchi maqolalar chop etilgach shu yerda paydo boʻladi."
 msgid "Articles published"
 msgstr "Chop etilgan maqolalar"
 
-#: templates/core/statistics.html:15
+#: templates/core/statistics.html:15 templates/dashboard/reports.html:48
 #: templates/dashboard/submission_detail.html:67
 #: templates/submissions/wizard_step3.html:43
 #: templates/submissions/wizard_step5.html:29
@@ -4030,31 +4030,76 @@ msgstr "Tahririy hisobotlar"
 msgid "Export CSV"
 msgstr "CSV eksport"
 
-#: templates/dashboard/reports.html:21
+#: templates/dashboard/reports.html:11
+#| msgid "submissions received"
+msgid "Submissions received"
+msgstr "Qabul qilingan qoʻlyozmalar"
+
+#: templates/dashboard/reports.html:13
+#| msgid "Downloads (12 months)"
+msgid "last 12 months"
+msgstr "soʻnggi 12 oy"
+
+#: templates/dashboard/reports.html:16
+#| msgid "Rejected"
+msgid "Rejection rate"
+msgstr "Rad etish darajasi"
+
+#: templates/dashboard/reports.html:20
+#, python-format
+#| msgid "desk rejected"
+msgid "%(rate)s%% desk rejected"
+msgstr "%(rate)s%% dastlabki bosqichda rad etilgan"
+
+#: templates/dashboard/reports.html:33
+#| msgid "median review days"
+msgid "Median days a reviewer takes"
+msgstr "Taqrizchining median muddati (kun)"
+
+#: templates/dashboard/reports.html:35
+#| msgid "Accept the invitation"
+msgid "from accepting the invitation to filing"
+msgstr "taklifni qabul qilishdan taqrizni topshirishgacha"
+
+#: templates/dashboard/reports.html:41
+#| msgid "To the authors"
+msgid "Where the authors are"
+msgstr "Mualliflar geografiyasi"
+
+#: templates/dashboard/reports.html:42
+msgid "submitting authors, last 12 months"
+msgstr "qoʻlyozma yuborgan mualliflar, soʻnggi 12 oy"
+
+#: templates/dashboard/reports.html:47
+#| msgid "country"
+msgid "Country"
+msgstr "Mamlakat"
+
+#: templates/dashboard/reports.html:64
 msgid "Submissions and acceptances"
 msgstr "Yuborilgan va qabul qilinganlar"
 
-#: templates/dashboard/reports.html:27
+#: templates/dashboard/reports.html:70
 msgid "Monthly snapshots"
 msgstr "Oylik kesimlar"
 
-#: templates/dashboard/reports.html:32
+#: templates/dashboard/reports.html:75
 msgid "Month"
 msgstr "Oy"
 
-#: templates/dashboard/reports.html:33
+#: templates/dashboard/reports.html:76
 msgid "Received"
 msgstr "Qabul qilingan"
 
-#: templates/dashboard/reports.html:34
+#: templates/dashboard/reports.html:77
 msgid "Desk rejected"
 msgstr "Muharrir rad etgan"
 
-#: templates/dashboard/reports.html:35
+#: templates/dashboard/reports.html:78
 msgid "To review"
 msgstr "Taqrizga"
 
-#: templates/dashboard/reports.html:55
+#: templates/dashboard/reports.html:98
 msgid "No snapshots yet."
 msgstr "Hozircha kesimlar yoʻq."
 
@@ -4541,7 +4586,6 @@ msgid "No abstract is available for this article."
 msgstr "Bu maqola uchun annotatsiya mavjud emas."
 
 #: templates/journal/article_detail.html:172
-#| msgid "Full tree"
 msgid "Full text"
 msgstr "Toʻliq matn"
 
