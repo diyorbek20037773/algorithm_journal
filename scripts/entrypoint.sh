@@ -5,9 +5,27 @@ set -euo pipefail
 ROLE="${1:-web}"
 
 wait_for_postgres() {
-  local host="${POSTGRES_HOST:-db}"
-  local port="${POSTGRES_PORT:-5432}"
-  local user="${POSTGRES_USER:-arer}"
+  # DATABASE_URL is what Django itself connects with, so it is the only
+  # trustworthy target here.  POSTGRES_PORT in .env is a *host-side* publishing
+  # choice: inside the compose network the database always listens on 5432, and
+  # waiting on the published port hangs the container forever.
+  local host port user
+  if [ -n "${DATABASE_URL:-}" ]; then
+    read -r host port user <<EOF
+$(python - <<'PY'
+import os
+from urllib.parse import urlparse
+
+url = urlparse(os.environ["DATABASE_URL"])
+print(url.hostname or "db", url.port or 5432, url.username or "arer")
+PY
+)
+EOF
+  else
+    host="${POSTGRES_HOST:-db}"
+    port="5432"
+    user="${POSTGRES_USER:-arer}"
+  fi
   echo "[entrypoint] waiting for postgres at ${host}:${port} ..."
   for _ in $(seq 1 60); do
     if pg_isready -h "${host}" -p "${port}" -U "${user}" >/dev/null 2>&1; then

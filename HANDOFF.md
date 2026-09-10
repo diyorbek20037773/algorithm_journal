@@ -62,7 +62,7 @@ toʻliq uchdan-uchgacha (end-to-end) tahririyat jarayoni.
 
 | № | Tekshiruv | Holat | Izoh |
 |---|---|---|---|
-| 1 | `docker compose up --build` + `migrate` + `seed_demo` toza mashinada, ≤ 5 daqiqa | ⚠️ | Docker image va butun stek shu seans davomida muvaffaqiyatli qurildi va ishga tushdi, lekin **yakuniy qayta tekshiruv tugallanmadi**: qurilish kompyuterining `C:` diski toʻlib qoldi (≈290 MB boʻsh) va Docker Desktop demoni ishdan chiqdi. Loyihaning nuqsoni emas — muhit muammosi; barcha testlar CI’da toza konteynerlarda yashil. Oxirgi urinishdan keyin compose fayli yaxshilandi: `web`, `tailwind`, `worker` va `beat` endi bitta umumiy image ishlatadi, ya’ni birinchi qurilish toʻrt baravar kam joy va vaqt talab qiladi. Oʻz mashinangizda 2.1-boʻlimdagi buyruqlar bilan tekshiring (kamida 10 GB boʻsh joy kerak). |
+| 1 | `docker compose up --build` + `migrate` + `seed_demo` toza mashinada, ≤ 5 daqiqa | ✅ | 2026-09-10 da toʻliq tekshirildi: stek koʻtarildi (7 konteyner), `migrate` va `seed_demo` bajarildi, sayt toʻrt tilda javob berdi, OAI-PMH 14 ta yozuv qaytardi, maqola sahifasida Highwire meta va JSON-LD bor. Tekshiruv paytida `scripts/entrypoint.sh` dagi bitta xato topildi va tuzatildi (quyida, 5-boʻlim). |
 | 2 | 4 tilda har bir ommaviy sahifa, tarjima qilinmagan satrsiz | ✅ | `tests/test_i18n.py`; `scripts/check_translations.py` → 0 untranslated, 0 fuzzy |
 | 3 | Texnik topshiriqdagi 22 majburiy sahifa mavjud va boʻsh emas | ✅ | Har bir til uchun alohida tekshiriladi |
 | 4 | Tahririyat kengashi sahifasida daraja, tashkilot, mamlakat, ORCID, e-pochta | ✅ | 12 nafar demo aʼzo, hammasi "DEMO — replace" deb belgilangan |
@@ -81,9 +81,7 @@ toʻliq uchdan-uchgacha (end-to-end) tahririyat jarayoni.
 | 17 | `docs/` toʻliq; HANDOFF oʻzbekcha; CI yashil; GitHub’ga yuborilgan | ✅ | Kod GitHub’da; `main` tarmogʻida ikkala CI ishi ham yashil |
 | 18 | Anonimlik: taqrizchi sahifalarida muallif maʼlumoti yoʻq va aksincha | ✅ | 10 ta test; API va OAI faqat nashr etilganini koʻrsatadi |
 
-Jami: **17 ✅**, **1 ⚠️**. Yagona ogohlantirish kod bilan emas, qurilish
-mashinasining diski toʻlgani bilan bogʻliq — va u CI’da emas, faqat shu
-kompyuterda yuz berdi.
+Jami: **18 ✅**, **0 ⚠️** — SPEC §15 dagi barcha qabul qilish tekshiruvlari oʻtdi.
 
 ---
 
@@ -330,13 +328,17 @@ yozilmagan**.
   koʻrib chiqishi tavsiya etiladi. Har qanday qoʻlda kiritilgan kirill matni
   saqlanadi — avtomatik hosil qilingan qiymatlar `auto_translit` maydonida
   belgilangani uchun ustidan yozilmaydi.
-* **Qurilish mashinasidagi muammo.** Ushbu ish yakunlanayotgan paytda
-  ishlab chiqish kompyuterining `C:` diski toʻlib qoldi (260 MB boʻsh) va
-  Docker Desktop demoni ishdan chiqdi. Shu sababli 1-tekshiruv (toza mashinada
-  `docker compose up --build`) qayta oʻtkazilmadi. Loyihaning oʻzi bunga sabab
-  emas — image oldinroq shu seansda muvaffaqiyatli qurilgan edi, qolgan hamma
-  narsa esa GitHub Actions’da toza konteynerlarda yashil. Docker gʻalati
-  ishlasa, avval boʻsh disk hajmini tekshiring.
+* **Lokal tekshiruvda topilgan xato (tuzatilgan).** 2026-09-10 dagi toʻliq
+  lokal sinovda `scripts/entrypoint.sh` konteynerni cheksiz kutib qoldi: u
+  Postgres manzilini `.env` dagi `POSTGRES_PORT` dan olardi, holbuki bu
+  **host** tomonidagi qiymat — konteynerlar tarmogʻi ichida baza har doim
+  `db:5432` da. `.env.example` da `POSTGRES_PORT=5432` boʻlgani uchun toza
+  mashinada bilinmasdi, lekin porti oʻzgartirilgan har qanday mashinada stek
+  koʻtarilmasdi. Endi entrypoint manzilni `DATABASE_URL` dan oladi — Django
+  ham aynan shundan foydalanadi.
+* **Docker uchun joy.** Birinchi qurilish ~4 GB disk talab qiladi. Kam joy
+  qolganda Docker Desktop demoni ishdan chiqadi (bu ish davomida shunday
+  boʻlgan). Docker gʻalati ishlasa, avval boʻsh disk hajmini tekshiring.
 
 ---
 
