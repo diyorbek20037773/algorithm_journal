@@ -29,7 +29,7 @@ serverda render qilinadi.
 Toʻrt til: **English**, **Oʻzbekcha (lotin)**, **Ўзбекча (kirill)**, **Русский**.
 Til URL prefiksi orqali tanlanadi (`/en/`, `/uz/`, `/uz-cyrl/`, `/ru/`).
 Kirill matni loyihaning oʻz translyteratori (`apps/core/translit.py`) yordamida
-lotin matnidan avtomatik hosil qilinadi — 1 170 ta interfeys satri va model
+lotin matnidan avtomatik hosil qilinadi — 1 221 ta interfeys satri va model
 maydonlari uchun.
 
 ### Bosqichlar
@@ -51,9 +51,9 @@ Tafsilotlar: [`PROGRESS.md`](PROGRESS.md).
 ### Testlar
 
 ```
-360 test — hammasi oʻtdi
+386 test — hammasi oʻtdi
 ruff check      → All checks passed
-ruff format     → 195 files already formatted
+ruff format     → 202 files already formatted
 djlint          → 0 files would be updated
 makemigrations --check → No changes detected
 ```
@@ -79,7 +79,7 @@ toʻliq uchdan-uchgacha (end-to-end) tahririyat jarayoni.
 | 10 | Iqtibos oynasi 6 uslub; BibTeX/RIS/EndNote/CSL-JSON | ✅ | `bibtexparser` va `rispy` bilan parse qilinadi |
 | 11 | Filtrli qidiruv; muallif ismida xatoga chidamli | ✅ | PostgreSQL FTS + trigram |
 | 12 | Unumdorlik: soʻrov soni, bundle hajmi, Lighthouse | ✅ | [`docs/PERFORMANCE.md`](docs/PERFORMANCE.md). Lighthouse oʻrniga axe-core va soʻrov/hajm oʻlchovlari — sabab hujjatda yozilgan (loyihada Node yoʻq) |
-| 13 | 360 / 768 / 1280 / 1920 px skrinshotlar | ✅ | `docs/screenshots/responsive/` |
+| 13 | 320 / 360 / 768 / 1280 / 1920 px skrinshotlar | ✅ | `docs/screenshots/responsive/`. 320 px — mijoz TZ §8 nomlagan eng tor ekran; gorizontal siljish yoʻqligi `tests/test_e2e_flow.py` da arifmetik tekshiriladi, chunki skrinshot buni koʻrsatmaydi |
 | 14 | `backup.sh` va `restore.sh` CI ishida sinaladi | ✅ | GitHub Actions’dagi “Backup / restore drill” qadami har bir push’da bajariladi va yashil |
 | 15 | Xodimlar uchun 2FA majburiy | ✅ | TOTP qurilmasisiz muharrir roʻyxatdan oʻtish sahifasiga yoʻnaltiriladi |
 | 16 | Audit jurnali qaror va nashr amallarini yozadi | ✅ | |
@@ -150,7 +150,7 @@ Foydali buyruqlar:
 
 ```bash
 make dev          # build + migrate + seed_demo + up
-make test         # 360 test
+make test         # 386 test
 make lint         # ruff + djlint
 make compile      # tarjima katalogini kompilatsiya qilish (.mo)
 make tailwind     # CSS ni qayta yigʻish
@@ -396,7 +396,7 @@ git push -u origin main
 ```
 
 Har bir push’dan keyin GitHub Actions avtomatik ishga tushadi
-(`.github/workflows/ci.yml`): lint, 360 test, migratsiya tekshiruvi, zaxira va
+(`.github/workflows/ci.yml`): lint, 386 test, migratsiya tekshiruvi, zaxira va
 tiklash mashqi. Natijani repozitoriyning **Actions** boʻlimida koʻrasiz.
 
 ---
