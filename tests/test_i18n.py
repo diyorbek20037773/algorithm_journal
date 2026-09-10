@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import pytest
+from django.utils import translation
 
 pytestmark = pytest.mark.django_db
 
@@ -106,3 +107,30 @@ def test_language_switcher_is_present_on_every_page(
     html = client_anon.get("/en/about/").content.decode()
     for language in LANGUAGES:
         assert f'hreflang="{language}"' in html
+
+
+def test_module_level_lists_are_translated_per_request(
+    client_anon, about_pages, site_settings
+) -> None:
+    """Constants built at import time must still translate for the reader.
+
+    The pre-submission checklist and the production completeness labels are
+    module-level lists. Built with eager ``gettext`` they are evaluated once,
+    at import, when no request language is active — every reader then gets
+    English no matter which locale they asked for, and no page-level test that
+    only counts HTTP 200 will notice.
+    """
+    from apps.core.views_pages import CHECKLIST_ITEMS
+    from apps.production.services import REQUIRED_METADATA
+
+    response = client_anon.get("/ru/for-authors/checklist/")
+    assert response.status_code == 200
+    russian = response.content.decode()
+    assert "Рукопись оригинальна" in russian
+    assert "The manuscript is original" not in russian
+
+    with translation.override("ru"):
+        assert str(CHECKLIST_ITEMS[0]).startswith("Рукопись")
+        assert str(dict(REQUIRED_METADATA)["title_en"]) == "Название (английский)"
+    with translation.override("uz"):
+        assert str(dict(REQUIRED_METADATA)["title_en"]) == "Sarlavha (inglizcha)"

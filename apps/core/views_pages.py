@@ -10,6 +10,7 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.template.response import TemplateResponse
 from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _lazy
 from django_ratelimit.decorators import ratelimit
 
 from apps.core.forms import ContactForm
@@ -63,30 +64,30 @@ def for_reviewers(request: HttpRequest) -> HttpResponse:
 
 #: The twelve items an author confirms before opening the submission wizard.
 CHECKLIST_ITEMS: list[Any] = [
-    _("The manuscript is original, unpublished, and not under consideration elsewhere."),
-    _("The article is between 4,000 and 10,000 words (2,000–4,000 for a short communication)."),
-    _(
+    _lazy("The manuscript is original, unpublished, and not under consideration elsewhere."),
+    _lazy("The article is between 4,000 and 10,000 words (2,000–4,000 for a short communication)."),
+    _lazy(
         "The manuscript file is anonymised: no author names, affiliations, acknowledgements or self-identifying citations."
     ),
-    _(
+    _lazy(
         "A separate title page lists all authors, affiliations with city and country, ORCID iDs and the corresponding author."
     ),
-    _(
+    _lazy(
         "Title, abstract (150–250 words) and 5–8 keywords are provided in English, Uzbek and Russian."
     ),
-    _("Between one and five JEL classification codes have been selected."),
-    _(
+    _lazy("Between one and five JEL classification codes have been selected."),
+    _lazy(
         "The structure follows IMRaD: introduction, literature, methods, results, discussion, conclusion."
     ),
-    _(
+    _lazy(
         "References follow APA 7th edition, with DOIs where available; non-Latin sources include a transliteration and an English translation."
     ),
-    _(
+    _lazy(
         "Tables and figures are numbered, captioned and referred to in the text; figures are legible at print size."
     ),
-    _("Funding, conflict of interest, data availability and generative-AI use are declared."),
-    _("All co-authors have approved the submission and agree to publication under CC BY 4.0."),
-    _(
+    _lazy("Funding, conflict of interest, data availability and generative-AI use are declared."),
+    _lazy("All co-authors have approved the submission and agree to publication under CC BY 4.0."),
+    _lazy(
         "Research involving human participants states the ethical approval or explains why none was required."
     ),
 ]

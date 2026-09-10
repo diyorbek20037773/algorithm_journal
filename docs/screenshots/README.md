@@ -35,7 +35,9 @@ survives the longer strings and the second script.
 | File | Screen | Signed in as |
 |---|---|---|
 | `09-submit-wizard.png` | Submission wizard | author |
-| `10-dashboard-editor.png` | Editor dashboard | section editor |
+| `10-dashboard-editor.png` | Editor dashboard: what is late, then the queues | section editor |
+| `10c-dashboard-eic.png` | The same dashboard for the Editor-in-Chief, whose queues span every section | EIC |
+| `10d-dashboard-eic-uz-cyrl.png` | The dashboard in Uzbek Cyrillic — proof the queue labels translate per request | EIC |
 | `10b-queue-in-review.png` | "In review" queue with reviewer status dots | section editor |
 | `11-dashboard-submission.png` | Submission detail, reviewers tab | section editor |
 | `12-dashboard-reviewer.png` | Reviewer dashboard | reviewer |

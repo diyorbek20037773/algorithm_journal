@@ -6,9 +6,11 @@ import datetime as dt
 import os
 
 import pytest
+from django.conf import settings
 from django.contrib.auth.models import Group
 from django.core.files.base import ContentFile
 from django.test import Client
+from django.utils import translation
 from django_otp.plugins.otp_totp.models import TOTPDevice
 
 from apps.accounts.models import Profile, Role, User
@@ -35,6 +37,21 @@ from apps.submissions.models import Submission, SubmissionAuthor, SubmissionFile
 os.environ.setdefault("DJANGO_ALLOW_ASYNC_UNSAFE", "true")
 
 PASSWORD = "Algorithm2026!"
+
+
+@pytest.fixture(autouse=True)
+def _default_language():
+    """Start every test in the default language.
+
+    A test client request to ``/ru/`` or ``/uz/`` activates that language for
+    the thread and never deactivates it, so without this the next test inherits
+    whatever the previous one happened to ask for. The failure that exposed it
+    was a statistics test reading country names back in Russian — order
+    dependent, and invisible when the test was run on its own.
+    """
+    translation.activate(settings.LANGUAGE_CODE)
+    yield
+    translation.deactivate()
 
 
 @pytest.fixture

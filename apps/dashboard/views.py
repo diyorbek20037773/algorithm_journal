@@ -13,6 +13,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.template.response import TemplateResponse
 from django.utils import timezone
 from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _lazy
 from django.views.decorators.http import require_POST
 
 from apps.accounts.models import Role, User
@@ -45,20 +46,22 @@ from apps.submissions.services import (
 
 PAGE_SIZE = 20
 
-#: Editorial queues shown in the section-editor / EIC dashboard.
+#: Editorial queues shown in the section-editor / EIC dashboard.  The labels
+#: use lazy translation: this list is built at import time, when no request
+#: language is active, so eager gettext would freeze every label in English.
 EDITOR_QUEUES: list[tuple[str, Any, list[str]]] = [
-    ("new", _("New"), [SubmissionStatus.SUBMITTED]),
-    ("screening", _("Screening"), [SubmissionStatus.SCREENING]),
-    ("in_review", _("In review"), [SubmissionStatus.UNDER_REVIEW]),
-    ("decision", _("Awaiting decision"), [SubmissionStatus.AWAITING_DECISION]),
+    ("new", _lazy("New"), [SubmissionStatus.SUBMITTED]),
+    ("screening", _lazy("Screening"), [SubmissionStatus.SCREENING]),
+    ("in_review", _lazy("In review"), [SubmissionStatus.UNDER_REVIEW]),
+    ("decision", _lazy("Awaiting decision"), [SubmissionStatus.AWAITING_DECISION]),
     (
         "revisions",
-        _("Revisions"),
+        _lazy("Revisions"),
         [SubmissionStatus.REVISION_REQUESTED, SubmissionStatus.RESUBMITTED],
     ),
     (
         "production",
-        _("Accepted / in production"),
+        _lazy("Accepted / in production"),
         [
             SubmissionStatus.ACCEPTED,
             SubmissionStatus.COPYEDITING,
@@ -99,19 +102,14 @@ def home(request: HttpRequest) -> HttpResponse:
         )
 
     if user.is_editorial_staff:
-        queryset = Submission.objects.for_editor(user)
-        context["editor_queues"] = [
-            {
-                "key": key,
-                "label": label,
-                "count": queryset.filter(status__in=statuses).count(),
-                "items": list(queryset.filter(status__in=statuses).with_related()[:5]),
-            }
-            for key, label, statuses in EDITOR_QUEUES
-        ]
+        from apps.dashboard import services as dashboard_services
         from apps.metrics.services import compute_kpi_window
 
-        context["kpis"] = compute_kpi_window()
+        context["editor_queues"] = dashboard_services.queue_summary(user, EDITOR_QUEUES)
+        context["attention_items"] = dashboard_services.attention_items(user)
+        kpis = compute_kpi_window()
+        context["kpis"] = kpis
+        context["kpi_cards"] = dashboard_services.kpi_scorecard(kpis)
 
     return TemplateResponse(request, "dashboard/home.html", context)
 

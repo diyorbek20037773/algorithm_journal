@@ -477,6 +477,9 @@
   .flex-wrap {
     flex-wrap: wrap;
   }
+  .items-baseline {
+    align-items: baseline;
+  }
   .items-center {
     align-items: center;
   }
@@ -818,11 +821,6 @@
   .sm\:grid-cols-2 {
     @media (width >= 40rem) {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-  .sm\:grid-cols-3 {
-    @media (width >= 40rem) {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
   .sm\:grid-cols-4 {
@@ -1591,6 +1589,114 @@
     color: var(--color-ink-2);
     border: 1px dashed var(--color-line);
     border-radius: var(--radius-card);
+  }
+  .attention-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .attention-row {
+    position: relative;
+    display: grid;
+    grid-template-columns: 4px 1fr auto auto;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.85rem 1rem 0.85rem 0;
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+  }
+  .attention-bar {
+    align-self: stretch;
+    background: var(--color-accent);
+  }
+  .attention-row[data-severity="danger"] .attention-bar {
+    background: var(--color-danger);
+  }
+  .attention-row[data-severity="warning"] .attention-bar {
+    background: var(--color-warning);
+  }
+  .attention-days {
+    text-align: right;
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+  .attention-days-number {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    color: var(--color-ink);
+  }
+  .attention-days[data-severity="danger"] .attention-days-number {
+    color: var(--color-danger);
+  }
+  .attention-days[data-severity="warning"] .attention-days-number {
+    color: var(--color-warning);
+  }
+  .attention-days-unit {
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-ink-3);
+  }
+  .callout-clear {
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--color-line);
+    border-left: 4px solid var(--color-success);
+    border-radius: var(--radius-card);
+    color: var(--color-ink-2);
+    background: var(--color-paper);
+  }
+  .queue-tile {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 1rem;
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-left: 4px solid var(--color-line);
+    border-radius: var(--radius-card);
+    text-decoration: none;
+  }
+  .queue-tile:hover {
+    border-color: var(--color-accent);
+  }
+  .queue-tile[data-severity="danger"] {
+    border-left-color: var(--color-danger);
+  }
+  .queue-tile[data-severity="warning"] {
+    border-left-color: var(--color-warning);
+  }
+  .queue-count {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--color-ink);
+  }
+  .kpi-value[data-severity="danger"] {
+    color: var(--color-danger);
+  }
+  .kpi-value[data-severity="success"] {
+    color: var(--color-success);
+  }
+  @media (max-width: 640px) {
+    .attention-row {
+      grid-template-columns: 4px 1fr;
+      row-gap: 0.6rem;
+      padding-bottom: 1rem;
+    }
+    .attention-days, .attention-row form, .attention-row > a.btn {
+      grid-column: 2;
+      text-align: left;
+    }
+    .attention-days-number {
+      display: inline;
+      font-size: 1.15rem;
+    }
   }
   .section-heading {
     display: flex;

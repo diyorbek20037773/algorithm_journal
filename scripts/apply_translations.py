@@ -34,9 +34,10 @@ from scripts.i18n_catalogue_2 import PART_2  # noqa: E402
 from scripts.i18n_catalogue_3 import PART_3  # noqa: E402
 from scripts.i18n_catalogue_4 import PART_4  # noqa: E402
 from scripts.i18n_catalogue_5 import PART_5  # noqa: E402
+from scripts.i18n_catalogue_6 import PART_6  # noqa: E402
 
 TRANSLATIONS: dict[str, tuple[str, str]] = {}
-for part in (PART_1, PART_2, PART_3, PART_4, PART_5):
+for part in (PART_1, PART_2, PART_3, PART_4, PART_5, PART_6):
     TRANSLATIONS.update(part)
 
 LOCALE_DIR = BASE_DIR / "locale"
