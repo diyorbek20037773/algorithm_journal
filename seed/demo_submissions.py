@@ -862,5 +862,67 @@ def create_demo_submissions(stdout: Any, style: Any) -> int:
     _system_note(submission, "Withdrawn at the authors' request.")
     created += 1
 
+    # --- 2 published: link real articles so the author sees the whole journey ---
+    # Without these the demo author never reaches 100 %, and the panel that
+    # offers the PDF, the certificate, the abstract and the public link is
+    # invisible in the demonstration — which is exactly the part the client
+    # asked to see.
+    from apps.journal.models import Article
+
+    published_articles = list(
+        Article.objects.filter(status=Article.Status.PUBLISHED, submission__isnull=True).order_by(
+            "-published_at"
+        )[:2]
+    )
+    for article in published_articles:
+        submission = _create_submission(
+            topic_index=next_topic(),
+            submitter=author,
+            status=SubmissionStatus.PUBLISHED,
+            days_ago=210,
+            editor=editor,
+        )
+        submission.title = article.title_en or article.title
+        submission.title_en = article.title_en or article.title
+        submission.abstract_en = article.abstract_en or article.abstract
+        submission.similarity_percent = 6.4
+        submission.similarity_checked_by = editor
+        submission.similarity_checked_at = timezone.now() - dt.timedelta(days=200)
+        submission.accepted_at = timezone.now() - dt.timedelta(days=120)
+        submission.article = article
+        submission.save()
+        article.submission = submission
+        article.save(update_fields=["submission"])
+        round_obj = _add_round(submission, 1)
+        _assign(
+            round_obj,
+            reviewers[0],
+            ReviewAssignment.Status.SUBMITTED,
+            editor=editor,
+            with_review=True,
+        )
+        _assign(
+            round_obj,
+            reviewers[1],
+            ReviewAssignment.Status.SUBMITTED,
+            editor=editor,
+            with_review=True,
+        )
+        round_obj.status = ReviewRound.Status.CLOSED
+        round_obj.save()
+        EditorialDecision.objects.create(
+            submission=submission,
+            round=round_obj,
+            decision=EditorialDecision.Decision.ACCEPT,
+            decided_by=editor,
+            letter=(
+                "Dear Author,\n\nWe are pleased to accept your manuscript.\n\nEditorial Office"
+            ),
+            decided_at=timezone.now() - dt.timedelta(days=120),
+            emailed_at=timezone.now() - dt.timedelta(days=120),
+        )
+        _system_note(submission, "Published; linked to the article record for demonstration.")
+        created += 1
+
     stdout.write(style.SUCCESS(f"  submissions in every workflow state ({created})"))
     return created

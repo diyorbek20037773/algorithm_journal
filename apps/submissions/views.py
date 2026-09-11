@@ -424,3 +424,105 @@ def delete_file(request: HttpRequest, pk: int) -> HttpResponse:
     submission_file.delete()
     messages.success(request, _("The file has been removed."))
     return redirect("submissions:wizard_step2", pk=submission.pk)
+
+
+@login_required
+def publication_certificate(request: HttpRequest, pk: int) -> HttpResponse:
+    """A PDF certificate confirming that the author's article was published.
+
+    Authors ask for this to attach to promotion files and grant reports, and
+    the client's brief lists it beside the PDF and the public link as part of
+    what an author gets once a manuscript is out. It is only ever issued for a
+    submission that has actually reached a published article, and only to the
+    person who submitted it.
+    """
+    import io
+
+    from django.conf import settings
+    from django.http import FileResponse
+    from django.utils import timezone
+    from reportlab.lib.pagesizes import A4
+    from reportlab.lib.units import mm
+    from reportlab.pdfgen import canvas
+
+    from apps.core.services import get_site_settings
+
+    submission = get_object_or_404(Submission.objects.select_related("article"), pk=pk)
+    if submission.submitter_id != request.user.pk and not request.user.is_editorial_staff:
+        raise PermissionDenied
+    article = submission.article
+    if article is None or not article.is_public:
+        raise PermissionDenied
+
+    site = get_site_settings()
+    authors = ", ".join(a.full_name for a in article.author_list()) or request.user.get_full_name()
+    where = article.issue.label if article.issue else _("Online First")
+    published = article.display_date
+
+    buffer = io.BytesIO()
+    pdf = canvas.Canvas(buffer, pagesize=A4)
+    width, height = A4
+
+    pdf.setStrokeColorRGB(0.06, 0.30, 0.51)
+    pdf.setLineWidth(2)
+    pdf.rect(15 * mm, 15 * mm, width - 30 * mm, height - 30 * mm)
+
+    pdf.setFont("Helvetica-Bold", 22)
+    pdf.drawCentredString(width / 2, height - 55 * mm, "CERTIFICATE OF PUBLICATION")
+    pdf.setFont("Helvetica", 12)
+    pdf.drawCentredString(width / 2, height - 68 * mm, site.journal_name_en or site.journal_name)
+    if site.eissn:
+        pdf.setFont("Helvetica", 9)
+        pdf.drawCentredString(width / 2, height - 75 * mm, f"e-ISSN {site.eissn}")
+
+    pdf.setFont("Helvetica", 11)
+    pdf.drawCentredString(width / 2, height - 95 * mm, "This is to certify that the article")
+
+    # Title, wrapped by hand: reportlab's canvas has no paragraph flow.
+    pdf.setFont("Helvetica-Bold", 14)
+    y = height - 110 * mm
+    for line in _wrap(article.title, 60):
+        pdf.drawCentredString(width / 2, y, line)
+        y -= 7 * mm
+
+    pdf.setFont("Helvetica", 11)
+    y -= 4 * mm
+    pdf.drawCentredString(width / 2, y, "by")
+    y -= 8 * mm
+    pdf.setFont("Helvetica-Bold", 12)
+    for line in _wrap(authors, 80):
+        pdf.drawCentredString(width / 2, y, line)
+        y -= 6 * mm
+
+    pdf.setFont("Helvetica", 11)
+    y -= 6 * mm
+    pdf.drawCentredString(width / 2, y, f"was published in {where}")
+    if published:
+        y -= 7 * mm
+        pdf.drawCentredString(width / 2, y, f"on {published:%d %B %Y}")
+    if article.doi:
+        y -= 7 * mm
+        pdf.setFont("Helvetica", 10)
+        pdf.drawCentredString(width / 2, y, f"DOI: https://doi.org/{article.doi}")
+
+    pdf.setFont("Helvetica", 9)
+    pdf.drawCentredString(
+        width / 2, 40 * mm, f"Issued on {timezone.now():%d %B %Y} · {settings.SITE_URL}"
+    )
+    pdf.drawCentredString(width / 2, 33 * mm, f"{site.publisher_name} · {site.contact_email}")
+    pdf.showPage()
+    pdf.save()
+    buffer.seek(0)
+
+    response = FileResponse(buffer, content_type="application/pdf")
+    response["Content-Disposition"] = (
+        f'attachment; filename="arer-publication-certificate-{article.pk}.pdf"'
+    )
+    return response
+
+
+def _wrap(text: str, width: int) -> list[str]:
+    """Greedy word wrap for canvas text."""
+    import textwrap
+
+    return textwrap.wrap(text, width=width) or [""]

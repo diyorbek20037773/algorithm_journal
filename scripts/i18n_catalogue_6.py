@@ -58,6 +58,15 @@ PART_6: dict[str, tuple[str, str]] = {
     ),
     "Country": ("Mamlakat", "Страна"),
     "Authors": ("Mualliflar", "Авторы"),
+    # --- author progress and publication (client request, 2026-09-11) --------
+    "Superuser": ("Superfoydalanuvchi", "Суперпользователь"),
+    "Draft — not yet submitted": ("Qoralama — hali yuborilmagan", "Черновик — ещё не отправлено"),
+    "Progress towards publication": ("Nashr sari jarayon", "Ход публикации"),
+    "View the published article": (
+        "Nashr etilgan maqolani koʻrish",
+        "Открыть опубликованную статью",
+    ),
+    "Certificate of publication": ("Nashr sertifikati", "Сертификат о публикации"),
     # --- article full text (TZ §6.1) ---------------------------------------
     "Full text": ("Toʻliq matn", "Полный текст"),
     "Full text (HTML)": ("Toʻliq matn (HTML)", "Полный текст (HTML)"),

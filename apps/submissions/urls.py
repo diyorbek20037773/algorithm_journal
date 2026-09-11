@@ -18,5 +18,10 @@ urlpatterns = [
     path("<int:pk>/step-5/", views.wizard_step5, name="wizard_step5"),
     path("<int:pk>/revision/", views.upload_revision, name="upload_revision"),
     path("<int:pk>/withdraw/", views.withdraw, name="withdraw"),
+    path(
+        "<int:pk>/certificate/",
+        views.publication_certificate,
+        name="publication_certificate",
+    ),
     path("file/<int:pk>/delete/", views.delete_file, name="delete_file"),
 ]

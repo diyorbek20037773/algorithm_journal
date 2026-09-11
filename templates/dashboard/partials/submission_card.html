@@ -1,0 +1,88 @@
+{% load i18n %}
+<article class="card mb-4 submission-card"
+         data-terminal="{{ progress.is_terminal|yesno:'true,false' }}"
+         data-published="{{ progress.is_published|yesno:'true,false' }}">
+  <div class="flex items-start justify-between gap-4">
+    <div class="min-w-0">
+      <p class="font-medium">{{ submission.title }}</p>
+      <p class="meta">{{ submission.reference|default:"—" }} · {{ submission.section.name }}</p>
+    </div>
+    {% include "includes/status_chip.html" with label=submission.get_status_display tone=submission.status_display_class %}
+  </div>
+  {# --- progress line: six milestones, read as a percentage --- #}
+  <div class="progress mt-5"
+       role="progressbar"
+       aria-valuemin="0"
+       aria-valuemax="100"
+       aria-valuenow="{{ progress.percent }}"
+       aria-label="{% translate 'Progress towards publication' %}">
+    <div class="progress-head">
+      <span class="progress-stage">{{ progress.current_label }}</span>
+      <span class="progress-percent">{{ progress.percent }}%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" style="width: {{ progress.percent }}%"></div>
+    </div>
+    <ol class="progress-steps">
+      {% for step in progress.steps %}
+        <li class="progress-step" data-state="{{ step.state }}">
+          <span class="progress-dot" aria-hidden="true"></span>
+          <span class="progress-label">{{ step.label }}</span>
+        </li>
+      {% endfor %}
+    </ol>
+  </div>
+  {% if progress.is_published and submission.article %}
+    {# --- what the author gets once the article is out --- #}
+    {% with article=submission.article %}
+      <div class="published-panel mt-5">
+        <p class="eyebrow">{% translate "Published" %}</p>
+        {% if article.abstract_plain %}
+          <p class="text-sm muted mt-2">{{ article.abstract_plain|truncatewords:60 }}</p>
+        {% endif %}
+        <dl class="dl-meta mt-3">
+          {% if article.doi %}
+            <dt>DOI</dt>
+            <dd>
+              <a class="meta" href="{{ article.doi_url }}" rel="noopener">https://doi.org/{{ article.doi }}</a>
+            </dd>
+          {% endif %}
+          {% if article.issue %}
+            <dt>{% translate "Issue" %}</dt>
+            <dd>
+              {{ article.issue.label }}
+            </dd>
+          {% endif %}
+          {% if article.display_date %}
+            <dt>{% translate "Published" %}</dt>
+            <dd>
+              {{ article.display_date|date:"j F Y" }}
+            </dd>
+          {% endif %}
+        </dl>
+        <div class="flex flex-wrap gap-2 mt-4">
+          <a class="btn btn-primary btn-sm" href="{{ article.get_absolute_url }}">{% translate "View the published article" %}</a>
+          {% if article.primary_galley %}
+            <a class="btn btn-secondary btn-sm" href="{{ article.pdf_url }}">{% translate "Download PDF" %}</a>
+          {% endif %}
+          <a class="btn btn-secondary btn-sm"
+             href="{% url 'submissions:publication_certificate' submission.pk %}">{% translate "Certificate of publication" %}</a>
+        </div>
+      </div>
+    {% endwith %}
+  {% else %}
+    <div class="flex flex-wrap gap-2 mt-4">
+      {% if submission.status == "draft" %}
+        <a class="btn btn-primary btn-sm"
+           href="{% url 'submissions:wizard_step1' submission.pk %}">{% translate "Continue draft" %}</a>
+      {% else %}
+        <a class="btn btn-secondary btn-sm"
+           href="{% url 'dashboard:submission_detail' submission.pk %}">{% translate "Details" %}</a>
+      {% endif %}
+      {% if submission.status == "revision_requested" %}
+        <a class="btn btn-primary btn-sm"
+           href="{% url 'submissions:upload_revision' submission.pk %}">{% translate "Upload revision" %}</a>
+      {% endif %}
+    </div>
+  {% endif %}
+</article>

@@ -227,3 +227,45 @@ def test_navigation_never_offers_a_page_the_user_cannot_open(
     eic_html = client_eic.get("/en/dashboard/").content.decode()
     assert 'href="/en/production/"' in eic_html
     assert client_eic.get("/en/production/").status_code == 200
+
+
+def test_publication_certificate_is_only_for_the_author_of_a_published_article(
+    client_author, client_anon, author_user, article, site_settings, section, jel_codes
+) -> None:
+    """The certificate is issued to the submitter, and only once the article is out."""
+    from apps.submissions.models import Submission, SubmissionStatus
+
+    submission = Submission.objects.create(
+        title=article.title,
+        submitter=author_user,
+        section=section,
+        status=SubmissionStatus.PUBLISHED,
+        article=article,
+    )
+
+    url = f"/en/submit/{submission.pk}/certificate/"
+
+    anon = client_anon.get(url)
+    assert anon.status_code == 302  # login required
+
+    response = client_author.get(url)
+    assert response.status_code == 200
+    assert response["Content-Type"] == "application/pdf"
+    body = b"".join(response.streaming_content)
+    assert body.startswith(b"%PDF")
+
+    # The same author, but a manuscript that never reached publication.
+    pending = Submission.objects.create(
+        title="Still under review",
+        submitter=author_user,
+        section=section,
+        status=SubmissionStatus.UNDER_REVIEW,
+    )
+    assert client_author.get(f"/en/submit/{pending.pk}/certificate/").status_code == 403
+
+
+def test_dashboard_shows_role_labels_not_slugs(client_eic, eic_user, site_settings) -> None:
+    """The header names the role in words the person recognises."""
+    html = client_eic.get("/en/dashboard/").content.decode()
+    assert "Editor-in-Chief" in html
+    assert "editor_in_chief" not in html

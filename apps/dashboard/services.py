@@ -304,3 +304,137 @@ def kpi_scorecard(kpis: dict[str, Any] | None) -> list[dict[str, Any]]:
         },
     ]
     return cards
+
+
+# --- author progress -------------------------------------------------------
+
+#: The milestones an author sees, in order. Each maps a set of internal
+#: statuses onto one public-facing step, so the sixteen workflow states read as
+#: a six-step journey rather than a list of editorial jargon.
+AUTHOR_STAGES: list[tuple[str, Any, frozenset[str]]] = [
+    ("submitted", _("Submitted"), frozenset({SubmissionStatus.SUBMITTED})),
+    ("screening", _("Screening"), frozenset({SubmissionStatus.SCREENING})),
+    (
+        "review",
+        _("Peer review"),
+        frozenset(
+            {
+                SubmissionStatus.UNDER_REVIEW,
+                SubmissionStatus.REVISION_REQUESTED,
+                SubmissionStatus.RESUBMITTED,
+            }
+        ),
+    ),
+    (
+        "decision",
+        _("Decision"),
+        frozenset({SubmissionStatus.AWAITING_DECISION, SubmissionStatus.ACCEPTED}),
+    ),
+    (
+        "production",
+        _("Production"),
+        frozenset(
+            {
+                SubmissionStatus.COPYEDITING,
+                SubmissionStatus.AUTHOR_PROOF,
+                SubmissionStatus.TYPESETTING,
+                SubmissionStatus.READY_TO_PUBLISH,
+            }
+        ),
+    ),
+    (
+        "published",
+        _("Published"),
+        frozenset({SubmissionStatus.PUBLISHED_ONLINE_FIRST, SubmissionStatus.PUBLISHED}),
+    ),
+]
+
+#: Statuses that end the journey without reaching publication.
+TERMINAL_STATUSES: frozenset[str] = frozenset(
+    {SubmissionStatus.REJECTED, SubmissionStatus.WITHDRAWN}
+)
+
+
+@dataclass(slots=True)
+class ProgressStep:
+    """One milestone on the author's progress line."""
+
+    key: str
+    label: Any
+    state: str  # "done" | "current" | "todo"
+
+
+@dataclass(slots=True)
+class SubmissionProgress:
+    """Where a manuscript is on its way to publication, as an author sees it."""
+
+    steps: list[ProgressStep]
+    percent: int
+    current_label: Any
+    is_terminal: bool
+    is_published: bool
+    #: Human-readable reason when the journey ended early.
+    terminal_label: Any = ""
+
+
+def submission_progress(submission: Submission) -> SubmissionProgress:
+    """Map a submission's status onto the author-facing progress line.
+
+    The percentage is the share of milestones reached, so an author can read
+    "33 %" and know it means "a third of the way", not a guess at days left.
+    A rejected or withdrawn manuscript keeps the progress it had reached and is
+    flagged terminal, so the bar stops honestly rather than snapping to zero.
+    """
+    status = submission.status
+    if status == SubmissionStatus.DRAFT:
+        steps = [ProgressStep(key, label, "todo") for key, label, _s in AUTHOR_STAGES]
+        return SubmissionProgress(
+            steps=steps,
+            percent=0,
+            current_label=_("Draft — not yet submitted"),
+            is_terminal=False,
+            is_published=False,
+        )
+
+    reached = -1
+    for index, (_key, _label, statuses) in enumerate(AUTHOR_STAGES):
+        if status in statuses:
+            reached = index
+            break
+
+    is_terminal = status in TERMINAL_STATUSES
+    if is_terminal:
+        # A manuscript is rejected either at screening or after review; the
+        # bar should stop where it actually stopped.
+        reached = 2 if submission.rounds.exists() else 1
+
+    is_published = status in AUTHOR_STAGES[-1][2]
+    steps = []
+    for index, (key, label, _statuses) in enumerate(AUTHOR_STAGES):
+        if index < reached or (is_published and index == reached):
+            state = "done"
+        elif index == reached:
+            state = "current"
+        else:
+            state = "todo"
+        steps.append(ProgressStep(key, label, state))
+
+    # Reaching a milestone counts: a manuscript that has been submitted is one
+    # step of six along, not zero. Published is always exactly 100.
+    total = len(AUTHOR_STAGES)
+    percent = 100 if is_published else round((reached + 1) / total * 100) if reached >= 0 else 0
+    current_label = (
+        submission.get_status_display()
+        if is_terminal
+        else AUTHOR_STAGES[reached][1]
+        if reached >= 0
+        else submission.get_status_display()
+    )
+    return SubmissionProgress(
+        steps=steps,
+        percent=percent,
+        current_label=current_label,
+        is_terminal=is_terminal,
+        is_published=is_published,
+        terminal_label=submission.get_status_display() if is_terminal else "",
+    )

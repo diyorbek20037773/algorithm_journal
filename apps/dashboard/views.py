@@ -21,6 +21,7 @@ from django.views.decorators.http import require_POST
 
 from apps.accounts.models import Role, User
 from apps.accounts.permissions import user_can_edit_submission, user_can_view_submission
+from apps.dashboard import services as dashboard_services
 from apps.dashboard.forms import ProfileForm, TOTPSetupForm, UserDetailsForm
 from apps.submissions import workflow
 from apps.submissions.forms import (
@@ -80,11 +81,31 @@ EDITOR_QUEUES: list[tuple[str, Any, list[str]]] = [
 def home(request: HttpRequest) -> HttpResponse:
     """Dispatch to the dashboard matching the user's primary role."""
     user = request.user
-    context: dict[str, Any] = {"roles": sorted(user.role_names)}
+    context: dict[str, Any] = {"roles": user.role_labels}
 
-    context["my_submissions"] = (
-        Submission.objects.filter(submitter=user).with_related().order_by("-last_activity_at")[:10]
+    mine = (
+        Submission.objects.filter(submitter=user)
+        .with_related()
+        .select_related("article__issue__volume")
+        .order_by("-last_activity_at")
     )
+    # Each manuscript carries its author-facing progress line: which of the
+    # six milestones it has reached, as a percentage. Published manuscripts
+    # are listed separately with what the author gets once the article is
+    # out — PDF, certificate, abstract and the public link — so they are never
+    # pushed out of sight by newer drafts.
+    published_statuses = {
+        SubmissionStatus.PUBLISHED,
+        SubmissionStatus.PUBLISHED_ONLINE_FIRST,
+    }
+    context["my_submissions"] = [
+        {"submission": s, "progress": dashboard_services.submission_progress(s)}
+        for s in mine.exclude(status__in=published_statuses)[:20]
+    ]
+    context["my_published"] = [
+        {"submission": s, "progress": dashboard_services.submission_progress(s)}
+        for s in mine.filter(status__in=published_statuses)
+    ]
     context["actions_needed"] = Submission.objects.filter(
         submitter=user,
         status__in=[SubmissionStatus.REVISION_REQUESTED, SubmissionStatus.AUTHOR_PROOF],
@@ -105,7 +126,6 @@ def home(request: HttpRequest) -> HttpResponse:
         )
 
     if user.is_editorial_staff:
-        from apps.dashboard import services as dashboard_services
         from apps.metrics.services import compute_kpi_window
 
         context["editor_queues"] = dashboard_services.queue_summary(user, EDITOR_QUEUES)

@@ -41,7 +41,9 @@ survives the longer strings and the second script.
 | `10b-queue-in-review.png` | "In review" queue with reviewer status dots | section editor |
 | `11-dashboard-submission.png` | Submission detail, reviewers tab | section editor |
 | `12-dashboard-reviewer.png` | Reviewer dashboard | reviewer |
-| `13-dashboard-author.png` | Author dashboard with status timeline | author |
+| `13-dashboard-author.png` | Author dashboard: six-step progress line per manuscript, and the published panel (PDF, certificate, abstract, public link) | author |
+| `13b-dashboard-author-uz.png` | The same in Uzbek Latin | author |
+| `certificate-sample.pdf` | A generated certificate of publication | author |
 | `14-production-issue-builder.png` | Issue builder | production editor |
 | `17-production-queue.png` | Production queue | production editor |
 | `18-reports.png` | Editorial reports: the four figures TZ §6.5 names | EIC |

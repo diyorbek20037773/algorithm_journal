@@ -127,6 +127,21 @@ class User(AbstractUser):
         """Set of group names the user belongs to."""
         return {g.name for g in self.groups.all()}
 
+    @property
+    def role_labels(self) -> list[str]:
+        """Translated, human-readable role names in a stable order.
+
+        The dashboard used to print raw group slugs — ``editor_in_chief`` — to
+        the person signed in. Superusers are labelled as such, since that is
+        the highest level in the system and not a group at all.
+        """
+        order = [choice[0] for choice in Role.choices]
+        names = sorted(self.role_names, key=lambda n: order.index(n) if n in order else 99)
+        labels = [str(dict(Role.choices).get(name, name)) for name in names]
+        if self.is_superuser:
+            labels.append(str(_("Superuser")))
+        return labels
+
     def has_role(self, *roles: str) -> bool:
         """True when the user belongs to any of ``roles`` (superuser: always)."""
         if self.is_superuser:

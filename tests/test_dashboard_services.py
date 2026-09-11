@@ -203,3 +203,71 @@ def test_summary_reports_the_true_total_when_truncated(editor_user, section, aut
 
     assert len(items) == 3
     assert total == 5
+
+
+# --- author progress -------------------------------------------------------
+
+
+def test_draft_shows_zero_progress(submission) -> None:
+    """A draft has not started the journey."""
+    _age(submission, 0, SubmissionStatus.DRAFT)
+    progress = services.submission_progress(submission)
+    assert progress.percent == 0
+    assert all(step.state == "todo" for step in progress.steps)
+
+
+@pytest.mark.parametrize(
+    ("status", "percent", "current"),
+    [
+        (SubmissionStatus.SUBMITTED, 17, "submitted"),
+        (SubmissionStatus.SCREENING, 33, "screening"),
+        (SubmissionStatus.UNDER_REVIEW, 50, "review"),
+        (SubmissionStatus.REVISION_REQUESTED, 50, "review"),
+        (SubmissionStatus.AWAITING_DECISION, 67, "decision"),
+        (SubmissionStatus.COPYEDITING, 83, "production"),
+        (SubmissionStatus.READY_TO_PUBLISH, 83, "production"),
+    ],
+)
+def test_progress_maps_statuses_onto_six_milestones(submission, status, percent, current) -> None:
+    """Sixteen internal states read as six steps and a percentage."""
+    _age(submission, 1, status)
+    progress = services.submission_progress(submission)
+
+    assert progress.percent == percent
+    assert not progress.is_terminal
+    assert not progress.is_published
+    states = {step.key: step.state for step in progress.steps}
+    assert states[current] == "current"
+    reached = [s.key for s in progress.steps].index(current)
+    assert all(step.state == "done" for step in progress.steps[:reached])
+    assert all(step.state == "todo" for step in progress.steps[reached + 1 :])
+
+
+def test_published_is_complete(submission) -> None:
+    """Published means every milestone done and 100 %."""
+    _age(submission, 1, SubmissionStatus.PUBLISHED)
+    progress = services.submission_progress(submission)
+
+    assert progress.percent == 100
+    assert progress.is_published
+    assert all(step.state == "done" for step in progress.steps)
+
+
+def test_rejection_keeps_the_progress_it_reached(submission, reviewers) -> None:
+    """A rejected manuscript stops where it stopped rather than snapping to zero."""
+    _age(submission, 1, SubmissionStatus.REJECTED)
+    ReviewRound.objects.create(submission=submission, number=1)
+    progress = services.submission_progress(submission)
+
+    assert progress.is_terminal
+    assert progress.percent == 50  # reached peer review, then rejected
+    assert str(progress.terminal_label) == "Rejected"
+
+
+def test_desk_rejection_stops_at_screening(submission) -> None:
+    """Rejected without a review round: the bar stops at screening."""
+    _age(submission, 1, SubmissionStatus.REJECTED)
+    progress = services.submission_progress(submission)
+
+    assert progress.is_terminal
+    assert progress.percent == 33
