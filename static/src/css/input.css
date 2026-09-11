@@ -824,8 +824,9 @@
 
   .progress-percent {
     font-family: var(--font-serif);
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     color: var(--color-accent);
+    white-space: nowrap;
   }
 
   .progress-track {
@@ -842,14 +843,19 @@
     transition: width 400ms ease;
   }
 
-  .submission-card[data-terminal="true"] .progress-fill,
-  .submission-card[data-terminal="true"] .progress-percent {
+  .submission-card[data-terminal="true"] .progress-fill {
     background: var(--color-danger);
-    color: var(--color-danger);
   }
 
-  .submission-card[data-terminal="true"] .progress-percent {
-    background: transparent;
+  .submission-card[data-terminal="true"] .progress-percent,
+  .submission-card[data-terminal="true"] .progress-step[data-state="current"] .progress-dot {
+    color: var(--color-danger);
+    border-color: var(--color-danger);
+  }
+
+  .submission-card[data-terminal="true"] .progress-step[data-state="done"] .progress-dot {
+    background: var(--color-danger);
+    border-color: var(--color-danger);
   }
 
   .submission-card[data-published="true"] .progress-fill {
@@ -878,21 +884,32 @@
     min-width: 0;
   }
 
+  /* Each milestone is numbered inside its dot: "step 3 of 6" reads the same
+     on the head line, in the dots and to a screen reader. */
   .progress-dot {
-    width: 12px;
-    height: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     border: 2px solid var(--color-line);
     background: var(--color-paper);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--color-ink-3);
   }
 
   .progress-step[data-state="done"] .progress-dot {
     border-color: var(--color-accent);
     background: var(--color-accent);
+    color: #fff;
   }
 
   .progress-step[data-state="current"] .progress-dot {
     border-color: var(--color-accent);
+    color: var(--color-accent);
     box-shadow: 0 0 0 4px var(--color-accent-soft);
   }
 

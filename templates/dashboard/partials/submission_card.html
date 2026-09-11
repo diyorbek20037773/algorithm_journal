@@ -9,16 +9,16 @@
     </div>
     {% include "includes/status_chip.html" with label=submission.get_status_display tone=submission.status_display_class %}
   </div>
-  {# --- progress line: six milestones, read as a percentage --- #}
+  {# --- progress line: six numbered milestones --- #}
   <div class="progress mt-5"
        role="progressbar"
        aria-valuemin="0"
-       aria-valuemax="100"
-       aria-valuenow="{{ progress.percent }}"
+       aria-valuemax="{{ progress.total_steps }}"
+       aria-valuenow="{{ progress.step_number }}"
        aria-label="{% translate 'Progress towards publication' %}">
     <div class="progress-head">
       <span class="progress-stage">{{ progress.current_label }}</span>
-      <span class="progress-percent">{{ progress.percent }}%</span>
+      <span class="progress-percent">{% blocktranslate with step=progress.step_number total=progress.total_steps %}Step {{ step }} of {{ total }}{% endblocktranslate %}</span>
     </div>
     <div class="progress-track">
       <div class="progress-fill" style="width: {{ progress.percent }}%"></div>
@@ -26,7 +26,7 @@
     <ol class="progress-steps">
       {% for step in progress.steps %}
         <li class="progress-step" data-state="{{ step.state }}">
-          <span class="progress-dot" aria-hidden="true"></span>
+          <span class="progress-dot" aria-hidden="true">{{ step.number }}</span>
           <span class="progress-label">{{ step.label }}</span>
         </li>
       {% endfor %}

@@ -362,6 +362,7 @@ class ProgressStep:
     key: str
     label: Any
     state: str  # "done" | "current" | "todo"
+    number: int = 0
 
 
 @dataclass(slots=True)
@@ -369,6 +370,10 @@ class SubmissionProgress:
     """Where a manuscript is on its way to publication, as an author sees it."""
 
     steps: list[ProgressStep]
+    #: Milestone reached, 1-based; 0 for a draft that has not started.
+    step_number: int
+    total_steps: int
+    #: Share of the track to fill; derived from the step, kept for the bar.
     percent: int
     current_label: Any
     is_terminal: bool
@@ -386,10 +391,16 @@ def submission_progress(submission: Submission) -> SubmissionProgress:
     flagged terminal, so the bar stops honestly rather than snapping to zero.
     """
     status = submission.status
+    total = len(AUTHOR_STAGES)
     if status == SubmissionStatus.DRAFT:
-        steps = [ProgressStep(key, label, "todo") for key, label, _s in AUTHOR_STAGES]
+        steps = [
+            ProgressStep(key, label, "todo", number=i + 1)
+            for i, (key, label, _s) in enumerate(AUTHOR_STAGES)
+        ]
         return SubmissionProgress(
             steps=steps,
+            step_number=0,
+            total_steps=total,
             percent=0,
             current_label=_("Draft — not yet submitted"),
             is_terminal=False,
@@ -417,12 +428,13 @@ def submission_progress(submission: Submission) -> SubmissionProgress:
             state = "current"
         else:
             state = "todo"
-        steps.append(ProgressStep(key, label, state))
+        steps.append(ProgressStep(key, label, state, number=index + 1))
 
-    # Reaching a milestone counts: a manuscript that has been submitted is one
-    # step of six along, not zero. Published is always exactly 100.
-    total = len(AUTHOR_STAGES)
-    percent = 100 if is_published else round((reached + 1) / total * 100) if reached >= 0 else 0
+    # The author reads "step 3 of 6"; the bar fills to match. Reaching a
+    # milestone counts, so a submitted manuscript is step 1, not step 0, and
+    # published is always the last step.
+    step_number = total if is_published else reached + 1 if reached >= 0 else 0
+    percent = round(step_number / total * 100)
     current_label = (
         submission.get_status_display()
         if is_terminal
@@ -432,6 +444,8 @@ def submission_progress(submission: Submission) -> SubmissionProgress:
     )
     return SubmissionProgress(
         steps=steps,
+        step_number=step_number,
+        total_steps=total,
         percent=percent,
         current_label=current_label,
         is_terminal=is_terminal,

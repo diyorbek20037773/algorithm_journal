@@ -212,28 +212,31 @@ def test_draft_shows_zero_progress(submission) -> None:
     """A draft has not started the journey."""
     _age(submission, 0, SubmissionStatus.DRAFT)
     progress = services.submission_progress(submission)
-    assert progress.percent == 0
+    assert progress.step_number == 0
+    assert progress.total_steps == 6
     assert all(step.state == "todo" for step in progress.steps)
+    assert [step.number for step in progress.steps] == [1, 2, 3, 4, 5, 6]
 
 
 @pytest.mark.parametrize(
-    ("status", "percent", "current"),
+    ("status", "step", "current"),
     [
-        (SubmissionStatus.SUBMITTED, 17, "submitted"),
-        (SubmissionStatus.SCREENING, 33, "screening"),
-        (SubmissionStatus.UNDER_REVIEW, 50, "review"),
-        (SubmissionStatus.REVISION_REQUESTED, 50, "review"),
-        (SubmissionStatus.AWAITING_DECISION, 67, "decision"),
-        (SubmissionStatus.COPYEDITING, 83, "production"),
-        (SubmissionStatus.READY_TO_PUBLISH, 83, "production"),
+        (SubmissionStatus.SUBMITTED, 1, "submitted"),
+        (SubmissionStatus.SCREENING, 2, "screening"),
+        (SubmissionStatus.UNDER_REVIEW, 3, "review"),
+        (SubmissionStatus.REVISION_REQUESTED, 3, "review"),
+        (SubmissionStatus.AWAITING_DECISION, 4, "decision"),
+        (SubmissionStatus.COPYEDITING, 5, "production"),
+        (SubmissionStatus.READY_TO_PUBLISH, 5, "production"),
     ],
 )
-def test_progress_maps_statuses_onto_six_milestones(submission, status, percent, current) -> None:
-    """Sixteen internal states read as six steps and a percentage."""
+def test_progress_maps_statuses_onto_six_milestones(submission, status, step, current) -> None:
+    """Sixteen internal states read as "step N of 6"."""
     _age(submission, 1, status)
     progress = services.submission_progress(submission)
 
-    assert progress.percent == percent
+    assert progress.step_number == step
+    assert progress.total_steps == 6
     assert not progress.is_terminal
     assert not progress.is_published
     states = {step.key: step.state for step in progress.steps}
@@ -248,6 +251,7 @@ def test_published_is_complete(submission) -> None:
     _age(submission, 1, SubmissionStatus.PUBLISHED)
     progress = services.submission_progress(submission)
 
+    assert progress.step_number == 6
     assert progress.percent == 100
     assert progress.is_published
     assert all(step.state == "done" for step in progress.steps)
@@ -260,7 +264,7 @@ def test_rejection_keeps_the_progress_it_reached(submission, reviewers) -> None:
     progress = services.submission_progress(submission)
 
     assert progress.is_terminal
-    assert progress.percent == 50  # reached peer review, then rejected
+    assert progress.step_number == 3  # reached peer review, then rejected
     assert str(progress.terminal_label) == "Rejected"
 
 
@@ -270,4 +274,4 @@ def test_desk_rejection_stops_at_screening(submission) -> None:
     progress = services.submission_progress(submission)
 
     assert progress.is_terminal
-    assert progress.percent == 33
+    assert progress.step_number == 2

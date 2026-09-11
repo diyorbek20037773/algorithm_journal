@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-11 14:46+0500\n"
+"POT-Creation-Date: 2026-09-11 17:37+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: ARER editorial office\n"
 "Language-Team: ARER\n"
@@ -120,7 +120,6 @@ msgid "users"
 msgstr "пользователи"
 
 #: apps/accounts/models.py:142
-#| msgid "user"
 msgid "Superuser"
 msgstr "Суперпользователь"
 
@@ -1154,13 +1153,15 @@ msgid "Production"
 msgstr "Выпуск"
 
 #: apps/dashboard/services.py:347 apps/journal/models.py:317
-#: apps/submissions/models.py:54 templates/dashboard/home.html:194
-#: templates/dashboard/home.html:212 templates/journal/article_detail.html:99
-#: templates/journal/home.html:61 templates/journal/issue_detail.html:33
+#: apps/submissions/models.py:54 templates/dashboard/home.html:169
+#: templates/dashboard/partials/submission_card.html:39
+#: templates/dashboard/partials/submission_card.html:57
+#: templates/journal/article_detail.html:99 templates/journal/home.html:61
+#: templates/journal/issue_detail.html:33
 msgid "Published"
 msgstr "Опубликовано"
 
-#: apps/dashboard/services.py:394
+#: apps/dashboard/services.py:405
 msgid "Draft — not yet submitted"
 msgstr "Черновик — ещё не отправлено"
 
@@ -1185,72 +1186,72 @@ msgstr "Доработки"
 msgid "Accepted / in production"
 msgstr "Приняты / в подготовке"
 
-#: apps/dashboard/views.py:225
+#: apps/dashboard/views.py:235
 msgid "The similarity result has been recorded."
 msgstr "Результат проверки заимствований сохранён."
 
-#: apps/dashboard/views.py:227
+#: apps/dashboard/views.py:237
 msgid "Please correct the similarity form."
 msgstr "Исправьте форму проверки заимствований."
 
-#: apps/dashboard/views.py:243
+#: apps/dashboard/views.py:253
 msgid "Done."
 msgstr "Готово."
 
-#: apps/dashboard/views.py:247 apps/submissions/workflow.py:226
+#: apps/dashboard/views.py:257 apps/submissions/workflow.py:226
 msgid "You may not perform this action."
 msgstr "У вас нет прав на это действие."
 
-#: apps/dashboard/views.py:294
+#: apps/dashboard/views.py:304
 msgid "Send the manuscript to review before inviting reviewers."
 msgstr ""
 "Прежде чем приглашать рецензентов, отправьте рукопись на рецензирование."
 
-#: apps/dashboard/views.py:299 apps/submissions/forms.py:473
+#: apps/dashboard/views.py:309 apps/submissions/forms.py:473
 msgid "Choose a reviewer or enter an e-mail address."
 msgstr "Выберите рецензента или введите адрес электронной почты."
 
-#: apps/dashboard/views.py:319
+#: apps/dashboard/views.py:329
 msgid "The invitation has been sent."
 msgstr "Приглашение отправлено."
 
-#: apps/dashboard/views.py:334
+#: apps/dashboard/views.py:344
 msgid "The invitation has been cancelled."
 msgstr "Приглашение отменено."
 
-#: apps/dashboard/views.py:351
+#: apps/dashboard/views.py:361
 msgid "A reminder has been sent."
 msgstr "Напоминание отправлено."
 
-#: apps/dashboard/views.py:366
+#: apps/dashboard/views.py:376
 msgid "Thank you — the rating has been saved."
 msgstr "Спасибо — оценка сохранена."
 
-#: apps/dashboard/views.py:388
+#: apps/dashboard/views.py:398
 msgid "The decision has been recorded and sent."
 msgstr "Решение зафиксировано и отправлено."
 
-#: apps/dashboard/views.py:429
+#: apps/dashboard/views.py:439
 msgid "Correspondence"
 msgstr "Переписка"
 
-#: apps/dashboard/views.py:434
+#: apps/dashboard/views.py:444
 msgid "Message posted."
 msgstr "Сообщение опубликовано."
 
-#: apps/dashboard/views.py:448
+#: apps/dashboard/views.py:458
 msgid "Note saved."
 msgstr "Заметка сохранена."
 
-#: apps/dashboard/views.py:514
+#: apps/dashboard/views.py:524
 msgid "Your profile has been updated."
 msgstr "Ваш профиль обновлён."
 
-#: apps/dashboard/views.py:563 templates/dashboard/two_factor.html:10
+#: apps/dashboard/views.py:573 templates/dashboard/two_factor.html:10
 msgid "Two-factor authentication is now active."
 msgstr "Двухфакторная аутентификация активирована."
 
-#: apps/dashboard/views.py:569
+#: apps/dashboard/views.py:579
 msgid "That code is not valid. Please try again."
 msgstr "Этот код неверен. Попробуйте ещё раз."
 
@@ -3910,7 +3911,8 @@ msgstr "Написать рецензию"
 msgid "Your manuscripts need you"
 msgstr "Ваши рукописи ждут вас"
 
-#: templates/dashboard/home.html:137 templates/dashboard/home.html:239
+#: templates/dashboard/home.html:137
+#: templates/dashboard/partials/submission_card.html:84
 msgid "Upload revision"
 msgstr "Загрузить доработку"
 
@@ -3918,49 +3920,24 @@ msgstr "Загрузить доработку"
 msgid "My submissions"
 msgstr "Мои рукописи"
 
-#: templates/dashboard/home.html:173
-msgid "Progress towards publication"
-msgstr "Ход публикации"
-
-#: templates/dashboard/home.html:206 templates/journal/archive.html:35
-#: templates/journal/article_detail.html:92
-#: templates/production/article_detail.html:86
-#: templates/production/queue.html:66
-msgid "Issue"
-msgstr "Выпуск"
-
-#: templates/dashboard/home.html:219
-#| msgid "published article"
-msgid "View the published article"
-msgstr "Открыть опубликованную статью"
-
-#: templates/dashboard/home.html:221 templates/journal/article_detail.html:174
-#: templates/journal/article_detail.html:293
-msgid "Download PDF"
-msgstr "Скачать PDF"
-
-#: templates/dashboard/home.html:224
-msgid "Certificate of publication"
-msgstr "Сертификат о публикации"
-
-#: templates/dashboard/home.html:232
-msgid "Continue draft"
-msgstr "Продолжить черновик"
-
-#: templates/dashboard/home.html:235
-msgid "Details"
-msgstr "Подробности"
-
-#: templates/dashboard/home.html:247
+#: templates/dashboard/home.html:159
 msgid "You have not submitted anything yet."
 msgstr "Вы пока ничего не подавали."
 
-#: templates/dashboard/home.html:249 templates/includes/footer.html:34
+#: templates/dashboard/home.html:161 templates/includes/footer.html:34
 #: templates/submissions/wizard_intro.html:3
 #: templates/submissions/wizard_intro.html:6
 #: templates/submissions/wizard_step1.html:6
 msgid "Submit a manuscript"
 msgstr "Подать рукопись"
+
+#: templates/dashboard/home.html:170 templates/journal/archive.html:36
+#: templates/journal/home.html:141
+#, python-format
+msgid "%(counter)s article"
+msgid_plural "%(counter)s articles"
+msgstr[0] "%(counter)s статья"
+msgstr[1] "%(counter)s статей"
 
 #: templates/dashboard/partials/queue_table.html:5
 msgid "Reference"
@@ -4010,6 +3987,45 @@ msgstr "Пригласить"
 msgid "No matching reviewers. Invite someone by e-mail below."
 msgstr ""
 "Подходящих рецензентов не найдено. Пригласите кого-нибудь по e-mail ниже."
+
+#: templates/dashboard/partials/submission_card.html:18
+msgid "Progress towards publication"
+msgstr "Ход публикации"
+
+#: templates/dashboard/partials/submission_card.html:21
+#, python-format
+#| msgid "Page %(current)s of %(total)s"
+msgid "Step %(step)s of %(total)s"
+msgstr "Этап %(step)s из %(total)s"
+
+#: templates/dashboard/partials/submission_card.html:51
+#: templates/journal/archive.html:35 templates/journal/article_detail.html:92
+#: templates/production/article_detail.html:86
+#: templates/production/queue.html:66
+msgid "Issue"
+msgstr "Выпуск"
+
+#: templates/dashboard/partials/submission_card.html:64
+msgid "View the published article"
+msgstr "Открыть опубликованную статью"
+
+#: templates/dashboard/partials/submission_card.html:66
+#: templates/journal/article_detail.html:174
+#: templates/journal/article_detail.html:293
+msgid "Download PDF"
+msgstr "Скачать PDF"
+
+#: templates/dashboard/partials/submission_card.html:69
+msgid "Certificate of publication"
+msgstr "Сертификат о публикации"
+
+#: templates/dashboard/partials/submission_card.html:77
+msgid "Continue draft"
+msgstr "Продолжить черновик"
+
+#: templates/dashboard/partials/submission_card.html:80
+msgid "Details"
+msgstr "Подробности"
 
 #: templates/dashboard/profile.html:17
 msgid "Scholarly profile"
@@ -4511,13 +4527,6 @@ msgstr "Все годы"
 #: templates/journal/archive.html:21 templates/production/queue.html:49
 msgid "Volume"
 msgstr "Том"
-
-#: templates/journal/archive.html:36 templates/journal/home.html:141
-#, python-format
-msgid "%(counter)s article"
-msgid_plural "%(counter)s articles"
-msgstr[0] "%(counter)s статья"
-msgstr[1] "%(counter)s статей"
 
 #: templates/journal/archive.html:43
 msgid "No issues have been published yet."
