@@ -62,7 +62,10 @@ PART_6: dict[str, tuple[str, str]] = {
     "Superuser": ("Superfoydalanuvchi", "Суперпользователь"),
     "Draft — not yet submitted": ("Qoralama — hali yuborilmagan", "Черновик — ещё не отправлено"),
     "Progress towards publication": ("Nashr sari jarayon", "Ход публикации"),
-    "Step %(step)s of %(total)s": ("%(total)s bosqichdan %(step)s-si", "Этап %(step)s из %(total)s"),
+    "Step %(step)s of %(total)s": (
+        "%(total)s bosqichdan %(step)s-si",
+        "Этап %(step)s из %(total)s",
+    ),
     "View the published article": (
         "Nashr etilgan maqolani koʻrish",
         "Открыть опубликованную статью",
