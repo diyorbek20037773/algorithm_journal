@@ -176,11 +176,19 @@ def test_pdf_download_is_counted(client_anon, article) -> None:
 
 
 def test_article_view_is_counted(client_anon, article, about_pages) -> None:
-    """Opening the landing page increments the view counter."""
+    """Opening the landing page increments the view counter.
+
+    The page fires ``article_view_beacon`` once loaded, and that is what
+    counts; the page itself is cached for anonymous readers and must not.
+    """
     from apps.journal.models import Article
 
     before = Article.objects.get(pk=article.pk).views_count
-    client_anon.get(f"/en/article/{article.pk}/", HTTP_USER_AGENT="Mozilla/5.0 (Test Reader)")
+    page = client_anon.get(
+        f"/en/article/{article.pk}/", HTTP_USER_AGENT="Mozilla/5.0 (Test Reader)"
+    )
+    assert f"/en/article/{article.pk}/view/" in page.content.decode()
+    client_anon.get(f"/en/article/{article.pk}/view/", HTTP_USER_AGENT="Mozilla/5.0 (Test Reader)")
     after = Article.objects.get(pk=article.pk).views_count
     assert after == before + 1
 
@@ -306,3 +314,64 @@ def test_no_multiline_django_comments_in_templates() -> None:
                 line = text[: match.start()].count("\n") + 1
                 offenders.append(f"{path.name}:{line}")
     assert not offenders, f"multi-line {{# #}} comments: {offenders}"
+
+
+def test_search_uses_the_stored_vector(
+    client_anon, article, site_settings, django_assert_max_num_queries
+) -> None:
+    """Search reads Article.search_vector; it must not rebuild the document per request.
+
+    The inline vector it replaces joined keywords × authors × references on
+    every search — a Cartesian product that took eight seconds on fourteen
+    articles and held a gunicorn worker for the whole of it.
+    """
+    from apps.journal.models import Article
+
+    article.refresh_from_db()
+    assert article.search_vector is not None, "the fixture article was never indexed"
+
+    with django_assert_max_num_queries(20):
+        response = client_anon.get("/en/search/", {"q": article.title.split()[0]})
+    assert response.status_code == 200
+    assert article.title in response.content.decode()
+
+    # Nothing in the executed SQL may compute to_tsvector over a joined table.
+    from django.db import connection
+    from django.test.utils import CaptureQueriesContext
+
+    with CaptureQueriesContext(connection) as ctx:
+        client_anon.get("/en/search/", {"q": "policy"})
+    joined_vector = [
+        q["sql"]
+        for q in ctx.captured_queries
+        if "to_tsvector" in q["sql"] and "journal_reference" in q["sql"]
+    ]
+    assert not joined_vector, "search is still building the vector from a join"
+    assert Article.objects.filter(search_vector__isnull=False).exists()
+
+
+def test_search_vector_follows_its_sources(article, site_settings) -> None:
+    """Editing an author, a keyword or the article itself re-indexes it."""
+    from django.contrib.postgres.search import SearchQuery
+
+    from apps.journal.models import Article, Author, Keyword
+
+    def hits(term: str) -> bool:
+        return Article.objects.filter(
+            pk=article.pk, search_vector=SearchQuery(term, config="simple")
+        ).exists()
+
+    assert not hits("Zarafshanov")
+    Author.objects.create(
+        article=article, order=9, given_name="Botir", family_name="Zarafshanov", country="UZ"
+    )
+    assert hits("Zarafshanov")
+
+    assert not hits("dollarisation")
+    keyword = Keyword.objects.create(name="dollarisation", slug="dollarisation")
+    article.keywords.add(keyword)
+    assert hits("dollarisation")
+
+    article.title = "Completely New Heading About Remittances"
+    article.save()
+    assert hits("Remittances")

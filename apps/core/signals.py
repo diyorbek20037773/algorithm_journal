@@ -62,3 +62,49 @@ def fill_uz_cyrl(sender: type, instance: Any, **kwargs) -> None:
         merged = dict(existing)
         merged.update(generated)
         instance.auto_translit = merged
+
+
+# --- public page cache ------------------------------------------------------
+# Anything an editor changes through the admin that appears on a public page
+# must invalidate the whole-page cache, or the change waits up to two minutes
+# to show — long enough for an editor to conclude the save failed.
+
+
+def _invalidate_public_pages(**kwargs: Any) -> None:
+    from apps.core.caching import bump_public_cache_generation
+
+    bump_public_cache_generation()
+
+
+def _connect_cache_invalidation() -> None:
+    from django.db.models.signals import post_delete, post_save
+
+    from apps.core.models import Announcement, IndexingService, Page, SiteSettings
+    from apps.journal.models import Article, EditorialBoardMember, Issue, Section, Volume
+
+    for model in (
+        Announcement,
+        IndexingService,
+        Page,
+        SiteSettings,
+        Article,
+        EditorialBoardMember,
+        Issue,
+        Section,
+        Volume,
+    ):
+        post_save.connect(
+            _invalidate_public_pages,
+            sender=model,
+            weak=False,
+            dispatch_uid=f"public_cache_save_{model.__name__}",
+        )
+        post_delete.connect(
+            _invalidate_public_pages,
+            sender=model,
+            weak=False,
+            dispatch_uid=f"public_cache_delete_{model.__name__}",
+        )
+
+
+_connect_cache_invalidation()

@@ -137,7 +137,8 @@ tests/       pytest suites mirrored per app plus end-to-end
 | [`docs/ADMIN_GUIDE_uz.md`](docs/ADMIN_GUIDE_uz.md) | Administrator guide (Uzbek) |
 | [`docs/EDITOR_GUIDE_en.md`](docs/EDITOR_GUIDE_en.md) | Editorial workflow guide (English) |
 | [`docs/EDITOR_GUIDE_uz.md`](docs/EDITOR_GUIDE_uz.md) | Editorial workflow guide (Uzbek) |
-| [`docs/PERFORMANCE.md`](docs/PERFORMANCE.md) | Measured query counts, bundle sizes and axe-core results |
+| [`docs/PERFORMANCE.md`](docs/PERFORMANCE.md) | Query counts, bundle sizes, axe-core results and the 200-user load test |
+| [`docs/RAILWAY.md`](docs/RAILWAY.md) | Staging on Railway: services, variables, why not production |
 | [`docs/TZ_COMPLIANCE_uz.md`](docs/TZ_COMPLIANCE_uz.md) | Clause-by-clause check against the client's terms of reference (Uzbek) |
 | [`HANDOFF.md`](HANDOFF.md) | Hand-over notes in Uzbek: what is done, what needs real credentials |
 

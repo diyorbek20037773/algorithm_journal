@@ -51,11 +51,23 @@ case "${ROLE}" in
     wait_for_postgres
     python manage.py migrate --noinput
     python manage.py collectstatic --noinput --ignore=src
+    # Workers follow the CPU count (the usual 2n+1, capped so a large host does
+    # not open more database connections than Postgres allows); threads let
+    # each worker overlap the I/O-bound parts of a request. 200 concurrent
+    # readers on 3×2 slots queued for seconds; on 9×4 they do not.
+    cpus="$(nproc 2>/dev/null || echo 2)"
+    default_workers=$(( 2 * cpus + 1 ))
+    if [ "${default_workers}" -gt 12 ]; then default_workers=12; fi
     exec gunicorn config.wsgi:application \
-      --bind 0.0.0.0:8000 \
-      --workers "${GUNICORN_WORKERS:-3}" \
-      --threads "${GUNICORN_THREADS:-2}" \
-      --timeout 120 \
+      --bind "0.0.0.0:${PORT:-8000}" \
+      --workers "${GUNICORN_WORKERS:-${default_workers}}" \
+      --threads "${GUNICORN_THREADS:-4}" \
+      --worker-tmp-dir /dev/shm \
+      --max-requests 1000 \
+      --max-requests-jitter 100 \
+      --keep-alive 5 \
+      --timeout 60 \
+      --graceful-timeout 30 \
       --access-logfile - \
       --error-logfile -
     ;;

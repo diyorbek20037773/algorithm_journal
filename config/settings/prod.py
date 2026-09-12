@@ -38,7 +38,7 @@ if env("RESEND_API_KEY", default=""):
     EMAIL_BACKEND = "anymail.backends.resend.EmailBackend"
 
 # --- Performance --------------------------------------------------------------
-CONN_MAX_AGE = 60
+# Connection lifetime / pooling is decided in base.py from DB_POOL.
 TEMPLATES[0]["OPTIONS"]["loaders"] = [
     (
         "django.template.loaders.cached.Loader",

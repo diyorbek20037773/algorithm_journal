@@ -154,8 +154,23 @@ DATABASES = {
         default="postgres://arer:arer_dev_password@localhost:5432/arer",
     )
 }
-DATABASES["default"]["CONN_MAX_AGE"] = env.int("CONN_MAX_AGE", default=60)
 DATABASES["default"]["ATOMIC_REQUESTS"] = False
+# psycopg 3's built-in pool shares a few connections across every thread in a
+# worker instead of pinning one per thread. With 9 workers × 4 threads that is
+# ~18 connections rather than 36, and no connect handshake on a cold thread.
+# Django requires CONN_MAX_AGE to be 0 when the pool is on.
+if env.bool("DB_POOL", default=False):
+    DATABASES["default"]["CONN_MAX_AGE"] = 0
+    DATABASES["default"]["OPTIONS"] = {
+        **DATABASES["default"].get("OPTIONS", {}),
+        "pool": {
+            "min_size": env.int("DB_POOL_MIN", default=1),
+            "max_size": env.int("DB_POOL_MAX", default=4),
+            "timeout": 10,
+        },
+    }
+else:
+    DATABASES["default"]["CONN_MAX_AGE"] = env.int("CONN_MAX_AGE", default=60)
 
 # -----------------------------------------------------------------------------
 # Cache / Celery

@@ -220,15 +220,10 @@ class ArticleDetailView(DetailView):
         if expected and given is not None and given != expected:
             return redirect(self.object.get_absolute_url(), permanent=True)
         context = self.get_context_data(object=self.object)
-        response = self.render_to_response(context)
-        self._record_view(request)
-        return response
-
-    def _record_view(self, request: HttpRequest) -> None:
-        """Register an article view for the metrics app."""
-        from apps.metrics.services import record_access
-
-        record_access(request, self.object, kind="view")
+        # The view itself is counted by ``article_view_beacon``, called from
+        # the page once it has loaded, so the page can be served from the
+        # public cache without the count going dark.
+        return self.render_to_response(context)
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         """Add related articles, translated abstracts and citation metadata."""
@@ -518,3 +513,21 @@ def article_json(request: HttpRequest, pk: int) -> JsonResponse:
             "authors": [a.full_name for a in article.author_list()],
         }
     )
+
+
+@require_GET
+def article_view_beacon(request: HttpRequest, pk: int) -> HttpResponse:
+    """Count one view of an article.
+
+    Called by the article page after it loads. Keeping the count out of the
+    page view is what lets the page itself be cached for anonymous readers;
+    the bot filter and the double-click window in ``record_access`` still
+    apply, so a cached page does not inflate the figure.
+    """
+    from apps.metrics.services import record_access
+
+    article = get_object_or_404(Article.objects.public(), pk=pk)
+    record_access(request, article, kind="view")
+    response = HttpResponse(status=204)
+    response["Cache-Control"] = "no-store, private"
+    return response

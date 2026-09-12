@@ -102,3 +102,72 @@ the application. Query counts and payload sizes are reproducible anywhere.
 make test                       # includes tests/test_performance.py
 make screenshots                # regenerates docs/screenshots/accessibility.json
 ```
+
+
+## Load test (TZ §10: 200 concurrent users)
+
+`scripts/loadtest.py` opens N virtual readers against a production-mode
+gunicorn and reports throughput, latency percentiles and the error rate. It is
+how the 200-user requirement is *checked* rather than asserted, and it gates a
+deployment (non-zero exit above the thresholds).
+
+```bash
+python scripts/loadtest.py --base https://<host> --users 200 --seconds 60
+```
+
+### What it found, 2026-09-12, on the build machine
+
+| Configuration | req/s | errors | p50 | p95 |
+|---|---|---|---|---|
+| As delivered (3 workers × 2 threads, inline search) | 11.3 | **21.7 %** | 20.2 s | 30.0 s |
+| + stored search vector | 29.7 | 0.17 % | 4.1 s | 14.9 s |
+| + 9 workers × 4 threads, DB pool, Postgres tuned | 43.5 | **0 %** | 2.6 s | 7.4 s |
+| + whole-page cache for anonymous readers | 43.6 | 0 % | 2.3 s | 8.2 s |
+
+The first row is the defect: **search took 8.3 seconds** for a single request.
+The inline `SearchVector` joined keywords × authors × references — a Cartesian
+product of ~100 000 rows recomputed with `to_tsvector` on every search, on
+fourteen articles. Ten percent of readers searching was enough to hold every
+worker slot and time out the rest. The document is now stored in
+`Article.search_vector` under a GIN index and maintained by signals; a search
+is an index lookup and takes ~150 ms whatever the archive's size.
+
+### Why the last two rows are identical — and why 43 req/s is not the answer
+
+A cache hit costs about a millisecond of Python, yet throughput did not move.
+Measuring the trivial `/healthz/` endpoint alone explains it:
+
+| users | req/s | p50 |
+|---|---|---|
+| 10 | 90 | 55 ms |
+| 50 | 63 | 514 ms |
+| 200 | 52 | 3 738 ms |
+
+An endpoint that does nothing saturates at ~50 req/s and its latency grows
+with concurrency. That ceiling is **Docker Desktop for Windows** — host to
+WSL2 VM to container port-forward — with the load generator competing for the
+same CPUs. The application cannot be measured past it on this machine, in any
+configuration.
+
+What the figures above do establish: the timeout failures are gone (21.7 % →
+0 %), the one structural defect is fixed, and each request is cheap. The
+capacity number itself has to come from the target server. Run the command
+above on the VPS before acceptance; a 4-vCPU Linux host with no port-forward
+proxy in the path is a different machine from this one.
+
+### What was changed for capacity
+
+* **Stored search vector** with a GIN index (`apps/search/indexing.py`),
+  refreshed by signals when an article, author, keyword or reference changes;
+  `manage.py rebuild_search_index` repairs it after a bulk import.
+* **Gunicorn** sized from the CPU count (2n+1, capped at 12) × 4 threads,
+  workers recycled every ~1 000 requests, `/dev/shm` for the heartbeat.
+* **psycopg connection pool** (`DB_POOL=true`): a few shared connections per
+  worker instead of one pinned per thread.
+* **Postgres** limits set explicitly for an 8 GB host: `max_connections=200`,
+  `shared_buffers=1GB`, `effective_cache_size=3GB`.
+* **Whole-page cache** for anonymous readers (`apps/core/caching.py`), 120 s,
+  keyed by language and URL, bypassed for anyone signed in, invalidated by a
+  generation counter that every publish and every CMS edit bumps. Article
+  views are counted by a beacon the page fires after load, so caching the page
+  does not lose the statistic.

@@ -57,7 +57,11 @@ COPY --from=builder /opt/venv /opt/venv
 WORKDIR /app
 COPY --chown=arer:arer . /app
 
+# chmod belt-and-braces: a checkout made on Windows can lose the executable
+# bit, and tini then fails with "exec entrypoint.sh: Permission denied" on
+# any Linux host that builds from the image rather than a bind mount.
 RUN mkdir -p /app/media /app/staticfiles /app/backups /app/exports /app/.tailwind \
+    && chmod +x /app/scripts/*.sh \
     && chown -R arer:arer /app
 
 USER arer
@@ -68,4 +72,7 @@ RUN python manage.py compilemessages --ignore=.venv --ignore=node_modules || tru
 EXPOSE 8000
 
 ENTRYPOINT ["/usr/bin/tini", "--", "/app/scripts/entrypoint.sh"]
-CMD ["web"]
+# Production by default. A platform that runs the image as-is (Railway, a bare
+# `docker run`) must get gunicorn, not the development server; the dev compose
+# file passes `web` explicitly.
+CMD ["prod"]

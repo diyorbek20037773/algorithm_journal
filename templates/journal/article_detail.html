@@ -15,6 +15,11 @@
 {% endblock %}
 {% block content %}
   <div class="container-page">
+    {# Counts the view once the page has loaded, so the page itself can be cached. #}
+    <span hx-get="{% url 'journal:article_view_beacon' article.pk %}"
+          hx-trigger="load"
+          hx-swap="none"
+          aria-hidden="true"></span>
     <nav aria-label="{% translate 'Breadcrumb' %}" class="meta mb-6">
       <a href="{% url 'journal:home' %}">{% translate "Home" %}</a> ›
       <a href="{% url 'journal:archive' %}">{% translate "Archive" %}</a> ›

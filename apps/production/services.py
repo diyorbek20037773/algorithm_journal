@@ -396,10 +396,14 @@ def _queue_deposit(article: Article, *, update: bool = False) -> None:
 
 def invalidate_public_caches() -> None:
     """Drop cached fragments that change when content is published."""
+    from apps.core.caching import bump_public_cache_generation
+
     for key in ("home_kpis", "public_statistics", "site_settings"):
         cache.delete(key)
     for limit in (4, 5, 6, 10):
         cache.delete(f"most_read:{limit}:30")
+    # Every whole-page entry for anonymous readers is now stale too.
+    bump_public_cache_generation()
 
 
 def latest_file(submission: Submission, kind: str) -> SubmissionFile | None:

@@ -8,6 +8,8 @@ from datetime import date
 from typing import Any, ClassVar
 
 from django.conf import settings
+from django.contrib.postgres.indexes import GinIndex
+from django.contrib.postgres.search import SearchVectorField
 from django.core.cache import cache
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
@@ -428,6 +430,11 @@ class Article(TimeStampedModel, AutoTranslitMixin):
 
     objects = ArticleQuerySet.as_manager()
 
+    #: Stored full-text document, maintained by apps.search.indexing. The
+    #: inline alternative joined keywords × authors × references on every
+    #: search and took eight seconds on fourteen articles.
+    search_vector = SearchVectorField(_("search vector"), null=True, editable=False)
+
     class Meta:
         verbose_name = _("article")
         verbose_name_plural = _("articles")
@@ -437,6 +444,7 @@ class Article(TimeStampedModel, AutoTranslitMixin):
             models.Index(fields=["issue", "article_number"]),
             models.Index(fields=["section", "-published_at"]),
             models.Index(fields=["doi"]),
+            GinIndex(fields=["search_vector"], name="journal_article_search_gin"),
         ]
 
     def __str__(self) -> str:

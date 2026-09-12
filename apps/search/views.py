@@ -8,7 +8,6 @@ from django.contrib.postgres.search import (
     SearchHeadline,
     SearchQuery,
     SearchRank,
-    SearchVector,
     TrigramSimilarity,
 )
 from django.core.paginator import Paginator
@@ -18,16 +17,9 @@ from django.template.response import TemplateResponse
 from django.views.decorators.http import require_GET
 
 from apps.journal.models import Article, JELCode, Keyword, Section, Volume
+from apps.search.indexing import SEARCH_CONFIG
 
 PAGE_SIZE = 10
-
-#: Postgres text search configuration per interface language.
-LANGUAGE_CONFIG = {
-    "en": "english",
-    "ru": "russian",
-    "uz": "simple",
-    "uz-cyrl": "simple",
-}
 
 SORT_OPTIONS = {
     "relevance": None,
@@ -75,20 +67,18 @@ def _apply_filters(queryset: QuerySet[Article], params) -> QuerySet[Article]:
 
 
 def _search(queryset: QuerySet[Article], query: str, language: str) -> QuerySet[Article]:
-    """Rank the queryset by full-text relevance against ``query``."""
-    config = LANGUAGE_CONFIG.get(language, "simple")
-    vector = (
-        SearchVector("title", weight="A", config=config)
-        + SearchVector("abstract", weight="B", config=config)
-        + SearchVector("keywords__name", weight="B", config=config)
-        + SearchVector("authors__family_name", weight="C", config=config)
-        + SearchVector("authors__given_name", weight="C", config=config)
-        + SearchVector("references__raw_text", weight="D", config=config)
-    )
+    """Rank the queryset by full-text relevance against ``query``.
+
+    Matches against the stored ``search_vector`` (see apps.search.indexing),
+    which is what makes this an index lookup rather than a scan. The inline
+    vector it replaces joined keywords × authors × references on every request
+    and took eight seconds on fourteen articles.
+    """
+    config = SEARCH_CONFIG
     search_query = SearchQuery(query, config=config, search_type="websearch")
     return (
-        queryset.annotate(rank=SearchRank(vector, search_query))
-        .filter(rank__gt=0.01)
+        queryset.filter(search_vector=search_query)
+        .annotate(rank=SearchRank(F("search_vector"), search_query))
         .annotate(
             headline=SearchHeadline(
                 "abstract",
