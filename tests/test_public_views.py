@@ -375,3 +375,54 @@ def test_search_vector_follows_its_sources(article, site_settings) -> None:
     article.title = "Completely New Heading About Remittances"
     article.save()
     assert hits("Remittances")
+
+
+# --- Stitch design refresh (design/) ----------------------------------------
+
+
+def test_home_presents_a_lead_article_and_the_issue_banner(
+    client_anon, article, about_pages
+) -> None:
+    """The first paper of the current issue is the lead card; facts are real."""
+    response = client_anon.get("/en/")
+    html = response.content.decode()
+    assert "Lead article" in html
+    assert 'class="issue-cover-mini"' in html
+    assert "Published articles" in html
+    # Never the invented metrics from the mock-up (CLAUDE.md §8).
+    assert "CiteScore" not in html
+    assert "Impact Factor" not in html
+
+
+def test_primary_navigation_marks_the_active_tab(client_anon, article, about_pages) -> None:
+    """The tab of the current section carries aria-current."""
+    html = client_anon.get("/en/issues/").content.decode()
+    match = re.search(r'<a class="nav-tab"\s+href="/en/issues/"\s+aria-current="page"', html)
+    assert match, "Archive tab should be marked current on the archive page"
+    html = client_anon.get("/en/about/").content.decode()
+    assert re.search(r'href="/en/about/"\s+aria-current="page"', html)
+
+
+def test_issue_page_has_sidebar_navigation(client_anon, article, about_pages) -> None:
+    """The issue TOC carries the volume list and metrics sidebar."""
+    html = client_anon.get(article.issue.get_absolute_url()).content.decode()
+    assert "Issues in this volume" in html
+    assert "Issue metrics" in html
+    assert 'class="issue-cover w-full' in html
+
+
+def test_site_settings_short_helpers(site_settings) -> None:
+    """Derived wordmark and cadence strings come from the stored values."""
+    site_settings.frequency_text = "Monthly — 12 issues per year, plus Online First"
+    assert site_settings.frequency_short == "Monthly"
+    site_settings.frequency_text = "Quarterly (4 issues per year)"
+    assert site_settings.frequency_short == "Quarterly"
+    site_settings.frequency_text = "Monthly"
+    assert site_settings.frequency_short == "Monthly"
+
+
+def test_article_affiliations_display_is_distinct(article) -> None:
+    """Affiliations are listed once each, in author order."""
+    labels = article.affiliations_display()
+    parts = labels.split(" · ") if labels else []
+    assert len(parts) == len(set(parts))

@@ -6,214 +6,414 @@
   <script type="application/ld+json">{{ periodical_json_ld|safe }}</script>
 {% endblock %}
 {% block content %}
-  {# --- Masthead ------------------------------------------------------ #}
+  {% comment %}Hero & masthead — design/home.html "Hero & Masthead Section"{% endcomment %}
   <section class="masthead">
-    <div class="container-page py-14 md:py-20">
-      <div class="max-w-3xl">
-        <h1 class="leading-none">
-          <span class="masthead-name block text-5xl md:text-7xl">{{ site_settings.wordmark_name }}</span>
-          {% if site_settings.wordmark_descriptor %}
-            <span class="masthead-descriptor block mt-3 text-2xl md:text-3xl">{{ site_settings.wordmark_descriptor }}</span>
+    <div class="container-page py-10 md:py-12 flex flex-col gap-6">
+      <ul class="credibility">
+        <li class="is-official">
+          {% include "includes/icon.html" with name="verified" size=15 %}
+          {% blocktranslate with publisher=site_settings.publisher_name %}Published by {{ publisher }}{% endblocktranslate %}
+        </li>
+        <li>
+          {% include "includes/icon.html" with name="unlock" size=14 %}
+          {% translate "Diamond open access · no APC" %}
+        </li>
+        <li>DOI: <strong>{{ site_settings.doi_prefix_display }}</strong></li>
+        <li>e-ISSN: <strong>{{ site_settings.eissn|default:_("pending") }}</strong></li>
+      </ul>
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+        <div class="max-w-3xl flex flex-col gap-3 min-w-0">
+          <h1 class="leading-none">
+            <span class="masthead-name block text-4xl md:text-[2.75rem]">{{ site_settings.wordmark_name }}{% if site_settings.wordmark_descriptor %}:{% endif %}</span>
+            {% if site_settings.wordmark_descriptor %}
+              <span class="masthead-descriptor block mt-2 text-2xl md:text-[2rem]">{{ site_settings.wordmark_descriptor }}</span>
+            {% endif %}
+          </h1>
+          {% if site_settings.journal_subtitle %}
+            <p class="masthead-lede max-w-2xl">{{ site_settings.journal_subtitle }}</p>
           {% endif %}
-        </h1>
-        {% if site_settings.journal_subtitle %}
-          <p class="mt-5 text-lg muted max-w-2xl">{{ site_settings.journal_subtitle }}</p>
+        </div>
+        <div class="flex flex-wrap items-center gap-2 shrink-0">
+          <a class="btn btn-primary" href="{% url 'submissions:wizard_start' %}">
+            {% include "includes/icon.html" with name="upload" size=16 %}
+            {% translate "Submit your manuscript" %}
+            {% include "includes/icon.html" with name="arrow" size=14 %}
+          </a>
+          <a class="btn btn-tonal" href="{% url 'core:author_guidelines' %}">
+            {% include "includes/icon.html" with name="book" size=16 %}
+            {% translate "Author guidelines" %}
+          </a>
+          {% if current_issue and current_issue.full_issue_pdf %}
+            <a class="btn btn-secondary"
+               href="{{ current_issue.full_issue_pdf.url }}">
+              {% include "includes/icon.html" with name="pdf" size=16 %}
+              {{ current_issue.label }} (PDF)
+            </a>
+          {% endif %}
+        </div>
+      </div>
+      {% comment %}Fact strip: every value is real or omitted — no invented metrics (CLAUDE.md §8).{% endcomment %}
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
+        <div class="fact-tile">
+          <span class="fact-label">{% translate "Publishing model" %}</span>
+          <span class="fact-value">{% translate "Diamond OA" %}
+            {% include "includes/icon.html" with name="verified" size=14 %}
+          </span>
+          <span class="fact-note">{% translate "No author or reader fees" %}</span>
+        </div>
+        <div class="fact-tile">
+          <span class="fact-label">{% translate "Peer review" %}</span>
+          <span class="fact-value">{% translate "Double-blind" %}</span>
+          <span class="fact-note">
+            {% if kpis and kpis.median_days_to_first_decision %}
+              {% blocktranslate with days=kpis.median_days_to_first_decision %}Median {{ days }} days to first decision{% endblocktranslate %}
+            {% else %}
+              {% translate "Two independent reviewers" %}
+            {% endif %}
+          </span>
+        </div>
+        {% if kpis and kpis.acceptance_rate %}
+          <div class="fact-tile">
+            <span class="fact-label">{% translate "Acceptance rate" %}</span>
+            <span class="fact-value">{{ kpis.acceptance_rate }}%</span>
+            <span class="fact-note">{% translate "last 12 months" %}</span>
+          </div>
         {% endif %}
-        <ul class="credibility mt-6">
-          <li><span class="subtle">e-ISSN</span> <strong>{{ site_settings.eissn|default:_("pending") }}</strong></li>
-          <li><span class="subtle">DOI</span> <strong>{{ site_settings.doi_prefix_display }}</strong></li>
-          <li>{% translate "Open Access · CC BY 4.0" %}</li>
-          <li>{% translate "No APC" %}</li>
-          <li>{% translate "Double-blind peer review" %}</li>
-          <li>{{ site_settings.frequency_text }}</li>
-          {% if kpis and kpis.median_days_to_first_decision %}
-            <li>{% blocktranslate with days=kpis.median_days_to_first_decision %}{{ days }} days to first decision{% endblocktranslate %}</li>
+        <div class="fact-tile">
+          <span class="fact-label">{% translate "Cadence" %}</span>
+          <span class="fact-value">{{ site_settings.frequency_short }}</span>
+          <span class="fact-note">{% translate "plus Online First" %}</span>
+        </div>
+        <div class="fact-tile">
+          <span class="fact-label">{% translate "Published articles" %}</span>
+          <span class="fact-value">{{ published_count }}</span>
+          <span class="fact-note">{% blocktranslate with year=site_settings.founded_year %}since {{ year }}{% endblocktranslate %}</span>
+        </div>
+        <div class="fact-tile">
+          <span class="fact-label">{% translate "Languages" %}</span>
+          <span class="fact-value">4</span>
+          <span class="fact-note">EN · UZ · ЎЗ · RU</span>
+        </div>
+        {% if not kpis or not kpis.acceptance_rate %}
+          <div class="fact-tile">
+            <span class="fact-label">{% translate "Licence" %}</span>
+            <span class="fact-value">CC BY 4.0</span>
+            <span class="fact-note">{% translate "Authors retain copyright" %}</span>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+  <div class="container-page py-8 flex flex-col gap-8">
+    {% comment %}Discovery console — search, section filters, JEL taxonomy{% endcomment %}
+    <section class="console flex flex-col gap-4"
+             aria-label="{% translate 'Search' %}">
+      <div class="flex flex-col lg:flex-row lg:items-center gap-3">
+        <form class="w-full lg:w-7/12"
+              method="get"
+              action="{% url 'search:search' %}"
+              role="search">
+          <label class="console-search">
+            {% include "includes/icon.html" with name="search" size=20 %}
+            <span class="visually-hidden">{% translate "Search" %}</span>
+            <input type="search"
+                   name="q"
+                   placeholder="{% translate 'Search by title, author, DOI or JEL code (e.g. E52)' %}">
+            <button type="submit" class="btn btn-primary btn-sm">{% translate "Search" %}</button>
+          </label>
+        </form>
+        <div class="w-full lg:w-5/12 flex flex-wrap items-center gap-1.5 lg:justify-end">
+          <span class="label-caps mr-1">{% translate "Browse" %}:</span>
+          <a class="filter-pill is-active" href="{% url 'journal:archive' %}">{% translate "All research" %}</a>
+          {% for section in sections|slice:":3" %}
+            <a class="filter-pill" href="{{ section.get_absolute_url }}">{{ section.name }}</a>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="scroll-row" aria-label="{% translate 'JEL classification' %}">
+        <span class="label-caps mr-1">JEL:</span>
+        {% for jel in jel_top_level %}
+          <a class="chip chip-jel" href="{{ jel.get_absolute_url }}">{{ jel.code }}: {{ jel.label }}</a>
+        {% endfor %}
+        <a class="filter-pill" href="{% url 'journal:jel_index' %}">{% translate "Full tree" %} →</a>
+      </div>
+    </section>
+    <div class="grid gap-8 lg:grid-cols-12 items-start">
+      {% comment %}Left column: current issue{% endcomment %}
+      <div class="lg:col-span-8 flex flex-col gap-5 min-w-0">
+        {% if current_issue %}
+          <div class="card flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div class="flex items-center gap-4 min-w-0">
+              <a class="issue-cover-mini"
+                 href="{{ current_issue.get_absolute_url }}"
+                 aria-label="{{ current_issue.label }}">
+                <strong>{{ site_settings.short_code }}</strong>
+                <span>Vol. {{ current_issue.volume.number }}</span>
+                <span>No. {{ current_issue.number }}</span>
+              </a>
+              <div class="min-w-0">
+                <div class="flex flex-wrap items-center gap-2">
+                  <h2 class="text-xl">{% translate "Current issue" %}</h2>
+                  <span class="chip chip-gold">{% translate "Latest release" %}</span>
+                </div>
+                <p class="text-sm muted mt-0.5">
+                  {{ current_issue.label }}
+                  {% if current_issue.published_at %}· {{ current_issue.published_at|date:"F Y" }}{% endif %}
+                  · {% blocktranslate count counter=current_issue_article_count %}{{ counter }} article{% plural %}{{ counter }} articles{% endblocktranslate %}
+                </p>
+              </div>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 shrink-0">
+              {% if current_issue.full_issue_pdf %}
+                <a class="btn btn-tonal btn-sm"
+                   href="{{ current_issue.full_issue_pdf.url }}">
+                  {% include "includes/icon.html" with name="download" size=14 %}
+                  {% translate "Full issue PDF" %}
+                </a>
+              {% endif %}
+              <a class="btn btn-ghost btn-sm" href="{% url 'journal:archive' %}">{% translate "Archive" %} →</a>
+            </div>
+          </div>
+          {% if lead_article %}
+            {% include "journal/partials/article_card.html" with article=lead_article lead=True show_abstract=True show_jel=True %}
           {% endif %}
-          {% if kpis and kpis.acceptance_rate %}
-            <li>{% blocktranslate with rate=kpis.acceptance_rate %}{{ rate }}% acceptance rate{% endblocktranslate %}</li>
+          {% for article in current_issue_articles %}
+            {% include "journal/partials/article_card.html" with article=article show_abstract=True compact=True show_jel=True %}
+          {% endfor %}
+          {% if not lead_article %}
+            <p class="muted">{% translate "This issue has no articles yet." %}</p>
+          {% else %}
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-[--radius-card] bg-[--color-paper-2] p-4">
+              <span class="text-sm muted">
+                {% blocktranslate with shown=current_issue_articles|length|add:1 total=current_issue_article_count issue=current_issue.label %}Showing {{ shown }} of {{ total }} articles in {{ issue }}{% endblocktranslate %}
+              </span>
+              <a class="btn btn-primary btn-sm"
+                 href="{{ current_issue.get_absolute_url }}">
+                {% translate "View all papers in this issue" %}
+                {% include "includes/icon.html" with name="arrow" size=14 %}
+              </a>
+            </div>
           {% endif %}
-        </ul>
-        <div class="flex flex-wrap gap-3 mt-8">
-          <a class="btn btn-primary" href="{% url 'submissions:wizard_start' %}">{% translate "Submit your manuscript" %}</a>
-          <a class="btn btn-secondary" href="{% url 'core:author_guidelines' %}">{% translate "Author guidelines" %}</a>
+        {% else %}
+          <div class="empty-state">
+            <p>{% translate "The first issue is being prepared. Accepted articles appear as Online First." %}</p>
+          </div>
+        {% endif %}
+      </div>
+      {% comment %}Right column: Online First, editorial hub{% endcomment %}
+      <aside class="lg:col-span-4 flex flex-col gap-5 min-w-0">
+        <section class="card flex flex-col gap-3">
+          <div class="flex items-center justify-between gap-2">
+            <h2 class="text-lg inline-flex items-center gap-2">
+              <span class="dot bg-[--color-gold-bright]" aria-hidden="true"></span>
+              {% translate "Online First" %}
+            </h2>
+            <span class="chip chip-mono">{% translate "Ahead of print" %}</span>
+          </div>
+          <p class="text-sm muted">{% translate "Peer-reviewed, accepted articles published immediately with a citable DOI." %}</p>
+          {% if online_first %}
+            <ul class="rail-list">
+              {% for article in online_first %}
+                <li class="flex flex-col gap-1">
+                  <div class="flex items-center justify-between gap-2 meta">
+                    <span class="text-[--color-gold] font-semibold">{% translate "Published" %}: {{ article.published_online_at|date:"j M Y" }}</span>
+                    {% if article.jel_codes.all %}
+                      <span>JEL: {% for jel in article.jel_codes.all|slice:":2" %}{{ jel.code }}{% if not forloop.last %}, {% endif %}{% endfor %}</span>
+                    {% endif %}
+                  </div>
+                  <a class="rail-title" href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+                  <span class="text-xs muted">{{ article.authors_display }}</span>
+                  <div class="flex items-center justify-between gap-2 mt-0.5">
+                    <span class="doi-line">{% if article.doi %}doi:{{ article.doi }}{% else %}{{ article.section.name }}{% endif %}</span>
+                    {% if article.primary_galley %}
+                      <a class="text-[--color-gold] text-[0.6875rem] font-bold inline-flex items-center gap-1"
+                         href="{{ article.pdf_url }}">PDF {% include "includes/icon.html" with name="download" size=12 %}</a>
+                    {% endif %}
+                  </div>
+                </li>
+              {% endfor %}
+            </ul>
+            <a class="btn btn-tonal btn-sm w-full"
+               href="{% url 'journal:online_first' %}">
+              {% blocktranslate count counter=online_first_count %}View {{ counter }} Online First article{% plural %}View all {{ counter }} Online First articles{% endblocktranslate %} →
+            </a>
+          {% else %}
+            <p class="text-sm muted">{% translate "No articles are ahead of print at the moment." %}</p>
+          {% endif %}
+        </section>
+        {% with eic=site_settings.editor_in_chief %}
+          {% if eic %}
+            <section class="card flex flex-col gap-4">
+              <div class="flex items-start gap-4">
+                <span class="person-avatar" aria-hidden="true">
+                  {% if eic.photo %}
+                    <img src="{{ eic.photo.url }}" alt="" loading="lazy">
+                  {% else %}
+                    {{ eic.full_name|slice:":1" }}
+                  {% endif %}
+                </span>
+                <div class="min-w-0">
+                  <p class="eyebrow">{% translate "Editor-in-Chief" %}</p>
+                  <h2 class="text-lg mt-0.5">{{ eic.full_name }}</h2>
+                  {% if eic.affiliation %}<p class="text-xs muted">{{ eic.affiliation }}</p>{% endif %}
+                  {% if eic.orcid %}<p class="meta mt-0.5">ORCID: {{ eic.orcid }}</p>{% endif %}
+                </div>
+              </div>
+              {% if eic.expertise %}
+                <p class="abstract-box text-sm">{{ eic.expertise }}</p>
+              {% endif %}
+              <div class="flex items-center justify-between gap-2 text-sm">
+                <a class="font-semibold inline-flex items-center gap-1"
+                   href="{% url 'journal:editorial_board' %}">
+                  {% translate "Editorial Board" %}
+                  {% include "includes/icon.html" with name="arrow" size=14 %}
+                </a>
+                <a class="meta" href="{% url 'core:publication_ethics' %}">{% translate "COPE-aligned" %}</a>
+              </div>
+            </section>
+          {% endif %}
+        {% endwith %}
+        <section class="card-navy flex flex-col gap-3">
+          <div class="flex items-center justify-between">
+            <h2 class="text-lg text-[--color-gold-fixed]">{% translate "For researchers" %}</h2>
+            {% include "includes/icon.html" with name="book" size=20 %}
+          </div>
+          <p class="text-sm muted">{% translate "Submission templates, the pre-submission checklist and the data policy, in one place." %}</p>
+          <div class="flex flex-col gap-1.5 mt-1">
+            <a class="rail-link" href="{% url 'core:templates' %}">
+              <span class="inline-flex items-center gap-2">
+                {% include "includes/icon.html" with name="file" size=16 %}
+              {% translate "Manuscript template" %}</span>
+              <span class="meta">DOCX</span>
+            </a>
+            <a class="rail-link" href="{% url 'core:checklist' %}">
+              <span class="inline-flex items-center gap-2">
+                {% include "includes/icon.html" with name="check-circle" size=16 %}
+              {% translate "Pre-submission checklist" %}</span>
+            </a>
+            <a class="rail-link" href="{% url 'core:author_guidelines' %}">
+              <span class="inline-flex items-center gap-2">
+                {% include "includes/icon.html" with name="database" size=16 %}
+              {% translate "Data & replication policy" %}</span>
+            </a>
+          </div>
+        </section>
+        <section class="card flex flex-col gap-3">
+          <div class="flex items-center justify-between gap-2">
+            <h2 class="text-lg">{% translate "Announcements" %}</h2>
+            <a class="btn btn-ghost btn-sm"
+               href="{% url 'core:announcement_list' %}">{% translate "All" %}</a>
+          </div>
+          {% if announcements %}
+            <ul class="rail-list">
+              {% for announcement in announcements %}
+                <li class="flex flex-col gap-1">
+                  {% if announcement.is_pinned %}
+                    <span class="chip chip-gold self-start">{% translate "Call for papers" %}</span>
+                  {% endif %}
+                  <a class="rail-title" href="{{ announcement.get_absolute_url }}">{{ announcement.title }}</a>
+                  <span class="meta">{{ announcement.published_at|date:"j F Y" }}</span>
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="text-sm muted">{% translate "There are no announcements at the moment." %}</p>
+          {% endif %}
+        </section>
+        <section class="card flex flex-col gap-3">
+          <div class="flex items-center justify-between gap-2">
+            <h2 class="text-lg">{% translate "Most read" %}</h2>
+            <span class="meta">{% translate "last 30 days" %}</span>
+          </div>
+          {% if most_read %}
+            <ol class="rail-list">
+              {% for article in most_read %}
+                <li class="grid grid-cols-[1.5rem_1fr] gap-2">
+                  <span class="meta font-semibold text-[--color-gold]">{{ forloop.counter|stringformat:"02d" }}</span>
+                  <div class="min-w-0">
+                    <a class="rail-title" href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+                    <p class="flex flex-wrap gap-3 mt-1">
+                      <span class="stat-inline">{% include "includes/icon.html" with name="eye" %}{{ article.views_count }}</span>
+                      <span class="stat-inline">{% include "includes/icon.html" with name="download" %}{{ article.downloads_count }}</span>
+                    </p>
+                  </div>
+                </li>
+              {% endfor %}
+            </ol>
+          {% else %}
+            <p class="text-sm muted">{% translate "Usage statistics will appear once articles are published." %}</p>
+          {% endif %}
+        </section>
+      </aside>
+    </div>
+  </div>
+  {% comment %}Publication standards — design/home.html "Editorial Integrity" section{% endcomment %}
+  <section class="bg-[--color-paper] border-y border-[--color-line]">
+    <div class="container-page py-12 flex flex-col gap-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div class="max-w-2xl flex flex-col gap-2">
+          <p class="eyebrow">{% translate "Research governance & rigour" %}</p>
+          <h2 class="text-2xl md:text-[2rem]">{% translate "Publication standards & verification" %}</h2>
+          <p class="muted">{% translate "Every submission passes a multi-stage screening framework that protects academic integrity, empirical veracity and unbiased review." %}</p>
+        </div>
+        <a class="font-semibold inline-flex items-center gap-1 text-sm shrink-0"
+           href="{% url 'core:publication_ethics' %}">
+          {% translate "Read the publication ethics statement" %}
+          {% include "includes/icon.html" with name="arrow" size=16 %}
+        </a>
+      </div>
+      <div class="grid gap-6 md:grid-cols-3">
+        <div class="pillar">
+          <span class="pillar-icon">{% include "includes/icon.html" with name="eye-off" size=22 %}</span>
+          <h3>{% translate "Strict double-blind review" %}</h3>
+          <p class="text-sm muted">{% translate "Author and reviewer identities are concealed throughout. At least two independent external reports are required before any editorial decision." %}</p>
+          <a class="pillar-foot" href="{% url 'core:peer_review' %}">{% translate "Peer review process" %} →</a>
+        </div>
+        <div class="pillar">
+          <span class="pillar-icon">{% include "includes/icon.html" with name="shield" size=22 %}</span>
+          <h3>{% translate "Integrity screening" %}</h3>
+          <p class="text-sm muted">
+            {% blocktranslate with threshold=site_settings.similarity_threshold %}Every manuscript is checked for similarity before review; reports above {{ threshold }}% are returned to the authors. Generative-AI use must be disclosed.{% endblocktranslate %}
+          </p>
+          <a class="pillar-foot" href="{% url 'core:ai_policy' %}">{% translate "Policy on generative AI" %} →</a>
+        </div>
+        <div class="pillar">
+          <span class="pillar-icon">{% include "includes/icon.html" with name="award" size=22 %}</span>
+          <h3>{% translate "Diamond open access charter" %}</h3>
+          <p class="text-sm muted">{% translate "All articles are freely accessible worldwide on the day of publication under CC BY 4.0. No article processing charges are levied on authors or their institutions." %}</p>
+          <a class="pillar-foot" href="{% url 'core:open_access' %}">{% translate "Open access statement" %} →</a>
         </div>
       </div>
     </div>
   </section>
-  <div class="container-page py-12 grid gap-12 lg:grid-cols-3">
-    {# --- Current issue ---------------------------------------------- #}
-    <div class="lg:col-span-2">
-      <div class="section-heading">
-        <h2>{% translate "Current issue" %}</h2>
-        {% if current_issue %}
-          <a class="btn btn-ghost btn-sm"
-             href="{{ current_issue.get_absolute_url }}">{% translate "View full issue" %} →</a>
-        {% endif %}
-      </div>
-      {% if current_issue %}
-        <div class="grid gap-6 sm:grid-cols-[160px_1fr] items-start">
-          <a class="issue-cover w-40"
-             href="{{ current_issue.get_absolute_url }}"
-             aria-label="{{ current_issue.label }}">
-            <p class="meta">{{ site_settings.short_code }}</p>
-            <div>
-              <div class="issue-cover-rule" aria-hidden="true"></div>
-              <p class="issue-cover-vol">Vol. {{ current_issue.volume.number }}</p>
-              <p class="issue-cover-vol">No. {{ current_issue.number }}</p>
-            </div>
-            <p class="meta">{{ current_issue.published_at|date:"F Y" }}</p>
-          </a>
-          <div>
-            <p class="meta mb-2">
-              {{ current_issue.label }}
-              {% if current_issue.published_at %} · {% translate "Published" %} {{ current_issue.published_at|date:"j F Y" }}{% endif %}
-            </p>
-            {% for article in current_issue_articles %}
-              {% include "journal/partials/article_card.html" with article=article %}
-            {% empty %}
-              <p class="muted">{% translate "This issue has no articles yet." %}</p>
-            {% endfor %}
-          </div>
+  {% comment %}Indexing & archiving — only services the editorial office has recorded{% endcomment %}
+  {% if indexing_services or site_settings.crossref_member_id %}
+    <section class="bg-[--color-paper-2]">
+      <div class="container-page py-8 flex flex-col gap-4">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <p class="label-caps">{% translate "Abstracting, indexing & archival repositories" %}</p>
+          {% if site_settings.crossref_member_id %}
+            <span class="meta">Crossref member #{{ site_settings.crossref_member_id }}</span>
+          {% endif %}
         </div>
-      {% else %}
-        <div class="empty-state">
-          <p>{% translate "The first issue is being prepared. Accepted articles appear as Online First." %}</p>
-        </div>
-      {% endif %}
-    </div>
-    {# --- Right rail --------------------------------------------------- #}
-    <div class="space-y-10">
-      {% if online_first %}
-        <section>
-          <div class="section-heading">
-            <h2>{% translate "Online First" %}</h2>
-            <a class="btn btn-ghost btn-sm" href="{% url 'journal:online_first' %}">{% translate "All" %}</a>
-          </div>
-          <ul class="space-y-4">
-            {% for article in online_first %}
+        {% if indexing_services %}
+          <ul class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2">
+            {% for service in indexing_services %}
               <li>
-                <a class="article-title text-base" href="{{ article.get_absolute_url }}">{{ article.title }}</a>
-                <p class="authors-line text-sm mt-1">{{ article.authors_display }}</p>
-                <p class="meta">{{ article.published_online_at|date:"j F Y" }}{% if article.doi %} · {{ article.doi }}{% endif %}</p>
+                <a class="index-tile"
+                   href="{{ service.url|default:'#' }}"
+                   rel="noopener">
+                  {% if service.logo %}
+                    <img src="{{ service.logo.url }}" alt="{{ service.name }}" loading="lazy">
+                  {% else %}
+                    {{ service.name }}
+                  {% endif %}
+                  {% if service.note %}<small>{{ service.note|truncatechars:40 }}</small>{% endif %}
+                </a>
               </li>
             {% endfor %}
           </ul>
-        </section>
-      {% endif %}
-      <section>
-        <div class="section-heading">
-          <h2>{% translate "Announcements" %}</h2>
-          <a class="btn btn-ghost btn-sm"
-             href="{% url 'core:announcement_list' %}">{% translate "All" %}</a>
-        </div>
-        {% for announcement in announcements %}
-          <article class="mb-4">
-            <a class="article-title text-base"
-               href="{{ announcement.get_absolute_url }}">{{ announcement.title }}</a>
-            <p class="meta">{{ announcement.published_at|date:"j F Y" }}</p>
-          </article>
-        {% empty %}
-          <p class="muted text-sm">{% translate "There are no announcements at the moment." %}</p>
-        {% endfor %}
-      </section>
-      <section>
-        <div class="section-heading">
-          <h2>{% translate "Most read" %}</h2>
-          <span class="meta">{% translate "last 30 days" %}</span>
-        </div>
-        <ol class="space-y-3 list-decimal ml-4">
-          {% for article in most_read %}
-            <li>
-              <a class="article-title text-base" href="{{ article.get_absolute_url }}">{{ article.title }}</a>
-              <p class="meta">{% translate "Views" %}: {{ article.views_count }} · {% translate "Downloads" %}: {{ article.downloads_count }}</p>
-            </li>
-          {% empty %}
-            <li class="muted text-sm list-none ml-[-1rem]">{% translate "Usage statistics will appear once articles are published." %}</li>
-          {% endfor %}
-        </ol>
-      </section>
-    </div>
-  </div>
-  {# --- Browse by section -------------------------------------------- #}
-  <section class="surface-2 border-y border-[--color-line]">
-    <div class="container-page py-12">
-      <div class="section-heading">
-        <h2>{% translate "Browse by section" %}</h2>
-      </div>
-      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {% for section in sections %}
-          <a class="section-card" href="{{ section.get_absolute_url }}">
-            <p class="section-card-number">{{ forloop.counter|stringformat:"02d" }}</p>
-            <p class="section-card-name">{{ section.name }}</p>
-            <p class="meta mt-2">{% blocktranslate count counter=section.published_count %}{{ counter }} article{% plural %}{{ counter }} articles{% endblocktranslate %}</p>
-          </a>
-        {% endfor %}
-      </div>
-      <div class="section-heading mt-12">
-        <h2>{% translate "Browse by JEL classification" %}</h2>
-        <a class="btn btn-ghost btn-sm" href="{% url 'journal:jel_index' %}">{% translate "Full tree" %}</a>
-      </div>
-      <div class="flex flex-wrap gap-2">
-        {% for jel in jel_top_level %}
-          <a class="chip chip-jel" href="{{ jel.get_absolute_url }}">{{ jel.code }} — {{ jel.label }}</a>
-        {% endfor %}
-      </div>
-    </div>
-  </section>
-  {# --- Author journey ------------------------------------------------ #}
-  <section class="container-page py-12">
-    <div class="section-heading">
-      <h2>{% translate "Publishing with us" %}</h2>
-    </div>
-    <ol class="grid gap-4 md:grid-cols-4">
-      <li class="journey-step">
-        <span class="journey-number" aria-hidden="true">1</span>
-        <span class="visually-hidden">{% translate "Step 1" %}</span>
-        <p class="font-medium mt-1">{% translate "Read the scope" %}</p>
-        <p class="muted text-sm mt-2">{% translate "Check that your research fits one of our eight sections." %}</p>
-        <a class="btn btn-ghost btn-sm mt-3 px-0"
-           href="{% url 'core:aims_and_scope' %}">{% translate "Aims & scope" %} →</a>
-      </li>
-      <li class="journey-step">
-        <span class="journey-number" aria-hidden="true">2</span>
-        <span class="visually-hidden">{% translate "Step 2" %}</span>
-        <p class="font-medium mt-1">{% translate "Prepare the manuscript" %}</p>
-        <p class="muted text-sm mt-2">{% translate "Use our template and APA 7 references; anonymise the file." %}</p>
-        <a class="btn btn-ghost btn-sm mt-3 px-0"
-           href="{% url 'core:templates' %}">{% translate "Templates" %} →</a>
-      </li>
-      <li class="journey-step">
-        <span class="journey-number" aria-hidden="true">3</span>
-        <span class="visually-hidden">{% translate "Step 3" %}</span>
-        <p class="font-medium mt-1">{% translate "Submit online" %}</p>
-        <p class="muted text-sm mt-2">{% translate "Five short steps; you can save and return at any time." %}</p>
-        <a class="btn btn-ghost btn-sm mt-3 px-0"
-           href="{% url 'submissions:wizard_start' %}">{% translate "Submit" %} →</a>
-      </li>
-      <li class="journey-step">
-        <span class="journey-number" aria-hidden="true">4</span>
-        <span class="visually-hidden">{% translate "Step 4" %}</span>
-        <p class="font-medium mt-1">{% translate "Double-blind review" %}</p>
-        <p class="muted text-sm mt-2">{% translate "Two independent reviewers; first decision within about eight weeks." %}</p>
-        <a class="btn btn-ghost btn-sm mt-3 px-0"
-           href="{% url 'core:peer_review' %}">{% translate "Peer review" %} →</a>
-      </li>
-    </ol>
-  </section>
-  {# --- Indexing ------------------------------------------------------ #}
-  {% if indexing_services %}
-    <section class="border-t border-[--color-line]">
-      <div class="container-page py-10">
-        <p class="footer-heading">{% translate "Indexed and archived in" %}</p>
-        <ul class="flex flex-wrap items-center gap-6">
-          {% for service in indexing_services %}
-            <li>
-              <a class="muted text-sm hover:text-[--color-accent]"
-                 href="{{ service.url }}"
-                 rel="noopener">{{ service.name }}</a>
-            </li>
-          {% endfor %}
-        </ul>
+        {% endif %}
       </div>
     </section>
   {% endif %}

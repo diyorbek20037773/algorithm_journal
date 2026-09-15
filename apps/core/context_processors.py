@@ -42,7 +42,53 @@ def navigation(request: HttpRequest) -> dict[str, Any]:
         "menu_authors": grouped["authors"],
         "menu_reviewers": grouped["reviewers"],
         "menu_footer": grouped["footer"],
+        "active_nav": active_nav(request),
     }
+
+
+# Which primary tab a URL name belongs to; CMS pages fall back to their menu group.
+_NAV_BY_URL_NAME: dict[str, str] = {
+    "issue_current": "current",
+    "archive": "archive",
+    "issue_detail": "archive",
+    "online_first": "online_first",
+    "for_authors": "authors",
+    "author_guidelines": "authors",
+    "checklist": "authors",
+    "templates": "authors",
+    "fees": "authors",
+    "ai_policy": "authors",
+    "for_reviewers": "reviewers",
+    "about": "about",
+    "aims_and_scope": "about",
+    "peer_review": "about",
+    "publication_ethics": "about",
+    "open_access": "about",
+    "archiving": "about",
+    "indexing": "about",
+    "privacy": "about",
+    "contact": "about",
+    "editorial_board": "about",
+    "reviewer_board": "about",
+    "statistics": "about",
+}
+
+
+def active_nav(request: HttpRequest) -> str:
+    """Name the primary navigation tab that the current URL belongs to."""
+    match = getattr(request, "resolver_match", None)
+    if match is None:
+        return ""
+    if match.namespace == "core" and match.url_name == "page":
+        slug = match.kwargs.get("slug", "")
+        try:
+            page = Page.objects.only("menu_group").get(slug=slug)
+        except (Page.DoesNotExist, OperationalError, ProgrammingError):
+            return ""
+        return {"about": "about", "authors": "authors", "reviewers": "reviewers"}.get(
+            page.menu_group, ""
+        )
+    return _NAV_BY_URL_NAME.get(match.url_name or "", "")
 
 
 def language_links(request: HttpRequest) -> dict[str, Any]:

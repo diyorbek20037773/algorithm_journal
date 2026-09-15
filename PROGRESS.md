@@ -181,6 +181,43 @@ produced for issue 1.
 
 ---
 
+## Post-handover — the `design/` refresh ✅ (16 September 2026)
+
+**Done**
+
+- The client supplied a Stitch export of three pages (home, About, issue table
+  of contents). It is committed as `design/` and is now the visual reference
+  (CLAUDE.md §3; decision D39): Merriweather titles, archival navy + burnished
+  gold on alabaster, 4 px controls / 8 px cards, feather card shadows, a dark
+  utility bar above the header, underline tabs, a dark four-column footer.
+- Rebuilt: `static/src/css/input.css` tokens and components,
+  `includes/header.html` (utility bar, tabs with `active_nav`, `/` search
+  shortcut), `includes/footer.html`, `includes/wordmark.html` (square mark),
+  `includes/icon.html` (inline SVG icons — no icon font), `journal/home.html`
+  (hero with fact strip, discovery console, lead article, Online First / EiC /
+  For-researchers / announcements / most-read rail, standards pillars, indexing
+  tiles), `journal/partials/article_card.html` (lead / compact variants with
+  abstract box and JEL chips), `journal/issue_detail.html` (issue hero with grid
+  cover, sidebar with volume list, metrics and call for papers),
+  `journal/archive.html`, `core/_page_shell.html` (title band, side navigation
+  card, submission kit) and `core/about.html` (profile, what we publish, how we
+  work, editorial leadership, indexing, contact band).
+- Nothing invented: the mock-up's CiteScore, Crossref member number and
+  "official publication" line render only from `SiteSettings` /
+  `EditorialKPI` / `IndexingService` data or are omitted.
+- `SiteSettings.frequency_short`, `Article.affiliations_display()`,
+  `active_nav` context value; `get_site_settings()` now carries the
+  Editor-in-Chief relation; the home page fetches issue and Online First papers
+  in one query so the 15-query budget still holds.
+- 89 new UI strings translated in all four languages
+  (`scripts/i18n_catalogue_7.py`).
+
+**Verified** — lint clean; 411 tests; every catalogue 100 %; no horizontal
+scroll at 320 px in any language; axe-core: zero serious/critical violations on
+the seven audited pages; screenshots regenerated in `docs/screenshots/`.
+
+---
+
 ## Test suite
 
 360 tests, all passing:

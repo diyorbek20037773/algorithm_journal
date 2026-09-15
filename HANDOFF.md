@@ -45,6 +45,7 @@ maydonlari uchun.
 | 6 | Ishlab chiqarish, Crossref, OAI-PMH, arxivlash | ✅ |
 | 7 | Xavfsizlik, unumdorlik, imkoniyatlilik, tarjimalar | ✅ |
 | 8 | Prod stek, hujjatlar, qoʻllanmalar | ✅ |
+| + | `design/` (Stitch) boʻyicha yangi UI/UX: bosh sahifa, "Jurnal haqida", son mundarijasi, sarlavha va footer | ✅ |
 
 Tafsilotlar: [`PROGRESS.md`](PROGRESS.md).
 
@@ -309,6 +310,14 @@ yozilmagan**.
   saqlangani uchun kelajakda kengaytirish mumkin.
 
 ### Amaliy eslatmalar
+
+* **Dizayn manbasi — `design/` papkasi** (mijoz bergan Stitch eksporti:
+  `home.html`, `about.html`, `issue.html` va rasmlari). Ranglar va shriftlar
+  `static/src/css/input.css` boshidagi `@theme` blokida; oʻzgartirgach
+  `make tailwind`. Maketdagi oʻylab topilgan koʻrsatkichlar (CiteScore, Crossref
+  aʼzolik raqami) saytda faqat haqiqiy maʼlumot boʻlsa chiqadi — `Admin → Site
+  settings` dagi `crossref_member_id`, `editor_in_chief`, `indexing_badges`
+  maydonlarini toʻldiring.
 
 * **`.mo` fayllari repozitoriyda saqlanmaydi.** Ular Docker image ichida,
   `scripts/entrypoint.sh` va `scripts/deploy.sh` da avtomatik kompilatsiya

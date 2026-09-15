@@ -3,6 +3,11 @@
 Captured with `python scripts/screenshots.py` against the seeded demonstration
 database. Regenerate them at any time with `make screenshots`.
 
+The layout follows the Stitch export in `design/` (navy & gold "Academic
+Prestige" system); compare `01-home-en.png`, `27-about-en.png` and
+`02-issue-en.png` with `design/home.png`, `design/about.png` and
+`design/issue.png`.
+
 ## Public pages
 
 Each page is captured in **English** (`-en`) and **Uzbek Cyrillic**
@@ -29,6 +34,7 @@ survives the longer strings and the second script.
 | `24-peer-review` | Peer review process |
 | `25-fees` | Article processing charges |
 | `26-checklist` | Pre-submission checklist |
+| `27-about` | About the journal (profile, sections, workflow, leadership) |
 
 ## Editorial system
 

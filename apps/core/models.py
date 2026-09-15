@@ -171,6 +171,14 @@ class SiteSettings(TimeStampedModel, AutoTranslitMixin):
         return parts[1].strip() if len(parts) > 1 else ""
 
     @property
+    def frequency_short(self) -> str:
+        """The cadence alone ("Monthly"), without the explanatory clause."""
+        return (
+            re.split(r"\s*[—–(,;]\s*", self.frequency_text, maxsplit=1)[0].strip()
+            or self.frequency_text
+        )
+
+    @property
     def eissn_display(self) -> str:
         """Human-readable e-ISSN, or a clear pending marker."""
         return self.eissn or str(_("pending"))

@@ -1,41 +1,104 @@
 {% load i18n %}
-<article class="article-card">
-  <p class="eyebrow">{{ article.section.name }}</p>
-  <h3 class="mt-1">
-    <a class="article-title" href="{{ article.get_absolute_url }}">{{ article.title }}</a>
-  </h3>
-  <p class="authors-line mt-1">
-    {% for author in article.authors.all %}
-      <span>{{ author.full_name }}{% if author.orcid %}<a href="{{ author.orcid_url }}"
+{% comment %}
+  Article card after design/issue.html. Parameters:
+    lead=True          larger title, gold left rule, full abstract
+    compact=True       two-line abstract, no affiliations
+    show_abstract=True render the abstract box at all
+    show_jel=True      render JEL chips (caller must have prefetched jel_codes)
+{% endcomment %}
+<article class="article-card{% if lead %} is-lead{% endif %} flex flex-col gap-3">
+  <div class="flex flex-wrap items-center justify-between gap-2">
+    <div class="flex flex-wrap items-center gap-2 meta">
+      <span class="article-kind{% if lead %} is-lead{% endif %}">{% if lead %}{% translate "Lead article" %}{% else %}{{ article.get_article_type_display }}{% endif %}</span>
+      {% if article.issue %}
+        <span aria-hidden="true">·</span>
+        <span>Vol. {{ article.issue.volume.number }} No. {{ article.issue.number }} ({{ article.issue.volume.year }})</span>
+        {% if article.pages %}<span aria-hidden="true">·</span><span>{% translate "pp." %} {{ article.pages }}</span>{% endif %}
+      {% else %}
+        <span class="badge-online-first">{% translate "Online First" %}</span>
+      {% endif %}
+      {% if article.doi %}
+        <span aria-hidden="true">·</span>
+        <a class="text-[--color-gold] no-underline hover:underline"
+           href="{{ article.doi_url }}"
+           rel="noopener">DOI: {{ article.doi }}</a>
+      {% endif %}
+    </div>
+    <div class="flex items-center gap-3">
+      <span class="stat-inline" title="{% translate 'Views' %}">
+        {% include "includes/icon.html" with name="eye" %}
+        <span class="visually-hidden">{% translate "Views" %}:</span>
+        {{ article.views_count }}
+      </span>
+      <span class="stat-inline" title="{% translate 'Downloads' %}">
+        {% include "includes/icon.html" with name="download" %}
+        <span class="visually-hidden">{% translate "Downloads" %}:</span>
+        {{ article.downloads_count }}
+      </span>
+    </div>
+  </div>
+  <div class="flex flex-col gap-1.5">
+    <h3 class="leading-snug">
+      <a class="article-title{% if lead %} is-lead{% endif %}"
+         href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+    </h3>
+    <p class="authors-line">
+      {% for author in article.authors.all %}
+        <span{% if forloop.first %} class="is-corresponding"{% endif %}>{{ author.full_name }}{% if author.orcid %}<a href="{{ author.orcid_url }}"
    rel="noopener"
    title="ORCID"
    class="ml-1"
    aria-label="ORCID {{ author.full_name }}">{% include "includes/orcid_icon.html" %}</a>{% endif %}</span>{% if not forloop.last %}, {% endif %}
-    {% endfor %}
-  </p>
-  <p class="meta mt-2">
-    {% if article.issue %}
-      Vol. {{ article.issue.volume.number }} No. {{ article.issue.number }} ({{ article.issue.volume.year }}){% if article.pages %} · {{ article.pages }}{% endif %}
-    {% else %}
-      <span class="badge-online-first">{% translate "Online First" %}</span>
+      {% endfor %}
+    </p>
+    {% if not compact %}
+      {% with affiliations=article.affiliations_display %}
+        {% if affiliations %}<p class="affiliations-line">{{ affiliations }}</p>{% endif %}
+      {% endwith %}
     {% endif %}
-    {% if article.doi %}· <a href="{{ article.doi_url }}" rel="noopener">{{ article.doi }}</a>{% endif %}
-  </p>
+  </div>
   {% if show_abstract and article.abstract_plain %}
-    <p class="muted text-sm mt-2 line-clamp-2">{{ article.abstract_plain|truncatewords:34 }}</p>
+    <div class="abstract-box flex flex-col gap-1">
+      <div class="flex items-center justify-between gap-2">
+        <span class="label-caps">{% translate "Abstract" %}</span>
+        {% if article.published_at %}
+          <span class="meta">{% translate "Published" %} {{ article.published_at|date:"j M Y" }}</span>
+        {% elif article.published_online_at %}
+          <span class="meta">{% translate "Online" %} {{ article.published_online_at|date:"j M Y" }}</span>
+        {% endif %}
+      </div>
+      <p{% if compact %} class="line-clamp-2"{% endif %}>{{ article.abstract_plain|truncatewords:60 }}</p>
+      {% if show_jel and article.jel_codes.all %}
+        <p class="flex flex-wrap items-center gap-1.5 mt-1">
+          <span class="meta mr-1">JEL:</span>
+          {% for jel in article.jel_codes.all %}
+            <a class="chip chip-jel" href="{{ jel.get_absolute_url }}">{{ jel.code }}</a>
+          {% endfor %}
+        </p>
+      {% endif %}
+    </div>
   {% endif %}
-  <div class="flex flex-wrap items-center gap-3 mt-3">
-    {% if article.primary_galley %}
-      <a class="btn btn-secondary btn-sm" href="{{ article.pdf_url }}">
-        {% translate "PDF" %} <span class="meta">({{ article.primary_galley.size_display }})</span>
+  <div class="flex flex-wrap items-center justify-between gap-2">
+    <div class="flex flex-wrap items-center gap-2">
+      {% if article.primary_galley %}
+        <a class="btn {% if lead %}btn-primary{% else %}btn-secondary{% endif %} btn-sm"
+           href="{{ article.pdf_url }}">
+          {% include "includes/icon.html" with name="pdf" size=14 %}
+          PDF <span class="meta {% if lead %}text-white/80{% endif %}">({{ article.primary_galley.size_display }})</span>
+        </a>
+      {% endif %}
+      <a class="btn btn-secondary btn-sm"
+         href="{% url 'journal:article_cite' article.pk %}"
+         hx-get="{% url 'journal:article_cite' article.pk %}"
+         hx-target="#modal-root"
+         hx-swap="innerHTML">
+        {% include "includes/icon.html" with name="quote" size=14 %}
+        {% translate "Cite" %}
       </a>
+      <a class="btn btn-ghost btn-sm" href="{{ article.get_absolute_url }}">{% translate "Abstract & references" %}</a>
+    </div>
+    {% if article.doi and lead %}
+      <span class="doi-line">doi:{{ article.doi }}</span>
     {% endif %}
-    <a class="btn btn-ghost btn-sm"
-       href="{% url 'journal:article_cite' article.pk %}"
-       hx-get="{% url 'journal:article_cite' article.pk %}"
-       hx-target="#modal-root"
-       hx-swap="innerHTML">{% translate "Cite" %}</a>
-    <span class="meta">{% translate "Views" %}: {{ article.views_count }}</span>
-    <span class="meta">{% translate "Downloads" %}: {{ article.downloads_count }}</span>
   </div>
 </article>

@@ -1,36 +1,72 @@
 {% load i18n %}
-<header class="sticky top-0 z-40 border-b border-[--color-line] bg-[--color-paper]/95 backdrop-blur"
-        x-data="{ mobile: false, search: false }">
-  <div class="container-page flex h-16 items-center gap-4">
-    <a class="wordmark shrink-0"
+{% comment %}
+  Utility bar + masthead row, after design/issue.html and design/about.html.
+  Every fact in the utility bar comes from SiteSettings; nothing is hard-coded.
+{% endcomment %}
+<aside class="utility-bar hidden md:block"
+       aria-label="{% translate 'Journal identifiers' %}">
+  <div class="container-page flex items-center justify-between gap-4 h-8">
+    <div class="flex items-center gap-3 min-w-0">
+      <span class="inline-flex items-center gap-1.5 whitespace-nowrap">
+        <span class="dot-live" aria-hidden="true"></span>
+        {% translate "Open access · double-blind peer review" %}
+      </span>
+      <span class="sep" aria-hidden="true">|</span>
+      <span class="whitespace-nowrap">e-ISSN: {{ site_settings.eissn|default:_("pending") }}</span>
+      {% if site_settings.pissn %}
+        <span class="sep" aria-hidden="true">|</span>
+        <span class="whitespace-nowrap">ISSN: {{ site_settings.pissn }}</span>
+      {% endif %}
+      <span class="sep hidden lg:inline" aria-hidden="true">|</span>
+      <span class="hidden lg:inline whitespace-nowrap">DOI: {{ site_settings.doi_prefix_display }}</span>
+    </div>
+    <div class="flex items-center gap-3 whitespace-nowrap">
+      <span class="hidden lg:inline">{{ site_settings.frequency_short }}</span>
+      <span class="sep hidden lg:inline" aria-hidden="true">|</span>
+      <a href="{% url 'core:open_access' %}">CC BY 4.0</a>
+      <span class="sep" aria-hidden="true">|</span>
+      <a href="{% url 'core:contact' %}">{% translate "Editorial office" %}</a>
+    </div>
+  </div>
+</aside>
+<header class="site-header" x-data="{ mobile: false }">
+  <div class="container-page flex h-16 lg:h-[4.5rem] items-center gap-4 lg:gap-8">
+    <a class="wordmark min-w-0"
        href="{% url 'journal:home' %}"
        aria-label="{{ site_settings.journal_name }}">{% include "includes/wordmark.html" %}</a>
-    <nav class="ml-auto hidden lg:flex items-center gap-1"
+    {% comment %}
+      Uzbek and Russian labels are up to a third longer than English, so the
+      tab row may scroll sideways rather than push into the actions.
+    {% endcomment %}
+    <nav class="hidden lg:flex items-center gap-4 xl:gap-5 flex-1 min-w-0 overflow-x-auto"
          aria-label="{% translate 'Primary' %}">
-      <a class="nav-link" href="{% url 'journal:issue_current' %}">{% translate "Current Issue" %}</a>
-      <a class="nav-link" href="{% url 'journal:archive' %}">{% translate "Archive" %}</a>
-      <a class="nav-link" href="{% url 'journal:online_first' %}">{% translate "Online First" %}</a>
-      <a class="nav-link" href="{% url 'core:for_authors' %}">{% translate "For Authors" %}</a>
-      <a class="nav-link" href="{% url 'core:for_reviewers' %}">{% translate "For Reviewers" %}</a>
-      <a class="nav-link" href="{% url 'core:about' %}">{% translate "About" %}</a>
+      <a class="nav-tab"
+         href="{% url 'journal:issue_current' %}"
+         {% if active_nav == "current" %}aria-current="page"{% endif %}>{% translate "Current Issue" %}</a>
+      <a class="nav-tab"
+         href="{% url 'journal:archive' %}"
+         {% if active_nav == "archive" %}aria-current="page"{% endif %}>{% translate "Archive" %}</a>
+      <a class="nav-tab"
+         href="{% url 'journal:online_first' %}"
+         {% if active_nav == "online_first" %}aria-current="page"{% endif %}>{% translate "Online First" %}</a>
+      <a class="nav-tab"
+         href="{% url 'core:for_authors' %}"
+         {% if active_nav == "authors" %}aria-current="page"{% endif %}>{% translate "For Authors" %}</a>
+      <a class="nav-tab"
+         href="{% url 'core:for_reviewers' %}"
+         {% if active_nav == "reviewers" %}aria-current="page"{% endif %}>{% translate "For Reviewers" %}</a>
+      <a class="nav-tab"
+         href="{% url 'core:about' %}"
+         {% if active_nav == "about" %}aria-current="page"{% endif %}>{% translate "About" %}</a>
     </nav>
-    <div class="ml-auto lg:ml-0 flex items-center gap-2">
-      <a class="btn btn-ghost btn-sm"
+    <div class="ml-auto flex items-center gap-2 lg:gap-3 shrink-0">
+      <a class="header-search"
          href="{% url 'search:search' %}"
-         aria-label="{% translate 'Search' %}">
-        <svg width="20"
-             height="20"
-             viewBox="0 0 24 24"
-             fill="none"
-             stroke="currentColor"
-             stroke-width="1.75"
-             stroke-linecap="round"
-             stroke-linejoin="round"
-             aria-hidden="true">
-          <circle cx="11" cy="11" r="8"></circle>
-          <path d="m21 21-4.3-4.3"></path>
-        </svg>
-        <span class="hidden xl:inline">{% translate "Search" %}</span>
+         aria-label="{% translate 'Search' %}"
+         @keydown.window.slash="if (!['INPUT', 'TEXTAREA', 'SELECT'].includes($event.target.tagName)) { $event.preventDefault(); $el.click() }">
+        {% include "includes/icon.html" with name="search" size=18 %}
+        <span class="hidden 2xl:inline">{% translate "Search articles, authors, JEL…" %}</span>
+        <span class="kbd hidden xl:inline" aria-hidden="true">/</span>
       </a>
       {% comment %}
         The switcher carries four languages, which is wider than a 320 px phone
@@ -39,7 +75,10 @@
       {% endcomment %}
       <div class="hidden md:flex">{% include "includes/language_switcher.html" %}</div>
       <a class="btn btn-primary btn-sm hidden sm:inline-flex"
-         href="{% url 'submissions:wizard_start' %}">{% translate "Submit" %}</a>
+         href="{% url 'submissions:wizard_start' %}">
+        {% include "includes/icon.html" with name="upload" size=14 %}
+        {% translate "Submit" %}
+      </a>
       {% if user.is_authenticated %}
         <div class="relative" x-data="{ open: false }">
           <button type="button"
@@ -52,7 +91,7 @@
           <div x-show="open"
                x-cloak
                @click.outside="open = false"
-               class="absolute right-0 mt-1 w-56 rounded-[--radius-card] border border-[--color-line] bg-[--color-paper] p-2 shadow-lg">
+               class="absolute right-0 mt-1 w-56 rounded-[--radius-card] border border-[--color-line] bg-[--color-paper] p-2 shadow-[--shadow-menu]">
             <a class="footer-link px-2 py-2" href="{% url 'dashboard:home' %}">{% translate "Dashboard" %}</a>
             <a class="footer-link px-2 py-2" href="{% url 'dashboard:profile' %}">{% translate "Profile" %}</a>
             <a class="footer-link px-2 py-2"
@@ -66,7 +105,7 @@
           </div>
         </div>
       {% else %}
-        <a class="nav-link hidden sm:inline-flex"
+        <a class="nav-link hidden sm:inline-flex whitespace-nowrap"
            href="{% url 'account_login' %}">{% translate "Sign in" %}</a>
       {% endif %}
       <button type="button"
@@ -75,16 +114,8 @@
               :aria-expanded="mobile"
               aria-controls="mobile-nav"
               aria-label="{% translate 'Menu' %}">
-        <svg width="22"
-             height="22"
-             viewBox="0 0 24 24"
-             fill="none"
-             stroke="currentColor"
-             stroke-width="1.75"
-             stroke-linecap="round"
-             aria-hidden="true">
-          <path d="M3 6h18M3 12h18M3 18h18"></path>
-        </svg>
+        <span x-show="!mobile">{% include "includes/icon.html" with name="menu" size=22 %}</span>
+        <span x-show="mobile" x-cloak>{% include "includes/icon.html" with name="x" size=22 %}</span>
       </button>
     </div>
   </div>
@@ -94,12 +125,24 @@
        class="lg:hidden border-t border-[--color-line] bg-[--color-paper]">
     <nav class="container-page py-3 flex flex-col"
          aria-label="{% translate 'Primary' %}">
-      <a class="nav-link" href="{% url 'journal:issue_current' %}">{% translate "Current Issue" %}</a>
-      <a class="nav-link" href="{% url 'journal:archive' %}">{% translate "Archive" %}</a>
-      <a class="nav-link" href="{% url 'journal:online_first' %}">{% translate "Online First" %}</a>
-      <a class="nav-link" href="{% url 'core:for_authors' %}">{% translate "For Authors" %}</a>
-      <a class="nav-link" href="{% url 'core:for_reviewers' %}">{% translate "For Reviewers" %}</a>
-      <a class="nav-link" href="{% url 'core:about' %}">{% translate "About" %}</a>
+      <a class="nav-link"
+         href="{% url 'journal:issue_current' %}"
+         {% if active_nav == "current" %}aria-current="page"{% endif %}>{% translate "Current Issue" %}</a>
+      <a class="nav-link"
+         href="{% url 'journal:archive' %}"
+         {% if active_nav == "archive" %}aria-current="page"{% endif %}>{% translate "Archive" %}</a>
+      <a class="nav-link"
+         href="{% url 'journal:online_first' %}"
+         {% if active_nav == "online_first" %}aria-current="page"{% endif %}>{% translate "Online First" %}</a>
+      <a class="nav-link"
+         href="{% url 'core:for_authors' %}"
+         {% if active_nav == "authors" %}aria-current="page"{% endif %}>{% translate "For Authors" %}</a>
+      <a class="nav-link"
+         href="{% url 'core:for_reviewers' %}"
+         {% if active_nav == "reviewers" %}aria-current="page"{% endif %}>{% translate "For Reviewers" %}</a>
+      <a class="nav-link"
+         href="{% url 'core:about' %}"
+         {% if active_nav == "about" %}aria-current="page"{% endif %}>{% translate "About" %}</a>
       <a class="nav-link" href="{% url 'search:search' %}">{% translate "Search" %}</a>
       <a class="btn btn-primary mt-2"
          href="{% url 'submissions:wizard_start' %}">{% translate "Submit your manuscript" %}</a>

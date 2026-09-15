@@ -6,6 +6,7 @@ from typing import Any
 
 from django.conf import settings
 from django.contrib import messages
+from django.db.models import Count, Q
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.template.response import TemplateResponse
@@ -18,7 +19,7 @@ from django_ratelimit.decorators import ratelimit
 
 from apps.core.forms import ContactForm
 from apps.core.models import IndexingService, Page
-from apps.core.services import client_ip, send_templated_email
+from apps.core.services import client_ip, get_site_settings, send_templated_email
 
 
 def _page_context(request: HttpRequest, slug: str) -> dict[str, Any]:
@@ -38,8 +39,40 @@ def named_page(request: HttpRequest, slug: str) -> HttpResponse:
 
 def about(request: HttpRequest) -> HttpResponse:
     """The About landing page with the journal's identifying facts."""
+    from apps.journal.models import Article, EditorialBoardMember, Section
+    from apps.metrics.services import home_kpis
+
     context = _page_context(request, "about")
     context["show_identity_panel"] = True
+    context["kpis"] = home_kpis()
+    context["research_sections"] = list(
+        Section.objects.filter(is_active=True, is_research=True)
+        .annotate(
+            published_count=Count(
+                "articles",
+                filter=Q(
+                    articles__status__in=[
+                        Article.Status.PUBLISHED,
+                        Article.Status.ONLINE_FIRST,
+                    ]
+                ),
+            )
+        )
+        .order_by("order")
+    )
+    board = list(
+        EditorialBoardMember.objects.filter(is_active=True)
+        .exclude(role=EditorialBoardMember.Role.REVIEWER_BOARD)
+        .order_by("order", "full_name")
+    )
+    site = get_site_settings()
+    eic = site.editor_in_chief or next(
+        (m for m in board if m.role == EditorialBoardMember.Role.EDITOR_IN_CHIEF), None
+    )
+    context["editor_in_chief"] = eic
+    context["board_preview"] = [m for m in board if eic is None or m.pk != eic.pk][:6]
+    context["board_count"] = len(board)
+    context["indexing_services"] = list(IndexingService.objects.filter(is_active=True))
     return TemplateResponse(request, "core/about.html", context)
 
 

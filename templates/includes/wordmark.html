@@ -1,3 +1,14 @@
-<span class="wordmark-name">{{ site_settings.wordmark_name }}</span>
-<span class="wordmark-rule" aria-hidden="true"></span>
-<span class="wordmark-descriptor">{{ site_settings.wordmark_descriptor }}</span>
+{% if site_settings.logo %}
+  <img class="h-10 w-auto"
+       src="{{ site_settings.logo.url }}"
+       alt=""
+       width="40"
+       height="40">
+{% else %}
+  <span class="wordmark-mark" aria-hidden="true">{{ site_settings.wordmark_name|slice:":1" }}</span>
+{% endif %}
+<span class="wordmark-text">
+  <span class="wordmark-name">{{ site_settings.wordmark_name }}</span>
+  <span class="wordmark-rule" aria-hidden="true"></span>
+  <span class="wordmark-descriptor">{{ site_settings.wordmark_descriptor }}</span>
+</span>

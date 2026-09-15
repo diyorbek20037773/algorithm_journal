@@ -1,16 +1,16 @@
 {% load i18n %}
 {% if site_settings.announcement_bar_text %}
-  <div class="surface-2 border-b border-[--color-line] text-sm"
+  <div class="bg-[--color-paper-3] border-b border-[--color-line] text-sm"
        x-data="{ shown: true }"
        x-show="shown"
        x-cloak>
-    <div class="container-page flex items-center gap-3 py-2">
-      <span class="eyebrow">{% translate "Notice" %}</span>
-      <p class="muted flex-1">{{ site_settings.announcement_bar_text }}</p>
+    <div class="container-page flex items-center gap-3 py-1.5">
+      <span class="chip chip-gold chip-mono uppercase tracking-wider text-[0.625rem] shrink-0">{% translate "Notice" %}</span>
+      <p class="flex-1 min-w-0 text-[0.8125rem] font-medium text-[--color-accent]">{{ site_settings.announcement_bar_text }}</p>
       <button type="button"
               class="btn btn-ghost btn-sm"
               @click="shown = false"
-              aria-label="{% translate "Dismiss" %}">×</button>
+              aria-label="{% translate "Dismiss" %}">{% include "includes/icon.html" with name="x" size=16 %}</button>
     </div>
   </div>
 {% endif %}

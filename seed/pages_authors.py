@@ -45,7 +45,7 @@ least one independent reviewer. You may also name people who should not review y
 with a short reason.
 
 **What happens after I submit?**
-You receive a reference number of the form `ARER-2026-0001` and can follow every step in
+You receive a reference number of the form `MRER-2026-0001` and can follow every step in
 your dashboard. Screening takes up to seven days, review 21 days, and the first decision
 normally arrives within eight weeks.
 
@@ -97,7 +97,7 @@ kamida bitta mustaqil taqrizchi qoʻshadi. Ishingizni taqriz qilmasligi kerak bo
 shaxslarni ham qisqa izoh bilan koʻrsatishingiz mumkin.
 
 **Yuborgandan keyin nima boʻladi?**
-Siz `ARER-2026-0001` koʻrinishidagi raqam olasiz va har bir bosqichni boshqaruv panelida
+Siz `MRER-2026-0001` koʻrinishidagi raqam olasiz va har bir bosqichni boshqaruv panelida
 kuzatasiz. Dastlabki koʻrik yetti kungacha, taqriz 21 kun, birinchi qaror odatda sakkiz
 hafta ichida keladi.
 
@@ -148,7 +148,7 @@ variantni DOI orqali iqtibos qiling.""",
 рецензировать вашу работу, с кратким обоснованием.
 
 **Что происходит после подачи?**
-Вы получаете номер вида `ARER-2026-0001` и можете следить за каждым шагом в личном
+Вы получаете номер вида `MRER-2026-0001` и можете следить за каждым шагом в личном
 кабинете. Отбор занимает до семи дней, рецензирование — 21 день, первое решение обычно
 приходит в течение восьми недель.
 

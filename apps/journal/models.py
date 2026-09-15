@@ -575,6 +575,15 @@ class Article(TimeStampedModel, AutoTranslitMixin):
         """Comma-separated author names for lists and meta tags."""
         return separator.join(a.full_name for a in self.author_list())
 
+    def affiliations_display(self, separator: str = " · ") -> str:
+        """Distinct author affiliations, in author order, for article cards."""
+        seen: list[str] = []
+        for author in self.author_list():
+            label = author.affiliation_display
+            if label and label not in seen:
+                seen.append(label)
+        return separator.join(seen)
+
     def build_slug(self) -> str:
         """Slug derived from the English title."""
         base = slugify(getattr(self, "title_en", None) or self.title)[:200]

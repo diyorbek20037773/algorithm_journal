@@ -10,66 +10,193 @@
        "isPartOf":{"@type":"Periodical","name":"{{ site_settings.journal_name|escapejs }}"{% if site_settings.eissn %},"issn":"{{ site_settings.eissn }}"{% endif %}}}}
   </script>
 {% endblock %}
+{% block main_class %}py-8{% endblock %}
 {% block content %}
-  <div class="container-page">
-    <nav aria-label="{% translate 'Breadcrumb' %}" class="meta mb-6">
-      <a href="{% url 'journal:home' %}">{% translate "Home" %}</a> ›
-      <a href="{% url 'journal:archive' %}">{% translate "Archive" %}</a> ›
-      <span class="subtle">{{ issue.label }}</span>
+  <div class="container-page flex flex-col gap-8">
+    <nav aria-label="{% translate 'Breadcrumb' %}" class="breadcrumb">
+      <a href="{% url 'journal:home' %}">{% translate "Home" %}</a>
+      <span class="sep" aria-hidden="true">›</span>
+      <a href="{% url 'journal:archive' %}">{% translate "Archive" %}</a>
+      <span class="sep" aria-hidden="true">›</span>
+      <span aria-current="page">{{ issue.label }}</span>
     </nav>
-    <div class="grid gap-8 sm:grid-cols-[180px_1fr] items-start card-muted mb-10">
-      <div class="issue-cover w-44">
-        <p class="meta">{{ site_settings.short_code }}</p>
-        <div>
-          <p class="issue-cover-vol">Vol. {{ issue.volume.number }}</p>
-          <p class="issue-cover-vol">No. {{ issue.number }}</p>
+    {% comment %}Issue hero — design/issue.html "issue-hero"{% endcomment %}
+    <section class="card p-6 md:p-8">
+      <div class="grid gap-8 lg:grid-cols-12 items-start">
+        <div class="lg:col-span-3">
+          <div class="issue-cover w-full max-w-[220px] mx-auto">
+            <div class="issue-cover-head">
+              <span>{{ site_settings.short_code }}</span>
+              <span>Vol. {{ issue.volume.number }}</span>
+            </div>
+            <div class="issue-cover-body">
+              <p class="issue-cover-vol">Vol. {{ issue.volume.number }}</p>
+              <p class="issue-cover-vol">No. {{ issue.number }}</p>
+              <div class="issue-cover-rule" aria-hidden="true"></div>
+              <p class="label-caps">{{ site_settings.frequency_short }}</p>
+            </div>
+            <div class="issue-cover-foot">
+              <span>{{ issue.published_at|date:"F" }}</span>
+              <span>{{ issue.published_at|date:"Y" }}</span>
+            </div>
+          </div>
         </div>
-        <p class="meta">{{ issue.published_at|date:"F Y" }}</p>
-      </div>
-      <div>
-        <h1 class="text-3xl">{{ issue.label }}</h1>
-        {% if issue.title %}<p class="text-lg muted mt-1">{{ issue.title }}</p>{% endif %}
-        <dl class="dl-meta mt-4">
-          <dt>{% translate "Published" %}</dt><dd>{{ issue.published_at|date:"j F Y" }}</dd>
-          <dt>{% translate "Articles" %}</dt><dd>{{ article_count }}</dd>
-          {% if issue.doi %}<dt>DOI</dt><dd><a class="meta" href="https://doi.org/{{ issue.doi }}">{{ issue.doi }}</a></dd>{% endif %}
-        </dl>
-        {% if issue.description %}
-          <div class="prose-journal mt-4">{{ issue.description_html|safe }}</div>
-        {% endif %}
-        {% if issue.full_issue_pdf %}
-          <a class="btn btn-secondary mt-4" href="{{ issue.full_issue_pdf.url }}">{% translate "Download the full issue (PDF)" %}</a>
-        {% endif %}
-      </div>
-    </div>
-    {% for group in grouped_articles %}
-      <section class="mb-10">
-        <div class="section-heading">
-          <h2>{{ group.section.name }}</h2>
+        <div class="lg:col-span-9 flex flex-col gap-4 min-w-0">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="chip chip-green">{% translate "Published issue" %}</span>
+            <span class="chip">{{ site_settings.frequency_short }} · {{ issue.published_at|date:"F Y" }}</span>
+            {% if issue.doi %}
+              <a class="chip chip-gold chip-mono"
+                 href="https://doi.org/{{ issue.doi }}">DOI: {{ issue.doi }}</a>
+            {% endif %}
+          </div>
+          <h1 class="text-3xl sm:text-4xl">{{ issue.label }}</h1>
+          {% if issue.title %}<p class="text-lg muted -mt-2">{{ issue.title }}</p>{% endif %}
+          <dl class="grid sm:grid-cols-2 gap-x-8 gap-y-2 border-y border-[--color-line] py-3 text-sm">
+            <div class="flex items-center gap-3">
+              <dt class="label-caps w-28 shrink-0">{% translate "Published" %}</dt>
+              <dd class="font-semibold">
+                {{ issue.published_at|date:"j F Y" }}
+              </dd>
+            </div>
+            <div class="flex items-center gap-3">
+              <dt class="label-caps w-28 shrink-0">{% translate "Articles" %}</dt>
+              <dd class="font-semibold">
+                {% blocktranslate count counter=article_count %}{{ counter }} peer-reviewed paper{% plural %}{{ counter }} peer-reviewed papers{% endblocktranslate %}
+              </dd>
+            </div>
+          </dl>
+          {% if issue.description %}
+            <div class="prose-journal max-w-3xl">{{ issue.description_html|safe }}</div>
+          {% endif %}
+          <div class="flex flex-wrap items-center gap-2 pt-4 border-t border-[--color-line]">
+            {% if issue.full_issue_pdf %}
+              <a class="btn btn-primary" href="{{ issue.full_issue_pdf.url }}">
+                {% include "includes/icon.html" with name="download" size=16 %}
+                {% translate "Download the full issue (PDF)" %}
+              </a>
+            {% endif %}
+            {% if previous_issue %}
+              <a class="btn btn-secondary btn-sm"
+                 href="{{ previous_issue.get_absolute_url }}">
+                {% include "includes/icon.html" with name="chevron-left" size=14 %}
+                {{ previous_issue.label }}
+              </a>
+            {% endif %}
+            {% if next_issue %}
+              <a class="btn btn-secondary btn-sm"
+                 href="{{ next_issue.get_absolute_url }}">
+                {{ next_issue.label }}
+                {% include "includes/icon.html" with name="chevron-right" size=14 %}
+              </a>
+            {% endif %}
+          </div>
         </div>
-        {% for article in group.articles %}
-          {% include "journal/partials/article_card.html" with article=article show_abstract=True %}
+      </div>
+    </section>
+    <div class="grid gap-8 lg:grid-cols-12 items-start">
+      <div class="lg:col-span-8 flex flex-col gap-8 min-w-0">
+        {% for group in grouped_articles %}
+          <section>
+            <div class="section-heading">
+              <h2>{{ group.section.name }}</h2>
+              <span class="count">{% blocktranslate count counter=group.articles|length %}{{ counter }} article{% plural %}{{ counter }} articles{% endblocktranslate %}</span>
+            </div>
+            <div class="flex flex-col gap-4">
+              {% for article in group.articles %}
+                {% include "journal/partials/article_card.html" with article=article show_abstract=True show_jel=True %}
+              {% endfor %}
+            </div>
+          </section>
+        {% empty %}
+          <div class="empty-state">
+            <p>{% translate "This issue has no articles." %}</p>
+          </div>
         {% endfor %}
-      </section>
-    {% empty %}
-      <div class="empty-state">
-        <p>{% translate "This issue has no articles." %}</p>
       </div>
-    {% endfor %}
-    <nav class="rule pt-6 flex items-center justify-between"
-         aria-label="{% translate 'Issue navigation' %}">
-      <div>
-        {% if previous_issue %}
-          <a class="btn btn-secondary btn-sm"
-             href="{{ previous_issue.get_absolute_url }}">← {{ previous_issue.label }}</a>
+      {% comment %}Sidebar — design/issue.html "issue-utilities-sidebar"{% endcomment %}
+      <aside class="lg:col-span-4 flex flex-col gap-5 min-w-0">
+        <nav class="card" aria-label="{% translate 'Issue navigation' %}">
+          <p class="label-caps mb-3">{% translate "Issue sequence" %}</p>
+          <div class="grid grid-cols-2 gap-2">
+            {% if previous_issue %}
+              <a class="rounded-[--radius-control] border border-[--color-line] p-2.5 no-underline hover:bg-[--color-paper-2]"
+                 href="{{ previous_issue.get_absolute_url }}">
+                <span class="meta block">‹ {% translate "Previous" %}</span>
+                <span class="block text-sm font-semibold mt-0.5">{{ previous_issue.label }}</span>
+              </a>
+            {% else %}
+              <span class="rounded-[--radius-control] border border-dashed border-[--color-line] p-2.5 meta">{% translate "First issue" %}</span>
+            {% endif %}
+            {% if next_issue %}
+              <a class="rounded-[--radius-control] border border-[--color-line] p-2.5 text-right no-underline hover:bg-[--color-paper-2]"
+                 href="{{ next_issue.get_absolute_url }}">
+                <span class="meta block">{% translate "Next" %} ›</span>
+                <span class="block text-sm font-semibold mt-0.5">{{ next_issue.label }}</span>
+              </a>
+            {% else %}
+              <span class="rounded-[--radius-control] border border-dashed border-[--color-line] p-2.5 meta text-right">{% translate "Latest issue" %}</span>
+            {% endif %}
+          </div>
+        </nav>
+        <section class="card">
+          <p class="label-caps mb-3">{% translate "Issues in this volume" %}</p>
+          <ul class="flex flex-col">
+            {% for item in volume_issues %}
+              <li class="flex items-center justify-between gap-2 py-1.5 px-2 rounded-[--radius-control] {% if item.pk == issue.pk %}bg-[--color-gold-soft]{% endif %}">
+                {% if item.pk == issue.pk %}
+                  <span class="text-sm font-semibold">{{ item.label }}</span>
+                  <span class="meta text-[--color-gold]">{{ item.published_at|date:"M Y" }}</span>
+                {% else %}
+                  <a class="text-sm no-underline hover:underline"
+                     href="{{ item.get_absolute_url }}">{{ item.label }}</a>
+                  <span class="meta">{{ item.published_at|date:"M Y" }}</span>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+          <a class="btn btn-ghost btn-sm mt-2 px-0"
+             href="{% url 'journal:archive' %}">{% translate "All volumes" %} →</a>
+        </section>
+        <section class="card">
+          <p class="label-caps mb-3">{% translate "Issue metrics & indexing" %}</p>
+          <dl class="text-sm flex flex-col divide-y divide-[--color-line]">
+            <div class="flex justify-between gap-2 py-1.5">
+              <dt class="muted">{% translate "Abstract page views" %}</dt>
+              <dd class="meta font-semibold">
+                {{ issue_views }}
+              </dd>
+            </div>
+            <div class="flex justify-between gap-2 py-1.5">
+              <dt class="muted">{% translate "PDF downloads" %}</dt>
+              <dd class="meta font-semibold">
+                {{ issue_downloads }}
+              </dd>
+            </div>
+            <div class="flex justify-between gap-2 py-1.5">
+              <dt class="muted">{% translate "Open access licence" %}</dt>
+              <dd class="meta font-semibold">
+                CC BY 4.0
+              </dd>
+            </div>
+            <div class="flex justify-between gap-2 py-1.5">
+              <dt class="muted">{% translate "Machine-readable" %}</dt>
+              <dd class="meta">
+                <a href="{{ site_url }}/oai/?verb=Identify">OAI-PMH</a>
+              </dd>
+            </div>
+          </dl>
+        </section>
+        {% if pinned_announcement %}
+          <section class="card-navy flex flex-col gap-2">
+            <span class="chip chip-gold self-start">{% translate "Call for papers" %}</span>
+            <h2 class="text-base">{{ pinned_announcement.title }}</h2>
+            <p class="text-sm muted">{{ pinned_announcement.published_at|date:"j F Y" }}</p>
+            <a class="btn btn-gold btn-sm mt-2"
+               href="{{ pinned_announcement.get_absolute_url }}">{% translate "Read the announcement" %}</a>
+          </section>
         {% endif %}
-      </div>
-      <div>
-        {% if next_issue %}
-          <a class="btn btn-secondary btn-sm"
-             href="{{ next_issue.get_absolute_url }}">{{ next_issue.label }} →</a>
-        {% endif %}
-      </div>
-    </nav>
+      </aside>
+    </div>
   </div>
 {% endblock %}

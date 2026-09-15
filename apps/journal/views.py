@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from datetime import date
 from typing import Any
 
 from django.db.models import Count, Prefetch, Q
@@ -39,22 +40,33 @@ class HomeView(TemplateView):
         context = super().get_context_data(**kwargs)
         current_issue = Issue.current()
         context["current_issue"] = current_issue
-        context["current_issue_articles"] = (
-            list(
-                Article.objects.public()
-                .filter(issue=current_issue)
-                .for_cards()
-                .order_by("article_number", "id")[:6]
-            )
-            if current_issue
-            else []
+        # Issue papers and Online First papers come from one query so their
+        # author / galley / JEL prefetches are shared (query budget, SPEC §12).
+        pool = Article.objects.public().filter(status=Article.Status.ONLINE_FIRST)
+        if current_issue:
+            pool = pool | Article.objects.public().filter(issue=current_issue)
+        pool = list(pool.for_cards().prefetch_related("jel_codes"))
+        issue_articles = sorted(
+            (a for a in pool if current_issue and a.issue_id == current_issue.pk),
+            key=lambda a: (a.article_number or 0, a.pk),
+        )[:5]
+        # The first paper of the issue is presented as the lead article.
+        context["lead_article"] = issue_articles[0] if issue_articles else None
+        context["current_issue_articles"] = issue_articles[1:]
+        context["online_first"] = sorted(
+            (a for a in pool if a.status == Article.Status.ONLINE_FIRST),
+            key=lambda a: (a.published_online_at or date.min, a.pk),
+            reverse=True,
+        )[:3]
+        # One aggregate query feeds every count the page shows (query budget, SPEC §12).
+        counts = Article.objects.public().aggregate(
+            total=Count("id"),
+            in_issue=Count("id", filter=Q(issue=current_issue)) if current_issue else Count("id"),
+            online_first=Count("id", filter=Q(status=Article.Status.ONLINE_FIRST)),
         )
-        context["online_first"] = list(
-            Article.objects.online_first()
-            .select_related("section")
-            .prefetch_related("authors")
-            .order_by("-published_online_at")[:4]
-        )
+        context["published_count"] = counts["total"]
+        context["current_issue_article_count"] = counts["in_issue"] if current_issue else 0
+        context["online_first_count"] = counts["online_first"]
         context["sections"] = list(
             Section.objects.filter(is_active=True, is_research=True)
             .annotate(
@@ -194,6 +206,15 @@ class IssueDetailView(DetailView):
             .order_by("volume__number", "number")
             .first()
         )
+        context["volume_issues"] = list(
+            Issue.objects.published()
+            .filter(volume=issue.volume)
+            .select_related("volume")
+            .order_by("-number")
+        )
+        context["issue_views"] = sum(a.views_count for a in articles)
+        context["issue_downloads"] = sum(a.downloads_count for a in articles)
+        context["pinned_announcement"] = Announcement.objects.live().filter(is_pinned=True).first()
         context["meta_description"] = f"{issue.label} — {context['article_count']} articles."
         return context
 

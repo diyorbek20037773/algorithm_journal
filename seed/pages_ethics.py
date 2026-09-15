@@ -1343,7 +1343,7 @@ below or write to the address shown beside it.
   the current state and the responsible editor. Write to us only if the state has not
   changed for longer than the stated target duration.
 * **Technical problems with the submission system** — describe what you did, what you
-  expected and what happened, and include the submission reference (`ARER-YYYY-NNNN`).
+  expected and what happened, and include the submission reference (`MRER-YYYY-NNNN`).
 * **Reviewer invitations** — reply to the invitation e-mail, or accept or decline from your
   reviewer dashboard.
 * **Ethical concerns about a published article** — write to the editorial office with the
@@ -1368,7 +1368,7 @@ yonida koʻrsatilgan manzilga yozing.
   yerda joriy holat va masʼul muharrir koʻrsatilgan. Holat belgilangan muddatdan uzoq
   vaqt oʻzgarmasa, bizga yozing.
 * **Yuborish tizimidagi texnik muammolar** — nima qilganingiz, nimani kutganingiz va nima
-  yuz berganini tavsiflang, qoʻlyozma raqamini (`ARER-YYYY-NNNN`) koʻrsating.
+  yuz berganini tavsiflang, qoʻlyozma raqamini (`MRER-YYYY-NNNN`) koʻrsating.
 * **Taqriz takliflari** — taklif xatiga javob bering yoki taqrizchi panelidan qabul qiling
   yoxud rad eting.
 * **Chop etilgan maqolaga oid etik masalalar** — DOI va aniq, asoslangan tavsif bilan
@@ -1394,7 +1394,7 @@ qilinadi.""",
   указаны текущее состояние и ответственный редактор. Пишите нам, если состояние не
   меняется дольше заявленного срока.
 * **Технические проблемы системы подачи** — опишите, что вы делали, что ожидали и что
-  произошло, укажите номер рукописи (`ARER-YYYY-NNNN`).
+  произошло, укажите номер рукописи (`MRER-YYYY-NNNN`).
 * **Приглашения к рецензированию** — ответьте на письмо-приглашение либо примите или
   отклоните его в кабинете рецензента.
 * **Этические вопросы по опубликованной статье** — напишите в редакцию, указав DOI и

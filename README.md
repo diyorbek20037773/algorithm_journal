@@ -9,8 +9,9 @@ production, DOI registration, indexing endpoints).
 * Four languages: English, Oʻzbekcha (Latin), Ўзбекча (Cyrillic), Русский
 * Diamond open access — no article processing charges, CC BY 4.0
 
-Engineering specification: [`SPEC.md`](SPEC.md) · visual system:
-[`DESIGN_BRIEF.md`](DESIGN_BRIEF.md) · working rules: [`CLAUDE.md`](CLAUDE.md) ·
+Engineering specification: [`SPEC.md`](SPEC.md) · visual reference:
+[`design/`](design/) (Stitch export; [`DESIGN_BRIEF.md`](DESIGN_BRIEF.md) is the
+earlier written brief) · working rules: [`CLAUDE.md`](CLAUDE.md) ·
 client terms of reference (Uzbek): [`TEXNIK_TOPSHIRIQ.md`](TEXNIK_TOPSHIRIQ.md).
 
 ---

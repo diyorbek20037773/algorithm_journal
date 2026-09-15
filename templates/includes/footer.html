@@ -1,70 +1,77 @@
 {% load i18n %}
-<footer class="surface-2 border-t border-[--color-line] mt-16">
+<footer class="site-footer">
   <div class="container-page py-12">
-    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-      <div>
-        <p class="footer-heading">{% translate "Journal" %}</p>
-        <a class="footer-link" href="{% url 'core:about' %}">{% translate "About the journal" %}</a>
-        <a class="footer-link" href="{% url 'journal:editorial_board' %}">{% translate "Editorial Board" %}</a>
-        <a class="footer-link" href="{% url 'journal:reviewer_board' %}">{% translate "Reviewer Board" %}</a>
-        <a class="footer-link" href="{% url 'core:contact' %}">{% translate "Contact" %}</a>
-        <p class="meta mt-3">
+    <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+      <div class="min-w-0">
+        <a class="wordmark"
+           href="{% url 'journal:home' %}"
+           aria-label="{{ site_settings.journal_name }}">{% include "includes/wordmark.html" %}</a>
+        {% if site_settings.journal_subtitle %}
+          <p class="muted text-sm mt-4 max-w-sm">{{ site_settings.journal_subtitle }}</p>
+        {% endif %}
+        <p class="meta mt-4 leading-relaxed">
           e-ISSN: {{ site_settings.eissn|default:_("pending") }}
+          {% if site_settings.pissn %}
+            <br>
+            ISSN: {{ site_settings.pissn }}
+          {% endif %}
           <br>
           DOI: {{ site_settings.doi_prefix_display }}
-          <br>
           {% if site_settings.registration_certificate_number %}
+            <br>
             {% translate "Certificate" %}: {{ site_settings.registration_certificate_number }}
           {% endif %}
         </p>
-        <p class="muted text-sm mt-3">
+        <p class="muted text-sm mt-4">
           {{ site_settings.publisher_name }}
           <br>
           {{ site_settings.publisher_address|linebreaksbr }}
         </p>
       </div>
       <div>
-        <p class="footer-heading">{% translate "For Authors" %}</p>
+        <p class="footer-heading">{% translate "About & editorial" %}</p>
+        <a class="footer-link" href="{% url 'core:aims_and_scope' %}">{% translate "Aims & scope" %}</a>
+        <a class="footer-link" href="{% url 'journal:editorial_board' %}">{% translate "Editorial Board" %}</a>
+        <a class="footer-link" href="{% url 'journal:reviewer_board' %}">{% translate "Reviewer Board" %}</a>
+        <a class="footer-link" href="{% url 'core:peer_review' %}">{% translate "Peer review process" %}</a>
+        <a class="footer-link" href="{% url 'core:publication_ethics' %}">{% translate "Publication Ethics" %}</a>
+        <a class="footer-link" href="{% url 'core:open_access' %}">{% translate "Open access statement" %}</a>
+        <a class="footer-link" href="{% url 'core:contact' %}">{% translate "Contact" %}</a>
+      </div>
+      <div>
+        <p class="footer-heading">{% translate "Information" %}</p>
         <a class="footer-link" href="{% url 'core:author_guidelines' %}">{% translate "Author Guidelines" %}</a>
         <a class="footer-link" href="{% url 'core:templates' %}">{% translate "Manuscript template" %}</a>
         <a class="footer-link" href="{% url 'core:checklist' %}">{% translate "Pre-submission checklist" %}</a>
         <a class="footer-link" href="{% url 'core:fees' %}">{% translate "Article processing charges" %}</a>
-        <a class="footer-link" href="{% url 'core:publication_ethics' %}">{% translate "Publication Ethics" %}</a>
+        <a class="footer-link" href="{% url 'core:for_reviewers' %}">{% translate "Reviewer guidelines" %}</a>
         <a class="footer-link" href="{% url 'core:ai_policy' %}">{% translate "Policy on generative AI" %}</a>
         <a class="footer-link" href="{% url 'submissions:wizard_start' %}">{% translate "Submit a manuscript" %}</a>
       </div>
       <div>
-        <p class="footer-heading">{% translate "Browse" %}</p>
-        <a class="footer-link" href="{% url 'journal:issue_current' %}">{% translate "Current issue" %}</a>
-        <a class="footer-link" href="{% url 'journal:archive' %}">{% translate "Archive" %}</a>
-        <a class="footer-link" href="{% url 'journal:online_first' %}">{% translate "Online First" %}</a>
-        <a class="footer-link" href="{% url 'journal:jel_index' %}">{% translate "JEL classification" %}</a>
-        <a class="footer-link" href="{% url 'search:search' %}">{% translate "Search" %}</a>
-        <a class="footer-link" href="{% url 'core:statistics' %}">{% translate "Journal statistics" %}</a>
-        <a class="footer-link" href="{% url 'core:announcement_list' %}">{% translate "Announcements" %}</a>
-      </div>
-      <div>
-        <p class="footer-heading">{% translate "Machine interfaces" %}</p>
-        <a class="footer-link" href="{{ site_url }}/feed/rss/">{% translate "RSS feed" %}</a>
-        <a class="footer-link" href="{{ site_url }}/feed/atom/">{% translate "Atom feed" %}</a>
+        <p class="footer-heading">{% translate "Archiving & indexing" %}</p>
+        <a class="footer-link" href="{% url 'core:indexing' %}">{% translate "Indexing & abstracting" %}</a>
+        <a class="footer-link" href="{% url 'core:archiving' %}">{% translate "Archiving policy" %}</a>
+        <a class="footer-link" href="{{ site_url }}/lockss/">{% translate "LOCKSS manifest" %}</a>
         <a class="footer-link" href="{{ site_url }}/oai/?verb=Identify">{% translate "OAI-PMH" %}</a>
         <a class="footer-link" href="{{ site_url }}/api/v1/">{% translate "JSON API" %}</a>
+        <a class="footer-link" href="{{ site_url }}/feed/rss/">{% translate "RSS feed" %}</a>
         <a class="footer-link" href="{{ site_url }}/sitemap.xml">{% translate "Sitemap" %}</a>
-        <a class="footer-link" href="{{ site_url }}/lockss/">{% translate "LOCKSS manifest" %}</a>
-        <a class="footer-link" href="{% url 'core:archiving' %}">{% translate "Archiving policy" %}</a>
+        <a class="footer-link" href="{% url 'core:statistics' %}">{% translate "Journal statistics" %}</a>
       </div>
     </div>
-    <div class="rule mt-10 pt-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-      <p class="muted text-sm">
-        © {{ current_year }} {{ site_settings.publisher_name }}.
+    <div class="footer-bottom mt-10 pt-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+      <p>
+        © {{ current_year }} {{ site_settings.journal_name }}.
         {% translate "Articles are published under" %}
         <a href="https://creativecommons.org/licenses/by/4.0/"
            rel="license noopener">CC BY 4.0</a>.
         {% translate "Authors retain copyright." %}
       </p>
-      <div class="flex items-center gap-4">
+      <div class="flex flex-wrap items-center gap-4">
         <a class="footer-link" href="{% url 'core:privacy' %}">{% translate "Privacy" %}</a>
         <a class="footer-link" href="{% url 'core:publication_ethics' %}">{% translate "Ethics" %}</a>
+        <a class="footer-link" href="{% url 'core:announcement_list' %}">{% translate "Announcements" %}</a>
         {% include "includes/language_switcher.html" %}
       </div>
     </div>

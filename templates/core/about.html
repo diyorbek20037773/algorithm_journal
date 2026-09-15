@@ -1,11 +1,235 @@
 {% extends "core/_page_shell.html" %}
 {% load i18n %}
-{% block page_extra %}
-  <section class="mt-10">
-    <div class="section-heading">
-      <h2>{% translate "Journal facts" %}</h2>
+{% block page_lede %}
+  {% if site_settings.journal_subtitle %}<p class="muted mt-2 max-w-2xl">{{ site_settings.journal_subtitle }}</p>{% endif %}
+{% endblock %}
+{% block page_hero_aside %}
+  <div class="flex flex-wrap items-center gap-2 shrink-0">
+    <span class="chip chip-green">{% translate "Diamond open access" %} · CC BY 4.0</span>
+    <span class="chip">{{ site_settings.frequency_short }}</span>
+    <a class="chip chip-gold" href="{% url 'core:publication_ethics' %}">{% translate "COPE-aligned ethics" %}</a>
+  </div>
+{% endblock %}
+{% block page_body %}
+  {% comment %}Institutional profile — design/about.html{% endcomment %}
+  <section class="card p-6 md:p-8 flex flex-col gap-5">
+    <p class="eyebrow">{% translate "Institutional profile" %}</p>
+    <div class="prose-journal max-w-none">{{ page.body_html|safe }}</div>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-2">
+      <div class="fact-tile">
+        <span class="fact-label">{% translate "Model" %}</span>
+        <span class="fact-value">{% translate "Diamond OA" %}</span>
+        <span class="fact-note">{% translate "No author or reader fees" %}</span>
+      </div>
+      <div class="fact-tile">
+        <span class="fact-label">{% translate "Frequency" %}</span>
+        <span class="fact-value">{{ site_settings.frequency_short }}</span>
+        <span class="fact-note">{% translate "plus Online First" %}</span>
+      </div>
+      <div class="fact-tile">
+        <span class="fact-label">{% translate "Review model" %}</span>
+        <span class="fact-value">{% translate "Double-blind" %}</span>
+        <span class="fact-note">{% translate "Min. 2 external reviewers" %}</span>
+      </div>
+      <div class="fact-tile">
+        {% if kpis and kpis.median_days_to_first_decision %}
+          <span class="fact-label">{% translate "First decision" %}</span>
+          <span class="fact-value">{% blocktranslate with days=kpis.median_days_to_first_decision %}{{ days }} days{% endblocktranslate %}</span>
+          <span class="fact-note">{% translate "median, last 12 months" %}</span>
+        {% else %}
+          <span class="fact-label">{% translate "Founded" %}</span>
+          <span class="fact-value">{{ site_settings.founded_year }}</span>
+          <span class="fact-note">{{ site_settings.publisher_name }}</span>
+        {% endif %}
+      </div>
     </div>
-    <dl class="dl-meta card-muted">
+  </section>
+  {% comment %}What we publish — research sections{% endcomment %}
+  <section class="card p-6 md:p-8 flex flex-col gap-5" id="what-we-publish">
+    <div>
+      <h2 class="text-2xl">{% translate "What we publish" %}</h2>
+      <p class="muted text-sm mt-1">{% translate "Methodologically sound empirical and theoretical scholarship relevant to emerging markets and transition economies." %}</p>
+    </div>
+    <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      {% for section in research_sections %}
+        <a class="section-card" href="{{ section.get_absolute_url }}">
+          <span class="section-card-number">{{ forloop.counter|stringformat:"02d" }}</span>
+          <p class="section-card-name">{{ section.name }}</p>
+          {% if section.description %}<p class="text-xs muted mt-1 line-clamp-3">{{ section.description }}</p>{% endif %}
+          <p class="meta mt-2">{% blocktranslate count counter=section.published_count %}{{ counter }} article{% plural %}{{ counter }} articles{% endblocktranslate %}</p>
+        </a>
+      {% endfor %}
+    </div>
+    <div class="flex flex-wrap items-center justify-between gap-2 rounded-[--radius-control] bg-[--color-paper-2] px-4 py-3 text-sm">
+      <span class="muted">{% translate "Need detailed guidance for your research domain?" %}</span>
+      <a class="font-semibold inline-flex items-center gap-1"
+         href="{% url 'core:aims_and_scope' %}">
+        {% translate "Explore the full aims & scope" %}
+        {% include "includes/icon.html" with name="arrow" size=14 %}
+      </a>
+    </div>
+  </section>
+  {% comment %}How we work — the editorial workflow, honestly stated{% endcomment %}
+  <section class="card p-6 md:p-8 flex flex-col gap-4" id="editorial-workflow">
+    <div>
+      <h2 class="text-2xl">{% translate "How we work" %}</h2>
+      <p class="muted text-sm mt-1">{% translate "A transparent five-stage editorial system that follows the Committee on Publication Ethics (COPE) core practices." %}</p>
+    </div>
+    <ol class="process-list">
+      <li class="process-item">
+        <span class="process-bullet" aria-hidden="true"></span>
+        <div>
+          <p class="process-title">
+            <span>1. {% translate "Desk screening & similarity check" %}</span>
+            <span class="chip chip-gold">{% translate "within days of receipt" %}</span>
+          </p>
+          <p class="text-sm muted mt-1">
+            {% blocktranslate with threshold=site_settings.similarity_threshold %}Every manuscript is screened for scope, anonymisation and similarity; reports above {{ threshold }}% go back to the authors before review.{% endblocktranslate %}
+          </p>
+        </div>
+      </li>
+      <li class="process-item">
+        <span class="process-bullet" aria-hidden="true"></span>
+        <div>
+          <p class="process-title">
+            <span>2. {% translate "Double-blind peer review" %}</span>
+            <span class="chip chip-gold">{% translate "at least two reviewers" %}</span>
+          </p>
+          <p class="text-sm muted mt-1">{% translate "A handling editor invites independent reviewers; author and reviewer identities stay hidden from each other throughout." %}</p>
+        </div>
+      </li>
+      <li class="process-item">
+        <span class="process-bullet" aria-hidden="true"></span>
+        <div>
+          <p class="process-title">
+            <span>3. {% translate "Editorial decision & revision rounds" %}</span>
+            <span class="chip chip-gold">{% translate "reasoned reports" %}</span>
+          </p>
+          <p class="text-sm muted mt-1">{% translate "Accept, minor revision, major revision or reject — always with the reviewers' reports and the editor's reasoning." %}</p>
+        </div>
+      </li>
+      <li class="process-item">
+        <span class="process-bullet" aria-hidden="true"></span>
+        <div>
+          <p class="process-title">
+            <span>4. {% translate "Copyediting, typesetting & DOI registration" %}</span>
+            <span class="chip chip-gold">{% translate "Crossref" %}</span>
+          </p>
+          <p class="text-sm muted mt-1">{% translate "Accepted manuscripts are copyedited, typeset, checked by the authors and registered with a DOI and full reference list." %}</p>
+        </div>
+      </li>
+      <li class="process-item">
+        <span class="process-bullet" aria-hidden="true"></span>
+        <div>
+          <p class="process-title">
+            <span>5. {% translate "Online First & issue publication" %}</span>
+            <span class="chip chip-gold">{% translate "immediate open access" %}</span>
+          </p>
+          <p class="text-sm muted mt-1">{% translate "Articles appear ahead of print as soon as production is complete and are assigned to the next issue." %}</p>
+        </div>
+      </li>
+    </ol>
+    <div class="flex flex-wrap items-center justify-between gap-2 rounded-[--radius-control] border border-[--color-line] px-4 py-3 text-sm">
+      <span class="inline-flex items-center gap-2">
+        {% include "includes/icon.html" with name="shield" size=16 %}
+        <span><strong>{% translate "Publication ethics" %}</strong> — {% translate "COPE core practices, retraction policy and generative-AI disclosure." %}</span>
+      </span>
+      <a class="font-semibold" href="{% url 'core:publication_ethics' %}">{% translate "Read the ethics charter" %} →</a>
+    </div>
+  </section>
+  {% comment %}Editorial leadership{% endcomment %}
+  <section class="card p-6 md:p-8 flex flex-col gap-5" id="editorial-board">
+    <div class="flex flex-wrap items-end justify-between gap-2">
+      <div>
+        <h2 class="text-2xl">{% translate "Editorial leadership" %}</h2>
+        <p class="muted text-sm mt-1">{% translate "Guided by scholars from universities, central banks and research institutes." %}</p>
+      </div>
+      <a class="font-semibold text-sm"
+         href="{% url 'journal:editorial_board' %}">{% translate "Full editorial board" %} →</a>
+    </div>
+    {% if editor_in_chief %}
+      <div class="rounded-[--radius-card] border border-[--color-line] bg-[--color-paper-2] p-5 flex flex-col sm:flex-row gap-4">
+        <span class="person-avatar w-16 h-16 text-xl" aria-hidden="true">
+          {% if editor_in_chief.photo %}
+            <img src="{{ editor_in_chief.photo.url }}" alt="" loading="lazy">
+          {% else %}
+            {{ editor_in_chief.full_name|slice:":1" }}
+          {% endif %}
+        </span>
+        <div class="min-w-0 flex-1">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <h3 class="text-lg">{{ editor_in_chief.full_name }}</h3>
+            {% if editor_in_chief.is_demo %}
+              <span class="chip chip-gold">{% translate "DEMO — replace" %}</span>
+            {% endif %}
+          </div>
+          <p class="text-sm muted">{{ editor_in_chief.get_role_display }}{% if editor_in_chief.affiliation %} · {{ editor_in_chief.affiliation }}{% endif %}</p>
+          {% if editor_in_chief.expertise %}<p class="text-sm mt-2 italic muted">{{ editor_in_chief.expertise }}</p>{% endif %}
+          {% if editor_in_chief.orcid %}<p class="meta mt-2">ORCID: {{ editor_in_chief.orcid }}</p>{% endif %}
+        </div>
+      </div>
+    {% endif %}
+    {% if board_preview %}
+      <ul class="grid gap-x-8 gap-y-2 sm:grid-cols-2 text-sm">
+        {% for member in board_preview %}
+          <li class="py-1.5 border-b border-[--color-line]">
+            <span class="font-semibold">{{ member.full_name }}</span>
+            <span class="muted">— {{ member.get_role_display }}{% if member.affiliation %}, {{ member.affiliation }}{% endif %}</span>
+          </li>
+        {% endfor %}
+      </ul>
+      <p class="meta">{% blocktranslate count counter=board_count %}{{ counter }} board member{% plural %}{{ counter }} board members{% endblocktranslate %}</p>
+    {% endif %}
+  </section>
+  {% comment %}Indexing & archiving — real services only{% endcomment %}
+  <section class="card p-6 md:p-8 flex flex-col gap-4">
+    <div>
+      <h2 class="text-xl">{% translate "Abstracting, indexing & archiving" %}</h2>
+      <p class="muted text-sm mt-1">{% translate "Articles are permanently identified, archived and deposited across scholarly record repositories." %}</p>
+    </div>
+    {% if indexing_services %}
+      <ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
+        {% for service in indexing_services %}
+          <li>
+            <a class="index-tile"
+               href="{{ service.url|default:'#' }}"
+               rel="noopener">
+              {{ service.name }}
+              {% if service.note %}<small>{{ service.note|truncatechars:40 }}</small>{% endif %}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="muted text-sm">{% translate "Indexing applications are in preparation." %}</p>
+    {% endif %}
+    <a class="text-sm font-semibold" href="{% url 'core:indexing' %}">{% translate "Indexing & abstracting" %} →</a>
+  </section>
+  {% comment %}Editorial secretariat contact band{% endcomment %}
+  <section class="card-navy flex flex-col md:flex-row md:items-center justify-between gap-6 p-6 md:p-8">
+    <div class="max-w-xl">
+      <p class="eyebrow text-[--color-gold-fixed]">{% translate "Editorial secretariat" %}</p>
+      <h2 class="text-2xl mt-1">{% translate "Have questions about your submission?" %}</h2>
+      <p class="text-sm muted mt-2">{% translate "The editorial office offers pre-submission consultation on scope, special issue proposals and institutional partnerships." %}</p>
+      <p class="mt-3 flex flex-wrap gap-4 text-sm">
+        <a class="inline-flex items-center gap-1.5"
+           href="mailto:{{ site_settings.contact_email }}">{% include "includes/icon.html" with name="mail" size=14 %}{{ site_settings.contact_email }}</a>
+        {% if site_settings.contact_address %}
+          <span class="inline-flex items-center gap-1.5 muted">{% include "includes/icon.html" with name="pin" size=14 %}{{ site_settings.contact_address|truncatechars:60 }}</span>
+        {% endif %}
+      </p>
+    </div>
+    <div class="flex flex-col gap-2 shrink-0">
+      <a class="btn btn-gold" href="{% url 'submissions:wizard_start' %}">{% translate "Submit your manuscript" %}</a>
+      <a class="btn btn-secondary bg-transparent text-white border-white/30 hover:bg-white/10 hover:text-white"
+         href="{% url 'core:contact' %}">{% translate "Contact the editorial office" %}</a>
+    </div>
+  </section>
+{% endblock %}
+{% block page_extra %}
+  <section class="card p-6 md:p-8">
+    <h2 class="text-xl mb-4">{% translate "Journal facts" %}</h2>
+    <dl class="dl-meta">
       <dt>{% translate "Title" %}</dt><dd>{{ site_settings.journal_name }}</dd>
       <dt>{% translate "Short code" %}</dt><dd class="meta">{{ site_settings.short_code }}</dd>
       <dt>e-ISSN</dt>

@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Vol. 1 No. 3 (2026) | MEZON: Review of Economic Research</title>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Merriweather & Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            academic: {
+              navy: '#0B192C',
+              slate: '#0F2537',
+              midnight: '#07101C',
+              gold: '#D97706',
+              amber: '#B45309',
+              lightgold: '#FEF3C7',
+              muted: '#64748B',
+              border: '#E2E8F0',
+              surface: '#F8FAFC'
+            }
+          },
+          fontFamily: {
+            serif: ['Merriweather', 'Georgia', 'serif'],
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="typography">
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #1E293B;
+      background-color: #F8FAFC;
+    }
+    .font-academic-serif {
+      font-family: 'Merriweather', Georgia, serif;
+    }
+  </style>
+<style data-purpose="custom-grid-patterns">
+    .academic-grid-pattern {
+      background-size: 20px 20px;
+      background-image: 
+        linear-gradient(to right, rgba(15, 37, 55, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(15, 37, 55, 0.05) 1px, transparent 1px);
+    }
+    .cover-card-grid {
+      background-size: 16px 16px;
+      background-image: 
+        linear-gradient(to right, rgba(11, 25, 44, 0.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(11, 25, 44, 0.08) 1px, transparent 1px);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-academic-navy selection:text-white">
+<!-- BEGIN: TopBar -->
+<div class="bg-academic-navy text-slate-300 text-xs py-1.5 px-4 border-b border-slate-800" data-purpose="institutional-affiliation">
+<div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+<div class="flex items-center space-x-3">
+<span class="inline-flex items-center text-slate-300 font-medium tracking-wide">
+<span class="w-2 h-2 rounded-full bg-emerald-500 mr-2 animate-pulse"></span>
+          Peer-Reviewed Open Access Scholarly Journal
+        </span>
+<span class="text-slate-600 hidden md:inline">|</span>
+<span class="hidden md:inline text-slate-400">ISSN: 2980-4521 (Online) • Crossref Indexed</span>
+</div>
+<div class="flex items-center space-x-4">
+<a class="hover:text-amber-400 transition-colors" href="#metrics">CiteScore 2025: 2.8</a>
+<span class="text-slate-700">|</span>
+<a class="hover:text-amber-400 transition-colors" href="#indexing">DOAJ Registered</a>
+<span class="text-slate-700">|</span>
+<a class="text-slate-400 hover:text-white transition-colors" href="#doi-info">DOI Prefix: 10.55439</a>
+</div>
+</div>
+</div>
+<!-- END: TopBar -->
+<!-- BEGIN: MainHeader -->
+<header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm" data-purpose="primary-navigation-header">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-20">
+<!-- MEZON Brand Identity using Source Markup from DATA:IMAGE:IMAGE_7 -->
+<div class="flex items-center space-x-8">
+<a aria-label="MEZON Review of Economic Research Home" class="flex items-center focus:outline-none" href="#">
+<svg class="h-12 w-auto" fill="none" viewbox="0 0 260 64" xmlns="http://www.w3.org/2000/svg">
+<rect fill="#0B192C" height="52" rx="10" width="52" x="2" y="6"></rect>
+<path d="M16 46V18H23L28 32L33 18H40V46H34.5V26.5L29.8 40H26.2L21.5 26.5V46H16Z" fill="#FFFFFF"></path>
+<circle cx="43" cy="20" fill="#D97706" r="3"></circle>
+<text fill="#0B192C" font-family="'Merriweather', 'Times New Roman', serif" font-size="24" font-weight="900" letter-spacing="1.5" x="66" y="32">MEZON</text>
+<text fill="#4B5563" font-family="'Inter', -apple-system, sans-serif" font-size="8.5" font-weight="600" letter-spacing="1.8" x="67" y="47">REVIEW OF ECONOMIC RESEARCH</text>
+<line stroke="#CBD5E1" stroke-width="1" x1="67" x2="240" y1="52" y2="52"></line>
+</svg>
+</a>
+<!-- Primary Navigation Links -->
+<nav class="hidden lg:flex items-center space-x-7 text-sm font-medium" data-purpose="desktop-nav">
+<a class="text-slate-600 hover:text-academic-navy transition-colors" href="#">Current Issue</a>
+<a class="text-academic-navy font-semibold relative after:content-[''] after:absolute after:bottom-[-26px] after:left-0 after:right-0 after:h-[3px] after:bg-academic-navy" href="#">Archive</a>
+<a class="text-slate-600 hover:text-academic-navy transition-colors" href="#">Online First</a>
+<a class="text-slate-600 hover:text-academic-navy transition-colors" href="#">For Authors</a>
+<a class="text-slate-600 hover:text-academic-navy transition-colors" href="#">For Reviewers</a>
+<a class="text-slate-600 hover:text-academic-navy transition-colors" href="#">About</a>
+</nav>
+</div>
+<!-- Header Actions: Search, Language Switcher, Manuscript Submission -->
+<div class="flex items-center space-x-4">
+<!-- Search Button -->
+<button aria-label="Search articles" class="p-2 text-slate-500 hover:text-academic-navy rounded-full hover:bg-slate-100 transition-colors" type="button">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+<!-- Language Selector -->
+<div aria-label="Language selection" class="inline-flex rounded-md p-0.5 bg-slate-100 text-xs font-semibold text-slate-600" role="group">
+<button class="px-2 py-1 rounded bg-academic-navy text-white shadow-xs" type="button">EN</button>
+<button class="px-2 py-1 rounded hover:text-academic-navy transition-colors" type="button">UZ</button>
+<button class="px-2 py-1 rounded hover:text-academic-navy transition-colors" type="button">ЎЗ</button>
+<button class="px-2 py-1 rounded hover:text-academic-navy transition-colors" type="button">RU</button>
+</div>
+<!-- Submit Manuscript CTA Button -->
+<a class="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold tracking-wide text-white bg-academic-navy hover:bg-academic-slate rounded-md shadow-xs transition duration-150 ease-in-out" href="#">
+            Submit
+          </a>
+<!-- Sign In Link -->
+<a class="text-sm font-medium text-slate-600 hover:text-academic-navy transition-colors pl-1" href="#">
+            Sign in
+          </a>
+</div>
+</div>
+</div>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: BreadcrumbNavigation -->
+<div class="bg-slate-50/70 border-b border-slate-200" data-purpose="breadcrumbs">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+<nav class="flex items-center space-x-2 text-sm text-slate-500 font-normal">
+<a class="hover:text-academic-navy underline underline-offset-4 decoration-slate-300" href="#">Home</a>
+<svg class="w-3.5 h-3.5 text-slate-400" fill="currentColor" viewbox="0 0 20 20">
+<path clip-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" fill-rule="evenodd"></path>
+</svg>
+<a class="hover:text-academic-navy underline underline-offset-4 decoration-slate-300" href="#">Archive</a>
+<svg class="w-3.5 h-3.5 text-slate-400" fill="currentColor" viewbox="0 0 20 20">
+<path clip-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" fill-rule="evenodd"></path>
+</svg>
+<span class="text-slate-900 font-medium">Vol. 1 No. 3 (2026)</span>
+</nav>
+</div>
+</div>
+<!-- END: BreadcrumbNavigation -->
+<!-- BEGIN: MainContentWrapper -->
+<main class="flex-grow py-8 bg-slate-50 academic-grid-pattern">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<!-- BEGIN: IssueHeroBanner -->
+<section class="bg-white rounded-xl border border-academic-border p-6 md:p-8 mb-10 shadow-sm" data-purpose="issue-hero">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Issue Cover Graphic Representation (Faithful to layout mockup) -->
+<div class="lg:col-span-3">
+<div class="w-full max-w-[240px] mx-auto aspect-[3/4] bg-white border border-slate-300 rounded-lg cover-card-grid p-4 flex flex-col justify-between shadow-sm relative overflow-hidden group">
+<!-- Top journal monogram -->
+<div class="flex items-center justify-between border-b border-slate-200 pb-2">
+<span class="text-xs font-bold tracking-widest text-slate-500 uppercase">MRER</span>
+<span class="text-[10px] text-slate-400 font-mono">VOL. 1</span>
+</div>
+<!-- Center Vol/Issue Typography -->
+<div class="text-center py-6">
+<h3 class="font-academic-serif text-3xl font-extrabold text-academic-navy tracking-tight">Vol. 1</h3>
+<h4 class="font-academic-serif text-2xl font-bold text-academic-slate mt-1">No. 3</h4>
+<div class="w-8 h-1 bg-amber-600 mx-auto my-3 rounded-full"></div>
+<p class="text-[11px] text-slate-500 font-medium uppercase tracking-wider">Quarterly Edition</p>
+</div>
+<!-- Footer issue meta -->
+<div class="border-t border-slate-200 pt-2 flex justify-between items-center text-xs text-slate-600 font-medium">
+<span>March</span>
+<span>2026</span>
+</div>
+</div>
+</div>
+<!-- Issue Meta Details & Description -->
+<div class="lg:col-span-9 flex flex-col justify-between h-full">
+<div>
+<div class="flex flex-wrap items-center gap-2 mb-3">
+<span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 border border-emerald-200">
+                  Published Issue
+                </span>
+<span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-700 border border-slate-200">
+                  Quarterly: Q1 2026
+                </span>
+<span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-50 text-amber-900 border border-amber-200">
+                  DOI: 10.55439/mezon.2026.v1i3
+                </span>
+</div>
+<h1 class="font-academic-serif text-3xl sm:text-4xl font-black text-academic-navy tracking-tight mb-4">
+                Vol. 1 No. 3 (2026)
+              </h1>
+<!-- Key Attributes Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-8 text-sm text-slate-700 border-y border-slate-100 py-3 mb-4">
+<div class="flex items-center">
+<span class="w-32 uppercase text-xs tracking-wider text-slate-600 font-bold">PUBLISHED</span>
+<span class="font-semibold text-slate-800">28 March 2026</span>
+</div>
+<div class="flex items-center">
+<span class="w-32 uppercase text-xs tracking-wider text-slate-600 font-bold">ARTICLES</span>
+<span class="font-semibold text-slate-800">4 Peer-Reviewed Papers</span>
+</div>
+</div>
+<!-- Editorial Summary / Abstract of Issue -->
+<p class="text-base text-slate-700 leading-relaxed max-w-3xl">
+                Issue 3 of Volume 1 brings together four peer-reviewed articles on the economics of transition, trade dynamics, fiscal decentralization, and empirical public finance with a specific focus on structural macroeconomic changes in emerging Eurasian economies.
+              </p>
+</div>
+<!-- Issue Quick Actions -->
+<div class="pt-6 mt-6 border-t border-slate-100 flex flex-wrap items-center gap-3">
+<a class="inline-flex items-center px-4 py-2.5 rounded-md bg-academic-navy hover:bg-academic-slate text-white text-sm font-semibold shadow-xs transition-colors" href="#">
+<svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+                Download Full Issue PDF (14.2 MB)
+              </a>
+<div class="inline-flex rounded-md shadow-xs" role="group">
+<button class="inline-flex items-center px-3.5 py-2.5 rounded-l-md border border-slate-300 bg-white text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors" type="button">
+<svg class="w-4 h-4 mr-1.5 text-slate-500" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+                  Export BibTeX
+                </button>
+<button class="inline-flex items-center px-3.5 py-2.5 rounded-r-md border-y border-r border-slate-300 bg-white text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors" type="button">
+                  Export RIS
+                </button>
+</div>
+<button class="inline-flex items-center px-3.5 py-2.5 rounded-md border border-slate-300 bg-white text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors" type="button">
+<svg class="w-4 h-4 mr-2 text-slate-500" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+                Share
+              </button>
+</div>
+</div>
+</div>
+</section>
+<!-- END: IssueHeroBanner -->
+<!-- BEGIN: ContentLayoutGrid (Table of Contents + Sidebar) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- BEGIN: TableOfContents -->
+<div class="lg:col-span-8 space-y-8" data-purpose="articles-listing">
+<!-- Section 1: Economic Theory & Methodology -->
+<div class="space-y-4">
+<div class="border-b-2 border-academic-navy pb-2.5 flex items-baseline justify-between">
+<h2 class="font-academic-serif text-2xl font-bold text-academic-navy">
+                Economic Theory &amp; Methodology
+              </h2>
+<span class="text-xs font-semibold text-slate-700 uppercase tracking-wider">2 Articles</span>
+</div>
+<!-- Article 1: Lead Paper -->
+<article class="bg-white rounded-lg border border-academic-border p-5 md:p-6 shadow-xs hover:border-slate-300 transition duration-150">
+<div class="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500 mb-2.5">
+<div class="flex items-center space-x-2">
+<span class="font-bold text-academic-navy tracking-wider uppercase text-[11px] bg-slate-100 px-2 py-0.5 rounded">Research Article</span>
+<span>•</span>
+<span>Pages 1–22</span>
+<span>•</span>
+<a class="text-amber-700 hover:underline" href="#">DOI: 10.55439/mezon.2026.03.01</a>
+</div>
+<div class="flex items-center space-x-3 text-slate-600 font-mono text-[11px]">
+<span>👁 1,420</span>
+<span>📥 380</span>
+<span class="text-amber-700 font-bold">4 Citations</span>
+</div>
+</div>
+<!-- Article Title -->
+<h3 class="font-academic-serif text-xl font-bold text-academic-slate hover:text-blue-900 leading-snug mb-2">
+<a href="#">Dynamic Stochastic General Equilibrium in Dual-Track Transition Economies: Price Liberalization and Factor Misallocation</a>
+</h3>
+<!-- Authors & Affiliations -->
+<div class="text-sm text-slate-700 mb-3">
+<span class="font-medium text-academic-navy">Dr. Rustam Karimov</span>
+<sup class="text-xs font-semibold text-amber-700">1*</sup>, 
+                <span class="font-medium text-academic-navy">Prof. Elena S. Voronova</span>
+<sup class="text-xs font-semibold text-amber-700">2</sup>, 
+                <span class="font-medium text-academic-navy">Alisher K. Mukhamedov</span>
+<sup class="text-xs font-semibold text-amber-700">1</sup>
+<p class="text-xs text-slate-500 mt-1 italic">
+<sup>1</sup> Center for Economic Research and Structural Reforms, Tashkent; 
+                  <sup>2</sup> Vienna Institute for International Economic Studies (WIIW)
+                </p>
+</div>
+<!-- Abstract Preview Box -->
+<div class="bg-slate-50 rounded-md p-3.5 border border-slate-200/80 mb-4 text-sm text-slate-600 leading-relaxed">
+<p class="line-clamp-3">
+<strong>Abstract:</strong> This paper develops a two-sector dynamic stochastic general equilibrium (DSGE) model calibrated to examine transitional price liberalization in the presence of sticky administrative tariffs and industrial capital subsidies. Applying Bayesian estimation to quarterly macro data (2010–2025), we establish that partial factor adjustments generate an initial welfare deadweight loss offset by medium-term Total Factor Productivity (TFP) gains of 4.2% within five fiscal cycles.
+                </p>
+<div class="mt-2.5 pt-2 border-t border-slate-200 flex flex-wrap items-center gap-1.5 text-xs">
+<span class="font-semibold text-slate-500">JEL Classification:</span>
+<span class="px-1.5 py-0.5 rounded bg-white border border-slate-300 text-slate-700 font-mono">C32</span>
+<span class="px-1.5 py-0.5 rounded bg-white border border-slate-300 text-slate-700 font-mono">E32</span>
+<span class="px-1.5 py-0.5 rounded bg-white border border-slate-300 text-slate-700 font-mono">P22</span>
+<span class="px-1.5 py-0.5 rounded bg-white border border-slate-300 text-slate-700 font-mono">O11</span>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-wrap items-center gap-2 pt-1">
+<a class="inline-flex items-center px-3 py-1.5 rounded bg-academic-navy hover:bg-academic-slate text-white text-xs font-medium transition-colors" href="#">
+<svg class="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+                  PDF (1.8 MB)
+                </a>
+<a class="inline-flex items-center px-3 py-1.5 rounded border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-xs font-medium transition-colors" href="#">
+<svg class="w-3.5 h-3.5 mr-1.5 text-slate-500" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M4 7v10c0 2 1.5 3 3.5 3h9c2 0 3.5-1 3.5-3V7c0-2-1.5-3-3.5-3h-9C5.5 4 4 5 4 7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+                  Replication Code &amp; Data (Stata/R)
+                </a>
+<button class="inline-flex items-center px-3 py-1.5 rounded border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-xs font-medium transition-colors" type="button">
+                  Cite
+                </button>
+</div>
+</article>
+<!-- Article 2: Empirical Methodological Paper -->
+<article class="bg-white rounded-lg border border-academic-border p-5 md:p-6 shadow-xs hover:border-slate-300 transition duration-150">
+<div class="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500 mb-2.5">
+<div class="flex items-center space-x-2">
+<span class="font-bold text-academic-navy tracking-wider uppercase text-[11px] bg-slate-100 px-2 py-0.5 rounded">Research Article</span>
+<span>•</span>
+<span>Pages 23–45</span>
+<span>•</span>
+<a class="text-amber-700 hover:underline" href="#">DOI: 10.55439/mezon.2026.03.02</a>
+</div>
+<div class="flex items-center space-x-3 text-slate-600 font-mono text-[11px]">
+<span>👁 910</span>
+<span>📥 245</span>
+<span class="text-amber-700 font-bold">1 Citation</span>
+</div>
+</div>
+<!-- Article Title -->
+<h3 class="font-academic-serif text-xl font-bold text-academic-slate hover:text-blue-900 leading-snug mb-2">
+<a href="#">Non-Parametric Efficiency Frontiers in Public Healthcare Provision: Generalized Directional Distance Function Estimation</a>
+</h3>
+<!-- Authors & Affiliations -->
+<div class="text-sm text-slate-700 mb-3">
+<span class="font-medium text-academic-navy">Jamshid N. Tursunov</span>
+<sup class="text-xs font-semibold text-amber-700">1</sup>, 
+                <span class="font-medium text-academic-navy">Prof. Claudia H. Meier</span>
+<sup class="text-xs font-semibold text-amber-700">2</sup>
+<p class="text-xs text-slate-500 mt-1 italic">
+<sup>1</sup> Westminster International University in Tashkent; <sup>2</sup> University of Zurich
+                </p>
+</div>
+<!-- Abstract Preview Box -->
+<div class="bg-slate-50 rounded-md p-3.5 border border-slate-200/80 mb-4 text-sm text-slate-600 leading-relaxed">
+<p class="line-clamp-3">
+<strong>Abstract:</strong> Evaluating sub-national public healthcare expenditure efficiency requires addressing endogenous input adjustments and environmental heterogeneity. Using bootstrap Data Envelopment Analysis (DEA) with order-m robust estimators across 14 administrative oblasts, we demonstrate that structural resource consolidation enhances output yields by 14.8% without increased budget appropriations.
+                </p>
+<div class="mt-2.5 pt-2 border-t border-slate-200 flex flex-wrap items-center gap-1.5 text-xs">
+<span class="font-semibold text-slate-500">JEL Classification:</span>
+<span class="px-1.5 py-0.5 rounded bg-white border border-slate-300 text-slate-700 font-mono">C14</span>
+<span class="px-1.5 py-0.5 rounded bg-white border border-slate-300 text-slate-700 font-mono">H51</span>
+<span class="px-1.5 py-0.5 rounded bg-white border border-slate-300 text-slate-700 font-mono">I18</span>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-wrap items-center gap-2 pt-1">
+<a class="inline-flex items-center px-3 py-1.5 rounded bg-academic-navy hover:bg-academic-slate text-white text-xs font-medium transition-colors" href="#">
+<svg class="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+                  PDF (1.2 MB)
+                </a>
+<button class="inline-flex items-center px-3 py-1.5 rounded border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-xs font-medium transition-colors" type="button">
+                  Cite
+                </button>
+</div>
+</article>
+</div>
+<!-- Section 2: Transition Economics & Public Finance -->
+<div class="space-y-4 pt-4">
+<div class="border-b-2 border-academic-navy pb-2.5 flex items-baseline justify-between">
+<h2 class="font-academic-serif text-2xl font-bold text-academic-navy">
+                Transition Economics &amp; Public Finance
+              </h2>
+<span class="text-xs font-semibold text-slate-700 uppercase tracking-wider">2 Articles</span>
+</div>
+<!-- Article 3: Central Asia Public Finance -->
+<article class="bg-white rounded-lg border border-academic-border p-5 md:p-6 shadow-xs hover:border-slate-300 transition duration-150">
+<div class="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500 mb-2.5">
+<div class="flex items-center space-x-2">
+<span class="font-bold text-academic-navy tracking-wider uppercase text-[11px] bg-slate-100 px-2 py-0.5 rounded">Research Article</span>
+<span>•</span>
+<span>Pages 46–71</span>
+<span>•</span>
+<a class="text-amber-700 hover:underline" href="#">DOI: 10.55439/mezon.2026.03.03</a>
+</div>
+<div class="flex items-center space-x-3 text-slate-600 font-mono text-[11px]">
+<span>👁 1,180</span>
+<span>📥 412</span>
+<span class="text-amber-700 font-bold">2 Citations</span>
+</div>
+</div>
+<!-- Article Title -->
+<h3 class="font-academic-serif text-xl font-bold text-academic-slate hover:text-blue-900 leading-snug mb-2">
+<a href="#">Fiscal Decentralization, Sovereign Debt Sustainability, and Intergovernmental Transfer Mechanics in Central Asia</a>
+</h3>
+<!-- Authors & Affiliations -->
+<div class="text-sm text-slate-700 mb-3">
+<span class="font-medium text-academic-navy">Dilnoza M. Rakhimova</span>
+<sup class="text-xs font-semibold text-amber-700">1</sup>, 
+                <span class="font-medium text-academic-navy">Prof. Boris G. Danilov</span>
+<sup class="text-xs font-semibold text-amber-700">2</sup>
+<p class="text-xs text-slate-500 mt-1 italic">
+<sup>1</sup> Tashkent State University of Economics; <sup>2</sup> Graduate School of Public Policy, Nazarbayev University
+                </p>
+</div>
+<!-- Abstract Preview Box -->
+<div class="bg-slate-50 rounded-md p-3.5 border border-slate-200/80 mb-4 text-sm text-slate-600 leading-relaxed">
+<p class="line-clamp-3">
+<strong>Abstract:</strong> This research analyzes structural reforms in fiscal federalism and equalization grants in post-Soviet Central Asian republics. Employing a panel vector autoregression (PVAR) across fifteen years of municipal finance registries, the study reveals that unconditional formulaic grants curb subnational deficit monetization and lower sovereign borrowing spreads by an average of 38 basis points.
+                </p>
+<div class="mt-2.5 pt-2 border-t border-slate-200 flex flex-wrap items-center gap-1.5 text-xs">
+<span class="font-semibold text-slate-500">JEL Classification:</span>
+<span class="px-1.5 py-0.5 rounded bg-white border border-slate-300 text-slate-700 font-mono">H77</span>
+<span class="px-1.5 py-0.5 rounded bg-white border border-slate-300 text-slate-700 font-mono">H63</span>
+<span class="px-1.5 py-0.5 rounded bg-white border border-slate-300 text-slate-700 font-mono">P35</span>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-wrap items-center gap-2 pt-1">
+<a class="inline-flex items-center px-3 py-1.5 rounded bg-academic-navy hover:bg-academic-slate text-white text-xs font-medium transition-colors" href="#">
+<svg class="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+                  PDF (2.1 MB)
+                </a>
+<button class="inline-flex items-center px-3 py-1.5 rounded border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-xs font-medium transition-colors" type="button">
+                  Cite
+                </button>
+</div>
+</article>
+<!-- Article 4: Trade Corridors Paper -->
+<article class="bg-white rounded-lg border border-academic-border p-5 md:p-6 shadow-xs hover:border-slate-300 transition duration-150">
+<div class="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500 mb-2.5">
+<div class="flex items-center space-x-2">
+<span class="font-bold text-academic-navy tracking-wider uppercase text-[11px] bg-slate-100 px-2 py-0.5 rounded">Research Article</span>
+<span>•</span>
+<span>Pages 72–98</span>
+<span>•</span>
+<a class="text-amber-700 hover:underline" href="#">DOI: 10.55439/mezon.2026.03.04</a>
+</div>
+<div class="flex items-center space-x-3 text-slate-600 font-mono text-[11px]">
+<span>👁 850</span>
+<span>📥 310</span>
+<span class="text-amber-700 font-bold">0 Citations</span>
+</div>
+</div>
+<!-- Article Title -->
+<h3 class="font-academic-serif text-xl font-bold text-academic-slate hover:text-blue-900 leading-snug mb-2">
+<a href="#">The Middle Corridor and Eurasian Trade Reconfiguration: A Structural Gravity Modeling Approach with Poisson Pseudo-Maximum Likelihood</a>
+</h3>
+<!-- Authors & Affiliations -->
+<div class="text-sm text-slate-700 mb-3">
+<span class="font-medium text-academic-navy">Sardor B. Kasymov</span>
+<sup class="text-xs font-semibold text-amber-700">1*</sup>, 
+                <span class="font-medium text-academic-navy">Prof. Hans-Jürgen Becker</span>
+<sup class="text-xs font-semibold text-amber-700">2</sup>
+<p class="text-xs text-slate-500 mt-1 italic">
+<sup>1</sup> Institute for Fiscal Studies and Logistics Economics; <sup>2</sup> University of Hamburg
+                </p>
+</div>
+<!-- Abstract Preview Box -->
+<div class="bg-slate-50 rounded-md p-3.5 border border-slate-200/80 mb-4 text-sm text-slate-600 leading-relaxed">
+<p class="line-clamp-3">
+<strong>Abstract:</strong> Geopolitical shifts have renewed focus on multimodal transit routes crossing the Caspian basin. Estimating structural gravity models via Poisson Pseudo-Maximum Likelihood (PPML) across 62 bilateral partner pairs between 2018 and 2025, we quantify tariff and non-tariff friction reductions, projecting an annualized intra-regional export expansion of $3.6 billion upon full digital customs integration.
+                </p>
+<div class="mt-2.5 pt-2 border-t border-slate-200 flex flex-wrap items-center gap-1.5 text-xs">
+<span class="font-semibold text-slate-500">JEL Classification:</span>
+<span class="px-1.5 py-0.5 rounded bg-white border border-slate-300 text-slate-700 font-mono">F14</span>
+<span class="px-1.5 py-0.5 rounded bg-white border border-slate-300 text-slate-700 font-mono">R41</span>
+<span class="px-1.5 py-0.5 rounded bg-white border border-slate-300 text-slate-700 font-mono">C51</span>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-wrap items-center gap-2 pt-1">
+<a class="inline-flex items-center px-3 py-1.5 rounded bg-academic-navy hover:bg-academic-slate text-white text-xs font-medium transition-colors" href="#">
+<svg class="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+                  PDF (2.8 MB)
+                </a>
+<a class="inline-flex items-center px-3 py-1.5 rounded border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-xs font-medium transition-colors" href="#">
+<svg class="w-3.5 h-3.5 mr-1.5 text-slate-500" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M4 7v10c0 2 1.5 3 3.5 3h9c2 0 3.5-1 3.5-3V7c0-2-1.5-3-3.5-3h-9C5.5 4 4 5 4 7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+                  Replication Data
+                </a>
+<button class="inline-flex items-center px-3 py-1.5 rounded border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-xs font-medium transition-colors" type="button">
+                  Cite
+                </button>
+</div>
+</article>
+</div>
+</div>
+<!-- END: TableOfContents -->
+<!-- BEGIN: RightSidebar -->
+<aside class="lg:col-span-4 space-y-6" data-purpose="issue-utilities-sidebar">
+<!-- Issue Navigation Module -->
+<div class="bg-white rounded-lg border border-academic-border p-5 shadow-xs">
+<h3 class="text-xs font-bold uppercase tracking-wider text-slate-600 mb-3">Issue Sequence Navigation</h3>
+<div class="grid grid-cols-2 gap-2">
+<a class="flex flex-col p-2.5 rounded border border-slate-200 hover:border-academic-navy hover:bg-slate-50 transition-colors text-left" href="#">
+<span class="text-[11px] text-slate-500 flex items-center">
+<svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+                  Previous
+                </span>
+<span class="text-xs font-bold text-academic-navy mt-1">Vol. 1 No. 2 (2025)</span>
+</a>
+<a class="flex flex-col p-2.5 rounded border border-slate-200 hover:border-academic-navy hover:bg-slate-50 transition-colors text-right" href="#">
+<span class="text-[11px] text-slate-500 flex items-center justify-end">
+                  Next
+                  <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</span>
+<span class="text-xs font-bold text-academic-navy mt-1">Vol. 1 No. 4 (2026)</span>
+</a>
+</div>
+</div>
+<!-- Browse Archive Selector Dropdown -->
+<div class="bg-white rounded-lg border border-academic-border p-5 shadow-xs">
+<h3 class="text-xs font-bold uppercase tracking-wider text-slate-600 mb-3">Quick Volume / Issue Selector</h3>
+<div class="space-y-3">
+<div>
+<label class="block text-xs text-slate-700 font-semibold mb-1" for="archive-volume-select">Select Year &amp; Volume:</label>
+<select class="w-full text-xs rounded-md border-slate-300 focus:border-academic-navy focus:ring-academic-navy" id="archive-volume-select">
+<option selected="">Volume 1 (2025–2026)</option>
+<option disabled="">Volume 2 (Forthcoming 2027)</option>
+</select>
+</div>
+<div class="pt-2">
+<ul class="text-xs space-y-2">
+<li>
+<a class="flex items-center justify-between text-slate-600 hover:text-academic-navy p-1.5 rounded hover:bg-slate-50" href="#">
+<span>Vol. 1 No. 4 (Forthcoming)</span>
+<span class="text-slate-400">June 2026</span>
+</a>
+</li>
+<li>
+<a class="flex items-center justify-between font-bold text-academic-navy bg-slate-100 p-1.5 rounded" href="#">
+<span>Vol. 1 No. 3 (Current view)</span>
+<span class="text-amber-700">March 2026</span>
+</a>
+</li>
+<li>
+<a class="flex items-center justify-between text-slate-600 hover:text-academic-navy p-1.5 rounded hover:bg-slate-50" href="#">
+<span>Vol. 1 No. 2</span>
+<span class="text-slate-400">Dec 2025</span>
+</a>
+</li>
+<li>
+<a class="flex items-center justify-between text-slate-600 hover:text-academic-navy p-1.5 rounded hover:bg-slate-50" href="#">
+<span>Vol. 1 No. 1 (Inaugural Issue)</span>
+<span class="text-slate-400">Sept 2025</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Metrics & Indexing Certification -->
+<div class="bg-white rounded-lg border border-academic-border p-5 shadow-xs" id="metrics">
+<h3 class="text-xs font-bold uppercase tracking-wider text-slate-600 mb-3">Issue Metrics &amp; Indexing</h3>
+<div class="space-y-3 text-xs">
+<div class="flex items-center justify-between pb-2 border-b border-slate-100">
+<span class="text-slate-600">Total Issue Downloads:</span>
+<span class="font-mono font-bold text-slate-800">1,347</span>
+</div>
+<div class="flex items-center justify-between pb-2 border-b border-slate-100">
+<span class="text-slate-600">Abstract Page Views:</span>
+<span class="font-mono font-bold text-slate-800">4,360</span>
+</div>
+<div class="flex items-center justify-between pb-2 border-b border-slate-100">
+<span class="text-slate-600">Total Citations:</span>
+<span class="font-mono font-bold text-amber-700">7</span>
+</div>
+<div class="flex items-center justify-between pb-2 border-b border-slate-100">
+<span class="text-slate-600">Crossref Metadata:</span>
+<span class="text-emerald-700 font-semibold">Deposited &amp; Active</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-slate-600">Open Access License:</span>
+<span class="text-slate-700 font-medium">CC BY-NC 4.0</span>
+</div>
+</div>
+</div>
+<!-- Call for Papers Announcement Card -->
+<div class="bg-gradient-to-br from-academic-navy to-academic-slate rounded-lg p-5 text-white shadow-md relative overflow-hidden">
+<div class="relative z-10">
+<span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold tracking-wider uppercase bg-amber-500 text-white mb-2">
+                Call For Papers
+              </span>
+<h4 class="font-academic-serif text-base font-bold mb-1.5">Special Issue: Digital Currencies &amp; Central Bank Independence</h4>
+<p class="text-xs text-slate-300 leading-relaxed mb-4">
+                Submissions are invited for Volume 2, Issue 1. All submissions undergo double-blind peer review.
+              </p>
+<div class="text-[11px] text-slate-300 mb-3">
+<strong>Submission Deadline:</strong> August 15, 2026
+              </div>
+<a class="inline-block w-full text-center py-2 px-3 rounded bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold transition-colors" href="#">
+                Read Author Guidelines
+              </a>
+</div>
+<!-- Decorative circle -->
+<div class="absolute -bottom-6 -right-6 w-24 h-24 bg-white/5 rounded-full pointer-events-none"></div>
+</div>
+</aside>
+<!-- END: RightSidebar -->
+</div>
+<!-- END: ContentLayoutGrid -->
+</div>
+</main>
+<!-- END: MainContentWrapper -->
+<!-- BEGIN: AcademicFooter -->
+<footer class="bg-academic-midnight text-slate-300 border-t border-slate-800" data-purpose="academic-repository-footer">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-10">
+<!-- Col 1 & 2: Journal Description -->
+<div class="lg:col-span-2 space-y-4">
+<div class="flex items-center space-x-2">
+<!-- Footer variant logo mark -->
+<div class="w-8 h-8 rounded bg-slate-800 border border-slate-700 flex items-center justify-center font-bold text-white font-serif">
+              M
+            </div>
+<span class="font-academic-serif text-lg font-bold text-white tracking-wide">MEZON</span>
+</div>
+<p class="text-xs text-slate-400 leading-relaxed max-w-sm">
+            MEZON: Review of Economic Research is an international, peer-reviewed, diamond open-access quarterly dedicated to high-impact theoretical and empirical contributions on macroeconomic policy, structural transitions, and international economic relations.
+          </p>
+<div class="text-xs text-slate-500 space-y-1 font-mono">
+<p>e-ISSN: 2980-4521 • p-ISSN: 2980-4513</p>
+<p>Published by MEZON Academic Press in collaboration with international economic research consortia.</p>
+</div>
+</div>
+<!-- Col 3: Editorial & Governance -->
+<div>
+<h4 class="text-xs font-bold text-white uppercase tracking-wider mb-3">About &amp; Editorial</h4>
+<ul class="space-y-2 text-xs text-slate-400">
+<li><a class="hover:text-white transition-colors" href="#">Aims &amp; Scope</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Editorial Board</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Peer Review Process</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Publication Ethics &amp; Malpractice</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Open Access Statement</a></li>
+</ul>
+</div>
+<!-- Col 4: For Authors & Reviewers -->
+<div>
+<h4 class="text-xs font-bold text-white uppercase tracking-wider mb-3">Information</h4>
+<ul class="space-y-2 text-xs text-slate-400">
+<li><a class="hover:text-white transition-colors" href="#">Author Submission Guidelines</a></li>
+<li><a class="hover:text-white transition-colors" href="#">LaTeX &amp; Word Templates</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Article Processing Charges (None)</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Reviewer Guidelines</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Research Data Policy</a></li>
+</ul>
+</div>
+<!-- Col 5: Indexing & Archiving -->
+<div>
+<h4 class="text-xs font-bold text-white uppercase tracking-wider mb-3">Archiving &amp; Indexing</h4>
+<ul class="space-y-2 text-xs text-slate-400">
+<li><a class="hover:text-white transition-colors" href="#">Crossref DOI Registry</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Directory of Open Access Journals (DOAJ)</a></li>
+<li><a class="hover:text-white transition-colors" href="#">RePEc / IDEAS</a></li>
+<li><a class="hover:text-white transition-colors" href="#">LOCKSS &amp; CLOCKSS Archiving</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Google Scholar Index</a></li>
+</ul>
+</div>
+</div>
+<!-- Bottom Disclaimer & Copyright -->
+<div class="pt-8 border-t border-slate-800/80 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 gap-4">
+<p>© 2026 MEZON: Review of Economic Research. All articles published under Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0).</p>
+<div class="flex items-center space-x-6">
+<a class="hover:text-slate-400 transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-slate-400 transition-colors" href="#">Terms of Use</a>
+<a class="hover:text-slate-400 transition-colors" href="#">Accessibility Statement</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- END: AcademicFooter -->
+</body></html>

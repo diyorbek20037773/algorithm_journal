@@ -32,7 +32,11 @@ def get_site_settings() -> SiteSettings:
     if cached is not None:
         return cached
     try:
-        obj = SiteSettings.load()
+        # The home page and About page show the Editor-in-Chief card; load the
+        # relation here so the cached singleton carries it (no query per page).
+        obj, _created = SiteSettings.objects.select_related("editor_in_chief").get_or_create(
+            pk=SiteSettings.SINGLETON_PK
+        )
     except (OperationalError, ProgrammingError):  # pragma: no cover - pre-migrate
         return SiteSettings()
     cache.set(SETTINGS_CACHE_KEY, obj, SETTINGS_CACHE_TTL)

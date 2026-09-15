@@ -7,10 +7,10 @@
     <p class="muted mb-8">{% translate "Every issue published by the journal, newest first." %}</p>
     {% if years %}
       <div class="flex flex-wrap gap-2 mb-8">
-        <a class="chip {% if not selected_year %}chip-jel{% endif %}"
+        <a class="chip {% if not selected_year %}chip-navy{% endif %}"
            href="{% url 'journal:archive' %}">{% translate "All years" %}</a>
         {% for year in years %}
-          <a class="chip {% if selected_year == year %}chip-jel{% endif %}"
+          <a class="chip {% if selected_year == year %}chip-navy{% endif %}"
              href="?year={{ year }}">{{ year }}</a>
         {% endfor %}
       </div>
@@ -23,16 +23,24 @@
         </div>
         <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {% for issue in volume.issues.all %}
-            <a class="block" href="{{ issue.get_absolute_url }}">
-              <div class="issue-cover">
-                <p class="meta">{{ site_settings.short_code }}</p>
-                <div>
+            <a class="block no-underline group" href="{{ issue.get_absolute_url }}">
+              <div class="issue-cover w-full max-w-[220px]">
+                <div class="issue-cover-head">
+                  <span>{{ site_settings.short_code }}</span>
+                  <span>Vol. {{ issue.volume.number }}</span>
+                </div>
+                <div class="issue-cover-body">
                   <p class="issue-cover-vol">Vol. {{ issue.volume.number }}</p>
                   <p class="issue-cover-vol">No. {{ issue.number }}</p>
+                  <div class="issue-cover-rule" aria-hidden="true"></div>
+                  <p class="label-caps">{{ site_settings.frequency_short }}</p>
                 </div>
-                <p class="meta">{{ issue.published_at|date:"F Y" }}</p>
+                <div class="issue-cover-foot">
+                  <span>{{ issue.published_at|date:"F" }}</span>
+                  <span>{{ issue.published_at|date:"Y" }}</span>
+                </div>
               </div>
-              <p class="font-medium mt-3">{% translate "Issue" %} {{ issue.number }}{% if issue.title %} — {{ issue.title }}{% endif %}</p>
+              <p class="font-semibold mt-3 text-[--color-accent] group-hover:text-[--color-gold]">{% translate "Issue" %} {{ issue.number }}{% if issue.title %} — {{ issue.title }}{% endif %}</p>
               <p class="meta">{% blocktranslate count counter=issue.article_count %}{{ counter }} article{% plural %}{{ counter }} articles{% endblocktranslate %}</p>
             </a>
           {% endfor %}

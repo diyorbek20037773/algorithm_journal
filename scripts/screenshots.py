@@ -42,6 +42,7 @@ PUBLIC_PAGES: list[tuple[str, str]] = [
     ("06-board", "/{lang}/about/editorial-board/"),
     ("07-policy", "/{lang}/about/publication-ethics/"),
     ("08-for-authors", "/{lang}/for-authors/"),
+    ("27-about", "/{lang}/about/"),
     ("15-auth", "/{lang}/accounts/login/"),
     ("16-statistics", "/{lang}/statistics/"),
     ("19-online-first", "/{lang}/issues/online-first/"),
@@ -170,16 +171,16 @@ def _require_ok(response, url: str) -> None:
 def capture(page, url: str, target: Path, full: bool = True) -> None:
     """Navigate to ``url`` and write a screenshot to ``target``."""
     target.parent.mkdir(parents=True, exist_ok=True)
-    response = page.goto(url, wait_until="networkidle", timeout=30_000)
+    response = page.goto(url, wait_until="networkidle", timeout=90_000)
     _require_ok(response, url)
     page.wait_for_timeout(300)
-    page.screenshot(path=str(target), full_page=full)
+    page.screenshot(path=str(target), full_page=full, timeout=90_000)
     print(f"  {target.relative_to(BASE_DIR)}")
 
 
 def run_axe(page, url: str) -> dict:
     """Run axe-core against ``url`` and return the violation summary."""
-    response = page.goto(url, wait_until="networkidle", timeout=30_000)
+    response = page.goto(url, wait_until="networkidle", timeout=90_000)
     _require_ok(response, url)
     try:
         page.add_script_tag(url=AXE_CDN)
