@@ -1,4 +1,3 @@
-{% load i18n %}
-<span class="wordmark-name">{% translate "ALGORITHM" context "wordmark" %}</span>
+<span class="wordmark-name">{{ site_settings.wordmark_name }}</span>
 <span class="wordmark-rule" aria-hidden="true"></span>
-<span class="wordmark-descriptor">{% translate "Review of Economic Research" context "wordmark" %}</span>
+<span class="wordmark-descriptor">{{ site_settings.wordmark_descriptor }}</span>

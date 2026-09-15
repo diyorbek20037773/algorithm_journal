@@ -74,6 +74,7 @@ PART_6: dict[str, tuple[str, str]] = {
     # --- article full text (TZ §6.1) ---------------------------------------
     "Full text": ("Toʻliq matn", "Полный текст"),
     "Full text (HTML)": ("Toʻliq matn (HTML)", "Полный текст (HTML)"),
+    "search vector": ("qidiruv vektori", "поисковый вектор"),
     "target ≤ %(days)s days": ("maqsad ≤ %(days)s kun", "цель ≤ %(days)s дней"),
     "share of decided manuscripts accepted": (
         "qaror qabul qilingan qoʻlyozmalardan qabul qilinganlari ulushi",

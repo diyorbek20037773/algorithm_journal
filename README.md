@@ -1,4 +1,4 @@
-# ALGORITHM: Review of Economic Research (ARER)
+# MEZON: Review of Economic Research (MRER)
 
 Open-access, peer-reviewed, monthly economics journal platform — public website
 plus the complete electronic editorial system (submission, double-blind review,

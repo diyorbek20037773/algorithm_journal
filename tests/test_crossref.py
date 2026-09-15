@@ -44,7 +44,7 @@ def test_journal_metadata(article, site_settings) -> None:
     assert document.findtext(".//cr:journal_metadata/cr:full_title", namespaces=NS) == (
         site_settings.journal_name_en
     )
-    assert document.findtext(".//cr:journal_metadata/cr:abbrev_title", namespaces=NS) == "ARER"
+    assert document.findtext(".//cr:journal_metadata/cr:abbrev_title", namespaces=NS) == "MRER"
     issn = document.find(".//cr:journal_metadata/cr:issn", namespaces=NS)
     assert issn.get("media_type") == "electronic"
     assert issn.text == site_settings.eissn

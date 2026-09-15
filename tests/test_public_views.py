@@ -114,7 +114,7 @@ def test_highwire_tags_match_the_model(client_anon, article, site_settings, abou
     assert meta("citation_title") == [article.title_en]
     assert meta("citation_doi") == [article.doi]
     assert meta("citation_journal_title") == [site_settings.journal_name_en]
-    assert meta("citation_journal_abbrev") == ["ARER"]
+    assert meta("citation_journal_abbrev") == ["MRER"]
     assert meta("citation_issn") == [site_settings.eissn]
     assert meta("citation_volume") == [str(article.issue.volume.number)]
     assert meta("citation_issue") == [str(article.issue.number)]

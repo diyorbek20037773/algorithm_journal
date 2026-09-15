@@ -58,10 +58,10 @@ def _default_language():
 def site_settings(db) -> SiteSettings:
     """The journal settings singleton with realistic identifiers."""
     site = SiteSettings.load()
-    site.journal_name_en = "ALGORITHM: Review of Economic Research"
+    site.journal_name_en = "MEZON: Review of Economic Research"
     site.journal_name = site.journal_name_en
     site.journal_subtitle_en = "Open-access research in economics"
-    site.short_code = "ARER"
+    site.short_code = "MRER"
     site.eissn = "3060-1234"
     site.doi_prefix = "10.00000"
     site.publisher_name_en = "Founder organisation (to be confirmed)"

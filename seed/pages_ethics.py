@@ -1324,9 +1324,9 @@ sana matn oxirgi marta qachon yangilanganini koʻrsatadi.""",
         "order": 11,
         "title": {"en": "Contact", "uz": "Bogʻlanish", "ru": "Контакты"},
         "seo": {
-            "en": "How to reach the editorial office of ALGORITHM: Review of Economic Research.",
-            "uz": "«ALGORITM» — iqtisodiy tadqiqotlar sharhi tahririyati bilan qanday bogʻlanish mumkin.",
-            "ru": "Как связаться с редакцией журнала «АЛГОРИТМ» — обзор экономических исследований.",
+            "en": "How to reach the editorial office of MEZON: Review of Economic Research.",
+            "uz": "«MEZON» — iqtisodiy tadqiqotlar sharhi tahririyati bilan qanday bogʻlanish mumkin.",
+            "ru": "Как связаться с редакцией журнала «МЕЗОН» — обзор экономических исследований.",
         },
         "body": {
             "en": """The editorial office answers within three working days. Please use the form

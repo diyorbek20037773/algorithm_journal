@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from typing import ClassVar
 
 from django.conf import settings
@@ -56,10 +57,10 @@ class SiteSettings(TimeStampedModel, AutoTranslitMixin):
     SINGLETON_PK = 1
 
     journal_name = models.CharField(
-        _("journal name"), max_length=255, default="ALGORITHM: Review of Economic Research"
+        _("journal name"), max_length=255, default="MEZON: Review of Economic Research"
     )
     journal_subtitle = models.CharField(_("journal subtitle"), max_length=255, blank=True)
-    short_code = models.CharField(_("short code"), max_length=16, default="ARER")
+    short_code = models.CharField(_("short code"), max_length=16, default="MRER")
 
     eissn = models.CharField(_("e-ISSN"), max_length=9, blank=True)
     pissn = models.CharField(_("print ISSN"), max_length=9, blank=True)
@@ -151,6 +152,23 @@ class SiteSettings(TimeStampedModel, AutoTranslitMixin):
         """Return the singleton, creating it with defaults when missing."""
         obj, _created = cls.objects.get_or_create(pk=cls.SINGLETON_PK)
         return obj
+
+    @property
+    def wordmark_name(self) -> str:
+        """The short name the wordmark sets large — "MEZON" from the full title.
+
+        Derived from the translated ``journal_name`` so the header never
+        hard-codes the journal's name (CLAUDE.md §8): the part before the first
+        colon or dash, with guillemets stripped, in capitals.
+        """
+        head = re.split(r"\s*[:—–-]\s*", self.journal_name, maxsplit=1)[0]
+        return head.strip("«»\"' ").upper() or self.short_code
+
+    @property
+    def wordmark_descriptor(self) -> str:
+        """The rest of the title, set small under the name."""
+        parts = re.split(r"\s*[:—–-]\s*", self.journal_name, maxsplit=1)
+        return parts[1].strip() if len(parts) > 1 else ""
 
     @property
     def eissn_display(self) -> str:

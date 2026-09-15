@@ -270,9 +270,16 @@ class Submission(TimeStampedModel):
         super().save(*args, **kwargs)
 
     def build_reference(self) -> str:
-        """Generate ``ARER-<year>-<sequence>`` for this submission."""
+        """Generate ``<short_code>-<year>-<sequence>`` for this submission.
+
+        The code comes from ``SiteSettings`` — the journal's identity is never
+        hard-coded (CLAUDE.md §8). Existing references keep whatever code they
+        were issued under; only new ones follow a changed setting.
+        """
+        from apps.core.services import get_site_settings
+
         year = (self.submitted_at or timezone.now()).year
-        prefix = f"ARER-{year}-"
+        prefix = f"{get_site_settings().short_code}-{year}-"
         last = (
             Submission.objects.filter(reference__startswith=prefix)
             .order_by("-reference")

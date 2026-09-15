@@ -73,7 +73,7 @@ def test_full_editorial_flow(
     workflow.perform(submission, "submit", author_user)
     submission.refresh_from_db()
     assert submission.status == SubmissionStatus.SUBMITTED
-    assert submission.reference.startswith("ARER-")
+    assert submission.reference.startswith("MRER-")
 
     # --- 2. the editor screens, recording the similarity result ----------
     workflow.perform(submission, "assign_editor", editor_user, editor=editor_user)
@@ -253,7 +253,7 @@ def test_full_editorial_flow(
 def test_browser_flow(live_server, page, site_settings, article, about_pages) -> None:
     """A real browser can read, cite and download a published article."""
     page.goto(f"{live_server.url}/en/")
-    assert "ALGORITHM" in page.title()
+    assert "MEZON" in page.title()
 
     page.goto(f"{live_server.url}/en/article/{article.pk}/")
     assert article.title_en in page.content()

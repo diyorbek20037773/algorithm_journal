@@ -24,12 +24,12 @@ pytestmark = pytest.mark.django_db
 
 
 def test_submit_assigns_reference_and_date(submission, author_user, site_settings) -> None:
-    """Submitting stamps the date and allocates ARER-YYYY-NNNN."""
+    """Submitting stamps the date and allocates MRER-YYYY-NNNN."""
     workflow.perform(submission, "submit", author_user)
     submission.refresh_from_db()
     assert submission.status == SubmissionStatus.SUBMITTED
     assert submission.submitted_at is not None
-    assert submission.reference.startswith("ARER-")
+    assert submission.reference.startswith("MRER-")
     assert len(submission.reference.rsplit("-", 1)[1]) == 4
 
 

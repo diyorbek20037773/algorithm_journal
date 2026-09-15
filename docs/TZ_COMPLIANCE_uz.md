@@ -1,6 +1,6 @@
 # Texnik topshiriq bo'yicha muvofiqlik jadvali
 
-«ALGORITHM: Review of Economic Research» — mijozning texnik topshirig'i
+«MEZON: Review of Economic Research» — mijozning texnik topshirig'i
 («Тошкент — 2026») bo'yicha band-band tekshiruv.
 
 Sana: **2026-yil 10-sentabr**. Tekshirgan: ishlab chiquvchi.

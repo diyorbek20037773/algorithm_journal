@@ -28,6 +28,7 @@ from apps.core.models import (
     Page,
     SiteSettings,
 )
+from apps.core.translit import to_cyrillic
 from apps.journal.models import (
     Article,
     Author,
@@ -52,9 +53,16 @@ LANGS = ("en", "uz", "ru")
 
 
 def set_translated(obj: Any, field: str, values: dict[str, str]) -> None:
-    """Assign a translated field in every language provided."""
+    """Assign a translated field in every language provided.
+
+    Uzbek Cyrillic is generated from Uzbek Latin unless given explicitly, so a
+    Cyrillic page never falls back to Latin for a seeded setting — the
+    frequency chip on the home page used to.
+    """
     for code, value in values.items():
         setattr(obj, f"{field}_{code.replace('-', '_')}", value)
+    if "uz-cyrl" not in values and "uz_cyrl" not in values and values.get("uz"):
+        setattr(obj, f"{field}_uz_cyrl", to_cyrillic(values["uz"]))
     setattr(obj, field, values.get("en", ""))
 
 
@@ -130,12 +138,12 @@ class Command(BaseCommand):
             site,
             "journal_name",
             {
-                "en": "ALGORITHM: Review of Economic Research",
-                "uz": "«ALGORITM» — iqtisodiy tadqiqotlar sharhi",
-                "ru": "«АЛГОРИТМ» — обзор экономических исследований",
+                "en": "MEZON: Review of Economic Research",
+                "uz": "«MEZON» — iqtisodiy tadqiqotlar sharhi",
+                "ru": "«МЕЗОН» — обзор экономических исследований",
             },
         )
-        site.journal_name_uz_cyrl = "«АЛГОРИТМ» — иқтисодий тадқиқотлар шарҳи"
+        site.journal_name_uz_cyrl = "«МЕЗОН» — иқтисодий тадқиқотлар шарҳи"
         set_translated(
             site,
             "journal_subtitle",
@@ -190,7 +198,7 @@ class Command(BaseCommand):
                 "ru": "Регистрирующий орган (подлежит уточнению)",
             },
         )
-        site.short_code = "ARER"
+        site.short_code = "MRER"
         site.founded_year = 2026
         site.contact_email = "editor@algorithm-journal.uz"
         site.similarity_threshold = 20

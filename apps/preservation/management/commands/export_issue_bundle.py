@@ -41,13 +41,16 @@ class Command(BaseCommand):
         if not articles:
             raise CommandError("The issue has no publicly visible articles.")
 
+        from apps.core.services import get_site_settings
+
+        site = get_site_settings()
         out_dir = Path(options["out"] or (Path(settings.BASE_DIR) / "exports"))
         out_dir.mkdir(parents=True, exist_ok=True)
-        target = out_dir / f"ARER_vol{issue.volume.number}_no{issue.number}.zip"
+        target = out_dir / f"{site.short_code}_vol{issue.volume.number}_no{issue.number}.zip"
 
         manifest: dict[str, Any] = {
-            "journal": "ALGORITHM: Review of Economic Research",
-            "short_code": "ARER",
+            "journal": site.journal_name_en or site.journal_name,
+            "short_code": site.short_code,
             "volume": issue.volume.number,
             "issue": issue.number,
             "year": issue.volume.year,

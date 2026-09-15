@@ -1,6 +1,6 @@
 # PROGRESS.md
 
-Status log for **ALGORITHM: Review of Economic Research (ARER)**.
+Status log for **MEZON: Review of Economic Research (MRER)**.
 Updated at the end of every delivery phase (SPEC §14). The acceptance checklist
 of SPEC §15, marked ✅/⚠️, is in `HANDOFF.md`.
 

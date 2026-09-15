@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-11 17:37+0500\n"
+"POT-Creation-Date: 2026-09-15 19:48+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: ARER editorial office\n"
 "Language-Team: ARER\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "Personal info"
 msgstr "Личные данные"
 
-#: apps/accounts/admin.py:33 apps/journal/models.py:333
+#: apps/accounts/admin.py:33 apps/journal/models.py:335
 #: templates/dashboard/_base.html:15
 msgid "Editorial"
 msgstr "Редакция"
@@ -59,7 +59,7 @@ msgstr "Рецензент"
 msgid "Section editor"
 msgstr "Редактор рубрики"
 
-#: apps/accounts/models.py:23 apps/journal/models.py:781
+#: apps/accounts/models.py:23 apps/journal/models.py:789
 msgid "Editor-in-Chief"
 msgstr "Главный редактор"
 
@@ -75,12 +75,12 @@ msgstr "Администратор"
 msgid "e-mail address"
 msgstr "адрес электронной почты"
 
-#: apps/accounts/models.py:74 apps/journal/models.py:619
+#: apps/accounts/models.py:74 apps/journal/models.py:627
 #: apps/submissions/models.py:351
 msgid "given name"
 msgstr "имя"
 
-#: apps/accounts/models.py:75 apps/journal/models.py:620
+#: apps/accounts/models.py:75 apps/journal/models.py:628
 #: apps/submissions/models.py:352
 msgid "family name"
 msgstr "фамилия"
@@ -123,18 +123,18 @@ msgstr "пользователи"
 msgid "Superuser"
 msgstr "Суперпользователь"
 
-#: apps/accounts/models.py:190 apps/journal/models.py:629
-#: apps/journal/models.py:816 apps/submissions/models.py:355
+#: apps/accounts/models.py:190 apps/journal/models.py:637
+#: apps/journal/models.py:824 apps/submissions/models.py:355
 msgid "ORCID iD"
 msgstr "ORCID iD"
 
-#: apps/accounts/models.py:191 apps/journal/models.py:630
+#: apps/accounts/models.py:191 apps/journal/models.py:638
 #: apps/submissions/models.py:356
 msgid "ORCID verified"
 msgstr "ORCID подтверждён"
 
-#: apps/accounts/models.py:192 apps/journal/models.py:631
-#: apps/journal/models.py:814 apps/submissions/models.py:357
+#: apps/accounts/models.py:192 apps/journal/models.py:639
+#: apps/journal/models.py:822 apps/submissions/models.py:357
 msgid "affiliation"
 msgstr "место работы"
 
@@ -142,27 +142,27 @@ msgstr "место работы"
 msgid "department"
 msgstr "подразделение"
 
-#: apps/accounts/models.py:194 apps/journal/models.py:633
+#: apps/accounts/models.py:194 apps/journal/models.py:641
 #: apps/submissions/models.py:359
 msgid "city"
 msgstr "город"
 
-#: apps/accounts/models.py:195 apps/journal/models.py:634
-#: apps/journal/models.py:815 apps/metrics/models.py:45
+#: apps/accounts/models.py:195 apps/journal/models.py:642
+#: apps/journal/models.py:823 apps/metrics/models.py:45
 #: apps/submissions/models.py:360
 msgid "country"
 msgstr "страна"
 
-#: apps/accounts/models.py:196 apps/journal/models.py:812
+#: apps/accounts/models.py:196 apps/journal/models.py:820
 msgid "academic degree"
 msgstr "учёная степень"
 
-#: apps/accounts/models.py:197 apps/journal/models.py:813
+#: apps/accounts/models.py:197 apps/journal/models.py:821
 msgid "academic title"
 msgstr "учёное звание"
 
-#: apps/accounts/models.py:198 apps/journal/models.py:635
-#: apps/journal/models.py:820
+#: apps/accounts/models.py:198 apps/journal/models.py:643
+#: apps/journal/models.py:828
 msgid "biography"
 msgstr "биография"
 
@@ -170,7 +170,7 @@ msgstr "биография"
 msgid "website"
 msgstr "веб-сайт"
 
-#: apps/accounts/models.py:200 apps/journal/models.py:817
+#: apps/accounts/models.py:200 apps/journal/models.py:825
 msgid "Scopus Author ID"
 msgstr "Scopus Author ID"
 
@@ -182,11 +182,11 @@ msgstr "области экспертизы"
 msgid "Comma-separated keywords used by the reviewer finder."
 msgstr "Ключевые слова через запятую, используемые при подборе рецензентов."
 
-#: apps/accounts/models.py:207 apps/journal/models.py:260
-#: apps/journal/models.py:359 apps/submissions/forms.py:145
+#: apps/accounts/models.py:207 apps/journal/models.py:262
+#: apps/journal/models.py:361 apps/submissions/forms.py:145
 #: apps/submissions/models.py:155
 #: templates/dashboard/submission_detail.html:55
-#: templates/journal/article_detail.html:115
+#: templates/journal/article_detail.html:120
 #: templates/review/assignment_detail.html:17
 #: templates/submissions/wizard_step5.html:22
 msgid "JEL codes"
@@ -377,464 +377,464 @@ msgstr "Обнаружен спам."
 msgid "Please write at least 20 characters."
 msgstr "Напишите не менее 20 символов."
 
-#: apps/core/models.py:21
+#: apps/core/models.py:22
 msgid "created at"
 msgstr "создано"
 
-#: apps/core/models.py:22
+#: apps/core/models.py:23
 msgid "updated at"
 msgstr "обновлено"
 
-#: apps/core/models.py:37
+#: apps/core/models.py:38
 msgid "machine-generated fields"
 msgstr "поля, созданные машиной"
 
-#: apps/core/models.py:59
+#: apps/core/models.py:60
 msgid "journal name"
 msgstr "название журнала"
 
-#: apps/core/models.py:61
+#: apps/core/models.py:62
 msgid "journal subtitle"
 msgstr "подзаголовок журнала"
 
-#: apps/core/models.py:62
+#: apps/core/models.py:63
 msgid "short code"
 msgstr "краткий код"
 
-#: apps/core/models.py:64
+#: apps/core/models.py:65
 msgid "e-ISSN"
 msgstr "e-ISSN"
 
-#: apps/core/models.py:65
+#: apps/core/models.py:66
 msgid "print ISSN"
 msgstr "печатный ISSN"
 
-#: apps/core/models.py:67
+#: apps/core/models.py:68
 msgid "registration certificate number"
 msgstr "номер свидетельства о регистрации"
 
-#: apps/core/models.py:70
+#: apps/core/models.py:71
 msgid "registration certificate date"
 msgstr "дата свидетельства о регистрации"
 
-#: apps/core/models.py:73
+#: apps/core/models.py:74
 msgid "registration authority"
 msgstr "регистрирующий орган"
 
-#: apps/core/models.py:77
+#: apps/core/models.py:78
 msgid "publisher"
 msgstr "издатель"
 
-#: apps/core/models.py:79
+#: apps/core/models.py:80
 msgid "publisher address"
 msgstr "адрес издателя"
 
-#: apps/core/models.py:80
+#: apps/core/models.py:81
 msgid "founded year"
 msgstr "год основания"
 
-#: apps/core/models.py:81 templates/core/about.html:16
+#: apps/core/models.py:82 templates/core/about.html:16
 msgid "DOI prefix"
 msgstr "Префикс DOI"
 
-#: apps/core/models.py:83
+#: apps/core/models.py:84
 msgid "publication frequency"
 msgstr "периодичность издания"
 
-#: apps/core/models.py:86
+#: apps/core/models.py:87
 msgid "contact e-mail"
 msgstr "контактный e-mail"
 
-#: apps/core/models.py:87
+#: apps/core/models.py:88
 msgid "contact phone"
 msgstr "контактный телефон"
 
-#: apps/core/models.py:88
+#: apps/core/models.py:89
 msgid "contact address"
 msgstr "контактный адрес"
 
-#: apps/core/models.py:92
+#: apps/core/models.py:93
 msgid "editor-in-chief"
 msgstr "главный редактор"
 
-#: apps/core/models.py:99 apps/core/models.py:176
+#: apps/core/models.py:100 apps/core/models.py:194
 msgid "logo"
 msgstr "логотип"
 
-#: apps/core/models.py:100
+#: apps/core/models.py:101
 msgid "logo (dark)"
 msgstr "логотип (тёмный)"
 
-#: apps/core/models.py:101
+#: apps/core/models.py:102
 msgid "favicon"
 msgstr "фавикон"
 
-#: apps/core/models.py:103
+#: apps/core/models.py:104
 msgid "social links"
 msgstr "ссылки на соцсети"
 
-#: apps/core/models.py:104
+#: apps/core/models.py:105
 msgid "Google Scholar profile"
 msgstr "Профиль Google Scholar"
 
-#: apps/core/models.py:105
+#: apps/core/models.py:106
 msgid "Crossref member ID"
 msgstr "Идентификатор члена Crossref"
 
-#: apps/core/models.py:108
+#: apps/core/models.py:109
 msgid "maximum similarity (%)"
 msgstr "максимальные заимствования (%)"
 
-#: apps/core/models.py:113
+#: apps/core/models.py:114
 msgid "announcement bar text"
 msgstr "текст полосы объявлений"
 
-#: apps/core/models.py:115
+#: apps/core/models.py:116
 msgid "Matomo site ID"
 msgstr "Идентификатор сайта Matomo"
 
-#: apps/core/models.py:117 apps/core/models.py:186
+#: apps/core/models.py:118 apps/core/models.py:204
 msgid "indexing services"
 msgstr "службы индексации"
 
-#: apps/core/models.py:119
+#: apps/core/models.py:120
 msgid "show Online First"
 msgstr "показывать Online First"
 
-#: apps/core/models.py:122 apps/core/models.py:123
+#: apps/core/models.py:123 apps/core/models.py:124
 msgid "site settings"
 msgstr "настройки сайта"
 
-#: apps/core/models.py:147
+#: apps/core/models.py:148
 msgid "Site settings cannot be deleted."
 msgstr "Настройки сайта нельзя удалить."
 
-#: apps/core/models.py:158 templates/core/about.html:13
-#: templates/includes/footer.html:12 templates/journal/home.html:18
+#: apps/core/models.py:176 templates/core/about.html:13
+#: templates/includes/footer.html:12 templates/journal/home.html:23
 msgid "pending"
 msgstr "ожидается"
 
-#: apps/core/models.py:174 apps/core/models.py:333 apps/journal/models.py:48
-#: apps/journal/models.py:71
+#: apps/core/models.py:192 apps/core/models.py:351 apps/journal/models.py:50
+#: apps/journal/models.py:73
 msgid "name"
 msgstr "название"
 
-#: apps/core/models.py:175 apps/core/models.py:215 apps/core/models.py:301
-#: apps/journal/models.py:70 apps/journal/models.py:215
-#: apps/journal/models.py:353
+#: apps/core/models.py:193 apps/core/models.py:233 apps/core/models.py:319
+#: apps/journal/models.py:72 apps/journal/models.py:217
+#: apps/journal/models.py:355
 msgid "slug"
 msgstr "слаг"
 
-#: apps/core/models.py:177 apps/core/models.py:266
+#: apps/core/models.py:195 apps/core/models.py:284
 msgid "URL"
 msgstr "URL"
 
-#: apps/core/models.py:179 apps/core/models.py:274 apps/core/models.py:389
-#: apps/journal/models.py:74 apps/journal/models.py:826
+#: apps/core/models.py:197 apps/core/models.py:292 apps/core/models.py:407
+#: apps/journal/models.py:76 apps/journal/models.py:834
 msgid "active"
 msgstr "активен"
 
-#: apps/core/models.py:179
+#: apps/core/models.py:197
 msgid "Only active services are displayed publicly."
 msgstr "Публично отображаются только активные службы."
 
-#: apps/core/models.py:181 apps/core/models.py:273 apps/journal/models.py:73
-#: apps/journal/models.py:610 apps/journal/models.py:694
-#: apps/journal/models.py:751 apps/journal/models.py:825
+#: apps/core/models.py:199 apps/core/models.py:291 apps/journal/models.py:75
+#: apps/journal/models.py:618 apps/journal/models.py:702
+#: apps/journal/models.py:759 apps/journal/models.py:833
 #: apps/submissions/models.py:342
 msgid "order"
 msgstr "порядок"
 
-#: apps/core/models.py:182 apps/submissions/models.py:821
+#: apps/core/models.py:200 apps/submissions/models.py:821
 msgid "note"
 msgstr "примечание"
 
-#: apps/core/models.py:185
+#: apps/core/models.py:203
 msgid "indexing service"
 msgstr "служба индексации"
 
-#: apps/core/models.py:209 templates/includes/header.html:15
+#: apps/core/models.py:227 templates/includes/header.html:15
 #: templates/includes/header.html:103
 msgid "About"
 msgstr "О журнале"
 
-#: apps/core/models.py:210 templates/core/for_authors.html:3
+#: apps/core/models.py:228 templates/core/for_authors.html:3
 #: templates/includes/footer.html:27 templates/includes/header.html:13
 #: templates/includes/header.html:101
 msgid "For Authors"
 msgstr "Авторам"
 
-#: apps/core/models.py:211 templates/includes/header.html:14
+#: apps/core/models.py:229 templates/includes/header.html:14
 #: templates/includes/header.html:102
 msgid "For Reviewers"
 msgstr "Рецензентам"
 
-#: apps/core/models.py:212
+#: apps/core/models.py:230
 msgid "Footer"
 msgstr "Подвал"
 
-#: apps/core/models.py:213
+#: apps/core/models.py:231
 msgid "Not in menu"
 msgstr "Не в меню"
 
-#: apps/core/models.py:216 apps/core/models.py:300 apps/journal/models.py:112
-#: apps/journal/models.py:144 apps/journal/models.py:350
+#: apps/core/models.py:234 apps/core/models.py:318 apps/journal/models.py:114
+#: apps/journal/models.py:146 apps/journal/models.py:352
 #: apps/submissions/models.py:149
 msgid "title"
 msgstr "заголовок"
 
-#: apps/core/models.py:217 apps/core/models.py:302 apps/core/models.py:383
+#: apps/core/models.py:235 apps/core/models.py:320 apps/core/models.py:401
 msgid "body (Markdown)"
 msgstr "текст (Markdown)"
 
-#: apps/core/models.py:220
+#: apps/core/models.py:238
 msgid "parent page"
 msgstr "родительская страница"
 
-#: apps/core/models.py:227 apps/core/models.py:268
+#: apps/core/models.py:245 apps/core/models.py:286
 msgid "menu group"
 msgstr "группа меню"
 
-#: apps/core/models.py:229
+#: apps/core/models.py:247
 msgid "menu order"
 msgstr "порядок в меню"
 
-#: apps/core/models.py:230 apps/journal/models.py:147
-#: apps/journal/models.py:382 apps/metrics/models.py:96
+#: apps/core/models.py:248 apps/journal/models.py:149
+#: apps/journal/models.py:384 apps/metrics/models.py:96
 #: templates/production/issue_builder.html:6
 msgid "published"
 msgstr "опубликовано"
 
-#: apps/core/models.py:231
+#: apps/core/models.py:249
 msgid "SEO description"
 msgstr "SEO-описание"
 
-#: apps/core/models.py:233
+#: apps/core/models.py:251
 msgid "needs editorial review"
 msgstr "требует редакционной вычитки"
 
-#: apps/core/models.py:235
+#: apps/core/models.py:253
 msgid "Machine-drafted translations are flagged for proofreading."
 msgstr "Машинные переводы помечаются для вычитки."
 
-#: apps/core/models.py:241
+#: apps/core/models.py:259
 msgid "page"
 msgstr "страница"
 
-#: apps/core/models.py:242
+#: apps/core/models.py:260
 msgid "pages"
 msgstr "страницы"
 
-#: apps/core/models.py:265 apps/journal/models.py:247
-#: apps/journal/models.py:742
+#: apps/core/models.py:283 apps/journal/models.py:249
+#: apps/journal/models.py:750
 msgid "label"
 msgstr "метка"
 
-#: apps/core/models.py:275
+#: apps/core/models.py:293
 msgid "open in a new tab"
 msgstr "открывать в новой вкладке"
 
-#: apps/core/models.py:278
+#: apps/core/models.py:296
 msgid "menu item"
 msgstr "элемент меню"
 
-#: apps/core/models.py:279
+#: apps/core/models.py:297
 msgid "menu items"
 msgstr "элементы меню"
 
-#: apps/core/models.py:303 apps/journal/models.py:146
+#: apps/core/models.py:321 apps/journal/models.py:148
 msgid "published at"
 msgstr "дата публикации"
 
-#: apps/core/models.py:304
+#: apps/core/models.py:322
 msgid "expires at"
 msgstr "срок действия"
 
-#: apps/core/models.py:305
+#: apps/core/models.py:323
 msgid "pinned"
 msgstr "закреплено"
 
-#: apps/core/models.py:310
+#: apps/core/models.py:328
 msgid "announcement"
 msgstr "объявление"
 
-#: apps/core/models.py:311
+#: apps/core/models.py:329
 msgid "announcements"
 msgstr "объявления"
 
-#: apps/core/models.py:334 apps/journal/models.py:627
-#: apps/journal/models.py:818 apps/submissions/models.py:353
+#: apps/core/models.py:352 apps/journal/models.py:635
+#: apps/journal/models.py:826 apps/submissions/models.py:353
 msgid "e-mail"
 msgstr "электронная почта"
 
-#: apps/core/models.py:335 apps/core/models.py:382
+#: apps/core/models.py:353 apps/core/models.py:400
 #: apps/submissions/models.py:755
 msgid "subject"
 msgstr "тема"
 
-#: apps/core/models.py:336 apps/crossref/models.py:65
+#: apps/core/models.py:354 apps/crossref/models.py:65
 #: apps/submissions/models.py:795
 msgid "message"
 msgstr "сообщение"
 
-#: apps/core/models.py:337 apps/core/models.py:428
+#: apps/core/models.py:355 apps/core/models.py:446
 msgid "IP address"
 msgstr "IP-адрес"
 
-#: apps/core/models.py:338
+#: apps/core/models.py:356
 msgid "handled"
 msgstr "обработано"
 
-#: apps/core/models.py:341
+#: apps/core/models.py:359
 msgid "handled by"
 msgstr "обработал"
 
-#: apps/core/models.py:349
+#: apps/core/models.py:367
 msgid "contact message"
 msgstr "сообщение обратной связи"
 
-#: apps/core/models.py:350
+#: apps/core/models.py:368
 msgid "contact messages"
 msgstr "сообщения обратной связи"
 
-#: apps/core/models.py:361
+#: apps/core/models.py:379
 msgid "Account verification"
 msgstr "Подтверждение учётной записи"
 
-#: apps/core/models.py:364
+#: apps/core/models.py:382
 msgid "Submission received (author)"
 msgstr "Рукопись получена (автор)"
 
-#: apps/core/models.py:368
+#: apps/core/models.py:386
 msgid "Submission received (editor)"
 msgstr "Рукопись получена (редактор)"
 
-#: apps/core/models.py:370
+#: apps/core/models.py:388
 msgid "Editor assigned"
 msgstr "Назначен редактор"
 
-#: apps/core/models.py:371
+#: apps/core/models.py:389
 msgid "Reviewer invitation"
 msgstr "Приглашение рецензенту"
 
-#: apps/core/models.py:372
+#: apps/core/models.py:390
 msgid "Reviewer reminder"
 msgstr "Напоминание рецензенту"
 
-#: apps/core/models.py:373
+#: apps/core/models.py:391
 msgid "Reviewer thanks"
 msgstr "Благодарность рецензенту"
 
-#: apps/core/models.py:374 apps/core/models.py:408
+#: apps/core/models.py:392 apps/core/models.py:426
 #: templates/dashboard/decide.html:3 templates/dashboard/decide.html:5
 msgid "Editorial decision"
 msgstr "Редакционное решение"
 
-#: apps/core/models.py:375
+#: apps/core/models.py:393
 msgid "Revision reminder"
 msgstr "Напоминание о доработке"
 
-#: apps/core/models.py:376
+#: apps/core/models.py:394
 msgid "Proof request"
 msgstr "Запрос на утверждение корректуры"
 
-#: apps/core/models.py:377
+#: apps/core/models.py:395
 msgid "Article published"
 msgstr "Статья опубликована"
 
-#: apps/core/models.py:378
+#: apps/core/models.py:396
 msgid "DOI registered"
 msgstr "DOI зарегистрирован"
 
-#: apps/core/models.py:379
+#: apps/core/models.py:397
 msgid "Contact form notification"
 msgstr "Уведомление из формы обратной связи"
 
-#: apps/core/models.py:381
+#: apps/core/models.py:399
 msgid "event"
 msgstr "событие"
 
-#: apps/core/models.py:385
+#: apps/core/models.py:403
 msgid "available placeholders"
 msgstr "доступные подстановки"
 
-#: apps/core/models.py:387
+#: apps/core/models.py:405
 msgid "Documented context variables, one per line."
 msgstr "Документированные переменные контекста, по одной в строке."
 
-#: apps/core/models.py:392
+#: apps/core/models.py:410
 msgid "e-mail template"
 msgstr "шаблон письма"
 
-#: apps/core/models.py:393
+#: apps/core/models.py:411
 msgid "e-mail templates"
 msgstr "шаблоны писем"
 
-#: apps/core/models.py:404
+#: apps/core/models.py:422
 msgid "Login"
 msgstr "Вход"
 
-#: apps/core/models.py:405
+#: apps/core/models.py:423
 msgid "Failed login"
 msgstr "Неудачный вход"
 
-#: apps/core/models.py:406
+#: apps/core/models.py:424
 msgid "Logout"
 msgstr "Выход"
 
-#: apps/core/models.py:407
+#: apps/core/models.py:425
 msgid "Role change"
 msgstr "Изменение роли"
 
-#: apps/core/models.py:409 templates/production/issue_builder.html:59
+#: apps/core/models.py:427 templates/production/issue_builder.html:59
 msgid "Publish"
 msgstr "Публикация"
 
-#: apps/core/models.py:410
+#: apps/core/models.py:428
 msgid "Unpublish"
 msgstr "Снятие с публикации"
 
-#: apps/core/models.py:411
+#: apps/core/models.py:429
 msgid "Settings change"
 msgstr "Изменение настроек"
 
-#: apps/core/models.py:412
+#: apps/core/models.py:430
 msgid "File deletion"
 msgstr "Удаление файла"
 
-#: apps/core/models.py:413
+#: apps/core/models.py:431
 msgid "Workflow transition"
 msgstr "Переход рабочего процесса"
 
-#: apps/core/models.py:414
+#: apps/core/models.py:432
 msgid "Crossref deposit"
 msgstr "Депозит Crossref"
 
-#: apps/core/models.py:415
+#: apps/core/models.py:433
 msgid "Policy override"
 msgstr "Отступление от правила"
 
-#: apps/core/models.py:419
+#: apps/core/models.py:437
 msgid "actor"
 msgstr "исполнитель"
 
-#: apps/core/models.py:425
+#: apps/core/models.py:443
 msgid "action"
 msgstr "действие"
 
-#: apps/core/models.py:426
+#: apps/core/models.py:444
 msgid "target"
 msgstr "объект"
 
-#: apps/core/models.py:427
+#: apps/core/models.py:445
 msgid "changes"
 msgstr "изменения"
 
-#: apps/core/models.py:431
+#: apps/core/models.py:449
 msgid "audit log entry"
 msgstr "запись журнала аудита"
 
-#: apps/core/models.py:432
+#: apps/core/models.py:450
 msgid "audit log"
 msgstr "журнал аудита"
 
@@ -995,12 +995,12 @@ msgstr "идентификатор пакета"
 msgid "deposit XML"
 msgstr "XML депозита"
 
-#: apps/crossref/models.py:25 apps/journal/models.py:433
+#: apps/crossref/models.py:25 apps/journal/models.py:440
 msgid "articles"
 msgstr "статьи"
 
 #: apps/crossref/models.py:28 apps/crossref/models.py:64
-#: apps/journal/models.py:385 apps/submissions/models.py:167
+#: apps/journal/models.py:387 apps/submissions/models.py:167
 #: apps/submissions/models.py:463 apps/submissions/models.py:534
 #: apps/submissions/models.py:875
 msgid "status"
@@ -1035,9 +1035,9 @@ msgstr "пакет депозита"
 msgid "deposit batches"
 msgstr "пакеты депозита"
 
-#: apps/crossref/models.py:51 apps/journal/models.py:432
-#: apps/journal/models.py:608 apps/journal/models.py:692
-#: apps/journal/models.py:740 apps/journal/models.py:874
+#: apps/crossref/models.py:51 apps/journal/models.py:439
+#: apps/journal/models.py:616 apps/journal/models.py:700
+#: apps/journal/models.py:748 apps/journal/models.py:882
 #: apps/metrics/models.py:28 apps/metrics/models.py:66
 msgid "article"
 msgstr "статья"
@@ -1046,8 +1046,8 @@ msgstr "статья"
 msgid "batch"
 msgstr "пакет"
 
-#: apps/crossref/models.py:63 apps/journal/models.py:368
-#: apps/journal/models.py:696
+#: apps/crossref/models.py:63 apps/journal/models.py:370
+#: apps/journal/models.py:704
 msgid "DOI"
 msgstr "DOI"
 
@@ -1137,7 +1137,7 @@ msgid "Screening"
 msgstr "Отбор"
 
 #: apps/dashboard/services.py:319 templates/core/about.html:25
-#: templates/core/for_authors.html:37 templates/journal/home.html:188
+#: templates/core/for_authors.html:37 templates/journal/home.html:199
 msgid "Peer review"
 msgstr "Рецензирование"
 
@@ -1152,11 +1152,11 @@ msgstr "Решение"
 msgid "Production"
 msgstr "Выпуск"
 
-#: apps/dashboard/services.py:347 apps/journal/models.py:317
+#: apps/dashboard/services.py:347 apps/journal/models.py:319
 #: apps/submissions/models.py:54 templates/dashboard/home.html:169
 #: templates/dashboard/partials/submission_card.html:39
 #: templates/dashboard/partials/submission_card.html:57
-#: templates/journal/article_detail.html:99 templates/journal/home.html:61
+#: templates/journal/article_detail.html:104 templates/journal/home.html:69
 #: templates/journal/issue_detail.html:33
 msgid "Published"
 msgstr "Опубликовано"
@@ -1243,15 +1243,15 @@ msgstr "Сообщение опубликовано."
 msgid "Note saved."
 msgstr "Заметка сохранена."
 
-#: apps/dashboard/views.py:524
+#: apps/dashboard/views.py:527
 msgid "Your profile has been updated."
 msgstr "Ваш профиль обновлён."
 
-#: apps/dashboard/views.py:573 templates/dashboard/two_factor.html:10
+#: apps/dashboard/views.py:576 templates/dashboard/two_factor.html:10
 msgid "Two-factor authentication is now active."
 msgstr "Двухфакторная аутентификация активирована."
 
-#: apps/dashboard/views.py:579
+#: apps/dashboard/views.py:582
 msgid "That code is not valid. Please try again."
 msgstr "Этот код неверен. Попробуйте ещё раз."
 
@@ -1259,142 +1259,142 @@ msgstr "Этот код неверен. Попробуйте ещё раз."
 msgid "Latest articles"
 msgstr "Последние статьи"
 
-#: apps/journal/models.py:47 apps/journal/models.py:246
+#: apps/journal/models.py:49 apps/journal/models.py:248
 msgid "code"
 msgstr "код"
 
-#: apps/journal/models.py:49
+#: apps/journal/models.py:51
 msgid "licence URL"
 msgstr "URL лицензии"
 
-#: apps/journal/models.py:50
+#: apps/journal/models.py:52
 msgid "badge SVG"
 msgstr "SVG значка"
 
-#: apps/journal/models.py:51
+#: apps/journal/models.py:53
 msgid "default licence"
 msgstr "лицензия по умолчанию"
 
-#: apps/journal/models.py:54 apps/journal/models.py:390
+#: apps/journal/models.py:56 apps/journal/models.py:392
 msgid "licence"
 msgstr "лицензия"
 
-#: apps/journal/models.py:55
+#: apps/journal/models.py:57
 msgid "licences"
 msgstr "лицензии"
 
-#: apps/journal/models.py:72
+#: apps/journal/models.py:74
 msgid "description"
 msgstr "описание"
 
-#: apps/journal/models.py:76
+#: apps/journal/models.py:78
 msgid "research section"
 msgstr "научная рубрика"
 
-#: apps/journal/models.py:78
+#: apps/journal/models.py:80
 msgid ""
 "Non-research sections (reviews, commentary) are excluded from the home grid."
 msgstr ""
 "Ненаучные рубрики (обзоры, комментарии) не показываются в сетке на главной."
 
-#: apps/journal/models.py:82
+#: apps/journal/models.py:84
 msgid "section editors"
 msgstr "редакторы рубрики"
 
-#: apps/journal/models.py:86
+#: apps/journal/models.py:88
 msgid "suggested JEL prefixes"
 msgstr "рекомендуемые префиксы JEL"
 
-#: apps/journal/models.py:89 apps/journal/models.py:344
+#: apps/journal/models.py:91 apps/journal/models.py:346
 #: apps/submissions/models.py:141
 msgid "section"
 msgstr "рубрика"
 
-#: apps/journal/models.py:90 apps/journal/models.py:823
+#: apps/journal/models.py:92 apps/journal/models.py:831
 msgid "sections"
 msgstr "рубрики"
 
-#: apps/journal/models.py:110
+#: apps/journal/models.py:112
 msgid "volume number"
 msgstr "номер тома"
 
-#: apps/journal/models.py:111
+#: apps/journal/models.py:113
 msgid "year"
 msgstr "год"
 
-#: apps/journal/models.py:115 apps/journal/models.py:139
+#: apps/journal/models.py:117 apps/journal/models.py:141
 msgid "volume"
 msgstr "том"
 
-#: apps/journal/models.py:116
+#: apps/journal/models.py:118
 msgid "volumes"
 msgstr "тома"
 
-#: apps/journal/models.py:142
+#: apps/journal/models.py:144
 msgid "issue number"
 msgstr "номер выпуска"
 
-#: apps/journal/models.py:145
+#: apps/journal/models.py:147
 msgid "editorial note"
 msgstr "редакционная заметка"
 
-#: apps/journal/models.py:148
+#: apps/journal/models.py:150
 msgid "current issue"
 msgstr "текущий выпуск"
 
-#: apps/journal/models.py:149
+#: apps/journal/models.py:151
 msgid "cover"
 msgstr "обложка"
 
-#: apps/journal/models.py:150
+#: apps/journal/models.py:152
 msgid "issue DOI"
 msgstr "DOI выпуска"
 
-#: apps/journal/models.py:151
+#: apps/journal/models.py:153
 msgid "page prefix"
 msgstr "префикс страниц"
 
-#: apps/journal/models.py:153
+#: apps/journal/models.py:155
 msgid "full issue PDF"
 msgstr "PDF всего выпуска"
 
-#: apps/journal/models.py:159 apps/journal/models.py:337
+#: apps/journal/models.py:161 apps/journal/models.py:339
 msgid "issue"
 msgstr "выпуск"
 
-#: apps/journal/models.py:160 templates/journal/archive.html:22
+#: apps/journal/models.py:162 templates/journal/archive.html:22
 msgid "issues"
 msgstr "выпуски"
 
-#: apps/journal/models.py:214 apps/journal/models.py:218
+#: apps/journal/models.py:216 apps/journal/models.py:220
 msgid "keyword"
 msgstr "ключевое слово"
 
-#: apps/journal/models.py:219 apps/journal/models.py:356
+#: apps/journal/models.py:221 apps/journal/models.py:358
 #: apps/submissions/models.py:152
 msgid "keywords"
 msgstr "ключевые слова"
 
-#: apps/journal/models.py:250
+#: apps/journal/models.py:252
 msgid "parent"
 msgstr "родитель"
 
-#: apps/journal/models.py:256
+#: apps/journal/models.py:258
 msgid "level"
 msgstr "уровень"
 
-#: apps/journal/models.py:259 templates/search/search.html:40
+#: apps/journal/models.py:261 templates/search/search.html:40
 msgid "JEL code"
 msgstr "код JEL"
 
-#: apps/journal/models.py:315 apps/submissions/models.py:41
+#: apps/journal/models.py:317 apps/submissions/models.py:41
 msgid "Draft"
 msgstr "Черновик"
 
-#: apps/journal/models.py:316 apps/submissions/views.py:459
+#: apps/journal/models.py:318 apps/submissions/views.py:459
 #: templates/includes/footer.html:40 templates/includes/header.html:12
-#: templates/includes/header.html:100 templates/journal/article_detail.html:24
-#: templates/journal/article_detail.html:43 templates/journal/home.html:81
+#: templates/includes/header.html:100 templates/journal/article_detail.html:29
+#: templates/journal/article_detail.html:48 templates/journal/home.html:89
 #: templates/journal/online_first.html:3 templates/journal/online_first.html:6
 #: templates/journal/partials/article_card.html:20
 #: templates/production/queue.html:80
@@ -1402,131 +1402,131 @@ msgstr "Черновик"
 msgid "Online First"
 msgstr "Online First"
 
-#: apps/journal/models.py:318
+#: apps/journal/models.py:320
 msgid "Retracted"
 msgstr "Отозвана"
 
-#: apps/journal/models.py:319 apps/submissions/models.py:56
+#: apps/journal/models.py:321 apps/submissions/models.py:56
 msgid "Withdrawn"
 msgstr "Изъята"
 
-#: apps/journal/models.py:322
+#: apps/journal/models.py:324
 msgid "Not assigned"
 msgstr "Не назначен"
 
-#: apps/journal/models.py:323
+#: apps/journal/models.py:325
 msgid "Reserved"
 msgstr "Зарезервирован"
 
-#: apps/journal/models.py:324
+#: apps/journal/models.py:326
 msgid "Registered"
 msgstr "Зарегистрирован"
 
-#: apps/journal/models.py:325
+#: apps/journal/models.py:327
 msgid "Registration failed"
 msgstr "Регистрация не удалась"
 
-#: apps/journal/models.py:326
+#: apps/journal/models.py:328
 msgid "Metadata updated"
 msgstr "Метаданные обновлены"
 
-#: apps/journal/models.py:329 apps/submissions/models.py:117
+#: apps/journal/models.py:331 apps/submissions/models.py:117
 msgid "Research article"
 msgstr "Научная статья"
 
-#: apps/journal/models.py:330 apps/submissions/models.py:118
+#: apps/journal/models.py:332 apps/submissions/models.py:118
 msgid "Review article"
 msgstr "Обзорная статья"
 
-#: apps/journal/models.py:331 apps/submissions/models.py:119
+#: apps/journal/models.py:333 apps/submissions/models.py:119
 msgid "Short communication"
 msgstr "Краткое сообщение"
 
-#: apps/journal/models.py:332 apps/submissions/models.py:120
+#: apps/journal/models.py:334 apps/submissions/models.py:120
 msgid "Book review"
 msgstr "Рецензия на книгу"
 
-#: apps/journal/models.py:347 apps/submissions/models.py:146
+#: apps/journal/models.py:349 apps/submissions/models.py:146
 msgid "article type"
 msgstr "тип статьи"
 
-#: apps/journal/models.py:351
+#: apps/journal/models.py:353
 msgid "subtitle"
 msgstr "подзаголовок"
 
-#: apps/journal/models.py:352 apps/submissions/models.py:150
+#: apps/journal/models.py:354 apps/submissions/models.py:150
 msgid "abstract"
 msgstr "аннотация"
 
-#: apps/journal/models.py:362
+#: apps/journal/models.py:364
 msgid "article language"
 msgstr "язык статьи"
 
-#: apps/journal/models.py:370
+#: apps/journal/models.py:372
 msgid "DOI status"
 msgstr "статус DOI"
 
-#: apps/journal/models.py:373
+#: apps/journal/models.py:375
 msgid "first page"
 msgstr "первая страница"
 
-#: apps/journal/models.py:374
+#: apps/journal/models.py:376
 msgid "last page"
 msgstr "последняя страница"
 
-#: apps/journal/models.py:375
+#: apps/journal/models.py:377
 msgid "e-location ID"
 msgstr "идентификатор e-location"
 
-#: apps/journal/models.py:376
+#: apps/journal/models.py:378
 msgid "article number"
 msgstr "номер статьи"
 
-#: apps/journal/models.py:378
+#: apps/journal/models.py:380
 msgid "received"
 msgstr "получена"
 
-#: apps/journal/models.py:379
+#: apps/journal/models.py:381
 msgid "revised"
 msgstr "доработана"
 
-#: apps/journal/models.py:380 apps/metrics/models.py:94
+#: apps/journal/models.py:382 apps/metrics/models.py:94
 msgid "accepted"
 msgstr "принята"
 
-#: apps/journal/models.py:381
+#: apps/journal/models.py:383
 msgid "published online"
 msgstr "опубликована онлайн"
 
-#: apps/journal/models.py:397
+#: apps/journal/models.py:399
 msgid "copyright holder"
 msgstr "правообладатель"
 
-#: apps/journal/models.py:399 apps/submissions/models.py:227
+#: apps/journal/models.py:401 apps/submissions/models.py:227
 msgid "funding statement"
 msgstr "заявление о финансировании"
 
-#: apps/journal/models.py:401 apps/submissions/models.py:229
+#: apps/journal/models.py:403 apps/submissions/models.py:229
 msgid "conflict of interest statement"
 msgstr "заявление о конфликте интересов"
 
-#: apps/journal/models.py:405 apps/submissions/models.py:231
+#: apps/journal/models.py:407 apps/submissions/models.py:231
 msgid "data availability statement"
 msgstr "заявление о доступности данных"
 
-#: apps/journal/models.py:407 apps/production/services.py:179
+#: apps/journal/models.py:409 apps/production/services.py:179
 msgid "AI use statement"
 msgstr "заявление об использовании ИИ"
 
-#: apps/journal/models.py:411
+#: apps/journal/models.py:413
 msgid "acknowledgements"
 msgstr "благодарности"
 
-#: apps/journal/models.py:412
+#: apps/journal/models.py:414
 msgid "retraction notice"
 msgstr "уведомление об отзыве"
 
-#: apps/journal/models.py:416 apps/submissions/models.py:244
+#: apps/journal/models.py:418 apps/submissions/models.py:244
 #: apps/submissions/models.py:340 apps/submissions/models.py:401
 #: apps/submissions/models.py:457 apps/submissions/models.py:664
 #: apps/submissions/models.py:704 apps/submissions/models.py:751
@@ -1534,210 +1534,215 @@ msgstr "уведомление об отзыве"
 msgid "submission"
 msgstr "рукопись"
 
-#: apps/journal/models.py:423 apps/metrics/models.py:71
+#: apps/journal/models.py:425 apps/metrics/models.py:71
 msgid "views"
 msgstr "просмотры"
 
-#: apps/journal/models.py:424 apps/metrics/models.py:72
+#: apps/journal/models.py:426 apps/metrics/models.py:72
 msgid "downloads"
 msgstr "загрузки"
 
-#: apps/journal/models.py:425
+#: apps/journal/models.py:427
 msgid "cited by (Crossref)"
 msgstr "цитирований (Crossref)"
 
-#: apps/journal/models.py:426
+#: apps/journal/models.py:428
 msgid "cited-by updated"
 msgstr "цитирования обновлены"
 
-#: apps/journal/models.py:427
+#: apps/journal/models.py:429
 msgid "featured"
 msgstr "избранная"
 
-#: apps/journal/models.py:613 apps/journal/models.py:802
+#: apps/journal/models.py:436
+#| msgid "research section"
+msgid "search vector"
+msgstr "поисковый вектор"
+
+#: apps/journal/models.py:621 apps/journal/models.py:810
 #: apps/submissions/models.py:345
 msgid "account"
 msgstr "учётная запись"
 
-#: apps/journal/models.py:622
+#: apps/journal/models.py:630
 msgid "given name (native script)"
 msgstr "имя (в родной графике)"
 
-#: apps/journal/models.py:625
+#: apps/journal/models.py:633
 msgid "family name (native script)"
 msgstr "фамилия (в родной графике)"
 
-#: apps/journal/models.py:628 apps/submissions/models.py:354
+#: apps/journal/models.py:636 apps/submissions/models.py:354
 msgid "corresponding author"
 msgstr "корреспондирующий автор"
 
-#: apps/journal/models.py:632 apps/submissions/models.py:358
+#: apps/journal/models.py:640 apps/submissions/models.py:358
 msgid "ROR ID"
 msgstr "ROR ID"
 
-#: apps/journal/models.py:636 apps/submissions/models.py:362
+#: apps/journal/models.py:644 apps/submissions/models.py:362
 msgid "CRediT roles"
 msgstr "роли CRediT"
 
-#: apps/journal/models.py:639 apps/submissions/models.py:789
+#: apps/journal/models.py:647 apps/submissions/models.py:789
 #: apps/submissions/models.py:815
 msgid "author"
 msgstr "автор"
 
-#: apps/journal/models.py:640
+#: apps/journal/models.py:648
 msgid "authors"
 msgstr "авторы"
 
-#: apps/journal/models.py:695
+#: apps/journal/models.py:703
 msgid "reference text"
 msgstr "текст источника"
 
-#: apps/journal/models.py:697
+#: apps/journal/models.py:705
 msgid "structured data"
 msgstr "структурированные данные"
 
-#: apps/journal/models.py:700
+#: apps/journal/models.py:708
 msgid "reference"
 msgstr "источник"
 
-#: apps/journal/models.py:701
+#: apps/journal/models.py:709
 msgid "references"
 msgstr "список литературы"
 
-#: apps/journal/models.py:732 templates/journal/partials/article_card.html:30
+#: apps/journal/models.py:740 templates/journal/partials/article_card.html:30
 msgid "PDF"
 msgstr "PDF"
 
-#: apps/journal/models.py:733
+#: apps/journal/models.py:741
 msgid "PDF (Uzbek)"
 msgstr "PDF (узбекский)"
 
-#: apps/journal/models.py:734
+#: apps/journal/models.py:742
 msgid "PDF (Russian)"
 msgstr "PDF (русский)"
 
-#: apps/journal/models.py:735
+#: apps/journal/models.py:743
 msgid "Full text (HTML)"
 msgstr "Полный текст (HTML)"
 
-#: apps/journal/models.py:736
+#: apps/journal/models.py:744
 msgid "JATS XML"
 msgstr "JATS XML"
 
-#: apps/journal/models.py:737 templates/production/article_detail.html:37
+#: apps/journal/models.py:745 templates/production/article_detail.html:37
 msgid "Supplementary"
 msgstr "Дополнительные материалы"
 
-#: apps/journal/models.py:743
+#: apps/journal/models.py:751
 msgid "language"
 msgstr "язык"
 
-#: apps/journal/models.py:744 apps/submissions/models.py:412
+#: apps/journal/models.py:752 apps/submissions/models.py:412
 msgid "file"
 msgstr "файл"
 
-#: apps/journal/models.py:746
+#: apps/journal/models.py:754
 msgid "unstamped original"
 msgstr "оригинал без штампа"
 
-#: apps/journal/models.py:748 apps/submissions/models.py:424
+#: apps/journal/models.py:756 apps/submissions/models.py:424
 msgid "MIME type"
 msgstr "MIME-тип"
 
-#: apps/journal/models.py:749
+#: apps/journal/models.py:757
 msgid "size in bytes"
 msgstr "размер в байтах"
 
-#: apps/journal/models.py:750 templates/production/article_detail.html:48
+#: apps/journal/models.py:758 templates/production/article_detail.html:48
 msgid "primary"
 msgstr "основной"
 
-#: apps/journal/models.py:754 apps/metrics/models.py:35
+#: apps/journal/models.py:762 apps/metrics/models.py:35
 msgid "galley"
 msgstr "вёрстка"
 
-#: apps/journal/models.py:755
+#: apps/journal/models.py:763
 msgid "galleys"
 msgstr "вёрстки"
 
-#: apps/journal/models.py:782
+#: apps/journal/models.py:790
 msgid "Deputy Editor"
 msgstr "Заместитель главного редактора"
 
-#: apps/journal/models.py:783
+#: apps/journal/models.py:791
 msgid "Managing Editor"
 msgstr "Ответственный секретарь"
 
-#: apps/journal/models.py:784
+#: apps/journal/models.py:792
 msgid "Section Editor"
 msgstr "Редактор рубрики"
 
-#: apps/journal/models.py:785
+#: apps/journal/models.py:793
 msgid "Editorial Board Member"
 msgstr "Член редколлегии"
 
-#: apps/journal/models.py:786
+#: apps/journal/models.py:794
 msgid "International Advisory Board"
 msgstr "Международный консультативный совет"
 
-#: apps/journal/models.py:787 apps/journal/views.py:503
+#: apps/journal/models.py:795 apps/journal/views.py:498
 #: templates/includes/footer.html:9
 msgid "Reviewer Board"
 msgstr "Совет рецензентов"
 
-#: apps/journal/models.py:808
+#: apps/journal/models.py:816
 msgid "full name"
 msgstr "полное имя"
 
-#: apps/journal/models.py:810
+#: apps/journal/models.py:818
 msgid "role"
 msgstr "роль"
 
-#: apps/journal/models.py:819
+#: apps/journal/models.py:827
 msgid "photo"
 msgstr "фотография"
 
-#: apps/journal/models.py:821
+#: apps/journal/models.py:829
 msgid "expertise"
 msgstr "экспертиза"
 
-#: apps/journal/models.py:828
+#: apps/journal/models.py:836
 msgid "demo entry"
 msgstr "демонстрационная запись"
 
-#: apps/journal/models.py:830
+#: apps/journal/models.py:838
 msgid "Seeded placeholder — replace with a real board member."
 msgstr "Демонстрационная запись — замените реальным членом редколлегии."
 
-#: apps/journal/models.py:834
+#: apps/journal/models.py:842
 msgid "editorial board member"
 msgstr "член редколлегии"
 
-#: apps/journal/models.py:835
+#: apps/journal/models.py:843
 msgid "editorial board members"
 msgstr "члены редколлегии"
 
-#: apps/journal/models.py:876
+#: apps/journal/models.py:884
 msgid "total views"
 msgstr "всего просмотров"
 
-#: apps/journal/models.py:877
+#: apps/journal/models.py:885
 msgid "total downloads"
 msgstr "всего загрузок"
 
-#: apps/journal/models.py:878
+#: apps/journal/models.py:886
 msgid "views (30 days)"
 msgstr "просмотры (30 дней)"
 
-#: apps/journal/models.py:879
+#: apps/journal/models.py:887
 msgid "downloads (30 days)"
 msgstr "загрузки (30 дней)"
 
-#: apps/journal/models.py:880
+#: apps/journal/models.py:888
 msgid "computed at"
 msgstr "рассчитано"
 
-#: apps/journal/models.py:883 apps/journal/models.py:884
+#: apps/journal/models.py:891 apps/journal/models.py:892
 msgid "article statistics"
 msgstr "статистика статьи"
 
@@ -1753,24 +1758,24 @@ msgstr ""
 "Рецензированные статьи, опубликованные до выхода выпуска и уже цитируемые по"
 " DOI."
 
-#: apps/journal/views.py:437
+#: apps/journal/views.py:432
 msgid "Author not found."
 msgstr "Автор не найден."
 
-#: apps/journal/views.py:449
+#: apps/journal/views.py:444
 #, python-format
 msgid "Articles by %(name)s"
 msgstr "Статьи автора %(name)s"
 
-#: apps/journal/views.py:494 templates/includes/footer.html:8
+#: apps/journal/views.py:489 templates/includes/footer.html:8
 msgid "Editorial Board"
 msgstr "Редакционная коллегия"
 
-#: apps/journal/views.py:495
+#: apps/journal/views.py:490
 msgid "Editorial board of the journal."
 msgstr "Редакционная коллегия журнала."
 
-#: apps/journal/views.py:504
+#: apps/journal/views.py:499
 msgid "Standing reviewer board of the journal."
 msgstr "Постоянный совет рецензентов журнала."
 
@@ -1951,7 +1956,7 @@ msgid "At least 10 references"
 msgstr "Не менее 10 источников"
 
 #: apps/production/services.py:246 templates/core/about.html:24
-#: templates/journal/article_detail.html:279
+#: templates/journal/article_detail.html:284
 msgid "Licence"
 msgstr "Лицензия"
 
@@ -2150,11 +2155,11 @@ msgstr "Русский"
 msgid "Select between 1 and 5 codes."
 msgstr "Выберите от 1 до 5 кодов."
 
-#: apps/submissions/forms.py:150 templates/journal/article_detail.html:188
+#: apps/submissions/forms.py:150 templates/journal/article_detail.html:193
 msgid "Funding"
 msgstr "Финансирование"
 
-#: apps/submissions/forms.py:154 templates/journal/article_detail.html:191
+#: apps/submissions/forms.py:154 templates/journal/article_detail.html:196
 msgid "Conflict of interest"
 msgstr "Конфликт интересов"
 
@@ -2162,11 +2167,11 @@ msgstr "Конфликт интересов"
 msgid "The authors declare no conflict of interest."
 msgstr "Авторы заявляют об отсутствии конфликта интересов."
 
-#: apps/submissions/forms.py:160 templates/journal/article_detail.html:194
+#: apps/submissions/forms.py:160 templates/journal/article_detail.html:199
 msgid "Data availability"
 msgstr "Доступность данных"
 
-#: apps/submissions/forms.py:165 templates/journal/article_detail.html:226
+#: apps/submissions/forms.py:165 templates/journal/article_detail.html:231
 msgid "References"
 msgstr "Список литературы"
 
@@ -2290,7 +2295,7 @@ msgstr "Напишите авторам отзыв объёмом не мене�
 
 #: apps/submissions/forms.py:454 templates/core/contact.html:14
 #: templates/dashboard/submission_detail.html:70
-#: templates/journal/article_detail.html:327
+#: templates/journal/article_detail.html:332
 msgid "E-mail"
 msgstr "Электронная почта"
 
@@ -3260,7 +3265,7 @@ msgid "The file has been removed."
 msgstr "Файл удалён."
 
 #: apps/submissions/workflow.py:60 templates/core/for_authors.html:30
-#: templates/includes/header.html:43 templates/journal/home.html:181
+#: templates/includes/header.html:43 templates/journal/home.html:191
 msgid "Submit"
 msgstr "Отправить"
 
@@ -3507,13 +3512,13 @@ msgid "Editorial office"
 msgstr "Редакция"
 
 #: templates/core/announcement_detail.html:6
-#: templates/journal/article_detail.html:18
+#: templates/journal/article_detail.html:23
 #: templates/journal/issue_detail.html:15
 msgid "Breadcrumb"
 msgstr "Навигационная цепочка"
 
 #: templates/core/announcement_detail.html:7
-#: templates/journal/article_detail.html:19
+#: templates/journal/article_detail.html:24
 #: templates/journal/issue_detail.html:16
 msgid "Home"
 msgstr "Главная"
@@ -3521,7 +3526,7 @@ msgstr "Главная"
 #: templates/core/announcement_detail.html:8
 #: templates/core/announcement_list.html:3
 #: templates/core/announcement_list.html:6 templates/includes/footer.html:44
-#: templates/journal/home.html:97
+#: templates/journal/home.html:105
 msgid "Announcements"
 msgstr "Объявления"
 
@@ -3529,7 +3534,7 @@ msgstr "Объявления"
 msgid "Pinned"
 msgstr "Закреплено"
 
-#: templates/core/announcement_list.html:19 templates/journal/home.html:108
+#: templates/core/announcement_list.html:19 templates/journal/home.html:116
 msgid "There are no announcements at the moment."
 msgstr "Объявлений пока нет."
 
@@ -3589,7 +3594,7 @@ msgstr "Прочитать политику оплаты"
 msgid "Check the scope"
 msgstr "Проверьте тематику"
 
-#: templates/core/for_authors.html:17 templates/journal/home.html:167
+#: templates/core/for_authors.html:17 templates/journal/home.html:175
 msgid "Aims & scope"
 msgstr "Цели и тематика"
 
@@ -3716,7 +3721,7 @@ msgid "Countries of authors"
 msgstr "Страны авторов"
 
 #: templates/core/templates_download.html:7
-#: templates/journal/article_detail.html:334 templates/journal/home.html:120
+#: templates/journal/article_detail.html:339 templates/journal/home.html:128
 #: templates/journal/partials/article_card.html:39
 msgid "Downloads"
 msgstr "Загрузки"
@@ -3932,7 +3937,7 @@ msgid "Submit a manuscript"
 msgstr "Подать рукопись"
 
 #: templates/dashboard/home.html:170 templates/journal/archive.html:36
-#: templates/journal/home.html:141
+#: templates/journal/home.html:148
 #, python-format
 msgid "%(counter)s article"
 msgid_plural "%(counter)s articles"
@@ -3994,12 +3999,11 @@ msgstr "Ход публикации"
 
 #: templates/dashboard/partials/submission_card.html:21
 #, python-format
-#| msgid "Page %(current)s of %(total)s"
 msgid "Step %(step)s of %(total)s"
 msgstr "Этап %(step)s из %(total)s"
 
 #: templates/dashboard/partials/submission_card.html:51
-#: templates/journal/archive.html:35 templates/journal/article_detail.html:92
+#: templates/journal/archive.html:35 templates/journal/article_detail.html:97
 #: templates/production/article_detail.html:86
 #: templates/production/queue.html:66
 msgid "Issue"
@@ -4010,8 +4014,8 @@ msgid "View the published article"
 msgstr "Открыть опубликованную статью"
 
 #: templates/dashboard/partials/submission_card.html:66
-#: templates/journal/article_detail.html:174
-#: templates/journal/article_detail.html:293
+#: templates/journal/article_detail.html:179
+#: templates/journal/article_detail.html:298
 msgid "Download PDF"
 msgstr "Скачать PDF"
 
@@ -4171,7 +4175,7 @@ msgstr "не назначен"
 
 #: templates/dashboard/submission_detail.html:39
 #: templates/includes/language_switcher.html:4
-#: templates/journal/article_detail.html:132
+#: templates/journal/article_detail.html:137
 #: templates/review/assignment_detail.html:12
 #: templates/submissions/wizard_step5.html:20
 msgid "Language"
@@ -4204,7 +4208,7 @@ msgid "Rounds"
 msgstr "Раунды"
 
 #: templates/dashboard/submission_detail.html:60
-#: templates/journal/article_detail.html:140
+#: templates/journal/article_detail.html:145
 #: templates/review/assignment_detail.html:22
 msgid "Abstract"
 msgstr "Аннотация"
@@ -4421,14 +4425,14 @@ msgstr "Политика в отношении генеративного ИИ"
 msgid "Browse"
 msgstr "Навигация"
 
-#: templates/includes/footer.html:38 templates/journal/home.html:42
+#: templates/includes/footer.html:38 templates/journal/home.html:47
 #: templates/journal/issue_empty.html:3 templates/journal/issue_empty.html:6
 msgid "Current issue"
 msgstr "Текущий выпуск"
 
 #: templates/includes/footer.html:39 templates/includes/header.html:11
 #: templates/includes/header.html:99 templates/journal/archive.html:3
-#: templates/journal/archive.html:6 templates/journal/article_detail.html:20
+#: templates/journal/archive.html:6 templates/journal/article_detail.html:25
 #: templates/journal/issue_detail.html:17
 msgid "Archive"
 msgstr "Архив"
@@ -4498,23 +4502,13 @@ msgstr "Текущий выпуск"
 msgid "Menu"
 msgstr "Меню"
 
-#: templates/includes/header.html:106 templates/journal/home.html:32
+#: templates/includes/header.html:106 templates/journal/home.html:37
 msgid "Submit your manuscript"
 msgstr "Подайте вашу рукопись"
 
 #: templates/includes/wizard_steps.html:3
 msgid "Submission steps"
 msgstr "Шаги подачи"
-
-#: templates/includes/wordmark.html:2
-msgctxt "wordmark"
-msgid "ALGORITHM"
-msgstr "АЛГОРИТМ"
-
-#: templates/includes/wordmark.html:4
-msgctxt "wordmark"
-msgid "Review of Economic Research"
-msgstr "Обзор экономических исследований"
 
 #: templates/journal/archive.html:7
 msgid "Every issue published by the journal, newest first."
@@ -4536,16 +4530,16 @@ msgstr "Пока не опубликовано ни одного выпуска.
 msgid "See Online First articles"
 msgstr "Посмотреть статьи Online First"
 
-#: templates/journal/article_detail.html:26
+#: templates/journal/article_detail.html:31
 #: templates/production/issue_builder.html:13
 msgid "Article"
 msgstr "Статья"
 
-#: templates/journal/article_detail.html:30
+#: templates/journal/article_detail.html:35
 msgid "RETRACTED ARTICLE"
 msgstr "ОТОЗВАННАЯ СТАТЬЯ"
 
-#: templates/journal/article_detail.html:31
+#: templates/journal/article_detail.html:36
 msgid ""
 "This article has been retracted. The record is kept online in line with COPE"
 " guidance."
@@ -4553,86 +4547,86 @@ msgstr ""
 "Эта статья отозвана. Запись сохраняется в сети в соответствии с "
 "рекомендациями COPE."
 
-#: templates/journal/article_detail.html:41
+#: templates/journal/article_detail.html:46
 msgid "Open Access"
 msgstr "Открытый доступ"
 
-#: templates/journal/article_detail.html:52
+#: templates/journal/article_detail.html:57
 msgid "Title in other languages"
 msgstr "Название на других языках"
 
-#: templates/journal/article_detail.html:72
+#: templates/journal/article_detail.html:77
 msgid "E-mail the corresponding author"
 msgstr "Написать корреспондирующему автору"
 
-#: templates/journal/article_detail.html:79
+#: templates/journal/article_detail.html:84
 msgid "Affiliation not provided"
 msgstr "Место работы не указано"
 
-#: templates/journal/article_detail.html:95
+#: templates/journal/article_detail.html:100
 #: templates/production/issue_builder.html:13
 msgid "Pages"
 msgstr "Страницы"
 
-#: templates/journal/article_detail.html:105
+#: templates/journal/article_detail.html:110
 msgid "Published online"
 msgstr "Опубликовано онлайн"
 
-#: templates/journal/article_detail.html:110
+#: templates/journal/article_detail.html:115
 msgid "Received / Accepted"
 msgstr "Получена / принята"
 
-#: templates/journal/article_detail.html:125
+#: templates/journal/article_detail.html:130
 #: templates/review/assignment_detail.html:15
 msgid "Keywords"
 msgstr "Ключевые слова"
 
-#: templates/journal/article_detail.html:144
+#: templates/journal/article_detail.html:149
 msgid "Abstract language"
 msgstr "Язык аннотации"
 
-#: templates/journal/article_detail.html:162
+#: templates/journal/article_detail.html:167
 msgid "No abstract is available for this article."
 msgstr "Для этой статьи аннотация отсутствует."
 
-#: templates/journal/article_detail.html:172
+#: templates/journal/article_detail.html:177
 msgid "Full text"
 msgstr "Полный текст"
 
-#: templates/journal/article_detail.html:197
+#: templates/journal/article_detail.html:202
 msgid "Use of generative AI"
 msgstr "Использование генеративного ИИ"
 
-#: templates/journal/article_detail.html:200
+#: templates/journal/article_detail.html:205
 msgid "Acknowledgements"
 msgstr "Благодарности"
 
-#: templates/journal/article_detail.html:206
+#: templates/journal/article_detail.html:211
 msgid "How to cite"
 msgstr "Как цитировать"
 
-#: templates/journal/article_detail.html:239
+#: templates/journal/article_detail.html:244
 msgid "Google Scholar"
 msgstr "Google Scholar"
 
-#: templates/journal/article_detail.html:250
+#: templates/journal/article_detail.html:255
 msgid "Related articles"
 msgstr "Похожие статьи"
 
-#: templates/journal/article_detail.html:260
+#: templates/journal/article_detail.html:265
 msgid "About the authors"
 msgstr "Об авторах"
 
-#: templates/journal/article_detail.html:281
+#: templates/journal/article_detail.html:286
 #, python-format
 msgid "© %(holder)s."
 msgstr "© %(holder)s."
 
-#: templates/journal/article_detail.html:282
+#: templates/journal/article_detail.html:287
 msgid "This is an open access article distributed under the terms of the"
 msgstr "Это статья открытого доступа, распространяемая на условиях"
 
-#: templates/journal/article_detail.html:285
+#: templates/journal/article_detail.html:290
 msgid ""
 "which permits unrestricted use, distribution and reproduction in any medium,"
 " provided the original work is properly cited."
@@ -4641,34 +4635,34 @@ msgstr ""
 "воспроизведение на любом носителе при условии корректного цитирования "
 "оригинальной работы."
 
-#: templates/journal/article_detail.html:307
+#: templates/journal/article_detail.html:312
 #: templates/journal/partials/cite_modal.html:12
 msgid "Cite this article"
 msgstr "Цитировать статью"
 
-#: templates/journal/article_detail.html:309
+#: templates/journal/article_detail.html:314
 msgid "Share"
 msgstr "Поделиться"
 
-#: templates/journal/article_detail.html:314
+#: templates/journal/article_detail.html:319
 msgid "Copy link"
 msgstr "Скопировать ссылку"
 
-#: templates/journal/article_detail.html:315
+#: templates/journal/article_detail.html:320
 #: templates/journal/partials/cite_modal.html:36
 msgid "Copied"
 msgstr "Скопировано"
 
-#: templates/journal/article_detail.html:331
+#: templates/journal/article_detail.html:336
 msgid "Metrics"
 msgstr "Показатели"
 
-#: templates/journal/article_detail.html:333 templates/journal/home.html:120
+#: templates/journal/article_detail.html:338 templates/journal/home.html:128
 #: templates/journal/partials/article_card.html:38
 msgid "Views"
 msgstr "Просмотры"
 
-#: templates/journal/article_detail.html:336
+#: templates/journal/article_detail.html:341
 msgid "Cited by"
 msgstr "Цитирований"
 
@@ -4697,131 +4691,131 @@ msgstr ""
 msgid "The board list is being prepared."
 msgstr "Список редколлегии готовится."
 
-#: templates/journal/home.html:20
+#: templates/journal/home.html:25
 msgid "Open Access · CC BY 4.0"
 msgstr "Открытый доступ · CC BY 4.0"
 
-#: templates/journal/home.html:21
+#: templates/journal/home.html:26
 msgid "No APC"
 msgstr "Без APC"
 
-#: templates/journal/home.html:22
+#: templates/journal/home.html:27
 msgid "Double-blind peer review"
 msgstr "Двойное слепое рецензирование"
 
-#: templates/journal/home.html:25
+#: templates/journal/home.html:30
 #, python-format
 msgid "%(days)s days to first decision"
 msgstr "%(days)s дней до первого решения"
 
-#: templates/journal/home.html:28
+#: templates/journal/home.html:33
 #, python-format
 msgid "%(rate)s%% acceptance rate"
 msgstr "доля принятых %(rate)s%%"
 
-#: templates/journal/home.html:33
+#: templates/journal/home.html:38
 msgid "Author guidelines"
 msgstr "Руководство для авторов"
 
-#: templates/journal/home.html:45
+#: templates/journal/home.html:50
 msgid "View full issue"
 msgstr "Посмотреть весь выпуск"
 
-#: templates/journal/home.html:66
+#: templates/journal/home.html:74
 msgid "This issue has no articles yet."
 msgstr "В этом выпуске пока нет статей."
 
-#: templates/journal/home.html:72
+#: templates/journal/home.html:80
 msgid ""
 "The first issue is being prepared. Accepted articles appear as Online First."
 msgstr ""
 "Первый выпуск готовится. Принятые статьи публикуются как Online First."
 
-#: templates/journal/home.html:82 templates/journal/home.html:99
+#: templates/journal/home.html:90 templates/journal/home.html:107
 msgid "All"
 msgstr "Все"
 
-#: templates/journal/home.html:113
+#: templates/journal/home.html:121
 msgid "Most read"
 msgstr "Самые читаемые"
 
-#: templates/journal/home.html:114
+#: templates/journal/home.html:122
 msgid "last 30 days"
 msgstr "последние 30 дней"
 
-#: templates/journal/home.html:123
+#: templates/journal/home.html:131
 msgid "Usage statistics will appear once articles are published."
 msgstr "Статистика использования появится после публикации статей."
 
-#: templates/journal/home.html:133
+#: templates/journal/home.html:141
 msgid "Browse by section"
 msgstr "Просмотр по рубрикам"
 
-#: templates/journal/home.html:146
+#: templates/journal/home.html:153
 msgid "Browse by JEL classification"
 msgstr "Просмотр по классификации JEL"
 
-#: templates/journal/home.html:147
+#: templates/journal/home.html:154
 msgid "Full tree"
 msgstr "Полное дерево"
 
-#: templates/journal/home.html:159
+#: templates/journal/home.html:166
 msgid "Publishing with us"
 msgstr "Публикация у нас"
 
-#: templates/journal/home.html:163
+#: templates/journal/home.html:171
 msgid "Step 1"
 msgstr "Шаг 1"
 
-#: templates/journal/home.html:164
+#: templates/journal/home.html:172
 msgid "Read the scope"
 msgstr "Ознакомьтесь с тематикой"
 
-#: templates/journal/home.html:165
+#: templates/journal/home.html:173
 msgid "Check that your research fits one of our eight sections."
 msgstr "Убедитесь, что ваше исследование относится к одной из восьми рубрик."
 
-#: templates/journal/home.html:170
+#: templates/journal/home.html:179
 msgid "Step 2"
 msgstr "Шаг 2"
 
-#: templates/journal/home.html:171
+#: templates/journal/home.html:180
 msgid "Prepare the manuscript"
 msgstr "Подготовьте рукопись"
 
-#: templates/journal/home.html:172
+#: templates/journal/home.html:181
 msgid "Use our template and APA 7 references; anonymise the file."
 msgstr "Используйте наш шаблон и ссылки APA 7; обезличьте файл."
 
-#: templates/journal/home.html:174
+#: templates/journal/home.html:183
 msgid "Templates"
 msgstr "Шаблоны"
 
-#: templates/journal/home.html:177
+#: templates/journal/home.html:187
 msgid "Step 3"
 msgstr "Шаг 3"
 
-#: templates/journal/home.html:178
+#: templates/journal/home.html:188
 msgid "Submit online"
 msgstr "Подайте онлайн"
 
-#: templates/journal/home.html:179
+#: templates/journal/home.html:189
 msgid "Five short steps; you can save and return at any time."
 msgstr "Пять коротких шагов; можно сохранить и вернуться в любой момент."
 
-#: templates/journal/home.html:184
+#: templates/journal/home.html:195
 msgid "Step 4"
 msgstr "Шаг 4"
 
-#: templates/journal/home.html:185
+#: templates/journal/home.html:196
 msgid "Double-blind review"
 msgstr "Двойное слепое рецензирование"
 
-#: templates/journal/home.html:186
+#: templates/journal/home.html:197
 msgid "Two independent reviewers; first decision within about eight weeks."
 msgstr "Два независимых рецензента; первое решение примерно за восемь недель."
 
-#: templates/journal/home.html:196
+#: templates/journal/home.html:207
 msgid "Indexed and archived in"
 msgstr "Индексируется и архивируется в"
 

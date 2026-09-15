@@ -491,7 +491,10 @@ def reports(request: HttpRequest) -> HttpResponse:
         import csv
 
         response = HttpResponse(content_type="text/csv")
-        response["Content-Disposition"] = 'attachment; filename="arer-editorial-kpi.csv"'
+        from apps.core.services import get_site_settings
+
+        code = get_site_settings().short_code.lower()
+        response["Content-Disposition"] = f'attachment; filename="{code}-editorial-kpi.csv"'
         writer = csv.writer(response)
         writer.writerow(["month", "submissions", "accepted"])
         for row in monthly_series(24):

@@ -31,7 +31,7 @@ def test_site_settings_cannot_be_deleted(site_settings) -> None:
 
 def test_get_site_settings_is_cached(site_settings) -> None:
     """The cached accessor returns the singleton."""
-    assert get_site_settings().short_code == "ARER"
+    assert get_site_settings().short_code == "MRER"
 
 
 def test_eissn_display_falls_back(db) -> None:

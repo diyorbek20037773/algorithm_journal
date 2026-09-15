@@ -176,7 +176,12 @@ def _journal_article(journal, article: Article, site) -> None:
             _el(pages, "last_page", article.pages_end)
 
     publisher_item = _el(element, "publisher_item")
-    _el(publisher_item, "item_number", f"arer-{article.pk}", item_number_type="article_number")
+    _el(
+        publisher_item,
+        "item_number",
+        f"{site.short_code.lower()}-{article.pk}",
+        item_number_type="article_number",
+    )
 
     if article.license:
         program = etree.SubElement(element, f"{{{AI_NS}}}program")

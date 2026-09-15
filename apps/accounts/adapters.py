@@ -19,7 +19,7 @@ class AccountAdapter(DefaultAccountAdapter):
 
     def send_mail(self, template_prefix: str, email: str, context: dict[str, Any]) -> None:
         """Render allauth mails inside the shared e-mail layout."""
-        context.setdefault("site_name", "ALGORITHM: Review of Economic Research")
+        context.setdefault("site_name", "MEZON: Review of Economic Research")
         super().send_mail(template_prefix, email, context)
 
     def save_user(self, request: HttpRequest, user, form, commit: bool = True):

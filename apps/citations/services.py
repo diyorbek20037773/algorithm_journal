@@ -35,7 +35,7 @@ def csl_json(article) -> dict[str, Any]:
     site = get_site_settings()
     date = article.display_date
     item: dict[str, Any] = {
-        "id": f"arer-{article.pk}",
+        "id": f"{site.short_code.lower()}-{article.pk}",
         "type": "article-journal",
         "title": article.title_en or article.title,
         "container-title": site.journal_name_en or site.journal_name,
@@ -190,7 +190,8 @@ def export_article(article, fmt: str) -> tuple[str, str, str]:
     fmt = fmt.lower()
     if fmt not in EXPORT_FORMATS:
         raise ValueError(str(_("Unsupported export format.")))
-    stem = f"ARER-{article.pk}"
+    site = get_site_settings()
+    stem = f"{site.short_code}-{article.pk}"
     if fmt == "bibtex":
         return to_bibtex(article), "application/x-bibtex; charset=utf-8", f"{stem}.bib"
     if fmt == "ris":

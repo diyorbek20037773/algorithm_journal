@@ -20,12 +20,12 @@ POLICY_PAGES: list[dict[str, Any]] = [
             "ru": "О журнале",
         },
         "seo": {
-            "en": "ALGORITHM: Review of Economic Research is an open-access, double-blind peer-reviewed monthly journal of economics.",
-            "uz": "«ALGORITM» — iqtisodiy tadqiqotlar sharhi: ochiq kirishli, ikki tomonlama yashirin taqrizdan oʻtadigan oylik iqtisodiy jurnal.",
-            "ru": "«АЛГОРИТМ» — обзор экономических исследований: ежемесячный экономический журнал открытого доступа с двойным слепым рецензированием.",
+            "en": "MEZON: Review of Economic Research is an open-access, double-blind peer-reviewed monthly journal of economics.",
+            "uz": "«MEZON» — iqtisodiy tadqiqotlar sharhi: ochiq kirishli, ikki tomonlama yashirin taqrizdan oʻtadigan oylik iqtisodiy jurnal.",
+            "ru": "«МЕЗОН» — обзор экономических исследований: ежемесячный экономический журнал открытого доступа с двойным слепым рецензированием.",
         },
         "body": {
-            "en": """**ALGORITHM: Review of Economic Research** is an international, peer-reviewed,
+            "en": """**MEZON: Review of Economic Research** is an international, peer-reviewed,
 open-access scholarly journal publishing original research in economics. The journal
 appears monthly and accepts submissions in English, Uzbek and Russian.
 
@@ -66,7 +66,7 @@ The editorial office answers author and reviewer enquiries within three working 
 Contact details are on the [Contact](/en/about/contact/) page. Complaints and appeals
 follow the procedure set out in the
 [Publication Ethics](/en/about/publication-ethics/) statement.""",
-            "uz": """**«ALGORITM» — iqtisodiy tadqiqotlar sharhi** — iqtisodiyot sohasidagi original
+            "uz": """**«MEZON» — iqtisodiy tadqiqotlar sharhi** — iqtisodiyot sohasidagi original
 tadqiqotlarni chop etuvchi xalqaro, taqrizdan oʻtkaziladigan, ochiq kirishli ilmiy
 jurnal. Jurnal har oyda chiqadi va ingliz, oʻzbek hamda rus tillaridagi maqolalarni
 qabul qiladi.
@@ -111,7 +111,7 @@ Tahririyat mualliflar va taqrizchilarning murojaatlariga uch ish kuni ichida jav
 beradi. Aloqa maʼlumotlari [Bogʻlanish](/uz/about/contact/) sahifasida. Shikoyat va
 apellyatsiyalar [Nashr etikasi](/uz/about/publication-ethics/) bayonotidagi tartibda
 koʻrib chiqiladi.""",
-            "ru": """**«АЛГОРИТМ» — обзор экономических исследований** — международный
+            "ru": """**«МЕЗОН» — обзор экономических исследований** — международный
 рецензируемый научный журнал открытого доступа, публикующий оригинальные исследования
 по экономике. Журнал выходит ежемесячно и принимает рукописи на английском, узбекском
 и русском языках.

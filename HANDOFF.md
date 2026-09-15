@@ -1,4 +1,4 @@
-# HANDOFF — ALGORITHM: Review of Economic Research (ARER)
+# HANDOFF — MEZON: Review of Economic Research (MRER)
 
 Topshirish hujjati. Sana: **2026-yil 5-sentabr**.
 Repozitoriy: <https://github.com/diyorbek20037773/algorithm_journal> (`main`).

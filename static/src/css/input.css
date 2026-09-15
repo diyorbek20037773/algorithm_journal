@@ -107,6 +107,8 @@
   a.article-title,
   a.wordmark,
   a.eyebrow,
+  a.issue-cover,
+  a.section-card,
   .lang-switch a,
   .credibility a,
   nav[aria-label] a.nav-link {
@@ -613,8 +615,8 @@
   .wordmark-name {
     font-family: var(--font-serif);
     font-weight: 700;
-    letter-spacing: 0.02em;
-    font-size: 1.25rem;
+    letter-spacing: 0.06em;
+    font-size: 1.35rem;
     color: var(--color-ink);
   }
 
@@ -627,10 +629,54 @@
 
   .wordmark-descriptor {
     font-family: var(--font-sans);
-    font-weight: 500;
-    font-size: 0.5625rem;
-    letter-spacing: 0.12em;
+    font-weight: 600;
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
+    color: var(--color-accent);
+  }
+
+  /* The header row cannot wrap; at 320 px the wordmark has ~170 px beside
+     the search and menu buttons, so it tightens rather than overflows. */
+  @media (max-width: 400px) {
+    .wordmark-name {
+      font-size: 1.15rem;
+      letter-spacing: 0.04em;
+    }
+
+    .wordmark-descriptor {
+      font-size: 0.5rem;
+      letter-spacing: 0.08em;
+    }
+  }
+
+  /* --- masthead --- */
+  .masthead {
+    position: relative;
+    background: var(--color-paper-2);
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .masthead::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 4px;
+    background: var(--color-accent);
+  }
+
+  .masthead-name {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    color: var(--color-ink);
+  }
+
+  .masthead-descriptor {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    line-height: 1.15;
     color: var(--color-ink-2);
   }
 
@@ -638,7 +684,7 @@
   .credibility {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.4rem 0.9rem;
+    gap: 0.5rem;
     font-family: var(--font-mono);
     font-size: 0.75rem;
     color: var(--color-ink-2);
@@ -648,12 +694,14 @@
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
+    padding: 0.3rem 0.7rem;
+    border: 1px solid var(--color-line);
+    border-radius: 999px;
+    background: var(--color-paper);
   }
 
-  .credibility > li:not(:last-child)::after {
-    content: "·";
-    color: var(--color-ink-3);
-    margin-left: 0.9rem;
+  .credibility > li strong {
+    color: var(--color-ink);
   }
 
   /* --- article cards --- */
@@ -677,6 +725,8 @@
 
   .article-title:hover {
     color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 
   .authors-line {
@@ -687,24 +737,90 @@
   /* --- typographic issue cover --- */
   .issue-cover {
     aspect-ratio: 3 / 4;
-    background: var(--color-paper-2);
-    border: 1px solid var(--color-line);
+    background: var(--color-accent);
+    color: #fff;
     border-radius: var(--radius-card);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 1rem;
-    background-image: linear-gradient(var(--color-line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--color-line) 1px, transparent 1px);
-    background-size: 28px 28px;
-    background-position: -1px -1px;
+    padding: 1.1rem 1rem;
+    overflow: hidden;
+  }
+
+  .issue-cover .meta {
+    color: rgb(255 255 255 / 0.78);
+  }
+
+  .issue-cover-rule {
+    height: 1px;
+    width: 2.5rem;
+    background: rgb(255 255 255 / 0.55);
+    margin-bottom: 0.6rem;
   }
 
   .issue-cover-vol {
     font-family: var(--font-serif);
     font-weight: 700;
+    font-size: 1.6rem;
+    line-height: 1.1;
+    color: #fff;
+  }
+
+  /* --- section cards (home) --- */
+  .section-card {
+    display: block;
+    padding: 1.1rem 1.15rem;
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-card);
+    text-decoration: none;
+    transition: border-color 150ms ease;
+  }
+
+  .section-card:hover {
+    border-color: var(--color-accent);
+  }
+
+  .section-card-number {
+    font-family: var(--font-serif);
     font-size: 1.5rem;
+    line-height: 1;
+    color: var(--color-accent);
+  }
+
+  .section-card-name {
+    font-weight: 600;
+    line-height: 1.3;
     color: var(--color-ink);
+    margin-top: 0.5rem;
+  }
+
+  .section-card:hover .section-card-name {
+    color: var(--color-accent);
+  }
+
+  /* --- author journey steps (home) --- */
+  .journey-step {
+    position: relative;
+    padding: 1.25rem 1.25rem 1.25rem 1.25rem;
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-card);
+  }
+
+  .journey-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: #fff;
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
   }
 
   /* --- timeline --- */

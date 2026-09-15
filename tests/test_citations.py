@@ -102,7 +102,7 @@ def test_export_article_returns_mime_and_filename(article, site_settings, fmt) -
     content, mime, filename = export_article(article, fmt)
     assert content
     assert mime
-    assert filename.startswith(f"ARER-{article.pk}")
+    assert filename.startswith(f"MRER-{article.pk}")
 
 
 def test_unknown_export_format_raises(article, site_settings) -> None:
