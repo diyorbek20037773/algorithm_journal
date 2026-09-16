@@ -24,6 +24,7 @@ def site_settings(request: HttpRequest) -> dict[str, Any]:
         "matomo_url": settings.MATOMO_URL,
         "matomo_site_id": site.matomo_site_id or settings.MATOMO_SITE_ID,
         "current_year": __import__("datetime").date.today().year,
+        "google_login_enabled": bool(settings.GOOGLE_CLIENT_ID and settings.GOOGLE_CLIENT_SECRET),
     }
 
 

@@ -770,9 +770,14 @@
     color: var(--color-accent);
   }
 
-  /* the tab row scrolls silently when a long-label language needs more room */
-  nav:has(> .nav-tab) {
-    scrollbar-width: none;
+  /* a long-label language (Cyrillic, Russian) may shrink the tab gap and let
+     a label wrap to two lines rather than clip the last tab */
+  .nav-tab {
+    flex: 0 1 auto;
+    min-width: 0;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.15;
   }
 
   .nav-tab[aria-current="page"] {
@@ -839,6 +844,23 @@
 
   .utility-bar .sep {
     color: #34445a;
+  }
+
+  .utility-bar .lang-switch {
+    background: rgb(255 255 255 / 0.08);
+  }
+
+  .utility-bar .lang-switch a {
+    color: #c3cdd9;
+  }
+
+  .utility-bar .lang-switch a:hover {
+    color: #fff;
+  }
+
+  .utility-bar .lang-switch a[aria-current="true"] {
+    background: #fff;
+    color: var(--color-navy-deep);
   }
 
   .utility-bar .dot-live {

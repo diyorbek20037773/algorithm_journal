@@ -26,6 +26,7 @@
       <a href="{% url 'core:open_access' %}">CC BY 4.0</a>
       <span class="sep" aria-hidden="true">|</span>
       <a href="{% url 'core:contact' %}">{% translate "Editorial office" %}</a>
+      {% include "includes/language_switcher.html" %}
     </div>
   </div>
 </aside>
@@ -38,7 +39,7 @@
       Uzbek and Russian labels are up to a third longer than English, so the
       tab row may scroll sideways rather than push into the actions.
     {% endcomment %}
-    <nav class="hidden lg:flex items-center gap-4 xl:gap-5 flex-1 min-w-0 overflow-x-auto"
+    <nav class="hidden lg:flex items-center gap-4 xl:gap-6 flex-1 min-w-0"
          aria-label="{% translate 'Primary' %}">
       <a class="nav-tab"
          href="{% url 'journal:issue_current' %}"
@@ -65,15 +66,8 @@
          aria-label="{% translate 'Search' %}"
          @keydown.window.slash="if (!['INPUT', 'TEXTAREA', 'SELECT'].includes($event.target.tagName)) { $event.preventDefault(); $el.click() }">
         {% include "includes/icon.html" with name="search" size=18 %}
-        <span class="hidden 2xl:inline">{% translate "Search articles, authors, JEL…" %}</span>
         <span class="kbd hidden xl:inline" aria-hidden="true">/</span>
       </a>
-      {% comment %}
-        The switcher carries four languages, which is wider than a 320 px phone
-        can spare beside the wordmark and the menu button. Below md it moves
-        into the mobile drawer instead.
-      {% endcomment %}
-      <div class="hidden md:flex">{% include "includes/language_switcher.html" %}</div>
       <a class="btn btn-primary btn-sm hidden sm:inline-flex"
          href="{% url 'submissions:wizard_start' %}">
         {% include "includes/icon.html" with name="upload" size=14 %}
@@ -149,6 +143,7 @@
       {% if not user.is_authenticated %}
         <a class="nav-link mt-1" href="{% url 'account_login' %}">{% translate "Sign in" %}</a>
       {% endif %}
+      {% comment %}Below md the utility bar (and its switcher) is hidden.{% endcomment %}
       <div class="mt-3 md:hidden">{% include "includes/language_switcher.html" %}</div>
     </nav>
   </div>

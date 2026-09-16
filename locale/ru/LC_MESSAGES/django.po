@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-16 00:11+0500\n"
+"POT-Creation-Date: 2026-09-16 12:05+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: ARER editorial office\n"
 "Language-Team: ARER\n"
@@ -557,18 +557,18 @@ msgid "indexing service"
 msgstr "служба индексации"
 
 #: .\apps\core\models.py:235 .\templates\core\_page_shell.html:19
-#: .\templates\includes\header.html:61 .\templates\includes\header.html:147
+#: .\templates\includes\header.html:62 .\templates\includes\header.html:140
 msgid "About"
 msgstr "О журнале"
 
 #: .\apps\core\models.py:236 .\templates\core\_page_shell.html:15
-#: .\templates\core\for_authors.html:3 .\templates\includes\header.html:55
-#: .\templates\includes\header.html:141
+#: .\templates\core\for_authors.html:3 .\templates\includes\header.html:56
+#: .\templates\includes\header.html:134
 msgid "For Authors"
 msgstr "Авторам"
 
 #: .\apps\core\models.py:237 .\templates\core\_page_shell.html:17
-#: .\templates\includes\header.html:58 .\templates\includes\header.html:144
+#: .\templates\includes\header.html:59 .\templates\includes\header.html:137
 msgid "For Reviewers"
 msgstr "Рецензентам"
 
@@ -1400,7 +1400,7 @@ msgid "Draft"
 msgstr "Черновик"
 
 #: .\apps\journal\models.py:318 .\apps\submissions\views.py:459
-#: .\templates\includes\header.html:52 .\templates\includes\header.html:138
+#: .\templates\includes\header.html:53 .\templates\includes\header.html:131
 #: .\templates\journal\article_detail.html:29
 #: .\templates\journal\article_detail.html:48
 #: .\templates\journal\home.html:214 .\templates\journal\online_first.html:3
@@ -1693,7 +1693,7 @@ msgstr "Член редколлегии"
 msgid "International Advisory Board"
 msgstr "Международный консультативный совет"
 
-#: .\apps\journal\models.py:804 .\apps\journal\views.py:514
+#: .\apps\journal\models.py:804 .\apps\journal\views.py:519
 #: .\templates\includes\footer.html:35
 msgid "Reviewer Board"
 msgstr "Совет рецензентов"
@@ -1754,11 +1754,11 @@ msgstr "рассчитано"
 msgid "article statistics"
 msgstr "статистика статьи"
 
-#: .\apps\journal\views.py:121
+#: .\apps\journal\views.py:126
 msgid "Complete archive of published issues."
 msgstr "Полный архив опубликованных выпусков."
 
-#: .\apps\journal\views.py:149
+#: .\apps\journal\views.py:154
 msgid ""
 "Peer-reviewed articles published ahead of their issue, already citable by "
 "DOI."
@@ -1766,25 +1766,25 @@ msgstr ""
 "Рецензированные статьи, опубликованные до выхода выпуска и уже цитируемые по"
 " DOI."
 
-#: .\apps\journal\views.py:448
+#: .\apps\journal\views.py:453
 msgid "Author not found."
 msgstr "Автор не найден."
 
-#: .\apps\journal\views.py:460
+#: .\apps\journal\views.py:465
 #, python-format
 msgid "Articles by %(name)s"
 msgstr "Статьи автора %(name)s"
 
-#: .\apps\journal\views.py:505 .\templates\includes\footer.html:34
+#: .\apps\journal\views.py:510 .\templates\includes\footer.html:34
 #: .\templates\journal\home.html:273
 msgid "Editorial Board"
 msgstr "Редакционная коллегия"
 
-#: .\apps\journal\views.py:506
+#: .\apps\journal\views.py:511
 msgid "Editorial board of the journal."
 msgstr "Редакционная коллегия журнала."
 
-#: .\apps\journal\views.py:515
+#: .\apps\journal\views.py:520
 msgid "Standing reviewer board of the journal."
 msgstr "Постоянный совет рецензентов журнала."
 
@@ -3279,7 +3279,7 @@ msgid "The file has been removed."
 msgstr "Файл удалён."
 
 #: .\apps\submissions\workflow.py:60 .\templates\core\for_authors.html:30
-#: .\templates\includes\header.html:82
+#: .\templates\includes\header.html:75
 msgid "Submit"
 msgstr "Отправить"
 
@@ -3391,8 +3391,8 @@ msgid "This confirmation link is invalid or has expired."
 msgstr "Эта ссылка подтверждения недействительна или устарела."
 
 #: .\templates\account\login.html:3 .\templates\account\login.html:5
-#: .\templates\account\login.html:18 .\templates\includes\header.html:111
-#: .\templates\includes\header.html:152
+#: .\templates\account\login.html:18 .\templates\includes\header.html:104
+#: .\templates\includes\header.html:145
 msgid "Sign in"
 msgstr "Войти"
 
@@ -3404,17 +3404,22 @@ msgstr "Используйте адрес электронной почты, у�
 msgid "Sign in with ORCID"
 msgstr "Войти через ORCID"
 
-#: .\templates\account\login.html:27
+#: .\templates\account\login.html:30
+#| msgid "Sign in with ORCID"
+msgid "Sign in with Google"
+msgstr "Войти через Google"
+
+#: .\templates\account\login.html:34
 msgid "Forgot your password?"
 msgstr "Забыли пароль?"
 
-#: .\templates\account\login.html:28 .\templates\account\signup.html:3
+#: .\templates\account\login.html:35 .\templates\account\signup.html:3
 #: .\templates\account\signup.html:5
 msgid "Create an account"
 msgstr "Создать учётную запись"
 
 #: .\templates\account\logout.html:3 .\templates\account\logout.html:5
-#: .\templates\account\logout.html:9 .\templates\includes\header.html:105
+#: .\templates\account\logout.html:9 .\templates\includes\header.html:98
 msgid "Sign out"
 msgstr "Выйти"
 
@@ -3443,7 +3448,16 @@ msgstr ""
 msgid "Create account"
 msgstr "Создать учётную запись"
 
-#: .\templates\account\signup.html:15
+#: .\templates\account\signup.html:19
+#| msgid "Sign in with ORCID"
+msgid "Continue with ORCID"
+msgstr "Продолжить с ORCID"
+
+#: .\templates\account\signup.html:25
+msgid "Continue with Google"
+msgstr "Продолжить с Google"
+
+#: .\templates\account\signup.html:28
 msgid ""
 "We send a confirmation link to your e-mail address; the account is active "
 "once you confirm it."
@@ -3451,7 +3465,7 @@ msgstr ""
 "Мы отправим ссылку подтверждения на вашу почту; после подтверждения учётная "
 "запись станет активной."
 
-#: .\templates\account\signup.html:17
+#: .\templates\account\signup.html:30
 msgid "I already have an account"
 msgstr "У меня уже есть учётная запись"
 
@@ -3776,7 +3790,7 @@ msgstr ""
 "Редакция консультирует до подачи по тематике, предложениям специальных "
 "выпусков и институциональному партнёрству."
 
-#: .\templates\core\about.html:229 .\templates\includes\header.html:150
+#: .\templates\core\about.html:229 .\templates\includes\header.html:143
 #: .\templates\journal\home.html:40
 msgid "Submit your manuscript"
 msgstr "Подайте вашу рукопись"
@@ -4074,7 +4088,7 @@ msgstr "Навигация по кабинету"
 #: .\templates\dashboard\reports.html:3
 #: .\templates\dashboard\reviewer_finder.html:3
 #: .\templates\dashboard\submission_detail.html:3
-#: .\templates\dashboard\two_factor.html:3 .\templates\includes\header.html:97
+#: .\templates\dashboard\two_factor.html:3 .\templates\includes\header.html:90
 msgid "Dashboard"
 msgstr "Личный кабинет"
 
@@ -4105,13 +4119,12 @@ msgid "Account"
 msgstr "Учётная запись"
 
 #: .\templates\dashboard\_base.html:28 .\templates\dashboard\profile.html:3
-#: .\templates\dashboard\profile.html:5 .\templates\includes\header.html:98
+#: .\templates\dashboard\profile.html:5 .\templates\includes\header.html:91
 msgid "Profile"
 msgstr "Профиль"
 
 #: .\templates\dashboard\_base.html:29 .\templates\dashboard\two_factor.html:3
-#: .\templates\dashboard\two_factor.html:5
-#: .\templates\includes\header.html:100
+#: .\templates\dashboard\two_factor.html:5 .\templates\includes\header.html:93
 msgid "Two-factor authentication"
 msgstr "Двухфакторная аутентификация"
 
@@ -4326,7 +4339,7 @@ msgstr "Сохранить профиль"
 
 #: .\templates\dashboard\queue.html:11
 #: .\templates\dashboard\reviewer_finder.html:18
-#: .\templates\includes\header.html:66 .\templates\includes\header.html:148
+#: .\templates\includes\header.html:67 .\templates\includes\header.html:141
 #: .\templates\journal\home.html:113 .\templates\journal\home.html:121
 #: .\templates\journal\home.html:125 .\templates\search\search.html:3
 #: .\templates\search\search.html:6 .\templates\search\search.html:76
@@ -4760,7 +4773,6 @@ msgid "Ethics"
 msgstr "Этика"
 
 #: .\templates\includes\header.html:7
-#| msgid "Identifiers"
 msgid "Journal identifiers"
 msgstr "Идентификаторы журнала"
 
@@ -4768,26 +4780,22 @@ msgstr "Идентификаторы журнала"
 msgid "Open access · double-blind peer review"
 msgstr "Открытый доступ · двойное слепое рецензирование"
 
-#: .\templates\includes\header.html:43 .\templates\includes\header.html:129
+#: .\templates\includes\header.html:44 .\templates\includes\header.html:122
 msgid "Primary"
 msgstr "Основное"
 
-#: .\templates\includes\header.html:46 .\templates\includes\header.html:132
+#: .\templates\includes\header.html:47 .\templates\includes\header.html:125
 msgid "Current Issue"
 msgstr "Текущий выпуск"
 
-#: .\templates\includes\header.html:49 .\templates\includes\header.html:135
+#: .\templates\includes\header.html:50 .\templates\includes\header.html:128
 #: .\templates\journal\archive.html:3 .\templates\journal\archive.html:6
 #: .\templates\journal\article_detail.html:25
 #: .\templates\journal\home.html:178 .\templates\journal\issue_detail.html:19
 msgid "Archive"
 msgstr "Архив"
 
-#: .\templates\includes\header.html:69
-msgid "Search articles, authors, JEL…"
-msgstr "Поиск по статьям, авторам, JEL…"
-
-#: .\templates\includes\header.html:118
+#: .\templates\includes\header.html:111
 msgid "Menu"
 msgstr "Меню"
 

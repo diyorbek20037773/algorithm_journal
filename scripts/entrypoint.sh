@@ -51,6 +51,16 @@ case "${ROLE}" in
     wait_for_postgres
     python manage.py migrate --noinput
     python manage.py collectstatic --noinput --ignore=src
+    # A freshly created database has no policy pages, sections or JEL codes,
+    # so every footer link would 404. Seed that content once; it is flagged
+    # "needs editorial review" and carries no accounts. SEED_DEMO_ON_START=true
+    # (staging only) additionally loads the demo users, articles and
+    # submissions the first time.
+    if [ "${SEED_DEMO_ON_START:-false}" = "true" ]; then
+      python manage.py seed_demo --if-empty || true
+    else
+      python manage.py seed_demo --content-only --if-empty || true
+    fi
     # Workers follow the CPU count (the usual 2n+1, capped so a large host does
     # not open more database connections than Postgres allows); threads let
     # each worker overlap the I/O-bound parts of a request. 200 concurrent

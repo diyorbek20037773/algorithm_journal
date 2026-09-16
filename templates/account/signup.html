@@ -12,6 +12,19 @@
     {% endfor %}
     <button type="submit" class="btn btn-primary w-full">{% translate "Create account" %}</button>
   </form>
+  <a class="btn btn-secondary w-full mt-3"
+     href="{% url 'orcid_login' %}?process=login"
+     style="border-color: var(--color-orcid)">
+    {% include "includes/orcid_icon.html" %}
+    {% translate "Continue with ORCID" %}
+  </a>
+  {% if google_login_enabled %}
+    <a class="btn btn-secondary w-full mt-3"
+       href="{% url 'google_login' %}?process=login">
+      {% include "includes/google_icon.html" %}
+      {% translate "Continue with Google" %}
+    </a>
+  {% endif %}
   <p class="field-help mt-4">{% translate "We send a confirmation link to your e-mail address; the account is active once you confirm it." %}</p>
   <div class="rule mt-6 pt-4 text-sm">
     <a href="{% url 'account_login' %}">{% translate "I already have an account" %}</a>

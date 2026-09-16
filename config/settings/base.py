@@ -84,6 +84,7 @@ THIRD_PARTY_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "allauth.socialaccount.providers.orcid",
+    "allauth.socialaccount.providers.google",
     "django_otp",
     "django_otp.plugins.otp_totp",
     "django_otp.plugins.otp_static",
@@ -275,6 +276,8 @@ SOCIALACCOUNT_QUERY_EMAIL = True
 SOCIALACCOUNT_STORE_TOKENS = False
 
 ORCID_BASE = env("ORCID_BASE", default="sandbox")
+GOOGLE_CLIENT_ID = env("GOOGLE_CLIENT_ID", default="")
+GOOGLE_CLIENT_SECRET = env("GOOGLE_CLIENT_SECRET", default="")
 SOCIALACCOUNT_PROVIDERS = {
     "orcid": {
         "BASE_DOMAIN": "sandbox.orcid.org" if ORCID_BASE == "sandbox" else "orcid.org",
@@ -284,7 +287,15 @@ SOCIALACCOUNT_PROVIDERS = {
             "secret": env("ORCID_CLIENT_SECRET", default=""),
             "key": "",
         },
-    }
+    },
+    # Google sign-in for authors and reviewers who have no ORCID yet. The
+    # button is rendered only when credentials are configured.
+    "google": {
+        "SCOPE": ["profile", "email"],
+        "AUTH_PARAMS": {"access_type": "online"},
+        "OAUTH_PKCE_ENABLED": True,
+        "APP": {"client_id": GOOGLE_CLIENT_ID, "secret": GOOGLE_CLIENT_SECRET, "key": ""},
+    },
 }
 
 # --- django-axes ---

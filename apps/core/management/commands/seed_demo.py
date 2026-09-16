@@ -83,12 +83,30 @@ class Command(BaseCommand):
             action="store_true",
             help="Delete existing demo articles and submissions before seeding.",
         )
+        parser.add_argument(
+            "--content-only",
+            action="store_true",
+            help=(
+                "Seed only what a live site cannot run without — settings, licences, "
+                "sections, JEL codes, indexing services, policy pages, e-mail templates. "
+                "No users, board, articles or submissions."
+            ),
+        )
+        parser.add_argument(
+            "--if-empty",
+            action="store_true",
+            help="Do nothing when the site already has policy pages (safe to run on every start).",
+        )
 
     @transaction.atomic
     def handle(self, *args: Any, **options: Any) -> None:
         """Run every seeding step in order."""
         self.rng = random.Random(20260904)
         self.stdout.write(self.style.MIGRATE_HEADING("Seeding ARER demonstration data"))
+
+        if options["if_empty"] and Page.objects.exists():
+            self.stdout.write("Site already has content; nothing to seed.")
+            return
 
         if options["reset_content"]:
             self._reset_content()
@@ -100,6 +118,11 @@ class Command(BaseCommand):
         self.seed_indexing()
         self.seed_pages()
         self.seed_email_templates()
+
+        if options["content_only"]:
+            self.stdout.write(self.style.SUCCESS("Content seed complete (no users or articles)."))
+            return
+
         self.seed_announcements()
         users = self.seed_users()
         self.seed_board(users)

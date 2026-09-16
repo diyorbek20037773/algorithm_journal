@@ -91,6 +91,9 @@ SESSION_COOKIE_SECURE=true
 CSRF_COOKIE_SECURE=true
 
 EMAIL_BACKEND=django.core.mail.backends.console.EmailBackend   # staging: no real mail
+SEED_DEMO_ON_START=true            # staging: demo accounts + articles on first start
+GOOGLE_CLIENT_ID=                  # optional: "Sign in with Google" button
+GOOGLE_CLIENT_SECRET=
 IP_HASH_SALT=                  # generate
 ```
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-16 00:11+0500\n"
+"POT-Creation-Date: 2026-09-16 12:05+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: ARER editorial office\n"
 "Language-Team: ARER\n"
@@ -560,18 +560,18 @@ msgid "indexing service"
 msgstr "indeksatsiya xizmati"
 
 #: .\apps\core\models.py:235 .\templates\core\_page_shell.html:19
-#: .\templates\includes\header.html:61 .\templates\includes\header.html:147
+#: .\templates\includes\header.html:62 .\templates\includes\header.html:140
 msgid "About"
 msgstr "Jurnal haqida"
 
 #: .\apps\core\models.py:236 .\templates\core\_page_shell.html:15
-#: .\templates\core\for_authors.html:3 .\templates\includes\header.html:55
-#: .\templates\includes\header.html:141
+#: .\templates\core\for_authors.html:3 .\templates\includes\header.html:56
+#: .\templates\includes\header.html:134
 msgid "For Authors"
 msgstr "Mualliflar uchun"
 
 #: .\apps\core\models.py:237 .\templates\core\_page_shell.html:17
-#: .\templates\includes\header.html:58 .\templates\includes\header.html:144
+#: .\templates\includes\header.html:59 .\templates\includes\header.html:137
 msgid "For Reviewers"
 msgstr "Taqrizchilar uchun"
 
@@ -1404,7 +1404,7 @@ msgid "Draft"
 msgstr "Qoralama"
 
 #: .\apps\journal\models.py:318 .\apps\submissions\views.py:459
-#: .\templates\includes\header.html:52 .\templates\includes\header.html:138
+#: .\templates\includes\header.html:53 .\templates\includes\header.html:131
 #: .\templates\journal\article_detail.html:29
 #: .\templates\journal\article_detail.html:48
 #: .\templates\journal\home.html:214 .\templates\journal\online_first.html:3
@@ -1697,7 +1697,7 @@ msgstr "Tahrir hayʼati aʼzosi"
 msgid "International Advisory Board"
 msgstr "Xalqaro maslahat kengashi"
 
-#: .\apps\journal\models.py:804 .\apps\journal\views.py:514
+#: .\apps\journal\models.py:804 .\apps\journal\views.py:519
 #: .\templates\includes\footer.html:35
 msgid "Reviewer Board"
 msgstr "Taqrizchilar kengashi"
@@ -1758,11 +1758,11 @@ msgstr "hisoblangan vaqt"
 msgid "article statistics"
 msgstr "maqola statistikasi"
 
-#: .\apps\journal\views.py:121
+#: .\apps\journal\views.py:126
 msgid "Complete archive of published issues."
 msgstr "Chop etilgan sonlarning toʻliq arxivi."
 
-#: .\apps\journal\views.py:149
+#: .\apps\journal\views.py:154
 msgid ""
 "Peer-reviewed articles published ahead of their issue, already citable by "
 "DOI."
@@ -1770,25 +1770,25 @@ msgstr ""
 "Songa kirishidan oldin chop etilgan, DOI orqali iqtibos qilinadigan "
 "taqrizdan oʻtgan maqolalar."
 
-#: .\apps\journal\views.py:448
+#: .\apps\journal\views.py:453
 msgid "Author not found."
 msgstr "Muallif topilmadi."
 
-#: .\apps\journal\views.py:460
+#: .\apps\journal\views.py:465
 #, python-format
 msgid "Articles by %(name)s"
 msgstr "%(name)s maqolalari"
 
-#: .\apps\journal\views.py:505 .\templates\includes\footer.html:34
+#: .\apps\journal\views.py:510 .\templates\includes\footer.html:34
 #: .\templates\journal\home.html:273
 msgid "Editorial Board"
 msgstr "Tahrir hayʼati"
 
-#: .\apps\journal\views.py:506
+#: .\apps\journal\views.py:511
 msgid "Editorial board of the journal."
 msgstr "Jurnalning tahrir hayʼati."
 
-#: .\apps\journal\views.py:515
+#: .\apps\journal\views.py:520
 msgid "Standing reviewer board of the journal."
 msgstr "Jurnalning doimiy taqrizchilar kengashi."
 
@@ -3290,7 +3290,7 @@ msgid "The file has been removed."
 msgstr "Fayl oʻchirildi."
 
 #: .\apps\submissions\workflow.py:60 .\templates\core\for_authors.html:30
-#: .\templates\includes\header.html:82
+#: .\templates\includes\header.html:75
 msgid "Submit"
 msgstr "Yuborish"
 
@@ -3401,8 +3401,8 @@ msgid "This confirmation link is invalid or has expired."
 msgstr "Bu tasdiqlash havolasi yaroqsiz yoki muddati oʻtgan."
 
 #: .\templates\account\login.html:3 .\templates\account\login.html:5
-#: .\templates\account\login.html:18 .\templates\includes\header.html:111
-#: .\templates\includes\header.html:152
+#: .\templates\account\login.html:18 .\templates\includes\header.html:104
+#: .\templates\includes\header.html:145
 msgid "Sign in"
 msgstr "Kirish"
 
@@ -3414,17 +3414,22 @@ msgstr "Roʻyxatdan oʻtgan elektron pochta manzilingizdan foydalaning."
 msgid "Sign in with ORCID"
 msgstr "ORCID orqali kirish"
 
-#: .\templates\account\login.html:27
+#: .\templates\account\login.html:30
+#| msgid "Sign in with ORCID"
+msgid "Sign in with Google"
+msgstr "Google orqali kirish"
+
+#: .\templates\account\login.html:34
 msgid "Forgot your password?"
 msgstr "Parolni unutdingizmi?"
 
-#: .\templates\account\login.html:28 .\templates\account\signup.html:3
+#: .\templates\account\login.html:35 .\templates\account\signup.html:3
 #: .\templates\account\signup.html:5
 msgid "Create an account"
 msgstr "Hisob yaratish"
 
 #: .\templates\account\logout.html:3 .\templates\account\logout.html:5
-#: .\templates\account\logout.html:9 .\templates\includes\header.html:105
+#: .\templates\account\logout.html:9 .\templates\includes\header.html:98
 msgid "Sign out"
 msgstr "Chiqish"
 
@@ -3453,7 +3458,16 @@ msgstr ""
 msgid "Create account"
 msgstr "Hisob yaratish"
 
-#: .\templates\account\signup.html:15
+#: .\templates\account\signup.html:19
+#| msgid "Sign in with ORCID"
+msgid "Continue with ORCID"
+msgstr "ORCID bilan davom etish"
+
+#: .\templates\account\signup.html:25
+msgid "Continue with Google"
+msgstr "Google bilan davom etish"
+
+#: .\templates\account\signup.html:28
 msgid ""
 "We send a confirmation link to your e-mail address; the account is active "
 "once you confirm it."
@@ -3461,7 +3475,7 @@ msgstr ""
 "Elektron pochtangizga tasdiqlash havolasi yuboriladi; tasdiqlaganingizdan "
 "keyin hisob faollashadi."
 
-#: .\templates\account\signup.html:17
+#: .\templates\account\signup.html:30
 msgid "I already have an account"
 msgstr "Menda hisob bor"
 
@@ -3788,7 +3802,7 @@ msgstr ""
 "Tahririyat koʻlam, maxsus son takliflari va institutsional hamkorlik "
 "boʻyicha topshirishdan oldingi maslahat beradi."
 
-#: .\templates\core\about.html:229 .\templates\includes\header.html:150
+#: .\templates\core\about.html:229 .\templates\includes\header.html:143
 #: .\templates\journal\home.html:40
 msgid "Submit your manuscript"
 msgstr "Qoʻlyozmangizni yuboring"
@@ -4090,7 +4104,7 @@ msgstr "Panel navigatsiyasi"
 #: .\templates\dashboard\reports.html:3
 #: .\templates\dashboard\reviewer_finder.html:3
 #: .\templates\dashboard\submission_detail.html:3
-#: .\templates\dashboard\two_factor.html:3 .\templates\includes\header.html:97
+#: .\templates\dashboard\two_factor.html:3 .\templates\includes\header.html:90
 msgid "Dashboard"
 msgstr "Boshqaruv paneli"
 
@@ -4121,13 +4135,12 @@ msgid "Account"
 msgstr "Hisob"
 
 #: .\templates\dashboard\_base.html:28 .\templates\dashboard\profile.html:3
-#: .\templates\dashboard\profile.html:5 .\templates\includes\header.html:98
+#: .\templates\dashboard\profile.html:5 .\templates\includes\header.html:91
 msgid "Profile"
 msgstr "Profil"
 
 #: .\templates\dashboard\_base.html:29 .\templates\dashboard\two_factor.html:3
-#: .\templates\dashboard\two_factor.html:5
-#: .\templates\includes\header.html:100
+#: .\templates\dashboard\two_factor.html:5 .\templates\includes\header.html:93
 msgid "Two-factor authentication"
 msgstr "Ikki bosqichli autentifikatsiya"
 
@@ -4341,7 +4354,7 @@ msgstr "Profilni saqlash"
 
 #: .\templates\dashboard\queue.html:11
 #: .\templates\dashboard\reviewer_finder.html:18
-#: .\templates\includes\header.html:66 .\templates\includes\header.html:148
+#: .\templates\includes\header.html:67 .\templates\includes\header.html:141
 #: .\templates\journal\home.html:113 .\templates\journal\home.html:121
 #: .\templates\journal\home.html:125 .\templates\search\search.html:3
 #: .\templates\search\search.html:6 .\templates\search\search.html:76
@@ -4774,7 +4787,6 @@ msgid "Ethics"
 msgstr "Etika"
 
 #: .\templates\includes\header.html:7
-#| msgid "Identifiers"
 msgid "Journal identifiers"
 msgstr "Jurnal identifikatorlari"
 
@@ -4782,26 +4794,22 @@ msgstr "Jurnal identifikatorlari"
 msgid "Open access · double-blind peer review"
 msgstr "Ochiq kirish · ikki tomonlama anonim taqriz"
 
-#: .\templates\includes\header.html:43 .\templates\includes\header.html:129
+#: .\templates\includes\header.html:44 .\templates\includes\header.html:122
 msgid "Primary"
 msgstr "Asosiy"
 
-#: .\templates\includes\header.html:46 .\templates\includes\header.html:132
+#: .\templates\includes\header.html:47 .\templates\includes\header.html:125
 msgid "Current Issue"
 msgstr "Joriy son"
 
-#: .\templates\includes\header.html:49 .\templates\includes\header.html:135
+#: .\templates\includes\header.html:50 .\templates\includes\header.html:128
 #: .\templates\journal\archive.html:3 .\templates\journal\archive.html:6
 #: .\templates\journal\article_detail.html:25
 #: .\templates\journal\home.html:178 .\templates\journal\issue_detail.html:19
 msgid "Archive"
 msgstr "Arxiv"
 
-#: .\templates\includes\header.html:69
-msgid "Search articles, authors, JEL…"
-msgstr "Maqola, muallif, JEL boʻyicha qidiring…"
-
-#: .\templates\includes\header.html:118
+#: .\templates\includes\header.html:111
 msgid "Menu"
 msgstr "Menyu"
 

@@ -23,6 +23,13 @@
     {% include "includes/orcid_icon.html" %}
     {% translate "Sign in with ORCID" %}
   </a>
+  {% if google_login_enabled %}
+    <a class="btn btn-secondary w-full mt-3"
+       href="{% url 'google_login' %}?process=login">
+      {% include "includes/google_icon.html" %}
+      {% translate "Sign in with Google" %}
+    </a>
+  {% endif %}
   <div class="rule mt-6 pt-4 text-sm flex flex-col gap-2">
     <a href="{% url 'account_reset_password' %}">{% translate "Forgot your password?" %}</a>
     <a href="{% url 'account_signup' %}">{% translate "Create an account" %}</a>

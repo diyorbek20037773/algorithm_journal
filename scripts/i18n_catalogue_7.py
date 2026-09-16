@@ -17,6 +17,9 @@ PART_7: dict[str, tuple[str, str]] = {
     ),
     "Editorial office": ("Tahririyat", "Редакция"),
     "Journal identifiers": ("Jurnal identifikatorlari", "Идентификаторы журнала"),
+    "Sign in with Google": ("Google orqali kirish", "Войти через Google"),
+    "Continue with Google": ("Google bilan davom etish", "Продолжить с Google"),
+    "Continue with ORCID": ("ORCID bilan davom etish", "Продолжить с ORCID"),
     "Search articles, authors, JEL…": (
         "Maqola, muallif, JEL boʻyicha qidiring…",
         "Поиск по статьям, авторам, JEL…",
