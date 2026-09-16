@@ -39,7 +39,7 @@ FROM python:3.12-slim-bookworm AS runtime
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
     PATH="/opt/venv/bin:$PATH" \
-    DJANGO_SETTINGS_MODULE=config.settings.dev
+    DJANGO_SETTINGS_MODULE=config.settings.prod
 
 RUN apt-get update && apt-get install --no-install-recommends -y \
         libpq5 \

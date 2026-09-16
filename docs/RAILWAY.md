@@ -26,6 +26,28 @@ Two more things Railway needs that a compose stack does not:
 * the image's default command must be production — `CMD ["prod"]` now starts
   gunicorn, where it used to start the development server.
 
+## The second failure: `Error 111 connecting to localhost:6379`
+
+```
+ConnectionError at /
+Error 111 connecting to localhost:6379. Connection refused.
+Settings: Using settings module config.settings.dev
+```
+
+The `web` service had **no variables at all**: it ran the development
+settings (which also showed the traceback to the public) and looked for Redis
+on `localhost`. Two fixes in the image, one thing to do in Railway:
+
+* the image now defaults to `config.settings.prod`, so a service with no
+  variables fails closed (no traceback page) instead of open;
+* the cache backend (`apps.core.cache_backend.ResilientRedisCache`) degrades
+  to "no cache" with one logged error when Redis is unreachable, so a
+  mis-wired Redis slows the site down rather than taking it offline, and
+  `CELERY_BROKER_URL` / `CELERY_RESULT_BACKEND` are derived from `REDIS_URL`
+  when they are not set;
+* **in Railway, add the Redis plugin and set the variables below** — the site
+  still needs Redis for Celery, whole-page caching and rate limiting.
+
 ## Services
 
 One Railway project, four services, all built from this repository's
@@ -57,8 +79,7 @@ DJANGO_CSRF_TRUSTED_ORIGINS=https://algorithmjournal-production.up.railway.app
 
 DATABASE_URL=${{Postgres.DATABASE_URL}}
 REDIS_URL=${{Redis.REDIS_URL}}
-CELERY_BROKER_URL=${{Redis.REDIS_URL}}
-CELERY_RESULT_BACKEND=${{Redis.REDIS_URL}}
+# CELERY_BROKER_URL / CELERY_RESULT_BACKEND are derived from REDIS_URL (db 1 / 2)
 
 DB_POOL=true
 DB_POOL_MAX=4

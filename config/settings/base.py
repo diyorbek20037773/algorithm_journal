@@ -178,14 +178,27 @@ else:
 REDIS_URL = env("REDIS_URL", default="redis://localhost:6379/0")
 CACHES = {
     "default": {
-        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        # Degrades to "no cache" (with one logged error) when Redis is down,
+        # instead of turning every public page into a 500.
+        "BACKEND": "apps.core.cache_backend.ResilientRedisCache",
         "LOCATION": REDIS_URL,
         "KEY_PREFIX": "arer",
     }
 }
 
-CELERY_BROKER_URL = env("CELERY_BROKER_URL", default="redis://localhost:6379/1")
-CELERY_RESULT_BACKEND = env("CELERY_RESULT_BACKEND", default="redis://localhost:6379/2")
+
+def _redis_db(url: str, db: int) -> str:
+    """``REDIS_URL`` with a different database number (Celery broker/results)."""
+    from urllib.parse import urlsplit, urlunsplit
+
+    parts = urlsplit(url)
+    return urlunsplit(parts._replace(path=f"/{db}"))
+
+
+# Hosted Redis (Railway, Upstash) hands out one REDIS_URL; derive the Celery
+# databases from it unless they are configured explicitly.
+CELERY_BROKER_URL = env("CELERY_BROKER_URL", default=_redis_db(REDIS_URL, 1))
+CELERY_RESULT_BACKEND = env("CELERY_RESULT_BACKEND", default=_redis_db(REDIS_URL, 2))
 CELERY_TASK_ALWAYS_EAGER = env.bool("CELERY_TASK_ALWAYS_EAGER", default=False)
 CELERY_TASK_EAGER_PROPAGATES = True
 CELERY_ACCEPT_CONTENT = ["json"]
