@@ -261,7 +261,10 @@ ACCOUNT_LOGIN_METHODS = {"email"}
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_USER_MODEL_EMAIL_FIELD = "email"
 ACCOUNT_SIGNUP_FIELDS = ["email*", "password1*", "password2*"]
-ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+# The client asked for sign-up without an e-mail confirmation step (D42). Set
+# ACCOUNT_EMAIL_VERIFICATION=mandatory in .env to require it again — the
+# confirmation pages and mails are still in place.
+ACCOUNT_EMAIL_VERIFICATION = env("ACCOUNT_EMAIL_VERIFICATION", default="none")
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_ADAPTER = "apps.accounts.adapters.AccountAdapter"
 SOCIALACCOUNT_ADAPTER = "apps.accounts.adapters.SocialAccountAdapter"

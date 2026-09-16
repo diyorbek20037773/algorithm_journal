@@ -311,6 +311,8 @@ yozilmagan**.
 
 ### Amaliy eslatmalar
 
+* **Roʻyxatdan oʻtishda e-pochta tasdiqlash oʻchirilgan** (`ACCOUNT_EMAIL_VERIFICATION=none`, D42) — hisob darhol faol. Qayta yoqish: `.env` da `ACCOUNT_EMAIL_VERIFICATION=mandatory` (ishlaydigan pochta provayderi kerak: `RESEND_API_KEY` yoki SMTP). Parolni tiklash xatlari pochta sozlangach ishlaydi.
+
 * **Dizayn manbasi — `design/` papkasi** (mijoz bergan Stitch eksporti:
   `home.html`, `about.html`, `issue.html` va rasmlari). Ranglar va shriftlar
   `static/src/css/input.css` boshidagi `@theme` blokida; oʻzgartirgach

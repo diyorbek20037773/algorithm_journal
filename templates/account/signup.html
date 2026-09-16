@@ -25,7 +25,9 @@
       {% translate "Continue with Google" %}
     </a>
   {% endif %}
-  <p class="field-help mt-4">{% translate "We send a confirmation link to your e-mail address; the account is active once you confirm it." %}</p>
+  {% if email_verification_required %}
+    <p class="field-help mt-4">{% translate "We send a confirmation link to your e-mail address; the account is active once you confirm it." %}</p>
+  {% endif %}
   <div class="rule mt-6 pt-4 text-sm">
     <a href="{% url 'account_login' %}">{% translate "I already have an account" %}</a>
   </div>

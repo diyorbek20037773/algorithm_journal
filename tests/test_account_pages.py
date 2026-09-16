@@ -10,8 +10,11 @@ from django.core import mail
 pytestmark = pytest.mark.django_db
 
 
-def test_signup_sends_a_branded_confirmation_mail(client_anon, about_pages, site_settings) -> None:
-    """Registering sends one HTML mail in the site's layout with the activation link."""
+def test_signup_sends_a_branded_confirmation_mail(
+    client_anon, about_pages, site_settings, settings
+) -> None:
+    """With mandatory verification, registering sends one branded HTML mail."""
+    settings.ACCOUNT_EMAIL_VERIFICATION = "mandatory"
     response = client_anon.post(
         "/en/accounts/signup/",
         {
@@ -49,3 +52,19 @@ def test_password_reset_pages_are_styled(client_anon, about_pages, author_user) 
     page = client_anon.get(path, follow=True)
     assert page.status_code == 200
     assert "Choose a new password" in page.content.decode()
+
+
+def test_signup_without_verification_signs_the_user_in(client_anon, about_pages) -> None:
+    """By default (D42) a new account is active at once and no mail is sent."""
+    response = client_anon.post(
+        "/en/accounts/signup/",
+        {
+            "email": "quick.author@example.org",
+            "password1": "Correct-Horse-Battery-9",
+            "password2": "Correct-Horse-Battery-9",
+        },
+        follow=True,
+    )
+    assert response.status_code == 200
+    assert response.wsgi_request.user.is_authenticated
+    assert mail.outbox == []

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-16 12:30+0500\n"
+"POT-Creation-Date: 2026-09-16 12:41+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: ARER editorial office\n"
 "Language-Team: ARER\n"
@@ -20,7 +20,6 @@ msgstr ""
 
 #: .\apps\accounts\adapters.py:40
 #, python-format
-#| msgid "Confirm your e-mail address"
 msgid "Confirm your e-mail address — %(site)s"
 msgstr "Confirm your e-mail address — %(site)s"
 
@@ -45,7 +44,6 @@ msgstr ""
 
 #: .\apps\accounts\adapters.py:50
 #, python-format
-#| msgid "Reset your password"
 msgid "Reset your password — %(site)s"
 msgstr "Reset your password — %(site)s"
 
@@ -3691,7 +3689,7 @@ msgstr "Continue with ORCID"
 msgid "Continue with Google"
 msgstr "Continue with Google"
 
-#: .\templates\account\signup.html:28
+#: .\templates\account\signup.html:29
 msgid ""
 "We send a confirmation link to your e-mail address; the account is active "
 "once you confirm it."
@@ -3699,7 +3697,7 @@ msgstr ""
 "We send a confirmation link to your e-mail address; the account is active "
 "once you confirm it."
 
-#: .\templates\account\signup.html:30
+#: .\templates\account\signup.html:32
 msgid "I already have an account"
 msgstr "I already have an account"
 
