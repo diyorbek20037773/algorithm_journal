@@ -47,3 +47,18 @@ def test_google_button_only_with_credentials(client_anon, about_pages, settings)
     html = client_anon.get("/en/accounts/login/").content.decode()
     assert "/accounts/google/login/" in html
     assert "Sign in with Google" in html
+
+
+def test_social_interstitial_is_styled(client_anon, about_pages, settings) -> None:
+    """The provider pages use the site layout, and the button goes straight to Google."""
+    settings.GOOGLE_CLIENT_ID = "id"
+    settings.GOOGLE_CLIENT_SECRET = "secret"
+    settings.SOCIALACCOUNT_LOGIN_ON_GET = False  # force the interstitial to render
+    html = client_anon.get("/en/accounts/google/login/?process=login").content.decode()
+    assert 'class="card"' in html
+    assert "Sign in with Google" in html
+    assert "You are about to sign in using a third-party account" not in html
+    settings.SOCIALACCOUNT_LOGIN_ON_GET = True
+    response = client_anon.get("/en/accounts/google/login/?process=login")
+    assert response.status_code == 302
+    assert "accounts.google.com" in response["Location"]

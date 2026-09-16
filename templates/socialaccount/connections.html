@@ -1,0 +1,48 @@
+{% extends "account/base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Connected accounts" %} · {{ site_settings.journal_name }}{% endblock %}
+{% block auth_content %}
+  <h1 class="text-2xl mb-1">{% translate "Connected accounts" %}</h1>
+  <p class="muted text-sm mb-6">{% translate "Identity providers you can use to sign in." %}</p>
+  {% if form.accounts %}
+    <form method="post" action="{% url 'socialaccount_connections' %}">
+      {% csrf_token %}
+      {% for error in form.non_field_errors %}<p class="field-error mb-3">{{ error }}</p>{% endfor %}
+      <ul class="flex flex-col divide-y divide-[--color-line] mb-4">
+        {% for acc in form.accounts %}
+          {% with base_account=acc.get_provider_account %}
+            <li class="checkbox-row">
+              <input type="radio"
+                     name="account"
+                     id="id_account_{{ acc.id }}"
+                     value="{{ acc.id }}">
+              <label for="id_account_{{ acc.id }}" class="text-sm">
+                <span class="font-medium">{{ acc.get_provider.name }}</span>
+                <span class="muted">— {{ base_account }}</span>
+              </label>
+            </li>
+          {% endwith %}
+        {% endfor %}
+      </ul>
+      <button type="submit" class="btn btn-secondary btn-sm text-[--color-danger]">{% translate "Remove" %}</button>
+    </form>
+  {% else %}
+    <p class="muted text-sm">{% translate "No accounts are connected yet." %}</p>
+  {% endif %}
+  <h2 class="text-lg mt-8 mb-3">{% translate "Add a provider" %}</h2>
+  <div class="flex flex-col gap-2">
+    <a class="btn btn-secondary w-full"
+       href="{% url 'orcid_login' %}?process=connect"
+       style="border-color: var(--color-orcid)">
+      {% include "includes/orcid_icon.html" %}
+      {% translate "Connect ORCID" %}
+    </a>
+    {% if google_login_enabled %}
+      <a class="btn btn-secondary w-full"
+         href="{% url 'google_login' %}?process=connect">
+        {% include "includes/google_icon.html" %}
+        {% translate "Connect Google" %}
+      </a>
+    {% endif %}
+  </div>
+{% endblock %}

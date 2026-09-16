@@ -1,0 +1,26 @@
+{% extends "account/base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Continue" %} · {{ site_settings.journal_name }}{% endblock %}
+{% block auth_content %}
+  <h1 class="text-2xl mb-2">
+    {% if process == "connect" %}
+      {% blocktranslate with provider=provider.name %}Connect {{ provider }}{% endblocktranslate %}
+    {% else %}
+      {% blocktranslate with provider=provider.name %}Sign in with {{ provider }}{% endblocktranslate %}
+    {% endif %}
+  </h1>
+  <p class="muted text-sm mb-6">
+    {% if process == "connect" %}
+      {% blocktranslate with provider=provider.name %}You are about to connect a {{ provider }} account to your profile.{% endblocktranslate %}
+    {% else %}
+      {% blocktranslate with provider=provider.name %}You will be taken to {{ provider }} to confirm your identity, then straight back here.{% endblocktranslate %}
+    {% endif %}
+  </p>
+  <form method="post" novalidate>
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary w-full">{% translate "Continue" %}</button>
+  </form>
+  <div class="rule mt-6 pt-4 text-sm">
+    <a href="{% url 'account_login' %}">{% translate "Back to sign in" %}</a>
+  </div>
+{% endblock %}

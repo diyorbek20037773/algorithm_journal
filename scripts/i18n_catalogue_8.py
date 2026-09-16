@@ -99,4 +99,42 @@ PART_8: dict[str, tuple[str, str]] = {
         "Kimdir %(site)s dagi hisobingiz parolini tiklashni soʻradi.\n\nYangi parolni bu yerda tanlang:\n\n%(url)s\n\nAgar bu siz boʻlmasangiz, hech narsa qilish shart emas — parolingiz oʻzgarmaydi.",
         "Кто-то запросил сброс пароля для вашего аккаунта в %(site)s.\n\nВыберите новый пароль здесь:\n\n%(url)s\n\nЕсли это были не вы, ничего делать не нужно — пароль останется прежним.",
     ),
+    # --- social sign-in pages ---------------------------------------------
+    "Sign in with %(provider)s": ("%(provider)s orqali kirish", "Войти через %(provider)s"),
+    "Connect %(provider)s": ("%(provider)s ni ulash", "Подключить %(provider)s"),
+    "You will be taken to %(provider)s to confirm your identity, then straight back here.": (
+        "Shaxsingizni tasdiqlash uchun %(provider)s ga oʻtasiz, soʻng darhol shu yerga qaytasiz.",
+        "Вы перейдёте в %(provider)s для подтверждения личности и сразу вернётесь сюда.",
+    ),
+    "You are about to connect a %(provider)s account to your profile.": (
+        "Profilingizga %(provider)s hisobini ulamoqchisiz.",
+        "Вы собираетесь подключить аккаунт %(provider)s к своему профилю.",
+    ),
+    "Complete your account": ("Hisobni yakunlang", "Завершите создание аккаунта"),
+    "Your %(provider)s account is verified. One last step: confirm the e-mail address the journal should write to.": (
+        "%(provider)s hisobingiz tasdiqlandi. Oxirgi qadam: jurnal yozadigan e-pochta manzilini tasdiqlang.",
+        "Ваш аккаунт %(provider)s подтверждён. Последний шаг: подтвердите адрес e-mail для писем журнала.",
+    ),
+    "Sign-in failed": ("Kirish amalga oshmadi", "Вход не выполнен"),
+    "The identity provider did not confirm your sign-in. This is usually temporary — please try again, or use your e-mail address and password.": (
+        "Identifikatsiya provayderi kirishni tasdiqlamadi. Odatda bu vaqtinchalik — qayta urinib koʻring yoki e-pochta va parol bilan kiring.",
+        "Провайдер не подтвердил вход. Обычно это временно — попробуйте ещё раз или войдите по e-mail и паролю.",
+    ),
+    "Sign-in cancelled": ("Kirish bekor qilindi", "Вход отменён"),
+    "You cancelled the sign-in with the identity provider. Nothing has changed.": (
+        "Provayder orqali kirishni bekor qildingiz. Hech narsa oʻzgarmadi.",
+        "Вы отменили вход через провайдера. Ничего не изменилось.",
+    ),
+    "Connected accounts": ("Ulangan hisoblar", "Подключённые аккаунты"),
+    "Identity providers you can use to sign in.": (
+        "Kirish uchun foydalanishingiz mumkin boʻlgan provayderlar.",
+        "Провайдеры, через которые можно входить.",
+    ),
+    "No accounts are connected yet.": (
+        "Hali hech qanday hisob ulanmagan.",
+        "Аккаунты пока не подключены.",
+    ),
+    "Add a provider": ("Provayder qoʻshish", "Добавить провайдера"),
+    "Connect ORCID": ("ORCID ni ulash", "Подключить ORCID"),
+    "Connect Google": ("Google ni ulash", "Подключить Google"),
 }

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-16 12:41+0500\n"
+"POT-Creation-Date: 2026-09-16 12:44+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: ARER editorial office\n"
 "Language-Team: ARER\n"
@@ -3486,6 +3486,7 @@ msgid "Re-send verification"
 msgstr "Tasdiqlashni qayta yuborish"
 
 #: .\templates\account\email.html:40
+#: .\templates\socialaccount\connections.html:27
 #: .\templates\submissions\wizard_step2.html:31
 msgid "Remove"
 msgstr "Oʻchirish"
@@ -3616,6 +3617,9 @@ msgstr ""
 "Agar bu manzilda hisob boʻlsa, yangi parol tanlash uchun havola yubordik."
 
 #: .\templates\account\password_reset_done.html:9
+#: .\templates\socialaccount\authentication_error.html:7
+#: .\templates\socialaccount\login.html:24
+#: .\templates\socialaccount\login_cancelled.html:7
 msgid "Back to sign in"
 msgstr "Kirish sahifasiga qaytish"
 
@@ -3677,6 +3681,8 @@ msgstr ""
 "kiriting."
 
 #: .\templates\account\reauthenticate.html:14
+#: .\templates\socialaccount\login.html:3
+#: .\templates\socialaccount\login.html:21
 #: .\templates\submissions\wizard_intro.html:33
 msgid "Continue"
 msgstr "Davom etish"
@@ -3689,7 +3695,7 @@ msgstr ""
 "Hisob qoʻlyozma yuborish va uning holatini kuzatish imkonini beradi. "
 "Roʻyxatdan oʻtish bepul."
 
-#: .\templates\account\signup.html:13
+#: .\templates\account\signup.html:13 .\templates\socialaccount\signup.html:16
 msgid "Create account"
 msgstr "Hisob yaratish"
 
@@ -6015,6 +6021,99 @@ msgstr "Qidiruv soʻrovi"
 #: .\templates\search\search.html:74
 msgid "Title, abstract, keywords, authors, references"
 msgstr "Sarlavha, annotatsiya, kalit soʻzlar, mualliflar, adabiyotlar"
+
+#: .\templates\socialaccount\authentication_error.html:3
+#: .\templates\socialaccount\authentication_error.html:5
+#| msgid "Registration failed"
+msgid "Sign-in failed"
+msgstr "Kirish amalga oshmadi"
+
+#: .\templates\socialaccount\authentication_error.html:6
+msgid ""
+"The identity provider did not confirm your sign-in. This is usually "
+"temporary — please try again, or use your e-mail address and password."
+msgstr ""
+"Identifikatsiya provayderi kirishni tasdiqlamadi. Odatda bu vaqtinchalik — "
+"qayta urinib koʻring yoki e-pochta va parol bilan kiring."
+
+#: .\templates\socialaccount\connections.html:3
+#: .\templates\socialaccount\connections.html:5
+#| msgid "Create account"
+msgid "Connected accounts"
+msgstr "Ulangan hisoblar"
+
+#: .\templates\socialaccount\connections.html:6
+msgid "Identity providers you can use to sign in."
+msgstr "Kirish uchun foydalanishingiz mumkin boʻlgan provayderlar."
+
+#: .\templates\socialaccount\connections.html:30
+msgid "No accounts are connected yet."
+msgstr "Hali hech qanday hisob ulanmagan."
+
+#: .\templates\socialaccount\connections.html:32
+msgid "Add a provider"
+msgstr "Provayder qoʻshish"
+
+#: .\templates\socialaccount\connections.html:38
+#| msgid "Continue with ORCID"
+msgid "Connect ORCID"
+msgstr "ORCID ni ulash"
+
+#: .\templates\socialaccount\connections.html:44
+#| msgid "Continue with Google"
+msgid "Connect Google"
+msgstr "Google ni ulash"
+
+#: .\templates\socialaccount\login.html:7
+#, python-format
+msgid "Connect %(provider)s"
+msgstr "%(provider)s ni ulash"
+
+#: .\templates\socialaccount\login.html:9
+#, python-format
+#| msgid "Sign in with Google"
+msgid "Sign in with %(provider)s"
+msgstr "%(provider)s orqali kirish"
+
+#: .\templates\socialaccount\login.html:14
+#, python-format
+msgid "You are about to connect a %(provider)s account to your profile."
+msgstr "Profilingizga %(provider)s hisobini ulamoqchisiz."
+
+#: .\templates\socialaccount\login.html:16
+#, python-format
+msgid ""
+"You will be taken to %(provider)s to confirm your identity, then straight "
+"back here."
+msgstr ""
+"Shaxsingizni tasdiqlash uchun %(provider)s ga oʻtasiz, soʻng darhol shu "
+"yerga qaytasiz."
+
+#: .\templates\socialaccount\login_cancelled.html:3
+#: .\templates\socialaccount\login_cancelled.html:5
+#| msgid "Cancelled"
+msgid "Sign-in cancelled"
+msgstr "Kirish bekor qilindi"
+
+#: .\templates\socialaccount\login_cancelled.html:6
+msgid ""
+"You cancelled the sign-in with the identity provider. Nothing has changed."
+msgstr "Provayder orqali kirishni bekor qildingiz. Hech narsa oʻzgarmadi."
+
+#: .\templates\socialaccount\signup.html:3
+#: .\templates\socialaccount\signup.html:5
+#| msgid "Create account"
+msgid "Complete your account"
+msgstr "Hisobni yakunlang"
+
+#: .\templates\socialaccount\signup.html:7
+#, python-format
+msgid ""
+"Your %(provider)s account is verified. One last step: confirm the e-mail "
+"address the journal should write to."
+msgstr ""
+"%(provider)s hisobingiz tasdiqlandi. Oxirgi qadam: jurnal yozadigan e-pochta"
+" manzilini tasdiqlang."
 
 #: .\templates\submissions\upload_revision.html:3
 #: .\templates\submissions\upload_revision.html:6

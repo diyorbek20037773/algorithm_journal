@@ -1,0 +1,8 @@
+{% extends "account/base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Sign-in failed" %} · {{ site_settings.journal_name }}{% endblock %}
+{% block auth_content %}
+  <h1 class="text-2xl mb-2">{% translate "Sign-in failed" %}</h1>
+  <p class="muted">{% translate "The identity provider did not confirm your sign-in. This is usually temporary — please try again, or use your e-mail address and password." %}</p>
+  <a class="btn btn-primary w-full mt-6" href="{% url 'account_login' %}">{% translate "Back to sign in" %}</a>
+{% endblock %}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-16 12:41+0500\n"
+"POT-Creation-Date: 2026-09-16 12:44+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: ARER editorial office\n"
 "Language-Team: ARER\n"
@@ -3474,6 +3474,7 @@ msgid "Re-send verification"
 msgstr "Отправить подтверждение снова"
 
 #: .\templates\account\email.html:40
+#: .\templates\socialaccount\connections.html:27
 #: .\templates\submissions\wizard_step2.html:31
 msgid "Remove"
 msgstr "Удалить"
@@ -3604,6 +3605,9 @@ msgstr ""
 "пароля."
 
 #: .\templates\account\password_reset_done.html:9
+#: .\templates\socialaccount\authentication_error.html:7
+#: .\templates\socialaccount\login.html:24
+#: .\templates\socialaccount\login_cancelled.html:7
 msgid "Back to sign in"
 msgstr "Вернуться ко входу"
 
@@ -3662,6 +3666,8 @@ msgid "Enter your password once more to continue with this sensitive change."
 msgstr "Введите пароль ещё раз, чтобы продолжить это важное изменение."
 
 #: .\templates\account\reauthenticate.html:14
+#: .\templates\socialaccount\login.html:3
+#: .\templates\socialaccount\login.html:21
 #: .\templates\submissions\wizard_intro.html:33
 msgid "Continue"
 msgstr "Продолжить"
@@ -3674,7 +3680,7 @@ msgstr ""
 "Учётная запись позволяет подавать рукописи и следить за их продвижением. "
 "Регистрация бесплатна."
 
-#: .\templates\account\signup.html:13
+#: .\templates\account\signup.html:13 .\templates\socialaccount\signup.html:16
 msgid "Create account"
 msgstr "Создать учётную запись"
 
@@ -5986,6 +5992,99 @@ msgstr "Поисковый запрос"
 #: .\templates\search\search.html:74
 msgid "Title, abstract, keywords, authors, references"
 msgstr "Название, аннотация, ключевые слова, авторы, список литературы"
+
+#: .\templates\socialaccount\authentication_error.html:3
+#: .\templates\socialaccount\authentication_error.html:5
+#| msgid "Registration failed"
+msgid "Sign-in failed"
+msgstr "Вход не выполнен"
+
+#: .\templates\socialaccount\authentication_error.html:6
+msgid ""
+"The identity provider did not confirm your sign-in. This is usually "
+"temporary — please try again, or use your e-mail address and password."
+msgstr ""
+"Провайдер не подтвердил вход. Обычно это временно — попробуйте ещё раз или "
+"войдите по e-mail и паролю."
+
+#: .\templates\socialaccount\connections.html:3
+#: .\templates\socialaccount\connections.html:5
+#| msgid "Create account"
+msgid "Connected accounts"
+msgstr "Подключённые аккаунты"
+
+#: .\templates\socialaccount\connections.html:6
+msgid "Identity providers you can use to sign in."
+msgstr "Провайдеры, через которые можно входить."
+
+#: .\templates\socialaccount\connections.html:30
+msgid "No accounts are connected yet."
+msgstr "Аккаунты пока не подключены."
+
+#: .\templates\socialaccount\connections.html:32
+msgid "Add a provider"
+msgstr "Добавить провайдера"
+
+#: .\templates\socialaccount\connections.html:38
+#| msgid "Continue with ORCID"
+msgid "Connect ORCID"
+msgstr "Подключить ORCID"
+
+#: .\templates\socialaccount\connections.html:44
+#| msgid "Continue with Google"
+msgid "Connect Google"
+msgstr "Подключить Google"
+
+#: .\templates\socialaccount\login.html:7
+#, python-format
+msgid "Connect %(provider)s"
+msgstr "Подключить %(provider)s"
+
+#: .\templates\socialaccount\login.html:9
+#, python-format
+#| msgid "Sign in with Google"
+msgid "Sign in with %(provider)s"
+msgstr "Войти через %(provider)s"
+
+#: .\templates\socialaccount\login.html:14
+#, python-format
+msgid "You are about to connect a %(provider)s account to your profile."
+msgstr "Вы собираетесь подключить аккаунт %(provider)s к своему профилю."
+
+#: .\templates\socialaccount\login.html:16
+#, python-format
+msgid ""
+"You will be taken to %(provider)s to confirm your identity, then straight "
+"back here."
+msgstr ""
+"Вы перейдёте в %(provider)s для подтверждения личности и сразу вернётесь "
+"сюда."
+
+#: .\templates\socialaccount\login_cancelled.html:3
+#: .\templates\socialaccount\login_cancelled.html:5
+#| msgid "Cancelled"
+msgid "Sign-in cancelled"
+msgstr "Вход отменён"
+
+#: .\templates\socialaccount\login_cancelled.html:6
+msgid ""
+"You cancelled the sign-in with the identity provider. Nothing has changed."
+msgstr "Вы отменили вход через провайдера. Ничего не изменилось."
+
+#: .\templates\socialaccount\signup.html:3
+#: .\templates\socialaccount\signup.html:5
+#| msgid "Create account"
+msgid "Complete your account"
+msgstr "Завершите создание аккаунта"
+
+#: .\templates\socialaccount\signup.html:7
+#, python-format
+msgid ""
+"Your %(provider)s account is verified. One last step: confirm the e-mail "
+"address the journal should write to."
+msgstr ""
+"Ваш аккаунт %(provider)s подтверждён. Последний шаг: подтвердите адрес "
+"e-mail для писем журнала."
 
 #: .\templates\submissions\upload_revision.html:3
 #: .\templates\submissions\upload_revision.html:6

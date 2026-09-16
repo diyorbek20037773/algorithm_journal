@@ -277,6 +277,9 @@ ACCOUNT_EMAIL_SUBJECT_PREFIX = "[ARER] "
 SOCIALACCOUNT_EMAIL_VERIFICATION = "none"
 SOCIALACCOUNT_QUERY_EMAIL = True
 SOCIALACCOUNT_STORE_TOKENS = False
+# Go straight to the provider from the button; the interstitial
+# "You are about to sign in via Google — Continue" page adds nothing.
+SOCIALACCOUNT_LOGIN_ON_GET = True
 
 ORCID_BASE = env("ORCID_BASE", default="sandbox")
 GOOGLE_CLIENT_ID = env("GOOGLE_CLIENT_ID", default="")

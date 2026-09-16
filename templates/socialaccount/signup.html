@@ -1,0 +1,18 @@
+{% extends "account/base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Complete your account" %} · {{ site_settings.journal_name }}{% endblock %}
+{% block auth_content %}
+  <h1 class="text-2xl mb-1">{% translate "Complete your account" %}</h1>
+  <p class="muted text-sm mb-6">
+    {% blocktranslate with provider=account.get_provider.name %}Your {{ provider }} account is verified. One last step: confirm the e-mail address the journal should write to.{% endblocktranslate %}
+  </p>
+  <form method="post" action="{% url 'socialaccount_signup' %}" novalidate>
+    {% csrf_token %}
+    {% for error in form.non_field_errors %}<p class="field-error mb-3">{{ error }}</p>{% endfor %}
+    {% for field in form %}
+      {% include "includes/form_field.html" with field=field %}
+    {% endfor %}
+    {{ redirect_field }}
+    <button type="submit" class="btn btn-primary w-full">{% translate "Create account" %}</button>
+  </form>
+{% endblock %}
