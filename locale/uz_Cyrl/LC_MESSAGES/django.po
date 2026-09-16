@@ -2444,7 +2444,7 @@ msgstr "жорий босқич"
 
 #: .\apps\submissions\models.py:174
 msgid "wizard step"
-msgstr "сеҳргар босқичи"
+msgstr "юбориш босқичи"
 
 #: .\apps\submissions\models.py:178
 msgid "handling editor"
@@ -2517,7 +2517,8 @@ msgstr "кўп тилли метамаълумотлар"
 #: .\apps\submissions\models.py:238
 msgid "Title, abstract and keywords per language, captured in the wizard."
 msgstr ""
-"Сеҳргарда киритилган ҳар бир тил учун сарлавҳа, аннотация ва калит сўзлар."
+"Мақола юборишда ҳар бир тил учун киритилган сарлавҳа, аннотация ва калит "
+"сўзлар."
 
 #: .\apps\submissions\models.py:245
 msgid "submissions"
@@ -4114,7 +4115,7 @@ msgid ""
 "Tick every item before you open the submission wizard. Nothing is stored on "
 "the server."
 msgstr ""
-"Юбориш сеҳргарини очишдан олдин ҳар бир бандни белгиланг. Ҳеч нарса серверда"
+"Мақола юборишни бошлашдан олдин ҳар бир бандни белгиланг. Ҳеч нарса серверда"
 " сақланмайди."
 
 #: .\templates\core\checklist.html:10
@@ -4123,7 +4124,7 @@ msgstr "Бажарилиши"
 
 #: .\templates\core\checklist.html:25
 msgid "Go to the submission wizard"
-msgstr "Юбориш сеҳргарига ўтиш"
+msgstr "Мақола юборишга ўтиш"
 
 #: .\templates\core\contact.html:12
 msgid "Address"
@@ -4183,7 +4184,7 @@ msgstr "Рўйхатни текширинг"
 
 #: .\templates\core\for_authors.html:32
 msgid "Submission wizard"
-msgstr "Юбориш сеҳргари"
+msgstr "Мақола юбориш"
 
 #: .\templates\core\for_authors.html:35
 msgid "After submission"

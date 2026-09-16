@@ -40,7 +40,7 @@ maydonlari uchun.
 | 1 | Foydalanuvchilar, rollar, 2FA, i18n, dizayn tizimi | ✅ |
 | 2 | Jurnal modellari, ommaviy sayt, demo maʼlumotlar | ✅ |
 | 3 | Iqtiboslar, statistika, ochiq API | ✅ |
-| 4 | Maqola yuborish sehrgari (5 qadam) | ✅ |
+| 4 | Maqola yuborish (5 qadam) | ✅ |
 | 5 | Tahririyat jarayoni (FSM), taqriz, qarorlar | ✅ |
 | 6 | Ishlab chiqarish, Crossref, OAI-PMH, arxivlash | ✅ |
 | 7 | Xavfsizlik, unumdorlik, imkoniyatlilik, tarjimalar | ✅ |

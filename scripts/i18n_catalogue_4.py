@@ -34,12 +34,12 @@ PART_4: dict[str, tuple[str, str]] = {
         "Объявлений пока нет.",
     ),
     "Tick every item before you open the submission wizard. Nothing is stored on the server.": (
-        "Yuborish sehrgarini ochishdan oldin har bir bandni belgilang. Hech narsa serverda saqlanmaydi.",
+        "Maqola yuborishni boshlashdan oldin har bir bandni belgilang. Hech narsa serverda saqlanmaydi.",
         "Отметьте каждый пункт до открытия мастера подачи. Ничего не сохраняется на сервере.",
     ),
     "Progress": ("Bajarilishi", "Прогресс"),
     "Go to the submission wizard": (
-        "Yuborish sehrgariga oʻtish",
+        "Maqola yuborishga oʻtish",
         "Перейти к мастеру подачи",
     ),
     "Address": ("Manzil", "Адрес"),
@@ -62,7 +62,7 @@ PART_4: dict[str, tuple[str, str]] = {
     "Guidelines": ("Yoʻriqnoma", "Руководство"),
     "Check the list": ("Roʻyxatni tekshiring", "Проверьте по списку"),
     "Checklist": ("Tekshiruv roʻyxati", "Чек-лист"),
-    "Submission wizard": ("Yuborish sehrgari", "Мастер подачи"),
+    "Submission wizard": ("Maqola yuborish", "Мастер подачи"),
     "After submission": ("Yuborilgandan keyin", "После подачи"),
     "Author resources": ("Muallif uchun materiallar", "Материалы для авторов"),
     "Start a submission": ("Yuborishni boshlash", "Начать подачу"),

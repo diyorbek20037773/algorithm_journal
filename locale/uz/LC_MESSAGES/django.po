@@ -2451,7 +2451,7 @@ msgstr "joriy bosqich"
 
 #: .\apps\submissions\models.py:174
 msgid "wizard step"
-msgstr "sehrgar bosqichi"
+msgstr "yuborish bosqichi"
 
 #: .\apps\submissions\models.py:178
 msgid "handling editor"
@@ -2524,8 +2524,8 @@ msgstr "koʻp tilli metamaʼlumotlar"
 #: .\apps\submissions\models.py:238
 msgid "Title, abstract and keywords per language, captured in the wizard."
 msgstr ""
-"Sehrgarda kiritilgan har bir til uchun sarlavha, annotatsiya va kalit "
-"soʻzlar."
+"Maqola yuborishda har bir til uchun kiritilgan sarlavha, annotatsiya va "
+"kalit soʻzlar."
 
 #: .\apps\submissions\models.py:245
 msgid "submissions"
@@ -4132,7 +4132,7 @@ msgid ""
 "Tick every item before you open the submission wizard. Nothing is stored on "
 "the server."
 msgstr ""
-"Yuborish sehrgarini ochishdan oldin har bir bandni belgilang. Hech narsa "
+"Maqola yuborishni boshlashdan oldin har bir bandni belgilang. Hech narsa "
 "serverda saqlanmaydi."
 
 #: .\templates\core\checklist.html:10
@@ -4141,7 +4141,7 @@ msgstr "Bajarilishi"
 
 #: .\templates\core\checklist.html:25
 msgid "Go to the submission wizard"
-msgstr "Yuborish sehrgariga oʻtish"
+msgstr "Maqola yuborishga oʻtish"
 
 #: .\templates\core\contact.html:12
 msgid "Address"
@@ -4201,7 +4201,7 @@ msgstr "Roʻyxatni tekshiring"
 
 #: .\templates\core\for_authors.html:32
 msgid "Submission wizard"
-msgstr "Yuborish sehrgari"
+msgstr "Maqola yuborish"
 
 #: .\templates\core\for_authors.html:35
 msgid "After submission"

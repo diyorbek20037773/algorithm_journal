@@ -25,7 +25,7 @@ PART_3: dict[str, tuple[str, str]] = {
     "word count": ("soʻzlar soni", "число слов"),
     "cover letter": ("muqova xati", "сопроводительное письмо"),
     "current round": ("joriy bosqich", "текущий раунд"),
-    "wizard step": ("sehrgar bosqichi", "шаг мастера"),
+    "wizard step": ("yuborish bosqichi", "шаг мастера"),
     "handling editor": ("masʼul muharrir", "ответственный редактор"),
     "assigned by": ("tayinlagan", "назначил"),
     "accepted at": ("qabul qilingan vaqt", "дата принятия"),
@@ -47,7 +47,7 @@ PART_3: dict[str, tuple[str, str]] = {
     "latest decision letter": ("soʻnggi qaror xati", "последнее письмо с решением"),
     "multilingual metadata": ("koʻp tilli metamaʼlumotlar", "многоязычные метаданные"),
     "Title, abstract and keywords per language, captured in the wizard.": (
-        "Sehrgarda kiritilgan har bir til uchun sarlavha, annotatsiya va kalit soʻzlar.",
+        "Maqola yuborishda har bir til uchun kiritilgan sarlavha, annotatsiya va kalit soʻzlar.",
         "Название, аннотация и ключевые слова по языкам, введённые в мастере.",
     ),
     "submissions": ("qoʻlyozmalar", "рукописи"),
