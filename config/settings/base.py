@@ -32,6 +32,21 @@ CSRF_TRUSTED_ORIGINS = env.list(
 
 SITE_DOMAIN = env("SITE_DOMAIN", default="localhost:8000")
 SITE_PROTOCOL = env("SITE_PROTOCOL", default="http")
+
+# Railway injects RAILWAY_PUBLIC_DOMAIN into every service. Trust it (and use
+# it as the site domain when none is configured) so a staging deploy answers
+# on its generated URL without a hand-typed host list; an explicit
+# DJANGO_ALLOWED_HOSTS / SITE_DOMAIN still wins.
+_RAILWAY_DOMAIN = env("RAILWAY_PUBLIC_DOMAIN", default="")
+if _RAILWAY_DOMAIN:
+    if _RAILWAY_DOMAIN not in ALLOWED_HOSTS:
+        ALLOWED_HOSTS.append(_RAILWAY_DOMAIN)
+    if f"https://{_RAILWAY_DOMAIN}" not in CSRF_TRUSTED_ORIGINS:
+        CSRF_TRUSTED_ORIGINS.append(f"https://{_RAILWAY_DOMAIN}")
+    if not env("SITE_DOMAIN", default=""):
+        SITE_DOMAIN = _RAILWAY_DOMAIN
+        SITE_PROTOCOL = "https"
+
 SITE_URL = f"{SITE_PROTOCOL}://{SITE_DOMAIN}"
 SITE_ID = 1
 

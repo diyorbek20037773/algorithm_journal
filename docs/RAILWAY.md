@@ -70,12 +70,11 @@ Set these on every app service (Railway lets you share them through a
 *Shared Variables* group). Values marked *generate* are secrets you create.
 
 ```
-DJANGO_SETTINGS_MODULE=config.settings.prod
 DJANGO_SECRET_KEY=            # generate: python -c "import secrets;print(secrets.token_urlsafe(50))"
-DJANGO_ALLOWED_HOSTS=algorithmjournal-production.up.railway.app
-SITE_DOMAIN=algorithmjournal-production.up.railway.app
-SITE_PROTOCOL=https
-DJANGO_CSRF_TRUSTED_ORIGINS=https://algorithmjournal-production.up.railway.app
+# DJANGO_SETTINGS_MODULE, DJANGO_ALLOWED_HOSTS, SITE_DOMAIN, SITE_PROTOCOL and
+# DJANGO_CSRF_TRUSTED_ORIGINS are optional on Railway: the image defaults to the
+# production settings and trusts the RAILWAY_PUBLIC_DOMAIN Railway injects.
+# Set them only for a custom domain.
 
 DATABASE_URL=${{Postgres.DATABASE_URL}}
 REDIS_URL=${{Redis.REDIS_URL}}
@@ -86,8 +85,8 @@ DB_POOL_MAX=4
 GUNICORN_WORKERS=              # empty = 2×CPU+1; set 3 on a small plan
 GUNICORN_THREADS=4
 
-# Railway terminates TLS in front of the container.
-SECURE_SSL_REDIRECT=false          # prod.py already trusts X-Forwarded-Proto
+# Railway terminates TLS in front of the container; SECURE_SSL_REDIRECT is
+# already off when RAILWAY_PUBLIC_DOMAIN is present.
 SESSION_COOKIE_SECURE=true
 CSRF_COOKIE_SECURE=true
 
@@ -95,9 +94,10 @@ EMAIL_BACKEND=django.core.mail.backends.console.EmailBackend   # staging: no rea
 IP_HASH_SALT=                  # generate
 ```
 
-`SECURE_SSL_REDIRECT=false` matters: Railway's edge already redirects to HTTPS
-and forwards plain HTTP to the container, so a redirect inside the container
-loops.
+A `400 Bad request` on every URL (including the stylesheet, so the page shows
+as bare text) means the host is not in `ALLOWED_HOSTS`. Since D41 the settings
+add `RAILWAY_PUBLIC_DOMAIN` automatically; for a custom domain set
+`DJANGO_ALLOWED_HOSTS` and `DJANGO_CSRF_TRUSTED_ORIGINS` yourself.
 
 ## Media files
 

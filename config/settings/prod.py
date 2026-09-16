@@ -7,7 +7,11 @@ from .base import *
 DEBUG = False
 
 # --- HTTPS / transport security ----------------------------------------------
-SECURE_SSL_REDIRECT = env.bool("SECURE_SSL_REDIRECT", default=True)
+# Platforms that terminate TLS at their edge (Railway) forward plain HTTP;
+# a redirect inside the container would loop, so it is off there by default.
+SECURE_SSL_REDIRECT = env.bool(
+    "SECURE_SSL_REDIRECT", default=not env("RAILWAY_PUBLIC_DOMAIN", default="")
+)
 SECURE_HSTS_SECONDS = env.int("SECURE_HSTS_SECONDS", default=31536000)
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
