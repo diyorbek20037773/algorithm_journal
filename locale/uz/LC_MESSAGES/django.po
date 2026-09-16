@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-16 12:05+0500\n"
+"POT-Creation-Date: 2026-09-16 12:30+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: ARER editorial office\n"
 "Language-Team: ARER\n"
@@ -17,6 +17,56 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\apps\accounts\adapters.py:40
+#, python-format
+#| msgid "Confirm your e-mail address"
+msgid "Confirm your e-mail address — %(site)s"
+msgstr "E-pochta manzilingizni tasdiqlang — %(site)s"
+
+#: .\apps\accounts\adapters.py:42
+#, python-format
+msgid ""
+"Thank you for registering with %(site)s.\n"
+"\n"
+"Please confirm your e-mail address by opening this link:\n"
+"\n"
+"%(url)s\n"
+"\n"
+"The link is valid for three days. If you did not create an account, you can ignore this message."
+msgstr ""
+"%(site)s da roʻyxatdan oʻtganingiz uchun rahmat.\n"
+"\n"
+"E-pochta manzilingizni tasdiqlash uchun ushbu havolani oching:\n"
+"\n"
+"%(url)s\n"
+"\n"
+"Havola uch kun amal qiladi. Agar hisob yaratmagan boʻlsangiz, bu xatni eʼtiborsiz qoldiring."
+
+#: .\apps\accounts\adapters.py:50
+#, python-format
+#| msgid "Reset your password"
+msgid "Reset your password — %(site)s"
+msgstr "Parolni tiklash — %(site)s"
+
+#: .\apps\accounts\adapters.py:52
+#, python-format
+msgid ""
+"Someone asked to reset the password for your %(site)s account.\n"
+"\n"
+"Choose a new password here:\n"
+"\n"
+"%(url)s\n"
+"\n"
+"If this was not you, no action is needed — your password stays as it is."
+msgstr ""
+"Kimdir %(site)s dagi hisobingiz parolini tiklashni soʻradi.\n"
+"\n"
+"Yangi parolni bu yerda tanlang:\n"
+"\n"
+"%(url)s\n"
+"\n"
+"Agar bu siz boʻlmasangiz, hech narsa qilish shart emas — parolingiz oʻzgarmaydi."
 
 #: .\apps\accounts\admin.py:32
 msgid "Personal info"
@@ -3387,6 +3437,95 @@ msgstr "Bosh sahifaga oʻtish"
 msgid "Search the journal"
 msgstr "Jurnalda qidirish"
 
+#: .\templates\account\account_inactive.html:3
+#: .\templates\account\account_inactive.html:5
+msgid "Account inactive"
+msgstr "Hisob faol emas"
+
+#: .\templates\account\account_inactive.html:6
+msgid ""
+"This account has been deactivated. Contact the editorial office if you "
+"believe this is a mistake."
+msgstr ""
+"Bu hisob oʻchirilgan. Agar bu xato deb hisoblasangiz, tahririyatga murojaat "
+"qiling."
+
+#: .\templates\account\account_inactive.html:7
+#: .\templates\account\signup_closed.html:7
+#: .\templates\account\verification_sent.html:11
+#: .\templates\core\about.html:231 .\templates\errors\error.html:13
+#: .\templates\errors\lockout.html:10
+msgid "Contact the editorial office"
+msgstr "Tahririyat bilan bogʻlanish"
+
+#: .\templates\account\email.html:3 .\templates\account\email.html:5
+msgid "E-mail addresses"
+msgstr "E-pochta manzillari"
+
+#: .\templates\account\email.html:6
+msgid "Editorial correspondence goes to your primary address."
+msgstr "Tahririyat xatlari asosiy manzilingizga yuboriladi."
+
+#: .\templates\account\email.html:23
+msgid "Verified"
+msgstr "Tasdiqlangan"
+
+#: .\templates\account\email.html:25
+msgid "Unverified"
+msgstr "Tasdiqlanmagan"
+
+#: .\templates\account\email.html:28 .\templates\includes\header.html:44
+#: .\templates\includes\header.html:122
+msgid "Primary"
+msgstr "Asosiy"
+
+#: .\templates\account\email.html:36
+msgid "Make primary"
+msgstr "Asosiy qilish"
+
+#: .\templates\account\email.html:37
+msgid "Re-send verification"
+msgstr "Tasdiqlashni qayta yuborish"
+
+#: .\templates\account\email.html:40
+#: .\templates\submissions\wizard_step2.html:31
+msgid "Remove"
+msgstr "Oʻchirish"
+
+#: .\templates\account\email.html:44
+msgid ""
+"You have no e-mail address on file. Add one so you can receive editorial "
+"correspondence and reset your password."
+msgstr ""
+"Hisobingizda e-pochta manzili yoʻq. Tahririyat xatlarini olish va parolni "
+"tiklash uchun manzil qoʻshing."
+
+#: .\templates\account\email.html:47
+msgid "Add an e-mail address"
+msgstr "E-pochta manzili qoʻshish"
+
+#: .\templates\account\email.html:53
+msgid "Add address"
+msgstr "Manzil qoʻshish"
+
+#: .\templates\account\email_change.html:3
+#: .\templates\account\email_change.html:5
+msgid "Change your e-mail address"
+msgstr "E-pochta manzilini oʻzgartirish"
+
+#: .\templates\account\email_change.html:8
+#, python-format
+msgid ""
+"A confirmation link has been sent to %(email)s. The change takes effect once"
+" you open it."
+msgstr ""
+"%(email)s manziliga tasdiqlash havolasi yuborildi. Oʻzgarish uni "
+"ochganingizdan keyin kuchga kiradi."
+
+#: .\templates\account\email_change.html:16
+msgid "Send confirmation"
+msgstr "Tasdiqlash yuborish"
+
 #: .\templates\account\email_confirm.html:4
 #: .\templates\account\email_confirm.html:7
 msgid "Confirm your e-mail address"
@@ -3401,8 +3540,10 @@ msgid "This confirmation link is invalid or has expired."
 msgstr "Bu tasdiqlash havolasi yaroqsiz yoki muddati oʻtgan."
 
 #: .\templates\account\login.html:3 .\templates\account\login.html:5
-#: .\templates\account\login.html:18 .\templates\includes\header.html:104
-#: .\templates\includes\header.html:145
+#: .\templates\account\login.html:18
+#: .\templates\account\password_reset_from_key_done.html:8
+#: .\templates\account\verification_sent.html:10
+#: .\templates\includes\header.html:104 .\templates\includes\header.html:145
 msgid "Sign in"
 msgstr "Kirish"
 
@@ -3415,11 +3556,11 @@ msgid "Sign in with ORCID"
 msgstr "ORCID orqali kirish"
 
 #: .\templates\account\login.html:30
-#| msgid "Sign in with ORCID"
 msgid "Sign in with Google"
 msgstr "Google orqali kirish"
 
 #: .\templates\account\login.html:34
+#: .\templates\account\password_change.html:16
 msgid "Forgot your password?"
 msgstr "Parolni unutdingizmi?"
 
@@ -3437,14 +3578,110 @@ msgstr "Chiqish"
 msgid "Are you sure you want to sign out?"
 msgstr "Rostdan ham chiqmoqchimisiz?"
 
+#: .\templates\account\password_change.html:3
+#: .\templates\account\password_change.html:5
+msgid "Change your password"
+msgstr "Parolni oʻzgartirish"
+
+#: .\templates\account\password_change.html:6
+#: .\templates\account\password_reset_from_key.html:12
+msgid ""
+"At least 12 characters; avoid anything that appears in your name or e-mail."
+msgstr ""
+"Kamida 12 belgi; ismingiz yoki e-pochtangizdagi soʻzlardan foydalanmang."
+
+#: .\templates\account\password_change.html:13
+#: .\templates\account\password_reset_from_key.html:19
+msgid "Save the new password"
+msgstr "Yangi parolni saqlash"
+
 #: .\templates\account\password_reset.html:3
 #: .\templates\account\password_reset.html:5
+#: .\templates\account\password_reset_done.html:3
 msgid "Reset your password"
 msgstr "Parolni tiklash"
 
 #: .\templates\account\password_reset.html:11
 msgid "Send the reset link"
 msgstr "Tiklash havolasini yuborish"
+
+#: .\templates\account\password_reset_done.html:6
+#: .\templates\account\verification_sent.html:6
+msgid "Check your inbox"
+msgstr "Pochtangizni tekshiring"
+
+#: .\templates\account\password_reset_done.html:7
+msgid ""
+"If an account exists for that address, we have sent a link to choose a new "
+"password."
+msgstr ""
+"Agar bu manzilda hisob boʻlsa, yangi parol tanlash uchun havola yubordik."
+
+#: .\templates\account\password_reset_done.html:9
+msgid "Back to sign in"
+msgstr "Kirish sahifasiga qaytish"
+
+#: .\templates\account\password_reset_from_key.html:3
+#: .\templates\account\password_reset_from_key.html:11
+msgid "Choose a new password"
+msgstr "Yangi parol tanlang"
+
+#: .\templates\account\password_reset_from_key.html:6
+msgid "This link has expired"
+msgstr "Havola muddati tugagan"
+
+#: .\templates\account\password_reset_from_key.html:7
+msgid ""
+"The password reset link is invalid, possibly because it has already been "
+"used."
+msgstr ""
+"Parolni tiklash havolasi yaroqsiz — ehtimol, u allaqachon ishlatilgan."
+
+#: .\templates\account\password_reset_from_key.html:9
+msgid "Request a new link"
+msgstr "Yangi havola soʻrash"
+
+#: .\templates\account\password_reset_from_key_done.html:3
+#: .\templates\account\password_reset_from_key_done.html:6
+msgid "Password changed"
+msgstr "Parol oʻzgartirildi"
+
+#: .\templates\account\password_reset_from_key_done.html:7
+msgid "Your new password is in place. You can sign in with it now."
+msgstr "Yangi parolingiz oʻrnatildi. Endi u bilan kirishingiz mumkin."
+
+#: .\templates\account\password_set.html:3
+#: .\templates\account\password_set.html:5
+msgid "Set a password"
+msgstr "Parol oʻrnatish"
+
+#: .\templates\account\password_set.html:6
+msgid ""
+"Your account was created through ORCID or Google. A password lets you sign "
+"in without them as well."
+msgstr ""
+"Hisobingiz ORCID yoki Google orqali yaratilgan. Parol ularsiz ham kirish "
+"imkonini beradi."
+
+#: .\templates\account\password_set.html:13
+msgid "Save the password"
+msgstr "Parolni saqlash"
+
+#: .\templates\account\reauthenticate.html:3
+#: .\templates\account\reauthenticate.html:5
+msgid "Confirm it is you"
+msgstr "Bu siz ekaningizni tasdiqlang"
+
+#: .\templates\account\reauthenticate.html:6
+msgid "Enter your password once more to continue with this sensitive change."
+msgstr ""
+"Ushbu muhim oʻzgarishni davom ettirish uchun parolingizni yana bir bor "
+"kiriting."
+
+#: .\templates\account\reauthenticate.html:14
+#: .\templates\submissions\wizard_intro.html:33
+msgid "Continue"
+msgstr "Davom etish"
 
 #: .\templates\account\signup.html:6
 msgid ""
@@ -3459,7 +3696,6 @@ msgid "Create account"
 msgstr "Hisob yaratish"
 
 #: .\templates\account\signup.html:19
-#| msgid "Sign in with ORCID"
 msgid "Continue with ORCID"
 msgstr "ORCID bilan davom etish"
 
@@ -3479,10 +3715,40 @@ msgstr ""
 msgid "I already have an account"
 msgstr "Menda hisob bor"
 
+#: .\templates\account\signup_closed.html:3
+#: .\templates\account\signup_closed.html:5
+msgid "Registration closed"
+msgstr "Roʻyxatdan oʻtish yopiq"
+
+#: .\templates\account\signup_closed.html:6
+msgid ""
+"New accounts are not being accepted at the moment. Please contact the "
+"editorial office."
+msgstr ""
+"Hozircha yangi hisoblar qabul qilinmaydi. Iltimos, tahririyatga murojaat "
+"qiling."
+
+#: .\templates\account\verification_sent.html:3
 #: .\templates\account\verified_email_required.html:4
 #: .\templates\account\verified_email_required.html:7
 msgid "Verify your e-mail address"
 msgstr "Elektron pochta manzilingizni tasdiqlang"
+
+#: .\templates\account\verification_sent.html:7
+msgid ""
+"We have sent a confirmation link to your e-mail address. Open it to activate"
+" your account; the link is valid for three days."
+msgstr ""
+"E-pochtangizga tasdiqlash havolasini yubordik. Hisobingizni faollashtirish "
+"uchun uni oching; havola uch kun amal qiladi."
+
+#: .\templates\account\verification_sent.html:8
+msgid ""
+"Nothing there? Look in the spam folder, or sign in and ask for the message "
+"to be sent again."
+msgstr ""
+"Xat kelmadimi? Spam papkasini tekshiring yoki tizimga kirib, xatni qayta "
+"yuborishni soʻrang."
 
 #: .\templates\account\verified_email_required.html:8
 msgid ""
@@ -3806,11 +4072,6 @@ msgstr ""
 #: .\templates\journal\home.html:40
 msgid "Submit your manuscript"
 msgstr "Qoʻlyozmangizni yuboring"
-
-#: .\templates\core\about.html:231 .\templates\errors\error.html:13
-#: .\templates\errors\lockout.html:10
-msgid "Contact the editorial office"
-msgstr "Tahririyat bilan bogʻlanish"
 
 #: .\templates\core\about.html:237
 msgid "Journal facts"
@@ -4793,10 +5054,6 @@ msgstr "Jurnal identifikatorlari"
 #: .\templates\includes\header.html:12
 msgid "Open access · double-blind peer review"
 msgstr "Ochiq kirish · ikki tomonlama anonim taqriz"
-
-#: .\templates\includes\header.html:44 .\templates\includes\header.html:122
-msgid "Primary"
-msgstr "Asosiy"
 
 #: .\templates\includes\header.html:47 .\templates\includes\header.html:125
 msgid "Current Issue"
@@ -5837,10 +6094,6 @@ msgstr "Oxirgi tahrir"
 msgid "Step"
 msgstr "Bosqich"
 
-#: .\templates\submissions\wizard_intro.html:33
-msgid "Continue"
-msgstr "Davom etish"
-
 #: .\templates\submissions\wizard_intro.html:39
 msgid "Start a new submission"
 msgstr "Yangi qoʻlyozma boshlash"
@@ -5867,10 +6120,6 @@ msgstr "Yuborish — 2-bosqich"
 #: .\templates\submissions\wizard_step2.html:11
 msgid "Uploaded files"
 msgstr "Yuklangan fayllar"
-
-#: .\templates\submissions\wizard_step2.html:31
-msgid "Remove"
-msgstr "Oʻchirish"
 
 #: .\templates\submissions\wizard_step2.html:47
 #: .\templates\submissions\wizard_step3.html:66

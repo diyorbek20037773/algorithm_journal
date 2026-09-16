@@ -1,0 +1,13 @@
+{% extends "account/base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Verify your e-mail address" %} · {{ site_settings.journal_name }}{% endblock %}
+{% block auth_content %}
+  <span class="pillar-icon mb-4">{% include "includes/icon.html" with name="mail" size=22 %}</span>
+  <h1 class="text-2xl mb-2">{% translate "Check your inbox" %}</h1>
+  <p class="muted">{% translate "We have sent a confirmation link to your e-mail address. Open it to activate your account; the link is valid for three days." %}</p>
+  <p class="muted text-sm mt-3">{% translate "Nothing there? Look in the spam folder, or sign in and ask for the message to be sent again." %}</p>
+  <div class="rule mt-6 pt-4 text-sm flex flex-col gap-2">
+    <a href="{% url 'account_login' %}">{% translate "Sign in" %}</a>
+    <a href="{% url 'core:contact' %}">{% translate "Contact the editorial office" %}</a>
+  </div>
+{% endblock %}

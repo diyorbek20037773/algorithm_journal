@@ -1,0 +1,8 @@
+{% extends "account/base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Account inactive" %} · {{ site_settings.journal_name }}{% endblock %}
+{% block auth_content %}
+  <h1 class="text-2xl mb-2">{% translate "Account inactive" %}</h1>
+  <p class="muted">{% translate "This account has been deactivated. Contact the editorial office if you believe this is a mistake." %}</p>
+  <a class="btn btn-secondary w-full mt-6" href="{% url 'core:contact' %}">{% translate "Contact the editorial office" %}</a>
+{% endblock %}

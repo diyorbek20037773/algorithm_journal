@@ -1485,6 +1485,9 @@
   .text-\[--color-accent\] {
     color: --color-accent;
   }
+  .text-\[--color-danger\] {
+    color: --color-danger;
+  }
   .text-\[--color-gold-fixed\] {
     color: --color-gold-fixed;
   }

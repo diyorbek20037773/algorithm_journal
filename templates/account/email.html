@@ -1,0 +1,56 @@
+{% extends "account/base.html" %}
+{% load i18n %}
+{% block title %}{% translate "E-mail addresses" %} · {{ site_settings.journal_name }}{% endblock %}
+{% block auth_content %}
+  <h1 class="text-2xl mb-1">{% translate "E-mail addresses" %}</h1>
+  <p class="muted text-sm mb-6">{% translate "Editorial correspondence goes to your primary address." %}</p>
+  {% if emailaddresses %}
+    <form method="post" action="{% url 'account_email' %}">
+      {% csrf_token %}
+      <ul class="flex flex-col divide-y divide-[--color-line] mb-4">
+        {% for radio in emailaddress_radios %}
+          {% with emailaddress=radio.emailaddress %}
+            <li class="checkbox-row">
+              <input type="radio"
+                     name="email"
+                     id="{{ radio.id }}"
+                     value="{{ emailaddress.email }}"
+                     {% if radio.checked %}checked{% endif %}>
+              <label for="{{ radio.id }}"
+                     class="flex flex-wrap items-center gap-2 text-sm">
+                <span class="font-medium">{{ emailaddress.email }}</span>
+                {% if emailaddress.verified %}
+                  <span class="chip chip-green">{% translate "Verified" %}</span>
+                {% else %}
+                  <span class="chip chip-gold">{% translate "Unverified" %}</span>
+                {% endif %}
+                {% if emailaddress.primary %}
+                  <span class="chip">{% translate "Primary" %}</span>
+                {% endif %}
+              </label>
+            </li>
+          {% endwith %}
+        {% endfor %}
+      </ul>
+      <div class="flex flex-wrap gap-2">
+        <button type="submit" name="action_primary" class="btn btn-secondary btn-sm">{% translate "Make primary" %}</button>
+        <button type="submit" name="action_send" class="btn btn-secondary btn-sm">{% translate "Re-send verification" %}</button>
+        <button type="submit"
+                name="action_remove"
+                class="btn btn-secondary btn-sm text-[--color-danger]">{% translate "Remove" %}</button>
+      </div>
+    </form>
+  {% else %}
+    <p class="field-error mb-4">{% translate "You have no e-mail address on file. Add one so you can receive editorial correspondence and reset your password." %}</p>
+  {% endif %}
+  {% if can_add_email %}
+    <h2 class="text-lg mt-8 mb-3">{% translate "Add an e-mail address" %}</h2>
+    <form method="post" action="{% url 'account_email' %}" novalidate>
+      {% csrf_token %}
+      {% for field in form %}
+        {% include "includes/form_field.html" with field=field %}
+      {% endfor %}
+      <button type="submit" name="action_add" class="btn btn-primary w-full">{% translate "Add address" %}</button>
+    </form>
+  {% endif %}
+{% endblock %}

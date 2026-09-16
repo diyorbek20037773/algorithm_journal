@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-16 12:05+0500\n"
+"POT-Creation-Date: 2026-09-16 12:30+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: ARER editorial office\n"
 "Language-Team: ARER\n"
@@ -17,6 +17,56 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\apps\accounts\adapters.py:40
+#, python-format
+#| msgid "Confirm your e-mail address"
+msgid "Confirm your e-mail address — %(site)s"
+msgstr "Подтвердите адрес e-mail — %(site)s"
+
+#: .\apps\accounts\adapters.py:42
+#, python-format
+msgid ""
+"Thank you for registering with %(site)s.\n"
+"\n"
+"Please confirm your e-mail address by opening this link:\n"
+"\n"
+"%(url)s\n"
+"\n"
+"The link is valid for three days. If you did not create an account, you can ignore this message."
+msgstr ""
+"Спасибо за регистрацию в %(site)s.\n"
+"\n"
+"Подтвердите адрес e-mail, открыв эту ссылку:\n"
+"\n"
+"%(url)s\n"
+"\n"
+"Ссылка действует три дня. Если вы не создавали аккаунт, просто проигнорируйте это письмо."
+
+#: .\apps\accounts\adapters.py:50
+#, python-format
+#| msgid "Reset your password"
+msgid "Reset your password — %(site)s"
+msgstr "Сброс пароля — %(site)s"
+
+#: .\apps\accounts\adapters.py:52
+#, python-format
+msgid ""
+"Someone asked to reset the password for your %(site)s account.\n"
+"\n"
+"Choose a new password here:\n"
+"\n"
+"%(url)s\n"
+"\n"
+"If this was not you, no action is needed — your password stays as it is."
+msgstr ""
+"Кто-то запросил сброс пароля для вашего аккаунта в %(site)s.\n"
+"\n"
+"Выберите новый пароль здесь:\n"
+"\n"
+"%(url)s\n"
+"\n"
+"Если это были не вы, ничего делать не нужно — пароль останется прежним."
 
 #: .\apps\accounts\admin.py:32
 msgid "Personal info"
@@ -3377,6 +3427,93 @@ msgstr "На главную страницу"
 msgid "Search the journal"
 msgstr "Поиск по журналу"
 
+#: .\templates\account\account_inactive.html:3
+#: .\templates\account\account_inactive.html:5
+msgid "Account inactive"
+msgstr "Аккаунт неактивен"
+
+#: .\templates\account\account_inactive.html:6
+msgid ""
+"This account has been deactivated. Contact the editorial office if you "
+"believe this is a mistake."
+msgstr "Этот аккаунт деактивирован. Если это ошибка, свяжитесь с редакцией."
+
+#: .\templates\account\account_inactive.html:7
+#: .\templates\account\signup_closed.html:7
+#: .\templates\account\verification_sent.html:11
+#: .\templates\core\about.html:231 .\templates\errors\error.html:13
+#: .\templates\errors\lockout.html:10
+msgid "Contact the editorial office"
+msgstr "Связаться с редакцией"
+
+#: .\templates\account\email.html:3 .\templates\account\email.html:5
+msgid "E-mail addresses"
+msgstr "Адреса e-mail"
+
+#: .\templates\account\email.html:6
+msgid "Editorial correspondence goes to your primary address."
+msgstr "Редакционная переписка приходит на основной адрес."
+
+#: .\templates\account\email.html:23
+msgid "Verified"
+msgstr "Подтверждён"
+
+#: .\templates\account\email.html:25
+msgid "Unverified"
+msgstr "Не подтверждён"
+
+#: .\templates\account\email.html:28 .\templates\includes\header.html:44
+#: .\templates\includes\header.html:122
+msgid "Primary"
+msgstr "Основное"
+
+#: .\templates\account\email.html:36
+msgid "Make primary"
+msgstr "Сделать основным"
+
+#: .\templates\account\email.html:37
+msgid "Re-send verification"
+msgstr "Отправить подтверждение снова"
+
+#: .\templates\account\email.html:40
+#: .\templates\submissions\wizard_step2.html:31
+msgid "Remove"
+msgstr "Удалить"
+
+#: .\templates\account\email.html:44
+msgid ""
+"You have no e-mail address on file. Add one so you can receive editorial "
+"correspondence and reset your password."
+msgstr ""
+"В аккаунте нет адреса e-mail. Добавьте его, чтобы получать письма редакции и"
+" восстанавливать пароль."
+
+#: .\templates\account\email.html:47
+msgid "Add an e-mail address"
+msgstr "Добавить адрес e-mail"
+
+#: .\templates\account\email.html:53
+msgid "Add address"
+msgstr "Добавить адрес"
+
+#: .\templates\account\email_change.html:3
+#: .\templates\account\email_change.html:5
+msgid "Change your e-mail address"
+msgstr "Изменить адрес e-mail"
+
+#: .\templates\account\email_change.html:8
+#, python-format
+msgid ""
+"A confirmation link has been sent to %(email)s. The change takes effect once"
+" you open it."
+msgstr ""
+"Ссылка для подтверждения отправлена на %(email)s. Изменение вступит в силу "
+"после её открытия."
+
+#: .\templates\account\email_change.html:16
+msgid "Send confirmation"
+msgstr "Отправить подтверждение"
+
 #: .\templates\account\email_confirm.html:4
 #: .\templates\account\email_confirm.html:7
 msgid "Confirm your e-mail address"
@@ -3391,8 +3528,10 @@ msgid "This confirmation link is invalid or has expired."
 msgstr "Эта ссылка подтверждения недействительна или устарела."
 
 #: .\templates\account\login.html:3 .\templates\account\login.html:5
-#: .\templates\account\login.html:18 .\templates\includes\header.html:104
-#: .\templates\includes\header.html:145
+#: .\templates\account\login.html:18
+#: .\templates\account\password_reset_from_key_done.html:8
+#: .\templates\account\verification_sent.html:10
+#: .\templates\includes\header.html:104 .\templates\includes\header.html:145
 msgid "Sign in"
 msgstr "Войти"
 
@@ -3405,11 +3544,11 @@ msgid "Sign in with ORCID"
 msgstr "Войти через ORCID"
 
 #: .\templates\account\login.html:30
-#| msgid "Sign in with ORCID"
 msgid "Sign in with Google"
 msgstr "Войти через Google"
 
 #: .\templates\account\login.html:34
+#: .\templates\account\password_change.html:16
 msgid "Forgot your password?"
 msgstr "Забыли пароль?"
 
@@ -3427,14 +3566,107 @@ msgstr "Выйти"
 msgid "Are you sure you want to sign out?"
 msgstr "Вы действительно хотите выйти?"
 
+#: .\templates\account\password_change.html:3
+#: .\templates\account\password_change.html:5
+msgid "Change your password"
+msgstr "Изменить пароль"
+
+#: .\templates\account\password_change.html:6
+#: .\templates\account\password_reset_from_key.html:12
+msgid ""
+"At least 12 characters; avoid anything that appears in your name or e-mail."
+msgstr "Не менее 12 символов; не используйте части имени или e-mail."
+
+#: .\templates\account\password_change.html:13
+#: .\templates\account\password_reset_from_key.html:19
+msgid "Save the new password"
+msgstr "Сохранить новый пароль"
+
 #: .\templates\account\password_reset.html:3
 #: .\templates\account\password_reset.html:5
+#: .\templates\account\password_reset_done.html:3
 msgid "Reset your password"
 msgstr "Сброс пароля"
 
 #: .\templates\account\password_reset.html:11
 msgid "Send the reset link"
 msgstr "Отправить ссылку для сброса"
+
+#: .\templates\account\password_reset_done.html:6
+#: .\templates\account\verification_sent.html:6
+msgid "Check your inbox"
+msgstr "Проверьте почту"
+
+#: .\templates\account\password_reset_done.html:7
+msgid ""
+"If an account exists for that address, we have sent a link to choose a new "
+"password."
+msgstr ""
+"Если для этого адреса есть аккаунт, мы отправили ссылку для выбора нового "
+"пароля."
+
+#: .\templates\account\password_reset_done.html:9
+msgid "Back to sign in"
+msgstr "Вернуться ко входу"
+
+#: .\templates\account\password_reset_from_key.html:3
+#: .\templates\account\password_reset_from_key.html:11
+msgid "Choose a new password"
+msgstr "Выберите новый пароль"
+
+#: .\templates\account\password_reset_from_key.html:6
+msgid "This link has expired"
+msgstr "Срок действия ссылки истёк"
+
+#: .\templates\account\password_reset_from_key.html:7
+msgid ""
+"The password reset link is invalid, possibly because it has already been "
+"used."
+msgstr ""
+"Ссылка для сброса пароля недействительна — возможно, она уже использована."
+
+#: .\templates\account\password_reset_from_key.html:9
+msgid "Request a new link"
+msgstr "Запросить новую ссылку"
+
+#: .\templates\account\password_reset_from_key_done.html:3
+#: .\templates\account\password_reset_from_key_done.html:6
+msgid "Password changed"
+msgstr "Пароль изменён"
+
+#: .\templates\account\password_reset_from_key_done.html:7
+msgid "Your new password is in place. You can sign in with it now."
+msgstr "Новый пароль установлен. Теперь можно войти с ним."
+
+#: .\templates\account\password_set.html:3
+#: .\templates\account\password_set.html:5
+msgid "Set a password"
+msgstr "Установить пароль"
+
+#: .\templates\account\password_set.html:6
+msgid ""
+"Your account was created through ORCID or Google. A password lets you sign "
+"in without them as well."
+msgstr ""
+"Аккаунт создан через ORCID или Google. Пароль позволит входить и без них."
+
+#: .\templates\account\password_set.html:13
+msgid "Save the password"
+msgstr "Сохранить пароль"
+
+#: .\templates\account\reauthenticate.html:3
+#: .\templates\account\reauthenticate.html:5
+msgid "Confirm it is you"
+msgstr "Подтвердите, что это вы"
+
+#: .\templates\account\reauthenticate.html:6
+msgid "Enter your password once more to continue with this sensitive change."
+msgstr "Введите пароль ещё раз, чтобы продолжить это важное изменение."
+
+#: .\templates\account\reauthenticate.html:14
+#: .\templates\submissions\wizard_intro.html:33
+msgid "Continue"
+msgstr "Продолжить"
 
 #: .\templates\account\signup.html:6
 msgid ""
@@ -3449,7 +3681,6 @@ msgid "Create account"
 msgstr "Создать учётную запись"
 
 #: .\templates\account\signup.html:19
-#| msgid "Sign in with ORCID"
 msgid "Continue with ORCID"
 msgstr "Продолжить с ORCID"
 
@@ -3469,10 +3700,39 @@ msgstr ""
 msgid "I already have an account"
 msgstr "У меня уже есть учётная запись"
 
+#: .\templates\account\signup_closed.html:3
+#: .\templates\account\signup_closed.html:5
+msgid "Registration closed"
+msgstr "Регистрация закрыта"
+
+#: .\templates\account\signup_closed.html:6
+msgid ""
+"New accounts are not being accepted at the moment. Please contact the "
+"editorial office."
+msgstr ""
+"Новые аккаунты сейчас не принимаются. Пожалуйста, свяжитесь с редакцией."
+
+#: .\templates\account\verification_sent.html:3
 #: .\templates\account\verified_email_required.html:4
 #: .\templates\account\verified_email_required.html:7
 msgid "Verify your e-mail address"
 msgstr "Подтвердите адрес электронной почты"
+
+#: .\templates\account\verification_sent.html:7
+msgid ""
+"We have sent a confirmation link to your e-mail address. Open it to activate"
+" your account; the link is valid for three days."
+msgstr ""
+"Мы отправили ссылку для подтверждения на ваш e-mail. Откройте её, чтобы "
+"активировать аккаунт; ссылка действует три дня."
+
+#: .\templates\account\verification_sent.html:8
+msgid ""
+"Nothing there? Look in the spam folder, or sign in and ask for the message "
+"to be sent again."
+msgstr ""
+"Письма нет? Проверьте папку «Спам» или войдите и запросите повторную "
+"отправку."
 
 #: .\templates\account\verified_email_required.html:8
 msgid ""
@@ -3794,11 +4054,6 @@ msgstr ""
 #: .\templates\journal\home.html:40
 msgid "Submit your manuscript"
 msgstr "Подайте вашу рукопись"
-
-#: .\templates\core\about.html:231 .\templates\errors\error.html:13
-#: .\templates\errors\lockout.html:10
-msgid "Contact the editorial office"
-msgstr "Связаться с редакцией"
 
 #: .\templates\core\about.html:237
 msgid "Journal facts"
@@ -4779,10 +5034,6 @@ msgstr "Идентификаторы журнала"
 #: .\templates\includes\header.html:12
 msgid "Open access · double-blind peer review"
 msgstr "Открытый доступ · двойное слепое рецензирование"
-
-#: .\templates\includes\header.html:44 .\templates\includes\header.html:122
-msgid "Primary"
-msgstr "Основное"
 
 #: .\templates\includes\header.html:47 .\templates\includes\header.html:125
 msgid "Current Issue"
@@ -5813,10 +6064,6 @@ msgstr "Последнее изменение"
 msgid "Step"
 msgstr "Шаг"
 
-#: .\templates\submissions\wizard_intro.html:33
-msgid "Continue"
-msgstr "Продолжить"
-
 #: .\templates\submissions\wizard_intro.html:39
 msgid "Start a new submission"
 msgstr "Начать новую подачу"
@@ -5843,10 +6090,6 @@ msgstr "Подача — шаг 2"
 #: .\templates\submissions\wizard_step2.html:11
 msgid "Uploaded files"
 msgstr "Загруженные файлы"
-
-#: .\templates\submissions\wizard_step2.html:31
-msgid "Remove"
-msgstr "Удалить"
 
 #: .\templates\submissions\wizard_step2.html:47
 #: .\templates\submissions\wizard_step3.html:66
