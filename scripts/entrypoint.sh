@@ -38,6 +38,20 @@ EOF
   return 1
 }
 
+prepare_database() {
+  python manage.py migrate --noinput
+  # A freshly created database has no policy pages, sections or JEL codes,
+  # so every footer link would 404. Seed that content once; it is flagged
+  # "needs editorial review" and carries no accounts. SEED_DEMO_ON_START=true
+  # (staging only) additionally loads the demo users, articles and
+  # submissions the first time.
+  if [ "${SEED_DEMO_ON_START:-false}" = "true" ]; then
+    python manage.py seed_demo --if-empty || true
+  else
+    python manage.py seed_demo --content-only --if-empty || true
+  fi
+}
+
 case "${ROLE}" in
   web)
     wait_for_postgres
@@ -47,19 +61,18 @@ case "${ROLE}" in
     python manage.py collectstatic --noinput --ignore=src || true
     exec python manage.py runserver 0.0.0.0:8000
     ;;
+  migrate)
+    # One-shot schema + first-start content job (Kubernetes PreSync hook).
+    wait_for_postgres
+    prepare_database
+    ;;
   prod)
     wait_for_postgres
-    python manage.py migrate --noinput
     python manage.py collectstatic --noinput --ignore=src
-    # A freshly created database has no policy pages, sections or JEL codes,
-    # so every footer link would 404. Seed that content once; it is flagged
-    # "needs editorial review" and carries no accounts. SEED_DEMO_ON_START=true
-    # (staging only) additionally loads the demo users, articles and
-    # submissions the first time.
-    if [ "${SEED_DEMO_ON_START:-false}" = "true" ]; then
-      python manage.py seed_demo --if-empty || true
-    else
-      python manage.py seed_demo --content-only --if-empty || true
+    # Kubernetes runs this once in a hook Job (role `migrate`) and sets
+    # MIGRATE_ON_START=false, so replicas never race each other on the schema.
+    if [ "${MIGRATE_ON_START:-true}" = "true" ]; then
+      prepare_database
     fi
     # Workers follow the CPU count (the usual 2n+1, capped so a large host does
     # not open more database connections than Postgres allows); threads let

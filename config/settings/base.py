@@ -482,18 +482,27 @@ CONTENT_SECURITY_POLICY = {
 # -----------------------------------------------------------------------------
 # Logging
 # -----------------------------------------------------------------------------
+# LOG_FORMAT=json turns stdout into one JSON object per line (with trace ids)
+# for Fluent Bit -> Elasticsearch; the default stays human-readable.
+LOG_FORMAT = env("LOG_FORMAT", default="text")
+LOG_LEVEL = env("LOG_LEVEL", default="INFO")
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
     "formatters": {
         "verbose": {"format": "{levelname} {asctime} {name} {message}", "style": "{"},
+        "json": {"()": "apps.core.observability.JsonFormatter"},
     },
     "handlers": {
-        "console": {"class": "logging.StreamHandler", "formatter": "verbose"},
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "json" if LOG_FORMAT == "json" else "verbose",
+        },
     },
-    "root": {"handlers": ["console"], "level": "INFO"},
+    "root": {"handlers": ["console"], "level": LOG_LEVEL},
     "loggers": {
         "django.db.backends": {"level": "WARNING", "handlers": ["console"], "propagate": False},
-        "apps": {"level": "INFO", "handlers": ["console"], "propagate": False},
+        "apps": {"level": LOG_LEVEL, "handlers": ["console"], "propagate": False},
+        "arer.audit": {"level": "INFO", "handlers": ["console"], "propagate": False},
     },
 }

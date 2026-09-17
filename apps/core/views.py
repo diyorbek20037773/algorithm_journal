@@ -29,6 +29,14 @@ from apps.core.services import get_site_settings
 # ---------------------------------------------------------------------------
 @never_cache
 @require_GET
+def livez(request: HttpRequest) -> JsonResponse:
+    """Liveness probe: the process answers.  Deliberately touches no backend,
+    so a database outage makes pods unready instead of restarting them all."""
+    return JsonResponse({"status": "ok"})
+
+
+@never_cache
+@require_GET
 def healthz(request: HttpRequest) -> JsonResponse:
     """Liveness probe reporting database and cache connectivity."""
     status: dict[str, Any] = {"status": "ok", "database": "ok", "cache": "ok"}

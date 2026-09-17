@@ -15,6 +15,7 @@ from django.utils import translation
 
 from apps.core.markdown import render_markdown, strip_markdown
 from apps.core.models import AuditLog, EmailTemplate, SiteSettings
+from apps.core.observability import audit_event
 
 logger = logging.getLogger(__name__)
 
@@ -68,13 +69,21 @@ def log_action(
     if actor is None and request is not None:
         user = getattr(request, "user", None)
         actor = user if user is not None and user.is_authenticated else None
-    return AuditLog.objects.create(
+    entry = AuditLog.objects.create(
         actor=actor,
         action=action,
         target=target[:255],
         changes=changes or {},
         ip=client_ip(request),
     )
+    audit_event(
+        action,
+        audit_id=entry.pk,
+        actor_id=getattr(actor, "pk", None),
+        target=entry.target,
+        ip=entry.ip,
+    )
+    return entry
 
 
 def absolute_url(path: str) -> str:

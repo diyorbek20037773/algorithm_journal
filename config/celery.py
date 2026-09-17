@@ -6,6 +6,7 @@ import os
 
 from celery import Celery
 from celery.schedules import crontab
+from celery.signals import worker_process_init
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.prod")
 
@@ -47,6 +48,14 @@ app.conf.beat_schedule = {
         "schedule": crontab(hour=8, minute=0),
     },
 }
+
+
+@worker_process_init.connect(weak=False)
+def _init_worker_tracing(**kwargs) -> None:
+    """Trace tasks in each forked worker process (no-op without an OTLP endpoint)."""
+    from apps.core.observability import init_tracing
+
+    init_tracing("worker")
 
 
 @app.task(bind=True, ignore_result=True)

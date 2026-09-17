@@ -16,6 +16,8 @@ SECURE_HSTS_SECONDS = env.int("SECURE_HSTS_SECONDS", default=31536000)
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+# Kubelet and Docker probes speak plain HTTP inside the cluster/host.
+SECURE_REDIRECT_EXEMPT = [r"^livez/$", r"^healthz/$"]
 SESSION_COOKIE_SECURE = env.bool("SESSION_COOKIE_SECURE", default=True)
 CSRF_COOKIE_SECURE = env.bool("CSRF_COOKIE_SECURE", default=True)
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False

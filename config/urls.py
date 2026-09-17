@@ -24,6 +24,7 @@ handler500 = "apps.core.views.server_error"
 
 # --- language-neutral endpoints ------------------------------------------
 urlpatterns = [
+    path("livez/", core_views.livez, name="livez"),
     path("healthz/", core_views.healthz, name="healthz"),
     path("robots.txt", core_views.robots_txt, name="robots"),
     path("sitemap.xml", core_views.sitemap_index, name="sitemap_index"),
