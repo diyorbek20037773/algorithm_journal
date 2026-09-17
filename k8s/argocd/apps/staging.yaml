@@ -1,0 +1,35 @@
+# Every green push to main -> CI bumps k8s/overlays/staging -> synced here.
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: arer-staging
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: arer
+  source:
+    repoURL: https://github.com/diyorbek20037773/algorithm_journal.git
+    targetRevision: main
+    path: k8s/overlays/staging
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: arer-staging
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=false
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 30s
+        factor: 2
+        maxDuration: 5m
+  ignoreDifferences:
+    # The HPA owns the replica count.
+    - group: apps
+      kind: Deployment
+      jsonPointers: ["/spec/replicas"]

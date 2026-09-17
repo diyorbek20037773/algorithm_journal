@@ -1,6 +1,11 @@
 default_language_version:
   python: python3.12
 
+# `pre-commit install` sets up both hooks: fast checks on commit, the test
+# suite before anything leaves the machine on push.
+default_install_hook_types: [pre-commit, pre-push]
+default_stages: [pre-commit]
+
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
@@ -44,3 +49,10 @@ repos:
         language: system
         pass_filenames: false
         types: [python]
+      - id: pytest-pre-push
+        name: test suite (needs Postgres + Redis from .env)
+        entry: python -m pytest -q -m "not e2e" -x -p no:cacheprovider
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [pre-push]

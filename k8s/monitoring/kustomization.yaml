@@ -1,0 +1,28 @@
+# Observability stack in the `monitoring` namespace:
+#   Tracing  - OpenTelemetry Collector (OTLP in) -> Jaeger (UI :16686)
+#   Logging  - Fluent Bit DaemonSet -> Elasticsearch -> Kibana (EFK)
+#   Audit    - application audit events (logger arer.audit) and the Kubernetes
+#              API audit log go to their own indices (arer-audit-*, k8s-audit-*);
+#              see k8s/cluster-audit/ for the API server policy.
+# Single-node, in-cluster sizing for the VPS.  Elasticsearch security is off
+# and the namespace is closed by NetworkPolicy: reach the UIs with
+# `kubectl port-forward`, never through a public Ingress.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: monitoring
+
+labels:
+  - pairs:
+      app.kubernetes.io/part-of: arer-monitoring
+    includeSelectors: false
+
+resources:
+  - namespace.yaml
+  - networkpolicy.yaml
+  - elasticsearch.yaml
+  - kibana.yaml
+  - jaeger.yaml
+  - otel-collector.yaml
+  - fluent-bit.yaml
+  - es-retention-cronjob.yaml

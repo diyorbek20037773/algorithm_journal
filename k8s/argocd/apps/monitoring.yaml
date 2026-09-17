@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: arer-monitoring
+  namespace: argocd
+  annotations:
+    # Up before the application, so the first requests are already traced.
+    argocd.argoproj.io/sync-wave: "-5"
+spec:
+  project: arer
+  source:
+    repoURL: https://github.com/diyorbek20037773/algorithm_journal.git
+    targetRevision: main
+    path: k8s/monitoring
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: monitoring
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true

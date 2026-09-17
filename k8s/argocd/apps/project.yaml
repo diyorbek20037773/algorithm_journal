@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: arer
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-10"
+spec:
+  description: ALGORITHM - Review of Economic Research
+  sourceRepos:
+    - https://github.com/diyorbek20037773/algorithm_journal.git
+  destinations:
+    - server: https://kubernetes.default.svc
+      namespace: arer
+    - server: https://kubernetes.default.svc
+      namespace: arer-staging
+    - server: https://kubernetes.default.svc
+      namespace: monitoring
+  clusterResourceWhitelist:
+    - group: ""
+      kind: Namespace
+    - group: rbac.authorization.k8s.io
+      kind: ClusterRole
+    - group: rbac.authorization.k8s.io
+      kind: ClusterRoleBinding
+  # Production changes only in the working-hours window unless forced.
+  syncWindows:
+    - kind: allow
+      schedule: "0 5 * * 1-5"
+      duration: 12h
+      applications: ["arer-production"]
+      manualSync: true

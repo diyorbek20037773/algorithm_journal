@@ -1,0 +1,108 @@
+# Staging: demo data, full trace sampling, one replica of everything.
+# CI sets images[0].newTag here on every green push to main.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: arer-staging
+
+resources:
+  - namespace.yaml
+  - ../../base
+
+components:
+  - ../../components/data
+
+labels:
+  - pairs:
+      app.kubernetes.io/instance: arer-staging
+    includeSelectors: false
+
+images:
+  - name: arer-web
+    newName: ghcr.io/diyorbek20037773/algorithm_journal
+    newTag: latest
+
+patches:
+  - target:
+      kind: ConfigMap
+      name: arer-config
+    patch: |-
+      - op: replace
+        path: /data/APP_ENV
+        value: staging
+      - op: replace
+        path: /data/DJANGO_ALLOWED_HOSTS
+        value: "staging.algorithm-journal.uz,localhost"
+      - op: replace
+        path: /data/DJANGO_CSRF_TRUSTED_ORIGINS
+        value: "https://staging.algorithm-journal.uz"
+      - op: replace
+        path: /data/SITE_DOMAIN
+        value: staging.algorithm-journal.uz
+      - op: replace
+        path: /data/SEED_DEMO_ON_START
+        value: "true"
+      - op: replace
+        path: /data/SECURE_HSTS_SECONDS
+        value: "3600"
+      - op: replace
+        path: /data/GUNICORN_WORKERS
+        value: "2"
+      - op: replace
+        path: /data/OTEL_TRACES_SAMPLER_ARG
+        value: "1.0"
+  - target:
+      kind: Ingress
+      name: arer
+    patch: |-
+      - op: replace
+        path: /spec/tls/0/hosts
+        value: ["staging.algorithm-journal.uz"]
+      - op: replace
+        path: /spec/rules/0/host
+        value: staging.algorithm-journal.uz
+      - op: add
+        path: /metadata/annotations/cert-manager.io~1cluster-issuer
+        value: letsencrypt-staging
+  - target:
+      kind: Deployment
+      name: arer-web
+    patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 1
+  - target:
+      kind: HorizontalPodAutoscaler
+      name: arer-web
+    patch: |-
+      - op: replace
+        path: /spec/minReplicas
+        value: 1
+      - op: replace
+        path: /spec/maxReplicas
+        value: 2
+  - target:
+      kind: PodDisruptionBudget
+      name: arer-web
+    patch: |-
+      - op: replace
+        path: /spec/minAvailable
+        value: 0
+  - target:
+      kind: StatefulSet
+      name: arer-postgres
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/args/3
+        value: shared_buffers=256MB
+      - op: replace
+        path: /spec/template/spec/containers/0/args/5
+        value: effective_cache_size=768MB
+      - op: replace
+        path: /spec/template/spec/containers/0/resources
+        value:
+          requests: {cpu: 100m, memory: 384Mi}
+          limits: {cpu: "1", memory: 1Gi}
+      - op: replace
+        path: /spec/volumeClaimTemplates/0/spec/resources/requests/storage
+        value: 5Gi

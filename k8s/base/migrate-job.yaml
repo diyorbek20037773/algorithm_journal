@@ -1,0 +1,56 @@
+# Schema migrations + first-start content, once per Argo CD sync.
+# Wave -1: after the database (wave -2), before the Deployments (wave 0).
+# Outside Argo CD: `kubectl delete job arer-migrate --ignore-not-found` first,
+# because a Job's pod template is immutable.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: arer-migrate
+  labels:
+    app.kubernetes.io/component: migrate
+  annotations:
+    argocd.argoproj.io/hook: Sync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  backoffLimit: 3
+  activeDeadlineSeconds: 900
+  ttlSecondsAfterFinished: 86400
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: arer
+        app.kubernetes.io/component: migrate
+    spec:
+      serviceAccountName: arer
+      automountServiceAccountToken: false
+      restartPolicy: Never
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: migrate
+          image: arer-web
+          args: ["migrate"]
+          envFrom:
+            - configMapRef:
+                name: arer-config
+            - secretRef:
+                name: arer-secrets
+          env:
+            - name: OTEL_SDK_DISABLED
+              value: "true"
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: "1"
+              memory: 768Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]

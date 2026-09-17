@@ -1,0 +1,26 @@
+# App of apps.  Bootstrap once, after installing Argo CD:
+#
+#   kubectl apply -n argocd -f k8s/argocd/root.yaml
+#
+# Argo CD then owns everything under k8s/argocd/apps/ — the project, staging,
+# production and the monitoring stack — and keeps the cluster equal to Git.
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: arer-root
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/diyorbek20037773/algorithm_journal.git
+    targetRevision: main
+    path: k8s/argocd/apps
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

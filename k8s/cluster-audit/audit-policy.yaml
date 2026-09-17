@@ -1,0 +1,57 @@
+# Kubernetes API server audit policy (not a cluster object: a file the API
+# server reads at start-up).  Install on the control-plane node:
+#
+#   sudo mkdir -p /etc/kubernetes/audit /var/log/kubernetes/audit
+#   sudo cp k8s/cluster-audit/audit-policy.yaml /etc/kubernetes/audit/policy.yaml
+#
+# k3s (/etc/rancher/k3s/config.yaml), then `systemctl restart k3s`:
+#   kube-apiserver-arg:
+#     - audit-policy-file=/etc/kubernetes/audit/policy.yaml
+#     - audit-log-path=/var/log/kubernetes/audit/audit.log
+#     - audit-log-maxage=30
+#     - audit-log-maxbackup=10
+#     - audit-log-maxsize=100
+#
+# Fluent Bit (k8s/monitoring/fluent-bit.yaml) ships the file to k8s-audit-*.
+apiVersion: audit.k8s.io/v1
+kind: Policy
+omitStages:
+  - RequestReceived
+rules:
+  # Secret and ConfigMap contents must never land in a log.
+  - level: Metadata
+    resources:
+      - group: ""
+        resources: ["secrets", "configmaps", "serviceaccounts/token"]
+
+  # Who changed what: every write, with the request body.
+  - level: Request
+    verbs: ["create", "update", "patch", "delete", "deletecollection"]
+    resources:
+      - group: ""
+      - group: apps
+      - group: batch
+      - group: networking.k8s.io
+      - group: rbac.authorization.k8s.io
+      - group: policy
+      - group: argoproj.io
+
+  # Interactive access to running containers.
+  - level: Metadata
+    resources:
+      - group: ""
+        resources: ["pods/exec", "pods/attach", "pods/portforward"]
+
+  # Noise: health checks, node heartbeats, controller leases, reads.
+  - level: None
+    nonResourceURLs: ["/healthz*", "/livez*", "/readyz*", "/version", "/metrics"]
+  - level: None
+    resources:
+      - group: coordination.k8s.io
+        resources: ["leases"]
+  - level: None
+    users: ["system:kube-proxy"]
+  - level: None
+    verbs: ["get", "list", "watch"]
+
+  - level: Metadata

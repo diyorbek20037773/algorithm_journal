@@ -1,0 +1,40 @@
+# Non-secret configuration shared by every process.  Secrets (SECRET_KEY,
+# DATABASE_URL, API keys) live in the `arer-secrets` Secret — see
+# k8s/secret.example.yaml and docs/PIPELINE_uz.md.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: arer-config
+data:
+  DJANGO_SETTINGS_MODULE: config.settings.prod
+  DJANGO_DEBUG: "False"
+  APP_ENV: production
+  # "localhost" is the Host header the kubelet probes send.
+  DJANGO_ALLOWED_HOSTS: "journal.example.org,localhost"
+  DJANGO_CSRF_TRUSTED_ORIGINS: "https://journal.example.org"
+  SITE_DOMAIN: journal.example.org
+  SITE_PROTOCOL: https
+  SECURE_SSL_REDIRECT: "True"
+  SECURE_HSTS_SECONDS: "31536000"
+  SESSION_COOKIE_SECURE: "True"
+  CSRF_COOKIE_SECURE: "True"
+  # Migrations run once per sync in the arer-migrate hook Job.
+  MIGRATE_ON_START: "false"
+  SEED_DEMO_ON_START: "false"
+  DB_POOL: "true"
+  REDIS_URL: redis://arer-redis:6379/0
+  CELERY_BROKER_URL: redis://arer-redis:6379/1
+  CELERY_RESULT_BACKEND: redis://arer-redis:6379/2
+  STORAGE_BACKEND: local
+  MEDIA_ROOT: /app/media
+  # nproc reports node CPUs, not the pod limit — size gunicorn explicitly.
+  GUNICORN_WORKERS: "3"
+  GUNICORN_THREADS: "4"
+  CELERY_CONCURRENCY: "2"
+  # Observability (k8s/monitoring): JSON logs for Fluent Bit, OTLP traces
+  # to the collector, which forwards them to Jaeger.
+  LOG_FORMAT: json
+  LOG_LEVEL: INFO
+  OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector.monitoring.svc.cluster.local:4318
+  OTEL_TRACES_SAMPLER: parentbased_traceidratio
+  OTEL_TRACES_SAMPLER_ARG: "0.2"

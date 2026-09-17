@@ -1,15 +1,26 @@
+# Pipeline: quality + manifests -> SonarQube -> image (registry) -> GitOps bump.
+# Argo CD watches k8s/overlays/* and deploys what this workflow commits there:
+#   push to main  -> k8s/overlays/staging    (image tag sha-<commit>)
+#   push tag v*   -> k8s/overlays/production (image tag <version>)
+# docs/PIPELINE_uz.md lists the secrets and variables it reads.
 name: CI
 
 on:
   push:
     branches: [main]
+    tags: ["v*"]
   pull_request:
     branches: [main]
   workflow_dispatch:
 
+# Never cancel a main/tag run half-way: it may be pushing an image or a
+# manifest commit.  Superseded pull-request runs are cancelled.
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
 
 env:
   DJANGO_SETTINGS_MODULE: config.settings.test
@@ -102,7 +113,19 @@ jobs:
         run: uv run python manage.py check --deploy --fail-level ERROR
 
       - name: Tests
-        run: uv run pytest -q -m "not e2e" --cov=apps --cov-report=term-missing
+        run: >-
+          uv run pytest -q -m "not e2e" --cov=apps --cov=config
+          --cov-report=term-missing --cov-report=xml:coverage.xml
+          --junitxml=test-results.xml
+
+      - name: Upload coverage for SonarQube
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: |
+            coverage.xml
+            test-results.xml
+          retention-days: 7
 
       - name: Backup / restore drill
         run: bash scripts/ci_backup_restore.sh
@@ -170,3 +193,161 @@ jobs:
           name: screenshots
           path: docs/screenshots/
           if-no-files-found: ignore
+
+  manifests:
+    name: Kubernetes manifests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install kubeconform
+        run: |
+          curl -fsSL https://github.com/yannh/kubeconform/releases/download/v0.6.7/kubeconform-linux-amd64.tar.gz \
+            | sudo tar -xz -C /usr/local/bin kubeconform
+
+      - name: Render and validate (kustomize + kubeconform)
+        run: |
+          mkdir -p rendered
+          for dir in overlays/staging overlays/production monitoring; do
+            kubectl kustomize "k8s/${dir}" > "rendered/$(basename "${dir}").yaml"
+          done
+          cp k8s/argocd/root.yaml rendered/argocd-root.yaml
+          for f in k8s/argocd/apps/*.yaml; do cp "$f" "rendered/argocd-$(basename "$f")"; done
+          kubeconform -strict -summary -kubernetes-version 1.30.0 \
+            -schema-location default \
+            -schema-location 'https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json' \
+            rendered/*.yaml
+
+  sonarqube:
+    name: SonarQube analysis
+    needs: quality
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL || 'https://sonarcloud.io' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # blame data for new-code detection
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: coverage
+
+      - name: Skip notice
+        if: env.SONAR_TOKEN == ''
+        run: echo "::notice::SONAR_TOKEN is not set - SonarQube analysis skipped (docs/PIPELINE_uz.md)."
+
+      - name: Scan and wait for the quality gate
+        if: env.SONAR_TOKEN != ''
+        uses: SonarSource/sonarqube-scan-action@v5
+        with:
+          args: >-
+            -Dsonar.qualitygate.wait=true
+            -Dsonar.qualitygate.timeout=600
+
+  image:
+    name: Docker image
+    needs: [quality, manifests]
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      packages: write
+    outputs:
+      tag: ${{ steps.tag.outputs.tag }}
+      image: ${{ steps.tag.outputs.image }}
+    env:
+      REGISTRY: ${{ vars.IMAGE_REGISTRY || 'ghcr.io' }}
+      IMAGE_NAME: ${{ vars.IMAGE_NAME || github.repository }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Resolve image name and deploy tag
+        id: tag
+        run: |
+          image="${REGISTRY}/${IMAGE_NAME,,}"
+          if [[ "${GITHUB_REF}" == refs/tags/v* ]]; then
+            tag="${GITHUB_REF_NAME#v}"
+          else
+            tag="sha-${GITHUB_SHA::12}"
+          fi
+          echo "image=${image}" >> "$GITHUB_OUTPUT"
+          echo "tag=${tag}" >> "$GITHUB_OUTPUT"
+
+      - uses: docker/setup-buildx-action@v3
+
+      - name: Log in to the registry
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ secrets.REGISTRY_USERNAME || github.actor }}
+          password: ${{ secrets.REGISTRY_PASSWORD || secrets.GITHUB_TOKEN }}
+
+      - name: Image metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ steps.tag.outputs.image }}
+          tags: |
+            type=raw,value=${{ steps.tag.outputs.tag }}
+            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
+
+      - name: Build (push on main and release tags only)
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          target: runtime
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            APP_VERSION=${{ steps.tag.outputs.tag }}
+            VCS_REF=${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  gitops:
+    name: Update deployment manifests
+    needs: [image, sonarqube, e2e]
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set the image in the overlay
+        id: bump
+        env:
+          IMAGE: ${{ needs.image.outputs.image }}
+          TAG: ${{ needs.image.outputs.tag }}
+        run: |
+          if [[ "${GITHUB_REF}" == refs/tags/v* ]]; then overlay=production; else overlay=staging; fi
+          file="k8s/overlays/${overlay}/kustomization.yaml"
+          yq -i '(.images[] | select(.name == "arer-web")).newName = strenv(IMAGE)' "$file"
+          yq -i '(.images[] | select(.name == "arer-web")).newTag = strenv(TAG)' "$file"
+          echo "overlay=${overlay}" >> "$GITHUB_OUTPUT"
+          git diff --stat
+
+      - name: Commit and push
+        env:
+          OVERLAY: ${{ steps.bump.outputs.overlay }}
+          TAG: ${{ needs.image.outputs.tag }}
+        run: |
+          if git diff --quiet; then echo "Overlay already at ${TAG}"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "chore(deploy): ${OVERLAY} -> ${TAG} [skip ci]"
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main && git push origin HEAD:main; then exit 0; fi
+            echo "push attempt ${attempt} failed, retrying"
+          done
+          exit 1

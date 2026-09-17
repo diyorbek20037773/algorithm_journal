@@ -1,0 +1,13 @@
+# Uploaded manuscripts, galleys and images.  ReadWriteOnce suits the
+# single-node cluster on the Uzbek VPS (DECISIONS #36): every pod lands on the
+# same node.  On a multi-node cluster use a ReadWriteMany storage class or
+# switch STORAGE_BACKEND to s3 and drop this claim.
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: arer-media
+spec:
+  accessModes: ["ReadWriteOnce"]
+  resources:
+    requests:
+      storage: 20Gi

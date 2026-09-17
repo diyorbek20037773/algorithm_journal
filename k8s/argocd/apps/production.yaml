@@ -1,0 +1,34 @@
+# A pushed release tag (v*) -> CI bumps k8s/overlays/production -> synced
+# here inside the AppProject sync window.  prune stays off: removing a
+# production object must be a deliberate manual sync.
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: arer-production
+  namespace: argocd
+spec:
+  project: arer
+  source:
+    repoURL: https://github.com/diyorbek20037773/algorithm_journal.git
+    targetRevision: main
+    path: k8s/overlays/production
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: arer
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=false
+      - PruneLast=true
+    retry:
+      limit: 3
+      backoff:
+        duration: 1m
+        factor: 2
+        maxDuration: 10m
+  ignoreDifferences:
+    - group: apps
+      kind: Deployment
+      jsonPointers: ["/spec/replicas"]

@@ -1,0 +1,35 @@
+# ingress-nginx + cert-manager (ClusterIssuer "letsencrypt").  Overlays patch
+# the host name.  /media/ goes to the nginx sidecar, everything else to Django.
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: arer
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+    nginx.ingress.kubernetes.io/proxy-body-size: 25m
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "60"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+# HSTS and the other security headers come from Django (config/settings/prod.py).
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts: ["journal.example.org"]
+      secretName: arer-tls
+  rules:
+    - host: journal.example.org
+      http:
+        paths:
+          - path: /media/
+            pathType: Prefix
+            backend:
+              service:
+                name: arer-web
+                port:
+                  name: media
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: arer-web
+                port:
+                  name: http

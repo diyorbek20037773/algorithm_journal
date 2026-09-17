@@ -1,0 +1,12 @@
+# In-cluster PostgreSQL 16 + Redis 7 with a nightly pg_dump CronJob.
+# Personal data of Uzbek citizens must stay on servers in Uzbekistan
+# (TZ §3.4), so the default is to run the database next to the app.
+# Remove this component from an overlay when a managed database in the
+# same jurisdiction is available, and point DATABASE_URL at it.
+apiVersion: kustomize.config.k8s.io/v1alpha1
+kind: Component
+
+resources:
+  - postgres.yaml
+  - redis.yaml
+  - backup-cronjob.yaml

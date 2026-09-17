@@ -1,0 +1,83 @@
+# Nightly compressed pg_dump with 30-day retention, the Kubernetes twin of the
+# `backup` service in docker-compose.prod.yml.  Copy the volume off-site
+# (docs/BACKUP_RESTORE.md) — a backup on the same disk is not a backup.
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: arer-db-backup
+  labels:
+    app.kubernetes.io/component: backup
+spec:
+  schedule: "30 0 * * *"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      backoffLimit: 2
+      template:
+        metadata:
+          labels:
+            app.kubernetes.io/name: arer
+            app.kubernetes.io/component: backup
+        spec:
+          automountServiceAccountToken: false
+          restartPolicy: OnFailure
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 70
+            runAsGroup: 70
+            fsGroup: 70
+            seccompProfile:
+              type: RuntimeDefault
+          containers:
+            - name: pg-dump
+              image: postgres:16-alpine
+              command: ["/bin/sh", "-c"]
+              args:
+                - |
+                  set -eu
+                  stamp="$(date -u +%Y%m%dT%H%M%SZ)"
+                  pg_dump --format=custom --no-owner -f "/backups/arer-${stamp}.dump"
+                  find /backups -name 'arer-*.dump' -mtime +30 -delete
+                  echo "backup ok: arer-${stamp}.dump"
+              env:
+                - name: PGHOST
+                  value: arer-postgres
+                - name: PGUSER
+                  value: arer
+                - name: PGDATABASE
+                  value: arer
+                - name: PGPASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: arer-secrets
+                      key: POSTGRES_PASSWORD
+              resources:
+                requests:
+                  cpu: 50m
+                  memory: 64Mi
+                limits:
+                  cpu: 500m
+                  memory: 256Mi
+              securityContext:
+                allowPrivilegeEscalation: false
+                capabilities:
+                  drop: ["ALL"]
+              volumeMounts:
+                - name: backups
+                  mountPath: /backups
+          volumes:
+            - name: backups
+              persistentVolumeClaim:
+                claimName: arer-backups
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: arer-backups
+spec:
+  accessModes: ["ReadWriteOnce"]
+  resources:
+    requests:
+      storage: 30Gi

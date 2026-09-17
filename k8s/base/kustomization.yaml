@@ -1,0 +1,30 @@
+# Application base: web (gunicorn + media sidecar), Celery worker and beat,
+# migration hook Job, ingress, autoscaling and network policy.
+# Overlays set the namespace, host names and the image tag CI promotes.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+labels:
+  - pairs:
+      app.kubernetes.io/name: arer
+      app.kubernetes.io/part-of: algorithm-journal
+    includeSelectors: false
+
+resources:
+  - serviceaccount.yaml
+  - configmap.yaml
+  - media-pvc.yaml
+  - web.yaml
+  - worker.yaml
+  - beat.yaml
+  - migrate-job.yaml
+  - ingress.yaml
+  - hpa.yaml
+  - pdb.yaml
+  - networkpolicy.yaml
+
+# CI rewrites newName/newTag in each overlay (see .github/workflows/ci.yml).
+images:
+  - name: arer-web
+    newName: ghcr.io/diyorbek20037773/algorithm_journal
+    newTag: latest

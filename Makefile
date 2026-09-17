@@ -12,7 +12,8 @@ DC_EXEC ?= $(COMPOSE) exec -T web
 .PHONY: help init dev dev-local up down logs shell dbshell migrate migrations \
         seed seed-demo superuser lint lint-fix fmt test test-fast cov messages \
         translations check-translations compile tailwind static screenshots \
-        e2e backup restore secret clean ci-check docker-test
+        e2e backup restore secret clean ci-check docker-test \
+        build k8s-render k8s-validate verify release
 
 help: ## Show this help
 	@grep -hE '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-22s\033[0m %s\n", $$1, $$2}'
@@ -96,6 +97,32 @@ cov: ## Test suite with coverage report
 	pytest --cov=apps --cov-report=term-missing --cov-report=html
 
 ci-check: lint check-migrations test ## Everything CI runs
+
+# --- delivery pipeline (docs/PIPELINE_uz.md) ---------------------------------
+IMAGE      ?= arer-web
+GIT_SHA    := $(shell git rev-parse --short=12 HEAD 2>/dev/null || echo unknown)
+K8S_OUT    ?= .k8s-rendered
+KUBECONFORM = docker run --rm -v "$(CURDIR)/$(K8S_OUT):/work" ghcr.io/yannh/kubeconform:v0.6.7
+
+build: ## Build the production image exactly as CI does
+	docker build --target runtime --build-arg APP_VERSION=sha-$(GIT_SHA) \
+		--build-arg VCS_REF=$(GIT_SHA) -t $(IMAGE):sha-$(GIT_SHA) -t $(IMAGE):local .
+
+k8s-render: ## Render every kustomize overlay into .k8s-rendered/
+	@$(PY) -c "import pathlib; pathlib.Path('$(K8S_OUT)').mkdir(exist_ok=True)"
+	kubectl kustomize k8s/overlays/staging > $(K8S_OUT)/staging.yaml
+	kubectl kustomize k8s/overlays/production > $(K8S_OUT)/production.yaml
+	kubectl kustomize k8s/monitoring > $(K8S_OUT)/monitoring.yaml
+
+k8s-validate: k8s-render ## Schema-check rendered manifests with kubeconform
+	$(KUBECONFORM) -strict -summary -kubernetes-version 1.30.0 /work/staging.yaml /work/production.yaml /work/monitoring.yaml
+
+verify: lint check-migrations check-translations test build k8s-validate ## Local gate before git push: lint, tests, image, manifests
+
+release: ## Tag a release for production (VERSION=1.2.0); CI deploys it via Argo CD
+	@test -n "$(VERSION)" || (echo "usage: make release VERSION=1.2.0" && exit 1)
+	git tag -a v$(VERSION) -m "Release $(VERSION)"
+	git push origin v$(VERSION)
 
 # --- i18n --------------------------------------------------------------------
 messages: ## Extract translatable strings for all four languages
