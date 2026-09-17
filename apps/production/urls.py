@@ -23,4 +23,13 @@ urlpatterns = [
     path("issue/<int:pk>/", views.issue_builder, name="issue_builder"),
     path("issue/<int:pk>/reorder/", views.reorder_issue, name="reorder_issue"),
     path("issue/<int:pk>/publish/", views.publish_issue, name="publish_issue"),
+    path("issue/<int:pk>/add/", views.issue_add_articles, name="issue_add_articles"),
+    path("issue/<int:pk>/remove/", views.issue_remove_articles, name="issue_remove_articles"),
+    path("issue/<int:pk>/pdf/build/", views.issue_build_pdf, name="issue_build_pdf"),
+    path("issue/<int:pk>/pdf/status/", views.issue_print_status, name="issue_print_status"),
+    path("issue/<int:pk>/pdf/", views.issue_pdf_download, name="issue_pdf"),
+    path("article/<int:pk>/offprint/", views.article_offprint, name="article_offprint"),
+    path(
+        "article/<int:pk>/offprint/send/", views.article_offprint_send, name="article_offprint_send"
+    ),
 ]

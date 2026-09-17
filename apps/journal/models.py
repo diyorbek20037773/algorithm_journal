@@ -155,6 +155,30 @@ class Issue(TimeStampedModel, AutoTranslitMixin):
         _("full issue PDF"), upload_to=galley_upload_to, blank=True, null=True
     )
 
+    class PrintStatus(models.TextChoices):
+        NONE = "none", _("not built")
+        QUEUED = "queued", _("queued")
+        BUILDING = "building", _("building")
+        READY = "ready", _("ready")
+        FAILED = "failed", _("failed")
+
+    print_language = models.CharField(
+        _("print language"), max_length=10, choices=settings.LANGUAGES, default="uz"
+    )
+    print_first_page = models.PositiveIntegerField(
+        _("first page number"),
+        default=1,
+        help_text=_(
+            "Page number of the cover; raise it to continue the pagination of a previous part."
+        ),
+    )
+    print_status = models.CharField(
+        _("layout status"), max_length=16, choices=PrintStatus.choices, default=PrintStatus.NONE
+    )
+    print_error = models.TextField(_("layout error"), blank=True)
+    print_built_at = models.DateTimeField(_("layout built at"), null=True, blank=True)
+    print_page_count = models.PositiveIntegerField(_("pages in the issue PDF"), default=0)
+
     objects = IssueQuerySet.as_manager()
 
     class Meta:
@@ -427,6 +451,14 @@ class Article(TimeStampedModel, AutoTranslitMixin):
     cited_by_count = models.PositiveIntegerField(_("cited by (Crossref)"), default=0)
     cited_by_updated_at = models.DateTimeField(_("cited-by updated"), null=True, blank=True)
     is_featured = models.BooleanField(_("featured"), default=False)
+    offprint_pdf = models.FileField(
+        _("offprint PDF"),
+        upload_to=galley_upload_to,
+        blank=True,
+        null=True,
+        help_text=_("The article in the journal layout, built with the issue PDF."),
+    )
+    offprint_sent_at = models.DateTimeField(_("offprint sent to authors"), null=True, blank=True)
 
     objects = ArticleQuerySet.as_manager()
 

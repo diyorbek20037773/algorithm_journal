@@ -1,0 +1,29 @@
+{% load i18n %}
+<div class="grid gap-2"
+     {% if issue.print_status == "queued" or issue.print_status == "building" %}hx-get="{% url 'production:issue_print_status' issue.pk %}" hx-trigger="every 3s" hx-swap="outerHTML"{% endif %}
+     role="status"
+     aria-live="polite">
+  <div class="flex items-center justify-between gap-2">
+    <span class="text-sm">{% translate "Status" %}</span>
+    {% if issue.print_status == "ready" %}
+      <span class="chip chip-green">{{ issue.get_print_status_display }}</span>
+    {% elif issue.print_status == "failed" %}
+      <span class="chip" style="color: var(--color-danger)">{{ issue.get_print_status_display }}</span>
+    {% elif issue.print_status == "queued" or issue.print_status == "building" %}
+      <span class="chip chip-gold">{{ issue.get_print_status_display }}…</span>
+    {% else %}
+      <span class="chip">{{ issue.get_print_status_display }}</span>
+    {% endif %}
+  </div>
+  {% if issue.print_status == "failed" and issue.print_error %}
+    <p class="field-error">{{ issue.print_error }}</p>
+  {% endif %}
+  {% if issue.full_issue_pdf and issue.print_status != "building" %}
+    <p class="meta">
+      {% blocktranslate with pages=issue.print_page_count %}{{ pages }} pages{% endblocktranslate %}
+      {% if issue.print_built_at %}· {{ issue.print_built_at|date:"d.m.Y H:i" }}{% endif %}
+    </p>
+    <a class="btn btn-tonal btn-sm w-full"
+       href="{% url 'production:issue_pdf' issue.pk %}">{% translate "Download the journal PDF" %}</a>
+  {% endif %}
+</div>

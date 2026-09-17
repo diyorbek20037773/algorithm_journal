@@ -51,6 +51,32 @@
   </section>
   <section class="mb-8">
     <div class="section-heading">
+      <h2>{% translate "Journal layout" %}</h2>
+    </div>
+    {% if article.offprint_pdf %}
+      <p class="muted text-sm mb-3">
+        {% blocktranslate with issue=article.issue.label start=article.pages_start end=article.pages_end %}Typeset in {{ issue }}, pages {{ start }}–{{ end }}.{% endblocktranslate %}
+        {% if article.offprint_sent_at %}
+          {% blocktranslate with date=article.offprint_sent_at|date:"d.m.Y H:i" %}Sent to the authors on {{ date }}.{% endblocktranslate %}
+        {% endif %}
+      </p>
+      <div class="flex flex-wrap gap-2">
+        <a class="btn btn-secondary"
+           href="{% url 'production:article_offprint' article.pk %}">{% translate "Download the offprint" %}</a>
+        <form method="post"
+              action="{% url 'production:article_offprint_send' article.pk %}">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-secondary">{% translate "Send to authors" %}</button>
+        </form>
+      </div>
+    {% else %}
+      <p class="muted text-sm">
+        {% translate "The offprint appears here after the journal PDF of its issue has been built in the issue builder." %}
+      </p>
+    {% endif %}
+  </section>
+  <section class="mb-8">
+    <div class="section-heading">
       <h2>DOI</h2>
     </div>
     <p class="meta mb-3">{{ article.doi|default:_("not assigned") }} — {{ article.get_doi_status_display }}</p>

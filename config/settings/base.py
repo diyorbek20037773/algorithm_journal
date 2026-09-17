@@ -217,6 +217,13 @@ CELERY_BROKER_URL = env("CELERY_BROKER_URL", default=_redis_db(REDIS_URL, 1))
 CELERY_RESULT_BACKEND = env("CELERY_RESULT_BACKEND", default=_redis_db(REDIS_URL, 2))
 CELERY_TASK_ALWAYS_EAGER = env.bool("CELERY_TASK_ALWAYS_EAGER", default=False)
 CELERY_TASK_EAGER_PROPAGATES = True
+
+# Issue PDF / offprints (apps.production.issue_print)
+# Points trimmed from every side of a galley page before it is fitted into the
+# journal frame; Word/InDesign exports keep at least 1 cm of margin.
+PRINT_SOURCE_TRIM = env.float("PRINT_SOURCE_TRIM", default=18.0)
+# Offprints up to this size are attached to the author e-mail, larger ones linked.
+OFFPRINT_ATTACH_MAX_BYTES = env.int("OFFPRINT_ATTACH_MAX_BYTES", default=8 * 1024 * 1024)
 CELERY_ACCEPT_CONTENT = ["json"]
 CELERY_TASK_SERIALIZER = "json"
 CELERY_RESULT_SERIALIZER = "json"

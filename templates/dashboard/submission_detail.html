@@ -34,6 +34,20 @@
        href="?tab=history">{% translate "History" %}</a>
   </nav>
   {% if active_tab == "summary" %}
+    {% with article=submission.published_article %}
+      {% if article and article.offprint_pdf %}
+        <div class="published-panel flex flex-wrap items-center justify-between gap-3 mb-6">
+          <div class="min-w-0">
+            <p class="font-semibold">{% translate "Your article in the journal layout" %}</p>
+            <p class="muted text-sm">
+              {% blocktranslate with issue=article.issue.label start=article.pages_start end=article.pages_end %}Typeset in {{ issue }}, pages {{ start }}–{{ end }}.{% endblocktranslate %}
+            </p>
+          </div>
+          <a class="btn btn-primary"
+             href="{% url 'production:article_offprint' article.pk %}">{% translate "Download PDF" %}</a>
+        </div>
+      {% endif %}
+    {% endwith %}
     <dl class="dl-meta card-muted">
       <dt>{% translate "Handling editor" %}</dt><dd>{{ submission.assigned_editor|default:_("not assigned") }}</dd>
       <dt>{% translate "Language" %}</dt><dd>{{ submission.get_language_display }}</dd>

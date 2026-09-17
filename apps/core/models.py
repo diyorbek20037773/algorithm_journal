@@ -118,6 +118,14 @@ class SiteSettings(TimeStampedModel, AutoTranslitMixin):
         "core.IndexingService", verbose_name=_("indexing services"), blank=True
     )
     show_online_first = models.BooleanField(_("show Online First"), default=True)
+    print_info_page = models.TextField(
+        _("issue PDF information page"),
+        blank=True,
+        help_text=_(
+            "Optional page after the editorial board in every issue PDF, e.g. the list of "
+            "accredited specialities. One item per line; a line starting with # is a heading."
+        ),
+    )
 
     class Meta:
         verbose_name = _("site settings")

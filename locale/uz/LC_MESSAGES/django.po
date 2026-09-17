@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-16 12:44+0500\n"
+"POT-Creation-Date: 2026-09-17 17:08+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: ARER editorial office\n"
 "Language-Team: ARER\n"
@@ -70,7 +70,7 @@ msgstr ""
 msgid "Personal info"
 msgstr "Shaxsiy maʼlumotlar"
 
-#: .\apps\accounts\admin.py:33 .\apps\journal\models.py:335
+#: .\apps\accounts\admin.py:33 .\apps\journal\models.py:357
 #: .\templates\dashboard\_base.html:15
 msgid "Editorial"
 msgstr "Tahririyat"
@@ -98,8 +98,8 @@ msgstr "Muallif"
 
 #: .\apps\accounts\models.py:21 .\templates\dashboard\decide.html:14
 #: .\templates\dashboard\partials\reviewer_finder.html:5
-#: .\templates\dashboard\submission_detail.html:173
-#: .\templates\dashboard\submission_detail.html:222
+#: .\templates\dashboard\submission_detail.html:187
+#: .\templates\dashboard\submission_detail.html:236
 msgid "Reviewer"
 msgstr "Taqrizchi"
 
@@ -107,8 +107,8 @@ msgstr "Taqrizchi"
 msgid "Section editor"
 msgstr "Boʻlim muharriri"
 
-#: .\apps\accounts\models.py:23 .\apps\journal\models.py:798
-#: .\templates\journal\home.html:261
+#: .\apps\accounts\models.py:23 .\apps\journal\models.py:828
+#: .\apps\production\issue_print.py:229 .\templates\journal\home.html:262
 msgid "Editor-in-Chief"
 msgstr "Bosh muharrir"
 
@@ -124,12 +124,12 @@ msgstr "Administrator"
 msgid "e-mail address"
 msgstr "elektron pochta manzili"
 
-#: .\apps\accounts\models.py:74 .\apps\journal\models.py:636
+#: .\apps\accounts\models.py:74 .\apps\journal\models.py:666
 #: .\apps\submissions\models.py:358
 msgid "given name"
 msgstr "ism"
 
-#: .\apps\accounts\models.py:75 .\apps\journal\models.py:637
+#: .\apps\accounts\models.py:75 .\apps\journal\models.py:667
 #: .\apps\submissions\models.py:359
 msgid "family name"
 msgstr "familiya"
@@ -174,18 +174,18 @@ msgstr "foydalanuvchilar"
 msgid "Superuser"
 msgstr "Superfoydalanuvchi"
 
-#: .\apps\accounts\models.py:190 .\apps\journal\models.py:646
-#: .\apps\journal\models.py:833 .\apps\submissions\models.py:362
+#: .\apps\accounts\models.py:190 .\apps\journal\models.py:676
+#: .\apps\journal\models.py:863 .\apps\submissions\models.py:362
 msgid "ORCID iD"
 msgstr "ORCID iD"
 
-#: .\apps\accounts\models.py:191 .\apps\journal\models.py:647
+#: .\apps\accounts\models.py:191 .\apps\journal\models.py:677
 #: .\apps\submissions\models.py:363
 msgid "ORCID verified"
 msgstr "ORCID tasdiqlangan"
 
-#: .\apps\accounts\models.py:192 .\apps\journal\models.py:648
-#: .\apps\journal\models.py:831 .\apps\submissions\models.py:364
+#: .\apps\accounts\models.py:192 .\apps\journal\models.py:678
+#: .\apps\journal\models.py:861 .\apps\submissions\models.py:364
 msgid "affiliation"
 msgstr "ish joyi"
 
@@ -193,27 +193,27 @@ msgstr "ish joyi"
 msgid "department"
 msgstr "boʻlim"
 
-#: .\apps\accounts\models.py:194 .\apps\journal\models.py:650
+#: .\apps\accounts\models.py:194 .\apps\journal\models.py:680
 #: .\apps\submissions\models.py:366
 msgid "city"
 msgstr "shahar"
 
-#: .\apps\accounts\models.py:195 .\apps\journal\models.py:651
-#: .\apps\journal\models.py:832 .\apps\metrics\models.py:45
+#: .\apps\accounts\models.py:195 .\apps\journal\models.py:681
+#: .\apps\journal\models.py:862 .\apps\metrics\models.py:45
 #: .\apps\submissions\models.py:367
 msgid "country"
 msgstr "mamlakat"
 
-#: .\apps\accounts\models.py:196 .\apps\journal\models.py:829
+#: .\apps\accounts\models.py:196 .\apps\journal\models.py:859
 msgid "academic degree"
 msgstr "ilmiy daraja"
 
-#: .\apps\accounts\models.py:197 .\apps\journal\models.py:830
+#: .\apps\accounts\models.py:197 .\apps\journal\models.py:860
 msgid "academic title"
 msgstr "ilmiy unvon"
 
-#: .\apps\accounts\models.py:198 .\apps\journal\models.py:652
-#: .\apps\journal\models.py:837
+#: .\apps\accounts\models.py:198 .\apps\journal\models.py:682
+#: .\apps\journal\models.py:867
 msgid "biography"
 msgstr "tarjimayi hol"
 
@@ -221,7 +221,7 @@ msgstr "tarjimayi hol"
 msgid "website"
 msgstr "veb-sayt"
 
-#: .\apps\accounts\models.py:200 .\apps\journal\models.py:834
+#: .\apps\accounts\models.py:200 .\apps\journal\models.py:864
 msgid "Scopus Author ID"
 msgstr "Scopus Author ID"
 
@@ -234,10 +234,10 @@ msgid "Comma-separated keywords used by the reviewer finder."
 msgstr ""
 "Taqrizchi qidiruvida ishlatiladigan, vergul bilan ajratilgan kalit soʻzlar."
 
-#: .\apps\accounts\models.py:207 .\apps\journal\models.py:262
-#: .\apps\journal\models.py:361 .\apps\submissions\forms.py:145
+#: .\apps\accounts\models.py:207 .\apps\journal\models.py:284
+#: .\apps\journal\models.py:383 .\apps\submissions\forms.py:145
 #: .\apps\submissions\models.py:155
-#: .\templates\dashboard\submission_detail.html:55
+#: .\templates\dashboard\submission_detail.html:69
 #: .\templates\journal\article_detail.html:120
 #: .\templates\review\assignment_detail.html:17
 #: .\templates\submissions\wizard_step5.html:22
@@ -509,7 +509,7 @@ msgstr "aloqa manzili"
 msgid "editor-in-chief"
 msgstr "bosh muharrir"
 
-#: .\apps\core\models.py:100 .\apps\core\models.py:202
+#: .\apps\core\models.py:100 .\apps\core\models.py:210
 msgid "logo"
 msgstr "logotip"
 
@@ -545,7 +545,7 @@ msgstr "eʼlon paneli matni"
 msgid "Matomo site ID"
 msgstr "Matomo sayt ID"
 
-#: .\apps\core\models.py:118 .\apps\core\models.py:212
+#: .\apps\core\models.py:118 .\apps\core\models.py:220
 msgid "indexing services"
 msgstr "indeksatsiya xizmatlari"
 
@@ -553,375 +553,389 @@ msgstr "indeksatsiya xizmatlari"
 msgid "show Online First"
 msgstr "Online First ni koʻrsatish"
 
-#: .\apps\core\models.py:123 .\apps\core\models.py:124
+#: .\apps\core\models.py:122
+msgid "issue PDF information page"
+msgstr "son PDF faylidagi maʼlumot sahifasi"
+
+#: .\apps\core\models.py:125
+msgid ""
+"Optional page after the editorial board in every issue PDF, e.g. the list of"
+" accredited specialities. One item per line; a line starting with # is a "
+"heading."
+msgstr ""
+"Har bir son PDF faylida tahrir hayʼatidan keyingi ixtiyoriy sahifa, masalan,"
+" OAK ixtisosliklari roʻyxati. Har bir band alohida qatorda; # bilan "
+"boshlangan qator sarlavha boʻladi."
+
+#: .\apps\core\models.py:131 .\apps\core\models.py:132
 msgid "site settings"
 msgstr "sayt sozlamalari"
 
-#: .\apps\core\models.py:148
+#: .\apps\core\models.py:156
 msgid "Site settings cannot be deleted."
 msgstr "Sayt sozlamalarini oʻchirib boʻlmaydi."
 
-#: .\apps\core\models.py:184 .\templates\core\about.html:243
+#: .\apps\core\models.py:192 .\templates\core\about.html:243
 #: .\templates\includes\footer.html:13 .\templates\includes\header.html:15
 #: .\templates\journal\home.html:23
 msgid "pending"
 msgstr "kutilmoqda"
 
-#: .\apps\core\models.py:200 .\apps\core\models.py:359
+#: .\apps\core\models.py:208 .\apps\core\models.py:367
 #: .\apps\journal\models.py:50 .\apps\journal\models.py:73
 msgid "name"
 msgstr "nomi"
 
-#: .\apps\core\models.py:201 .\apps\core\models.py:241
-#: .\apps\core\models.py:327 .\apps\journal\models.py:72
-#: .\apps\journal\models.py:217 .\apps\journal\models.py:355
+#: .\apps\core\models.py:209 .\apps\core\models.py:249
+#: .\apps\core\models.py:335 .\apps\journal\models.py:72
+#: .\apps\journal\models.py:239 .\apps\journal\models.py:377
 msgid "slug"
 msgstr "slug"
 
-#: .\apps\core\models.py:203 .\apps\core\models.py:292
+#: .\apps\core\models.py:211 .\apps\core\models.py:300
 msgid "URL"
 msgstr "URL"
 
-#: .\apps\core\models.py:205 .\apps\core\models.py:300
-#: .\apps\core\models.py:415 .\apps\journal\models.py:76
-#: .\apps\journal\models.py:843
+#: .\apps\core\models.py:213 .\apps\core\models.py:308
+#: .\apps\core\models.py:423 .\apps\journal\models.py:76
+#: .\apps\journal\models.py:873
 msgid "active"
 msgstr "faol"
 
-#: .\apps\core\models.py:205
+#: .\apps\core\models.py:213
 msgid "Only active services are displayed publicly."
 msgstr "Faqat faol xizmatlar ommaga koʻrsatiladi."
 
-#: .\apps\core\models.py:207 .\apps\core\models.py:299
-#: .\apps\journal\models.py:75 .\apps\journal\models.py:627
-#: .\apps\journal\models.py:711 .\apps\journal\models.py:768
-#: .\apps\journal\models.py:842 .\apps\submissions\models.py:349
+#: .\apps\core\models.py:215 .\apps\core\models.py:307
+#: .\apps\journal\models.py:75 .\apps\journal\models.py:657
+#: .\apps\journal\models.py:741 .\apps\journal\models.py:798
+#: .\apps\journal\models.py:872 .\apps\submissions\models.py:349
 msgid "order"
 msgstr "tartib"
 
-#: .\apps\core\models.py:208 .\apps\submissions\models.py:828
+#: .\apps\core\models.py:216 .\apps\submissions\models.py:828
 msgid "note"
 msgstr "izoh"
 
-#: .\apps\core\models.py:211
+#: .\apps\core\models.py:219
 msgid "indexing service"
 msgstr "indeksatsiya xizmati"
 
-#: .\apps\core\models.py:235 .\templates\core\_page_shell.html:19
-#: .\templates\includes\header.html:62 .\templates\includes\header.html:140
+#: .\apps\core\models.py:243 .\templates\core\_page_shell.html:19
+#: .\templates\includes\header.html:63 .\templates\includes\header.html:137
 msgid "About"
 msgstr "Jurnal haqida"
 
-#: .\apps\core\models.py:236 .\templates\core\_page_shell.html:15
-#: .\templates\core\for_authors.html:3 .\templates\includes\header.html:56
-#: .\templates\includes\header.html:134
+#: .\apps\core\models.py:244 .\templates\core\_page_shell.html:15
+#: .\templates\core\for_authors.html:3 .\templates\includes\header.html:57
+#: .\templates\includes\header.html:131
 msgid "For Authors"
 msgstr "Mualliflar uchun"
 
-#: .\apps\core\models.py:237 .\templates\core\_page_shell.html:17
-#: .\templates\includes\header.html:59 .\templates\includes\header.html:137
+#: .\apps\core\models.py:245 .\templates\core\_page_shell.html:17
+#: .\templates\includes\header.html:60 .\templates\includes\header.html:134
 msgid "For Reviewers"
 msgstr "Taqrizchilar uchun"
 
-#: .\apps\core\models.py:238
+#: .\apps\core\models.py:246
 msgid "Footer"
 msgstr "Pastki panel"
 
-#: .\apps\core\models.py:239
+#: .\apps\core\models.py:247
 msgid "Not in menu"
 msgstr "Menyuda emas"
 
-#: .\apps\core\models.py:242 .\apps\core\models.py:326
+#: .\apps\core\models.py:250 .\apps\core\models.py:334
 #: .\apps\journal\models.py:114 .\apps\journal\models.py:146
-#: .\apps\journal\models.py:352 .\apps\submissions\models.py:149
+#: .\apps\journal\models.py:374 .\apps\submissions\models.py:149
 msgid "title"
 msgstr "sarlavha"
 
-#: .\apps\core\models.py:243 .\apps\core\models.py:328
-#: .\apps\core\models.py:409
+#: .\apps\core\models.py:251 .\apps\core\models.py:336
+#: .\apps\core\models.py:417
 msgid "body (Markdown)"
 msgstr "matn (Markdown)"
 
-#: .\apps\core\models.py:246
+#: .\apps\core\models.py:254
 msgid "parent page"
 msgstr "ota sahifa"
 
-#: .\apps\core\models.py:253 .\apps\core\models.py:294
+#: .\apps\core\models.py:261 .\apps\core\models.py:302
 msgid "menu group"
 msgstr "menyu guruhi"
 
-#: .\apps\core\models.py:255
+#: .\apps\core\models.py:263
 msgid "menu order"
 msgstr "menyu tartibi"
 
-#: .\apps\core\models.py:256 .\apps\journal\models.py:149
-#: .\apps\journal\models.py:384 .\apps\metrics\models.py:96
-#: .\templates\production\issue_builder.html:6
+#: .\apps\core\models.py:264 .\apps\journal\models.py:149
+#: .\apps\journal\models.py:406 .\apps\metrics\models.py:96
+#: .\templates\production\issue_builder.html:7
 msgid "published"
 msgstr "chop etilgan"
 
-#: .\apps\core\models.py:257
+#: .\apps\core\models.py:265
 msgid "SEO description"
 msgstr "SEO tavsifi"
 
-#: .\apps\core\models.py:259
+#: .\apps\core\models.py:267
 msgid "needs editorial review"
 msgstr "tahririy tekshiruv talab qiladi"
 
-#: .\apps\core\models.py:261
+#: .\apps\core\models.py:269
 msgid "Machine-drafted translations are flagged for proofreading."
 msgstr "Mashina tayyorlagan tarjimalar tekshirish uchun belgilanadi."
 
-#: .\apps\core\models.py:267
+#: .\apps\core\models.py:275
 msgid "page"
 msgstr "sahifa"
 
-#: .\apps\core\models.py:268
+#: .\apps\core\models.py:276
 msgid "pages"
 msgstr "sahifalar"
 
-#: .\apps\core\models.py:291 .\apps\journal\models.py:249
-#: .\apps\journal\models.py:759
+#: .\apps\core\models.py:299 .\apps\journal\models.py:271
+#: .\apps\journal\models.py:789
 msgid "label"
 msgstr "yorliq"
 
-#: .\apps\core\models.py:301
+#: .\apps\core\models.py:309
 msgid "open in a new tab"
 msgstr "yangi oynada ochish"
 
-#: .\apps\core\models.py:304
+#: .\apps\core\models.py:312
 msgid "menu item"
 msgstr "menyu elementi"
 
-#: .\apps\core\models.py:305
+#: .\apps\core\models.py:313
 msgid "menu items"
 msgstr "menyu elementlari"
 
-#: .\apps\core\models.py:329 .\apps\journal\models.py:148
+#: .\apps\core\models.py:337 .\apps\journal\models.py:148
 msgid "published at"
 msgstr "chop etilgan sana"
 
-#: .\apps\core\models.py:330
+#: .\apps\core\models.py:338
 msgid "expires at"
 msgstr "amal qilish muddati"
 
-#: .\apps\core\models.py:331
+#: .\apps\core\models.py:339
 msgid "pinned"
 msgstr "qadalgan"
 
-#: .\apps\core\models.py:336
+#: .\apps\core\models.py:344
 msgid "announcement"
 msgstr "eʼlon"
 
-#: .\apps\core\models.py:337
+#: .\apps\core\models.py:345
 msgid "announcements"
 msgstr "eʼlonlar"
 
-#: .\apps\core\models.py:360 .\apps\journal\models.py:644
-#: .\apps\journal\models.py:835 .\apps\submissions\models.py:360
+#: .\apps\core\models.py:368 .\apps\journal\models.py:674
+#: .\apps\journal\models.py:865 .\apps\submissions\models.py:360
 msgid "e-mail"
 msgstr "elektron pochta"
 
-#: .\apps\core\models.py:361 .\apps\core\models.py:408
+#: .\apps\core\models.py:369 .\apps\core\models.py:416
 #: .\apps\submissions\models.py:762
 msgid "subject"
 msgstr "mavzu"
 
-#: .\apps\core\models.py:362 .\apps\crossref\models.py:65
+#: .\apps\core\models.py:370 .\apps\crossref\models.py:65
 #: .\apps\submissions\models.py:802
 msgid "message"
 msgstr "xabar"
 
-#: .\apps\core\models.py:363 .\apps\core\models.py:454
+#: .\apps\core\models.py:371 .\apps\core\models.py:462
 msgid "IP address"
 msgstr "IP manzil"
 
-#: .\apps\core\models.py:364
+#: .\apps\core\models.py:372
 msgid "handled"
 msgstr "koʻrib chiqilgan"
 
-#: .\apps\core\models.py:367
+#: .\apps\core\models.py:375
 msgid "handled by"
 msgstr "koʻrib chiqqan"
 
-#: .\apps\core\models.py:375
+#: .\apps\core\models.py:383
 msgid "contact message"
 msgstr "murojaat xabari"
 
-#: .\apps\core\models.py:376
+#: .\apps\core\models.py:384
 msgid "contact messages"
 msgstr "murojaat xabarlari"
 
-#: .\apps\core\models.py:387
+#: .\apps\core\models.py:395
 msgid "Account verification"
 msgstr "Hisobni tasdiqlash"
 
-#: .\apps\core\models.py:390
+#: .\apps\core\models.py:398
 msgid "Submission received (author)"
 msgstr "Qoʻlyozma qabul qilindi (muallif)"
 
-#: .\apps\core\models.py:394
+#: .\apps\core\models.py:402
 msgid "Submission received (editor)"
 msgstr "Qoʻlyozma qabul qilindi (muharrir)"
 
-#: .\apps\core\models.py:396
+#: .\apps\core\models.py:404
 msgid "Editor assigned"
 msgstr "Muharrir tayinlandi"
 
-#: .\apps\core\models.py:397
+#: .\apps\core\models.py:405
 msgid "Reviewer invitation"
 msgstr "Taqrizchiga taklif"
 
-#: .\apps\core\models.py:398
+#: .\apps\core\models.py:406
 msgid "Reviewer reminder"
 msgstr "Taqrizchiga eslatma"
 
-#: .\apps\core\models.py:399
+#: .\apps\core\models.py:407
 msgid "Reviewer thanks"
 msgstr "Taqrizchiga minnatdorchilik"
 
-#: .\apps\core\models.py:400 .\apps\core\models.py:434
+#: .\apps\core\models.py:408 .\apps\core\models.py:442
 #: .\templates\dashboard\decide.html:3 .\templates\dashboard\decide.html:5
 msgid "Editorial decision"
 msgstr "Tahririy qaror"
 
-#: .\apps\core\models.py:401
+#: .\apps\core\models.py:409
 msgid "Revision reminder"
 msgstr "Qayta ishlash eslatmasi"
 
-#: .\apps\core\models.py:402
+#: .\apps\core\models.py:410
 msgid "Proof request"
 msgstr "Korrekturani tasdiqlash soʻrovi"
 
-#: .\apps\core\models.py:403
+#: .\apps\core\models.py:411
 msgid "Article published"
 msgstr "Maqola chop etildi"
 
-#: .\apps\core\models.py:404
+#: .\apps\core\models.py:412
 msgid "DOI registered"
 msgstr "DOI roʻyxatdan oʻtdi"
 
-#: .\apps\core\models.py:405
+#: .\apps\core\models.py:413
 msgid "Contact form notification"
 msgstr "Aloqa shakli bildirishnomasi"
 
-#: .\apps\core\models.py:407
+#: .\apps\core\models.py:415
 msgid "event"
 msgstr "hodisa"
 
-#: .\apps\core\models.py:411
+#: .\apps\core\models.py:419
 msgid "available placeholders"
 msgstr "mavjud oʻrin egallovchilar"
 
-#: .\apps\core\models.py:413
+#: .\apps\core\models.py:421
 msgid "Documented context variables, one per line."
 msgstr "Hujjatlashtirilgan kontekst oʻzgaruvchilari, har qatorda bittadan."
 
-#: .\apps\core\models.py:418
+#: .\apps\core\models.py:426
 msgid "e-mail template"
 msgstr "elektron xat shabloni"
 
-#: .\apps\core\models.py:419
+#: .\apps\core\models.py:427
 msgid "e-mail templates"
 msgstr "elektron xat shablonlari"
 
-#: .\apps\core\models.py:430
+#: .\apps\core\models.py:438
 msgid "Login"
 msgstr "Kirish"
 
-#: .\apps\core\models.py:431
+#: .\apps\core\models.py:439
 msgid "Failed login"
 msgstr "Muvaffaqiyatsiz kirish"
 
-#: .\apps\core\models.py:432
+#: .\apps\core\models.py:440
 msgid "Logout"
 msgstr "Chiqish"
 
-#: .\apps\core\models.py:433
+#: .\apps\core\models.py:441
 msgid "Role change"
 msgstr "Rol oʻzgarishi"
 
-#: .\apps\core\models.py:435 .\templates\production\issue_builder.html:59
+#: .\apps\core\models.py:443 .\templates\production\issue_builder.html:212
 msgid "Publish"
 msgstr "Chop etish"
 
-#: .\apps\core\models.py:436
+#: .\apps\core\models.py:444
 msgid "Unpublish"
 msgstr "Chop etishni bekor qilish"
 
-#: .\apps\core\models.py:437
+#: .\apps\core\models.py:445
 msgid "Settings change"
 msgstr "Sozlamalar oʻzgarishi"
 
-#: .\apps\core\models.py:438
+#: .\apps\core\models.py:446
 msgid "File deletion"
 msgstr "Fayl oʻchirilishi"
 
-#: .\apps\core\models.py:439
+#: .\apps\core\models.py:447
 msgid "Workflow transition"
 msgstr "Jarayon oʻtishi"
 
-#: .\apps\core\models.py:440
+#: .\apps\core\models.py:448
 msgid "Crossref deposit"
 msgstr "Crossref depoziti"
 
-#: .\apps\core\models.py:441
+#: .\apps\core\models.py:449
 msgid "Policy override"
 msgstr "Qoidadan chetlanish"
 
-#: .\apps\core\models.py:445
+#: .\apps\core\models.py:453
 msgid "actor"
 msgstr "bajaruvchi"
 
-#: .\apps\core\models.py:451
+#: .\apps\core\models.py:459
 msgid "action"
 msgstr "harakat"
 
-#: .\apps\core\models.py:452
+#: .\apps\core\models.py:460
 msgid "target"
 msgstr "obyekt"
 
-#: .\apps\core\models.py:453
+#: .\apps\core\models.py:461
 msgid "changes"
 msgstr "oʻzgarishlar"
 
-#: .\apps\core\models.py:457
+#: .\apps\core\models.py:465
 msgid "audit log entry"
 msgstr "audit jurnali yozuvi"
 
-#: .\apps\core\models.py:458
+#: .\apps\core\models.py:466
 msgid "audit log"
 msgstr "audit jurnali"
 
-#: .\apps\core\views.py:75 .\templates\400.html:3 .\templates\400.html:8
+#: .\apps\core\views.py:83 .\templates\400.html:3 .\templates\400.html:8
 msgid "Bad request"
 msgstr "Notoʻgʻri soʻrov"
 
-#: .\apps\core\views.py:75 .\templates\400.html:9
+#: .\apps\core\views.py:83 .\templates\400.html:9
 msgid "The request could not be understood."
 msgstr "Soʻrovni tushunib boʻlmadi."
 
-#: .\apps\core\views.py:81 .\templates\403.html:3 .\templates\403.html:8
+#: .\apps\core\views.py:89 .\templates\403.html:3 .\templates\403.html:8
 msgid "Access denied"
 msgstr "Kirish taqiqlangan"
 
-#: .\apps\core\views.py:81 .\templates\403.html:9
+#: .\apps\core\views.py:89 .\templates\403.html:9
 msgid "You do not have permission to view this page."
 msgstr "Bu sahifani koʻrishga ruxsatingiz yoʻq."
 
-#: .\apps\core\views.py:87 .\templates\404.html:3 .\templates\404.html:8
+#: .\apps\core\views.py:95 .\templates\404.html:3 .\templates\404.html:8
 msgid "Page not found"
 msgstr "Sahifa topilmadi"
 
-#: .\apps\core\views.py:87 .\templates\404.html:9
+#: .\apps\core\views.py:95 .\templates\404.html:9
 msgid "This page does not exist or has moved."
 msgstr "Bu sahifa mavjud emas yoki koʻchirilgan."
 
-#: .\apps\core\views.py:95 .\templates\500.html:3 .\templates\500.html:8
+#: .\apps\core\views.py:103 .\templates\500.html:3 .\templates\500.html:8
 msgid "Server error"
 msgstr "Server xatosi"
 
-#: .\apps\core\views.py:96 .\templates\500.html:9
+#: .\apps\core\views.py:104 .\templates\500.html:9
 msgid ""
 "Something went wrong on our side. The editorial office has been notified."
 msgstr "Bizning tomonda xatolik yuz berdi. Tahririyatga xabar berildi."
@@ -1052,12 +1066,12 @@ msgstr "paket ID"
 msgid "deposit XML"
 msgstr "depozit XML"
 
-#: .\apps\crossref\models.py:25 .\apps\journal\models.py:440
+#: .\apps\crossref\models.py:25 .\apps\journal\models.py:470
 msgid "articles"
 msgstr "maqolalar"
 
 #: .\apps\crossref\models.py:28 .\apps\crossref\models.py:64
-#: .\apps\journal\models.py:387 .\apps\submissions\models.py:167
+#: .\apps\journal\models.py:409 .\apps\submissions\models.py:167
 #: .\apps\submissions\models.py:470 .\apps\submissions\models.py:541
 #: .\apps\submissions\models.py:882
 msgid "status"
@@ -1092,9 +1106,9 @@ msgstr "depozit paketi"
 msgid "deposit batches"
 msgstr "depozit paketlari"
 
-#: .\apps\crossref\models.py:51 .\apps\journal\models.py:439
-#: .\apps\journal\models.py:625 .\apps\journal\models.py:709
-#: .\apps\journal\models.py:757 .\apps\journal\models.py:891
+#: .\apps\crossref\models.py:51 .\apps\journal\models.py:469
+#: .\apps\journal\models.py:655 .\apps\journal\models.py:739
+#: .\apps\journal\models.py:787 .\apps\journal\models.py:921
 #: .\apps\metrics\models.py:28 .\apps\metrics\models.py:66
 msgid "article"
 msgstr "maqola"
@@ -1103,8 +1117,8 @@ msgstr "maqola"
 msgid "batch"
 msgstr "paket"
 
-#: .\apps\crossref\models.py:63 .\apps\journal\models.py:370
-#: .\apps\journal\models.py:713
+#: .\apps\crossref\models.py:63 .\apps\journal\models.py:392
+#: .\apps\journal\models.py:743
 msgid "DOI"
 msgstr "DOI"
 
@@ -1210,12 +1224,12 @@ msgstr "Qaror"
 msgid "Production"
 msgstr "Nashr"
 
-#: .\apps\dashboard\services.py:347 .\apps\journal\models.py:319
+#: .\apps\dashboard\services.py:347 .\apps\journal\models.py:341
 #: .\apps\submissions\models.py:54 .\templates\dashboard\home.html:169
 #: .\templates\dashboard\partials\submission_card.html:39
 #: .\templates\dashboard\partials\submission_card.html:57
 #: .\templates\journal\article_detail.html:104
-#: .\templates\journal\home.html:224 .\templates\journal\issue_detail.html:58
+#: .\templates\journal\home.html:225 .\templates\journal\issue_detail.html:58
 #: .\templates\journal\partials\article_card.html:65
 msgid "Published"
 msgstr "Chop etilgan"
@@ -1318,7 +1332,7 @@ msgstr "Bu kod notoʻgʻri. Qayta urinib koʻring."
 msgid "Latest articles"
 msgstr "Soʻnggi maqolalar"
 
-#: .\apps\journal\models.py:49 .\apps\journal\models.py:248
+#: .\apps\journal\models.py:49 .\apps\journal\models.py:270
 msgid "code"
 msgstr "kod"
 
@@ -1334,7 +1348,7 @@ msgstr "nishon SVG"
 msgid "default licence"
 msgstr "standart litsenziya"
 
-#: .\apps\journal\models.py:56 .\apps\journal\models.py:392
+#: .\apps\journal\models.py:56 .\apps\journal\models.py:414
 msgid "licence"
 msgstr "litsenziya"
 
@@ -1365,12 +1379,12 @@ msgstr "boʻlim muharrirlari"
 msgid "suggested JEL prefixes"
 msgstr "tavsiya etilgan JEL prefikslari"
 
-#: .\apps\journal\models.py:91 .\apps\journal\models.py:346
+#: .\apps\journal\models.py:91 .\apps\journal\models.py:368
 #: .\apps\submissions\models.py:141
 msgid "section"
 msgstr "boʻlim"
 
-#: .\apps\journal\models.py:92 .\apps\journal\models.py:840
+#: .\apps\journal\models.py:92 .\apps\journal\models.py:870
 msgid "sections"
 msgstr "boʻlimlar"
 
@@ -1418,44 +1432,103 @@ msgstr "sahifa prefiksi"
 msgid "full issue PDF"
 msgstr "toʻliq son PDF"
 
-#: .\apps\journal\models.py:161 .\apps\journal\models.py:339
+#: .\apps\journal\models.py:159
+msgid "not built"
+msgstr "shakllantirilmagan"
+
+#: .\apps\journal\models.py:160
+msgid "queued"
+msgstr "navbatda"
+
+#: .\apps\journal\models.py:161
+#| msgid "Funding"
+msgid "building"
+msgstr "shakllantirilmoqda"
+
+#: .\apps\journal\models.py:162
+#| msgid "Ready"
+msgid "ready"
+msgstr "tayyor"
+
+#: .\apps\journal\models.py:163
+#| msgid "Failed"
+msgid "failed"
+msgstr "xato"
+
+#: .\apps\journal\models.py:166
+#| msgid "article language"
+msgid "print language"
+msgstr "maket tili"
+
+#: .\apps\journal\models.py:169
+#| msgid "first page"
+msgid "first page number"
+msgstr "birinchi sahifa raqami"
+
+#: .\apps\journal\models.py:171
+msgid ""
+"Page number of the cover; raise it to continue the pagination of a previous "
+"part."
+msgstr ""
+"Muqovaning sahifa raqami; oldingi qism raqamlashini davom ettirish uchun "
+"oshiring."
+
+#: .\apps\journal\models.py:174
+#| msgid "status"
+msgid "layout status"
+msgstr "maket holati"
+
+#: .\apps\journal\models.py:176
+msgid "layout error"
+msgstr "maket xatosi"
+
+#: .\apps\journal\models.py:177
+msgid "layout built at"
+msgstr "maket yaratilgan vaqt"
+
+#: .\apps\journal\models.py:178
+#| msgid "Open the issue builder"
+msgid "pages in the issue PDF"
+msgstr "son PDF faylidagi sahifalar"
+
+#: .\apps\journal\models.py:183 .\apps\journal\models.py:361
 msgid "issue"
 msgstr "son"
 
-#: .\apps\journal\models.py:162 .\templates\journal\archive.html:22
+#: .\apps\journal\models.py:184 .\templates\journal\archive.html:22
 msgid "issues"
 msgstr "sonlar"
 
-#: .\apps\journal\models.py:216 .\apps\journal\models.py:220
+#: .\apps\journal\models.py:238 .\apps\journal\models.py:242
 msgid "keyword"
 msgstr "kalit soʻz"
 
-#: .\apps\journal\models.py:221 .\apps\journal\models.py:358
+#: .\apps\journal\models.py:243 .\apps\journal\models.py:380
 #: .\apps\submissions\models.py:152
 msgid "keywords"
 msgstr "kalit soʻzlar"
 
-#: .\apps\journal\models.py:252
+#: .\apps\journal\models.py:274
 msgid "parent"
 msgstr "ota element"
 
-#: .\apps\journal\models.py:258
+#: .\apps\journal\models.py:280
 msgid "level"
 msgstr "daraja"
 
-#: .\apps\journal\models.py:261 .\templates\search\search.html:40
+#: .\apps\journal\models.py:283 .\templates\search\search.html:40
 msgid "JEL code"
 msgstr "JEL kodi"
 
-#: .\apps\journal\models.py:317 .\apps\submissions\models.py:41
+#: .\apps\journal\models.py:339 .\apps\submissions\models.py:41
 msgid "Draft"
 msgstr "Qoralama"
 
-#: .\apps\journal\models.py:318 .\apps\submissions\views.py:459
-#: .\templates\includes\header.html:53 .\templates\includes\header.html:131
+#: .\apps\journal\models.py:340 .\apps\submissions\views.py:459
+#: .\templates\includes\header.html:54 .\templates\includes\header.html:128
 #: .\templates\journal\article_detail.html:29
 #: .\templates\journal\article_detail.html:48
-#: .\templates\journal\home.html:214 .\templates\journal\online_first.html:3
+#: .\templates\journal\home.html:215 .\templates\journal\online_first.html:3
 #: .\templates\journal\online_first.html:6
 #: .\templates\journal\partials\article_card.html:18
 #: .\templates\production\queue.html:80
@@ -1463,131 +1536,131 @@ msgstr "Qoralama"
 msgid "Online First"
 msgstr "Online First"
 
-#: .\apps\journal\models.py:320
+#: .\apps\journal\models.py:342
 msgid "Retracted"
 msgstr "Chaqirib olingan"
 
-#: .\apps\journal\models.py:321 .\apps\submissions\models.py:56
+#: .\apps\journal\models.py:343 .\apps\submissions\models.py:56
 msgid "Withdrawn"
 msgstr "Qaytarib olingan"
 
-#: .\apps\journal\models.py:324
+#: .\apps\journal\models.py:346
 msgid "Not assigned"
 msgstr "Tayinlanmagan"
 
-#: .\apps\journal\models.py:325
+#: .\apps\journal\models.py:347
 msgid "Reserved"
 msgstr "Zaxiralangan"
 
-#: .\apps\journal\models.py:326
+#: .\apps\journal\models.py:348
 msgid "Registered"
 msgstr "Roʻyxatdan oʻtgan"
 
-#: .\apps\journal\models.py:327
+#: .\apps\journal\models.py:349
 msgid "Registration failed"
 msgstr "Roʻyxatga olish muvaffaqiyatsiz"
 
-#: .\apps\journal\models.py:328
+#: .\apps\journal\models.py:350
 msgid "Metadata updated"
 msgstr "Metamaʼlumot yangilandi"
 
-#: .\apps\journal\models.py:331 .\apps\submissions\models.py:117
+#: .\apps\journal\models.py:353 .\apps\submissions\models.py:117
 msgid "Research article"
 msgstr "Ilmiy maqola"
 
-#: .\apps\journal\models.py:332 .\apps\submissions\models.py:118
+#: .\apps\journal\models.py:354 .\apps\submissions\models.py:118
 msgid "Review article"
 msgstr "Sharh maqolasi"
 
-#: .\apps\journal\models.py:333 .\apps\submissions\models.py:119
+#: .\apps\journal\models.py:355 .\apps\submissions\models.py:119
 msgid "Short communication"
 msgstr "Qisqa maʼlumot"
 
-#: .\apps\journal\models.py:334 .\apps\submissions\models.py:120
+#: .\apps\journal\models.py:356 .\apps\submissions\models.py:120
 msgid "Book review"
 msgstr "Kitob taqrizi"
 
-#: .\apps\journal\models.py:349 .\apps\submissions\models.py:146
+#: .\apps\journal\models.py:371 .\apps\submissions\models.py:146
 msgid "article type"
 msgstr "maqola turi"
 
-#: .\apps\journal\models.py:353
+#: .\apps\journal\models.py:375
 msgid "subtitle"
 msgstr "qoʻshimcha sarlavha"
 
-#: .\apps\journal\models.py:354 .\apps\submissions\models.py:150
+#: .\apps\journal\models.py:376 .\apps\submissions\models.py:150
 msgid "abstract"
 msgstr "annotatsiya"
 
-#: .\apps\journal\models.py:364
+#: .\apps\journal\models.py:386
 msgid "article language"
 msgstr "maqola tili"
 
-#: .\apps\journal\models.py:372
+#: .\apps\journal\models.py:394
 msgid "DOI status"
 msgstr "DOI holati"
 
-#: .\apps\journal\models.py:375
+#: .\apps\journal\models.py:397
 msgid "first page"
 msgstr "birinchi sahifa"
 
-#: .\apps\journal\models.py:376
+#: .\apps\journal\models.py:398
 msgid "last page"
 msgstr "oxirgi sahifa"
 
-#: .\apps\journal\models.py:377
+#: .\apps\journal\models.py:399
 msgid "e-location ID"
 msgstr "e-lokatsiya ID"
 
-#: .\apps\journal\models.py:378
+#: .\apps\journal\models.py:400
 msgid "article number"
 msgstr "maqola raqami"
 
-#: .\apps\journal\models.py:380
+#: .\apps\journal\models.py:402
 msgid "received"
 msgstr "qabul qilingan"
 
-#: .\apps\journal\models.py:381
+#: .\apps\journal\models.py:403
 msgid "revised"
 msgstr "qayta ishlangan"
 
-#: .\apps\journal\models.py:382 .\apps\metrics\models.py:94
+#: .\apps\journal\models.py:404 .\apps\metrics\models.py:94
 msgid "accepted"
 msgstr "qabul qilingan (tasdiqlangan)"
 
-#: .\apps\journal\models.py:383
+#: .\apps\journal\models.py:405
 msgid "published online"
 msgstr "onlayn chop etilgan"
 
-#: .\apps\journal\models.py:399
+#: .\apps\journal\models.py:421
 msgid "copyright holder"
 msgstr "mualliflik huquqi egasi"
 
-#: .\apps\journal\models.py:401 .\apps\submissions\models.py:227
+#: .\apps\journal\models.py:423 .\apps\submissions\models.py:227
 msgid "funding statement"
 msgstr "moliyalashtirish bayonoti"
 
-#: .\apps\journal\models.py:403 .\apps\submissions\models.py:229
+#: .\apps\journal\models.py:425 .\apps\submissions\models.py:229
 msgid "conflict of interest statement"
 msgstr "manfaatlar toʻqnashuvi bayonoti"
 
-#: .\apps\journal\models.py:407 .\apps\submissions\models.py:231
+#: .\apps\journal\models.py:429 .\apps\submissions\models.py:231
 msgid "data availability statement"
 msgstr "maʼlumot mavjudligi bayonoti"
 
-#: .\apps\journal\models.py:409 .\apps\production\services.py:179
+#: .\apps\journal\models.py:431 .\apps\production\services.py:179
 msgid "AI use statement"
 msgstr "SI dan foydalanish bayonoti"
 
-#: .\apps\journal\models.py:413
+#: .\apps\journal\models.py:435
 msgid "acknowledgements"
 msgstr "minnatdorchilik"
 
-#: .\apps\journal\models.py:414
+#: .\apps\journal\models.py:436
 msgid "retraction notice"
 msgstr "chaqirib olish bildirishnomasi"
 
-#: .\apps\journal\models.py:418 .\apps\submissions\models.py:244
+#: .\apps\journal\models.py:440 .\apps\submissions\models.py:244
 #: .\apps\submissions\models.py:347 .\apps\submissions\models.py:408
 #: .\apps\submissions\models.py:464 .\apps\submissions\models.py:671
 #: .\apps\submissions\models.py:711 .\apps\submissions\models.py:758
@@ -1595,214 +1668,227 @@ msgstr "chaqirib olish bildirishnomasi"
 msgid "submission"
 msgstr "qoʻlyozma"
 
-#: .\apps\journal\models.py:425 .\apps\metrics\models.py:71
+#: .\apps\journal\models.py:447 .\apps\metrics\models.py:71
 msgid "views"
 msgstr "koʻrishlar"
 
-#: .\apps\journal\models.py:426 .\apps\metrics\models.py:72
+#: .\apps\journal\models.py:448 .\apps\metrics\models.py:72
 msgid "downloads"
 msgstr "yuklab olishlar"
 
-#: .\apps\journal\models.py:427
+#: .\apps\journal\models.py:449
 msgid "cited by (Crossref)"
 msgstr "iqtibos (Crossref)"
 
-#: .\apps\journal\models.py:428
+#: .\apps\journal\models.py:450
 msgid "cited-by updated"
 msgstr "iqtibos yangilangan"
 
-#: .\apps\journal\models.py:429
+#: .\apps\journal\models.py:451
 msgid "featured"
 msgstr "tanlangan"
 
-#: .\apps\journal\models.py:436
+#: .\apps\journal\models.py:453
+msgid "offprint PDF"
+msgstr "maqola nusxasi (PDF)"
+
+#: .\apps\journal\models.py:457
+msgid "The article in the journal layout, built with the issue PDF."
+msgstr "Jurnal maketidagi maqola; son PDF fayli bilan birga yaratiladi."
+
+#: .\apps\journal\models.py:459
+#| msgid "Comments to the authors"
+msgid "offprint sent to authors"
+msgstr "nusxa mualliflarga yuborilgan"
+
+#: .\apps\journal\models.py:466
 msgid "search vector"
 msgstr "qidiruv vektori"
 
-#: .\apps\journal\models.py:630 .\apps\journal\models.py:819
+#: .\apps\journal\models.py:660 .\apps\journal\models.py:849
 #: .\apps\submissions\models.py:352
 msgid "account"
 msgstr "hisob"
 
-#: .\apps\journal\models.py:639
+#: .\apps\journal\models.py:669
 msgid "given name (native script)"
 msgstr "ism (milliy yozuv)"
 
-#: .\apps\journal\models.py:642
+#: .\apps\journal\models.py:672
 msgid "family name (native script)"
 msgstr "familiya (milliy yozuv)"
 
-#: .\apps\journal\models.py:645 .\apps\submissions\models.py:361
+#: .\apps\journal\models.py:675 .\apps\submissions\models.py:361
 msgid "corresponding author"
 msgstr "masʼul muallif"
 
-#: .\apps\journal\models.py:649 .\apps\submissions\models.py:365
+#: .\apps\journal\models.py:679 .\apps\submissions\models.py:365
 msgid "ROR ID"
 msgstr "ROR ID"
 
-#: .\apps\journal\models.py:653 .\apps\submissions\models.py:369
+#: .\apps\journal\models.py:683 .\apps\submissions\models.py:369
 msgid "CRediT roles"
 msgstr "CRediT rollari"
 
-#: .\apps\journal\models.py:656 .\apps\submissions\models.py:796
+#: .\apps\journal\models.py:686 .\apps\submissions\models.py:796
 #: .\apps\submissions\models.py:822
 msgid "author"
 msgstr "muallif"
 
-#: .\apps\journal\models.py:657
+#: .\apps\journal\models.py:687
 msgid "authors"
 msgstr "mualliflar"
 
-#: .\apps\journal\models.py:712
+#: .\apps\journal\models.py:742
 msgid "reference text"
 msgstr "manba matni"
 
-#: .\apps\journal\models.py:714
+#: .\apps\journal\models.py:744
 msgid "structured data"
 msgstr "tuzilmali maʼlumot"
 
-#: .\apps\journal\models.py:717
+#: .\apps\journal\models.py:747
 msgid "reference"
 msgstr "manba"
 
-#: .\apps\journal\models.py:718
+#: .\apps\journal\models.py:748
 msgid "references"
 msgstr "adabiyotlar"
 
-#: .\apps\journal\models.py:749
+#: .\apps\journal\models.py:779
 msgid "PDF"
 msgstr "PDF"
 
-#: .\apps\journal\models.py:750
+#: .\apps\journal\models.py:780
 msgid "PDF (Uzbek)"
 msgstr "PDF (oʻzbekcha)"
 
-#: .\apps\journal\models.py:751
+#: .\apps\journal\models.py:781
 msgid "PDF (Russian)"
 msgstr "PDF (ruscha)"
 
-#: .\apps\journal\models.py:752
+#: .\apps\journal\models.py:782
 msgid "Full text (HTML)"
 msgstr "Toʻliq matn (HTML)"
 
-#: .\apps\journal\models.py:753
+#: .\apps\journal\models.py:783
 msgid "JATS XML"
 msgstr "JATS XML"
 
-#: .\apps\journal\models.py:754 .\templates\production\article_detail.html:37
+#: .\apps\journal\models.py:784 .\templates\production\article_detail.html:37
 msgid "Supplementary"
 msgstr "Qoʻshimcha"
 
-#: .\apps\journal\models.py:760
+#: .\apps\journal\models.py:790
 msgid "language"
 msgstr "til"
 
-#: .\apps\journal\models.py:761 .\apps\submissions\models.py:419
+#: .\apps\journal\models.py:791 .\apps\submissions\models.py:419
 msgid "file"
 msgstr "fayl"
 
-#: .\apps\journal\models.py:763
+#: .\apps\journal\models.py:793
 msgid "unstamped original"
 msgstr "shtampsiz asl nusxa"
 
-#: .\apps\journal\models.py:765 .\apps\submissions\models.py:431
+#: .\apps\journal\models.py:795 .\apps\submissions\models.py:431
 msgid "MIME type"
 msgstr "MIME turi"
 
-#: .\apps\journal\models.py:766
+#: .\apps\journal\models.py:796
 msgid "size in bytes"
 msgstr "hajmi (bayt)"
 
-#: .\apps\journal\models.py:767 .\templates\production\article_detail.html:48
+#: .\apps\journal\models.py:797 .\templates\production\article_detail.html:48
 msgid "primary"
 msgstr "asosiy"
 
-#: .\apps\journal\models.py:771 .\apps\metrics\models.py:35
+#: .\apps\journal\models.py:801 .\apps\metrics\models.py:35
 msgid "galley"
 msgstr "nashr fayli"
 
-#: .\apps\journal\models.py:772
+#: .\apps\journal\models.py:802
 msgid "galleys"
 msgstr "nashr fayllari"
 
-#: .\apps\journal\models.py:799
+#: .\apps\journal\models.py:829 .\apps\production\issue_print.py:230
 msgid "Deputy Editor"
 msgstr "Bosh muharrir oʻrinbosari"
 
-#: .\apps\journal\models.py:800
+#: .\apps\journal\models.py:830 .\apps\production\issue_print.py:231
 msgid "Managing Editor"
 msgstr "Masʼul kotib"
 
-#: .\apps\journal\models.py:801
+#: .\apps\journal\models.py:831
 msgid "Section Editor"
 msgstr "Boʻlim muharriri"
 
-#: .\apps\journal\models.py:802
+#: .\apps\journal\models.py:832
 msgid "Editorial Board Member"
 msgstr "Tahrir hayʼati aʼzosi"
 
-#: .\apps\journal\models.py:803
+#: .\apps\journal\models.py:833 .\apps\production\issue_print.py:234
 msgid "International Advisory Board"
 msgstr "Xalqaro maslahat kengashi"
 
-#: .\apps\journal\models.py:804 .\apps\journal\views.py:519
+#: .\apps\journal\models.py:834 .\apps\journal\views.py:519
 #: .\templates\includes\footer.html:35
 msgid "Reviewer Board"
 msgstr "Taqrizchilar kengashi"
 
-#: .\apps\journal\models.py:825
+#: .\apps\journal\models.py:855
 msgid "full name"
 msgstr "toʻliq ism"
 
-#: .\apps\journal\models.py:827
+#: .\apps\journal\models.py:857
 msgid "role"
 msgstr "rol"
 
-#: .\apps\journal\models.py:836
+#: .\apps\journal\models.py:866
 msgid "photo"
 msgstr "surat"
 
-#: .\apps\journal\models.py:838
+#: .\apps\journal\models.py:868
 msgid "expertise"
 msgstr "mutaxassislik"
 
-#: .\apps\journal\models.py:845
+#: .\apps\journal\models.py:875
 msgid "demo entry"
 msgstr "namuna yozuv"
 
-#: .\apps\journal\models.py:847
+#: .\apps\journal\models.py:877
 msgid "Seeded placeholder — replace with a real board member."
 msgstr "Namuna yozuv — haqiqiy hayʼat aʼzosi bilan almashtiring."
 
-#: .\apps\journal\models.py:851
+#: .\apps\journal\models.py:881
 msgid "editorial board member"
 msgstr "tahrir hayʼati aʼzosi"
 
-#: .\apps\journal\models.py:852
+#: .\apps\journal\models.py:882
 msgid "editorial board members"
 msgstr "tahrir hayʼati aʼzolari"
 
-#: .\apps\journal\models.py:893
+#: .\apps\journal\models.py:923
 msgid "total views"
 msgstr "jami koʻrishlar"
 
-#: .\apps\journal\models.py:894
+#: .\apps\journal\models.py:924
 msgid "total downloads"
 msgstr "jami yuklab olishlar"
 
-#: .\apps\journal\models.py:895
+#: .\apps\journal\models.py:925
 msgid "views (30 days)"
 msgstr "koʻrishlar (30 kun)"
 
-#: .\apps\journal\models.py:896
+#: .\apps\journal\models.py:926
 msgid "downloads (30 days)"
 msgstr "yuklab olishlar (30 kun)"
 
-#: .\apps\journal\models.py:897
+#: .\apps\journal\models.py:927
 msgid "computed at"
 msgstr "hisoblangan vaqt"
 
-#: .\apps\journal\models.py:900 .\apps\journal\models.py:901
+#: .\apps\journal\models.py:930 .\apps\journal\models.py:931
 msgid "article statistics"
 msgstr "maqola statistikasi"
 
@@ -1827,8 +1913,8 @@ msgstr "Muallif topilmadi."
 msgid "Articles by %(name)s"
 msgstr "%(name)s maqolalari"
 
-#: .\apps\journal\views.py:510 .\templates\includes\footer.html:34
-#: .\templates\journal\home.html:273
+#: .\apps\journal\views.py:510 .\apps\production\issue_print.py:233
+#: .\templates\includes\footer.html:34 .\templates\journal\home.html:274
 msgid "Editorial Board"
 msgstr "Tahrir hayʼati"
 
@@ -1845,7 +1931,7 @@ msgid "View"
 msgstr "Koʻrish"
 
 #: .\apps\metrics\models.py:24
-#: .\templates\dashboard\submission_detail.html:153
+#: .\templates\dashboard\submission_detail.html:167
 msgid "Download"
 msgstr "Yuklab olish"
 
@@ -1953,6 +2039,210 @@ msgstr "Qoʻlda (muharrir hisobotni yuklaydi)"
 msgid "iThenticate (Crossref Similarity Check)"
 msgstr "iThenticate (Crossref Similarity Check)"
 
+#: .\apps\production\issue_print.py:59
+#| msgid "January"
+msgctxt "month name"
+msgid "January"
+msgstr "Yanvar"
+
+#: .\apps\production\issue_print.py:60
+#| msgid "February"
+msgctxt "month name"
+msgid "February"
+msgstr "Fevral"
+
+#: .\apps\production\issue_print.py:61
+#| msgid "March"
+msgctxt "month name"
+msgid "March"
+msgstr "Mart"
+
+#: .\apps\production\issue_print.py:62
+#| msgid "April"
+msgctxt "month name"
+msgid "April"
+msgstr "Aprel"
+
+#: .\apps\production\issue_print.py:63
+#| msgid "May"
+msgctxt "month name"
+msgid "May"
+msgstr "May"
+
+#: .\apps\production\issue_print.py:64
+#| msgid "June"
+msgctxt "month name"
+msgid "June"
+msgstr "Iyun"
+
+#: .\apps\production\issue_print.py:65
+#| msgid "July"
+msgctxt "month name"
+msgid "July"
+msgstr "Iyul"
+
+#: .\apps\production\issue_print.py:66
+#| msgid "August"
+msgctxt "month name"
+msgid "August"
+msgstr "Avgust"
+
+#: .\apps\production\issue_print.py:67
+#| msgid "September"
+msgctxt "month name"
+msgid "September"
+msgstr "Sentabr"
+
+#: .\apps\production\issue_print.py:68
+#| msgid "October"
+msgctxt "month name"
+msgid "October"
+msgstr "Oktabr"
+
+#: .\apps\production\issue_print.py:69
+#| msgid "November"
+msgctxt "month name"
+msgid "November"
+msgstr "Noyabr"
+
+#: .\apps\production\issue_print.py:70
+#| msgid "December"
+msgctxt "month name"
+msgid "December"
+msgstr "Dekabr"
+
+#: .\apps\production\issue_print.py:95
+#: .\templates\production\issue_builder.html:153
+#| msgid "Primary PDF galley"
+msgid "no PDF galley"
+msgstr "PDF fayl yoʻq"
+
+#: .\apps\production\issue_print.py:161
+#, python-format
+#| msgid "publisher address"
+msgid "Publisher: %(name)s"
+msgstr "Nashriyot: %(name)s"
+
+#: .\apps\production\issue_print.py:163
+#, python-format
+#| msgid "registration certificate number"
+msgid "Registration certificate No. %(number)s"
+msgstr "Roʻyxatdan oʻtganlik guvohnomasi № %(number)s"
+
+#: .\apps\production\issue_print.py:173
+#, python-format
+#| msgid "Add address"
+msgid "Address: %(address)s"
+msgstr "Manzil: %(address)s"
+
+#: .\apps\production\issue_print.py:206
+#, python-format
+msgid "%(month)s %(year)s · No. %(number)s"
+msgstr "%(year)s-yil, %(month)s · %(number)s-son"
+
+#: .\apps\production\issue_print.py:208
+#, python-format
+msgid "%(month)s · No. %(number)s"
+msgstr "%(month)s · %(number)s-son"
+
+#: .\apps\production\issue_print.py:209
+#, python-format
+msgid "Electronic edition, %(month)s %(year)s."
+msgstr "Elektron nashr, %(year)s-yil, %(month)s."
+
+#: .\apps\production\issue_print.py:210
+#| msgid "Contact"
+msgid "Contents"
+msgstr "Mundarija"
+
+#: .\apps\production\issue_print.py:216
+msgid ""
+"All articles are published in open access under the Creative Commons "
+"Attribution 4.0 International licence (CC BY 4.0)."
+msgstr ""
+"Barcha maqolalar Creative Commons Attribution 4.0 International (CC BY 4.0) "
+"litsenziyasi asosida ochiq kirishda nashr etiladi."
+
+#: .\apps\production\issue_print.py:232
+#| msgid "Section Editor"
+msgid "Section Editors"
+msgstr "Boʻlim muharrirlari"
+
+#: .\apps\production\issue_print.py:279
+#, python-format
+msgid "Article #%(pk)s has no PDF galley."
+msgstr "#%(pk)s-maqolaning PDF fayli (galley) yoʻq."
+
+#: .\apps\production\issue_print.py:293
+#, python-format
+msgid "The PDF galley of article #%(pk)s could not be read."
+msgstr "#%(pk)s-maqolaning PDF faylini oʻqib boʻlmadi."
+
+#: .\apps\production\issue_print.py:318 .\apps\production\issue_print.py:525
+#: .\apps\production\services.py:301
+msgid "The issue has no articles."
+msgstr "Sonda maqolalar yoʻq."
+
+#: .\apps\production\issue_print.py:332
+#, python-format
+msgid "The PDF galley of article #%(pk)s is damaged."
+msgstr "#%(pk)s-maqolaning PDF fayli buzilgan."
+
+#: .\apps\production\issue_print.py:336
+#, python-format
+msgid "The PDF galley of article #%(pk)s is empty."
+msgstr "#%(pk)s-maqolaning PDF fayli boʻsh."
+
+#: .\apps\production\issue_print.py:405
+#, python-format
+msgid "The PDF galley of article #%(pk)s could not be placed."
+msgstr "#%(pk)s-maqolaning PDF faylini maketga joylab boʻlmadi."
+
+#: .\apps\production\issue_print.py:503
+msgid "The issue PDF could not be built. The error has been logged."
+msgstr "Son PDF faylini shakllantirib boʻlmadi. Xato jurnalga yozildi."
+
+#: .\apps\production\issue_print.py:529
+#, python-format
+msgid "Upload a PDF galley for these articles first: %(items)s"
+msgstr "Avval quyidagi maqolalarga PDF fayl yuklang: %(items)s"
+
+#: .\apps\production\issue_print.py:574
+msgid "Build the issue PDF first; this article has no offprint yet."
+msgstr ""
+"Avval son PDF faylini shakllantiring: bu maqolaning nusxasi hali yoʻq."
+
+#: .\apps\production\issue_print.py:577
+#| msgid "No abstract is available for this article."
+msgid "No author e-mail address is recorded for this article."
+msgstr "Bu maqola mualliflarining e-pochta manzili kiritilmagan."
+
+#: .\apps\production\issue_print.py:594
+#, python-format
+msgid "Your article in the journal layout: %(title)s"
+msgstr "Maqolangiz jurnal maketida: %(title)s"
+
+#: .\apps\production\issue_print.py:596
+#, python-format
+msgid ""
+"Dear author,\n"
+"\n"
+"Your article **%(title)s** has been typeset in the journal layout (%(issue)s, pp. %(start)s–%(end)s).\n"
+"\n"
+"The PDF is attached. You can also download it from your dashboard: %(url)s\n"
+"\n"
+"With best regards,\n"
+"the editorial office"
+msgstr ""
+"Hurmatli muallif,\n"
+"\n"
+"**%(title)s** nomli maqolangiz jurnal maketiga joylashtirildi (%(issue)s, %(start)s–%(end)s-betlar).\n"
+"\n"
+"PDF fayl xatga ilova qilingan. Uni shaxsiy kabinetingizdan ham yuklab olishingiz mumkin: %(url)s\n"
+"\n"
+"Hurmat bilan,\n"
+"tahririyat"
+
 #: .\apps\production\services.py:172
 msgid "Title (English)"
 msgstr "Sarlavha (inglizcha)"
@@ -2036,67 +2326,84 @@ msgstr "Tasdiqlangan sana"
 msgid "Cannot publish: %(items)s"
 msgstr "Chop etib boʻlmaydi: %(items)s"
 
-#: .\apps\production\services.py:301
-msgid "The issue has no articles."
-msgstr "Sonda maqolalar yoʻq."
-
 #: .\apps\production\services.py:310
 #, python-format
 msgid "Some articles are incomplete: %(items)s"
 msgstr "Baʼzi maqolalar toʻliq emas: %(items)s"
 
-#: .\apps\production\views.py:88
+#: .\apps\production\views.py:104
 msgid "The manuscript has moved to the next stage."
 msgstr "Qoʻlyozma keyingi bosqichga oʻtdi."
 
-#: .\apps\production\views.py:107
+#: .\apps\production\views.py:123
 msgid "Stage marked as complete."
 msgstr "Bosqich bajarilgan deb belgilandi."
 
-#: .\apps\production\views.py:119 .\apps\production\views.py:142
+#: .\apps\production\views.py:135 .\apps\production\views.py:158
 msgid "No file was selected."
 msgstr "Fayl tanlanmadi."
 
-#: .\apps\production\views.py:131
+#: .\apps\production\views.py:147
 msgid "File uploaded."
 msgstr "Fayl yuklandi."
 
-#: .\apps\production\views.py:159
+#: .\apps\production\views.py:175
 msgid "Galley uploaded."
 msgstr "Nashr fayli yuklandi."
 
-#: .\apps\production\views.py:186
+#: .\apps\production\views.py:202
 #, python-format
 msgid "DOI reserved: %(doi)s"
 msgstr "DOI zaxiralandi: %(doi)s"
 
-#: .\apps\production\views.py:197
+#: .\apps\production\views.py:213
 msgid "The article is published as Online First."
 msgstr "Maqola Online First sifatida chop etildi."
 
-#: .\apps\production\views.py:217
+#: .\apps\production\views.py:233
 #, python-format
 msgid "The article has been scheduled into %(issue)s."
 msgstr "Maqola %(issue)s soniga rejalashtirildi."
 
-#: .\apps\production\views.py:264
+#: .\apps\production\views.py:284
 msgid "The issue order has been saved."
 msgstr "Son tartibi saqlandi."
 
-#: .\apps\production\views.py:275
+#: .\apps\production\views.py:295
 #, python-format
 msgid "Issue %(label)s is published."
 msgstr "%(label)s soni chop etildi."
 
-#: .\apps\production\views.py:292
+#: .\apps\production\views.py:312
 #, python-format
 msgid "Issue %(label)s created."
 msgstr "%(label)s soni yaratildi."
 
-#: .\apps\production\views.py:292
+#: .\apps\production\views.py:312
 #, python-format
 msgid "Issue %(label)s already exists."
 msgstr "%(label)s soni allaqachon mavjud."
+
+#: .\apps\production\views.py:329
+#, python-format
+#| msgid "No articles have been scheduled into this issue."
+msgid "%(count)s article(s) added to the issue."
+msgstr "Songa %(count)s ta maqola qoʻshildi."
+
+#: .\apps\production\views.py:342
+#, python-format
+msgid "%(count)s article(s) removed from the issue."
+msgstr "Sondan %(count)s ta maqola olib tashlandi."
+
+#: .\apps\production\views.py:363
+msgid "The issue PDF is being built. This page updates when it is ready."
+msgstr ""
+"Son PDF fayli shakllantirilmoqda. Tayyor boʻlganda sahifa yangilanadi."
+
+#: .\apps\production\views.py:423
+#| msgid "The invitation has been sent."
+msgid "The offprint has been sent to the authors."
+msgstr "Maqola nusxasi mualliflarga yuborildi."
 
 #: .\apps\review\views.py:123
 msgid "Thank you for accepting the review invitation."
@@ -2361,7 +2668,7 @@ msgid "Please write at least 100 characters of feedback for the authors."
 msgstr "Mualliflar uchun kamida 100 ta belgidan iborat fikr yozing."
 
 #: .\apps\submissions\forms.py:454 .\templates\core\contact.html:14
-#: .\templates\dashboard\submission_detail.html:70
+#: .\templates\dashboard\submission_detail.html:84
 #: .\templates\journal\article_detail.html:332
 msgid "E-mail"
 msgstr "Elektron pochta"
@@ -2867,7 +3174,7 @@ msgid "Editor ↔ Production"
 msgstr "Muharrir ↔ Nashr"
 
 #: .\apps\submissions\models.py:754
-#: .\templates\dashboard\submission_detail.html:284
+#: .\templates\dashboard\submission_detail.html:298
 msgid "Editors only"
 msgstr "Faqat muharrirlar"
 
@@ -3338,7 +3645,7 @@ msgid "The file has been removed."
 msgstr "Fayl oʻchirildi."
 
 #: .\apps\submissions\workflow.py:60 .\templates\core\for_authors.html:30
-#: .\templates\includes\header.html:75
+#: .\templates\includes\header.html:76
 msgid "Submit"
 msgstr "Yuborish"
 
@@ -3379,7 +3686,7 @@ msgid "Mark ready to publish"
 msgstr "Chop etishga tayyor deb belgilash"
 
 #: .\apps\submissions\workflow.py:158
-#: .\templates\production\article_detail.html:78
+#: .\templates\production\article_detail.html:104
 msgid "Publish Online First"
 msgstr "Online First sifatida chop etish"
 
@@ -3472,8 +3779,8 @@ msgstr "Tasdiqlangan"
 msgid "Unverified"
 msgstr "Tasdiqlanmagan"
 
-#: .\templates\account\email.html:28 .\templates\includes\header.html:44
-#: .\templates\includes\header.html:122
+#: .\templates\account\email.html:28 .\templates\includes\header.html:45
+#: .\templates\includes\header.html:119
 msgid "Primary"
 msgstr "Asosiy"
 
@@ -3542,7 +3849,7 @@ msgstr "Bu tasdiqlash havolasi yaroqsiz yoki muddati oʻtgan."
 #: .\templates\account\login.html:18
 #: .\templates\account\password_reset_from_key_done.html:8
 #: .\templates\account\verification_sent.html:10
-#: .\templates\includes\header.html:104 .\templates\includes\header.html:145
+#: .\templates\includes\header.html:105 .\templates\includes\header.html:142
 msgid "Sign in"
 msgstr "Kirish"
 
@@ -3569,7 +3876,7 @@ msgid "Create an account"
 msgstr "Hisob yaratish"
 
 #: .\templates\account\logout.html:3 .\templates\account\logout.html:5
-#: .\templates\account\logout.html:9 .\templates\includes\header.html:98
+#: .\templates\account\logout.html:9 .\templates\includes\header.html:99
 msgid "Sign out"
 msgstr "Chiqish"
 
@@ -3885,8 +4192,9 @@ msgstr ""
 "jihatdan asosli empirik va nazariy tadqiqotlar."
 
 #: .\templates\core\about.html:61 .\templates\dashboard\home.html:170
-#: .\templates\journal\archive.html:44 .\templates\journal\home.html:166
+#: .\templates\journal\archive.html:44 .\templates\journal\home.html:167
 #: .\templates\journal\issue_detail.html:104
+#: .\templates\production\issue_builder.html:8
 #, python-format
 msgid "%(counter)s article"
 msgid_plural "%(counter)s articles"
@@ -4072,7 +4380,7 @@ msgstr ""
 "Tahririyat koʻlam, maxsus son takliflari va institutsional hamkorlik "
 "boʻyicha topshirishdan oldingi maslahat beradi."
 
-#: .\templates\core\about.html:229 .\templates\includes\header.html:143
+#: .\templates\core\about.html:229 .\templates\includes\header.html:140
 #: .\templates\journal\home.html:40
 msgid "Submit your manuscript"
 msgstr "Qoʻlyozmangizni yuboring"
@@ -4114,7 +4422,7 @@ msgstr "Tahririyat"
 #: .\templates\core\announcement_detail.html:8
 #: .\templates\core\announcement_list.html:3
 #: .\templates\core\announcement_list.html:6
-#: .\templates\includes\footer.html:74 .\templates\journal\home.html:308
+#: .\templates\includes\footer.html:74 .\templates\journal\home.html:309
 msgid "Announcements"
 msgstr "Eʼlonlar"
 
@@ -4123,7 +4431,7 @@ msgid "Pinned"
 msgstr "Qadalgan"
 
 #: .\templates\core\announcement_list.html:19
-#: .\templates\journal\home.html:325
+#: .\templates\journal\home.html:326
 msgid "There are no announcements at the moment."
 msgstr "Hozircha eʼlonlar yoʻq."
 
@@ -4269,7 +4577,7 @@ msgid "Articles published"
 msgstr "Chop etilgan maqolalar"
 
 #: .\templates\core\statistics.html:15 .\templates\dashboard\reports.html:48
-#: .\templates\dashboard\submission_detail.html:67
+#: .\templates\dashboard\submission_detail.html:81
 #: .\templates\submissions\wizard_step3.html:43
 #: .\templates\submissions\wizard_step5.html:29
 msgid "Authors"
@@ -4369,7 +4677,7 @@ msgstr "Panel navigatsiyasi"
 #: .\templates\dashboard\reports.html:3
 #: .\templates\dashboard\reviewer_finder.html:3
 #: .\templates\dashboard\submission_detail.html:3
-#: .\templates\dashboard\two_factor.html:3 .\templates\includes\header.html:90
+#: .\templates\dashboard\two_factor.html:3 .\templates\includes\header.html:91
 msgid "Dashboard"
 msgstr "Boshqaruv paneli"
 
@@ -4400,12 +4708,12 @@ msgid "Account"
 msgstr "Hisob"
 
 #: .\templates\dashboard\_base.html:28 .\templates\dashboard\profile.html:3
-#: .\templates\dashboard\profile.html:5 .\templates\includes\header.html:91
+#: .\templates\dashboard\profile.html:5 .\templates\includes\header.html:92
 msgid "Profile"
 msgstr "Profil"
 
 #: .\templates\dashboard\_base.html:29 .\templates\dashboard\two_factor.html:3
-#: .\templates\dashboard\two_factor.html:5 .\templates\includes\header.html:93
+#: .\templates\dashboard\two_factor.html:5 .\templates\includes\header.html:94
 msgid "Two-factor authentication"
 msgstr "Ikki bosqichli autentifikatsiya"
 
@@ -4426,7 +4734,7 @@ msgid "Record the decision and notify the author"
 msgstr "Qarorni qayd etish va muallifga xabar berish"
 
 #: .\templates\dashboard\decide.html:28
-#: .\templates\dashboard\submission_detail.html:200
+#: .\templates\dashboard\submission_detail.html:214
 #: .\templates\submissions\withdraw.html:16
 #: .\templates\submissions\wizard_step1.html:29
 msgid "Cancel"
@@ -4487,7 +4795,7 @@ msgid "Invitation"
 msgstr "Taklif"
 
 #: .\templates\dashboard\home.html:108 .\templates\dashboard\home.html:117
-#: .\templates\dashboard\submission_detail.html:175
+#: .\templates\dashboard\submission_detail.html:189
 #: .\templates\production\submission_detail.html:16
 #: .\templates\review\assignment_detail.html:14
 #: .\templates\review\dashboard.html:17 .\templates\review\dashboard.html:46
@@ -4527,7 +4835,8 @@ msgid "Reference"
 msgstr "Raqam"
 
 #: .\templates\dashboard\partials\queue_table.html:8
-#: .\templates\dashboard\submission_detail.html:174
+#: .\templates\dashboard\submission_detail.html:188
+#: .\templates\production\partials\print_status.html:7
 #: .\templates\production\submission_detail.html:15
 msgid "Status"
 msgstr "Holat"
@@ -4582,7 +4891,7 @@ msgstr "%(total)s bosqichdan %(step)s-si"
 #: .\templates\dashboard\partials\submission_card.html:51
 #: .\templates\journal\archive.html:43
 #: .\templates\journal\article_detail.html:97
-#: .\templates\production\article_detail.html:86
+#: .\templates\production\article_detail.html:112
 #: .\templates\production\queue.html:66
 msgid "Issue"
 msgstr "Son"
@@ -4592,6 +4901,7 @@ msgid "View the published article"
 msgstr "Nashr etilgan maqolani koʻrish"
 
 #: .\templates\dashboard\partials\submission_card.html:66
+#: .\templates\dashboard\submission_detail.html:47
 #: .\templates\journal\article_detail.html:179
 #: .\templates\journal\article_detail.html:298
 msgid "Download PDF"
@@ -4619,9 +4929,9 @@ msgstr "Profilni saqlash"
 
 #: .\templates\dashboard\queue.html:11
 #: .\templates\dashboard\reviewer_finder.html:18
-#: .\templates\includes\header.html:67 .\templates\includes\header.html:141
+#: .\templates\includes\header.html:68 .\templates\includes\header.html:138
 #: .\templates\journal\home.html:113 .\templates\journal\home.html:121
-#: .\templates\journal\home.html:125 .\templates\search\search.html:3
+#: .\templates\journal\home.html:126 .\templates\search\search.html:3
 #: .\templates\search\search.html:6 .\templates\search\search.html:76
 msgid "Search"
 msgstr "Qidirish"
@@ -4709,7 +5019,7 @@ msgstr "Hozircha kesimlar yoʻq."
 
 #: .\templates\dashboard\reviewer_finder.html:3
 #: .\templates\dashboard\reviewer_finder.html:5
-#: .\templates\dashboard\submission_detail.html:166
+#: .\templates\dashboard\submission_detail.html:180
 msgid "Find reviewers"
 msgstr "Taqrizchilarni topish"
 
@@ -4738,20 +5048,30 @@ msgid "Discussion"
 msgstr "Muhokama"
 
 #: .\templates\dashboard\submission_detail.html:34
-#: .\templates\dashboard\submission_detail.html:307
+#: .\templates\dashboard\submission_detail.html:321
 msgid "History"
 msgstr "Tarix"
 
-#: .\templates\dashboard\submission_detail.html:38
+#: .\templates\dashboard\submission_detail.html:41
+msgid "Your article in the journal layout"
+msgstr "Maqolangiz jurnal maketida"
+
+#: .\templates\dashboard\submission_detail.html:43
+#: .\templates\production\article_detail.html:58
+#, python-format
+msgid "Typeset in %(issue)s, pages %(start)s–%(end)s."
+msgstr "%(issue)s soniga joylashtirilgan, %(start)s–%(end)s-betlar."
+
+#: .\templates\dashboard\submission_detail.html:52
 msgid "Handling editor"
 msgstr "Masʼul muharrir"
 
-#: .\templates\dashboard\submission_detail.html:38
-#: .\templates\production\article_detail.html:56
+#: .\templates\dashboard\submission_detail.html:52
+#: .\templates\production\article_detail.html:82
 msgid "not assigned"
 msgstr "tayinlanmagan"
 
-#: .\templates\dashboard\submission_detail.html:39
+#: .\templates\dashboard\submission_detail.html:53
 #: .\templates\includes\language_switcher.html:4
 #: .\templates\journal\article_detail.html:137
 #: .\templates\review\assignment_detail.html:12
@@ -4759,147 +5079,147 @@ msgstr "tayinlanmagan"
 msgid "Language"
 msgstr "Til"
 
-#: .\templates\dashboard\submission_detail.html:40
+#: .\templates\dashboard\submission_detail.html:54
 #: .\templates\review\assignment_detail.html:13
 #: .\templates\submissions\wizard_step5.html:21
 msgid "Word count"
 msgstr "Soʻzlar soni"
 
-#: .\templates\dashboard\submission_detail.html:41
+#: .\templates\dashboard\submission_detail.html:55
 msgid "Similarity"
 msgstr "Oʻxshashlik"
 
-#: .\templates\dashboard\submission_detail.html:46
+#: .\templates\dashboard\submission_detail.html:60
 msgid "within threshold"
 msgstr "chegara ichida"
 
-#: .\templates\dashboard\submission_detail.html:48
+#: .\templates\dashboard\submission_detail.html:62
 msgid "above threshold"
 msgstr "chegaradan yuqori"
 
-#: .\templates\dashboard\submission_detail.html:51
+#: .\templates\dashboard\submission_detail.html:65
 msgid "not checked"
 msgstr "tekshirilmagan"
 
-#: .\templates\dashboard\submission_detail.html:54
+#: .\templates\dashboard\submission_detail.html:68
 msgid "Rounds"
 msgstr "Bosqichlar"
 
-#: .\templates\dashboard\submission_detail.html:60
+#: .\templates\dashboard\submission_detail.html:74
 #: .\templates\journal\article_detail.html:145
 #: .\templates\journal\partials\article_card.html:63
 #: .\templates\review\assignment_detail.html:22
 msgid "Abstract"
 msgstr "Annotatsiya"
 
-#: .\templates\dashboard\submission_detail.html:70
+#: .\templates\dashboard\submission_detail.html:84
 msgid "Name"
 msgstr "Ism"
 
-#: .\templates\dashboard\submission_detail.html:70
+#: .\templates\dashboard\submission_detail.html:84
 msgid "Affiliation"
 msgstr "Ish joyi"
 
-#: .\templates\dashboard\submission_detail.html:85
+#: .\templates\dashboard\submission_detail.html:99
 msgid "Similarity check"
 msgstr "Oʻxshashlik tekshiruvi"
 
-#: .\templates\dashboard\submission_detail.html:94
+#: .\templates\dashboard\submission_detail.html:108
 msgid "Save the similarity result"
 msgstr "Oʻxshashlik natijasini saqlash"
 
-#: .\templates\dashboard\submission_detail.html:99
+#: .\templates\dashboard\submission_detail.html:113
 msgid "Actions"
 msgstr "Amallar"
 
-#: .\templates\dashboard\submission_detail.html:111
-#: .\templates\dashboard\submission_detail.html:263
+#: .\templates\dashboard\submission_detail.html:125
+#: .\templates\dashboard\submission_detail.html:277
 msgid "Record a decision"
 msgstr "Qaror qayd etish"
 
-#: .\templates\dashboard\submission_detail.html:116
+#: .\templates\dashboard\submission_detail.html:130
 msgid "Private notes"
 msgstr "Shaxsiy izohlar"
 
-#: .\templates\dashboard\submission_detail.html:125
+#: .\templates\dashboard\submission_detail.html:139
 msgid "Visible to editors only"
 msgstr "Faqat muharrirlarga koʻrinadi"
 
-#: .\templates\dashboard\submission_detail.html:126
+#: .\templates\dashboard\submission_detail.html:140
 msgid "Add note"
 msgstr "Izoh qoʻshish"
 
-#: .\templates\dashboard\submission_detail.html:140
+#: .\templates\dashboard\submission_detail.html:154
 #: .\templates\production\submission_detail.html:63
 #: .\templates\submissions\wizard_step2.html:16
 msgid "Kind"
 msgstr "Turi"
 
-#: .\templates\dashboard\submission_detail.html:141
+#: .\templates\dashboard\submission_detail.html:155
 #: .\templates\submissions\wizard_step2.html:17
 msgid "Version"
 msgstr "Versiya"
 
-#: .\templates\dashboard\submission_detail.html:142
+#: .\templates\dashboard\submission_detail.html:156
 #: .\templates\submissions\wizard_step2.html:18
 msgid "Uploaded"
 msgstr "Yuklangan"
 
-#: .\templates\dashboard\submission_detail.html:158
+#: .\templates\dashboard\submission_detail.html:172
 msgid "No files."
 msgstr "Fayllar yoʻq."
 
-#: .\templates\dashboard\submission_detail.html:169
-#: .\templates\dashboard\submission_detail.html:218
+#: .\templates\dashboard\submission_detail.html:183
+#: .\templates\dashboard\submission_detail.html:232
 #: .\templates\review\assignment_detail.html:11
 msgid "Round"
 msgstr "Bosqich"
 
-#: .\templates\dashboard\submission_detail.html:176
+#: .\templates\dashboard\submission_detail.html:190
 msgid "Reminders"
 msgstr "Eslatmalar"
 
-#: .\templates\dashboard\submission_detail.html:195
+#: .\templates\dashboard\submission_detail.html:209
 msgid "Remind"
 msgstr "Eslatish"
 
-#: .\templates\dashboard\submission_detail.html:207
+#: .\templates\dashboard\submission_detail.html:221
 msgid "No reviewers have been invited yet."
 msgstr "Hali taqrizchilar taklif qilinmagan."
 
-#: .\templates\dashboard\submission_detail.html:233
+#: .\templates\dashboard\submission_detail.html:247
 msgid "To the authors"
 msgstr "Mualliflarga"
 
-#: .\templates\dashboard\submission_detail.html:236
+#: .\templates\dashboard\submission_detail.html:250
 msgid "Confidential to the editor"
 msgstr "Muharrirga maxfiy"
 
-#: .\templates\dashboard\submission_detail.html:243
+#: .\templates\dashboard\submission_detail.html:257
 msgid "Review quality"
 msgstr "Taqriz sifati"
 
-#: .\templates\dashboard\submission_detail.html:252
+#: .\templates\dashboard\submission_detail.html:266
 msgid "Save"
 msgstr "Saqlash"
 
-#: .\templates\dashboard\submission_detail.html:259
+#: .\templates\dashboard\submission_detail.html:273
 msgid "No reviews yet."
 msgstr "Hozircha taqrizlar yoʻq."
 
-#: .\templates\dashboard\submission_detail.html:271
+#: .\templates\dashboard\submission_detail.html:285
 msgid "No decisions have been recorded."
 msgstr "Qarorlar qayd etilmagan."
 
-#: .\templates\dashboard\submission_detail.html:287
+#: .\templates\dashboard\submission_detail.html:301
 msgid "Post message"
 msgstr "Xabar joylash"
 
-#: .\templates\dashboard\submission_detail.html:295
+#: .\templates\dashboard\submission_detail.html:309
 msgid "System"
 msgstr "Tizim"
 
-#: .\templates\dashboard\submission_detail.html:302
+#: .\templates\dashboard\submission_detail.html:316
 msgid "No messages yet."
 msgstr "Hozircha xabarlar yoʻq."
 
@@ -4967,7 +5287,7 @@ msgstr "Guvohnoma"
 msgid "About & editorial"
 msgstr "Jurnal va tahririyat"
 
-#: .\templates\includes\footer.html:36 .\templates\journal\home.html:376
+#: .\templates\includes\footer.html:36 .\templates\journal\home.html:377
 msgid "Peer review process"
 msgstr "Taqriz jarayoni"
 
@@ -4975,7 +5295,7 @@ msgstr "Taqriz jarayoni"
 msgid "Publication Ethics"
 msgstr "Nashr etikasi"
 
-#: .\templates\includes\footer.html:38 .\templates\journal\home.html:390
+#: .\templates\includes\footer.html:38 .\templates\journal\home.html:391
 msgid "Open access statement"
 msgstr "Ochiq kirish bayonoti"
 
@@ -4987,11 +5307,11 @@ msgstr "Maʼlumot"
 msgid "Author Guidelines"
 msgstr "Mualliflar uchun yoʻriqnoma"
 
-#: .\templates\includes\footer.html:44 .\templates\journal\home.html:291
+#: .\templates\includes\footer.html:44 .\templates\journal\home.html:292
 msgid "Manuscript template"
 msgstr "Qoʻlyozma shabloni"
 
-#: .\templates\includes\footer.html:45 .\templates\journal\home.html:297
+#: .\templates\includes\footer.html:45 .\templates\journal\home.html:298
 msgid "Pre-submission checklist"
 msgstr "Yuborishdan oldingi tekshiruv roʻyxati"
 
@@ -5003,7 +5323,7 @@ msgstr "Maqolani qayta ishlash toʻlovlari"
 msgid "Reviewer guidelines"
 msgstr "Taqrizchilar uchun qoʻllanma"
 
-#: .\templates\includes\footer.html:48 .\templates\journal\home.html:384
+#: .\templates\includes\footer.html:48 .\templates\journal\home.html:385
 msgid "Policy on generative AI"
 msgstr "Generativ SI boʻyicha siyosat"
 
@@ -5059,18 +5379,18 @@ msgstr "Jurnal identifikatorlari"
 msgid "Open access · double-blind peer review"
 msgstr "Ochiq kirish · ikki tomonlama anonim taqriz"
 
-#: .\templates\includes\header.html:47 .\templates\includes\header.html:125
+#: .\templates\includes\header.html:48 .\templates\includes\header.html:122
 msgid "Current Issue"
 msgstr "Joriy son"
 
-#: .\templates\includes\header.html:50 .\templates\includes\header.html:128
+#: .\templates\includes\header.html:51 .\templates\includes\header.html:125
 #: .\templates\journal\archive.html:3 .\templates\journal\archive.html:6
 #: .\templates\journal\article_detail.html:25
-#: .\templates\journal\home.html:178 .\templates\journal\issue_detail.html:19
+#: .\templates\journal\home.html:179 .\templates\journal\issue_detail.html:19
 msgid "Archive"
 msgstr "Arxiv"
 
-#: .\templates\includes\header.html:111
+#: .\templates\includes\header.html:112
 msgid "Menu"
 msgstr "Menyu"
 
@@ -5099,7 +5419,7 @@ msgid "See Online First articles"
 msgstr "Online First maqolalarni koʻrish"
 
 #: .\templates\journal\article_detail.html:31
-#: .\templates\production\issue_builder.html:13
+#: .\templates\production\issue_builder.html:28
 msgid "Article"
 msgstr "Maqola"
 
@@ -5132,7 +5452,7 @@ msgid "Affiliation not provided"
 msgstr "Ish joyi koʻrsatilmagan"
 
 #: .\templates\journal\article_detail.html:100
-#: .\templates\production\issue_builder.html:13
+#: .\templates\production\issue_builder.html:29
 msgid "Pages"
 msgstr "Sahifalar"
 
@@ -5304,91 +5624,91 @@ msgstr "Tillar"
 msgid "Authors retain copyright"
 msgstr "Mualliflik huquqi mualliflarda qoladi"
 
-#: .\templates\journal\home.html:124
+#: .\templates\journal\home.html:125
 msgid "Search by title, author, DOI or JEL code (e.g. E52)"
 msgstr "Sarlavha, muallif, DOI yoki JEL kodi boʻyicha qidiring (masalan, E52)"
 
-#: .\templates\journal\home.html:129
+#: .\templates\journal\home.html:130
 msgid "Browse"
 msgstr "Koʻrib chiqish"
 
-#: .\templates\journal\home.html:130
+#: .\templates\journal\home.html:131
 msgid "All research"
 msgstr "Barcha tadqiqotlar"
 
-#: .\templates\journal\home.html:136 .\templates\journal\jel_detail.html:6
+#: .\templates\journal\home.html:137 .\templates\journal\jel_detail.html:6
 #: .\templates\journal\jel_index.html:3 .\templates\journal\jel_index.html:6
 msgid "JEL classification"
 msgstr "JEL tasnifi"
 
-#: .\templates\journal\home.html:141
+#: .\templates\journal\home.html:142
 msgid "Full tree"
 msgstr "Toʻliq daraxt"
 
-#: .\templates\journal\home.html:160 .\templates\journal\issue_empty.html:3
+#: .\templates\journal\home.html:161 .\templates\journal\issue_empty.html:3
 #: .\templates\journal\issue_empty.html:6
 msgid "Current issue"
 msgstr "Joriy son"
 
-#: .\templates\journal\home.html:161
+#: .\templates\journal\home.html:162
 msgid "Latest release"
 msgstr "Soʻnggi nashr"
 
-#: .\templates\journal\home.html:175
+#: .\templates\journal\home.html:176
 msgid "Full issue PDF"
 msgstr "Toʻliq son (PDF)"
 
-#: .\templates\journal\home.html:188
+#: .\templates\journal\home.html:189
 msgid "This issue has no articles yet."
 msgstr "Bu sonda hali maqolalar yoʻq."
 
-#: .\templates\journal\home.html:192
+#: .\templates\journal\home.html:193
 #, python-format
 msgid "Showing %(shown)s of %(total)s articles in %(issue)s"
 msgstr "%(issue)s sonidagi %(total)s maqoladan %(shown)s tasi koʻrsatilmoqda"
 
-#: .\templates\journal\home.html:196
+#: .\templates\journal\home.html:197
 msgid "View all papers in this issue"
 msgstr "Ushbu sondagi barcha maqolalar"
 
-#: .\templates\journal\home.html:203
+#: .\templates\journal\home.html:204
 msgid ""
 "The first issue is being prepared. Accepted articles appear as Online First."
 msgstr ""
 "Birinchi son tayyorlanmoqda. Qabul qilingan maqolalar Online First sifatida "
 "chiqadi."
 
-#: .\templates\journal\home.html:216
+#: .\templates\journal\home.html:217
 msgid "Ahead of print"
 msgstr "Nashrdan oldin"
 
-#: .\templates\journal\home.html:218
+#: .\templates\journal\home.html:219
 msgid ""
 "Peer-reviewed, accepted articles published immediately with a citable DOI."
 msgstr ""
 "Taqrizdan oʻtib qabul qilingan maqolalar iqtibos uchun DOI bilan darhol "
 "eʼlon qilinadi."
 
-#: .\templates\journal\home.html:243
+#: .\templates\journal\home.html:244
 #, python-format
 msgid "View %(counter)s Online First article"
 msgid_plural "View all %(counter)s Online First articles"
 msgstr[0] "%(counter)s ta Online First maqolani koʻrish"
 msgstr[1] "Barcha %(counter)s ta Online First maqolani koʻrish"
 
-#: .\templates\journal\home.html:246
+#: .\templates\journal\home.html:247
 msgid "No articles are ahead of print at the moment."
 msgstr "Hozircha nashrdan oldingi maqolalar yoʻq."
 
-#: .\templates\journal\home.html:276
+#: .\templates\journal\home.html:277
 msgid "COPE-aligned"
 msgstr "COPE tamoyillariga mos"
 
-#: .\templates\journal\home.html:283
+#: .\templates\journal\home.html:284
 msgid "For researchers"
 msgstr "Tadqiqotchilar uchun"
 
-#: .\templates\journal\home.html:286
+#: .\templates\journal\home.html:287
 msgid ""
 "Submission templates, the pre-submission checklist and the data policy, in "
 "one place."
@@ -5396,39 +5716,39 @@ msgstr ""
 "Qoʻlyozma shablonlari, topshirishdan oldingi nazorat roʻyxati va maʼlumotlar"
 " siyosati — bir joyda."
 
-#: .\templates\journal\home.html:302
+#: .\templates\journal\home.html:303
 msgid "Data & replication policy"
 msgstr "Maʼlumotlar va replikatsiya siyosati"
 
-#: .\templates\journal\home.html:310
+#: .\templates\journal\home.html:311
 msgid "All"
 msgstr "Barchasi"
 
-#: .\templates\journal\home.html:317 .\templates\journal\issue_detail.html:194
+#: .\templates\journal\home.html:318 .\templates\journal\issue_detail.html:194
 msgid "Call for papers"
 msgstr "Maqolalar qabuli"
 
-#: .\templates\journal\home.html:330
+#: .\templates\journal\home.html:331
 msgid "Most read"
 msgstr "Eng koʻp oʻqilgan"
 
-#: .\templates\journal\home.html:331
+#: .\templates\journal\home.html:332
 msgid "last 30 days"
 msgstr "soʻnggi 30 kun"
 
-#: .\templates\journal\home.html:349
+#: .\templates\journal\home.html:350
 msgid "Usage statistics will appear once articles are published."
 msgstr "Foydalanish statistikasi maqolalar chop etilgach paydo boʻladi."
 
-#: .\templates\journal\home.html:361
+#: .\templates\journal\home.html:362
 msgid "Research governance & rigour"
 msgstr "Ilmiy boshqaruv va qatʼiylik"
 
-#: .\templates\journal\home.html:362
+#: .\templates\journal\home.html:363
 msgid "Publication standards & verification"
 msgstr "Nashr standartlari va tekshiruv"
 
-#: .\templates\journal\home.html:363
+#: .\templates\journal\home.html:364
 msgid ""
 "Every submission passes a multi-stage screening framework that protects "
 "academic integrity, empirical veracity and unbiased review."
@@ -5436,15 +5756,15 @@ msgstr ""
 "Har bir qoʻlyozma ilmiy halollik, empirik ishonchlilik va xolis taqrizni "
 "taʼminlovchi koʻp bosqichli tekshiruvdan oʻtadi."
 
-#: .\templates\journal\home.html:367
+#: .\templates\journal\home.html:368
 msgid "Read the publication ethics statement"
 msgstr "Nashr etikasi bayonotini oʻqish"
 
-#: .\templates\journal\home.html:374
+#: .\templates\journal\home.html:375
 msgid "Strict double-blind review"
 msgstr "Qatʼiy ikki tomonlama anonim taqriz"
 
-#: .\templates\journal\home.html:375
+#: .\templates\journal\home.html:376
 msgid ""
 "Author and reviewer identities are concealed throughout. At least two "
 "independent external reports are required before any editorial decision."
@@ -5453,11 +5773,11 @@ msgstr ""
 "qanday tahririyat qaroridan oldin kamida ikkita mustaqil tashqi taqriz talab"
 " etiladi."
 
-#: .\templates\journal\home.html:380
+#: .\templates\journal\home.html:381
 msgid "Integrity screening"
 msgstr "Halollik tekshiruvi"
 
-#: .\templates\journal\home.html:382
+#: .\templates\journal\home.html:383
 #, python-format
 msgid ""
 "Every manuscript is checked for similarity before review; reports above "
@@ -5468,11 +5788,11 @@ msgstr ""
 "%(threshold)s%% dan yuqori hisobotlar mualliflarga qaytariladi. Generativ AI"
 " dan foydalanish oshkor qilinishi shart."
 
-#: .\templates\journal\home.html:388
+#: .\templates\journal\home.html:389
 msgid "Diamond open access charter"
 msgstr "Olmos ochiq kirish xartiyasi"
 
-#: .\templates\journal\home.html:389
+#: .\templates\journal\home.html:390
 msgid ""
 "All articles are freely accessible worldwide on the day of publication under"
 " CC BY 4.0. No article processing charges are levied on authors or their "
@@ -5482,7 +5802,7 @@ msgstr ""
 "dunyoda bepul ochiq. Mualliflar va ularning muassasalaridan hech qanday "
 "toʻlov olinmaydi."
 
-#: .\templates\journal\home.html:401
+#: .\templates\journal\home.html:402
 msgid "Abstracting, indexing & archival repositories"
 msgstr "Referatlash, indekslash va arxiv omborlari"
 
@@ -5675,27 +5995,58 @@ msgstr "Fayl"
 msgid "Upload galley"
 msgstr "Nashr faylini yuklash"
 
-#: .\templates\production\article_detail.html:59
+#: .\templates\production\article_detail.html:54
+#: .\templates\production\issue_builder.html:30
+#| msgid "Journal facts"
+msgid "Journal layout"
+msgstr "Jurnal maketi"
+
+#: .\templates\production\article_detail.html:60
+#, python-format
+#| msgid "Comments to the authors"
+msgid "Sent to the authors on %(date)s."
+msgstr "Mualliflarga %(date)s da yuborilgan."
+
+#: .\templates\production\article_detail.html:65
+#| msgid "Download certificate"
+msgid "Download the offprint"
+msgstr "Maqola nusxasini yuklab olish"
+
+#: .\templates\production\article_detail.html:69
+#: .\templates\production\issue_builder.html:87
+#| msgid "Send proof to author"
+msgid "Send to authors"
+msgstr "Mualliflarga yuborish"
+
+#: .\templates\production\article_detail.html:74
+msgid ""
+"The offprint appears here after the journal PDF of its issue has been built "
+"in the issue builder."
+msgstr ""
+"Maqola nusxasi son konstruktorida jurnal PDF fayli shakllantirilgandan keyin"
+" shu yerda paydo boʻladi."
+
+#: .\templates\production\article_detail.html:85
 msgid "Reserve the DOI"
 msgstr "DOI ni zaxiralash"
 
-#: .\templates\production\article_detail.html:64
+#: .\templates\production\article_detail.html:90
 msgid "Publication"
 msgstr "Nashr"
 
-#: .\templates\production\article_detail.html:68
+#: .\templates\production\article_detail.html:94
 msgid "Publication is blocked by:"
 msgstr "Nashrga toʻsqinlik qilmoqda:"
 
-#: .\templates\production\article_detail.html:92
+#: .\templates\production\article_detail.html:118
 msgid "First page"
 msgstr "Birinchi sahifa"
 
-#: .\templates\production\article_detail.html:99
+#: .\templates\production\article_detail.html:125
 msgid "Last page"
 msgstr "Oxirgi sahifa"
 
-#: .\templates\production\article_detail.html:105
+#: .\templates\production\article_detail.html:131
 msgid "Schedule into the issue"
 msgstr "Songa rejalashtirish"
 
@@ -5704,51 +6055,135 @@ msgstr "Songa rejalashtirish"
 msgid "Issue builder"
 msgstr "Son yigʻuvchi"
 
-#: .\templates\production\issue_builder.html:6
+#: .\templates\production\issue_builder.html:7
 msgid "in preparation"
 msgstr "tayyorlanmoqda"
 
-#: .\templates\production\issue_builder.html:13
-msgid "Ready"
-msgstr "Tayyor"
+#: .\templates\production\issue_builder.html:25
+#: .\templates\production\issue_builder.html:41
+msgid "Select"
+msgstr "Tanlash"
 
-#: .\templates\production\issue_builder.html:33
+#: .\templates\production\issue_builder.html:49
+#| msgid "order"
+msgid "Order"
+msgstr "Tartib"
+
+#: .\templates\production\issue_builder.html:67
+#: .\templates\production\issue_builder.html:68
 msgid "from"
 msgstr "dan"
 
-#: .\templates\production\issue_builder.html:37
+#: .\templates\production\issue_builder.html:72
+#: .\templates\production\issue_builder.html:73
 msgid "to"
 msgstr "gacha"
 
-#: .\templates\production\issue_builder.html:48
+#: .\templates\production\issue_builder.html:85
+#| msgid "Send message"
+msgid "Send again"
+msgstr "Qayta yuborish"
+
+#: .\templates\production\issue_builder.html:92
+msgid "sent"
+msgstr "yuborilgan"
+
+#: .\templates\production\issue_builder.html:102
 msgid "No articles have been scheduled into this issue."
 msgstr "Bu songa hali maqolalar rejalashtirilmagan."
 
-#: .\templates\production\issue_builder.html:54
+#: .\templates\production\issue_builder.html:111
 msgid "Save order and pages"
 msgstr "Tartib va sahifalarni saqlash"
 
-#: .\templates\production\issue_builder.html:61
+#: .\templates\production\issue_builder.html:112
+msgid "Remove selected from the issue"
+msgstr "Tanlanganlarni sondan chiqarish"
+
+#: .\templates\production\issue_builder.html:129
+#| msgid "daily article statistics"
+msgid "Add articles to this issue"
+msgstr "Songa maqola qoʻshish"
+
+#: .\templates\production\issue_builder.html:141
+msgid "Select all"
+msgstr "Barchasini tanlash"
+
+#: .\templates\production\issue_builder.html:161
+#| msgid "Schedule into the issue"
+msgid "Add selected to the issue"
+msgstr "Tanlanganlarni songa qoʻshish"
+
+#: .\templates\production\issue_builder.html:164
+msgid "Every ready article is already in an issue."
+msgstr "Tayyor maqolalarning barchasi allaqachon sonlarga kiritilgan."
+
+#: .\templates\production\issue_builder.html:170
+#| msgid "Journal facts"
+msgid "Journal PDF"
+msgstr "Jurnal PDF fayli"
+
+#: .\templates\production\issue_builder.html:172
+msgid ""
+"Assembles the cover, editorial board, contents and every article in the "
+"journal layout, numbers the pages and prepares an offprint for each author."
+msgstr ""
+"Muqova, tahrir hayʼati, mundarija va barcha maqolalarni jurnal maketiga "
+"yigʻadi, sahifalarni raqamlaydi hamda har bir muallif uchun alohida nusxa "
+"tayyorlaydi."
+
+#: .\templates\production\issue_builder.html:180
+msgid "Language of the layout"
+msgstr "Maket tili"
+
+#: .\templates\production\issue_builder.html:188
+#| msgid "First page"
+msgid "First page number"
+msgstr "Birinchi sahifa raqami"
+
+#: .\templates\production\issue_builder.html:195
+msgid "Keep 1, or continue the numbering of a previous part."
+msgstr "1 qoldiring yoki oldingi qismning raqamlashini davom ettiring."
+
+#: .\templates\production\issue_builder.html:201
+#| msgid "Search the journal"
+msgid "Rebuild the journal PDF"
+msgstr "Jurnal PDF faylini qayta shakllantirish"
+
+#: .\templates\production\issue_builder.html:203
+#| msgid "Search the journal"
+msgid "Build the journal PDF"
+msgstr "Jurnal PDF faylini shakllantirish"
+
+#: .\templates\production\issue_builder.html:207
+msgid "Every article needs a PDF galley before the journal can be built."
+msgstr ""
+"Jurnalni shakllantirishdan oldin har bir maqolaga PDF fayl yuklanishi kerak."
+
+#: .\templates\production\issue_builder.html:214
 msgid "Every article passes the completeness check."
 msgstr "Har bir maqola toʻliqlik tekshiruvidan oʻtdi."
 
-#: .\templates\production\issue_builder.html:63
+#: .\templates\production\issue_builder.html:216
 msgid "Some articles are incomplete; open them to fix the missing metadata."
 msgstr ""
 "Baʼzi maqolalar toʻliq emas; yetishmayotgan metamaʼlumotlarni toʻldirish "
 "uchun ularni oching."
 
-#: .\templates\production\issue_builder.html:69
+#: .\templates\production\issue_builder.html:222
 msgid "Publish the issue"
 msgstr "Sonni chop etish"
 
-#: .\templates\production\issue_builder.html:73
-msgid "Unassigned articles"
-msgstr "Songa biriktirilmagan maqolalar"
+#: .\templates\production\partials\print_status.html:23
+#, python-format
+#| msgid "%(days)s days"
+msgid "%(pages)s pages"
+msgstr "%(pages)s sahifa"
 
-#: .\templates\production\issue_builder.html:80
-msgid "None."
-msgstr "Yoʻq."
+#: .\templates\production\partials\print_status.html:27
+#| msgid "Download the full issue (PDF)"
+msgid "Download the journal PDF"
+msgstr "Jurnal PDF faylini yuklab olish"
 
 #: .\templates\production\queue.html:22
 msgid "Empty."
@@ -6024,7 +6459,6 @@ msgstr "Sarlavha, annotatsiya, kalit soʻzlar, mualliflar, adabiyotlar"
 
 #: .\templates\socialaccount\authentication_error.html:3
 #: .\templates\socialaccount\authentication_error.html:5
-#| msgid "Registration failed"
 msgid "Sign-in failed"
 msgstr "Kirish amalga oshmadi"
 
@@ -6038,7 +6472,6 @@ msgstr ""
 
 #: .\templates\socialaccount\connections.html:3
 #: .\templates\socialaccount\connections.html:5
-#| msgid "Create account"
 msgid "Connected accounts"
 msgstr "Ulangan hisoblar"
 
@@ -6055,12 +6488,10 @@ msgid "Add a provider"
 msgstr "Provayder qoʻshish"
 
 #: .\templates\socialaccount\connections.html:38
-#| msgid "Continue with ORCID"
 msgid "Connect ORCID"
 msgstr "ORCID ni ulash"
 
 #: .\templates\socialaccount\connections.html:44
-#| msgid "Continue with Google"
 msgid "Connect Google"
 msgstr "Google ni ulash"
 
@@ -6071,7 +6502,6 @@ msgstr "%(provider)s ni ulash"
 
 #: .\templates\socialaccount\login.html:9
 #, python-format
-#| msgid "Sign in with Google"
 msgid "Sign in with %(provider)s"
 msgstr "%(provider)s orqali kirish"
 
@@ -6091,7 +6521,6 @@ msgstr ""
 
 #: .\templates\socialaccount\login_cancelled.html:3
 #: .\templates\socialaccount\login_cancelled.html:5
-#| msgid "Cancelled"
 msgid "Sign-in cancelled"
 msgstr "Kirish bekor qilindi"
 
@@ -6102,7 +6531,6 @@ msgstr "Provayder orqali kirishni bekor qildingiz. Hech narsa oʻzgarmadi."
 
 #: .\templates\socialaccount\signup.html:3
 #: .\templates\socialaccount\signup.html:5
-#| msgid "Create account"
 msgid "Complete your account"
 msgstr "Hisobni yakunlang"
 

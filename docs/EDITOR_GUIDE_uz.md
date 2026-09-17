@@ -193,6 +193,57 @@ python manage.py export_issue_bundle <id> # saqlash toʻplami
 
 Eksport toʻplamini server tashqarisida saqlang.
 
+### 8.1. Jurnal PDF fayli va mualliflar uchun nusxa
+
+Oylik sonni bitta toʻliq jurnal sifatida shakllantirish ham **Son yigʻuvchi**da
+bajariladi.
+
+1. **Songa maqola qoʻshish** roʻyxatidan shu songa kiradigan maqolalarni belgilang
+   (**Barchasini tanlash** ham bor), soʻng **Tanlanganlarni songa qoʻshish**.
+   Xato qoʻshilganini jadvalda belgilab, **Tanlanganlarni sondan chiqarish**.
+2. Jadvaldagi **#** ustunida maqolalar tartibini belgilang va saqlang. Mundarijada
+   maqolalar boʻlim tartibi, soʻng shu raqam boʻyicha joylashadi.
+3. Har bir maqolada **PDF galley** boʻlishi shart — bu sahifalovchi tasdiqlagan
+   yakuniy PDF (Word yoki InDesign eksporti, A4). Galleysiz maqola qizil bilan
+   belgilanadi va jurnal yigʻilmaydi.
+4. **Jurnal PDF fayli** panelida maket tilini (oʻzbekcha, ўзбекча, русский,
+   English) va birinchi sahifa raqamini tanlang (odatda 1; ikkinchi qism uchun
+   oldingi qism oxiridan davom ettiring), soʻng **Jurnal PDF faylini
+   shakllantirish**.
+5. Holat avtomatik yangilanadi: *navbatda → shakllantirilmoqda → tayyor*. 100 ta
+   maqolali son bir necha daqiqa oladi. Xato boʻlsa, sababi (masalan, qaysi
+   maqolaning PDF fayli buzilgan) shu yerda yoziladi.
+
+Tayyor boʻlganda tizim quyidagilarni yaratadi:
+
+- **Jurnal PDF fayli**: muqova, tahrir hayʼati, ixtiyoriy maʼlumot sahifasi,
+  *MUNDARIJA • СОДЕРЖАНИЕ • CONTENTS*, barcha maqolalar (har sahifada jurnal
+  nomi, oy va son raqami, sahifa raqami), orqa muqova. Son chop etilgach, shu fayl
+  saytdagi son sahifasida "toʻliq son" sifatida chiqadi.
+- **Har bir maqola uchun nusxa**: oʻsha muqova, hayʼat va mundarija hamda faqat shu
+  maqolaning sahifalari (jurnaldagi sahifa raqamlari bilan) va orqa muqova.
+- Maqolalarning **sahifa oraligʻi** avtomatik yoziladi (sayt, iqtibos va Crossref
+  shu raqamlardan foydalanadi).
+
+Nusxani muallifga yuborish: jadvaldagi **PDF** tugmasi bilan yuklab oling yoki
+**Mualliflarga yuborish** ni bosing — fayl masʼul muallif(lar)ning e-pochtasiga
+ilova qilinadi (8 MB dan katta boʻlsa, yuklab olish havolasi yuboriladi).
+Mualliflar nusxani oʻz kabinetidagi qoʻlyozma sahifasidan ham yuklab oladi.
+
+Maket sozlamalari:
+
+- Muqova: son uchun muqova rasmi yuklangan boʻlsa, u butun sahifa qilib qoʻyiladi;
+  aks holda brend muqovasi yaratiladi. Logotip — **Sayt sozlamalari → logo (dark)**.
+- Tahrir hayʼati sahifasi **Tahrir hayʼati** boʻlimidagi faol aʼzolardan olinadi.
+- **Sayt sozlamalari → son PDF faylidagi maʼlumot sahifasi**: hayʼatdan keyingi
+  ixtiyoriy sahifa (masalan, OAK ixtisosliklari roʻyxati). Har band alohida
+  qatorda, `#` bilan boshlangan qator sarlavha.
+- Galley sahifalari chetidan `PRINT_SOURCE_TRIM` (standart 18 pt) qirqilib, jurnal
+  ramkasiga sigʻdiriladi. Sahifalovchi PDF da oʻz kolontitulini qoʻymasin — uni
+  tizim qoʻyadi.
+- Sozlamani oʻzgartirgan boʻlsangiz yoki maqola galleysini yangilagan boʻlsangiz,
+  **Jurnal PDF faylini qayta shakllantirish** ni bosing.
+
 ---
 
 ## 9. Tuzatish, chaqirib olish va apellyatsiya

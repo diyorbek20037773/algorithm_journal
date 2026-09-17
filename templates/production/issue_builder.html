@@ -3,84 +3,224 @@
 {% block title %}{% translate "Issue builder" %} — {{ issue.label }}{% endblock %}
 {% block dashboard_content %}
   <h1 class="text-2xl mb-1">{% translate "Issue builder" %}</h1>
-  <p class="muted mb-6">{{ issue.label }} — {% if issue.is_published %}{% translate "published" %}{% else %}{% translate "in preparation" %}{% endif %}</p>
-  <div class="grid gap-8 lg:grid-cols-[1fr_280px] items-start">
-    <div>
-      <form method="post" action="{% url 'production:reorder_issue' issue.pk %}">
+  <p class="muted mb-6">
+    {{ issue.label }} — {% if issue.is_published %}{% translate "published" %}{% else %}{% translate "in preparation" %}{% endif %}
+    · {% blocktranslate count counter=assigned|length %}{{ counter }} article{% plural %}{{ counter }} articles{% endblocktranslate %}
+  </p>
+  <div class="grid gap-4 md:grid-cols-2 items-start mb-8">
+    <div class="card">
+      <p class="footer-heading">{% translate "Journal PDF" %}</p>
+      <p class="muted text-sm mb-3">{% translate "Assembles the cover, editorial board, contents and every article in the journal layout, numbers the pages and prepares an offprint for each author." %}</p>
+      {% include "production/partials/print_status.html" %}
+      <form method="post"
+            action="{% url 'production:issue_build_pdf' issue.pk %}"
+            class="mt-4 grid gap-3">
         {% csrf_token %}
-        <table class="table">
-          <thead>
-            <tr><th>#</th><th>{% translate "Article" %}</th><th>{% translate "Pages" %}</th><th>{% translate "Ready" %}</th></tr>
-          </thead>
-          <tbody>
-            {% for article in assigned %}
-              <tr>
-                <td>
-                  <input class="input w-16"
-                         type="number"
-                         name="article_{{ article.pk }}_number"
-                         value="{{ article.article_number|default:forloop.counter }}">
-                </td>
-                <td>
-                  <a href="{% url 'production:article' article.pk %}">{{ article.title|truncatechars:60 }}</a>
-                  <br>
-                  <span class="meta">{{ article.section.name }}</span>
-                </td>
-                <td class="flex gap-1">
-                  <input class="input w-20"
-                         name="article_{{ article.pk }}_pages_start"
-                         value="{{ article.pages_start }}"
-                         placeholder="{% translate 'from' %}">
-                  <input class="input w-20"
-                         name="article_{{ article.pk }}_pages_end"
-                         value="{{ article.pages_end }}"
-                         placeholder="{% translate 'to' %}">
-                </td>
-                <td>
-                  {% with items=blockers|default_if_none:"" %}
-                    <span class="dot" style="background: var(--color-success)"></span>
-                  {% endwith %}
-                </td>
-              </tr>
-            {% empty %}
-              <tr>
-                <td colspan="4">
-                  <div class="empty-state">{% translate "No articles have been scheduled into this issue." %}</div>
-                </td>
-              </tr>
+        <div>
+          <label class="field-label" for="print-language">{% translate "Language of the layout" %}</label>
+          <select class="select" id="print-language" name="print_language">
+            {% for code, name in languages %}
+              <option value="{{ code }}"
+                      {% if code == issue.print_language %}selected{% endif %}>{{ name }}</option>
             {% endfor %}
-          </tbody>
-        </table>
-        <button type="submit" class="btn btn-secondary mt-4">{% translate "Save order and pages" %}</button>
+          </select>
+        </div>
+        <div>
+          <label class="field-label" for="print-first-page">{% translate "First page number" %}</label>
+          <input class="input"
+                 id="print-first-page"
+                 type="number"
+                 min="1"
+                 name="print_first_page"
+                 value="{{ issue.print_first_page }}">
+          <p class="field-help">{% translate "Keep 1, or continue the numbering of a previous part." %}</p>
+        </div>
+        <button type="submit"
+                class="btn btn-primary w-full"
+                {% if not can_build %}disabled{% endif %}>
+          {% if issue.full_issue_pdf %}
+            {% translate "Rebuild the journal PDF" %}
+          {% else %}
+            {% translate "Build the journal PDF" %}
+          {% endif %}
+        </button>
+        {% if print_blockers %}
+          <p class="field-error">{% translate "Every article needs a PDF galley before the journal can be built." %}</p>
+        {% endif %}
       </form>
     </div>
-    <aside class="space-y-4">
-      <div class="card">
-        <p class="footer-heading">{% translate "Publish" %}</p>
-        {% if can_publish %}
-          <p class="muted text-sm mb-3">{% translate "Every article passes the completeness check." %}</p>
-        {% else %}
-          <p class="muted text-sm mb-3">{% translate "Some articles are incomplete; open them to fix the missing metadata." %}</p>
+    <div class="card">
+      <p class="footer-heading">{% translate "Publish" %}</p>
+      {% if can_publish %}
+        <p class="muted text-sm mb-3">{% translate "Every article passes the completeness check." %}</p>
+      {% else %}
+        <p class="muted text-sm mb-3">{% translate "Some articles are incomplete; open them to fix the missing metadata." %}</p>
+      {% endif %}
+      <form method="post" action="{% url 'production:publish_issue' issue.pk %}">
+        {% csrf_token %}
+        <button type="submit"
+                class="btn btn-secondary w-full"
+                {% if not can_publish %}disabled{% endif %}>{% translate "Publish the issue" %}</button>
+      </form>
+    </div>
+  </div>
+  <div>
+    <div class="min-w-0">
+      {# Checkboxes of the table belong to this form through the form attribute. #}
+      <form id="remove-articles"
+            method="post"
+            action="{% url 'production:issue_remove_articles' issue.pk %}">
+        {% csrf_token %}
+      </form>
+      <form method="post" action="{% url 'production:reorder_issue' issue.pk %}">
+        {% csrf_token %}
+        <div class="overflow-x-auto">
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="w-8">
+                  <span class="visually-hidden">{% translate "Select" %}</span>
+                </th>
+                <th>#</th>
+                <th>{% translate "Article" %}</th>
+                <th>{% translate "Pages" %}</th>
+                <th>{% translate "Journal layout" %}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for article in assigned %}
+                <tr>
+                  <td>
+                    <input type="checkbox"
+                           form="remove-articles"
+                           name="articles"
+                           value="{{ article.pk }}"
+                           aria-label="{% translate 'Select' %} #{{ article.pk }}"
+                           {% if article.status == 'published' %}disabled{% endif %}>
+                  </td>
+                  <td>
+                    <input class="input w-16"
+                           type="number"
+                           name="article_{{ article.pk }}_number"
+                           value="{{ article.article_number|default:forloop.counter }}"
+                           aria-label="{% translate 'Order' %}">
+                  </td>
+                  <td>
+                    <a href="{% url 'production:article' article.pk %}">{{ article.title|truncatechars:70 }}</a>
+                    <br>
+                    <span class="meta">{{ article.section.name }} · {{ article.authors_display|truncatechars:60 }}</span>
+                    {% for article_pk, items in print_blockers.items %}
+                      {% if article_pk == article.pk %}
+                        <br>
+                        <span class="chip" style="color: var(--color-danger)">{{ items|join:", " }}</span>
+                      {% endif %}
+                    {% endfor %}
+                  </td>
+                  <td>
+                    <div class="flex gap-1">
+                      <input class="input w-20"
+                             name="article_{{ article.pk }}_pages_start"
+                             value="{{ article.pages_start }}"
+                             placeholder="{% translate 'from' %}"
+                             aria-label="{% translate 'from' %}">
+                      <input class="input w-20"
+                             name="article_{{ article.pk }}_pages_end"
+                             value="{{ article.pages_end }}"
+                             placeholder="{% translate 'to' %}"
+                             aria-label="{% translate 'to' %}">
+                    </div>
+                  </td>
+                  <td>
+                    {% if article.offprint_pdf %}
+                      <div class="flex flex-wrap gap-1">
+                        <a class="btn btn-tonal btn-sm"
+                           href="{% url 'production:article_offprint' article.pk %}">PDF</a>
+                        <button type="submit"
+                                class="btn btn-ghost btn-sm"
+                                form="send-{{ article.pk }}">
+                          {% if article.offprint_sent_at %}
+                            {% translate "Send again" %}
+                          {% else %}
+                            {% translate "Send to authors" %}
+                          {% endif %}
+                        </button>
+                      </div>
+                      {% if article.offprint_sent_at %}
+                        <span class="meta">{% translate "sent" %} {{ article.offprint_sent_at|date:"d.m.Y H:i" }}</span>
+                      {% endif %}
+                    {% else %}
+                      <span class="subtle text-sm">—</span>
+                    {% endif %}
+                  </td>
+                </tr>
+              {% empty %}
+                <tr>
+                  <td colspan="5">
+                    <div class="empty-state">{% translate "No articles have been scheduled into this issue." %}</div>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        {% if assigned %}
+          <div class="flex flex-wrap gap-2 mt-4">
+            <button type="submit" class="btn btn-secondary">{% translate "Save order and pages" %}</button>
+            <button type="submit" class="btn btn-ghost" form="remove-articles">{% translate "Remove selected from the issue" %}</button>
+          </div>
         {% endif %}
-        <form method="post" action="{% url 'production:publish_issue' issue.pk %}">
-          {% csrf_token %}
-          <button type="submit"
-                  class="btn btn-primary w-full"
-                  {% if not can_publish %}disabled{% endif %}>{% translate "Publish the issue" %}</button>
-        </form>
-      </div>
-      <div class="card">
-        <p class="footer-heading">{% translate "Unassigned articles" %}</p>
-        <ul class="space-y-2 mt-2">
-          {% for article in unassigned %}
-            <li class="text-sm">
-              <a href="{% url 'production:article' article.pk %}">{{ article.title|truncatechars:50 }}</a>
-            </li>
-          {% empty %}
-            <li class="muted text-sm">{% translate "None." %}</li>
-          {% endfor %}
-        </ul>
-      </div>
-    </aside>
+      </form>
+      {% for article in assigned %}
+        {% if article.offprint_pdf %}
+          <form id="send-{{ article.pk }}"
+                method="post"
+                action="{% url 'production:article_offprint_send' article.pk %}"
+                hidden>
+            {% csrf_token %}
+            <input type="hidden" name="next" value="issue">
+          </form>
+        {% endif %}
+      {% endfor %}
+      <section class="mt-10">
+        <div class="section-heading">
+          <h2>{% translate "Add articles to this issue" %}</h2>
+          <span class="count">{{ unassigned|length }}</span>
+        </div>
+        {% if unassigned %}
+          <form method="post"
+                action="{% url 'production:issue_add_articles' issue.pk %}"
+                x-data="{ all: false }">
+            {% csrf_token %}
+            <label class="checkbox-row text-sm font-medium">
+              <input type="checkbox"
+                     x-model="all"
+                     @change="$root.querySelectorAll('input[name=articles]').forEach(el => el.checked = all)">
+              {% translate "Select all" %}
+            </label>
+            <ul class="card p-0">
+              {% for article in unassigned %}
+                <li>
+                  <label class="flex items-start gap-3 px-4 py-3 {% if not forloop.first %}border-t border-[--color-line]{% endif %}">
+                    <input type="checkbox" class="mt-1" name="articles" value="{{ article.pk }}">
+                    <span class="min-w-0">
+                      <span class="font-medium">{{ article.title|truncatechars:90 }}</span>
+                      <br>
+                      <span class="meta">#{{ article.pk }} · {{ article.get_status_display }} · {{ article.section.name }}
+                        {% if not article.primary_galley %}
+                          · <span style="color: var(--color-danger)">{% translate "no PDF galley" %}</span>
+                        {% endif %}
+                      </span>
+                    </span>
+                  </label>
+                </li>
+              {% endfor %}
+            </ul>
+            <button type="submit" class="btn btn-secondary mt-3">{% translate "Add selected to the issue" %}</button>
+          </form>
+        {% else %}
+          <p class="muted text-sm">{% translate "Every ready article is already in an issue." %}</p>
+        {% endif %}
+      </section>
+    </div>
   </div>
 {% endblock %}

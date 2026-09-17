@@ -2,12 +2,14 @@
 
 from __future__ import annotations
 
+from functools import wraps
 from typing import Any
 
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.core.exceptions import ValidationError
-from django.http import HttpRequest, HttpResponse
+from django.core.exceptions import PermissionDenied, ValidationError
+from django.http import FileResponse, Http404, HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.template.response import TemplateResponse
 from django.utils import timezone
@@ -18,7 +20,7 @@ from django.views.generic import TemplateView
 
 from apps.accounts.permissions import ProductionRequiredMixin
 from apps.journal.models import Article, Galley, Issue, Volume
-from apps.production import services
+from apps.production import issue_print, services
 from apps.submissions import workflow
 from apps.submissions.models import (
     PRODUCTION_STATES,
@@ -27,6 +29,19 @@ from apps.submissions.models import (
     SubmissionFile,
     SubmissionStatus,
 )
+
+
+def production_required(view):
+    """Signed-in production editors, the editor-in-chief and administrators only."""
+
+    @wraps(view)
+    @login_required
+    def wrapper(request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
+        if not request.user.can_access_production:
+            raise PermissionDenied
+        return view(request, *args, **kwargs)
+
+    return wrapper
 
 
 class ProductionQueueView(ProductionRequiredMixin, TemplateView):
@@ -77,7 +92,7 @@ def submission_production(request: HttpRequest, pk: int) -> HttpResponse:
     return TemplateResponse(request, "production/submission_detail.html", context)
 
 
-@login_required
+@production_required
 @require_POST
 def advance_stage(request: HttpRequest, pk: int) -> HttpResponse:
     """Run a production workflow transition."""
@@ -95,7 +110,7 @@ def advance_stage(request: HttpRequest, pk: int) -> HttpResponse:
     return redirect("production:submission", pk=submission.pk)
 
 
-@login_required
+@production_required
 @require_POST
 def complete_task(request: HttpRequest, pk: int) -> HttpResponse:
     """Mark one production checklist item as done."""
@@ -108,7 +123,7 @@ def complete_task(request: HttpRequest, pk: int) -> HttpResponse:
     return redirect("production:submission", pk=task.submission_id)
 
 
-@login_required
+@production_required
 @require_POST
 def upload_production_file(request: HttpRequest, pk: int) -> HttpResponse:
     """Upload a copyedited, proof or final file."""
@@ -132,7 +147,7 @@ def upload_production_file(request: HttpRequest, pk: int) -> HttpResponse:
     return redirect("production:submission", pk=submission.pk)
 
 
-@login_required
+@production_required
 @require_POST
 def upload_galley(request: HttpRequest, pk: int) -> HttpResponse:
     """Attach a galley (PDF or JATS XML) to the article."""
@@ -160,7 +175,7 @@ def upload_galley(request: HttpRequest, pk: int) -> HttpResponse:
     return redirect("production:article", pk=article.pk)
 
 
-@login_required
+@production_required
 def article_production(request: HttpRequest, pk: int) -> HttpResponse:
     """Production view of one article: metadata, galleys, DOI, scheduling."""
     article = get_object_or_404(Article.objects.with_related(), pk=pk)
@@ -177,7 +192,7 @@ def article_production(request: HttpRequest, pk: int) -> HttpResponse:
     )
 
 
-@login_required
+@production_required
 @require_POST
 def assign_doi(request: HttpRequest, pk: int) -> HttpResponse:
     """Reserve the article's DOI."""
@@ -187,7 +202,7 @@ def assign_doi(request: HttpRequest, pk: int) -> HttpResponse:
     return redirect("production:article", pk=article.pk)
 
 
-@login_required
+@production_required
 @require_POST
 def publish_online_first(request: HttpRequest, pk: int) -> HttpResponse:
     """Publish the article ahead of its issue."""
@@ -200,7 +215,7 @@ def publish_online_first(request: HttpRequest, pk: int) -> HttpResponse:
     return redirect("production:article", pk=article.pk)
 
 
-@login_required
+@production_required
 @require_POST
 def schedule_to_issue(request: HttpRequest, pk: int) -> HttpResponse:
     """Place the article into an issue with pagination."""
@@ -219,7 +234,7 @@ def schedule_to_issue(request: HttpRequest, pk: int) -> HttpResponse:
     return redirect("production:issue_builder", pk=issue.pk)
 
 
-@login_required
+@production_required
 def issue_builder(request: HttpRequest, pk: int) -> HttpResponse:
     """Assemble an issue: order articles, set pages, publish."""
     issue = get_object_or_404(Issue.objects.select_related("volume"), pk=pk)
@@ -234,6 +249,7 @@ def issue_builder(request: HttpRequest, pk: int) -> HttpResponse:
         .with_related()
     )
     blockers: dict[int, list[str]] = {a.pk: services.completeness_blockers(a) for a in assigned}
+    print_blockers = issue_print.print_blockers(issue)
     return TemplateResponse(
         request,
         "production/issue_builder.html",
@@ -242,12 +258,15 @@ def issue_builder(request: HttpRequest, pk: int) -> HttpResponse:
             "assigned": assigned,
             "unassigned": unassigned,
             "blockers": blockers,
+            "print_blockers": print_blockers,
             "can_publish": bool(assigned) and not any(blockers.values()),
+            "can_build": bool(assigned) and not print_blockers,
+            "languages": settings.LANGUAGES,
         },
     )
 
 
-@login_required
+@production_required
 @require_POST
 def reorder_issue(request: HttpRequest, pk: int) -> HttpResponse:
     """Save the article order and page ranges of an issue."""
@@ -265,7 +284,7 @@ def reorder_issue(request: HttpRequest, pk: int) -> HttpResponse:
     return redirect("production:issue_builder", pk=issue.pk)
 
 
-@login_required
+@production_required
 @require_POST
 def publish_issue(request: HttpRequest, pk: int) -> HttpResponse:
     """Publish an issue and every article in it."""
@@ -278,7 +297,7 @@ def publish_issue(request: HttpRequest, pk: int) -> HttpResponse:
     return redirect("production:issue_builder", pk=issue.pk)
 
 
-@login_required
+@production_required
 @require_POST
 def create_issue(request: HttpRequest) -> HttpResponse:
     """Create a new (unpublished) issue in a volume."""
@@ -292,6 +311,119 @@ def create_issue(request: HttpRequest) -> HttpResponse:
         _("Issue %(label)s created.") if created else _("Issue %(label)s already exists."),
     )
     return redirect("production:issue_builder", pk=issue.pk)
+
+
+def _selected_ids(request: HttpRequest) -> list[int]:
+    return [int(value) for value in request.POST.getlist("articles") if value.isdigit()]
+
+
+@production_required
+@require_POST
+def issue_add_articles(request: HttpRequest, pk: int) -> HttpResponse:
+    """Put the ticked articles into the issue."""
+    issue = get_object_or_404(Issue, pk=pk)
+    count = issue_print.assign_articles(
+        issue, _selected_ids(request), user=request.user, request=request
+    )
+    messages.success(request, _("%(count)s article(s) added to the issue.") % {"count": count})
+    return redirect("production:issue_builder", pk=issue.pk)
+
+
+@production_required
+@require_POST
+def issue_remove_articles(request: HttpRequest, pk: int) -> HttpResponse:
+    """Take the ticked, unpublished articles out of the issue."""
+    issue = get_object_or_404(Issue, pk=pk)
+    count = issue_print.remove_articles(
+        issue, _selected_ids(request), user=request.user, request=request
+    )
+    messages.success(request, _("%(count)s article(s) removed from the issue.") % {"count": count})
+    return redirect("production:issue_builder", pk=issue.pk)
+
+
+@production_required
+@require_POST
+def issue_build_pdf(request: HttpRequest, pk: int) -> HttpResponse:
+    """Queue the issue PDF and the offprints."""
+    issue = get_object_or_404(Issue.objects.select_related("volume"), pk=pk)
+    language = request.POST.get("print_language", issue.print_language)
+    if language in dict(settings.LANGUAGES):
+        issue.print_language = language
+    first_page = request.POST.get("print_first_page", "")
+    if first_page.isdigit() and int(first_page) > 0:
+        issue.print_first_page = int(first_page)
+    issue.save(update_fields=["print_language", "print_first_page", "updated_at"])
+    try:
+        issue_print.request_build(issue, user=request.user, request=request)
+        messages.success(
+            request,
+            _("The issue PDF is being built. This page updates when it is ready."),
+        )
+    except ValidationError as exc:
+        messages.error(request, "; ".join(exc.messages))
+    return redirect("production:issue_builder", pk=issue.pk)
+
+
+@production_required
+def issue_print_status(request: HttpRequest, pk: int) -> HttpResponse:
+    """HTMX fragment with the build status; polls while a build runs."""
+    issue = get_object_or_404(Issue.objects.select_related("volume"), pk=pk)
+    return TemplateResponse(request, "production/partials/print_status.html", {"issue": issue})
+
+
+@production_required
+def issue_pdf_download(request: HttpRequest, pk: int) -> HttpResponse:
+    """Download the built issue PDF."""
+    issue = get_object_or_404(Issue.objects.select_related("volume"), pk=pk)
+    if not issue.full_issue_pdf:
+        raise Http404
+    from apps.core.services import get_site_settings
+
+    code = get_site_settings().short_code or "journal"
+    filename = f"{code}-{issue.volume.year}-{issue.number:02d}.pdf"
+    return FileResponse(issue.full_issue_pdf.open("rb"), as_attachment=True, filename=filename)
+
+
+def _can_download_offprint(user, article: Article) -> bool:
+    if not user.is_authenticated:
+        return False
+    if user.can_access_production:
+        return True
+    if article.authors.filter(user=user).exists():
+        return True
+    submission = article.submission
+    return submission is not None and submission.submitter_id == user.pk
+
+
+@login_required
+def article_offprint(request: HttpRequest, pk: int) -> HttpResponse:
+    """Download an article offprint (production staff and the article's authors)."""
+    article = get_object_or_404(Article.objects.select_related("submission"), pk=pk)
+    if not _can_download_offprint(request.user, article):
+        raise PermissionDenied
+    if not article.offprint_pdf:
+        raise Http404
+    return FileResponse(
+        article.offprint_pdf.open("rb"),
+        as_attachment=True,
+        filename=f"article-{article.pk}-{article.pages_start or 'offprint'}.pdf",
+    )
+
+
+@production_required
+@require_POST
+def article_offprint_send(request: HttpRequest, pk: int) -> HttpResponse:
+    """E-mail the offprint to the article's authors."""
+    article = get_object_or_404(Article.objects.with_related(), pk=pk)
+    try:
+        issue_print.send_offprint(article, user=request.user, request=request)
+        messages.success(request, _("The offprint has been sent to the authors."))
+    except ValidationError as exc:
+        messages.error(request, "; ".join(exc.messages))
+    next_url = request.POST.get("next", "")
+    if article.issue_id and next_url == "issue":
+        return redirect("production:issue_builder", pk=article.issue_id)
+    return redirect("production:article", pk=article.pk)
 
 
 # Function view wrapper so the queue keeps the mixin's role check.

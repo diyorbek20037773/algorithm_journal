@@ -279,6 +279,35 @@ first `main` run, Argo CD sync on the Uzbek VPS (steps in `docs/PIPELINE_uz.md`)
 
 ---
 
+## Journal PDF and author offprints ✅ (2026-09-17)
+
+**Done**
+
+- Issue builder: tick articles to add to / remove from an issue; running order.
+- `apps/production/print_layout.py` (reportlab + pypdf): brand cover (or the
+  uploaded issue cover), editorial board and imprint, optional information page
+  (`SiteSettings.print_info_page`), multilingual contents with section bands,
+  article galley pages trimmed and fitted into the journal frame with a running
+  head and a page-number tab, back cover. Noto Sans (subset, OFL) is vendored in
+  `apps/production/fonts/` for Uzbek ʻ ʼ and ғ қ ҳ.
+- `apps/production/issue_print.py`: two-pass pagination (contents length →
+  article page numbers), writes `pages_start`/`pages_end` back (re-deposits
+  Crossref for already public articles), stores `Issue.full_issue_pdf` and one
+  `Article.offprint_pdf` per article; Celery task `build_issue_print` with
+  `Issue.print_status` polled over HTMX; e-mail to corresponding authors with
+  the PDF attached (linked above `OFFPRINT_ATTACH_MAX_BYTES`); authors download
+  it from their submission page.
+- Security fix: every production function view now requires the production
+  role (`production_required`); before, any signed-in account could reach them.
+
+**Verified** — `tests/test_issue_print.py` (12 tests: page counts, pagination,
+first-page offset, offprint content, failure states, e-mail attachment,
+permissions); full suite 459 passed; a 4-article demo issue built in 1.7 s
+(32 pages) — `docs/screenshots/journal-pdf-pages.png`,
+`docs/screenshots/journal-pdf-issue-builder.png`.
+
+---
+
 ## Deferred (Phase 2 of the project — see HANDOFF.md)
 
 - DOCX → JATS/HTML full-text conversion.
