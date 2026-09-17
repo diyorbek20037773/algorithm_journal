@@ -64,6 +64,17 @@ dependencies = [
     "django-auditlog>=3.0",
     # i18n tooling
     "polib>=1.2",
+    # Storage (STORAGE_BACKEND=s3 — required on Kubernetes)
+    "django-storages[s3]>=1.14",
+    # Observability (tracing is off unless OTEL_EXPORTER_OTLP_ENDPOINT is set)
+    "opentelemetry-api>=1.27",
+    "opentelemetry-sdk>=1.27",
+    "opentelemetry-exporter-otlp-proto-http>=1.27",
+    "opentelemetry-instrumentation-django>=0.48b0",
+    "opentelemetry-instrumentation-psycopg>=0.48b0",
+    "opentelemetry-instrumentation-celery>=0.48b0",
+    "opentelemetry-instrumentation-redis>=0.48b0",
+    "opentelemetry-instrumentation-requests>=0.48b0",
 ]
 
 [project.optional-dependencies]

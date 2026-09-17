@@ -28,15 +28,29 @@ COPY pyproject.toml README.md uv.lock ./
 
 # Install the exact versions uv.lock pins, into the standalone /opt/venv the
 # runtime stage copies.  `uv export` reads the lock without needing the project
-# venv layout that `uv sync` expects.
+# venv layout that `uv sync` expects.  Production images carry runtime
+# dependencies only; the development compose file passes INSTALL_DEV=true for
+# the debug toolbar, pytest and Playwright.
+ARG INSTALL_DEV=false
 RUN uv venv /opt/venv \
-    && uv export --frozen --extra dev --no-hashes --no-emit-project -o /tmp/requirements.txt \
+    && if [ "$INSTALL_DEV" = "true" ]; then extras="--extra dev"; else extras=""; fi \
+    && uv export --frozen $extras --no-hashes --no-emit-project -o /tmp/requirements.txt \
     && uv pip install --python /opt/venv/bin/python -r /tmp/requirements.txt
 
 # -----------------------------------------------------------------------------
 FROM python:3.12-slim-bookworm AS runtime
 
-ENV PYTHONUNBUFFERED=1 \
+# Stamped by CI; surfaced in JSON logs and trace resources.
+ARG APP_VERSION=dev
+ARG VCS_REF=unknown
+LABEL org.opencontainers.image.title="arer-web" \
+      org.opencontainers.image.description="ALGORITHM: Review of Economic Research" \
+      org.opencontainers.image.source="https://github.com/diyorbek20037773/algorithm_journal" \
+      org.opencontainers.image.version="${APP_VERSION}" \
+      org.opencontainers.image.revision="${VCS_REF}"
+
+ENV APP_VERSION=${APP_VERSION} \
+    PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
     PATH="/opt/venv/bin:$PATH" \
     DJANGO_SETTINGS_MODULE=config.settings.prod

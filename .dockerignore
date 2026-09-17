@@ -18,3 +18,11 @@ algorithm_journal_kit
 algorithm_journal_kit.zip
 *.sqlite3
 .env
+coverage.xml
+.coverage
+.pytest-media
+.tools
+.shots.log
+*.log
+k8s
+monitoring
