@@ -2,26 +2,20 @@
 # CI sets images[0].newTag here on every green push to main.
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-
 namespace: arer-staging
-
 resources:
   - namespace.yaml
   - ../../base
-
 components:
   - ../../components/data
-
 labels:
   - pairs:
       app.kubernetes.io/instance: arer-staging
     includeSelectors: false
-
 images:
   - name: arer-web
     newName: ghcr.io/diyorbek20037773/algorithm_journal
-    newTag: latest
-
+    newTag: sha-607d81ea8109
 patches:
   - target:
       kind: ConfigMap
