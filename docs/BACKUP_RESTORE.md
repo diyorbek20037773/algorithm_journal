@@ -1,6 +1,6 @@
 # Backup and restore / Zaxira nusxa va tiklash
 
-**ALGORITHM: Review of Economic Research (ARER)**
+**MEZON: Review of Economic Research (MRER)**
 
 A backup that has never been restored is not a backup. This document describes
 what is backed up, how, where the copies live, and — most importantly — how a
@@ -88,7 +88,7 @@ docker compose -f docker-compose.prod.yml exec -e FORCE=1 -e RESTORE_MEDIA=1 \
 
 docker compose -f docker-compose.prod.yml run --rm web python manage.py migrate --noinput
 docker compose -f docker-compose.prod.yml start web worker beat
-curl -s https://algorithm-journal.uz/healthz/
+curl -s https://mezon-journal.uz/healthz/
 ```
 
 `scripts/restore.sh` refuses to run against a non-empty database unless
@@ -113,10 +113,10 @@ psql -c "SELECT count(*) FROM submissions_submission;"
 psql -c "SELECT count(*) FROM accounts_user;"
 
 # 2. The application starts and reports healthy
-curl -s https://algorithm-journal.uz/healthz/
+curl -s https://mezon-journal.uz/healthz/
 
 # 3. A published article resolves, with its PDF
-curl -sI https://algorithm-journal.uz/article/1/pdf/ | head -1
+curl -sI https://mezon-journal.uz/article/1/pdf/ | head -1
 
 # 4. Metadata completeness still passes
 docker compose -f docker-compose.prod.yml run --rm web python manage.py check_metadata

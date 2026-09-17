@@ -513,14 +513,14 @@ def create_demo_submissions(stdout: Any, style: Any) -> int:
         stdout.write("  submissions already present, skipping")
         return Submission.objects.count()
 
-    author = User.objects.get(email="author@algorithm-journal.uz")
-    eic = User.objects.get(email="eic@algorithm-journal.uz")
-    editor = User.objects.get(email="editor@algorithm-journal.uz")
-    production = User.objects.get(email="production@algorithm-journal.uz")
+    author = User.objects.get(email="author@mezon-journal.uz")
+    eic = User.objects.get(email="eic@mezon-journal.uz")
+    editor = User.objects.get(email="editor@mezon-journal.uz")
+    production = User.objects.get(email="production@mezon-journal.uz")
     reviewers = [
-        User.objects.get(email="reviewer1@algorithm-journal.uz"),
-        User.objects.get(email="reviewer2@algorithm-journal.uz"),
-        User.objects.get(email="reviewer3@algorithm-journal.uz"),
+        User.objects.get(email="reviewer1@mezon-journal.uz"),
+        User.objects.get(email="reviewer2@mezon-journal.uz"),
+        User.objects.get(email="reviewer3@mezon-journal.uz"),
     ]
 
     topic = 0

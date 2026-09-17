@@ -1,6 +1,6 @@
 # Editor's guide
 
-**ALGORITHM: Review of Economic Research (ARER)**
+**MEZON: Review of Economic Research (MRER)**
 
 This guide walks a section editor, the editor-in-chief and the production editor
 through the whole editorial process as the system implements it. Screenshots of

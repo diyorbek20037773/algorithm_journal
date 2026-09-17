@@ -72,7 +72,7 @@ k8s/
 ├── base/                    # web (+media nginx sidecar), worker, beat, migrate Job, ingress, HPA, PDB, NetworkPolicy, ConfigMap
 ├── components/data/         # PostgreSQL 16 StatefulSet, Redis 7, kunlik pg_dump CronJob
 ├── overlays/staging/        # arer-staging namespace, demo ma'lumot, 100% trace
-├── overlays/production/     # arer namespace, algorithm-journal.uz
+├── overlays/production/     # arer namespace, mezon-journal.uz
 ├── monitoring/              # OTel Collector, Jaeger, Elasticsearch, Kibana, Fluent Bit, retention
 ├── cluster-audit/           # kube-apiserver audit policy
 ├── argocd/root.yaml         # app-of-apps

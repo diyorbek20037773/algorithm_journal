@@ -1,4 +1,4 @@
-# Development stack for ALGORITHM: Review of Economic Research
+# Development stack for MEZON: Review of Economic Research
 # Usage:  cp .env.example .env && docker compose up --build
 #
 # Every published port keeps its conventional default and can be moved from

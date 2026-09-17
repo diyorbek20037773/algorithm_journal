@@ -112,7 +112,7 @@ def stamp_galley(article, galley) -> bool:
             "/Author": article.authors_display(),
             "/Subject": build_header_text(article),
             "/Keywords": ", ".join(k.name for k in article.keywords.all()),
-            "/Producer": "ARER production system",
+            "/Producer": "MEZON production system",
             "/DOI": article.doi or "",
         }
     )

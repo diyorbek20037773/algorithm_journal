@@ -102,7 +102,7 @@ class Command(BaseCommand):
     def handle(self, *args: Any, **options: Any) -> None:
         """Run every seeding step in order."""
         self.rng = random.Random(20260904)
-        self.stdout.write(self.style.MIGRATE_HEADING("Seeding ARER demonstration data"))
+        self.stdout.write(self.style.MIGRATE_HEADING("Seeding MEZON demonstration data"))
 
         if options["if_empty"] and Page.objects.exists():
             self.stdout.write("Site already has content; nothing to seed.")
@@ -138,7 +138,7 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS(f"Created {created} demonstration submissions."))
         self.stdout.write(
             self.style.SUCCESS(
-                "Seed complete. Sign in with admin@algorithm-journal.uz / Algorithm2026!"
+                "Seed complete. Sign in with admin@mezon-journal.uz / Algorithm2026!"
             )
         )
 
@@ -223,7 +223,7 @@ class Command(BaseCommand):
         )
         site.short_code = "MRER"
         site.founded_year = 2026
-        site.contact_email = "editor@algorithm-journal.uz"
+        site.contact_email = "editor@mezon-journal.uz"
         site.similarity_threshold = 20
         site.show_online_first = True
         site.social_links = {"telegram": "", "linkedin": ""}
@@ -336,7 +336,7 @@ class Command(BaseCommand):
 
         users: dict[str, User] = {}
         for key, first, last, roles, is_staff, is_superuser in definitions:
-            email = f"{key}@algorithm-journal.uz"
+            email = f"{key}@mezon-journal.uz"
             user, created = User.objects.get_or_create(
                 email=email,
                 defaults={

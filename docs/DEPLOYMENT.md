@@ -1,6 +1,6 @@
 # Deployment guide / Joylashtirish qoʻllanmasi
 
-**ALGORITHM: Review of Economic Research (ARER)**
+**MEZON: Review of Economic Research (MRER)**
 
 English first, Uzbek (Latin) after each section. — Avval inglizcha, keyin har bir
 boʻlim uchun oʻzbekcha (lotin).
@@ -12,7 +12,7 @@ boʻlim uchun oʻzbekcha (lotin).
 | Item | Recommended | Note |
 |---|---|---|
 | Server | Ubuntu 24.04 LTS VPS in Uzbekistan | 4 vCPU, 8 GB RAM, 100 GB NVMe |
-| Domain | `algorithm-journal.uz` | A/AAAA records pointing at the server |
+| Domain | `mezon-journal.uz` | A/AAAA records pointing at the server |
 | Software on the server | Docker Engine 26+ and the Compose plugin | nothing else is required |
 | Ports open | 80/tcp, 443/tcp, 443/udp | Caddy needs 80 to issue certificates |
 | E-mail | Resend API key (or SMTP) | SPF and DKIM on the domain |
@@ -64,14 +64,14 @@ Harden SSH: disable password authentication and root login in
 
 | Record | Name | Value |
 |---|---|---|
-| A | `algorithm-journal.uz` | server IPv4 |
-| AAAA | `algorithm-journal.uz` | server IPv6 (if available) |
+| A | `mezon-journal.uz` | server IPv4 |
+| AAAA | `mezon-journal.uz` | server IPv6 (if available) |
 | A | `www` | server IPv4 |
 | TXT | `@` | SPF, e.g. `v=spf1 include:_spf.resend.com ~all` |
 | TXT / CNAME | as Resend instructs | DKIM |
-| TXT | `_dmarc` | `v=DMARC1; p=quarantine; rua=mailto:dmarc@algorithm-journal.uz` |
+| TXT | `_dmarc` | `v=DMARC1; p=quarantine; rua=mailto:dmarc@mezon-journal.uz` |
 
-Wait until `dig +short algorithm-journal.uz` returns the server address before
+Wait until `dig +short mezon-journal.uz` returns the server address before
 starting Caddy: certificate issuance fails otherwise.
 
 ---
@@ -90,11 +90,11 @@ Edit `.env`. The values that **must** change before going live:
 ```ini
 DJANGO_SECRET_KEY=<output of: make secret>
 DJANGO_DEBUG=False
-DJANGO_ALLOWED_HOSTS=algorithm-journal.uz,www.algorithm-journal.uz
-DJANGO_CSRF_TRUSTED_ORIGINS=https://algorithm-journal.uz,https://www.algorithm-journal.uz
-SITE_DOMAIN=algorithm-journal.uz
+DJANGO_ALLOWED_HOSTS=mezon-journal.uz,www.mezon-journal.uz
+DJANGO_CSRF_TRUSTED_ORIGINS=https://mezon-journal.uz,https://www.mezon-journal.uz
+SITE_DOMAIN=mezon-journal.uz
 SITE_PROTOCOL=https
-ACME_EMAIL=editor@algorithm-journal.uz
+ACME_EMAIL=editor@mezon-journal.uz
 
 POSTGRES_PASSWORD=<a long random password>
 
@@ -105,7 +105,7 @@ CSRF_COOKIE_SECURE=True
 IP_HASH_SALT=<a long random string>
 
 RESEND_API_KEY=<from resend.com>
-DEFAULT_FROM_EMAIL=editor@algorithm-journal.uz
+DEFAULT_FROM_EMAIL=editor@mezon-journal.uz
 
 DOI_PREFIX=<your Crossref prefix, e.g. 10.71234>
 CROSSREF_USER=<Crossref deposit user>
@@ -151,13 +151,13 @@ docker compose -f docker-compose.prod.yml up -d
 docker compose -f docker-compose.prod.yml ps
 ```
 
-Then open `https://algorithm-journal.uz/`. Caddy obtains the certificate on the
+Then open `https://mezon-journal.uz/`. Caddy obtains the certificate on the
 first request; give it up to a minute.
 
 Check the health endpoint:
 
 ```bash
-curl -s https://algorithm-journal.uz/healthz/
+curl -s https://mezon-journal.uz/healthz/
 # {"status": "ok", "database": "ok", "cache": "ok"}
 ```
 
@@ -249,7 +249,7 @@ ls -lh backups/ | tail
 
 ## 10. Monitoring
 
-* **Health endpoint** — `https://algorithm-journal.uz/healthz/` returns JSON and
+* **Health endpoint** — `https://mezon-journal.uz/healthz/` returns JSON and
   HTTP 503 when the database or cache is unreachable. Point UptimeRobot, Better
   Stack or Healthchecks.io at it with a five-minute interval and alerting to the
   editorial e-mail.

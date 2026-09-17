@@ -236,16 +236,16 @@ def main() -> int:
 
         # --- role dashboards ----------------------------------------------
         roles = [
-            ("10-dashboard-editor", "editor@algorithm-journal.uz", "/en/dashboard/"),
+            ("10-dashboard-editor", "editor@mezon-journal.uz", "/en/dashboard/"),
             (
                 "10b-queue-in-review",
-                "editor@algorithm-journal.uz",
+                "editor@mezon-journal.uz",
                 "/en/dashboard/queue/in_review/",
             ),
-            ("12-dashboard-reviewer", "reviewer1@algorithm-journal.uz", "/en/review/"),
-            ("13-dashboard-author", "author@algorithm-journal.uz", "/en/dashboard/"),
-            ("09-submit-wizard", "author@algorithm-journal.uz", "/en/submit/"),
-            ("17-production-queue", "production@algorithm-journal.uz", "/en/production/"),
+            ("12-dashboard-reviewer", "reviewer1@mezon-journal.uz", "/en/review/"),
+            ("13-dashboard-author", "author@mezon-journal.uz", "/en/dashboard/"),
+            ("09-submit-wizard", "author@mezon-journal.uz", "/en/submit/"),
+            ("17-production-queue", "production@mezon-journal.uz", "/en/production/"),
         ]
         print("dashboards:")
         for name, email, path in roles:
@@ -269,7 +269,7 @@ def main() -> int:
             extra.append(
                 (
                     "11-dashboard-submission",
-                    "editor@algorithm-journal.uz",
+                    "editor@mezon-journal.uz",
                     f"/en/dashboard/submission/{submission.pk}/?tab=reviewers",
                 )
             )
@@ -277,7 +277,7 @@ def main() -> int:
             extra.append(
                 (
                     "14-production-issue-builder",
-                    "production@algorithm-journal.uz",
+                    "production@mezon-journal.uz",
                     f"/en/production/issue/{draft_issue.pk}/",
                 )
             )
@@ -294,7 +294,7 @@ def main() -> int:
             for width in BREAKPOINTS:
                 context = browser.new_context(viewport={"width": width, "height": 900})
                 if name == "dashboard":
-                    context.add_cookies([login_cookie("editor@algorithm-journal.uz", port)])
+                    context.add_cookies([login_cookie("editor@mezon-journal.uz", port)])
                 page = context.new_page()
                 capture(
                     page,
@@ -308,7 +308,7 @@ def main() -> int:
             print("axe-core:")
             for name, template in AXE_PAGES:
                 context = browser.new_context(viewport={"width": 1440, "height": 1000})
-                context.add_cookies([login_cookie("editor@algorithm-journal.uz", port)])
+                context.add_cookies([login_cookie("editor@mezon-journal.uz", port)])
                 page = context.new_page()
                 axe_report[name] = run_axe(page, base + template.format(**values))
                 violations = axe_report[name].get("violations", [])

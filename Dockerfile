@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 # =============================================================================
-# ALGORITHM: Review of Economic Research — application image (multi-stage)
+# MEZON: Review of Economic Research — application image (multi-stage)
 # Stage 1 builds the Python environment with uv; stage 2 is the slim runtime.
 # =============================================================================
 
@@ -44,7 +44,7 @@ FROM python:3.12-slim-bookworm AS runtime
 ARG APP_VERSION=dev
 ARG VCS_REF=unknown
 LABEL org.opencontainers.image.title="arer-web" \
-      org.opencontainers.image.description="ALGORITHM: Review of Economic Research" \
+      org.opencontainers.image.description="MEZON: Review of Economic Research" \
       org.opencontainers.image.source="https://github.com/diyorbek20037773/algorithm_journal" \
       org.opencontainers.image.version="${APP_VERSION}" \
       org.opencontainers.image.revision="${VCS_REF}"

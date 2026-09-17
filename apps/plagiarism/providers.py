@@ -107,7 +107,7 @@ class IThenticateProvider:
         """Authorisation headers for the v2 API."""
         return {
             "Authorization": f"Bearer {self.api_key}",
-            "X-Turnitin-Integration-Name": "ARER",
+            "X-Turnitin-Integration-Name": "MEZON",
             "X-Turnitin-Integration-Version": "1.0",
         }
 

@@ -135,12 +135,12 @@ MAILPIT_UI_PORT=8026
 
 | E-pochta | Rol |
 |---|---|
-| `admin@algorithm-journal.uz` | Superuser / texnik administrator |
-| `eic@algorithm-journal.uz` | Bosh muharrir |
-| `editor@algorithm-journal.uz` | Boʻlim muharriri |
-| `production@algorithm-journal.uz` | Ishlab chiqarish muharriri |
-| `reviewer1..3@algorithm-journal.uz` | Taqrizchilar |
-| `author@algorithm-journal.uz` | Muallif |
+| `admin@mezon-journal.uz` | Superuser / texnik administrator |
+| `eic@mezon-journal.uz` | Bosh muharrir |
+| `editor@mezon-journal.uz` | Boʻlim muharriri |
+| `production@mezon-journal.uz` | Ishlab chiqarish muharriri |
+| `reviewer1..3@mezon-journal.uz` | Taqrizchilar |
+| `author@mezon-journal.uz` | Muallif |
 
 Tahririyat hisoblari (`eic`, `editor`, `production`, `admin`) birinchi kirishda
 TOTP ilovasini ulashi **shart** — bu xatolik emas, majburiy ikki bosqichli
@@ -179,9 +179,9 @@ nano .env          # 3-boʻlimdagi barcha sirlarni toʻldiring
 DJANGO_SETTINGS_MODULE=config.settings.prod
 DJANGO_DEBUG=false
 DJANGO_SECRET_KEY=<50 belgili tasodifiy satr>
-DJANGO_ALLOWED_HOSTS=algorithm-journal.uz,www.algorithm-journal.uz
-SITE_DOMAIN=algorithm-journal.uz
-CADDY_EMAIL=admin@algorithm-journal.uz
+DJANGO_ALLOWED_HOSTS=mezon-journal.uz,www.mezon-journal.uz
+SITE_DOMAIN=mezon-journal.uz
+CADDY_EMAIL=admin@mezon-journal.uz
 POSTGRES_PASSWORD=<kuchli parol>
 ```
 

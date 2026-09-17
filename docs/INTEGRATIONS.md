@@ -1,6 +1,6 @@
 # Integrations — what to obtain, how, and what happens until you do
 
-**ALGORITHM: Review of Economic Research (ARER)**
+**MEZON: Review of Economic Research (MRER)**
 
 Every integration in this document is optional to *run* the platform and
 mandatory to be *taken seriously* as a scholarly journal. Each section says
@@ -38,9 +38,9 @@ DOI_PREFIX=10.71234
 CROSSREF_USER=arer.deposit
 CROSSREF_PASSWORD=…
 CROSSREF_DEPOSITOR_NAME=ARER Editorial Office
-CROSSREF_DEPOSITOR_EMAIL=editor@algorithm-journal.uz
-CROSSREF_REGISTRANT=ALGORITHM Review of Economic Research
-CROSSREF_POLITE_MAILTO=editor@algorithm-journal.uz
+CROSSREF_DEPOSITOR_EMAIL=editor@mezon-journal.uz
+CROSSREF_REGISTRANT=MEZON Review of Economic Research
+CROSSREF_POLITE_MAILTO=editor@mezon-journal.uz
 CROSSREF_TEST=True     # switch to False after a successful test deposit
 ```
 
@@ -78,7 +78,7 @@ researcher's record) requires membership and is out of scope for v1.
 1. Sign in at <https://orcid.org/> with an institutional account.
 2. Open **Developer tools** and register a public API client.
 3. Set the redirect URI to
-   `https://algorithm-journal.uz/accounts/orcid/login/callback/`.
+   `https://mezon-journal.uz/accounts/orcid/login/callback/`.
 4. You receive a **Client ID** (`APP-XXXXXXXXXXXXXXXX`) and a **Client secret**.
 
 Register the sandbox client separately at <https://sandbox.orcid.org/> while
@@ -112,18 +112,18 @@ which is comfortably more than a monthly journal needs.
 **How to get it.**
 
 1. Create an account at <https://resend.com/>.
-2. Add the domain `algorithm-journal.uz` and publish the DNS records it shows:
+2. Add the domain `mezon-journal.uz` and publish the DNS records it shows:
    a **DKIM** `TXT`/`CNAME` record and an **SPF** entry
    (`v=spf1 include:_spf.resend.com ~all`). Add a DMARC record as well:
-   `_dmarc TXT "v=DMARC1; p=quarantine; rua=mailto:dmarc@algorithm-journal.uz"`.
+   `_dmarc TXT "v=DMARC1; p=quarantine; rua=mailto:dmarc@mezon-journal.uz"`.
 3. Wait for the domain to show **Verified**, then create an API key.
 
 **Configure.**
 
 ```ini
 RESEND_API_KEY=re_…
-DEFAULT_FROM_EMAIL=editor@algorithm-journal.uz
-SERVER_EMAIL=server@algorithm-journal.uz
+DEFAULT_FROM_EMAIL=editor@mezon-journal.uz
+SERVER_EMAIL=server@mezon-journal.uz
 ```
 
 Or, with plain SMTP instead:
@@ -193,8 +193,8 @@ consortia cover the cost.
 <https://www.portico.org/>. Both ask for: the ISSN, the number of articles per
 year, the harvest method, and a technical contact. Point them at:
 
-* the LOCKSS manifests: `https://algorithm-journal.uz/lockss/`
-* the OAI-PMH endpoint: `https://algorithm-journal.uz/oai/?verb=Identify`
+* the LOCKSS manifests: `https://mezon-journal.uz/lockss/`
+* the OAI-PMH endpoint: `https://mezon-journal.uz/oai/?verb=Identify`
 * export bundles, one per issue, produced by
   `python manage.py export_issue_bundle <issue-id>`
 

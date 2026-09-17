@@ -1,7 +1,7 @@
 [project]
 name = "algorithm-journal"
 version = "1.0.0"
-description = "ALGORITHM: Review of Economic Research (ARER) — open-access scholarly journal platform"
+description = "MEZON: Review of Economic Research (MRER) — open-access scholarly journal platform"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
 license = { text = "MIT" }

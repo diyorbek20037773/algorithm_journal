@@ -1,5 +1,5 @@
 # =============================================================================
-# ALGORITHM: Review of Economic Research — developer commands
+# MEZON: Review of Economic Research — developer commands
 # `make help` lists everything.
 # =============================================================================
 

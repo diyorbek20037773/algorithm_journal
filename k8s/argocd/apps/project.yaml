@@ -6,7 +6,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "-10"
 spec:
-  description: ALGORITHM - Review of Economic Research
+  description: MEZON - Review of Economic Research
   sourceRepos:
     - https://github.com/diyorbek20037773/algorithm_journal.git
   destinations:

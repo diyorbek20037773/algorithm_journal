@@ -43,7 +43,7 @@ class Command(BaseCommand):
         """Fetch the schema tree, rewrite locations and report the result."""
         SCHEMA_DIR.mkdir(parents=True, exist_ok=True)
         session = requests.Session()
-        session.headers["User-Agent"] = "ARER schema fetcher (+https://github.com/)"
+        session.headers["User-Agent"] = "MEZON schema fetcher (+https://github.com/)"
 
         queue: list[str] = [options["root"]]
         seen: set[str] = set()

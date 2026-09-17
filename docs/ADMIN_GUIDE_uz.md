@@ -1,6 +1,6 @@
 # Administrator qoʻllanmasi
 
-**«ALGORITM» — iqtisodiy tadqiqotlar sharhi (ARER)**
+**«MEZON» — iqtisodiy tadqiqotlar sharhi (MRER)**
 
 Ushbu hujjat texnik administrator uchun: sayt sozlamalari, sahifalar, tahrir
 hayʼati, foydalanuvchilar, integratsiyalar va kundalik texnik xizmat.
@@ -10,7 +10,7 @@ Skrinshotlar [`screenshots/`](screenshots/) papkasida.
 
 ## 1. Kirish va xavfsizlik
 
-1. `/accounts/login/` orqali `admin@algorithm-journal.uz` hisobi bilan kiring
+1. `/accounts/login/` orqali `admin@mezon-journal.uz` hisobi bilan kiring
    (dastlabki parol `Algorithm2026!` — **darhol almashtiring**).
 2. Tizim TOTP autentifikatorini roʻyxatdan oʻtkazishni talab qiladi. QR kodni
    skanerlang, olti xonali kodni kiriting va **oʻnta tiklash kodini** parol
@@ -156,7 +156,7 @@ yozuvda kim, qachon, nima va qaysi IP dan. Saqlash muddati — ikki yil.
 ```bash
 # Holat
 docker compose -f docker-compose.prod.yml ps
-curl -s https://algorithm-journal.uz/healthz/
+curl -s https://mezon-journal.uz/healthz/
 
 # Jurnallar
 docker compose -f docker-compose.prod.yml logs -f web

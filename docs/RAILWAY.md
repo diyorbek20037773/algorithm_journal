@@ -118,7 +118,7 @@ After the first successful deploy, open a shell on the `web` service
 python manage.py seed_demo
 ```
 
-Then sign in with `eic@algorithm-journal.uz` / `Algorithm2026!`. Editorial
+Then sign in with `eic@mezon-journal.uz` / `Algorithm2026!`. Editorial
 accounts must enrol a TOTP app on first sign-in — that is the mandatory policy,
 not a fault.
 

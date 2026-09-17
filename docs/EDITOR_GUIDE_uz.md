@@ -1,6 +1,6 @@
 # Muharrir uchun qoʻllanma
 
-**«ALGORITM» — iqtisodiy tadqiqotlar sharhi (ARER)**
+**«MEZON» — iqtisodiy tadqiqotlar sharhi (MRER)**
 
 Ushbu qoʻllanma boʻlim muharriri, bosh muharrir va nashr muharririni tizimda
 amalga oshirilgan butun tahririy jarayon boʻylab olib oʻtadi. Har bir ekranning

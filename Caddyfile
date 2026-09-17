@@ -1,4 +1,4 @@
-# Caddy reverse proxy for ALGORITHM: Review of Economic Research.
+# Caddy reverse proxy for MEZON: Review of Economic Research.
 # TLS certificates are obtained and renewed automatically from Let's Encrypt.
 
 {
@@ -51,7 +51,7 @@
 }
 
 # Optional: redirect the secondary domain to the primary one.
-# algorithmreview.org, www.algorithmreview.org {
+# mezonreview.org, www.mezonreview.org {
 # 	redir https://{$SITE_DOMAIN}{uri} permanent
 # }
 

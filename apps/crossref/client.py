@@ -87,7 +87,7 @@ def submission_status(doi_batch_id: str) -> tuple[str, str]:
 
 def user_agent() -> str:
     """Polite user agent required by the Crossref REST API."""
-    return f"ARER/1.0 (https://{settings.SITE_DOMAIN}; mailto:{settings.CROSSREF_POLITE_MAILTO})"
+    return f"MEZON/1.0 (https://{settings.SITE_DOMAIN}; mailto:{settings.CROSSREF_POLITE_MAILTO})"
 
 
 def cited_by_count(doi: str) -> int | None:

@@ -465,7 +465,7 @@ BOARD: list[dict[str, Any]] = [
         },
         "country": "UZ",
         "orcid": "0000-0002-0000-0001",
-        "email": "eic@algorithm-journal.uz",
+        "email": "eic@mezon-journal.uz",
         "expertise": {
             "en": "Macroeconomic policy, structural reform, transition economies",
             "uz": "Makroiqtisodiy siyosat, tarkibiy islohotlar, oʻtish iqtisodiyoti",
@@ -535,7 +535,7 @@ BOARD: list[dict[str, Any]] = [
         },
         "country": "UZ",
         "orcid": "0000-0002-0000-0004",
-        "email": "editor@algorithm-journal.uz",
+        "email": "editor@mezon-journal.uz",
         "expertise": {
             "en": "Editorial management, research methodology",
             "uz": "Tahririy boshqaruv, tadqiqot metodologiyasi",

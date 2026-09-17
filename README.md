@@ -61,14 +61,14 @@ Created by `manage.py seed_demo`. **Password for every account:
 
 | E-mail | Role | What it demonstrates |
 |---|---|---|
-| `admin@algorithm-journal.uz` | Superuser / technical administrator | Django admin, site settings, integrations |
-| `eic@algorithm-journal.uz` | Editor-in-Chief | Every queue, final decisions, issue publication |
-| `editor@algorithm-journal.uz` | Section editor (sections 2 and 3) | Screening, reviewer invitations, recommendations |
-| `production@algorithm-journal.uz` | Production editor | Copyediting, galleys, DOI, issue builder |
-| `reviewer1@algorithm-journal.uz` | Reviewer | Invitation, review form, certificate |
-| `reviewer2@algorithm-journal.uz` | Reviewer | Accepted and completed review |
-| `reviewer3@algorithm-journal.uz` | Reviewer | Overdue review, reminders |
-| `author@algorithm-journal.uz` | Author | Submissions in every workflow state |
+| `admin@mezon-journal.uz` | Superuser / technical administrator | Django admin, site settings, integrations |
+| `eic@mezon-journal.uz` | Editor-in-Chief | Every queue, final decisions, issue publication |
+| `editor@mezon-journal.uz` | Section editor (sections 2 and 3) | Screening, reviewer invitations, recommendations |
+| `production@mezon-journal.uz` | Production editor | Copyediting, galleys, DOI, issue builder |
+| `reviewer1@mezon-journal.uz` | Reviewer | Invitation, review form, certificate |
+| `reviewer2@mezon-journal.uz` | Reviewer | Accepted and completed review |
+| `reviewer3@mezon-journal.uz` | Reviewer | Overdue review, reminders |
+| `author@mezon-journal.uz` | Author | Submissions in every workflow state |
 
 Editorial accounts (`eic`, `editor`, `production`, `admin`) must enrol a TOTP
 authenticator on first sign-in — that is the mandatory two-factor policy, not a
