@@ -11,14 +11,14 @@
       </div>
     {% else %}
       <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-12">
-        <div class="card"><p class="footer-heading">{% translate "Articles published" %}</p><p class="text-3xl font-serif">{{ stats.articles_published }}</p></div>
-        <div class="card"><p class="footer-heading">{% translate "Authors" %}</p><p class="text-3xl font-serif">{{ stats.authors }}</p></div>
-        <div class="card"><p class="footer-heading">{% translate "Author countries" %}</p><p class="text-3xl font-serif">{{ stats.country_count }}</p></div>
-        <div class="card"><p class="footer-heading">{% translate "Downloads (12 months)" %}</p><p class="text-3xl font-serif">{{ stats.downloads_last_year }}</p></div>
-        <div class="card"><p class="footer-heading">{% translate "Acceptance rate" %}</p><p class="text-3xl font-serif">{% if stats.acceptance_rate %}{{ stats.acceptance_rate }}%{% else %}—{% endif %}</p></div>
-        <div class="card"><p class="footer-heading">{% translate "Days to first decision" %}</p><p class="text-3xl font-serif">{{ stats.median_days_to_first_decision|default:"—" }}</p></div>
-        <div class="card"><p class="footer-heading">{% translate "Median review time (days)" %}</p><p class="text-3xl font-serif">{{ stats.median_review_days|default:"—" }}</p></div>
-        <div class="card"><p class="footer-heading">{% translate "Active reviewers (12 months)" %}</p><p class="text-3xl font-serif">{{ stats.reviewers_active }}</p></div>
+        <div class="card"><p class="footer-heading">{% translate "Articles published" %}</p><p class="text-3xl font-extrabold tracking-[-0.03em] tabular-nums">{{ stats.articles_published }}</p></div>
+        <div class="card"><p class="footer-heading">{% translate "Authors" %}</p><p class="text-3xl font-extrabold tracking-[-0.03em] tabular-nums">{{ stats.authors }}</p></div>
+        <div class="card"><p class="footer-heading">{% translate "Author countries" %}</p><p class="text-3xl font-extrabold tracking-[-0.03em] tabular-nums">{{ stats.country_count }}</p></div>
+        <div class="card"><p class="footer-heading">{% translate "Downloads (12 months)" %}</p><p class="text-3xl font-extrabold tracking-[-0.03em] tabular-nums">{{ stats.downloads_last_year }}</p></div>
+        <div class="card"><p class="footer-heading">{% translate "Acceptance rate" %}</p><p class="text-3xl font-extrabold tracking-[-0.03em] tabular-nums">{% if stats.acceptance_rate %}{{ stats.acceptance_rate }}%{% else %}—{% endif %}</p></div>
+        <div class="card"><p class="footer-heading">{% translate "Days to first decision" %}</p><p class="text-3xl font-extrabold tracking-[-0.03em] tabular-nums">{{ stats.median_days_to_first_decision|default:"—" }}</p></div>
+        <div class="card"><p class="footer-heading">{% translate "Median review time (days)" %}</p><p class="text-3xl font-extrabold tracking-[-0.03em] tabular-nums">{{ stats.median_review_days|default:"—" }}</p></div>
+        <div class="card"><p class="footer-heading">{% translate "Active reviewers (12 months)" %}</p><p class="text-3xl font-extrabold tracking-[-0.03em] tabular-nums">{{ stats.reviewers_active }}</p></div>
       </div>
       <section class="mb-12">
         <div class="section-heading">

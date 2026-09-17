@@ -86,7 +86,7 @@
           {% for card in kpi_cards %}
             <div class="card">
               <p class="footer-heading">{{ card.label }}</p>
-              <p class="text-2xl font-serif kpi-value"
+              <p class="text-2xl font-extrabold tracking-[-0.03em] tabular-nums kpi-value"
                  data-severity="{{ card.severity }}">{{ card.value }}</p>
               <p class="meta">{{ card.target }}</p>
             </div>

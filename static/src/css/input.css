@@ -6,90 +6,136 @@
 @source "../../../apps/**/*.py";
 
 /* =========================================================================
-   Design tokens — design/DESIGN.md ("Academic Prestige Journal")
-   Archival navy, burnished gold, alabaster paper; Merriweather for titles,
-   Inter for everything else, JetBrains Mono for identifiers.
+   Design tokens — docs/DESIGN-SYSTEM.md ("Mint Glass", light adaptation)
+   Mint-tinted paper, frosted white glass, one mint accent that means "act"
+   or "key figure", Manrope for everything, JetBrains Mono for identifiers.
+   Colour must come from these tokens only; templates never carry hex values.
+   The token names are the ones the templates already use (paper, ink, accent,
+   gold…) so every page picks the palette up without template edits.
    ========================================================================= */
 @theme {
-  /* surfaces: the page rests on alabaster, cards sit on pure white */
-  --color-surface: #f7f9fb;
-  --color-paper: #ffffff;
-  --color-paper-2: #f2f4f6;
-  --color-paper-3: #e6e8ea;
-  --color-ink: #191c1e;
-  --color-ink-2: #43474c;
-  /* #5f6670 keeps 4.5:1 on the alabaster surface; the brief's #64748b did not. */
-  --color-ink-3: #5f6670;
-  --color-line: #e2e8f0;
-  --color-line-2: #cbd5e1;
-  /* archival navy */
-  --color-accent: #0f2537;
-  --color-accent-2: #1a3854;
-  --color-accent-soft: #e8eef5;
-  --color-navy-deep: #0b192c;
-  --color-navy-midnight: #07101c;
-  /* burnished gold — #825500 is 6.2:1 on white, so it may carry text */
-  --color-gold: #825500;
-  --color-gold-2: #b45309;
-  --color-gold-bright: #d97706;
-  --color-gold-soft: #fffbeb;
-  --color-gold-line: #fde68a;
-  --color-gold-fixed: #ffddb3;
+  /* background layers, bottom to top */
+  --color-surface: #f3f8f5; /* page (ink-900 in the dark original) */
+  --color-paper: #ffffff; /* opaque sheet: inputs, menus, sticky table heads */
+  --color-paper-2: #eaf2ee; /* panel / tonal fill (ink-800) */
+  --color-paper-3: #dde8e3; /* deeper tile: kbd, hover of tonal (ink-700) */
+
+  /* glass surfaces — white frost over the mint-lit page */
+  --color-glass: rgb(255 255 255 / 0.62);
+  --color-glass-deep: rgb(255 255 255 / 0.82);
+  --color-glass-soft: rgb(255 255 255 / 0.55);
+  --color-glass-hover: rgb(1 20 26 / 0.05);
+
+  /* text — never pure black; #5b6b6f is 5:1 on the page */
+  --color-ink: #0c1a1e;
+  --color-ink-2: #46565a;
+  --color-ink-3: #5b6b6f;
+
+  /* lines are light, not grey: the ink at low opacity */
+  --color-line: rgb(1 20 26 / 0.1);
+  --color-line-2: rgb(1 20 26 / 0.17);
+
+  /* The old "navy accent" now carries ink: headings, links, active text. */
+  --color-accent: #0c1a1e;
+  --color-accent-2: #047a4f;
+  --color-accent-soft: rgb(61 220 151 / 0.14);
+
+  /* dark anchors (footer, logo mark, avatars) — the original night palette */
+  --color-navy-deep: #01141a;
+  --color-navy-midnight: #02151b;
+  --color-on-dark: #f2f7f5;
+  --color-on-dark-muted: rgb(242 247 245 / 0.68);
+  --color-on-dark-line: rgb(255 255 255 / 0.1);
+  --color-on-dark-soft: rgb(255 255 255 / 0.06);
+
+  /* the single accent. Fill is mint, text on it is mint-ink; mint-text is the
+     deep variant that may carry words on light paper (5.4:1 on white). */
+  --color-mint: #3ddc97;
+  --color-mint-bright: #84ffc1;
+  --color-mint-ink: #04241a;
+  --color-mint-text: #047a4f;
+  --color-mint-tint: rgb(61 220 151 / 0.12);
+  --color-mint-edge: rgb(4 122 79 / 0.26);
+  --color-mint-glow: rgb(61 220 151 / 0.35);
+  --color-mint-haze: rgb(61 220 151 / 0.2);
+
+  /* legacy "gold" names now resolve to the mint accent */
+  --color-gold: #047a4f;
+  --color-gold-2: #036a44;
+  --color-gold-bright: #3ddc97;
+  --color-gold-soft: rgb(61 220 151 / 0.12);
+  --color-gold-line: rgb(4 122 79 / 0.26);
+  --color-gold-fixed: #84ffc1;
+
+  /* semantic — separate from the accent */
   --color-success: #15803d;
-  --color-success-soft: #ecfdf5;
-  --color-success-line: #a7f3d0;
-  --color-warning: #b45309;
+  --color-success-soft: rgb(34 197 94 / 0.1);
+  --color-success-line: rgb(21 128 61 / 0.3);
+  --color-warning: #a16207;
   --color-danger: #b91c1c;
-  --color-danger-soft: #fef2f2;
+  --color-danger-soft: rgb(248 113 113 / 0.12);
   --color-orcid: #a6ce39;
 
-  --font-serif: "Merriweather", Georgia, "Times New Roman", serif;
-  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-serif: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-sans: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
-  /* soft shape language: 4 px controls, 8 px cards, no pills */
-  --radius-card: 8px;
-  --radius-control: 4px;
-  --radius-badge: 3px;
+  --radius-badge: 8px;
+  --radius-control: 12px;
+  --radius-card: 16px;
+  --radius-panel: 24px;
+  --radius-pill: 100px;
 
-  --shadow-card: 0 1px 2px rgba(15, 37, 55, 0.04), 0 1px 1px rgba(15, 37, 55, 0.02);
-  --shadow-hover: 0 4px 12px -2px rgba(15, 37, 55, 0.06), 0 2px 4px -1px rgba(15, 37, 55, 0.03);
-  --shadow-menu: 0 20px 25px -5px rgba(15, 37, 55, 0.1), 0 8px 10px -6px rgba(15, 37, 55, 0.04);
+  /* Mint Glass separates by light, not by shadow. */
+  --shadow-card: none;
+  --shadow-hover: none;
+  --shadow-menu: none;
+  --shadow-glow: 0 8px 26px var(--color-mint-glow);
 
-  --container-page: 1360px;
+  --container-page: 1280px;
   --container-reading: 760px;
 }
 
-/* Dark palette (optional, honoured only when the reader prefers it). */
 @layer base {
+  /* Night: the original Mint Glass palette, honoured when the reader asks. */
   @media (prefers-color-scheme: dark) {
     :root {
-      --color-surface: #0b1118;
-      --color-paper: #111922;
-      --color-paper-2: #182230;
-      --color-paper-3: #1f2b3a;
-      --color-ink: #e6eaf0;
-      --color-ink-2: #a6b0bd;
-      --color-ink-3: #98a2b3;
-      --color-line: #243040;
-      --color-line-2: #34445a;
-      --color-accent: #8fb8e8;
-      --color-accent-2: #b3c9e0;
-      --color-accent-soft: #16273a;
-      --color-navy-deep: #060c14;
-      --color-navy-midnight: #04080e;
-      --color-gold: #f9bb63;
-      --color-gold-2: #fbbf24;
-      --color-gold-bright: #f59e0b;
-      --color-gold-soft: #2a2008;
-      --color-gold-line: #5a4210;
-      --color-gold-fixed: #3a2c10;
-      --color-success: #4ade80;
-      --color-success-soft: #0f2a1a;
-      --color-success-line: #1f5a35;
-      --color-warning: #fbbf24;
+      color-scheme: dark;
+      --color-surface: #01141a;
+      --color-paper: #02151b;
+      --color-paper-2: #0c1a1e;
+      --color-paper-3: #13252a;
+      --color-glass: rgb(18 27 38 / 0.4);
+      --color-glass-deep: rgb(18 27 38 / 0.6);
+      --color-glass-soft: rgb(255 255 255 / 0.05);
+      --color-glass-hover: rgb(255 255 255 / 0.09);
+      --color-ink: #f2f7f5;
+      --color-ink-2: rgb(242 247 245 / 0.72);
+      --color-ink-3: rgb(242 247 245 / 0.62);
+      --color-line: rgb(255 255 255 / 0.1);
+      --color-line-2: rgb(255 255 255 / 0.16);
+      --color-accent: #f2f7f5;
+      --color-accent-2: #84ffc1;
+      --color-accent-soft: rgb(132 255 193 / 0.08);
+      --color-navy-deep: #0c1a1e;
+      --color-navy-midnight: #01141a;
+      --color-mint: #84ffc1;
+      --color-mint-text: #84ffc1;
+      --color-mint-tint: rgb(132 255 193 / 0.08);
+      --color-mint-edge: rgb(132 255 193 / 0.22);
+      --color-mint-glow: rgb(132 255 193 / 0.28);
+      --color-mint-haze: rgb(61 220 151 / 0.16);
+      --color-gold: #84ffc1;
+      --color-gold-2: #3ddc97;
+      --color-gold-bright: #3ddc97;
+      --color-gold-soft: rgb(132 255 193 / 0.08);
+      --color-gold-line: rgb(132 255 193 / 0.22);
+      --color-success: #22c55e;
+      --color-success-soft: rgb(34 197 94 / 0.1);
+      --color-success-line: rgb(34 197 94 / 0.3);
+      --color-warning: #eab308;
       --color-danger: #f87171;
-      --color-danger-soft: #2a1212;
+      --color-danger-soft: rgb(248 113 113 / 0.1);
     }
   }
 
@@ -105,30 +151,46 @@
     *,
     *::before,
     *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
+      animation: none !important;
+      transition: none !important;
     }
   }
 
   body {
-    background-color: var(--color-surface);
+    /* the page has a light source: a soft mint glow from the top */
+    background:
+      radial-gradient(1100px 620px at 50% -8%, var(--color-mint-haze), transparent 62%),
+      radial-gradient(800px 500px at 88% 32%, var(--color-mint-tint), transparent 60%),
+      var(--color-surface);
+    background-attachment: fixed;
     color: var(--color-ink);
     font-family: var(--font-sans);
-    font-size: 0.9375rem;
+    font-size: 1rem;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
 
   h1,
   h2,
   h3,
   h4 {
-    font-family: var(--font-serif);
+    font-family: var(--font-sans);
+    line-height: 1.1;
+    color: var(--color-ink);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+
+  h1 {
+    letter-spacing: -0.03em;
+  }
+
+  h3,
+  h4 {
     line-height: 1.25;
-    color: var(--color-accent);
-    font-weight: 700;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
   }
 
   /* WCAG 1.4.1: a link inside a block of text must be distinguishable without
@@ -137,7 +199,9 @@
   a {
     color: var(--color-accent);
     text-decoration: underline;
-    text-underline-offset: 2px;
+    text-decoration-color: var(--color-mint-edge);
+    text-underline-offset: 3px;
+    transition: color 180ms ease, text-decoration-color 180ms ease;
   }
 
   a.btn,
@@ -172,22 +236,25 @@
 
   a:hover {
     color: var(--color-accent-2);
+    text-decoration-color: currentColor;
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-accent);
-    outline-offset: 2px;
-    border-radius: 2px;
-    box-shadow: 0 0 0 4px var(--color-line);
+    outline: 2px solid var(--color-mint-text);
+    outline-offset: 3px;
   }
 
   ::selection {
-    background: var(--color-accent-soft);
+    background: var(--color-mint-tint);
     color: var(--color-ink);
   }
 
   hr {
     border-color: var(--color-line);
+  }
+
+  :where(table, pre) {
+    font-variant-numeric: tabular-nums;
   }
 }
 
@@ -213,15 +280,16 @@
     left: -9999px;
     top: 0;
     z-index: 100;
-    background: var(--color-accent);
-    color: #fff;
+    background: var(--color-mint);
+    color: var(--color-mint-ink);
     padding: 0.75rem 1.25rem;
     border-radius: 0 0 var(--radius-control) 0;
+    font-weight: 600;
   }
 
   .skip-link:focus {
     left: 0;
-    color: #fff;
+    color: var(--color-mint-ink);
   }
 
   /* --- buttons --- */
@@ -231,87 +299,98 @@
     justify-content: center;
     gap: 0.5rem;
     min-height: 44px;
-    padding: 0.5rem 1.15rem;
-    border-radius: var(--radius-control);
+    padding: 0.6rem 1.35rem;
+    border-radius: var(--radius-pill);
     font-weight: 600;
-    font-size: 0.875rem;
-    letter-spacing: 0.01em;
+    font-size: 0.9375rem;
     line-height: 1.2;
     border: 1px solid transparent;
-    transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+    transition:
+      transform 180ms ease,
+      box-shadow 180ms ease,
+      background-color 180ms ease,
+      color 180ms ease,
+      border-color 180ms ease;
     cursor: pointer;
     text-decoration: none;
   }
 
+  /* the one filled mint action per screen; the only element allowed a glow */
   .btn-primary {
-    background: var(--color-accent);
-    color: #fff;
-    border-color: var(--color-accent);
+    background: var(--color-mint);
+    color: var(--color-mint-ink);
+    border-color: var(--color-mint);
   }
 
   .btn-primary:hover {
-    background: var(--color-accent-2);
-    border-color: var(--color-accent-2);
-    color: #fff;
+    background: var(--color-mint);
+    color: var(--color-mint-ink);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-glow);
   }
 
+  /* ghost glass button — every secondary action */
   .btn-secondary {
-    background: var(--color-paper);
-    color: var(--color-accent);
-    border-color: var(--color-line-2);
+    background: var(--color-glass-soft);
+    color: var(--color-ink);
+    border-color: var(--color-line);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
   }
 
   .btn-secondary:hover {
-    background: var(--color-paper-2);
-    border-color: var(--color-accent);
-    color: var(--color-accent);
+    background: var(--color-glass-hover);
+    border-color: var(--color-line-2);
+    color: var(--color-ink);
   }
 
-  /* gold accent action: "Submit", "Read the call" on dark cards */
+  /* call to action on a dark anchor panel: same mint fill */
   .btn-gold {
-    background: var(--color-gold-bright);
-    color: #1a1000;
-    border-color: var(--color-gold-bright);
+    background: var(--color-mint-bright);
+    color: var(--color-mint-ink);
+    border-color: var(--color-mint-bright);
   }
 
   .btn-gold:hover {
-    background: #b45309;
-    border-color: #b45309;
-    color: #fff;
+    color: var(--color-mint-ink);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-glow);
   }
 
-  /* quiet tonal button used inside white cards */
+  /* quiet tonal button used inside cards */
   .btn-tonal {
     background: var(--color-paper-2);
-    color: var(--color-accent);
-    border-color: transparent;
+    color: var(--color-ink);
+    border-color: var(--color-line);
   }
 
   .btn-tonal:hover {
-    background: var(--color-paper-3);
-    color: var(--color-accent);
+    background: var(--color-glass-hover);
+    border-color: var(--color-line-2);
+    color: var(--color-ink);
   }
 
   .btn-ghost {
     background: transparent;
-    color: var(--color-accent);
+    color: var(--color-ink);
     min-height: 40px;
-    padding-inline: 0.5rem;
+    padding-inline: 0.75rem;
   }
 
   .btn-ghost:hover {
-    background: var(--color-accent-soft);
+    background: var(--color-glass-hover);
+    color: var(--color-ink);
   }
 
   .btn-danger {
     background: var(--color-danger);
-    color: #fff;
+    color: var(--color-on-dark);
     border-color: var(--color-danger);
   }
 
   .btn-sm {
     min-height: 36px;
-    padding: 0.3rem 0.75rem;
+    padding: 0.35rem 0.95rem;
     font-size: 0.8125rem;
   }
 
@@ -322,57 +401,65 @@
   }
 
   /* --- cards & surfaces --- */
+  /* glass card — the building block. 0.8 px edge on purpose: 1 px reads hard */
   .card {
-    background: var(--color-paper);
-    border: 1px solid var(--color-line);
+    background: var(--color-glass);
+    border: 0.8px solid var(--color-line);
     border-radius: var(--radius-card);
     padding: 1.25rem;
-    box-shadow: var(--shadow-card);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
   }
 
   .card-hover {
-    transition: box-shadow 150ms ease, border-color 150ms ease;
+    transition: border-color 200ms ease;
   }
 
   .card-hover:hover {
-    box-shadow: var(--shadow-hover);
-    border-color: var(--color-line-2);
+    border-color: var(--color-mint-edge);
   }
 
-  /* navy card: "For researchers", contact band */
+  /* large container panel */
+  .panel {
+    background: var(--color-paper-2);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-panel);
+    padding: clamp(16px, 3vw, 28px);
+  }
+
+  /* dark anchor card: a piece of the night palette on light paper */
   .card-navy {
-    background: var(--color-accent);
-    color: #fff;
+    background:
+      radial-gradient(520px 260px at 100% 0%, var(--color-mint-haze), transparent 70%),
+      var(--color-navy-deep);
+    color: var(--color-on-dark);
+    border: 0.8px solid var(--color-on-dark-line);
     border-radius: var(--radius-card);
     padding: 1.5rem;
   }
 
   .card-navy h2,
   .card-navy h3 {
-    color: #fff;
+    color: var(--color-on-dark);
   }
 
   .card-navy a {
-    color: #fff;
+    color: var(--color-on-dark);
   }
 
-  /* gold buttons keep their dark label on navy (4.5:1 needs the dark text) */
-  .card-navy .btn-gold {
-    color: #1a1000;
-  }
-
+  .card-navy .btn-gold,
   .card-navy .btn-gold:hover {
-    color: #fff;
+    color: var(--color-mint-ink);
   }
 
   .card-navy .muted,
   .card-navy .meta {
-    color: #c3cdd9;
+    color: var(--color-on-dark-muted);
   }
 
   .card-muted {
     background: var(--color-paper-2);
-    border: 1px solid var(--color-line);
+    border: 0.8px solid var(--color-line);
     border-radius: var(--radius-card);
     padding: 1.25rem;
   }
@@ -387,16 +474,30 @@
 
   /* --- typography helpers --- */
   .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: fit-content;
+    padding: 0.4rem 0.85rem;
+    border-radius: var(--radius-pill);
     font-family: var(--font-sans);
-    font-size: 0.6875rem;
-    letter-spacing: 0.1em;
+    font-size: 0.72rem;
+    line-height: 1;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    font-weight: 700;
-    color: var(--color-gold);
+    font-weight: 600;
+    color: var(--color-mint-text);
+    background: var(--color-mint-tint);
+    border: 1px solid var(--color-mint-edge);
+  }
+
+  .card-navy .eyebrow {
+    color: var(--color-gold-fixed);
+    border-color: var(--color-on-dark-line);
   }
 
   .eyebrow-navy {
-    color: var(--color-accent);
+    color: var(--color-ink);
   }
 
   /* small uppercase label used on card headers ("ISSUE METRICS") */
@@ -423,7 +524,7 @@
   }
 
   .prose-journal {
-    max-width: 70ch;
+    max-width: 64ch;
     color: var(--color-ink);
   }
 
@@ -470,9 +571,12 @@
     text-decoration: underline;
   }
 
-  .prose-journal blockquote {
-    border-left: 3px solid var(--color-accent);
-    padding-left: 1rem;
+  .prose-journal blockquote,
+  .quote {
+    border-left: 3px solid var(--color-mint);
+    background: var(--color-glass-soft);
+    border-radius: 0 var(--radius-control) var(--radius-control) 0;
+    padding: 0.875rem 1.125rem;
     color: var(--color-ink-2);
     margin: 1rem 0;
   }
@@ -501,8 +605,8 @@
     font-family: var(--font-mono);
     font-size: 0.875em;
     background: var(--color-paper-2);
-    padding: 0.1rem 0.3rem;
-    border-radius: 4px;
+    padding: 0.1rem 0.35rem;
+    border-radius: 6px;
   }
 
   /* --- chips --- */
@@ -521,8 +625,8 @@
   }
 
   .chip:hover {
-    border-color: var(--color-accent);
-    color: var(--color-accent);
+    border-color: var(--color-mint-edge);
+    color: var(--color-ink);
   }
 
   .chip-jel {
@@ -534,15 +638,16 @@
 
   .chip-jel:hover {
     background: var(--color-paper-3);
-    border-color: var(--color-line-2);
-    color: var(--color-accent);
+    border-color: var(--color-mint-edge);
+    color: var(--color-ink);
   }
 
   /* editorial stamps: gold (peer review / call for papers), green (open access) */
   .chip-gold {
-    background: var(--color-gold-soft);
-    color: #92400e;
-    border-color: var(--color-gold-line);
+    background: var(--color-mint-tint);
+    color: var(--color-mint-text);
+    border-color: var(--color-mint-edge);
+    font-weight: 600;
   }
 
   .chip-green {
@@ -551,10 +656,12 @@
     border-color: var(--color-success-line);
   }
 
+  /* solid mint chip: a year, a count, a status that matters */
   .chip-navy {
-    background: var(--color-accent);
-    color: #fff;
-    border-color: var(--color-accent);
+    background: var(--color-mint);
+    color: var(--color-mint-ink);
+    border-color: var(--color-mint);
+    font-weight: 700;
   }
 
   .chip-mono {
@@ -591,7 +698,7 @@
     align-items: center;
     font-size: 0.75rem;
     font-weight: 600;
-    color: #92400e;
+    color: var(--color-mint-text);
     background: var(--color-gold-soft);
     border: 1px solid var(--color-gold-line);
     border-radius: var(--radius-badge);
@@ -665,8 +772,9 @@
     border-radius: var(--radius-control);
     background: var(--color-paper);
     color: var(--color-ink);
-    font-size: 0.9375rem;
+    font-size: 1rem;
     font-family: inherit;
+    transition: border-color 180ms ease;
   }
 
   .textarea {
@@ -680,10 +788,9 @@
   .input:focus,
   .textarea:focus,
   .select:focus {
-    border-color: var(--color-accent);
-    outline: 2px solid var(--color-accent);
+    border-color: var(--color-mint-text);
+    outline: 2px solid var(--color-mint-text);
     outline-offset: 0;
-    box-shadow: 0 0 0 4px var(--color-line);
   }
 
   .checkbox-row {
@@ -725,49 +832,56 @@
   }
 
   .table tbody tr:hover {
-    background: var(--color-paper-2);
+    background: var(--color-glass-hover);
+  }
+
+  .table {
+    font-variant-numeric: tabular-nums;
   }
 
   /* --- navigation --- */
   .nav-link {
     display: inline-flex;
     align-items: center;
-    height: 40px;
-    padding-inline: 0.6rem;
-    font-size: 0.875rem;
+    min-height: 40px;
+    padding-inline: 0.85rem;
+    font-size: 0.9375rem;
     font-weight: 500;
     color: var(--color-ink-2);
     text-decoration: none;
-    border-radius: var(--radius-control);
+    border-radius: var(--radius-pill);
+    transition: background-color 180ms ease, color 180ms ease;
   }
 
   .nav-link:hover {
-    background: var(--color-paper-2);
-    color: var(--color-accent);
+    background: var(--color-glass-hover);
+    color: var(--color-ink);
   }
 
   .nav-link[aria-current="page"] {
-    color: var(--color-accent);
-    font-weight: 600;
+    color: var(--color-ink);
+    font-weight: 700;
   }
 
-  /* desktop tabs: a 3 px navy rule under the active section */
+  /* desktop tabs inside the glass pill: muted text, a mint dot marks the page */
   .nav-tab {
     position: relative;
     display: inline-flex;
     align-items: center;
-    height: 4.5rem;
-    padding-inline: 0.15rem;
+    min-height: 40px;
+    padding-inline: 0.7rem;
+    border-radius: var(--radius-pill);
     font-size: 0.875rem;
     font-weight: 500;
     color: var(--color-ink-2);
     text-decoration: none;
     white-space: nowrap;
-    transition: color 150ms ease;
+    transition: color 180ms ease, background-color 180ms ease;
   }
 
   .nav-tab:hover {
-    color: var(--color-accent);
+    color: var(--color-ink);
+    background: var(--color-glass-hover);
   }
 
   /* a long-label language (Cyrillic, Russian) may shrink the tab gap and let
@@ -780,27 +894,37 @@
     line-height: 1.15;
   }
 
+  @media (min-width: 1280px) {
+    .nav-tab {
+      white-space: nowrap;
+    }
+  }
+
   .nav-tab[aria-current="page"] {
-    color: var(--color-accent);
-    font-weight: 600;
+    color: var(--color-ink);
+    font-weight: 700;
+    background: var(--color-mint-tint);
   }
 
   .nav-tab[aria-current="page"]::after {
     content: "";
     position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 3px;
-    background: var(--color-accent);
+    left: 50%;
+    bottom: 3px;
+    width: 4px;
+    height: 4px;
+    margin-left: -2px;
+    border-radius: 50%;
+    background: var(--color-mint-text);
   }
 
   .lang-switch {
     display: inline-flex;
     gap: 2px;
-    padding: 2px;
-    background: var(--color-paper-2);
-    border-radius: var(--radius-control);
+    padding: 3px;
+    background: var(--color-glass-soft);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-pill);
   }
 
   .lang-switch a {
@@ -812,62 +936,53 @@
     text-decoration: none;
     min-width: 32px;
     text-align: center;
-    border-radius: 3px;
+    border-radius: var(--radius-pill);
   }
 
   .lang-switch a:hover {
-    color: var(--color-accent);
+    color: var(--color-ink);
   }
 
   .lang-switch a[aria-current="true"] {
-    background: var(--color-accent);
-    color: #fff;
+    background: var(--color-mint);
+    color: var(--color-mint-ink);
   }
 
-  /* --- utility bar (above the header) --- */
+  /* --- utility bar (above the floating nav) --- */
   .utility-bar {
-    background: var(--color-navy-deep);
-    color: #c3cdd9;
-    font-size: 0.6875rem;
+    color: var(--color-ink-2);
+    font-size: 0.72rem;
     font-weight: 500;
     letter-spacing: 0.02em;
+    border-bottom: 1px solid var(--color-line);
   }
 
   .utility-bar a {
-    color: #c3cdd9;
+    color: var(--color-ink-2);
     text-decoration: none;
   }
 
   .utility-bar a:hover {
-    color: #fbbf24;
+    color: var(--color-ink);
   }
 
   .utility-bar .sep {
-    color: #34445a;
+    color: var(--color-line-2);
   }
 
   .utility-bar .lang-switch {
-    background: rgb(255 255 255 / 0.08);
+    padding: 2px;
   }
 
   .utility-bar .lang-switch a {
-    color: #c3cdd9;
-  }
-
-  .utility-bar .lang-switch a:hover {
-    color: #fff;
-  }
-
-  .utility-bar .lang-switch a[aria-current="true"] {
-    background: #fff;
-    color: var(--color-navy-deep);
+    padding-block: 0.15rem;
   }
 
   .utility-bar .dot-live {
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: var(--color-gold-bright);
+    background: var(--color-mint);
     display: inline-block;
   }
 
@@ -883,16 +998,17 @@
     flex: none;
     width: 2.5rem;
     height: 2.5rem;
-    border-radius: 8px;
+    border-radius: var(--radius-control);
     background: var(--color-navy-deep);
-    color: #fff;
+    color: var(--color-on-dark);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    font-family: var(--font-serif);
-    font-weight: 900;
-    font-size: 1.35rem;
+    font-family: var(--font-sans);
+    font-weight: 800;
+    font-size: 1.3rem;
+    letter-spacing: -0.04em;
     line-height: 1;
   }
 
@@ -901,10 +1017,10 @@
     position: absolute;
     top: 7px;
     right: 7px;
-    width: 5px;
-    height: 5px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
-    background: var(--color-gold-bright);
+    background: var(--color-mint-bright);
   }
 
   .wordmark-text {
@@ -915,17 +1031,17 @@
   }
 
   .wordmark-name {
-    font-family: var(--font-serif);
-    font-weight: 900;
-    letter-spacing: 0.08em;
+    font-family: var(--font-sans);
+    font-weight: 800;
+    letter-spacing: -0.02em;
     font-size: 1.25rem;
-    color: var(--color-navy-deep);
+    color: var(--color-ink);
   }
 
   .wordmark-rule {
     height: 1px;
     width: 100%;
-    background: var(--color-line-2);
+    background: var(--color-line);
     margin: 0.3rem 0 0.25rem;
   }
 
@@ -953,7 +1069,6 @@
 
     .wordmark-name {
       font-size: 1.05rem;
-      letter-spacing: 0.05em;
     }
 
     .wordmark-descriptor {
@@ -963,69 +1078,92 @@
   }
 
   /* --- site header --- */
+  /* floating glass navbar: a sticky pill with the page showing through */
   .site-header {
     position: sticky;
-    top: 0;
+    top: env(safe-area-inset-top, 0px);
     z-index: 40;
-    background: var(--color-paper);
-    border-bottom: 1px solid var(--color-line);
-    box-shadow: var(--shadow-card);
+    padding-block: 12px;
+  }
+
+  .nav-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-height: 60px;
+    padding: 8px 8px 8px 18px;
+    background: var(--color-glass-deep);
+    backdrop-filter: blur(14px) saturate(1.4);
+    -webkit-backdrop-filter: blur(14px) saturate(1.4);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-pill);
+  }
+
+  .mobile-nav {
+    margin-top: 8px;
+    padding: 0.5rem;
+    background: var(--color-glass-deep);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 0.8px solid var(--color-line);
+    border-radius: var(--radius-card);
   }
 
   .header-search {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
-    height: 36px;
-    padding: 0 0.6rem;
-    background: var(--color-paper-2);
-    border-radius: var(--radius-control);
-    color: var(--color-ink-3);
+    height: 40px;
+    padding: 0 0.75rem;
+    background: var(--color-glass-soft);
+    border-radius: var(--radius-pill);
+    color: var(--color-ink-2);
     font-size: 0.8125rem;
     text-decoration: none;
-    border: 1px solid transparent;
-    transition: border-color 150ms ease, color 150ms ease;
+    border: 1px solid var(--color-line);
+    transition: border-color 180ms ease, color 180ms ease;
   }
 
   .header-search:hover {
     border-color: var(--color-line-2);
-    color: var(--color-accent);
+    color: var(--color-ink);
   }
 
   .kbd {
     font-family: var(--font-mono);
     font-size: 0.6875rem;
     font-weight: 500;
-    padding: 0.05rem 0.35rem;
-    border-radius: 3px;
+    padding: 0.05rem 0.4rem;
+    border-radius: 6px;
     background: var(--color-paper-3);
     color: var(--color-ink-2);
   }
 
   /* --- masthead (home hero) --- */
   .masthead {
-    background: var(--color-paper);
-    border-bottom: 1px solid var(--color-line);
+    background: transparent;
   }
 
   .masthead-name {
-    font-family: var(--font-serif);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-    color: var(--color-accent);
+    font-family: var(--font-sans);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.06;
+    color: var(--color-ink);
   }
 
   .masthead-descriptor {
-    font-family: var(--font-serif);
-    font-weight: 400;
-    line-height: 1.2;
+    font-family: var(--font-sans);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
     color: var(--color-ink-2);
   }
 
   .masthead-lede {
-    font-size: 1.0625rem;
-    line-height: 1.65;
+    font-size: clamp(1.1rem, 1rem + 0.5vw, 1.3rem);
+    line-height: 1.55;
+    max-width: 64ch;
     color: var(--color-ink-2);
   }
 
@@ -1043,10 +1181,10 @@
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
-    padding: 0.3rem 0.6rem;
-    border-radius: var(--radius-badge);
-    background: var(--color-paper-2);
-    border: 1px solid transparent;
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius-pill);
+    background: var(--color-glass-soft);
+    border: 1px solid var(--color-line);
   }
 
   .credibility > li strong {
@@ -1060,21 +1198,24 @@
     font-size: 0.6875rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--color-accent);
+    color: var(--color-mint-text);
+    background: var(--color-mint-tint);
+    border-color: var(--color-mint-edge);
   }
 
   .credibility svg {
-    color: var(--color-gold-bright);
+    color: var(--color-mint-text);
   }
 
   /* --- fact tiles (hero strip, about page) --- */
   .fact-tile {
     display: flex;
     flex-direction: column;
-    gap: 0.15rem;
-    padding: 0.75rem 0.9rem;
-    background: var(--color-paper-2);
-    border-radius: var(--radius-control);
+    gap: 0.2rem;
+    padding: 1rem 1.1rem;
+    background: var(--color-glass);
+    border: 0.8px solid var(--color-line);
+    border-radius: var(--radius-card);
     min-width: 0;
   }
 
@@ -1087,9 +1228,11 @@
   }
 
   .fact-value {
-    font-weight: 600;
-    font-size: 1rem;
-    color: var(--color-accent);
+    font-weight: 800;
+    font-size: 1.15rem;
+    letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-ink);
     display: inline-flex;
     align-items: center;
     gap: 0.3rem;
@@ -1097,7 +1240,7 @@
   }
 
   .fact-value svg {
-    color: var(--color-gold-bright);
+    color: var(--color-mint-text);
     flex: none;
   }
 
@@ -1109,36 +1252,39 @@
 
   /* --- discovery console (home search) --- */
   .console {
-    background: var(--color-paper);
-    border: 1px solid var(--color-line);
-    border-radius: var(--radius-card);
-    box-shadow: var(--shadow-card);
-    padding: 1rem;
+    background: var(--color-glass);
+    border: 0.8px solid var(--color-line);
+    border-radius: var(--radius-panel);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: clamp(16px, 3vw, 24px);
   }
 
   .console-search {
     display: flex;
     align-items: center;
     gap: 0.6rem;
-    background: var(--color-paper-2);
-    border-radius: var(--radius-control);
-    padding: 0 0.9rem;
-    min-height: 48px;
-    border: 1px solid transparent;
+    background: var(--color-paper);
+    border-radius: var(--radius-pill);
+    padding: 0 0.35rem 0 1.1rem;
+    min-height: 52px;
+    border: 1px solid var(--color-line-2);
     color: var(--color-ink-3);
+    transition: border-color 180ms ease;
   }
 
   .console-search:focus-within {
-    border-color: var(--color-accent);
-    box-shadow: 0 0 0 4px var(--color-line);
+    border-color: var(--color-mint-text);
+    outline: 2px solid var(--color-mint-text);
   }
 
   .console-search input {
     flex: 1;
     min-width: 0;
+    min-height: 44px;
     background: transparent;
     border: 0;
-    font-size: 0.9375rem;
+    font-size: 1rem;
     color: var(--color-ink);
   }
 
@@ -1153,15 +1299,16 @@
   .filter-pill {
     display: inline-flex;
     align-items: center;
-    padding: 0.3rem 0.65rem;
-    border-radius: var(--radius-control);
+    padding: 0.35rem 0.8rem;
+    border-radius: var(--radius-pill);
     font-size: 0.75rem;
     font-weight: 600;
-    background: var(--color-paper-2);
+    background: var(--color-glass-soft);
+    border: 1px solid var(--color-line);
     color: var(--color-ink-2);
     text-decoration: none;
     max-width: 100%;
-    transition: background-color 150ms ease, color 150ms ease;
+    transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
   }
 
   .scroll-row .filter-pill {
@@ -1169,13 +1316,14 @@
   }
 
   .filter-pill:hover {
-    background: var(--color-paper-3);
-    color: var(--color-accent);
+    background: var(--color-glass-hover);
+    color: var(--color-ink);
   }
 
   .filter-pill.is-active {
-    background: var(--color-accent);
-    color: #fff;
+    background: var(--color-ink);
+    border-color: var(--color-ink);
+    color: var(--color-surface);
   }
 
   .scroll-row {
@@ -1193,18 +1341,18 @@
 
   /* --- article cards --- */
   .article-card {
-    background: var(--color-paper);
-    border: 1px solid var(--color-line);
+    background: var(--color-glass);
+    border: 0.8px solid var(--color-line);
     border-radius: var(--radius-card);
-    box-shadow: var(--shadow-card);
-    padding: 1.15rem 1.25rem;
-    margin-bottom: 1rem;
-    transition: box-shadow 150ms ease, border-color 150ms ease;
+    padding: 1.25rem;
+    margin-bottom: 0.875rem;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: border-color 200ms ease;
   }
 
   .article-card:hover {
-    box-shadow: var(--shadow-hover);
-    border-color: var(--color-line-2);
+    border-color: var(--color-mint-edge);
   }
 
   .article-card:last-child {
@@ -1214,25 +1362,25 @@
   .article-card.is-lead {
     position: relative;
     padding: 1.5rem 1.5rem 1.5rem 1.75rem;
-    box-shadow: var(--shadow-hover);
+    background: var(--color-glass-deep);
   }
 
   .article-card.is-lead::before {
     content: "";
     position: absolute;
-    top: 0;
-    bottom: 0;
+    top: 1.25rem;
+    bottom: 1.25rem;
     left: 0;
-    width: 5px;
-    background: var(--color-gold-bright);
-    border-radius: var(--radius-card) 0 0 var(--radius-card);
+    width: 4px;
+    background: var(--color-mint);
+    border-radius: 0 4px 4px 0;
   }
 
   .article-kind {
     display: inline-flex;
     align-items: center;
-    padding: 0.15rem 0.45rem;
-    border-radius: var(--radius-badge);
+    padding: 0.2rem 0.55rem;
+    border-radius: var(--radius-pill);
     background: var(--color-paper-2);
     color: var(--color-ink-2);
     font-family: var(--font-mono);
@@ -1243,29 +1391,31 @@
   }
 
   .article-kind.is-lead {
-    background: var(--color-paper-3);
-    color: var(--color-accent);
+    background: var(--color-mint);
+    color: var(--color-mint-ink);
   }
 
   .article-title {
-    font-family: var(--font-serif);
+    font-family: var(--font-sans);
     font-weight: 700;
-    font-size: 1.125rem;
-    line-height: 1.4;
-    color: var(--color-accent);
+    font-size: 1.15rem;
+    line-height: 1.3;
+    color: var(--color-ink);
     text-decoration: none;
-    letter-spacing: -0.005em;
-    transition: color 150ms ease;
+    letter-spacing: -0.02em;
+    transition: color 180ms ease;
   }
 
   .article-title:hover {
-    color: var(--color-gold);
+    color: var(--color-mint-text);
     text-decoration: none;
   }
 
   .article-title.is-lead {
     font-size: 1.5rem;
-    line-height: 1.3;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
   }
 
   .authors-line {
@@ -1286,6 +1436,7 @@
 
   .abstract-box {
     background: var(--color-paper-2);
+    border: 1px solid var(--color-line);
     border-radius: var(--radius-control);
     padding: 0.85rem 1rem;
     font-size: 0.875rem;
@@ -1294,7 +1445,7 @@
   }
 
   .abstract-box .label-caps {
-    color: var(--color-accent);
+    color: var(--color-ink);
   }
 
   .stat-inline {
@@ -1319,7 +1470,7 @@
   }
 
   .doi-line a {
-    color: var(--color-gold);
+    color: var(--color-mint-text);
     text-decoration: none;
   }
 
@@ -1330,12 +1481,12 @@
   /* --- typographic issue cover (paper with a faint grid) --- */
   .issue-cover {
     aspect-ratio: 3 / 4;
-    background-color: var(--color-paper);
+    background-color: var(--color-glass-deep);
     background-size: 16px 16px;
     background-image:
-      linear-gradient(to right, rgba(11, 25, 44, 0.07) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(11, 25, 44, 0.07) 1px, transparent 1px);
-    border: 1px solid var(--color-line-2);
+      linear-gradient(to right, var(--color-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--color-line) 1px, transparent 1px);
+    border: 0.8px solid var(--color-line);
     border-radius: var(--radius-card);
     display: flex;
     flex-direction: column;
@@ -1344,12 +1495,11 @@
     overflow: hidden;
     color: var(--color-ink);
     text-decoration: none;
-    box-shadow: var(--shadow-card);
-    transition: box-shadow 150ms ease;
+    transition: border-color 200ms ease;
   }
 
   a.issue-cover:hover {
-    box-shadow: var(--shadow-hover);
+    border-color: var(--color-mint-edge);
   }
 
   .issue-cover-head,
@@ -1384,17 +1534,18 @@
   .issue-cover-rule {
     height: 3px;
     width: 2rem;
-    background: var(--color-gold-bright);
+    background: var(--color-mint);
     margin: 0.5rem auto;
     border-radius: 2px;
   }
 
   .issue-cover-vol {
-    font-family: var(--font-serif);
+    font-family: var(--font-sans);
     font-weight: 800;
     font-size: 1.5rem;
+    letter-spacing: -0.04em;
     line-height: 1.1;
-    color: var(--color-accent);
+    color: var(--color-ink);
   }
 
   .issue-cover-vol + .issue-cover-vol {
@@ -1409,8 +1560,8 @@
     width: 3.5rem;
     height: 4.5rem;
     border-radius: var(--radius-control);
-    background: var(--color-accent);
-    color: #fff;
+    background: var(--color-navy-deep);
+    color: var(--color-on-dark);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -1424,7 +1575,7 @@
   }
 
   .issue-cover-mini strong {
-    font-family: var(--font-serif);
+    font-family: var(--font-sans);
     font-size: 0.6875rem;
     letter-spacing: 0.06em;
     color: var(--color-gold-fixed);
@@ -1433,17 +1584,16 @@
   /* --- section cards (home) --- */
   .section-card {
     display: block;
-    padding: 1rem 1.1rem;
-    background: var(--color-paper);
-    border: 1px solid var(--color-line);
+    padding: 1.1rem 1.25rem;
+    background: var(--color-glass);
+    border: 0.8px solid var(--color-line);
     border-radius: var(--radius-card);
     text-decoration: none;
-    transition: border-color 150ms ease, box-shadow 150ms ease;
+    transition: border-color 200ms ease;
   }
 
   .section-card:hover {
-    border-color: var(--color-line-2);
-    box-shadow: var(--shadow-hover);
+    border-color: var(--color-mint-edge);
   }
 
   .section-card-number {
@@ -1452,33 +1602,34 @@
     justify-content: center;
     width: 1.75rem;
     height: 1.75rem;
-    border-radius: var(--radius-control);
-    background: var(--color-accent-soft);
-    color: var(--color-accent);
+    border-radius: var(--radius-badge);
+    background: var(--color-paper-2);
+    color: var(--color-ink);
     font-family: var(--font-mono);
     font-size: 0.6875rem;
     font-weight: 600;
   }
 
   .section-card-name {
-    font-family: var(--font-serif);
+    font-family: var(--font-sans);
     font-weight: 700;
-    font-size: 0.9375rem;
-    line-height: 1.35;
-    color: var(--color-accent);
+    font-size: 1rem;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+    color: var(--color-ink);
     margin-top: 0.6rem;
   }
 
   .section-card:hover .section-card-name {
-    color: var(--color-gold);
+    color: var(--color-mint-text);
   }
 
   /* --- author journey / how we work steps --- */
   .journey-step {
     position: relative;
     padding: 1.25rem;
-    background: var(--color-paper);
-    border: 1px solid var(--color-line);
+    background: var(--color-glass);
+    border: 0.8px solid var(--color-line);
     border-radius: var(--radius-card);
   }
 
@@ -1488,12 +1639,13 @@
     justify-content: center;
     width: 2rem;
     height: 2rem;
-    border-radius: var(--radius-control);
-    background: var(--color-accent);
-    color: #fff;
-    font-family: var(--font-serif);
-    font-weight: 700;
-    font-size: 0.9375rem;
+    border-radius: 50%;
+    background: var(--color-mint);
+    color: var(--color-mint-ink);
+    font-family: var(--font-sans);
+    font-weight: 800;
+    font-size: 0.875rem;
+    font-variant-numeric: tabular-nums;
     margin-bottom: 0.75rem;
   }
 
@@ -1519,15 +1671,16 @@
     width: 0.65rem;
     height: 0.65rem;
     border-radius: 50%;
-    background: var(--color-gold-bright);
+    background: var(--color-mint);
     margin-top: 0.4rem;
   }
 
   .process-title {
     font-family: var(--font-sans);
     font-weight: 700;
-    font-size: 0.9375rem;
-    color: var(--color-accent);
+    font-size: 1rem;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -1541,7 +1694,8 @@
     flex-direction: column;
     gap: 0.6rem;
     padding: 1.5rem;
-    background: var(--color-paper-2);
+    background: var(--color-glass);
+    border: 0.8px solid var(--color-line);
     border-radius: var(--radius-card);
   }
 
@@ -1549,8 +1703,9 @@
     width: 2.5rem;
     height: 2.5rem;
     border-radius: var(--radius-control);
-    background: var(--color-accent);
-    color: #fff;
+    background: var(--color-mint-tint);
+    border: 1px solid var(--color-mint-edge);
+    color: var(--color-mint-text);
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -1564,7 +1719,7 @@
     margin-top: auto;
     font-family: var(--font-mono);
     font-size: 0.6875rem;
-    color: var(--color-gold);
+    color: var(--color-mint-text);
   }
 
   /* --- indexing tiles --- */
@@ -1576,26 +1731,35 @@
     gap: 0.15rem;
     min-height: 3.75rem;
     padding: 0.5rem 0.75rem;
-    background: var(--color-paper);
+    background: var(--color-paper-2);
     border: 1px solid var(--color-line);
-    border-radius: var(--radius-control);
+    border-radius: 14px;
     text-decoration: none;
     text-align: center;
-    font-family: var(--font-serif);
+    font-family: var(--font-sans);
     font-weight: 700;
     font-size: 0.9375rem;
-    color: var(--color-accent);
-    transition: box-shadow 150ms ease;
+    letter-spacing: -0.02em;
+    color: var(--color-ink-2);
+    transition: border-color 200ms ease, color 200ms ease;
   }
 
   .index-tile:hover {
-    box-shadow: var(--shadow-hover);
-    color: var(--color-accent);
+    border-color: var(--color-mint-edge);
+    color: var(--color-ink);
   }
 
   .index-tile img {
     max-height: 1.75rem;
     width: auto;
+    filter: grayscale(1);
+    opacity: 0.75;
+    transition: filter 200ms ease, opacity 200ms ease;
+  }
+
+  .index-tile:hover img {
+    filter: none;
+    opacity: 1;
   }
 
   .index-tile small {
@@ -1620,15 +1784,15 @@
   .rail-title {
     font-family: var(--font-sans);
     font-weight: 600;
-    font-size: 0.875rem;
+    font-size: 0.9375rem;
     line-height: 1.4;
-    color: var(--color-accent);
+    color: var(--color-ink);
     text-decoration: none;
-    transition: color 150ms ease;
+    transition: color 180ms ease;
   }
 
   .rail-title:hover {
-    color: var(--color-gold);
+    color: var(--color-mint-text);
     text-decoration: none;
   }
 
@@ -1639,21 +1803,22 @@
     gap: 0.5rem;
     padding: 0.5rem 0.6rem;
     border-radius: var(--radius-control);
-    background: rgb(255 255 255 / 0.08);
-    color: #fff;
+    background: var(--color-on-dark-soft);
+    border: 1px solid var(--color-on-dark-line);
+    color: var(--color-on-dark);
     font-size: 0.8125rem;
     font-weight: 600;
     text-decoration: none;
-    transition: background-color 150ms ease;
+    transition: border-color 180ms ease;
   }
 
   .rail-link:hover {
-    background: rgb(255 255 255 / 0.16);
-    color: #fff;
+    border-color: var(--color-mint-edge);
+    color: var(--color-on-dark);
   }
 
   .rail-link .meta {
-    color: #b3c9e0;
+    color: var(--color-on-dark-muted);
   }
 
   /* --- section navigation (about / policy pages) --- */
@@ -1666,23 +1831,23 @@
   .side-nav a {
     display: block;
     padding: 0.5rem 0.75rem;
-    border-radius: var(--radius-control);
+    border-radius: var(--radius-pill);
     font-size: 0.875rem;
     font-weight: 500;
     color: var(--color-ink-2);
     text-decoration: none;
-    transition: background-color 150ms ease, color 150ms ease;
+    transition: background-color 180ms ease, color 180ms ease;
   }
 
   .side-nav a:hover {
-    background: var(--color-paper-2);
-    color: var(--color-accent);
+    background: var(--color-glass-hover);
+    color: var(--color-ink);
   }
 
   .side-nav a[aria-current="page"] {
-    background: var(--color-accent);
-    color: #fff;
-    font-weight: 600;
+    background: var(--color-mint-tint);
+    color: var(--color-ink);
+    font-weight: 700;
   }
 
   /* --- editorial board people --- */
@@ -1692,12 +1857,12 @@
     height: 3.5rem;
     border-radius: var(--radius-control);
     background: var(--color-navy-deep);
-    color: #fff;
+    color: var(--color-on-dark);
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-family: var(--font-serif);
-    font-weight: 700;
+    font-family: var(--font-sans);
+    font-weight: 800;
     font-size: 1.1rem;
     overflow: hidden;
   }
@@ -1724,7 +1889,7 @@
   }
 
   .breadcrumb a:hover {
-    color: var(--color-accent);
+    color: var(--color-ink);
     text-decoration: underline;
   }
 
@@ -1734,78 +1899,85 @@
 
   /* --- page hero (title band on inner pages) --- */
   .page-hero {
-    background: var(--color-paper);
+    background: transparent;
     border-bottom: 1px solid var(--color-line);
   }
 
   .page-hero h1 {
-    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-    letter-spacing: -0.02em;
+    font-size: clamp(1.9rem, 1.3rem + 2.4vw, 3rem);
+    letter-spacing: -0.03em;
+    line-height: 1.06;
   }
 
   /* --- site footer --- */
+  /* footer: the original night palette, the page's dark anchor */
   .site-footer {
-    background: var(--color-navy-deep);
-    color: #c3cdd9;
+    background:
+      radial-gradient(900px 420px at 50% 0%, var(--color-mint-haze), transparent 65%),
+      var(--color-navy-midnight);
+    color: var(--color-on-dark-muted);
     margin-top: 4rem;
+    border-top: 1px solid var(--color-on-dark-line);
   }
 
   .site-footer .wordmark-mark {
-    background: #fff;
-    color: var(--color-navy-deep);
+    background: var(--color-on-dark-soft);
+    border: 1px solid var(--color-on-dark-line);
+    color: var(--color-on-dark);
   }
 
-  .site-footer .wordmark-name {
-    color: #fff;
+  .site-footer .wordmark-name,
+  .site-footer .footer-heading {
+    color: var(--color-on-dark);
   }
 
-  .site-footer .wordmark-descriptor {
-    color: #94a3b8;
+  .site-footer .wordmark-descriptor,
+  .site-footer .footer-link,
+  .site-footer .meta,
+  .site-footer .muted {
+    color: var(--color-on-dark-muted);
   }
 
   .site-footer .wordmark-rule {
-    background: #34445a;
-  }
-
-  .site-footer .footer-heading {
-    color: #fff;
-  }
-
-  .site-footer .footer-link {
-    color: #c3cdd9;
+    background: var(--color-on-dark-line);
   }
 
   .site-footer .footer-link:hover {
-    color: #fff;
+    color: var(--color-on-dark);
     text-decoration: underline;
   }
 
-  .site-footer .meta,
-  .site-footer .muted {
-    color: #94a3b8;
-  }
-
   .site-footer a {
-    color: #e2e8f0;
+    color: var(--color-on-dark);
+    text-decoration-color: var(--color-on-dark-line);
   }
 
   .site-footer .footer-bottom {
-    border-top: 1px solid #1e2b3d;
-    color: #94a3b8;
-    font-size: 0.75rem;
+    border-top: 1px solid var(--color-on-dark-line);
+    color: var(--color-on-dark-muted);
+    font-size: 0.8125rem;
   }
 
   .site-footer .lang-switch {
-    background: #14213a;
+    background: var(--color-on-dark-soft);
+    border-color: var(--color-on-dark-line);
   }
 
   .site-footer .lang-switch a {
-    color: #c3cdd9;
+    color: var(--color-on-dark-muted);
+  }
+
+  .site-footer .lang-switch a:hover {
+    color: var(--color-on-dark);
   }
 
   .site-footer .lang-switch a[aria-current="true"] {
-    background: #fff;
-    color: var(--color-navy-deep);
+    background: var(--color-mint-bright);
+    color: var(--color-mint-ink);
+  }
+
+  .site-footer :focus-visible {
+    outline-color: var(--color-mint-bright);
   }
 
   /* --- timeline --- */
@@ -1847,8 +2019,8 @@
   }
 
   .timeline-step.is-current::before {
-    background: var(--color-accent);
-    border-color: var(--color-accent);
+    background: var(--color-mint);
+    border-color: var(--color-mint-text);
   }
 
   /* --- alerts / toasts --- */
@@ -1858,7 +2030,7 @@
     border-radius: var(--radius-control);
     padding: 0.75rem 1rem;
     font-size: 0.9375rem;
-    background: var(--color-paper-2);
+    background: var(--color-glass-deep);
   }
 
   .alert-success {
@@ -1874,7 +2046,7 @@
   }
 
   .alert-info {
-    border-left-color: var(--color-accent);
+    border-left-color: var(--color-mint);
   }
 
   .toast-stack {
@@ -1924,9 +2096,12 @@
   }
 
   .progress-percent {
-    font-family: var(--font-serif);
-    font-size: 1.1rem;
-    color: var(--color-accent);
+    font-family: var(--font-sans);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    font-variant-numeric: tabular-nums;
+    font-size: 1.15rem;
+    color: var(--color-ink);
     white-space: nowrap;
   }
 
@@ -1940,7 +2115,7 @@
   .progress-fill {
     height: 100%;
     border-radius: 999px;
-    background: var(--color-accent);
+    background: var(--color-mint);
     transition: width 400ms ease;
   }
 
@@ -1957,6 +2132,7 @@
   .submission-card[data-terminal="true"] .progress-step[data-state="done"] .progress-dot {
     background: var(--color-danger);
     border-color: var(--color-danger);
+    color: var(--color-on-dark);
   }
 
   .submission-card[data-published="true"] .progress-fill {
@@ -2003,20 +2179,21 @@
   }
 
   .progress-step[data-state="done"] .progress-dot {
-    border-color: var(--color-accent);
-    background: var(--color-accent);
-    color: #fff;
+    border-color: var(--color-mint);
+    background: var(--color-mint);
+    color: var(--color-mint-ink);
   }
 
   .progress-step[data-state="current"] .progress-dot {
-    border-color: var(--color-accent);
-    color: var(--color-accent);
-    box-shadow: 0 0 0 4px var(--color-accent-soft);
+    border-color: var(--color-mint-text);
+    color: var(--color-ink);
+    outline: 4px solid var(--color-mint-tint);
   }
 
   .submission-card[data-published="true"] .progress-step[data-state="done"] .progress-dot {
     border-color: var(--color-success);
     background: var(--color-success);
+    color: var(--color-on-dark);
   }
 
   .progress-label {
@@ -2089,15 +2266,15 @@
     align-items: center;
     gap: 1rem;
     padding: 0.85rem 1rem 0.85rem 0;
-    background: var(--color-paper);
-    border: 1px solid var(--color-line);
+    background: var(--color-glass);
+    border: 0.8px solid var(--color-line);
     border-radius: var(--radius-card);
     overflow: hidden;
   }
 
   .attention-bar {
     align-self: stretch;
-    background: var(--color-accent);
+    background: var(--color-mint);
   }
 
   .attention-row[data-severity="danger"] .attention-bar {
@@ -2116,7 +2293,10 @@
 
   .attention-days-number {
     display: block;
-    font-family: var(--font-serif);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    font-variant-numeric: tabular-nums;
+    font-family: var(--font-sans);
     font-size: 1.5rem;
     color: var(--color-ink);
   }
@@ -2142,23 +2322,24 @@
     border-left: 4px solid var(--color-success);
     border-radius: var(--radius-card);
     color: var(--color-ink-2);
-    background: var(--color-paper);
+    background: var(--color-glass);
   }
 
   .queue-tile {
     display: flex;
     flex-direction: column;
     gap: 0.35rem;
-    padding: 1rem;
-    background: var(--color-paper);
-    border: 1px solid var(--color-line);
+    padding: 1rem 1.1rem;
+    background: var(--color-glass);
+    border: 0.8px solid var(--color-line);
     border-left: 4px solid var(--color-line);
     border-radius: var(--radius-card);
     text-decoration: none;
+    transition: border-color 200ms ease;
   }
 
   .queue-tile:hover {
-    border-color: var(--color-accent);
+    border-color: var(--color-mint-edge);
   }
 
   .queue-tile[data-severity="danger"] {
@@ -2170,7 +2351,10 @@
   }
 
   .queue-count {
-    font-family: var(--font-serif);
+    font-family: var(--font-sans);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    font-variant-numeric: tabular-nums;
     font-size: 2rem;
     line-height: 1;
     color: var(--color-ink);
@@ -2214,12 +2398,12 @@
     flex-wrap: wrap;
     gap: 1rem;
     margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--color-accent);
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--color-line);
   }
 
   .section-heading h2 {
-    font-size: 1.375rem;
+    font-size: clamp(1.35rem, 1.1rem + 1vw, 1.75rem);
   }
 
   .section-heading .count {
@@ -2249,7 +2433,75 @@
   }
 
   .footer-link:hover {
-    color: var(--color-accent);
+    color: var(--color-ink);
+  }
+
+  /* --- Mint Glass extras: stat, ribbon, checks (docs/DESIGN-SYSTEM.md §6) --- */
+  .stat {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+  }
+
+  .stat-num {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-ink);
+  }
+
+  .stat-lbl {
+    color: var(--color-ink-2);
+    font-size: 0.85rem;
+    margin-top: 4px;
+    max-width: 22ch;
+  }
+
+  .ribbon {
+    padding: 12px 18px;
+    border-radius: var(--radius-control);
+    border-left: 4px solid var(--color-mint-text);
+    background: linear-gradient(90deg, var(--color-mint) 0%, var(--color-mint-tint) 55%, transparent 100%);
+    color: var(--color-mint-ink);
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .checks {
+    display: grid;
+    gap: 14px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .checks li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    color: var(--color-ink-2);
+  }
+
+  .checks li b {
+    color: var(--color-ink);
+  }
+
+  .tick {
+    flex: 0 0 22px;
+    height: 22px;
+    margin-top: 2px;
+    border-radius: 50%;
+    background: var(--color-mint);
+    color: var(--color-mint-ink);
+    display: grid;
+    place-items: center;
+    font-size: 0.72rem;
+    font-weight: 800;
   }
 
   /* --- utility --- */

@@ -117,9 +117,10 @@
             {% include "includes/icon.html" with name="search" size=20 %}
             <span class="visually-hidden">{% translate "Search" %}</span>
             <input type="search"
+                   class="console-input"
                    name="q"
                    placeholder="{% translate 'Search by title, author, DOI or JEL code (e.g. E52)' %}">
-            <button type="submit" class="btn btn-primary btn-sm">{% translate "Search" %}</button>
+            <button type="submit" class="btn btn-secondary btn-sm">{% translate "Search" %}</button>
           </label>
         </form>
         <div class="w-full lg:w-5/12 flex flex-wrap items-center gap-1.5 lg:justify-end">
@@ -187,7 +188,7 @@
               <span class="text-sm muted">
                 {% blocktranslate with shown=current_issue_articles|length|add:1 total=current_issue_article_count issue=current_issue.label %}Showing {{ shown }} of {{ total }} articles in {{ issue }}{% endblocktranslate %}
               </span>
-              <a class="btn btn-primary btn-sm"
+              <a class="btn btn-secondary btn-sm"
                  href="{{ current_issue.get_absolute_url }}">
                 {% translate "View all papers in this issue" %}
                 {% include "includes/icon.html" with name="arrow" size=14 %}

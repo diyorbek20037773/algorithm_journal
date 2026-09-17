@@ -81,7 +81,7 @@
   <div class="flex flex-wrap items-center justify-between gap-2">
     <div class="flex flex-wrap items-center gap-2">
       {% if article.primary_galley %}
-        <a class="btn {% if lead %}btn-primary{% else %}btn-secondary{% endif %} btn-sm"
+        <a class="btn {% if lead %}btn-tonal{% else %}btn-secondary{% endif %} btn-sm"
            href="{{ article.pdf_url }}">
           {% include "includes/icon.html" with name="pdf" size=14 %}
           PDF <span class="meta {% if lead %}text-white/80{% endif %}">({{ article.primary_galley.size_display }})</span>

@@ -9,12 +9,12 @@
   <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 mb-8">
     <div class="card">
       <p class="footer-heading">{% translate "Submissions received" %}</p>
-      <p class="text-3xl font-serif">{{ kpis.submissions_received|default:"—" }}</p>
+      <p class="text-3xl font-extrabold tracking-[-0.03em] tabular-nums">{{ kpis.submissions_received|default:"—" }}</p>
       <p class="meta">{% translate "last 12 months" %}</p>
     </div>
     <div class="card">
       <p class="footer-heading">{% translate "Rejection rate" %}</p>
-      <p class="text-3xl font-serif">{% if kpis.rejection_rate %}{{ kpis.rejection_rate }}%{% else %}—{% endif %}</p>
+      <p class="text-3xl font-extrabold tracking-[-0.03em] tabular-nums">{% if kpis.rejection_rate %}{{ kpis.rejection_rate }}%{% else %}—{% endif %}</p>
       <p class="meta">
         {% if kpis.desk_rejection_rate %}
           {% blocktranslate with rate=kpis.desk_rejection_rate %}{{ rate }}% desk rejected{% endblocktranslate %}
@@ -23,15 +23,15 @@
     </div>
     <div class="card">
       <p class="footer-heading">{% translate "Acceptance rate" %}</p>
-      <p class="text-3xl font-serif">{% if kpis.acceptance_rate %}{{ kpis.acceptance_rate }}%{% else %}—{% endif %}</p>
+      <p class="text-3xl font-extrabold tracking-[-0.03em] tabular-nums">{% if kpis.acceptance_rate %}{{ kpis.acceptance_rate }}%{% else %}—{% endif %}</p>
     </div>
     <div class="card">
       <p class="footer-heading">{% translate "Median days to first decision" %}</p>
-      <p class="text-3xl font-serif">{{ kpis.median_days_to_first_decision|default:"—" }}</p>
+      <p class="text-3xl font-extrabold tracking-[-0.03em] tabular-nums">{{ kpis.median_days_to_first_decision|default:"—" }}</p>
     </div>
     <div class="card">
       <p class="footer-heading">{% translate "Median days a reviewer takes" %}</p>
-      <p class="text-3xl font-serif">{{ kpis.median_review_days|default:"—" }}</p>
+      <p class="text-3xl font-extrabold tracking-[-0.03em] tabular-nums">{{ kpis.median_review_days|default:"—" }}</p>
       <p class="meta">{% translate "from accepting the invitation to filing" %}</p>
     </div>
   </div>
