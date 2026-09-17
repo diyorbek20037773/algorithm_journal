@@ -88,7 +88,7 @@ O'lchovlar: `--radius-badge 8px`, `--radius-control 12px`, `--radius-card 16px`,
 
 | Komponent | Klass | Eslatma |
 |---|---|---|
-| Suzuvchi shisha navbar | `.site-header > .container-page > .nav-pill` | sticky, pill, blur 14px; mobil menyu `.mobile-nav` |
+| Suzuvchi navbar (qora shisha) | `.site-header > .container-page > .nav-pill` | sticky pill, `--color-glass-nav` = `rgb(1 20 26 / .92)` + blur 12px; ichida tungi palitra (och matn, `#84ffc1` tugma). Mobil menyu `.mobile-nav` ham shunday |
 | Panel | `.panel`, `.console` | radius 24px |
 | Shisha karta | `.card`, `.article-card`, `.section-card`, `.fact-tile`, `.pillar`, `.queue-tile` | 0.8px chegara, hover → `--color-mint-edge` |
 | Qorong'u langar | `.card-navy`, `.site-footer` | asl tungi palitra + mint nur |

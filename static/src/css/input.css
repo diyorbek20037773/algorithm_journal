@@ -24,6 +24,7 @@
   --color-glass: rgb(255 255 255 / 0.62);
   --color-glass-deep: rgb(255 255 255 / 0.82);
   --color-glass-soft: rgb(255 255 255 / 0.55);
+  --color-glass-nav: rgb(1 20 26 / 0.92); /* floating navbar: dark smoked glass */
   --color-glass-hover: rgb(1 20 26 / 0.05);
 
   /* text — never pure black; #5b6b6f is 5:1 on the page */
@@ -108,6 +109,7 @@
       --color-glass: rgb(18 27 38 / 0.4);
       --color-glass-deep: rgb(18 27 38 / 0.6);
       --color-glass-soft: rgb(255 255 255 / 0.05);
+      --color-glass-nav: rgb(1 20 26 / 0.6);
       --color-glass-hover: rgb(255 255 255 / 0.09);
       --color-ink: #f2f7f5;
       --color-ink-2: rgb(242 247 245 / 0.72);
@@ -1092,20 +1094,101 @@
     gap: 0.75rem;
     min-height: 60px;
     padding: 8px 8px 8px 18px;
-    background: var(--color-glass-deep);
-    backdrop-filter: blur(14px) saturate(1.4);
-    -webkit-backdrop-filter: blur(14px) saturate(1.4);
-    border: 1px solid var(--color-line);
+    background: var(--color-glass-nav);
+    backdrop-filter: blur(12px) saturate(1.3);
+    -webkit-backdrop-filter: blur(12px) saturate(1.3);
+    border: 1px solid var(--color-on-dark-line);
     border-radius: var(--radius-pill);
+  }
+
+  /* everything inside the dark navbar speaks the night palette */
+  .nav-pill .wordmark-name {
+    color: var(--color-on-dark);
+  }
+
+  .nav-pill .wordmark-descriptor {
+    color: var(--color-on-dark-muted);
+  }
+
+  .nav-pill .wordmark-rule {
+    background: var(--color-on-dark-line);
+  }
+
+  .nav-pill .wordmark-mark {
+    background: var(--color-on-dark-soft);
+    border: 1px solid var(--color-on-dark-line);
+  }
+
+  .nav-pill .nav-tab,
+  .nav-pill .nav-link,
+  .mobile-nav .nav-link {
+    color: var(--color-on-dark-muted);
+  }
+
+  .nav-pill .nav-tab:hover,
+  .nav-pill .nav-link:hover,
+  .mobile-nav .nav-link:hover {
+    color: var(--color-on-dark);
+    background: var(--color-on-dark-soft);
+  }
+
+  .nav-pill .nav-tab[aria-current="page"],
+  .mobile-nav .nav-link[aria-current="page"] {
+    color: var(--color-on-dark);
+    background: var(--color-on-dark-soft);
+  }
+
+  .nav-pill .nav-tab[aria-current="page"]::after {
+    background: var(--color-mint-bright);
+  }
+
+  .nav-pill .header-search,
+  .nav-pill > div > div > .btn-secondary,
+  .nav-pill .btn-ghost {
+    background: var(--color-on-dark-soft);
+    border-color: var(--color-on-dark-line);
+    color: var(--color-on-dark);
+  }
+
+  .nav-pill .header-search:hover,
+  .nav-pill > div > div > .btn-secondary:hover,
+  .nav-pill .btn-ghost:hover {
+    border-color: var(--color-mint-edge);
+    color: var(--color-on-dark);
+  }
+
+  .mobile-nav .lang-switch {
+    background: var(--color-on-dark-soft);
+    border-color: var(--color-on-dark-line);
+  }
+
+  .mobile-nav .lang-switch a:not([aria-current="true"]) {
+    color: var(--color-on-dark-muted);
+  }
+
+  .nav-pill .kbd {
+    background: var(--color-on-dark-line);
+    color: var(--color-on-dark-muted);
+  }
+
+  .nav-pill .btn-primary,
+  .mobile-nav .btn-primary {
+    background: var(--color-mint-bright);
+    border-color: var(--color-mint-bright);
+  }
+
+  .nav-pill :focus-visible,
+  .mobile-nav :focus-visible {
+    outline-color: var(--color-mint-bright);
   }
 
   .mobile-nav {
     margin-top: 8px;
     padding: 0.5rem;
-    background: var(--color-glass-deep);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border: 0.8px solid var(--color-line);
+    background: var(--color-glass-nav);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 0.8px solid var(--color-on-dark-line);
     border-radius: var(--radius-card);
   }
 
