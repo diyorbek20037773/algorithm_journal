@@ -46,6 +46,9 @@ The client will NOT be available while you work. Read this file completely befor
 | OAI-PMH | Own implementation in app `oai` (oai_dc + jats formats) — small, spec-exact, fully tested |
 | Analytics | Matomo (self-hosted container, optional via env) — never Google Analytics |
 | Containerisation | Docker Compose for dev (`docker-compose.yml`) and prod (`docker-compose.prod.yml` with Caddy for automatic HTTPS) |
+| Kubernetes delivery | Kustomize (`k8s/base`, `k8s/components`, `k8s/overlays/{staging,production}`) synced by **Argo CD** (GitOps, `k8s/argocd`); images in GHCR by default (`IMAGE_REGISTRY` overrides) — see §9 |
+| Code analysis | **SonarQube/SonarCloud** (`sonar-project.properties`, Quality Gate blocks deploy) + `pip-audit` |
+| Observability | **OpenTelemetry** → OTel Collector → **Jaeger** (tracing); JSON logs → **Fluent Bit → Elasticsearch → Kibana** (logging); `AuditLog` + `arer.audit` logger + kube-apiserver audit policy (audit) |
 | Tests | `pytest` + `pytest-django` + `factory_boy`; Playwright (Python) smoke test for the end-to-end submission→publication flow |
 | Lint / format | `ruff` (lint + format), `djlint` for templates, `mypy` (lenient), `pre-commit` config |
 | Package manager | `uv` (with `pyproject.toml` + `uv.lock`) |
@@ -99,7 +102,9 @@ algorithm_journal/
 ├── fixtures/ or seed/ # seed data & demo content used by `manage.py seed_demo`
 ├── scripts/           # backup.sh, restore.sh, deploy.sh
 ├── tests/             # pytest suites mirrored per app + e2e/
-└── docs/              # ADMIN_GUIDE_uz.md, EDITOR_GUIDE_en.md, EDITOR_GUIDE_uz.md, DEPLOYMENT.md, BACKUP_RESTORE.md, INTEGRATIONS.md
+├── k8s/               # base/, components/data/, overlays/{staging,production}/, monitoring/, cluster-audit/, argocd/ (§9)
+├── sonar-project.properties
+└── docs/              # ADMIN_GUIDE_uz.md, EDITOR_GUIDE_en.md, EDITOR_GUIDE_uz.md, DEPLOYMENT.md, BACKUP_RESTORE.md, INTEGRATIONS.md, PIPELINE_uz.md
 ```
 
 If the `design/` folder exists (output of Claude Design), its HTML/Tailwind pages are the visual
@@ -184,3 +189,57 @@ Must contain, in Uzbek (Latin script) with commands in code blocks:
 - Lorem ipsum in the final seed. Demo articles must read like plausible economics papers
   (invented but sensible titles, abstracts, keywords, JEL codes, references with real DOI formats
   marked as examples). Editorial board demo entries must be clearly labelled "DEMO — replace".
+- Real secrets in `k8s/` (only `k8s/secret.example.yaml` with placeholders), `kubectl apply`
+  by hand to a GitOps-managed namespace (change Git; Argo CD applies it), migrations inside
+  web replicas on Kubernetes (`MIGRATE_ON_START=false`; the `arer-migrate` hook Job owns them),
+  more than one Celery beat replica.
+
+## 9. Delivery pipeline (Local → CI → CD → Monitoring)
+
+Full operator guide (Uzbek): `docs/PIPELINE_uz.md`. Every change must keep all four stages green.
+
+### 9.1 Local — before `git push`
+
+| Step | Command | Must pass |
+|---|---|---|
+| commit | `git commit` | pre-commit: ruff, ruff-format, djlint, `manage.py check`, missing migrations, YAML, private keys |
+| test | `make test` | pytest (needs `docker compose up -d db redis`) |
+| build | `make build` | prod image (`--target runtime`, **no** dev extras) |
+| manifests | `make k8s-validate` | `kubectl kustomize` + kubeconform on every overlay |
+| all of it | `make verify` | the gate to run before pushing; `pre-push` hook re-runs pytest |
+
+### 9.2 CI — `.github/workflows/ci.yml`
+
+`quality` (lint, i18n, `check --deploy`, migrations, pytest + coverage XML, backup drill,
+pip-audit) · `e2e` (Playwright) · `manifests` (kustomize + kubeconform incl. Argo CD CRDs) ·
+`sonarqube` (Quality Gate, runs when `SONAR_TOKEN` is set) · `image` (build; push to
+`${IMAGE_REGISTRY:-ghcr.io}` on `main` as `sha-<12>` and on tags `v*` as `<version>`) ·
+`gitops` (writes the tag into `k8s/overlays/staging` for `main`, `k8s/overlays/production`
+for `v*`, commits `[skip ci]`). Validate workflow edits with `actionlint`.
+
+### 9.3 CD — Argo CD + Kubernetes
+
+- `k8s/argocd/root.yaml` (app-of-apps) → `arer` AppProject, `arer-staging` (auto-sync, prune),
+  `arer-production` (auto-sync, no prune, weekday sync window), `arer-monitoring`.
+- Sync waves: `-2` Postgres/Redis (`k8s/components/data`) → `-1` `arer-migrate` Job (Sync hook,
+  entrypoint role `migrate`) → `0` web/worker/beat.
+- Probes: liveness/startup `/livez/` (no backend), readiness `/healthz/` (DB + cache); probes
+  send `Host: localhost`, so `localhost` must stay in every overlay's `DJANGO_ALLOWED_HOSTS`.
+- Pods: non-root, no privilege escalation, `drop: [ALL]`, RuntimeDefault seccomp, resource
+  requests/limits, no SA token; namespaces enforce Pod Security `restricted`; NetworkPolicy
+  default-deny. `tests/test_k8s_manifests.py` pins these rules — extend it with new workloads.
+- Personal data stays in Uzbekistan (TZ §3.4): the default cluster is a single-node VPS there.
+- Release to production: `make release VERSION=x.y.z`. Rollback: `git revert` the overlay commit.
+
+### 9.4 Monitoring
+
+- **Tracing:** `apps/core/observability.py::init_tracing` — Django, psycopg, Redis, requests,
+  Celery. Off unless `OTEL_EXPORTER_OTLP_ENDPOINT` is set. Call it **before**
+  `get_wsgi_application()` (otherwise request spans are lost — regression-tested).
+- **Logging:** `LOG_FORMAT=json` → one JSON object per line with `trace_id`/`span_id`; Fluent Bit
+  indexes `arer-logs-*`. Log with `logger.info("msg", extra={...})`, never `print`.
+- **Audit:** every security/editorial action goes through `apps.core.services.log_action`, which
+  writes `AuditLog` **and** emits on logger `arer.audit` → `arer-audit-*` (365 days). The
+  kube-apiserver policy in `k8s/cluster-audit/` feeds `k8s-audit-*`. Secrets are logged at
+  Metadata level only.
+- UIs are port-forward only (`jaeger-query:16686`, `kibana:5601`); never expose them publicly.

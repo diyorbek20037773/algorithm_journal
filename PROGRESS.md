@@ -218,9 +218,43 @@ the seven audited pages; screenshots regenerated in `docs/screenshots/`.
 
 ---
 
+## Delivery pipeline audit — Local → CI → CD → Monitoring ✅ (17 September 2026)
+
+**Found and fixed**
+
+- `STORAGE_BACKEND=s3` crashed start-up: `django-storages` was never a dependency (D43).
+- The production image carried every dev tool (1.15 GB → 724 MB, D44).
+- First end-to-end tracing run produced only orphan spans: instrumentation ran
+  after the WSGI handler was built (fixed and regression-tested, D48).
+
+**Added**
+
+- CI: `manifests` (kustomize + kubeconform), `sonarqube` (Quality Gate),
+  `image` (GHCR push, immutable tags), `gitops` (overlay bump, `[skip ci]`).
+- CD: `k8s/` — Kustomize base/overlays, in-cluster data component with nightly
+  `pg_dump`, migrate hook Job, HPA/PDB/NetworkPolicy, Argo CD app-of-apps.
+- Monitoring: OpenTelemetry tracing → Collector → Jaeger; JSON logs → Fluent Bit →
+  Elasticsearch/Kibana; audit stream `arer.audit` + kube-apiserver audit policy;
+  index retention CronJob.
+- Local: `make build`, `make k8s-validate`, `make verify`, `make release`;
+  `pre-push` hook runs the tests. `/livez/` liveness endpoint.
+- Guide: `docs/PIPELINE_uz.md`; rules: CLAUDE.md §9.
+
+**Verified** — ruff/djlint clean; migrations and translations complete; full
+pytest suite green; prod image builds and boots with S3 settings; 70/70
+manifests valid (kubeconform, incl. Argo CD CRDs); Fluent Bit `--dry-run` and
+OTel Collector `validate` pass; actionlint clean; prod image + Jaeger end to end:
+`GET /oai/` → one trace with 1 HTTP, 8 SQL and 15 Redis spans; JSON log lines
+carry service, environment and version.
+
+**Needs real credentials / a cluster** — SonarQube token, registry push on the
+first `main` run, Argo CD sync on the Uzbek VPS (steps in `docs/PIPELINE_uz.md`).
+
+---
+
 ## Test suite
 
-360 tests, all passing:
+360 tests at handover (see the pipeline audit above for the current count), all passing:
 
 | Module | Covers |
 |---|---|
@@ -240,6 +274,8 @@ the seven audited pages; screenshots regenerated in `docs/screenshots/`.
 | `test_security.py` | 2FA, permissions, uploads, headers, PDF scrubbing |
 | `test_performance.py` | query counts and bundle sizes |
 | `test_e2e_flow.py` | the complete editorial flow end to end |
+| `test_observability.py` | JSON log format, trace ids, tracing switches, audit stream, `/livez/` |
+| `test_k8s_manifests.py` | pod hardening, probes, migrate hook, single beat, audit routing, Argo CD paths, no secrets |
 
 ---
 

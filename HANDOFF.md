@@ -210,6 +210,21 @@ bir marta sinab koʻring** — zaxira sinalmagunicha zaxira hisoblanmaydi:
 bash scripts/restore.sh backups/arer-YYYY-MM-DD.sql.gz
 ```
 
+### 2.3. Kubernetes + Argo CD (GitOps) — ixtiyoriy
+
+Docker Compose yoʻli ishlashda davom etadi. Kubernetes klasteri tanlansa, toʻliq
+pipeline tayyor: CI image'ni registry'ga yuklaydi va `k8s/overlays/*` dagi tegni
+yangilaydi, Argo CD klasterni Git bilan sinxronlaydi, Jaeger/EFK kuzatuv qiladi.
+Batafsil: [`docs/PIPELINE_uz.md`](docs/PIPELINE_uz.md).
+
+```bash
+make verify                        # push'dan oldin: lint, test, image, manifestlar
+make release VERSION=1.1.0         # production'ga chiqarish (teg -> CI -> Argo CD)
+```
+
+Kerakli GitHub sozlamalari: `SONAR_TOKEN` (secret), ixtiyoriy `SONAR_HOST_URL`,
+`IMAGE_REGISTRY`, `REGISTRY_USERNAME`/`REGISTRY_PASSWORD`.
+
 ---
 
 ## 3. Sozlash kerak boʻlgan sirlar
