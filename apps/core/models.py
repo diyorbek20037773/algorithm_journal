@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import re
+import uuid
 from typing import ClassVar
 
 from django.conf import settings
@@ -45,6 +46,12 @@ class AutoTranslitMixin(models.Model):
     def auto_translit_fields(self) -> list[str]:
         """Names of the fields that were filled by the transliterator."""
         return sorted(self.auto_translit.keys()) if isinstance(self.auto_translit, dict) else []
+
+
+def print_asset_upload_to(instance, filename: str) -> str:
+    """Store journal PDF artwork under a UUID path, never the uploaded name."""
+    suffix = filename.rsplit(".", 1)[-1].lower() if "." in filename else "png"
+    return f"branding/print/{uuid.uuid4().hex}.{suffix}"
 
 
 class SiteSettings(TimeStampedModel, AutoTranslitMixin):
@@ -124,6 +131,35 @@ class SiteSettings(TimeStampedModel, AutoTranslitMixin):
         help_text=_(
             "Optional page after the editorial board in every issue PDF, e.g. the list of "
             "accredited specialities. One item per line; a line starting with # is a heading."
+        ),
+    )
+    print_cover_background = models.ImageField(
+        _("issue PDF cover background"),
+        upload_to=print_asset_upload_to,
+        blank=True,
+        null=True,
+        help_text=_(
+            "Full-page picture behind the generated cover (A4 portrait, at least 1240×1754 px). "
+            "It is darkened so the title stays readable. Leave empty for the built-in artwork."
+        ),
+    )
+    print_back_cover_background = models.ImageField(
+        _("issue PDF back cover background"),
+        upload_to=print_asset_upload_to,
+        blank=True,
+        null=True,
+        help_text=_(
+            "Full-page picture behind the back cover. Leave empty for the built-in artwork."
+        ),
+    )
+    print_page_background = models.ImageField(
+        _("issue PDF page background"),
+        upload_to=print_asset_upload_to,
+        blank=True,
+        null=True,
+        help_text=_(
+            "Light full-page picture (frame, watermark) behind the editorial board, contents "
+            "and article pages. Keep it pale: the text is printed on top."
         ),
     )
 

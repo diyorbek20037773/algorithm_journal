@@ -75,9 +75,10 @@ class VolumeAdmin(TabbedTranslationAdmin):
 class IssueAdmin(TabbedTranslationAdmin):
     """Monthly issues."""
 
-    list_display = ("__str__", "published_at", "is_published", "is_current")
+    list_display = ("__str__", "published_at", "is_published", "is_current", "print_status")
     list_filter = ("is_published", "is_current", "volume")
     date_hierarchy = "published_at"
+    readonly_fields = ("print_status", "print_error", "print_built_at", "print_page_count")
 
 
 @admin.register(Article)

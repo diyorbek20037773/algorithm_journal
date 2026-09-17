@@ -172,18 +172,17 @@ def build_labels(issue: Issue) -> layout.IssueLabels:
     if address:
         imprint.append(_("Address: %(address)s") % {"address": " ".join(address.split())})
 
-    contacts = [
-        item
-        for item in (
-            site.contact_phone,
-            site.contact_email,
-            settings.SITE_URL.replace("https://", "").replace("http://", "").rstrip("/"),
-        )
-        if item
-    ]
+    website = settings.SITE_URL.replace("https://", "").replace("http://", "").rstrip("/")
+    contacts: list[tuple[str, str]] = []
+    if site.contact_phone:
+        contacts.append((_("Phone"), site.contact_phone))
+    if site.contact_email:
+        contacts.append((_("E-mail"), site.contact_email))
+    if website:
+        contacts.append((_("Website"), website))
     telegram = (site.social_links or {}).get("telegram")
     if telegram:
-        contacts.append(str(telegram))
+        contacts.append(("Telegram", str(telegram)))
 
     def read(field_file) -> bytes | None:
         if not field_file:
@@ -220,6 +219,18 @@ def build_labels(issue: Issue) -> layout.IssueLabels:
         cover_image=read(issue.cover),
         logo_image=read(site.logo_dark),
         short_code=site.short_code,
+        open_access_label=_("Open access · CC BY 4.0").upper(),
+        indexed_in_label=_("Abstracting and indexing"),
+        indexing=[
+            (service.name, read(service.logo))
+            for service in site.indexing_badges.filter(is_active=True).order_by("order", "name")
+        ],
+        qr_url=absolute_url(issue.get_absolute_url()),
+        website=website,
+        cover_background=read(site.print_cover_background),
+        back_cover_background=read(site.print_back_cover_background),
+        page_background=read(site.print_page_background),
+        highlights_label=_("In this issue"),
     )
 
 
@@ -323,6 +334,7 @@ def render_issue(issue: Issue) -> BuildResult:
 
     with translation.override(issue.print_language or "uz"):
         labels = build_labels(issue)
+        labels.highlights = [(_article_title(a), _authors_line(a)) for a in articles[:5]]
         groups = board_groups()
         layout.register_fonts()
 

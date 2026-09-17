@@ -263,3 +263,67 @@ def test_remove_articles_keeps_published_ones(article, second_article, site_sett
     second_article.refresh_from_db()
     assert article.issue_id is not None  # published: stays
     assert second_article.issue_id is None
+
+
+def _png(color: tuple[int, int, int]) -> bytes:
+    from PIL import Image
+
+    buffer = io.BytesIO()
+    Image.new("RGB", (60, 85), color).save(buffer, format="PNG")
+    return buffer.getvalue()
+
+
+@pytest.mark.django_db
+def test_uploaded_backgrounds_and_cover_design(article, second_article, site_settings) -> None:
+    """Uploaded artwork is used; the cover lists the issue's articles and a QR code."""
+    set_galley(article, 1)
+    site_settings.print_cover_background.save("c.png", ContentFile(_png((20, 90, 70))), save=False)
+    site_settings.print_back_cover_background.save(
+        "b.png", ContentFile(_png((10, 40, 50))), save=False
+    )
+    site_settings.print_page_background.save(
+        "p.png", ContentFile(_png((240, 250, 245))), save=False
+    )
+    site_settings.save()
+    assert site_settings.print_page_background.name.startswith("branding/print/")
+    issue = article.issue
+    issue.print_language = "ru"
+    issue.save()
+
+    result = issue_print.render_issue(issue)
+
+    reader = PdfReader(io.BytesIO(result.issue_pdf))
+    cover = reader.pages[0].extract_text()
+    # letter-spaced labels come out one glyph per line; the Russian month does not
+    assert "Электронное издание" in cover
+    assert "Bank Competition" in cover
+    # every page that is not a cover carries the uploaded page background image
+    inner = reader.pages[3]
+    assert inner["/Resources"]["/XObject"]
+    assert len(reader.pages) == result.page_count
+
+
+def test_built_in_artwork_renders_without_uploads() -> None:
+    """The generated covers work with no pictures, logos or indexing services."""
+    from apps.production import print_layout as layout
+
+    labels = layout.IssueLabels(
+        journal_name="MEZON",
+        journal_subtitle="Iqtisodiy tadqiqotlar sharhi",
+        running_title="MEZON",
+        issue_line="2026-yil, sentyabr · 9-son",
+        year_badge="2026",
+        issue_badge="SENTYABR · 9-SON",
+        edition_note="Elektron nashr",
+        contents_title="MUNDARIJA",
+        contents_rail="MUNDARIJA • СОДЕРЖАНИЕ • CONTENTS",
+        contacts=[("Telefon", "+998 71 000 00 00")],
+        qr_url="https://example.org/uz/issue/1/9/",
+        indexing=[("Google Scholar", None)],
+        highlights_label="Ushbu sonda",
+        highlights=[("Gʻalla bozori va narxlar", "Qodirov Gʻayrat")],
+    )
+    cover = PdfReader(io.BytesIO(layout.render_cover(labels))).pages[0].extract_text()
+    back = PdfReader(io.BytesIO(layout.render_back_cover(labels))).pages[0].extract_text()
+    assert "2026" in cover and "Google Scholar" in cover and "Qodirov" in cover
+    assert "+998 71 000 00 00" in back

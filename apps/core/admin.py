@@ -55,6 +55,17 @@ class SiteSettingsAdmin(TabbedTranslationAdmin):
             _("Integrations"),
             {"fields": ("google_scholar_url", "matomo_site_id", "indexing_badges")},
         ),
+        (
+            _("Journal PDF"),
+            {
+                "fields": (
+                    "print_cover_background",
+                    "print_back_cover_background",
+                    "print_page_background",
+                    "print_info_page",
+                )
+            },
+        ),
     )
     filter_horizontal = ("indexing_badges",)
 

@@ -238,6 +238,20 @@ Maket sozlamalari:
 - **Sayt sozlamalari → son PDF faylidagi maʼlumot sahifasi**: hayʼatdan keyingi
   ixtiyoriy sahifa (masalan, OAK ixtisosliklari roʻyxati). Har band alohida
   qatorda, `#` bilan boshlangan qator sarlavha.
+- **Jurnal dizayni va fonlari** — **Sayt sozlamalari → Jurnal PDF**:
+  - *Muqova foni* — muqova ortidagi butun sahifali rasm (A4 tik, kamida
+    1240×1754 px). Sarlavha oʻqilishi uchun avtomatik qoraytiriladi. Boʻsh
+    qolsa, MEZON brendidagi "algoritm tarmogʻi" bezagi chiziladi.
+  - *Orqa muqova foni* — xuddi shunday, orqa muqova uchun.
+  - *Sahifalar foni* — hayʼat, mundarija va maqola sahifalari ortidagi **och**
+    rangli rasm (ramka yoki suv belgisi); matn ustida chiqadi. Boʻsh qolsa, faqat
+    tashqi chetda ingichka yalpiz rang chiziq va kichik bezak boʻladi.
+  - Muqova pastidagi oq tasmada **Integratsiyalar → indekslash xizmatlari**da
+    belgilangan xizmatlar (logotipi yuklangan boʻlsa — logotip, aks holda nomi)
+    va son sahifasiga olib boruvchi QR-kod chiqadi. Muqovada "Ushbu sonda"
+    boʻlimida sonning dastlabki maqolalari koʻrsatiladi.
+  - Orqa muqovada jurnal haqida qisqa matn, QR-kod hamda telefon, e-pochta, sayt
+    va Telegram (**Kontakt** va **social links → telegram**) chiqadi.
 - Galley sahifalari chetidan `PRINT_SOURCE_TRIM` (standart 18 pt) qirqilib, jurnal
   ramkasiga sigʻdiriladi. Sahifalovchi PDF da oʻz kolontitulini qoʻymasin — uni
   tizim qoʻyadi.

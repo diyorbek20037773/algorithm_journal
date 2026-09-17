@@ -175,4 +175,27 @@ PART_9: dict[str, tuple[str, str]] = {
     "queued": ("navbatda", "в очереди"),
     "ready": ("tayyor", "готов"),
     "sent": ("yuborilgan", "отправлено"),
+    "Abstracting and indexing": ("Referatlash va indekslash", "Реферирование и индексирование"),
+    "Full-page picture behind the back cover. Leave empty for the built-in artwork.": (
+        "Orqa muqova ortidagi butun sahifali rasm. Boʻsh qoldirilsa, tayyor bezak ishlatiladi.",
+        "Полностраничное изображение на задней обложке. Оставьте пустым для встроенного оформления.",
+    ),
+    "Full-page picture behind the generated cover (A4 portrait, at least 1240×1754 px). It is darkened so the title stays readable. Leave empty for the built-in artwork.": (
+        "Muqova ortidagi butun sahifali rasm (A4 tik, kamida 1240×1754 px). Sarlavha oʻqilishi uchun u qoraytiriladi. Boʻsh qoldirilsa, tayyor bezak ishlatiladi.",
+        "Полностраничное изображение под обложкой (A4 книжная, не менее 1240×1754 px). Оно затемняется, чтобы заголовок читался. Оставьте пустым для встроенного оформления.",
+    ),
+    "In this issue": ("Ushbu sonda", "В этом выпуске"),
+    "Light full-page picture (frame, watermark) behind the editorial board, contents and article pages. Keep it pale: the text is printed on top.": (
+        "Tahrir hayʼati, mundarija va maqola sahifalari ortidagi och rangli butun sahifali rasm (ramka, suv belgisi). Och boʻlsin: matn uning ustida chiqadi.",
+        "Светлое полностраничное изображение (рамка, водяной знак) под страницами редколлегии, содержания и статей. Оно должно быть бледным: текст печатается поверх.",
+    ),
+    "Open access · CC BY 4.0": ("Ochiq kirish · CC BY 4.0", "Открытый доступ · CC BY 4.0"),
+    "Phone": ("Telefon", "Телефон"),
+    "Website": ("Veb-sayt", "Сайт"),
+    "issue PDF back cover background": (
+        "son PDF fayli orqa muqovasi foni",
+        "фон задней обложки PDF выпуска",
+    ),
+    "issue PDF cover background": ("son PDF fayli muqovasi foni", "фон обложки PDF выпуска"),
+    "issue PDF page background": ("son PDF fayli sahifalari foni", "фон страниц PDF выпуска"),
 }

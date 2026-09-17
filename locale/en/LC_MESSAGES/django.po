@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-17 17:08+0500\n"
+"POT-Creation-Date: 2026-09-17 17:56+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: ARER editorial office\n"
 "Language-Team: ARER\n"
@@ -70,7 +70,7 @@ msgstr ""
 msgid "Personal info"
 msgstr "Personal info"
 
-#: .\apps\accounts\admin.py:33 .\apps\journal\models.py:357
+#: .\apps\accounts\admin.py:33 .\apps\journal\models.py:359
 #: .\templates\dashboard\_base.html:15
 msgid "Editorial"
 msgstr "Editorial"
@@ -107,8 +107,8 @@ msgstr "Reviewer"
 msgid "Section editor"
 msgstr "Section editor"
 
-#: .\apps\accounts\models.py:23 .\apps\journal\models.py:828
-#: .\apps\production\issue_print.py:229 .\templates\journal\home.html:262
+#: .\apps\accounts\models.py:23 .\apps\journal\models.py:830
+#: .\apps\production\issue_print.py:240 .\templates\journal\home.html:262
 msgid "Editor-in-Chief"
 msgstr "Editor-in-Chief"
 
@@ -124,12 +124,12 @@ msgstr "Administrator"
 msgid "e-mail address"
 msgstr "e-mail address"
 
-#: .\apps\accounts\models.py:74 .\apps\journal\models.py:666
+#: .\apps\accounts\models.py:74 .\apps\journal\models.py:668
 #: .\apps\submissions\models.py:358
 msgid "given name"
 msgstr "given name"
 
-#: .\apps\accounts\models.py:75 .\apps\journal\models.py:667
+#: .\apps\accounts\models.py:75 .\apps\journal\models.py:669
 #: .\apps\submissions\models.py:359
 msgid "family name"
 msgstr "family name"
@@ -170,18 +170,18 @@ msgstr "users"
 msgid "Superuser"
 msgstr "Superuser"
 
-#: .\apps\accounts\models.py:190 .\apps\journal\models.py:676
-#: .\apps\journal\models.py:863 .\apps\submissions\models.py:362
+#: .\apps\accounts\models.py:190 .\apps\journal\models.py:678
+#: .\apps\journal\models.py:865 .\apps\submissions\models.py:362
 msgid "ORCID iD"
 msgstr "ORCID iD"
 
-#: .\apps\accounts\models.py:191 .\apps\journal\models.py:677
+#: .\apps\accounts\models.py:191 .\apps\journal\models.py:679
 #: .\apps\submissions\models.py:363
 msgid "ORCID verified"
 msgstr "ORCID verified"
 
-#: .\apps\accounts\models.py:192 .\apps\journal\models.py:678
-#: .\apps\journal\models.py:861 .\apps\submissions\models.py:364
+#: .\apps\accounts\models.py:192 .\apps\journal\models.py:680
+#: .\apps\journal\models.py:863 .\apps\submissions\models.py:364
 msgid "affiliation"
 msgstr "affiliation"
 
@@ -189,27 +189,27 @@ msgstr "affiliation"
 msgid "department"
 msgstr "department"
 
-#: .\apps\accounts\models.py:194 .\apps\journal\models.py:680
+#: .\apps\accounts\models.py:194 .\apps\journal\models.py:682
 #: .\apps\submissions\models.py:366
 msgid "city"
 msgstr "city"
 
-#: .\apps\accounts\models.py:195 .\apps\journal\models.py:681
-#: .\apps\journal\models.py:862 .\apps\metrics\models.py:45
+#: .\apps\accounts\models.py:195 .\apps\journal\models.py:683
+#: .\apps\journal\models.py:864 .\apps\metrics\models.py:45
 #: .\apps\submissions\models.py:367
 msgid "country"
 msgstr "country"
 
-#: .\apps\accounts\models.py:196 .\apps\journal\models.py:859
+#: .\apps\accounts\models.py:196 .\apps\journal\models.py:861
 msgid "academic degree"
 msgstr "academic degree"
 
-#: .\apps\accounts\models.py:197 .\apps\journal\models.py:860
+#: .\apps\accounts\models.py:197 .\apps\journal\models.py:862
 msgid "academic title"
 msgstr "academic title"
 
-#: .\apps\accounts\models.py:198 .\apps\journal\models.py:682
-#: .\apps\journal\models.py:867
+#: .\apps\accounts\models.py:198 .\apps\journal\models.py:684
+#: .\apps\journal\models.py:869
 msgid "biography"
 msgstr "biography"
 
@@ -217,7 +217,7 @@ msgstr "biography"
 msgid "website"
 msgstr "website"
 
-#: .\apps\accounts\models.py:200 .\apps\journal\models.py:864
+#: .\apps\accounts\models.py:200 .\apps\journal\models.py:866
 msgid "Scopus Author ID"
 msgstr "Scopus Author ID"
 
@@ -229,8 +229,8 @@ msgstr "areas of expertise"
 msgid "Comma-separated keywords used by the reviewer finder."
 msgstr "Comma-separated keywords used by the reviewer finder."
 
-#: .\apps\accounts\models.py:207 .\apps\journal\models.py:284
-#: .\apps\journal\models.py:383 .\apps\submissions\forms.py:145
+#: .\apps\accounts\models.py:207 .\apps\journal\models.py:286
+#: .\apps\journal\models.py:385 .\apps\submissions\forms.py:145
 #: .\apps\submissions\models.py:155
 #: .\templates\dashboard\submission_detail.html:69
 #: .\templates\journal\article_detail.html:120
@@ -299,6 +299,10 @@ msgstr "Policies"
 #: .\apps\core\admin.py:55
 msgid "Integrations"
 msgstr "Integrations"
+
+#: .\apps\core\admin.py:59 .\templates\production\issue_builder.html:12
+msgid "Journal PDF"
+msgstr "Journal PDF"
 
 #: .\apps\core\dates.py:25
 msgid "January"
@@ -424,135 +428,135 @@ msgstr "Spam detected."
 msgid "Please write at least 20 characters."
 msgstr "Please write at least 20 characters."
 
-#: .\apps\core\models.py:22
+#: .\apps\core\models.py:23
 msgid "created at"
 msgstr "created at"
 
-#: .\apps\core\models.py:23
+#: .\apps\core\models.py:24
 msgid "updated at"
 msgstr "updated at"
 
-#: .\apps\core\models.py:38
+#: .\apps\core\models.py:39
 msgid "machine-generated fields"
 msgstr "machine-generated fields"
 
-#: .\apps\core\models.py:60
+#: .\apps\core\models.py:67
 msgid "journal name"
 msgstr "journal name"
 
-#: .\apps\core\models.py:62
+#: .\apps\core\models.py:69
 msgid "journal subtitle"
 msgstr "journal subtitle"
 
-#: .\apps\core\models.py:63
+#: .\apps\core\models.py:70
 msgid "short code"
 msgstr "short code"
 
-#: .\apps\core\models.py:65
+#: .\apps\core\models.py:72
 msgid "e-ISSN"
 msgstr "e-ISSN"
 
-#: .\apps\core\models.py:66
+#: .\apps\core\models.py:73
 msgid "print ISSN"
 msgstr "print ISSN"
 
-#: .\apps\core\models.py:68
+#: .\apps\core\models.py:75
 msgid "registration certificate number"
 msgstr "registration certificate number"
 
-#: .\apps\core\models.py:71
+#: .\apps\core\models.py:78
 msgid "registration certificate date"
 msgstr "registration certificate date"
 
-#: .\apps\core\models.py:74
+#: .\apps\core\models.py:81
 msgid "registration authority"
 msgstr "registration authority"
 
-#: .\apps\core\models.py:78
+#: .\apps\core\models.py:85
 msgid "publisher"
 msgstr "publisher"
 
-#: .\apps\core\models.py:80
+#: .\apps\core\models.py:87
 msgid "publisher address"
 msgstr "publisher address"
 
-#: .\apps\core\models.py:81
+#: .\apps\core\models.py:88
 msgid "founded year"
 msgstr "founded year"
 
-#: .\apps\core\models.py:82 .\templates\core\about.html:246
+#: .\apps\core\models.py:89 .\templates\core\about.html:246
 msgid "DOI prefix"
 msgstr "DOI prefix"
 
-#: .\apps\core\models.py:84
+#: .\apps\core\models.py:91
 msgid "publication frequency"
 msgstr "publication frequency"
 
-#: .\apps\core\models.py:87
+#: .\apps\core\models.py:94
 msgid "contact e-mail"
 msgstr "contact e-mail"
 
-#: .\apps\core\models.py:88
+#: .\apps\core\models.py:95
 msgid "contact phone"
 msgstr "contact phone"
 
-#: .\apps\core\models.py:89
+#: .\apps\core\models.py:96
 msgid "contact address"
 msgstr "contact address"
 
-#: .\apps\core\models.py:93
+#: .\apps\core\models.py:100
 msgid "editor-in-chief"
 msgstr "editor-in-chief"
 
-#: .\apps\core\models.py:100 .\apps\core\models.py:210
+#: .\apps\core\models.py:107 .\apps\core\models.py:244
 msgid "logo"
 msgstr "logo"
 
-#: .\apps\core\models.py:101
+#: .\apps\core\models.py:108
 msgid "logo (dark)"
 msgstr "logo (dark)"
 
-#: .\apps\core\models.py:102
+#: .\apps\core\models.py:109
 msgid "favicon"
 msgstr "favicon"
 
-#: .\apps\core\models.py:104
+#: .\apps\core\models.py:111
 msgid "social links"
 msgstr "social links"
 
-#: .\apps\core\models.py:105
+#: .\apps\core\models.py:112
 msgid "Google Scholar profile"
 msgstr "Google Scholar profile"
 
-#: .\apps\core\models.py:106
+#: .\apps\core\models.py:113
 msgid "Crossref member ID"
 msgstr "Crossref member ID"
 
-#: .\apps\core\models.py:109
+#: .\apps\core\models.py:116
 msgid "maximum similarity (%)"
 msgstr "maximum similarity (%)"
 
-#: .\apps\core\models.py:114
+#: .\apps\core\models.py:121
 msgid "announcement bar text"
 msgstr "announcement bar text"
 
-#: .\apps\core\models.py:116
+#: .\apps\core\models.py:123
 msgid "Matomo site ID"
 msgstr "Matomo site ID"
 
-#: .\apps\core\models.py:118 .\apps\core\models.py:220
+#: .\apps\core\models.py:125 .\apps\core\models.py:254
 msgid "indexing services"
 msgstr "indexing services"
 
-#: .\apps\core\models.py:120
+#: .\apps\core\models.py:127
 msgid "show Online First"
 msgstr "show Online First"
 
-#: .\apps\core\models.py:122
+#: .\apps\core\models.py:129
 msgid "issue PDF information page"
 msgstr "issue PDF information page"
 
-#: .\apps\core\models.py:125
+#: .\apps\core\models.py:132
 msgid ""
 "Optional page after the editorial board in every issue PDF, e.g. the list of"
 " accredited specialities. One item per line; a line starting with # is a "
@@ -562,343 +566,381 @@ msgstr ""
 " accredited specialities. One item per line; a line starting with # is a "
 "heading."
 
-#: .\apps\core\models.py:131 .\apps\core\models.py:132
+#: .\apps\core\models.py:137
+msgid "issue PDF cover background"
+msgstr "issue PDF cover background"
+
+#: .\apps\core\models.py:142
+msgid ""
+"Full-page picture behind the generated cover (A4 portrait, at least "
+"1240×1754 px). It is darkened so the title stays readable. Leave empty for "
+"the built-in artwork."
+msgstr ""
+"Full-page picture behind the generated cover (A4 portrait, at least "
+"1240×1754 px). It is darkened so the title stays readable. Leave empty for "
+"the built-in artwork."
+
+#: .\apps\core\models.py:147
+msgid "issue PDF back cover background"
+msgstr "issue PDF back cover background"
+
+#: .\apps\core\models.py:151
+msgid ""
+"Full-page picture behind the back cover. Leave empty for the built-in "
+"artwork."
+msgstr ""
+"Full-page picture behind the back cover. Leave empty for the built-in "
+"artwork."
+
+#: .\apps\core\models.py:154
+msgid "issue PDF page background"
+msgstr "issue PDF page background"
+
+#: .\apps\core\models.py:159
+msgid ""
+"Light full-page picture (frame, watermark) behind the editorial board, "
+"contents and article pages. Keep it pale: the text is printed on top."
+msgstr ""
+"Light full-page picture (frame, watermark) behind the editorial board, "
+"contents and article pages. Keep it pale: the text is printed on top."
+
+#: .\apps\core\models.py:165 .\apps\core\models.py:166
 msgid "site settings"
 msgstr "site settings"
 
-#: .\apps\core\models.py:156
+#: .\apps\core\models.py:190
 msgid "Site settings cannot be deleted."
 msgstr "Site settings cannot be deleted."
 
-#: .\apps\core\models.py:192 .\templates\core\about.html:243
+#: .\apps\core\models.py:226 .\templates\core\about.html:243
 #: .\templates\includes\footer.html:13 .\templates\includes\header.html:15
 #: .\templates\journal\home.html:23
 msgid "pending"
 msgstr "pending"
 
-#: .\apps\core\models.py:208 .\apps\core\models.py:367
+#: .\apps\core\models.py:242 .\apps\core\models.py:401
 #: .\apps\journal\models.py:50 .\apps\journal\models.py:73
 msgid "name"
 msgstr "name"
 
-#: .\apps\core\models.py:209 .\apps\core\models.py:249
-#: .\apps\core\models.py:335 .\apps\journal\models.py:72
-#: .\apps\journal\models.py:239 .\apps\journal\models.py:377
+#: .\apps\core\models.py:243 .\apps\core\models.py:283
+#: .\apps\core\models.py:369 .\apps\journal\models.py:72
+#: .\apps\journal\models.py:241 .\apps\journal\models.py:379
 msgid "slug"
 msgstr "slug"
 
-#: .\apps\core\models.py:211 .\apps\core\models.py:300
+#: .\apps\core\models.py:245 .\apps\core\models.py:334
 msgid "URL"
 msgstr "URL"
 
-#: .\apps\core\models.py:213 .\apps\core\models.py:308
-#: .\apps\core\models.py:423 .\apps\journal\models.py:76
-#: .\apps\journal\models.py:873
+#: .\apps\core\models.py:247 .\apps\core\models.py:342
+#: .\apps\core\models.py:457 .\apps\journal\models.py:76
+#: .\apps\journal\models.py:875
 msgid "active"
 msgstr "active"
 
-#: .\apps\core\models.py:213
+#: .\apps\core\models.py:247
 msgid "Only active services are displayed publicly."
 msgstr "Only active services are displayed publicly."
 
-#: .\apps\core\models.py:215 .\apps\core\models.py:307
-#: .\apps\journal\models.py:75 .\apps\journal\models.py:657
-#: .\apps\journal\models.py:741 .\apps\journal\models.py:798
-#: .\apps\journal\models.py:872 .\apps\submissions\models.py:349
+#: .\apps\core\models.py:249 .\apps\core\models.py:341
+#: .\apps\journal\models.py:75 .\apps\journal\models.py:659
+#: .\apps\journal\models.py:743 .\apps\journal\models.py:800
+#: .\apps\journal\models.py:874 .\apps\submissions\models.py:349
 msgid "order"
 msgstr "order"
 
-#: .\apps\core\models.py:216 .\apps\submissions\models.py:828
+#: .\apps\core\models.py:250 .\apps\submissions\models.py:828
 msgid "note"
 msgstr "note"
 
-#: .\apps\core\models.py:219
+#: .\apps\core\models.py:253
 msgid "indexing service"
 msgstr "indexing service"
 
-#: .\apps\core\models.py:243 .\templates\core\_page_shell.html:19
+#: .\apps\core\models.py:277 .\templates\core\_page_shell.html:19
 #: .\templates\includes\header.html:63 .\templates\includes\header.html:137
 msgid "About"
 msgstr "About"
 
-#: .\apps\core\models.py:244 .\templates\core\_page_shell.html:15
+#: .\apps\core\models.py:278 .\templates\core\_page_shell.html:15
 #: .\templates\core\for_authors.html:3 .\templates\includes\header.html:57
 #: .\templates\includes\header.html:131
 msgid "For Authors"
 msgstr "For Authors"
 
-#: .\apps\core\models.py:245 .\templates\core\_page_shell.html:17
+#: .\apps\core\models.py:279 .\templates\core\_page_shell.html:17
 #: .\templates\includes\header.html:60 .\templates\includes\header.html:134
 msgid "For Reviewers"
 msgstr "For Reviewers"
 
-#: .\apps\core\models.py:246
+#: .\apps\core\models.py:280
 msgid "Footer"
 msgstr "Footer"
 
-#: .\apps\core\models.py:247
+#: .\apps\core\models.py:281
 msgid "Not in menu"
 msgstr "Not in menu"
 
-#: .\apps\core\models.py:250 .\apps\core\models.py:334
+#: .\apps\core\models.py:284 .\apps\core\models.py:368
 #: .\apps\journal\models.py:114 .\apps\journal\models.py:146
-#: .\apps\journal\models.py:374 .\apps\submissions\models.py:149
+#: .\apps\journal\models.py:376 .\apps\submissions\models.py:149
 msgid "title"
 msgstr "title"
 
-#: .\apps\core\models.py:251 .\apps\core\models.py:336
-#: .\apps\core\models.py:417
+#: .\apps\core\models.py:285 .\apps\core\models.py:370
+#: .\apps\core\models.py:451
 msgid "body (Markdown)"
 msgstr "body (Markdown)"
 
-#: .\apps\core\models.py:254
+#: .\apps\core\models.py:288
 msgid "parent page"
 msgstr "parent page"
 
-#: .\apps\core\models.py:261 .\apps\core\models.py:302
+#: .\apps\core\models.py:295 .\apps\core\models.py:336
 msgid "menu group"
 msgstr "menu group"
 
-#: .\apps\core\models.py:263
+#: .\apps\core\models.py:297
 msgid "menu order"
 msgstr "menu order"
 
-#: .\apps\core\models.py:264 .\apps\journal\models.py:149
-#: .\apps\journal\models.py:406 .\apps\metrics\models.py:96
+#: .\apps\core\models.py:298 .\apps\journal\models.py:149
+#: .\apps\journal\models.py:408 .\apps\metrics\models.py:96
 #: .\templates\production\issue_builder.html:7
 msgid "published"
 msgstr "published"
 
-#: .\apps\core\models.py:265
+#: .\apps\core\models.py:299
 msgid "SEO description"
 msgstr "SEO description"
 
-#: .\apps\core\models.py:267
+#: .\apps\core\models.py:301
 msgid "needs editorial review"
 msgstr "needs editorial review"
 
-#: .\apps\core\models.py:269
+#: .\apps\core\models.py:303
 msgid "Machine-drafted translations are flagged for proofreading."
 msgstr "Machine-drafted translations are flagged for proofreading."
 
-#: .\apps\core\models.py:275
+#: .\apps\core\models.py:309
 msgid "page"
 msgstr "page"
 
-#: .\apps\core\models.py:276
+#: .\apps\core\models.py:310
 msgid "pages"
 msgstr "pages"
 
-#: .\apps\core\models.py:299 .\apps\journal\models.py:271
-#: .\apps\journal\models.py:789
+#: .\apps\core\models.py:333 .\apps\journal\models.py:273
+#: .\apps\journal\models.py:791
 msgid "label"
 msgstr "label"
 
-#: .\apps\core\models.py:309
+#: .\apps\core\models.py:343
 msgid "open in a new tab"
 msgstr "open in a new tab"
 
-#: .\apps\core\models.py:312
+#: .\apps\core\models.py:346
 msgid "menu item"
 msgstr "menu item"
 
-#: .\apps\core\models.py:313
+#: .\apps\core\models.py:347
 msgid "menu items"
 msgstr "menu items"
 
-#: .\apps\core\models.py:337 .\apps\journal\models.py:148
+#: .\apps\core\models.py:371 .\apps\journal\models.py:148
 msgid "published at"
 msgstr "published at"
 
-#: .\apps\core\models.py:338
+#: .\apps\core\models.py:372
 msgid "expires at"
 msgstr "expires at"
 
-#: .\apps\core\models.py:339
+#: .\apps\core\models.py:373
 msgid "pinned"
 msgstr "pinned"
 
-#: .\apps\core\models.py:344
+#: .\apps\core\models.py:378
 msgid "announcement"
 msgstr "announcement"
 
-#: .\apps\core\models.py:345
+#: .\apps\core\models.py:379
 msgid "announcements"
 msgstr "announcements"
 
-#: .\apps\core\models.py:368 .\apps\journal\models.py:674
-#: .\apps\journal\models.py:865 .\apps\submissions\models.py:360
+#: .\apps\core\models.py:402 .\apps\journal\models.py:676
+#: .\apps\journal\models.py:867 .\apps\submissions\models.py:360
 msgid "e-mail"
 msgstr "e-mail"
 
-#: .\apps\core\models.py:369 .\apps\core\models.py:416
+#: .\apps\core\models.py:403 .\apps\core\models.py:450
 #: .\apps\submissions\models.py:762
 msgid "subject"
 msgstr "subject"
 
-#: .\apps\core\models.py:370 .\apps\crossref\models.py:65
+#: .\apps\core\models.py:404 .\apps\crossref\models.py:65
 #: .\apps\submissions\models.py:802
 msgid "message"
 msgstr "message"
 
-#: .\apps\core\models.py:371 .\apps\core\models.py:462
+#: .\apps\core\models.py:405 .\apps\core\models.py:496
 msgid "IP address"
 msgstr "IP address"
 
-#: .\apps\core\models.py:372
+#: .\apps\core\models.py:406
 msgid "handled"
 msgstr "handled"
 
-#: .\apps\core\models.py:375
+#: .\apps\core\models.py:409
 msgid "handled by"
 msgstr "handled by"
 
-#: .\apps\core\models.py:383
+#: .\apps\core\models.py:417
 msgid "contact message"
 msgstr "contact message"
 
-#: .\apps\core\models.py:384
+#: .\apps\core\models.py:418
 msgid "contact messages"
 msgstr "contact messages"
 
-#: .\apps\core\models.py:395
+#: .\apps\core\models.py:429
 msgid "Account verification"
 msgstr "Account verification"
 
-#: .\apps\core\models.py:398
+#: .\apps\core\models.py:432
 msgid "Submission received (author)"
 msgstr "Submission received (author)"
 
-#: .\apps\core\models.py:402
+#: .\apps\core\models.py:436
 msgid "Submission received (editor)"
 msgstr "Submission received (editor)"
 
-#: .\apps\core\models.py:404
+#: .\apps\core\models.py:438
 msgid "Editor assigned"
 msgstr "Editor assigned"
 
-#: .\apps\core\models.py:405
+#: .\apps\core\models.py:439
 msgid "Reviewer invitation"
 msgstr "Reviewer invitation"
 
-#: .\apps\core\models.py:406
+#: .\apps\core\models.py:440
 msgid "Reviewer reminder"
 msgstr "Reviewer reminder"
 
-#: .\apps\core\models.py:407
+#: .\apps\core\models.py:441
 msgid "Reviewer thanks"
 msgstr "Reviewer thanks"
 
-#: .\apps\core\models.py:408 .\apps\core\models.py:442
+#: .\apps\core\models.py:442 .\apps\core\models.py:476
 #: .\templates\dashboard\decide.html:3 .\templates\dashboard\decide.html:5
 msgid "Editorial decision"
 msgstr "Editorial decision"
 
-#: .\apps\core\models.py:409
+#: .\apps\core\models.py:443
 msgid "Revision reminder"
 msgstr "Revision reminder"
 
-#: .\apps\core\models.py:410
+#: .\apps\core\models.py:444
 msgid "Proof request"
 msgstr "Proof request"
 
-#: .\apps\core\models.py:411
+#: .\apps\core\models.py:445
 msgid "Article published"
 msgstr "Article published"
 
-#: .\apps\core\models.py:412
+#: .\apps\core\models.py:446
 msgid "DOI registered"
 msgstr "DOI registered"
 
-#: .\apps\core\models.py:413
+#: .\apps\core\models.py:447
 msgid "Contact form notification"
 msgstr "Contact form notification"
 
-#: .\apps\core\models.py:415
+#: .\apps\core\models.py:449
 msgid "event"
 msgstr "event"
 
-#: .\apps\core\models.py:419
+#: .\apps\core\models.py:453
 msgid "available placeholders"
 msgstr "available placeholders"
 
-#: .\apps\core\models.py:421
+#: .\apps\core\models.py:455
 msgid "Documented context variables, one per line."
 msgstr "Documented context variables, one per line."
 
-#: .\apps\core\models.py:426
+#: .\apps\core\models.py:460
 msgid "e-mail template"
 msgstr "e-mail template"
 
-#: .\apps\core\models.py:427
+#: .\apps\core\models.py:461
 msgid "e-mail templates"
 msgstr "e-mail templates"
 
-#: .\apps\core\models.py:438
+#: .\apps\core\models.py:472
 msgid "Login"
 msgstr "Login"
 
-#: .\apps\core\models.py:439
+#: .\apps\core\models.py:473
 msgid "Failed login"
 msgstr "Failed login"
 
-#: .\apps\core\models.py:440
+#: .\apps\core\models.py:474
 msgid "Logout"
 msgstr "Logout"
 
-#: .\apps\core\models.py:441
+#: .\apps\core\models.py:475
 msgid "Role change"
 msgstr "Role change"
 
-#: .\apps\core\models.py:443 .\templates\production\issue_builder.html:212
+#: .\apps\core\models.py:477 .\templates\production\issue_builder.html:53
 msgid "Publish"
 msgstr "Publish"
 
-#: .\apps\core\models.py:444
+#: .\apps\core\models.py:478
 msgid "Unpublish"
 msgstr "Unpublish"
 
-#: .\apps\core\models.py:445
+#: .\apps\core\models.py:479
 msgid "Settings change"
 msgstr "Settings change"
 
-#: .\apps\core\models.py:446
+#: .\apps\core\models.py:480
 msgid "File deletion"
 msgstr "File deletion"
 
-#: .\apps\core\models.py:447
+#: .\apps\core\models.py:481
 msgid "Workflow transition"
 msgstr "Workflow transition"
 
-#: .\apps\core\models.py:448
+#: .\apps\core\models.py:482
 msgid "Crossref deposit"
 msgstr "Crossref deposit"
 
-#: .\apps\core\models.py:449
+#: .\apps\core\models.py:483
 msgid "Policy override"
 msgstr "Policy override"
 
-#: .\apps\core\models.py:453
+#: .\apps\core\models.py:487
 msgid "actor"
 msgstr "actor"
 
-#: .\apps\core\models.py:459
+#: .\apps\core\models.py:493
 msgid "action"
 msgstr "action"
 
-#: .\apps\core\models.py:460
+#: .\apps\core\models.py:494
 msgid "target"
 msgstr "target"
 
-#: .\apps\core\models.py:461
+#: .\apps\core\models.py:495
 msgid "changes"
 msgstr "changes"
 
-#: .\apps\core\models.py:465
+#: .\apps\core\models.py:499
 msgid "audit log entry"
 msgstr "audit log entry"
 
-#: .\apps\core\models.py:466
+#: .\apps\core\models.py:500
 msgid "audit log"
 msgstr "audit log"
 
@@ -1064,12 +1106,12 @@ msgstr "batch ID"
 msgid "deposit XML"
 msgstr "deposit XML"
 
-#: .\apps\crossref\models.py:25 .\apps\journal\models.py:470
+#: .\apps\crossref\models.py:25 .\apps\journal\models.py:472
 msgid "articles"
 msgstr "articles"
 
 #: .\apps\crossref\models.py:28 .\apps\crossref\models.py:64
-#: .\apps\journal\models.py:409 .\apps\submissions\models.py:167
+#: .\apps\journal\models.py:411 .\apps\submissions\models.py:167
 #: .\apps\submissions\models.py:470 .\apps\submissions\models.py:541
 #: .\apps\submissions\models.py:882
 msgid "status"
@@ -1104,9 +1146,9 @@ msgstr "deposit batch"
 msgid "deposit batches"
 msgstr "deposit batches"
 
-#: .\apps\crossref\models.py:51 .\apps\journal\models.py:469
-#: .\apps\journal\models.py:655 .\apps\journal\models.py:739
-#: .\apps\journal\models.py:787 .\apps\journal\models.py:921
+#: .\apps\crossref\models.py:51 .\apps\journal\models.py:471
+#: .\apps\journal\models.py:657 .\apps\journal\models.py:741
+#: .\apps\journal\models.py:789 .\apps\journal\models.py:923
 #: .\apps\metrics\models.py:28 .\apps\metrics\models.py:66
 msgid "article"
 msgstr "article"
@@ -1115,8 +1157,8 @@ msgstr "article"
 msgid "batch"
 msgstr "batch"
 
-#: .\apps\crossref\models.py:63 .\apps\journal\models.py:392
-#: .\apps\journal\models.py:743
+#: .\apps\crossref\models.py:63 .\apps\journal\models.py:394
+#: .\apps\journal\models.py:745
 msgid "DOI"
 msgstr "DOI"
 
@@ -1222,7 +1264,7 @@ msgstr "Decision"
 msgid "Production"
 msgstr "Production"
 
-#: .\apps\dashboard\services.py:347 .\apps\journal\models.py:341
+#: .\apps\dashboard\services.py:347 .\apps\journal\models.py:343
 #: .\apps\submissions\models.py:54 .\templates\dashboard\home.html:169
 #: .\templates\dashboard\partials\submission_card.html:39
 #: .\templates\dashboard\partials\submission_card.html:57
@@ -1330,7 +1372,7 @@ msgstr "That code is not valid. Please try again."
 msgid "Latest articles"
 msgstr "Latest articles"
 
-#: .\apps\journal\models.py:49 .\apps\journal\models.py:270
+#: .\apps\journal\models.py:49 .\apps\journal\models.py:272
 msgid "code"
 msgstr "code"
 
@@ -1346,7 +1388,7 @@ msgstr "badge SVG"
 msgid "default licence"
 msgstr "default licence"
 
-#: .\apps\journal\models.py:56 .\apps\journal\models.py:414
+#: .\apps\journal\models.py:56 .\apps\journal\models.py:416
 msgid "licence"
 msgstr "licence"
 
@@ -1376,12 +1418,12 @@ msgstr "section editors"
 msgid "suggested JEL prefixes"
 msgstr "suggested JEL prefixes"
 
-#: .\apps\journal\models.py:91 .\apps\journal\models.py:368
+#: .\apps\journal\models.py:91 .\apps\journal\models.py:370
 #: .\apps\submissions\models.py:141
 msgid "section"
 msgstr "section"
 
-#: .\apps\journal\models.py:92 .\apps\journal\models.py:870
+#: .\apps\journal\models.py:92 .\apps\journal\models.py:872
 msgid "sections"
 msgstr "sections"
 
@@ -1438,31 +1480,26 @@ msgid "queued"
 msgstr "queued"
 
 #: .\apps\journal\models.py:161
-#| msgid "Funding"
 msgid "building"
 msgstr "building"
 
 #: .\apps\journal\models.py:162
-#| msgid "Ready"
 msgid "ready"
 msgstr "ready"
 
 #: .\apps\journal\models.py:163
-#| msgid "Failed"
 msgid "failed"
 msgstr "failed"
 
 #: .\apps\journal\models.py:166
-#| msgid "article language"
 msgid "print language"
 msgstr "print language"
 
 #: .\apps\journal\models.py:169
-#| msgid "first page"
 msgid "first page number"
 msgstr "first page number"
 
-#: .\apps\journal\models.py:171
+#: .\apps\journal\models.py:172
 msgid ""
 "Page number of the cover; raise it to continue the pagination of a previous "
 "part."
@@ -1470,58 +1507,56 @@ msgstr ""
 "Page number of the cover; raise it to continue the pagination of a previous "
 "part."
 
-#: .\apps\journal\models.py:174
-#| msgid "status"
+#: .\apps\journal\models.py:176
 msgid "layout status"
 msgstr "layout status"
 
-#: .\apps\journal\models.py:176
+#: .\apps\journal\models.py:178
 msgid "layout error"
 msgstr "layout error"
 
-#: .\apps\journal\models.py:177
+#: .\apps\journal\models.py:179
 msgid "layout built at"
 msgstr "layout built at"
 
-#: .\apps\journal\models.py:178
-#| msgid "Open the issue builder"
+#: .\apps\journal\models.py:180
 msgid "pages in the issue PDF"
 msgstr "pages in the issue PDF"
 
-#: .\apps\journal\models.py:183 .\apps\journal\models.py:361
+#: .\apps\journal\models.py:185 .\apps\journal\models.py:363
 msgid "issue"
 msgstr "issue"
 
-#: .\apps\journal\models.py:184 .\templates\journal\archive.html:22
+#: .\apps\journal\models.py:186 .\templates\journal\archive.html:22
 msgid "issues"
 msgstr "issues"
 
-#: .\apps\journal\models.py:238 .\apps\journal\models.py:242
+#: .\apps\journal\models.py:240 .\apps\journal\models.py:244
 msgid "keyword"
 msgstr "keyword"
 
-#: .\apps\journal\models.py:243 .\apps\journal\models.py:380
+#: .\apps\journal\models.py:245 .\apps\journal\models.py:382
 #: .\apps\submissions\models.py:152
 msgid "keywords"
 msgstr "keywords"
 
-#: .\apps\journal\models.py:274
+#: .\apps\journal\models.py:276
 msgid "parent"
 msgstr "parent"
 
-#: .\apps\journal\models.py:280
+#: .\apps\journal\models.py:282
 msgid "level"
 msgstr "level"
 
-#: .\apps\journal\models.py:283 .\templates\search\search.html:40
+#: .\apps\journal\models.py:285 .\templates\search\search.html:40
 msgid "JEL code"
 msgstr "JEL code"
 
-#: .\apps\journal\models.py:339 .\apps\submissions\models.py:41
+#: .\apps\journal\models.py:341 .\apps\submissions\models.py:41
 msgid "Draft"
 msgstr "Draft"
 
-#: .\apps\journal\models.py:340 .\apps\submissions\views.py:459
+#: .\apps\journal\models.py:342 .\apps\submissions\views.py:459
 #: .\templates\includes\header.html:54 .\templates\includes\header.html:128
 #: .\templates\journal\article_detail.html:29
 #: .\templates\journal\article_detail.html:48
@@ -1533,131 +1568,131 @@ msgstr "Draft"
 msgid "Online First"
 msgstr "Online First"
 
-#: .\apps\journal\models.py:342
+#: .\apps\journal\models.py:344
 msgid "Retracted"
 msgstr "Retracted"
 
-#: .\apps\journal\models.py:343 .\apps\submissions\models.py:56
+#: .\apps\journal\models.py:345 .\apps\submissions\models.py:56
 msgid "Withdrawn"
 msgstr "Withdrawn"
 
-#: .\apps\journal\models.py:346
+#: .\apps\journal\models.py:348
 msgid "Not assigned"
 msgstr "Not assigned"
 
-#: .\apps\journal\models.py:347
+#: .\apps\journal\models.py:349
 msgid "Reserved"
 msgstr "Reserved"
 
-#: .\apps\journal\models.py:348
+#: .\apps\journal\models.py:350
 msgid "Registered"
 msgstr "Registered"
 
-#: .\apps\journal\models.py:349
+#: .\apps\journal\models.py:351
 msgid "Registration failed"
 msgstr "Registration failed"
 
-#: .\apps\journal\models.py:350
+#: .\apps\journal\models.py:352
 msgid "Metadata updated"
 msgstr "Metadata updated"
 
-#: .\apps\journal\models.py:353 .\apps\submissions\models.py:117
+#: .\apps\journal\models.py:355 .\apps\submissions\models.py:117
 msgid "Research article"
 msgstr "Research article"
 
-#: .\apps\journal\models.py:354 .\apps\submissions\models.py:118
+#: .\apps\journal\models.py:356 .\apps\submissions\models.py:118
 msgid "Review article"
 msgstr "Review article"
 
-#: .\apps\journal\models.py:355 .\apps\submissions\models.py:119
+#: .\apps\journal\models.py:357 .\apps\submissions\models.py:119
 msgid "Short communication"
 msgstr "Short communication"
 
-#: .\apps\journal\models.py:356 .\apps\submissions\models.py:120
+#: .\apps\journal\models.py:358 .\apps\submissions\models.py:120
 msgid "Book review"
 msgstr "Book review"
 
-#: .\apps\journal\models.py:371 .\apps\submissions\models.py:146
+#: .\apps\journal\models.py:373 .\apps\submissions\models.py:146
 msgid "article type"
 msgstr "article type"
 
-#: .\apps\journal\models.py:375
+#: .\apps\journal\models.py:377
 msgid "subtitle"
 msgstr "subtitle"
 
-#: .\apps\journal\models.py:376 .\apps\submissions\models.py:150
+#: .\apps\journal\models.py:378 .\apps\submissions\models.py:150
 msgid "abstract"
 msgstr "abstract"
 
-#: .\apps\journal\models.py:386
+#: .\apps\journal\models.py:388
 msgid "article language"
 msgstr "article language"
 
-#: .\apps\journal\models.py:394
+#: .\apps\journal\models.py:396
 msgid "DOI status"
 msgstr "DOI status"
 
-#: .\apps\journal\models.py:397
+#: .\apps\journal\models.py:399
 msgid "first page"
 msgstr "first page"
 
-#: .\apps\journal\models.py:398
+#: .\apps\journal\models.py:400
 msgid "last page"
 msgstr "last page"
 
-#: .\apps\journal\models.py:399
+#: .\apps\journal\models.py:401
 msgid "e-location ID"
 msgstr "e-location ID"
 
-#: .\apps\journal\models.py:400
+#: .\apps\journal\models.py:402
 msgid "article number"
 msgstr "article number"
 
-#: .\apps\journal\models.py:402
+#: .\apps\journal\models.py:404
 msgid "received"
 msgstr "received"
 
-#: .\apps\journal\models.py:403
+#: .\apps\journal\models.py:405
 msgid "revised"
 msgstr "revised"
 
-#: .\apps\journal\models.py:404 .\apps\metrics\models.py:94
+#: .\apps\journal\models.py:406 .\apps\metrics\models.py:94
 msgid "accepted"
 msgstr "accepted"
 
-#: .\apps\journal\models.py:405
+#: .\apps\journal\models.py:407
 msgid "published online"
 msgstr "published online"
 
-#: .\apps\journal\models.py:421
+#: .\apps\journal\models.py:423
 msgid "copyright holder"
 msgstr "copyright holder"
 
-#: .\apps\journal\models.py:423 .\apps\submissions\models.py:227
+#: .\apps\journal\models.py:425 .\apps\submissions\models.py:227
 msgid "funding statement"
 msgstr "funding statement"
 
-#: .\apps\journal\models.py:425 .\apps\submissions\models.py:229
+#: .\apps\journal\models.py:427 .\apps\submissions\models.py:229
 msgid "conflict of interest statement"
 msgstr "conflict of interest statement"
 
-#: .\apps\journal\models.py:429 .\apps\submissions\models.py:231
+#: .\apps\journal\models.py:431 .\apps\submissions\models.py:231
 msgid "data availability statement"
 msgstr "data availability statement"
 
-#: .\apps\journal\models.py:431 .\apps\production\services.py:179
+#: .\apps\journal\models.py:433 .\apps\production\services.py:179
 msgid "AI use statement"
 msgstr "AI use statement"
 
-#: .\apps\journal\models.py:435
+#: .\apps\journal\models.py:437
 msgid "acknowledgements"
 msgstr "acknowledgements"
 
-#: .\apps\journal\models.py:436
+#: .\apps\journal\models.py:438
 msgid "retraction notice"
 msgstr "retraction notice"
 
-#: .\apps\journal\models.py:440 .\apps\submissions\models.py:244
+#: .\apps\journal\models.py:442 .\apps\submissions\models.py:244
 #: .\apps\submissions\models.py:347 .\apps\submissions\models.py:408
 #: .\apps\submissions\models.py:464 .\apps\submissions\models.py:671
 #: .\apps\submissions\models.py:711 .\apps\submissions\models.py:758
@@ -1665,227 +1700,226 @@ msgstr "retraction notice"
 msgid "submission"
 msgstr "submission"
 
-#: .\apps\journal\models.py:447 .\apps\metrics\models.py:71
+#: .\apps\journal\models.py:449 .\apps\metrics\models.py:71
 msgid "views"
 msgstr "views"
 
-#: .\apps\journal\models.py:448 .\apps\metrics\models.py:72
+#: .\apps\journal\models.py:450 .\apps\metrics\models.py:72
 msgid "downloads"
 msgstr "downloads"
 
-#: .\apps\journal\models.py:449
+#: .\apps\journal\models.py:451
 msgid "cited by (Crossref)"
 msgstr "cited by (Crossref)"
 
-#: .\apps\journal\models.py:450
+#: .\apps\journal\models.py:452
 msgid "cited-by updated"
 msgstr "cited-by updated"
 
-#: .\apps\journal\models.py:451
+#: .\apps\journal\models.py:453
 msgid "featured"
 msgstr "featured"
 
-#: .\apps\journal\models.py:453
+#: .\apps\journal\models.py:455
 msgid "offprint PDF"
 msgstr "offprint PDF"
 
-#: .\apps\journal\models.py:457
+#: .\apps\journal\models.py:459
 msgid "The article in the journal layout, built with the issue PDF."
 msgstr "The article in the journal layout, built with the issue PDF."
 
-#: .\apps\journal\models.py:459
-#| msgid "Comments to the authors"
+#: .\apps\journal\models.py:461
 msgid "offprint sent to authors"
 msgstr "offprint sent to authors"
 
-#: .\apps\journal\models.py:466
+#: .\apps\journal\models.py:468
 msgid "search vector"
 msgstr "search vector"
 
-#: .\apps\journal\models.py:660 .\apps\journal\models.py:849
+#: .\apps\journal\models.py:662 .\apps\journal\models.py:851
 #: .\apps\submissions\models.py:352
 msgid "account"
 msgstr "account"
 
-#: .\apps\journal\models.py:669
+#: .\apps\journal\models.py:671
 msgid "given name (native script)"
 msgstr "given name (native script)"
 
-#: .\apps\journal\models.py:672
+#: .\apps\journal\models.py:674
 msgid "family name (native script)"
 msgstr "family name (native script)"
 
-#: .\apps\journal\models.py:675 .\apps\submissions\models.py:361
+#: .\apps\journal\models.py:677 .\apps\submissions\models.py:361
 msgid "corresponding author"
 msgstr "corresponding author"
 
-#: .\apps\journal\models.py:679 .\apps\submissions\models.py:365
+#: .\apps\journal\models.py:681 .\apps\submissions\models.py:365
 msgid "ROR ID"
 msgstr "ROR ID"
 
-#: .\apps\journal\models.py:683 .\apps\submissions\models.py:369
+#: .\apps\journal\models.py:685 .\apps\submissions\models.py:369
 msgid "CRediT roles"
 msgstr "CRediT roles"
 
-#: .\apps\journal\models.py:686 .\apps\submissions\models.py:796
+#: .\apps\journal\models.py:688 .\apps\submissions\models.py:796
 #: .\apps\submissions\models.py:822
 msgid "author"
 msgstr "author"
 
-#: .\apps\journal\models.py:687
+#: .\apps\journal\models.py:689
 msgid "authors"
 msgstr "authors"
 
-#: .\apps\journal\models.py:742
+#: .\apps\journal\models.py:744
 msgid "reference text"
 msgstr "reference text"
 
-#: .\apps\journal\models.py:744
+#: .\apps\journal\models.py:746
 msgid "structured data"
 msgstr "structured data"
 
-#: .\apps\journal\models.py:747
+#: .\apps\journal\models.py:749
 msgid "reference"
 msgstr "reference"
 
-#: .\apps\journal\models.py:748
+#: .\apps\journal\models.py:750
 msgid "references"
 msgstr "references"
 
-#: .\apps\journal\models.py:779
+#: .\apps\journal\models.py:781
 msgid "PDF"
 msgstr "PDF"
 
-#: .\apps\journal\models.py:780
+#: .\apps\journal\models.py:782
 msgid "PDF (Uzbek)"
 msgstr "PDF (Uzbek)"
 
-#: .\apps\journal\models.py:781
+#: .\apps\journal\models.py:783
 msgid "PDF (Russian)"
 msgstr "PDF (Russian)"
 
-#: .\apps\journal\models.py:782
+#: .\apps\journal\models.py:784
 msgid "Full text (HTML)"
 msgstr "Full text (HTML)"
 
-#: .\apps\journal\models.py:783
+#: .\apps\journal\models.py:785
 msgid "JATS XML"
 msgstr "JATS XML"
 
-#: .\apps\journal\models.py:784 .\templates\production\article_detail.html:37
+#: .\apps\journal\models.py:786 .\templates\production\article_detail.html:37
 msgid "Supplementary"
 msgstr "Supplementary"
 
-#: .\apps\journal\models.py:790
+#: .\apps\journal\models.py:792
 msgid "language"
 msgstr "language"
 
-#: .\apps\journal\models.py:791 .\apps\submissions\models.py:419
+#: .\apps\journal\models.py:793 .\apps\submissions\models.py:419
 msgid "file"
 msgstr "file"
 
-#: .\apps\journal\models.py:793
+#: .\apps\journal\models.py:795
 msgid "unstamped original"
 msgstr "unstamped original"
 
-#: .\apps\journal\models.py:795 .\apps\submissions\models.py:431
+#: .\apps\journal\models.py:797 .\apps\submissions\models.py:431
 msgid "MIME type"
 msgstr "MIME type"
 
-#: .\apps\journal\models.py:796
+#: .\apps\journal\models.py:798
 msgid "size in bytes"
 msgstr "size in bytes"
 
-#: .\apps\journal\models.py:797 .\templates\production\article_detail.html:48
+#: .\apps\journal\models.py:799 .\templates\production\article_detail.html:48
 msgid "primary"
 msgstr "primary"
 
-#: .\apps\journal\models.py:801 .\apps\metrics\models.py:35
+#: .\apps\journal\models.py:803 .\apps\metrics\models.py:35
 msgid "galley"
 msgstr "galley"
 
-#: .\apps\journal\models.py:802
+#: .\apps\journal\models.py:804
 msgid "galleys"
 msgstr "galleys"
 
-#: .\apps\journal\models.py:829 .\apps\production\issue_print.py:230
+#: .\apps\journal\models.py:831 .\apps\production\issue_print.py:241
 msgid "Deputy Editor"
 msgstr "Deputy Editor"
 
-#: .\apps\journal\models.py:830 .\apps\production\issue_print.py:231
+#: .\apps\journal\models.py:832 .\apps\production\issue_print.py:242
 msgid "Managing Editor"
 msgstr "Managing Editor"
 
-#: .\apps\journal\models.py:831
+#: .\apps\journal\models.py:833
 msgid "Section Editor"
 msgstr "Section Editor"
 
-#: .\apps\journal\models.py:832
+#: .\apps\journal\models.py:834
 msgid "Editorial Board Member"
 msgstr "Editorial Board Member"
 
-#: .\apps\journal\models.py:833 .\apps\production\issue_print.py:234
+#: .\apps\journal\models.py:835 .\apps\production\issue_print.py:245
 msgid "International Advisory Board"
 msgstr "International Advisory Board"
 
-#: .\apps\journal\models.py:834 .\apps\journal\views.py:519
+#: .\apps\journal\models.py:836 .\apps\journal\views.py:519
 #: .\templates\includes\footer.html:35
 msgid "Reviewer Board"
 msgstr "Reviewer Board"
 
-#: .\apps\journal\models.py:855
+#: .\apps\journal\models.py:857
 msgid "full name"
 msgstr "full name"
 
-#: .\apps\journal\models.py:857
+#: .\apps\journal\models.py:859
 msgid "role"
 msgstr "role"
 
-#: .\apps\journal\models.py:866
+#: .\apps\journal\models.py:868
 msgid "photo"
 msgstr "photo"
 
-#: .\apps\journal\models.py:868
+#: .\apps\journal\models.py:870
 msgid "expertise"
 msgstr "expertise"
 
-#: .\apps\journal\models.py:875
+#: .\apps\journal\models.py:877
 msgid "demo entry"
 msgstr "demo entry"
 
-#: .\apps\journal\models.py:877
+#: .\apps\journal\models.py:879
 msgid "Seeded placeholder — replace with a real board member."
 msgstr "Seeded placeholder — replace with a real board member."
 
-#: .\apps\journal\models.py:881
+#: .\apps\journal\models.py:883
 msgid "editorial board member"
 msgstr "editorial board member"
 
-#: .\apps\journal\models.py:882
+#: .\apps\journal\models.py:884
 msgid "editorial board members"
 msgstr "editorial board members"
 
-#: .\apps\journal\models.py:923
+#: .\apps\journal\models.py:925
 msgid "total views"
 msgstr "total views"
 
-#: .\apps\journal\models.py:924
+#: .\apps\journal\models.py:926
 msgid "total downloads"
 msgstr "total downloads"
 
-#: .\apps\journal\models.py:925
+#: .\apps\journal\models.py:927
 msgid "views (30 days)"
 msgstr "views (30 days)"
 
-#: .\apps\journal\models.py:926
+#: .\apps\journal\models.py:928
 msgid "downloads (30 days)"
 msgstr "downloads (30 days)"
 
-#: .\apps\journal\models.py:927
+#: .\apps\journal\models.py:929
 msgid "computed at"
 msgstr "computed at"
 
-#: .\apps\journal\models.py:930 .\apps\journal\models.py:931
+#: .\apps\journal\models.py:932 .\apps\journal\models.py:933
 msgid "article statistics"
 msgstr "article statistics"
 
@@ -1910,7 +1944,7 @@ msgstr "Author not found."
 msgid "Articles by %(name)s"
 msgstr "Articles by %(name)s"
 
-#: .\apps\journal\views.py:510 .\apps\production\issue_print.py:233
+#: .\apps\journal\views.py:510 .\apps\production\issue_print.py:244
 #: .\templates\includes\footer.html:34 .\templates\journal\home.html:274
 msgid "Editorial Board"
 msgstr "Editorial Board"
@@ -2037,122 +2071,121 @@ msgid "iThenticate (Crossref Similarity Check)"
 msgstr "iThenticate (Crossref Similarity Check)"
 
 #: .\apps\production\issue_print.py:59
-#| msgid "January"
 msgctxt "month name"
 msgid "January"
 msgstr "January"
 
 #: .\apps\production\issue_print.py:60
-#| msgid "February"
 msgctxt "month name"
 msgid "February"
 msgstr "February"
 
 #: .\apps\production\issue_print.py:61
-#| msgid "March"
 msgctxt "month name"
 msgid "March"
 msgstr "March"
 
 #: .\apps\production\issue_print.py:62
-#| msgid "April"
 msgctxt "month name"
 msgid "April"
 msgstr "April"
 
 #: .\apps\production\issue_print.py:63
-#| msgid "May"
 msgctxt "month name"
 msgid "May"
 msgstr "May"
 
 #: .\apps\production\issue_print.py:64
-#| msgid "June"
 msgctxt "month name"
 msgid "June"
 msgstr "June"
 
 #: .\apps\production\issue_print.py:65
-#| msgid "July"
 msgctxt "month name"
 msgid "July"
 msgstr "July"
 
 #: .\apps\production\issue_print.py:66
-#| msgid "August"
 msgctxt "month name"
 msgid "August"
 msgstr "August"
 
 #: .\apps\production\issue_print.py:67
-#| msgid "September"
 msgctxt "month name"
 msgid "September"
 msgstr "September"
 
 #: .\apps\production\issue_print.py:68
-#| msgid "October"
 msgctxt "month name"
 msgid "October"
 msgstr "October"
 
 #: .\apps\production\issue_print.py:69
-#| msgid "November"
 msgctxt "month name"
 msgid "November"
 msgstr "November"
 
 #: .\apps\production\issue_print.py:70
-#| msgid "December"
 msgctxt "month name"
 msgid "December"
 msgstr "December"
 
 #: .\apps\production\issue_print.py:95
-#: .\templates\production\issue_builder.html:153
-#| msgid "Primary PDF galley"
+#: .\templates\production\issue_builder.html:210
 msgid "no PDF galley"
 msgstr "no PDF galley"
 
 #: .\apps\production\issue_print.py:161
 #, python-format
-#| msgid "publisher address"
 msgid "Publisher: %(name)s"
 msgstr "Publisher: %(name)s"
 
 #: .\apps\production\issue_print.py:163
 #, python-format
-#| msgid "registration certificate number"
 msgid "Registration certificate No. %(number)s"
 msgstr "Registration certificate No. %(number)s"
 
 #: .\apps\production\issue_print.py:173
 #, python-format
-#| msgid "Add address"
 msgid "Address: %(address)s"
 msgstr "Address: %(address)s"
 
-#: .\apps\production\issue_print.py:206
+#: .\apps\production\issue_print.py:178
+msgid "Phone"
+msgstr "Phone"
+
+#: .\apps\production\issue_print.py:180 .\apps\submissions\forms.py:454
+#: .\templates\core\contact.html:14
+#: .\templates\dashboard\submission_detail.html:84
+#: .\templates\journal\article_detail.html:332
+msgid "E-mail"
+msgstr "E-mail"
+
+#: .\apps\production\issue_print.py:182
+#| msgid "website"
+msgid "Website"
+msgstr "Website"
+
+#: .\apps\production\issue_print.py:205
 #, python-format
 msgid "%(month)s %(year)s · No. %(number)s"
 msgstr "%(month)s %(year)s · No. %(number)s"
 
-#: .\apps\production\issue_print.py:208
+#: .\apps\production\issue_print.py:207
 #, python-format
 msgid "%(month)s · No. %(number)s"
 msgstr "%(month)s · No. %(number)s"
 
-#: .\apps\production\issue_print.py:209
+#: .\apps\production\issue_print.py:208
 #, python-format
 msgid "Electronic edition, %(month)s %(year)s."
 msgstr "Electronic edition, %(month)s %(year)s."
 
-#: .\apps\production\issue_print.py:210
-#| msgid "Contact"
+#: .\apps\production\issue_print.py:209
 msgid "Contents"
 msgstr "Contents"
 
-#: .\apps\production\issue_print.py:216
+#: .\apps\production\issue_print.py:215
 msgid ""
 "All articles are published in open access under the Creative Commons "
 "Attribution 4.0 International licence (CC BY 4.0)."
@@ -2160,65 +2193,77 @@ msgstr ""
 "All articles are published in open access under the Creative Commons "
 "Attribution 4.0 International licence (CC BY 4.0)."
 
-#: .\apps\production\issue_print.py:232
-#| msgid "Section Editor"
+#: .\apps\production\issue_print.py:222
+msgid "Open access · CC BY 4.0"
+msgstr "Open access · CC BY 4.0"
+
+#: .\apps\production\issue_print.py:223
+#| msgid "Archiving & indexing"
+msgid "Abstracting and indexing"
+msgstr "Abstracting and indexing"
+
+#: .\apps\production\issue_print.py:233
+#| msgid "In this section"
+msgid "In this issue"
+msgstr "In this issue"
+
+#: .\apps\production\issue_print.py:243
 msgid "Section Editors"
 msgstr "Section Editors"
 
-#: .\apps\production\issue_print.py:279
+#: .\apps\production\issue_print.py:292
 #, python-format
 msgid "Article #%(pk)s has no PDF galley."
 msgstr "Article #%(pk)s has no PDF galley."
 
-#: .\apps\production\issue_print.py:293
+#: .\apps\production\issue_print.py:308
 #, python-format
 msgid "The PDF galley of article #%(pk)s could not be read."
 msgstr "The PDF galley of article #%(pk)s could not be read."
 
-#: .\apps\production\issue_print.py:318 .\apps\production\issue_print.py:525
+#: .\apps\production\issue_print.py:333 .\apps\production\issue_print.py:545
 #: .\apps\production\services.py:301
 msgid "The issue has no articles."
 msgstr "The issue has no articles."
 
-#: .\apps\production\issue_print.py:332
+#: .\apps\production\issue_print.py:348
 #, python-format
 msgid "The PDF galley of article #%(pk)s is damaged."
 msgstr "The PDF galley of article #%(pk)s is damaged."
 
-#: .\apps\production\issue_print.py:336
+#: .\apps\production\issue_print.py:352
 #, python-format
 msgid "The PDF galley of article #%(pk)s is empty."
 msgstr "The PDF galley of article #%(pk)s is empty."
 
-#: .\apps\production\issue_print.py:405
+#: .\apps\production\issue_print.py:421
 #, python-format
 msgid "The PDF galley of article #%(pk)s could not be placed."
 msgstr "The PDF galley of article #%(pk)s could not be placed."
 
-#: .\apps\production\issue_print.py:503
+#: .\apps\production\issue_print.py:523
 msgid "The issue PDF could not be built. The error has been logged."
 msgstr "The issue PDF could not be built. The error has been logged."
 
-#: .\apps\production\issue_print.py:529
+#: .\apps\production\issue_print.py:549
 #, python-format
 msgid "Upload a PDF galley for these articles first: %(items)s"
 msgstr "Upload a PDF galley for these articles first: %(items)s"
 
-#: .\apps\production\issue_print.py:574
+#: .\apps\production\issue_print.py:592
 msgid "Build the issue PDF first; this article has no offprint yet."
 msgstr "Build the issue PDF first; this article has no offprint yet."
 
-#: .\apps\production\issue_print.py:577
-#| msgid "No abstract is available for this article."
+#: .\apps\production\issue_print.py:595
 msgid "No author e-mail address is recorded for this article."
 msgstr "No author e-mail address is recorded for this article."
 
-#: .\apps\production\issue_print.py:594
+#: .\apps\production\issue_print.py:612
 #, python-format
 msgid "Your article in the journal layout: %(title)s"
 msgstr "Your article in the journal layout: %(title)s"
 
-#: .\apps\production\issue_print.py:596
+#: .\apps\production\issue_print.py:614
 #, python-format
 msgid ""
 "Dear author,\n"
@@ -2327,76 +2372,74 @@ msgstr "Cannot publish: %(items)s"
 msgid "Some articles are incomplete: %(items)s"
 msgstr "Some articles are incomplete: %(items)s"
 
-#: .\apps\production\views.py:104
+#: .\apps\production\views.py:103
 msgid "The manuscript has moved to the next stage."
 msgstr "The manuscript has moved to the next stage."
 
-#: .\apps\production\views.py:123
+#: .\apps\production\views.py:122
 msgid "Stage marked as complete."
 msgstr "Stage marked as complete."
 
-#: .\apps\production\views.py:135 .\apps\production\views.py:158
+#: .\apps\production\views.py:134 .\apps\production\views.py:157
 msgid "No file was selected."
 msgstr "No file was selected."
 
-#: .\apps\production\views.py:147
+#: .\apps\production\views.py:146
 msgid "File uploaded."
 msgstr "File uploaded."
 
-#: .\apps\production\views.py:175
+#: .\apps\production\views.py:174
 msgid "Galley uploaded."
 msgstr "Galley uploaded."
 
-#: .\apps\production\views.py:202
+#: .\apps\production\views.py:201
 #, python-format
 msgid "DOI reserved: %(doi)s"
 msgstr "DOI reserved: %(doi)s"
 
-#: .\apps\production\views.py:213
+#: .\apps\production\views.py:212
 msgid "The article is published as Online First."
 msgstr "The article is published as Online First."
 
-#: .\apps\production\views.py:233
+#: .\apps\production\views.py:232
 #, python-format
 msgid "The article has been scheduled into %(issue)s."
 msgstr "The article has been scheduled into %(issue)s."
 
-#: .\apps\production\views.py:284
+#: .\apps\production\views.py:283
 msgid "The issue order has been saved."
 msgstr "The issue order has been saved."
 
-#: .\apps\production\views.py:295
+#: .\apps\production\views.py:294
 #, python-format
 msgid "Issue %(label)s is published."
 msgstr "Issue %(label)s is published."
 
-#: .\apps\production\views.py:312
+#: .\apps\production\views.py:311
 #, python-format
 msgid "Issue %(label)s created."
 msgstr "Issue %(label)s created."
 
-#: .\apps\production\views.py:312
+#: .\apps\production\views.py:311
 #, python-format
 msgid "Issue %(label)s already exists."
 msgstr "Issue %(label)s already exists."
 
-#: .\apps\production\views.py:329
+#: .\apps\production\views.py:328
 #, python-format
-#| msgid "No articles have been scheduled into this issue."
 msgid "%(count)s article(s) added to the issue."
 msgstr "%(count)s article(s) added to the issue."
 
-#: .\apps\production\views.py:342
+#: .\apps\production\views.py:340
 #, python-format
 msgid "%(count)s article(s) removed from the issue."
 msgstr "%(count)s article(s) removed from the issue."
 
-#: .\apps\production\views.py:363
+#: .\apps\production\views.py:360
 msgid "The issue PDF is being built. This page updates when it is ready."
 msgstr "The issue PDF is being built. This page updates when it is ready."
 
-#: .\apps\production\views.py:423
-#| msgid "The invitation has been sent."
+#: .\apps\production\views.py:420
 msgid "The offprint has been sent to the authors."
 msgstr "The offprint has been sent to the authors."
 
@@ -2656,12 +2699,6 @@ msgstr "Annotated file (optional)"
 #: .\apps\submissions\forms.py:434
 msgid "Please write at least 100 characters of feedback for the authors."
 msgstr "Please write at least 100 characters of feedback for the authors."
-
-#: .\apps\submissions\forms.py:454 .\templates\core\contact.html:14
-#: .\templates\dashboard\submission_detail.html:84
-#: .\templates\journal\article_detail.html:332
-msgid "E-mail"
-msgstr "E-mail"
 
 #: .\apps\submissions\forms.py:465
 msgid "Days to complete"
@@ -5398,7 +5435,7 @@ msgid "See Online First articles"
 msgstr "See Online First articles"
 
 #: .\templates\journal\article_detail.html:31
-#: .\templates\production\issue_builder.html:28
+#: .\templates\production\issue_builder.html:85
 msgid "Article"
 msgstr "Article"
 
@@ -5431,7 +5468,7 @@ msgid "Affiliation not provided"
 msgstr "Affiliation not provided"
 
 #: .\templates\journal\article_detail.html:100
-#: .\templates\production\issue_builder.html:29
+#: .\templates\production\issue_builder.html:86
 msgid "Pages"
 msgstr "Pages"
 
@@ -5971,25 +6008,21 @@ msgid "Upload galley"
 msgstr "Upload galley"
 
 #: .\templates\production\article_detail.html:54
-#: .\templates\production\issue_builder.html:30
-#| msgid "Journal facts"
+#: .\templates\production\issue_builder.html:87
 msgid "Journal layout"
 msgstr "Journal layout"
 
 #: .\templates\production\article_detail.html:60
 #, python-format
-#| msgid "Comments to the authors"
 msgid "Sent to the authors on %(date)s."
 msgstr "Sent to the authors on %(date)s."
 
 #: .\templates\production\article_detail.html:65
-#| msgid "Download certificate"
 msgid "Download the offprint"
 msgstr "Download the offprint"
 
 #: .\templates\production\article_detail.html:69
-#: .\templates\production\issue_builder.html:87
-#| msgid "Send proof to author"
+#: .\templates\production\issue_builder.html:144
 msgid "Send to authors"
 msgstr "Send to authors"
 
@@ -6034,71 +6067,7 @@ msgstr "Issue builder"
 msgid "in preparation"
 msgstr "in preparation"
 
-#: .\templates\production\issue_builder.html:25
-#: .\templates\production\issue_builder.html:41
-msgid "Select"
-msgstr "Select"
-
-#: .\templates\production\issue_builder.html:49
-#| msgid "order"
-msgid "Order"
-msgstr "Order"
-
-#: .\templates\production\issue_builder.html:67
-#: .\templates\production\issue_builder.html:68
-msgid "from"
-msgstr "from"
-
-#: .\templates\production\issue_builder.html:72
-#: .\templates\production\issue_builder.html:73
-msgid "to"
-msgstr "to"
-
-#: .\templates\production\issue_builder.html:85
-#| msgid "Send message"
-msgid "Send again"
-msgstr "Send again"
-
-#: .\templates\production\issue_builder.html:92
-msgid "sent"
-msgstr "sent"
-
-#: .\templates\production\issue_builder.html:102
-msgid "No articles have been scheduled into this issue."
-msgstr "No articles have been scheduled into this issue."
-
-#: .\templates\production\issue_builder.html:111
-msgid "Save order and pages"
-msgstr "Save order and pages"
-
-#: .\templates\production\issue_builder.html:112
-msgid "Remove selected from the issue"
-msgstr "Remove selected from the issue"
-
-#: .\templates\production\issue_builder.html:129
-#| msgid "daily article statistics"
-msgid "Add articles to this issue"
-msgstr "Add articles to this issue"
-
-#: .\templates\production\issue_builder.html:141
-msgid "Select all"
-msgstr "Select all"
-
-#: .\templates\production\issue_builder.html:161
-#| msgid "Schedule into the issue"
-msgid "Add selected to the issue"
-msgstr "Add selected to the issue"
-
-#: .\templates\production\issue_builder.html:164
-msgid "Every ready article is already in an issue."
-msgstr "Every ready article is already in an issue."
-
-#: .\templates\production\issue_builder.html:170
-#| msgid "Journal facts"
-msgid "Journal PDF"
-msgstr "Journal PDF"
-
-#: .\templates\production\issue_builder.html:172
+#: .\templates\production\issue_builder.html:13
 msgid ""
 "Assembles the cover, editorial board, contents and every article in the "
 "journal layout, numbers the pages and prepares an offprint for each author."
@@ -6106,53 +6075,103 @@ msgstr ""
 "Assembles the cover, editorial board, contents and every article in the "
 "journal layout, numbers the pages and prepares an offprint for each author."
 
-#: .\templates\production\issue_builder.html:180
+#: .\templates\production\issue_builder.html:20
 msgid "Language of the layout"
 msgstr "Language of the layout"
 
-#: .\templates\production\issue_builder.html:188
-#| msgid "First page"
+#: .\templates\production\issue_builder.html:29
 msgid "First page number"
 msgstr "First page number"
 
-#: .\templates\production\issue_builder.html:195
+#: .\templates\production\issue_builder.html:36
 msgid "Keep 1, or continue the numbering of a previous part."
 msgstr "Keep 1, or continue the numbering of a previous part."
 
-#: .\templates\production\issue_builder.html:201
-#| msgid "Search the journal"
+#: .\templates\production\issue_builder.html:42
 msgid "Rebuild the journal PDF"
 msgstr "Rebuild the journal PDF"
 
-#: .\templates\production\issue_builder.html:203
-#| msgid "Search the journal"
+#: .\templates\production\issue_builder.html:44
 msgid "Build the journal PDF"
 msgstr "Build the journal PDF"
 
-#: .\templates\production\issue_builder.html:207
+#: .\templates\production\issue_builder.html:48
 msgid "Every article needs a PDF galley before the journal can be built."
 msgstr "Every article needs a PDF galley before the journal can be built."
 
-#: .\templates\production\issue_builder.html:214
+#: .\templates\production\issue_builder.html:55
 msgid "Every article passes the completeness check."
 msgstr "Every article passes the completeness check."
 
-#: .\templates\production\issue_builder.html:216
+#: .\templates\production\issue_builder.html:57
 msgid "Some articles are incomplete; open them to fix the missing metadata."
 msgstr "Some articles are incomplete; open them to fix the missing metadata."
 
-#: .\templates\production\issue_builder.html:222
+#: .\templates\production\issue_builder.html:63
 msgid "Publish the issue"
 msgstr "Publish the issue"
 
+#: .\templates\production\issue_builder.html:82
+#: .\templates\production\issue_builder.html:98
+msgid "Select"
+msgstr "Select"
+
+#: .\templates\production\issue_builder.html:106
+msgid "Order"
+msgstr "Order"
+
+#: .\templates\production\issue_builder.html:124
+#: .\templates\production\issue_builder.html:125
+msgid "from"
+msgstr "from"
+
+#: .\templates\production\issue_builder.html:129
+#: .\templates\production\issue_builder.html:130
+msgid "to"
+msgstr "to"
+
+#: .\templates\production\issue_builder.html:142
+msgid "Send again"
+msgstr "Send again"
+
+#: .\templates\production\issue_builder.html:149
+msgid "sent"
+msgstr "sent"
+
+#: .\templates\production\issue_builder.html:159
+msgid "No articles have been scheduled into this issue."
+msgstr "No articles have been scheduled into this issue."
+
+#: .\templates\production\issue_builder.html:168
+msgid "Save order and pages"
+msgstr "Save order and pages"
+
+#: .\templates\production\issue_builder.html:169
+msgid "Remove selected from the issue"
+msgstr "Remove selected from the issue"
+
+#: .\templates\production\issue_builder.html:186
+msgid "Add articles to this issue"
+msgstr "Add articles to this issue"
+
+#: .\templates\production\issue_builder.html:198
+msgid "Select all"
+msgstr "Select all"
+
+#: .\templates\production\issue_builder.html:218
+msgid "Add selected to the issue"
+msgstr "Add selected to the issue"
+
+#: .\templates\production\issue_builder.html:221
+msgid "Every ready article is already in an issue."
+msgstr "Every ready article is already in an issue."
+
 #: .\templates\production\partials\print_status.html:23
 #, python-format
-#| msgid "%(days)s days"
 msgid "%(pages)s pages"
 msgstr "%(pages)s pages"
 
 #: .\templates\production\partials\print_status.html:27
-#| msgid "Download the full issue (PDF)"
 msgid "Download the journal PDF"
 msgstr "Download the journal PDF"
 
