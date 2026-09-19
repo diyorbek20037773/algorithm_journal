@@ -375,7 +375,20 @@ yozilmagan**.
 
 ## 6. GitHub push holati
 
-**Holat: yuborilgan.** Barcha ish
+> **2026-09-19 — bitta commit hali yuborilmagan.** `b3c14b7`
+> (*feat(dashboard): Academic Royal Prestige editorial console*) lokal `main`
+> tarmogʻida turibdi. Bu mashinadan `github.com:443` ga ulanib boʻlmadi
+> (`Failed to connect to github.com port 443`) — DNS toʻgʻri ishlaydi, boshqa
+> saytlar ochiladi, demak GitHub tarmoq darajasida yopilgan. `gh` allaqachon
+> `diyorbek20037773` hisobi bilan login qilingan, ya'ni muammo autentifikatsiya
+> emas. Internet (yoki VPN) GitHub'ga ruxsat berganda shuni bajaring:
+>
+> ```bash
+> cd d:/myprojects/journal
+> git push origin main
+> ```
+
+**Holat (avvalgi ish): yuborilgan.** Barcha ish
 <https://github.com/diyorbek20037773/algorithm_journal> repozitoriysining `main`
 tarmogʻiga commit qilingan va push qilingan. GitHub Actions ikkala ishni ham
 bajarib, **yashil** natija berdi — lint, format, shablon tekshiruvi, tarjima
