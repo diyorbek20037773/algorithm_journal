@@ -18,130 +18,100 @@
    ========================================================================= */
 @theme {
   /* background layers, bottom to top */
-  --color-surface: #f3f8f5; /* page (ink-900 in the dark original) */
-  --color-paper: #ffffff; /* opaque sheet: inputs, menus, sticky table heads */
-  --color-paper-2: #eaf2ee; /* panel / tonal fill (ink-800) */
-  --color-paper-3: #dde8e3; /* deeper tile: kbd, hover of tonal (ink-700) */
+  --color-surface: #faf9fd; /* archival paper, a whisper of violet */
+  --color-paper: #ffffff; /* document sheets and elevated cards */
+  --color-paper-2: #f7f5fc; /* tonal fill: inset panels, methodology callouts */
+  --color-paper-3: #ede9f5; /* deeper tile: kbd, hover of tonal */
 
-  /* glass surfaces — white frost over the mint-lit page */
-  --color-glass: rgb(255 255 255 / 0.62);
-  --color-glass-deep: rgb(255 255 255 / 0.82);
-  --color-glass-soft: rgb(255 255 255 / 0.55);
-  --color-glass-nav: rgb(1 20 26 / 0.92); /* floating navbar: dark smoked glass */
-  --color-glass-hover: rgb(1 20 26 / 0.05);
+  /* the design separates by hairline and tone, never by frosted glass, so the
+     glass tokens now resolve to opaque sheets */
+  --color-glass: #ffffff;
+  --color-glass-deep: #ffffff;
+  --color-glass-soft: #ffffff;
+  --color-glass-nav: #ffffff; /* the masthead is a white bar, not a dark pill */
+  --color-glass-hover: #f4f1fa;
 
-  /* text — never pure black; #5b6b6f is 5:1 on the page */
-  --color-ink: #0c1a1e;
-  --color-ink-2: #46565a;
-  --color-ink-3: #5b6b6f;
+  /* text: royal ink for headlines, plum for long-form body */
+  --color-ink: #1f1435;
+  --color-ink-2: #2d2245;
+  --color-ink-3: #554d68;
 
-  /* lines are light, not grey: the ink at low opacity */
-  --color-line: rgb(1 20 26 / 0.1);
-  --color-line-2: rgb(1 20 26 / 0.17);
+  /* razor-thin architectural rules */
+  --color-line: #e7e0f2;
+  --color-line-2: #d8d1e5;
 
-  /* The old "navy accent" now carries ink: headings, links, active text. */
-  --color-accent: #0c1a1e;
-  --color-accent-2: #047a4f;
-  --color-accent-soft: rgb(61 220 151 / 0.14);
+  /* deep royal ink purple: mastheads, primary actions, active indices */
+  --color-accent: #2a164d;
+  --color-accent-2: #6c28d6; /* refined violet-indigo: secondary hierarchy */
+  --color-accent-soft: #ede9fe;
 
-  /* dark anchors (footer, logo mark, avatars) — the original night palette */
-  --color-navy-deep: #01141a;
-  --color-navy-midnight: #02151b;
-  --color-on-dark: #f2f7f5;
-  --color-on-dark-muted: rgb(242 247 245 / 0.68);
-  --color-on-dark-line: rgb(255 255 255 / 0.1);
-  --color-on-dark-soft: rgb(255 255 255 / 0.06);
+  /* dark anchors (footer, logo mark, avatars) */
+  --color-navy-deep: #1f103a;
+  --color-navy-midnight: #2a164d;
+  --color-on-dark: #ffffff;
+  --color-on-dark-muted: rgb(255 255 255 / 0.72);
+  --color-on-dark-line: rgb(255 255 255 / 0.16);
+  --color-on-dark-soft: rgb(255 255 255 / 0.08);
 
-  /* the single accent. Fill is mint, text on it is mint-ink; mint-text is the
-     deep variant that may carry words on light paper (5.4:1 on white). */
-  --color-mint: #3ddc97;
-  --color-mint-bright: #84ffc1;
-  --color-mint-ink: #04241a;
-  --color-mint-text: #047a4f;
-  --color-mint-tint: rgb(61 220 151 / 0.12);
-  --color-mint-edge: rgb(4 122 79 / 0.26);
-  --color-mint-glow: rgb(61 220 151 / 0.35);
-  --color-mint-haze: rgb(61 220 151 / 0.2);
+  /* The accent. `mint` is the solid ink fill with white on it; `mint-text` is
+     the violet that may carry words on paper (7.4:1 on white); `mint-bright`
+     is the lighter violet used on the dark footer. The names are kept so the
+     templates do not have to change. */
+  --color-mint: #2a164d;
+  --color-mint-bright: #a67ffd;
+  --color-mint-ink: #ffffff;
+  --color-mint-text: #4a1d7a;
+  --color-mint-tint: #ede9fe;
+  --color-mint-edge: #d8d1e5;
+  --color-mint-glow: rgb(42 22 77 / 0.1);
+  --color-mint-haze: transparent; /* the page has no glow: it is paper */
 
-  /* legacy "gold" names now resolve to the mint accent */
-  --color-gold: #047a4f;
-  --color-gold-2: #036a44;
-  --color-gold-bright: #3ddc97;
-  --color-gold-soft: rgb(61 220 151 / 0.12);
-  --color-gold-line: rgb(4 122 79 / 0.26);
-  --color-gold-fixed: #84ffc1;
+  /* "gold" now carries the design's citation-amber stamp (peer review, CFP) */
+  --color-gold: #9c5700;
+  --color-gold-2: #7e4600;
+  --color-gold-bright: #9c5700;
+  --color-gold-soft: #fef7ed;
+  --color-gold-line: #fcd9bd;
+  --color-gold-fixed: #fcd9bd;
 
   /* semantic — separate from the accent */
-  --color-success: #15803d;
-  --color-success-soft: rgb(34 197 94 / 0.1);
-  --color-success-line: rgb(21 128 61 / 0.3);
-  --color-warning: #a16207;
-  --color-danger: #b91c1c;
-  --color-danger-soft: rgb(248 113 113 / 0.12);
+  --color-success: #1b6e4a; /* open-access green */
+  --color-success-soft: #ebf7f1;
+  --color-success-line: #b8e5d1;
+  --color-warning: #9c5700;
+  --color-danger: #ba1a1a;
+  --color-danger-soft: #ffdad6;
   --color-orcid: #a6ce39;
 
-  --font-serif: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-sans: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: "Merriweather", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
-  --radius-badge: 8px;
-  --radius-control: 12px;
-  --radius-card: 16px;
-  --radius-panel: 24px;
-  --radius-pill: 100px;
+  /* Soft (1) shape language: stamped print records, never organic pills. */
+  --radius-badge: 2px;
+  --radius-control: 4px;
+  --radius-card: 4px;
+  --radius-panel: 8px;
+  --radius-pill: 4px;
 
-  /* Mint Glass separates by light, not by shadow. */
-  --shadow-card: none;
-  --shadow-hover: none;
-  --shadow-menu: none;
-  --shadow-glow: 0 8px 26px var(--color-mint-glow);
+  --shadow-card: 0 1px 2px rgb(42 22 77 / 0.04);
+  --shadow-hover:
+    0 4px 16px -2px rgb(42 22 77 / 0.08), 0 2px 4px -1px rgb(42 22 77 / 0.03);
+  --shadow-menu:
+    0 20px 28px -6px rgb(31 20 53 / 0.14), 0 8px 12px -4px rgb(31 20 53 / 0.06);
+  --shadow-glow:
+    0 4px 16px -2px rgb(42 22 77 / 0.08), 0 2px 4px -1px rgb(42 22 77 / 0.03);
 
-  --container-page: 1280px;
+  --container-page: 1360px;
   --container-reading: 760px;
 }
 
 @layer base {
-  /* Night: the original Mint Glass palette, honoured when the reader asks. */
-  @media (prefers-color-scheme: dark) {
-    :root {
-      color-scheme: dark;
-      --color-surface: #01141a;
-      --color-paper: #02151b;
-      --color-paper-2: #0c1a1e;
-      --color-paper-3: #13252a;
-      --color-glass: rgb(18 27 38 / 0.4);
-      --color-glass-deep: rgb(18 27 38 / 0.6);
-      --color-glass-soft: rgb(255 255 255 / 0.05);
-      --color-glass-nav: rgb(1 20 26 / 0.6);
-      --color-glass-hover: rgb(255 255 255 / 0.09);
-      --color-ink: #f2f7f5;
-      --color-ink-2: rgb(242 247 245 / 0.72);
-      --color-ink-3: rgb(242 247 245 / 0.62);
-      --color-line: rgb(255 255 255 / 0.1);
-      --color-line-2: rgb(255 255 255 / 0.16);
-      --color-accent: #f2f7f5;
-      --color-accent-2: #84ffc1;
-      --color-accent-soft: rgb(132 255 193 / 0.08);
-      --color-navy-deep: #0c1a1e;
-      --color-navy-midnight: #01141a;
-      --color-mint: #84ffc1;
-      --color-mint-text: #84ffc1;
-      --color-mint-tint: rgb(132 255 193 / 0.08);
-      --color-mint-edge: rgb(132 255 193 / 0.22);
-      --color-mint-glow: rgb(132 255 193 / 0.28);
-      --color-mint-haze: rgb(61 220 151 / 0.16);
-      --color-gold: #84ffc1;
-      --color-gold-2: #3ddc97;
-      --color-gold-bright: #3ddc97;
-      --color-gold-soft: rgb(132 255 193 / 0.08);
-      --color-gold-line: rgb(132 255 193 / 0.22);
-      --color-success: #22c55e;
-      --color-success-soft: rgb(34 197 94 / 0.1);
-      --color-success-line: rgb(34 197 94 / 0.3);
-      --color-warning: #eab308;
-      --color-danger: #f87171;
-      --color-danger-soft: rgb(248 113 113 / 0.1);
-    }
+  /* "White Ink Edition": the design has one palette, on paper. The console
+     and the reading site both declare it, so the OS night mode is not
+     honoured with an invented dark scheme. */
+  :root {
+    color-scheme: light;
   }
 
   html {
@@ -162,40 +132,40 @@
   }
 
   body {
-    /* the page has a light source: a soft mint glow from the top */
-    background:
-      radial-gradient(1100px 620px at 50% -8%, var(--color-mint-haze), transparent 62%),
-      radial-gradient(800px 500px at 88% 32%, var(--color-mint-tint), transparent 60%),
-      var(--color-surface);
-    background-attachment: fixed;
-    color: var(--color-ink);
+    /* pristine paper canvas: no gradient, no glow */
+    background: var(--color-surface);
+    color: var(--color-ink-2);
     font-family: var(--font-sans);
-    font-size: 1rem;
+    font-size: 0.9375rem;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
 
+  /* classical letterpress for the headlines, analytical sans for everything
+     else — the typographic tension the design system asks for */
   h1,
   h2,
   h3,
   h4 {
-    font-family: var(--font-sans);
-    line-height: 1.1;
+    font-family: var(--font-serif);
+    line-height: 1.3;
     color: var(--color-ink);
-    font-weight: 800;
-    letter-spacing: -0.025em;
+    font-weight: 700;
+    letter-spacing: -0.015em;
     text-wrap: balance;
   }
 
   h1 {
-    letter-spacing: -0.03em;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
   }
 
   h3,
   h4 {
-    line-height: 1.25;
-    letter-spacing: -0.02em;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
   }
 
   /* WCAG 1.4.1: a link inside a block of text must be distinguishable without
@@ -204,7 +174,7 @@
   a {
     color: var(--color-accent);
     text-decoration: underline;
-    text-decoration-color: var(--color-mint-edge);
+    text-decoration-color: var(--color-line-2);
     text-underline-offset: 3px;
     transition: color 180ms ease, text-decoration-color 180ms ease;
   }
@@ -245,8 +215,8 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-mint-text);
-    outline-offset: 3px;
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
   }
 
   ::selection {
@@ -303,11 +273,13 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    min-height: 44px;
-    padding: 0.6rem 1.35rem;
-    border-radius: var(--radius-pill);
+    min-height: 42px;
+    padding: 0.6rem 1.25rem;
+    border-radius: var(--radius-control);
     font-weight: 600;
-    font-size: 0.9375rem;
+    font-size: 0.8125rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
     line-height: 1.2;
     border: 1px solid transparent;
     transition:
@@ -328,38 +300,35 @@
   }
 
   .btn-primary:hover {
-    background: var(--color-mint);
+    background: #3b1e6d;
+    border-color: #3b1e6d;
     color: var(--color-mint-ink);
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-glow);
+    box-shadow: var(--shadow-hover);
   }
 
   /* ghost glass button — every secondary action */
   .btn-secondary {
-    background: var(--color-glass-soft);
-    color: var(--color-ink);
-    border-color: var(--color-line);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: var(--color-paper);
+    color: var(--color-accent);
+    border-color: var(--color-accent);
   }
 
   .btn-secondary:hover {
-    background: var(--color-glass-hover);
-    border-color: var(--color-line-2);
-    color: var(--color-ink);
+    background: #f3effb;
+    border-color: var(--color-accent);
+    color: var(--color-accent);
   }
 
   /* call to action on a dark anchor panel: same mint fill */
   .btn-gold {
     background: var(--color-mint-bright);
-    color: var(--color-mint-ink);
+    color: #24005b;
     border-color: var(--color-mint-bright);
   }
 
   .btn-gold:hover {
-    color: var(--color-mint-ink);
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-glow);
+    color: #24005b;
+    box-shadow: var(--shadow-hover);
   }
 
   /* quiet tonal button used inside cards */
@@ -377,9 +346,12 @@
 
   .btn-ghost {
     background: transparent;
-    color: var(--color-ink);
-    min-height: 40px;
+    color: var(--color-accent-2);
+    min-height: 38px;
     padding-inline: 0.75rem;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 0.875rem;
   }
 
   .btn-ghost:hover {
@@ -394,9 +366,9 @@
   }
 
   .btn-sm {
-    min-height: 36px;
-    padding: 0.35rem 0.95rem;
-    font-size: 0.8125rem;
+    min-height: 34px;
+    padding: 0.3rem 0.85rem;
+    font-size: 0.6875rem;
   }
 
   .btn[disabled],
@@ -408,12 +380,11 @@
   /* --- cards & surfaces --- */
   /* glass card — the building block. 0.8 px edge on purpose: 1 px reads hard */
   .card {
-    background: var(--color-glass);
-    border: 0.8px solid var(--color-line);
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
     border-radius: var(--radius-card);
     padding: 1.25rem;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-card);
   }
 
   .card-hover {
@@ -421,7 +392,8 @@
   }
 
   .card-hover:hover {
-    border-color: var(--color-mint-edge);
+    border-color: var(--color-line-2);
+    box-shadow: var(--shadow-hover);
   }
 
   /* large container panel */
@@ -434,11 +406,9 @@
 
   /* dark anchor card: a piece of the night palette on light paper */
   .card-navy {
-    background:
-      radial-gradient(520px 260px at 100% 0%, var(--color-mint-haze), transparent 70%),
-      var(--color-navy-deep);
+    background: var(--color-navy-deep);
     color: var(--color-on-dark);
-    border: 0.8px solid var(--color-on-dark-line);
+    border: 1px solid var(--color-on-dark-line);
     border-radius: var(--radius-card);
     padding: 1.5rem;
   }
@@ -464,7 +434,7 @@
 
   .card-muted {
     background: var(--color-paper-2);
-    border: 0.8px solid var(--color-line);
+    border: 1px solid var(--color-line);
     border-radius: var(--radius-card);
     padding: 1.25rem;
   }
@@ -483,21 +453,23 @@
     align-items: center;
     gap: 0.5rem;
     width: fit-content;
-    padding: 0.4rem 0.85rem;
-    border-radius: var(--radius-pill);
+    padding: 0.3rem 0.6rem;
+    border-radius: var(--radius-badge);
     font-family: var(--font-sans);
-    font-size: 0.72rem;
-    line-height: 1;
-    letter-spacing: 0.14em;
+    font-size: 0.6875rem;
+    line-height: 1.2;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     font-weight: 600;
-    color: var(--color-mint-text);
-    background: var(--color-mint-tint);
-    border: 1px solid var(--color-mint-edge);
+    color: #4c1d95;
+    background: var(--color-accent-soft);
+    border: 1px solid var(--color-accent-soft);
   }
 
+  /* on the ink panel the stamp inverts: it cannot keep a pale violet fill */
   .card-navy .eyebrow {
-    color: var(--color-gold-fixed);
+    background: var(--color-on-dark-soft);
+    color: var(--color-on-dark);
     border-color: var(--color-on-dark-line);
   }
 
@@ -619,19 +591,29 @@
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
-    padding: 0.2rem 0.55rem;
+    padding: 0.2rem 0.5rem;
     border-radius: var(--radius-badge);
-    font-size: 0.75rem;
-    font-weight: 500;
-    background: var(--color-paper-2);
-    color: var(--color-ink-2);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    background: #f3effb;
+    color: var(--color-accent);
     border: 1px solid var(--color-line);
     text-decoration: none;
   }
 
+  /* identifiers keep their own case: a JEL code and a DOI are not labels */
+  .chip-jel,
+  .chip-mono {
+    letter-spacing: 0.02em;
+    text-transform: none;
+  }
+
   .chip:hover {
-    border-color: var(--color-mint-edge);
-    color: var(--color-ink);
+    border-color: var(--color-line-2);
+    color: var(--color-accent);
   }
 
   .chip-jel {
@@ -703,7 +685,7 @@
     align-items: center;
     font-size: 0.75rem;
     font-weight: 600;
-    color: var(--color-mint-text);
+    color: var(--color-gold);
     background: var(--color-gold-soft);
     border: 1px solid var(--color-gold-line);
     border-radius: var(--radius-badge);
@@ -875,13 +857,15 @@
     align-items: center;
     min-height: 40px;
     padding-inline: 0.7rem;
-    border-radius: var(--radius-pill);
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--color-ink-2);
+    border-radius: 0;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-ink-3);
     text-decoration: none;
     white-space: nowrap;
-    transition: color 180ms ease, background-color 180ms ease;
+    transition: color 180ms ease;
   }
 
   .nav-tab:hover {
@@ -906,21 +890,19 @@
   }
 
   .nav-tab[aria-current="page"] {
-    color: var(--color-ink);
+    color: var(--color-accent-2);
     font-weight: 700;
-    background: var(--color-mint-tint);
+    background: transparent;
   }
 
   .nav-tab[aria-current="page"]::after {
     content: "";
     position: absolute;
-    left: 50%;
-    bottom: 3px;
-    width: 4px;
-    height: 4px;
-    margin-left: -2px;
-    border-radius: 50%;
-    background: var(--color-mint-text);
+    left: 0.7rem;
+    right: 0.7rem;
+    bottom: 0;
+    height: 2px;
+    background: var(--color-accent-2);
   }
 
   .lang-switch {
@@ -949,13 +931,14 @@
   }
 
   .lang-switch a[aria-current="true"] {
-    background: var(--color-mint);
-    color: var(--color-mint-ink);
+    background: var(--color-accent);
+    color: var(--color-on-dark);
   }
 
   /* --- utility bar (above the floating nav) --- */
   .utility-bar {
-    color: var(--color-ink-2);
+    background: #f3effb;
+    color: var(--color-ink-3);
     font-size: 0.72rem;
     font-weight: 500;
     letter-spacing: 0.02em;
@@ -987,7 +970,7 @@
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: var(--color-mint);
+    background: var(--color-success);
     display: inline-block;
   }
 
@@ -1001,31 +984,20 @@
 
   .wordmark-mark {
     flex: none;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2.375rem;
+    height: 2.375rem;
     border-radius: var(--radius-control);
-    background: var(--color-navy-deep);
+    background: var(--color-accent);
     color: var(--color-on-dark);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    font-family: var(--font-sans);
-    font-weight: 800;
-    font-size: 1.3rem;
-    letter-spacing: -0.04em;
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: -0.02em;
     line-height: 1;
-  }
-
-  .wordmark-mark::after {
-    content: "";
-    position: absolute;
-    top: 7px;
-    right: 7px;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--color-mint-bright);
   }
 
   .wordmark-text {
@@ -1036,11 +1008,12 @@
   }
 
   .wordmark-name {
-    font-family: var(--font-sans);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    font-size: 1.25rem;
-    color: var(--color-ink);
+    font-family: var(--font-serif);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    font-size: 1.0625rem;
+    color: var(--color-accent);
   }
 
   .wordmark-rule {
@@ -1053,10 +1026,10 @@
   .wordmark-descriptor {
     font-family: var(--font-sans);
     font-weight: 600;
-    font-size: 0.5625rem;
-    letter-spacing: 0.16em;
+    font-size: 0.625rem;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--color-ink-2);
+    color: var(--color-accent-2);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1083,116 +1056,55 @@
   }
 
   /* --- site header --- */
-  /* floating glass navbar: a sticky pill with the page showing through */
+  /* A white masthead bar bounded by a hairline, after the design's portal
+     header: identity on the left, tools on the right, the section tabs on a
+     second row underneath. */
   .site-header {
     position: sticky;
-    top: env(safe-area-inset-top, 0px);
+    top: 0;
     z-index: 40;
-    padding-block: 12px;
+    background: var(--color-paper);
+    border-bottom: 1px solid var(--color-line);
+    box-shadow: 0 1px 12px rgb(42 22 77 / 0.06);
   }
 
   .nav-pill {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    min-height: 60px;
-    padding: 8px 8px 8px 18px;
-    background: var(--color-glass-nav);
-    backdrop-filter: blur(12px) saturate(1.3);
-    -webkit-backdrop-filter: blur(12px) saturate(1.3);
-    border: 1px solid var(--color-on-dark-line);
-    border-radius: var(--radius-pill);
-  }
-
-  /* everything inside the dark navbar speaks the night palette */
-  .nav-pill .wordmark-name {
-    color: var(--color-on-dark);
-  }
-
-  .nav-pill .wordmark-descriptor {
-    color: var(--color-on-dark-muted);
-  }
-
-  .nav-pill .wordmark-rule {
-    background: var(--color-on-dark-line);
-  }
-
-  .nav-pill .wordmark-mark {
-    background: var(--color-on-dark-soft);
-    border: 1px solid var(--color-on-dark-line);
+    min-height: 68px;
+    padding: 0.5rem 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
   }
 
   .nav-pill .nav-tab,
   .nav-pill .nav-link,
   .mobile-nav .nav-link {
-    color: var(--color-on-dark-muted);
+    color: var(--color-ink-3);
   }
 
   .nav-pill .nav-tab:hover,
   .nav-pill .nav-link:hover,
   .mobile-nav .nav-link:hover {
-    color: var(--color-on-dark);
-    background: var(--color-on-dark-soft);
+    color: var(--color-accent);
+    background: transparent;
   }
 
   .nav-pill .nav-tab[aria-current="page"],
   .mobile-nav .nav-link[aria-current="page"] {
-    color: var(--color-on-dark);
-    background: var(--color-on-dark-soft);
-  }
-
-  .nav-pill .nav-tab[aria-current="page"]::after {
-    background: var(--color-mint-bright);
-  }
-
-  .nav-pill .header-search,
-  .nav-pill > div > div > .btn-secondary,
-  .nav-pill .btn-ghost {
-    background: var(--color-on-dark-soft);
-    border-color: var(--color-on-dark-line);
-    color: var(--color-on-dark);
-  }
-
-  .nav-pill .header-search:hover,
-  .nav-pill > div > div > .btn-secondary:hover,
-  .nav-pill .btn-ghost:hover {
-    border-color: var(--color-mint-edge);
-    color: var(--color-on-dark);
-  }
-
-  .mobile-nav .lang-switch {
-    background: var(--color-on-dark-soft);
-    border-color: var(--color-on-dark-line);
-  }
-
-  .mobile-nav .lang-switch a:not([aria-current="true"]) {
-    color: var(--color-on-dark-muted);
-  }
-
-  .nav-pill .kbd {
-    background: var(--color-on-dark-line);
-    color: var(--color-on-dark-muted);
-  }
-
-  .nav-pill .btn-primary,
-  .mobile-nav .btn-primary {
-    background: var(--color-mint-bright);
-    border-color: var(--color-mint-bright);
-  }
-
-  .nav-pill :focus-visible,
-  .mobile-nav :focus-visible {
-    outline-color: var(--color-mint-bright);
+    color: var(--color-accent-2);
+    background: transparent;
   }
 
   .mobile-nav {
-    margin-top: 8px;
-    padding: 0.5rem;
-    background: var(--color-glass-nav);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 0.8px solid var(--color-on-dark-line);
-    border-radius: var(--radius-card);
+    margin-top: 0;
+    padding: 0.5rem 0 1rem;
+    background: var(--color-paper);
+    border: 0;
+    border-top: 1px solid var(--color-line);
+    border-radius: 0;
   }
 
   .header-search {
@@ -1201,8 +1113,8 @@
     gap: 0.4rem;
     height: 40px;
     padding: 0 0.75rem;
-    background: var(--color-glass-soft);
-    border-radius: var(--radius-pill);
+    background: var(--color-paper-2);
+    border-radius: var(--radius-control);
     color: var(--color-ink-2);
     font-size: 0.8125rem;
     text-decoration: none;
@@ -1218,11 +1130,11 @@
   .kbd {
     font-family: var(--font-mono);
     font-size: 0.6875rem;
-    font-weight: 500;
+    font-weight: 600;
     padding: 0.05rem 0.4rem;
-    border-radius: 6px;
-    background: var(--color-paper-3);
-    color: var(--color-ink-2);
+    border-radius: var(--radius-badge);
+    background: #ece7f6;
+    color: var(--color-accent);
   }
 
   /* --- masthead (home hero) --- */
@@ -1231,18 +1143,18 @@
   }
 
   .masthead-name {
-    font-family: var(--font-sans);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    line-height: 1.06;
-    color: var(--color-ink);
+    font-family: var(--font-serif);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--color-accent);
   }
 
   .masthead-descriptor {
-    font-family: var(--font-sans);
-    font-weight: 300;
-    letter-spacing: -0.02em;
-    line-height: 1.15;
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    line-height: 1.3;
     color: var(--color-ink-2);
   }
 
@@ -1300,7 +1212,7 @@
     gap: 0.2rem;
     padding: 1rem 1.1rem;
     background: var(--color-glass);
-    border: 0.8px solid var(--color-line);
+    border: 1px solid var(--color-line);
     border-radius: var(--radius-card);
     min-width: 0;
   }
@@ -1338,11 +1250,10 @@
 
   /* --- discovery console (home search) --- */
   .console {
-    background: var(--color-glass);
-    border: 0.8px solid var(--color-line);
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
     border-radius: var(--radius-panel);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-card);
     padding: clamp(16px, 3vw, 24px);
   }
 
@@ -1427,14 +1338,13 @@
 
   /* --- article cards --- */
   .article-card {
-    background: var(--color-glass);
-    border: 0.8px solid var(--color-line);
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
     border-radius: var(--radius-card);
     padding: 1.25rem;
     margin-bottom: 0.875rem;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    transition: border-color 200ms ease;
+    box-shadow: var(--shadow-card);
+    transition: border-color 200ms ease, box-shadow 200ms ease;
   }
 
   .article-card:hover {
@@ -1572,7 +1482,7 @@
     background-image:
       linear-gradient(to right, var(--color-line) 1px, transparent 1px),
       linear-gradient(to bottom, var(--color-line) 1px, transparent 1px);
-    border: 0.8px solid var(--color-line);
+    border: 1px solid var(--color-line);
     border-radius: var(--radius-card);
     display: flex;
     flex-direction: column;
@@ -1664,7 +1574,7 @@
     font-family: var(--font-sans);
     font-size: 0.6875rem;
     letter-spacing: 0.06em;
-    color: var(--color-gold-fixed);
+    color: var(--color-mint-bright);
   }
 
   /* --- section cards (home) --- */
@@ -1672,7 +1582,7 @@
     display: block;
     padding: 1.1rem 1.25rem;
     background: var(--color-glass);
-    border: 0.8px solid var(--color-line);
+    border: 1px solid var(--color-line);
     border-radius: var(--radius-card);
     text-decoration: none;
     transition: border-color 200ms ease;
@@ -1715,7 +1625,7 @@
     position: relative;
     padding: 1.25rem;
     background: var(--color-glass);
-    border: 0.8px solid var(--color-line);
+    border: 1px solid var(--color-line);
     border-radius: var(--radius-card);
   }
 
@@ -1781,7 +1691,7 @@
     gap: 0.6rem;
     padding: 1.5rem;
     background: var(--color-glass);
-    border: 0.8px solid var(--color-line);
+    border: 1px solid var(--color-line);
     border-radius: var(--radius-card);
   }
 
@@ -2353,7 +2263,7 @@
     gap: 1rem;
     padding: 0.85rem 1rem 0.85rem 0;
     background: var(--color-glass);
-    border: 0.8px solid var(--color-line);
+    border: 1px solid var(--color-line);
     border-radius: var(--radius-card);
     overflow: hidden;
   }
@@ -2417,7 +2327,7 @@
     gap: 0.35rem;
     padding: 1rem 1.1rem;
     background: var(--color-glass);
-    border: 0.8px solid var(--color-line);
+    border: 1px solid var(--color-line);
     border-left: 4px solid var(--color-line);
     border-radius: var(--radius-card);
     text-decoration: none;

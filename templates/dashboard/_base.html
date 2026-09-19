@@ -6,8 +6,9 @@
   The console is a standalone document rather than an extension of the public
   base.html: the design gives the dashboard its own white masthead, section
   tabs, sticky rail and ink footer, none of which belong on the reading site.
-  Everything inside <body class="console"> picks up the royal-ink palette from
-  static/src/css/console.css.
+  Everything inside <body class="editorial-console"> picks up the console
+  furniture from static/src/css/console.css; the palette is the site-wide
+  one in input.css.
 {% endcomment %}
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}" class="h-full">
@@ -31,7 +32,7 @@
     <script src="{% static 'js/alpine.min.js' %}" defer></script>
     {% block extra_head %}{% endblock %}
   </head>
-  <body class="console min-h-full flex flex-col"
+  <body class="editorial-console min-h-full flex flex-col"
         hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
     <a class="skip-link" href="#main">{% translate "Skip to main content" %}</a>
     {% with ns=request.resolver_match.namespace un=request.resolver_match.url_name %}

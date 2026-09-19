@@ -347,6 +347,44 @@ templates, CSS and the compiled `static/css/output.css`.
 
 ---
 
+## Site-wide Academic Royal Prestige skin ✅ (2026-09-19)
+
+**Done** — the reading site joins the console on the design system of
+`design/stitch_modern_economic_journal_dashboard/`. Mint Glass is retired.
+
+- `input.css` `@theme`: the royal-ink palette under the existing token names
+  (`surface` `#FAF9FD`, `paper` `#FFFFFF`, `ink` `#1F1435`, `line` `#E7E0F2`,
+  `accent` `#2A164D`, `accent-2` `#6C28D6`), Merriweather / Inter / JetBrains
+  Mono, radii 2-8px, the design's three shadows, 1360px container. Because the
+  names did not change, all 80+ public templates picked the new look up with no
+  markup edits.
+- Base layer: the night palette is gone (`color-scheme: light`), the page is
+  flat paper instead of a mint-lit gradient, headlines are the editorial serif.
+- Chrome rewritten: white sticky masthead with a hairline rule and uppercase
+  tabs underlined in violet, lavender utility strip, royal-ink wordmark stamp,
+  white mobile sheet, ink footer.
+- Components squared up: buttons and cards at 4px with 1px hairlines instead of
+  pills and frosted glass, chips as 2px archival stamps, amber citation stamps,
+  open-access green.
+- Contrast fixes the swap exposed: the eyebrow on the ink panel, the Online
+  First badge, the mini issue spine.
+- `console.css` keeps only the console's own furniture; its token block is gone
+  now that the palette is site-wide. The dashboard root class became
+  `editorial-console` because `.console` already belonged to the home page
+  search panel — that collision had been drawing a frame around the dashboard.
+- `docs/DESIGN-SYSTEM.md` rewritten for the new system.
+
+**Verified** — `djlint templates apps --check` clean; `manage.py check` clean;
+screenshots at 1440px and 390px in `docs/screenshots/site-*.png` (home, about,
+for-authors, search, sign-in) and `console-*.png`. The public pages were
+previewed by taking the live Railway HTML and re-pointing it at the new
+stylesheet, so the content in the shots is the real site.
+
+**Not verified here** — `pytest` still cannot run: Docker is down on this
+machine and Postgres is unreachable. No Python changed; CI runs the suite.
+
+---
+
 ## Deferred (Phase 2 of the project — see HANDOFF.md)
 
 - DOCX → JATS/HTML full-text conversion.
