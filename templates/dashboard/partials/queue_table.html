@@ -24,7 +24,7 @@
                 {% for assignment in round.assignments.all %}
                   <span class="dot"
                         title="{{ assignment.get_status_display }}"
-                        style="background: var(--color-{% if assignment.status == 'submitted' %}success{% elif assignment.status == 'overdue' %}danger{% elif assignment.status == 'accepted' %}accent{% else %}ink-3{% endif %})"></span>
+                        style="background: var(--color-{% if assignment.status == 'submitted' %}success{% elif assignment.status == 'overdue' %}danger{% elif assignment.status == 'accepted' %}accent-2{% else %}line-2{% endif %})"></span>
                 {% endfor %}
               </span>
             {% else %}
@@ -43,4 +43,6 @@
     {% endfor %}
   </tbody>
 </table>
-{% include "journal/partials/pagination.html" %}
+{% if page_obj.has_other_pages %}
+  <div class="panel-foot">{% include "journal/partials/pagination.html" %}</div>
+{% endif %}

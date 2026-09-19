@@ -1,105 +1,133 @@
 {% extends "dashboard/_base.html" %}
 {% load i18n %}
-{% block title %}{% translate "Reports" %} · {% translate "Dashboard" %}{% endblock %}
+{% block title %}{% translate "Reports" %} · {% translate "Editorial console" %}{% endblock %}
 {% block dashboard_content %}
-  <div class="flex items-center justify-between mb-6">
-    <h1 class="text-2xl">{% translate "Editorial reports" %}</h1>
-    <a class="btn btn-secondary btn-sm" href="?format=csv">{% translate "Export CSV" %}</a>
-  </div>
-  <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 mb-8">
-    <div class="card">
-      <p class="footer-heading">{% translate "Submissions received" %}</p>
-      <p class="text-3xl font-extrabold tracking-[-0.03em] tabular-nums">{{ kpis.submissions_received|default:"—" }}</p>
-      <p class="meta">{% translate "last 12 months" %}</p>
+  <div class="page-head">
+    <div class="min-w-0">
+      <p class="page-eyebrow">{% translate "Editorial desk" %}</p>
+      <h1 class="page-title">{% translate "Editorial reports" %}</h1>
+      <p class="page-sub">{% translate "Rolling twelve months of submissions, decisions and turnaround." %}</p>
     </div>
-    <div class="card">
-      <p class="footer-heading">{% translate "Rejection rate" %}</p>
-      <p class="text-3xl font-extrabold tracking-[-0.03em] tabular-nums">{% if kpis.rejection_rate %}{{ kpis.rejection_rate }}%{% else %}—{% endif %}</p>
-      <p class="meta">
-        {% if kpis.desk_rejection_rate %}
-          {% blocktranslate with rate=kpis.desk_rejection_rate %}{{ rate }}% desk rejected{% endblocktranslate %}
-        {% endif %}
-      </p>
-    </div>
-    <div class="card">
-      <p class="footer-heading">{% translate "Acceptance rate" %}</p>
-      <p class="text-3xl font-extrabold tracking-[-0.03em] tabular-nums">{% if kpis.acceptance_rate %}{{ kpis.acceptance_rate }}%{% else %}—{% endif %}</p>
-    </div>
-    <div class="card">
-      <p class="footer-heading">{% translate "Median days to first decision" %}</p>
-      <p class="text-3xl font-extrabold tracking-[-0.03em] tabular-nums">{{ kpis.median_days_to_first_decision|default:"—" }}</p>
-    </div>
-    <div class="card">
-      <p class="footer-heading">{% translate "Median days a reviewer takes" %}</p>
-      <p class="text-3xl font-extrabold tracking-[-0.03em] tabular-nums">{{ kpis.median_review_days|default:"—" }}</p>
-      <p class="meta">{% translate "from accepting the invitation to filing" %}</p>
+    <div class="page-actions">
+      <a class="btn btn-secondary btn-sm" href="?format=csv">
+        {% include "includes/icon.html" with name="download" size=14 %}
+        {% translate "Export CSV" %}
+      </a>
     </div>
   </div>
+  <section class="mb-10">
+    <div class="section-heading">
+      <h2>{% translate "Key indicators" %}</h2>
+      <span class="meta">{% translate "last 12 months" %}</span>
+    </div>
+    <div class="stat-strip">
+      <div class="stat-tile">
+        <span class="stat-label">{% translate "Submissions received" %}</span>
+        <span class="stat-value">{{ kpis.submissions_received|default:"—" }}</span>
+        <span class="stat-note">{% translate "last 12 months" %}</span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-label">{% translate "Rejection rate" %}</span>
+        <span class="stat-value">{% if kpis.rejection_rate %}{{ kpis.rejection_rate }}%{% else %}—{% endif %}</span>
+        <span class="stat-note">
+          {% if kpis.desk_rejection_rate %}
+            {% blocktranslate with rate=kpis.desk_rejection_rate %}{{ rate }}% desk rejected{% endblocktranslate %}
+          {% endif %}
+        </span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-label">{% translate "Acceptance rate" %}</span>
+        <span class="stat-value">{% if kpis.acceptance_rate %}{{ kpis.acceptance_rate }}%{% else %}—{% endif %}</span>
+        <span class="stat-note stat-note-accent">{% translate "editorial selectivity" %}</span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-label">{% translate "Median days to first decision" %}</span>
+        <span class="stat-value">{{ kpis.median_days_to_first_decision|default:"—" }}</span>
+        <span class="stat-note">{% translate "from submission" %}</span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-label">{% translate "Median days a reviewer takes" %}</span>
+        <span class="stat-value">{{ kpis.median_review_days|default:"—" }}</span>
+        <span class="stat-note">{% translate "from accepting the invitation to filing" %}</span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-label">{% translate "Peer review model" %}</span>
+        <span class="stat-value stat-value-sm">{% translate "Double-blind" %}</span>
+        <span class="stat-note">{{ site_settings.frequency_short }}</span>
+      </div>
+    </div>
+  </section>
   {% if kpis.author_countries %}
-    <section class="mb-8">
-      <div class="section-heading">
-        <h2>{% translate "Where the authors are" %}</h2>
-        <span class="meta">{% translate "submitting authors, last 12 months" %}</span>
+    <section class="mb-10">
+      <div class="panel">
+        <div class="panel-head">
+          <h2>{% translate "Where the authors are" %}</h2>
+          <span class="meta">{% translate "submitting authors, last 12 months" %}</span>
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>{% translate "Country" %}</th>
+              <th class="table-numeric">{% translate "Authors" %}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in kpis.author_countries %}
+              <tr>
+                <td>{{ row.country }}</td>
+                <td class="meta table-numeric">{{ row.total }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  {% endif %}
+  <section class="mb-10">
+    <div class="panel">
+      <div class="panel-head">
+        <h2>{% translate "Submissions and acceptances" %}</h2>
+      </div>
+      <div class="panel-body">{% include "core/partials/bar_chart.html" with series=monthly %}</div>
+    </div>
+  </section>
+  <section>
+    <div class="panel">
+      <div class="panel-head">
+        <h2>{% translate "Monthly snapshots" %}</h2>
       </div>
       <table class="table">
         <thead>
           <tr>
-            <th>{% translate "Country" %}</th>
-            <th>{% translate "Authors" %}</th>
+            <th>{% translate "Month" %}</th>
+            <th class="table-numeric">{% translate "Received" %}</th>
+            <th class="table-numeric">{% translate "Desk rejected" %}</th>
+            <th class="table-numeric">{% translate "To review" %}</th>
+            <th class="table-numeric">{% translate "Accepted" %}</th>
+            <th class="table-numeric">{% translate "Rejected" %}</th>
+            <th class="table-numeric">{% translate "Acceptance rate" %}</th>
           </tr>
         </thead>
         <tbody>
-          {% for row in kpis.author_countries %}
+          {% for snapshot in snapshots %}
             <tr>
-              <td>{{ row.country }}</td>
-              <td class="meta">{{ row.total }}</td>
+              <td class="meta">{{ snapshot.month|date:"F Y" }}</td>
+              <td class="meta table-numeric">{{ snapshot.submissions_received }}</td>
+              <td class="meta table-numeric">{{ snapshot.desk_rejected }}</td>
+              <td class="meta table-numeric">{{ snapshot.sent_to_review }}</td>
+              <td class="meta table-numeric">{{ snapshot.accepted }}</td>
+              <td class="meta table-numeric">{{ snapshot.rejected }}</td>
+              <td class="meta table-numeric">{% if snapshot.acceptance_rate %}{{ snapshot.acceptance_rate }}%{% else %}—{% endif %}</td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="7">
+                <div class="empty-state">{% translate "No snapshots yet." %}</div>
+              </td>
             </tr>
           {% endfor %}
         </tbody>
       </table>
-    </section>
-  {% endif %}
-  <section class="mb-8">
-    <div class="section-heading">
-      <h2>{% translate "Submissions and acceptances" %}</h2>
     </div>
-    {% include "core/partials/bar_chart.html" with series=monthly %}
-  </section>
-  <section>
-    <div class="section-heading">
-      <h2>{% translate "Monthly snapshots" %}</h2>
-    </div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>{% translate "Month" %}</th>
-          <th>{% translate "Received" %}</th>
-          <th>{% translate "Desk rejected" %}</th>
-          <th>{% translate "To review" %}</th>
-          <th>{% translate "Accepted" %}</th>
-          <th>{% translate "Rejected" %}</th>
-          <th>{% translate "Acceptance rate" %}</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for snapshot in snapshots %}
-          <tr>
-            <td class="meta">{{ snapshot.month|date:"F Y" }}</td>
-            <td class="meta">{{ snapshot.submissions_received }}</td>
-            <td class="meta">{{ snapshot.desk_rejected }}</td>
-            <td class="meta">{{ snapshot.sent_to_review }}</td>
-            <td class="meta">{{ snapshot.accepted }}</td>
-            <td class="meta">{{ snapshot.rejected }}</td>
-            <td class="meta">{% if snapshot.acceptance_rate %}{{ snapshot.acceptance_rate }}%{% else %}—{% endif %}</td>
-          </tr>
-        {% empty %}
-          <tr>
-            <td colspan="7">
-              <div class="empty-state">{% translate "No snapshots yet." %}</div>
-            </td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
   </section>
 {% endblock %}

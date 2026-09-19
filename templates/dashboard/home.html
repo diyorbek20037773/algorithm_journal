@@ -1,56 +1,67 @@
 {% extends "dashboard/_base.html" %}
 {% load i18n %}
-{% block title %}{% translate "Dashboard" %} · {{ site_settings.journal_name }}{% endblock %}
+{% block title %}{% translate "Overview" %} · {% translate "Editorial console" %} · {{ site_settings.journal_name }}{% endblock %}
 {% block dashboard_content %}
-  <div class="flex flex-wrap items-baseline justify-between gap-3 mb-8">
-    <div>
-      <h1 class="text-3xl mb-1">{% translate "Dashboard" %}</h1>
-      <p class="muted">{{ user.get_full_name|default:user.email }}</p>
+  <div class="page-head">
+    <div class="min-w-0">
+      <p class="page-eyebrow">{% translate "Editorial console" %}</p>
+      <h1 class="page-title">{% translate "Overview" %}</h1>
+      <p class="page-sub">{{ user.get_full_name|default:user.email }}</p>
     </div>
-    {% if roles %}
-      <p class="meta">{% for role in roles %}{{ role }}{% if not forloop.last %} · {% endif %}{% endfor %}</p>
-    {% endif %}
+    <div class="page-actions">
+      {% for role in roles %}<span class="chip">{{ role }}</span>{% endfor %}
+      <a class="btn btn-primary btn-sm"
+         href="{% url 'submissions:wizard_start' %}">
+        {% include "includes/icon.html" with name="upload" size=14 %}
+        {% translate "New submission" %}
+      </a>
+    </div>
   </div>
   {% if attention_items %}
     {# Everything that is late, worst first.  Nothing else on the page outranks it. #}
     <section class="mb-10">
-      <div class="section-heading">
-        <h2>{% translate "Needs attention" %}</h2>
-        <span class="meta">
-          {% if attention_total > attention_items|length %}
-            {% blocktranslate with shown=attention_items|length total=attention_total %}showing {{ shown }} of {{ total }}{% endblocktranslate %}
-          {% else %}
-            {% blocktranslate count counter=attention_total %}{{ counter }} item{% plural %}{{ counter }} items{% endblocktranslate %}
-          {% endif %}
-        </span>
-      </div>
-      <ul class="attention-list">
-        {% for item in attention_items %}
-          <li class="attention-row" data-severity="{{ item.severity }}">
-            <span class="attention-bar" aria-hidden="true"></span>
-            <div class="min-w-0">
-              <p class="font-medium truncate">{{ item.title }}</p>
-              <p class="meta">
-                {% if item.reference %}{{ item.reference }} ·{% endif %}
-                {{ item.reason }}
-                {% if item.extra.reviewer %}— {{ item.extra.reviewer }}{% endif %}
-              </p>
-            </div>
-            <p class="attention-days" data-severity="{{ item.severity }}">
-              <span class="attention-days-number">{{ item.days }}</span>
-              <span class="attention-days-unit">{% translate "days" %}</span>
-            </p>
-            {% if item.method == "post" %}
-              <form method="post" action="{{ item.action_url }}">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-secondary btn-sm">{{ item.action_label }}</button>
-              </form>
+      <div class="panel">
+        <div class="panel-head">
+          <h2 class="flex items-center gap-2">
+            {% include "includes/icon.html" with name="alert" size=16 %}
+            {% translate "Needs attention" %}
+          </h2>
+          <span class="meta">
+            {% if attention_total > attention_items|length %}
+              {% blocktranslate with shown=attention_items|length total=attention_total %}showing {{ shown }} of {{ total }}{% endblocktranslate %}
             {% else %}
-              <a class="btn btn-secondary btn-sm" href="{{ item.action_url }}">{{ item.action_label }}</a>
+              {% blocktranslate count counter=attention_total %}{{ counter }} item{% plural %}{{ counter }} items{% endblocktranslate %}
             {% endif %}
-          </li>
-        {% endfor %}
-      </ul>
+          </span>
+        </div>
+        <ul class="attention-list">
+          {% for item in attention_items %}
+            <li class="attention-row" data-severity="{{ item.severity }}">
+              <span class="attention-bar" aria-hidden="true"></span>
+              <div class="min-w-0">
+                <p class="font-semibold truncate">{{ item.title }}</p>
+                <p class="meta">
+                  {% if item.reference %}{{ item.reference }} ·{% endif %}
+                  {{ item.reason }}
+                  {% if item.extra.reviewer %}— {{ item.extra.reviewer }}{% endif %}
+                </p>
+              </div>
+              <p class="attention-days" data-severity="{{ item.severity }}">
+                <span class="attention-days-number">{{ item.days }}</span>
+                <span class="attention-days-unit">{% translate "days" %}</span>
+              </p>
+              {% if item.method == "post" %}
+                <form method="post" action="{{ item.action_url }}">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-secondary btn-sm">{{ item.action_label }}</button>
+                </form>
+              {% else %}
+                <a class="btn btn-secondary btn-sm" href="{{ item.action_url }}">{{ item.action_label }}</a>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
     </section>
   {% elif editor_queues %}
     <p class="callout-clear mb-10">{% translate "Nothing is overdue. Every manuscript is inside its target." %}</p>
@@ -59,18 +70,19 @@
     <section class="mb-10">
       <div class="section-heading">
         <h2>{% translate "Editorial queues" %}</h2>
+        <span class="meta">{% translate "live manuscript counts" %}</span>
       </div>
       <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {% for queue in editor_queues %}
           <a class="queue-tile"
              href="{% url 'dashboard:queue' queue.key %}"
              data-severity="{{ queue.severity }}">
-            <span class="footer-heading">{{ queue.label }}</span>
+            <span class="stat-label">{{ queue.label }}</span>
             <span class="queue-count">{{ queue.count }}</span>
             {% if queue.count %}
-              <span class="meta">{% blocktranslate with days=queue.oldest_days %}oldest waiting {{ days }} days{% endblocktranslate %}</span>
+              <span class="stat-note">{% blocktranslate with days=queue.oldest_days %}oldest waiting {{ days }} days{% endblocktranslate %}</span>
             {% else %}
-              <span class="meta">{% translate "empty" %}</span>
+              <span class="stat-note">{% translate "empty" %}</span>
             {% endif %}
           </a>
         {% endfor %}
@@ -82,13 +94,12 @@
           <h2>{% translate "Turnaround" %}</h2>
           <a class="btn btn-ghost btn-sm" href="{% url 'dashboard:reports' %}">{% translate "Reports" %}</a>
         </div>
-        <div class="grid gap-3 sm:grid-cols-2">
+        <div class="stat-strip">
           {% for card in kpi_cards %}
-            <div class="card">
-              <p class="footer-heading">{{ card.label }}</p>
-              <p class="text-2xl font-extrabold tracking-[-0.03em] tabular-nums kpi-value"
-                 data-severity="{{ card.severity }}">{{ card.value }}</p>
-              <p class="meta">{{ card.target }}</p>
+            <div class="stat-tile">
+              <span class="stat-label">{{ card.label }}</span>
+              <span class="stat-value kpi-value" data-severity="{{ card.severity }}">{{ card.value }}</span>
+              <span class="stat-note">{{ card.target }}</span>
             </div>
           {% endfor %}
         </div>
@@ -101,24 +112,26 @@
         <h2>{% translate "Reviews" %}</h2>
         <a class="btn btn-ghost btn-sm" href="{% url 'review:dashboard' %}">{% translate "All reviews" %}</a>
       </div>
-      {% for assignment in review_invitations %}
-        <div class="card mb-3">
-          <p class="eyebrow">{% translate "Invitation" %}</p>
-          <p class="font-medium mt-1">{{ assignment.round.submission.title }}</p>
-          <p class="meta">{% translate "Due" %} {{ assignment.due_at|date:"j F Y" }}</p>
-          <a class="btn btn-secondary btn-sm mt-3"
-             href="{% url 'review:assignment_detail' assignment.pk %}">{% translate "Open" %}</a>
-        </div>
-      {% endfor %}
-      {% for assignment in active_reviews %}
-        <div class="card mb-3">
-          <p class="eyebrow">{% translate "In progress" %}</p>
-          <p class="font-medium mt-1">{{ assignment.round.submission.title }}</p>
-          <p class="meta">{% translate "Due" %} {{ assignment.due_at|date:"j F Y" }} ({{ assignment.days_remaining }} {% translate "days" %})</p>
-          <a class="btn btn-primary btn-sm mt-3"
-             href="{% url 'review:review_form' assignment.pk %}">{% translate "Write the review" %}</a>
-        </div>
-      {% endfor %}
+      <div class="grid gap-3 lg:grid-cols-2">
+        {% for assignment in review_invitations %}
+          <div class="card">
+            <span class="eyebrow">{% translate "Invitation" %}</span>
+            <p class="font-semibold mt-2">{{ assignment.round.submission.title }}</p>
+            <p class="meta mt-1">{% translate "Due" %} {{ assignment.due_at|date:"j F Y" }}</p>
+            <a class="btn btn-secondary btn-sm mt-3"
+               href="{% url 'review:assignment_detail' assignment.pk %}">{% translate "Open" %}</a>
+          </div>
+        {% endfor %}
+        {% for assignment in active_reviews %}
+          <div class="card">
+            <span class="eyebrow">{% translate "In progress" %}</span>
+            <p class="font-semibold mt-2">{{ assignment.round.submission.title }}</p>
+            <p class="meta mt-1">{% translate "Due" %} {{ assignment.due_at|date:"j F Y" }} ({{ assignment.days_remaining }} {% translate "days" %})</p>
+            <a class="btn btn-primary btn-sm mt-3"
+               href="{% url 'review:review_form' assignment.pk %}">{% translate "Write the review" %}</a>
+          </div>
+        {% endfor %}
+      </div>
     </section>
   {% endif %}
   {% if actions_needed %}
@@ -129,7 +142,7 @@
       {% for submission in actions_needed %}
         <div class="card mb-3 flex items-center justify-between gap-4">
           <div class="min-w-0">
-            <p class="font-medium truncate">{{ submission.title }}</p>
+            <p class="font-semibold truncate">{{ submission.title }}</p>
             <p class="meta">{{ submission.reference }} — {{ submission.get_status_display }}</p>
           </div>
           {% if submission.status == "revision_requested" %}

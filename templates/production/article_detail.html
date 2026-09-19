@@ -2,30 +2,40 @@
 {% load i18n %}
 {% block title %}{% translate "Article production" %} — #{{ article.pk }}{% endblock %}
 {% block dashboard_content %}
-  <p class="meta">#{{ article.pk }} · {{ article.get_status_display }}</p>
-  <h1 class="text-2xl mt-1 mb-6">{{ article.title }}</h1>
-  <section class="mb-8">
-    <div class="section-heading">
+  <div class="page-head">
+    <div class="min-w-0">
+      <p class="page-eyebrow">{% translate "Production" %} · #{{ article.pk }}</p>
+      <h1 class="page-title">{{ article.title }}</h1>
+      <p class="page-sub">{{ article.get_status_display }}</p>
+    </div>
+    <div class="page-actions">
+      <span class="chip chip-mono">{{ article.doi|default:_("no DOI") }}</span>
+    </div>
+  </div>
+  <div class="panel mb-6">
+    <div class="panel-head">
       <h2>{% translate "Metadata completeness" %}</h2>
     </div>
-    <ul class="grid gap-1 sm:grid-cols-2">
-      {% for check in completeness %}
-        <li class="flex items-center gap-2 text-sm">
-          <span class="dot"
-                style="background: var(--color-{% if check.ok %}success{% elif check.level == 'warning' %}warning{% else %}danger{% endif %})"></span>
-          {{ check.label }}
-        </li>
-      {% endfor %}
-    </ul>
-  </section>
-  <section class="mb-8">
-    <div class="section-heading">
+    <div class="panel-body">
+      <ul class="grid gap-2 sm:grid-cols-2">
+        {% for check in completeness %}
+          <li class="flex items-center gap-2 text-sm">
+            <span class="dot"
+                  style="background: var(--color-{% if check.ok %}success{% elif check.level == 'warning' %}warning{% else %}danger{% endif %})"></span>
+            {{ check.label }}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="panel mb-6">
+    <div class="panel-head">
       <h2>{% translate "Galleys" %}</h2>
     </div>
     <form method="post"
           action="{% url 'production:upload_galley' article.pk %}"
           enctype="multipart/form-data"
-          class="card grid gap-3 sm:grid-cols-[1fr_1fr_auto] items-end">
+          class="panel-body grid gap-3 sm:grid-cols-[1fr_1fr_auto] items-end">
       {% csrf_token %}
       <div>
         <label class="field-label" for="galley-label">{% translate "Label" %}</label>
@@ -43,59 +53,68 @@
       </div>
       <button type="submit" class="btn btn-secondary">{% translate "Upload galley" %}</button>
     </form>
-    <ul class="mt-4 space-y-1">
-      {% for galley in galleys %}
-        <li class="meta">{{ galley.get_label_display }} — {{ galley.size_display }}{% if galley.is_primary %} · {% translate "primary" %}{% endif %}</li>
-      {% endfor %}
-    </ul>
-  </section>
-  <section class="mb-8">
-    <div class="section-heading">
+    {% if galleys %}
+      <div class="panel-foot">
+        <ul class="flex flex-wrap gap-2">
+          {% for galley in galleys %}
+            <li class="chip chip-mono">{{ galley.get_label_display }} — {{ galley.size_display }}{% if galley.is_primary %} · {% translate "primary" %}{% endif %}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  </div>
+  <div class="panel mb-6">
+    <div class="panel-head">
       <h2>{% translate "Journal layout" %}</h2>
     </div>
-    {% if article.offprint_pdf %}
-      <p class="muted text-sm mb-3">
-        {% blocktranslate with issue=article.issue.label start=article.pages_start end=article.pages_end %}Typeset in {{ issue }}, pages {{ start }}–{{ end }}.{% endblocktranslate %}
-        {% if article.offprint_sent_at %}
-          {% blocktranslate with date=article.offprint_sent_at|date:"d.m.Y H:i" %}Sent to the authors on {{ date }}.{% endblocktranslate %}
-        {% endif %}
-      </p>
-      <div class="flex flex-wrap gap-2">
-        <a class="btn btn-secondary"
-           href="{% url 'production:article_offprint' article.pk %}">{% translate "Download the offprint" %}</a>
-        <form method="post"
-              action="{% url 'production:article_offprint_send' article.pk %}">
-          {% csrf_token %}
-          <button type="submit" class="btn btn-secondary">{% translate "Send to authors" %}</button>
-        </form>
-      </div>
-    {% else %}
-      <p class="muted text-sm">
-        {% translate "The offprint appears here after the journal PDF of its issue has been built in the issue builder." %}
-      </p>
-    {% endif %}
-  </section>
-  <section class="mb-8">
-    <div class="section-heading">
-      <h2>DOI</h2>
+    <div class="panel-body">
+      {% if article.offprint_pdf %}
+        <p class="page-sub mb-4">
+          {% blocktranslate with issue=article.issue.label start=article.pages_start end=article.pages_end %}Typeset in {{ issue }}, pages {{ start }}–{{ end }}.{% endblocktranslate %}
+          {% if article.offprint_sent_at %}
+            {% blocktranslate with date=article.offprint_sent_at|date:"d.m.Y H:i" %}Sent to the authors on {{ date }}.{% endblocktranslate %}
+          {% endif %}
+        </p>
+        <div class="flex flex-wrap gap-2">
+          <a class="btn btn-secondary btn-sm"
+             href="{% url 'production:article_offprint' article.pk %}">{% translate "Download the offprint" %}</a>
+          <form method="post"
+                action="{% url 'production:article_offprint_send' article.pk %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-secondary btn-sm">{% translate "Send to authors" %}</button>
+          </form>
+        </div>
+      {% else %}
+        <p class="page-sub">{% translate "The offprint appears here after the journal PDF of its issue has been built in the issue builder." %}</p>
+      {% endif %}
     </div>
-    <p class="meta mb-3">{{ article.doi|default:_("not assigned") }} — {{ article.get_doi_status_display }}</p>
-    <form method="post" action="{% url 'production:assign_doi' article.pk %}">
-      {% csrf_token %}
-      <button type="submit" class="btn btn-secondary">{% translate "Reserve the DOI" %}</button>
-    </form>
-  </section>
-  <section class="mb-8">
-    <div class="section-heading">
+  </div>
+  <div class="panel mb-6">
+    <div class="panel-head">
+      <h2>DOI</h2>
+      <span class="meta">{{ article.get_doi_status_display }}</span>
+    </div>
+    <div class="panel-body">
+      <p class="meta mb-4">{{ article.doi|default:_("not assigned") }}</p>
+      <form method="post" action="{% url 'production:assign_doi' article.pk %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-secondary btn-sm">{% translate "Reserve the DOI" %}</button>
+      </form>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="panel-head">
       <h2>{% translate "Publication" %}</h2>
     </div>
-    {% if blockers %}
-      <div class="alert alert-warning mb-3">
-        <p class="font-medium">{% translate "Publication is blocked by:" %}</p>
-        <ul class="text-sm mt-1">{% for item in blockers %}<li>• {{ item }}</li>{% endfor %}</ul>
-      </div>
-    {% endif %}
-    <div class="flex flex-wrap gap-2">
+    <div class="panel-body">
+      {% if blockers %}
+        <div class="alert alert-warning mb-4">
+          <p class="font-semibold">{% translate "Publication is blocked by:" %}</p>
+          <ul class="text-sm mt-1">
+            {% for item in blockers %}<li>• {{ item }}</li>{% endfor %}
+          </ul>
+        </div>
+      {% endif %}
       <form method="post"
             action="{% url 'production:publish_online_first' article.pk %}">
         {% csrf_token %}
@@ -106,7 +125,7 @@
     </div>
     <form method="post"
           action="{% url 'production:schedule' article.pk %}"
-          class="card mt-4 grid gap-3 sm:grid-cols-4 items-end">
+          class="panel-foot grid gap-3 sm:grid-cols-4 items-end">
       {% csrf_token %}
       <div>
         <label class="field-label" for="schedule-issue">{% translate "Issue" %}</label>
@@ -130,5 +149,5 @@
       </div>
       <button type="submit" class="btn btn-secondary">{% translate "Schedule into the issue" %}</button>
     </form>
-  </section>
+  </div>
 {% endblock %}

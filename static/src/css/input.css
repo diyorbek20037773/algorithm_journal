@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Editorial console skin (dashboard only) — see console.css. */
+@import "./console.css";
+
 /* Scan Django templates and Python files for utility classes. */
 @source "../../../templates/**/*.html";
 @source "../../../apps/**/templates/**/*.html";
@@ -2598,6 +2601,13 @@
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border: 0;
+  }
+
+  /* Alpine strips the attribute once it boots; until then the element that
+     `x-show` will hide must not flash into view (the dashboard user menu,
+     the mobile nav). */
+  [x-cloak] {
+    display: none !important;
   }
 
   .htmx-indicator {

@@ -1,23 +1,34 @@
 {% extends "dashboard/_base.html" %}
 {% load i18n %}
-{% block title %}{% translate "My reviews" %} · {{ site_settings.journal_name }}{% endblock %}
+{% block title %}{% translate "My reviews" %} · {% translate "Editorial console" %}{% endblock %}
 {% block dashboard_content %}
-  <div class="flex items-center justify-between mb-6">
-    <h1 class="text-2xl">{% translate "My reviews" %}</h1>
-    <a class="btn btn-secondary btn-sm"
-       href="{% url 'review:certificate' %}">{% translate "Download certificate" %}</a>
+  <div class="page-head">
+    <div class="min-w-0">
+      <p class="page-eyebrow">{% translate "Peer review" %}</p>
+      <h1 class="page-title">{% translate "My reviews" %}</h1>
+      <p class="page-sub">{% translate "Double-blind. The authors never learn who reviewed their manuscript." %}</p>
+    </div>
+    <div class="page-actions">
+      <a class="btn btn-secondary btn-sm"
+         href="{% url 'review:certificate' %}">
+        {% include "includes/icon.html" with name="award" size=14 %}
+        {% translate "Download certificate" %}
+      </a>
+    </div>
   </div>
   <section class="mb-10">
     <div class="section-heading">
       <h2>{% translate "Invitations" %}</h2>
+      <span class="meta">{% blocktranslate count counter=invitations|length %}{{ counter }} open{% plural %}{{ counter }} open{% endblocktranslate %}</span>
     </div>
     {% for assignment in invitations %}
       <div class="card mb-3">
-        <p class="font-medium">{{ assignment.round.submission.title }}</p>
-        <p class="meta">{{ assignment.round.submission.section.name }} · {% translate "Due" %} {{ assignment.due_at|date:"j F Y" }}</p>
+        <span class="eyebrow">{% translate "Invitation" %}</span>
+        <p class="font-semibold mt-2">{{ assignment.round.submission.title }}</p>
+        <p class="meta mt-1">{{ assignment.round.submission.section.name }} · {% translate "Due" %} {{ assignment.due_at|date:"j F Y" }}</p>
         <form method="post"
               action="{% url 'review:respond_dashboard' assignment.pk %}"
-              class="flex flex-wrap items-center gap-2 mt-3">
+              class="flex flex-wrap items-center gap-2 mt-4">
           {% csrf_token %}
           <a class="btn btn-ghost btn-sm"
              href="{% url 'review:assignment_detail' assignment.pk %}">{% translate "View the manuscript" %}</a>
@@ -41,16 +52,17 @@
     </div>
     {% for assignment in active %}
       <div class="card mb-3">
-        <p class="font-medium">{{ assignment.round.submission.title }}</p>
-        <p class="meta">
+        <span class="eyebrow">{% translate "In progress" %}</span>
+        <p class="font-semibold mt-2">{{ assignment.round.submission.title }}</p>
+        <p class="meta mt-1">
           {% translate "Due" %} {{ assignment.due_at|date:"j F Y" }} —
           {% if assignment.days_remaining >= 0 %}
             {% blocktranslate count counter=assignment.days_remaining %}{{ counter }} day left{% plural %}{{ counter }} days left{% endblocktranslate %}
           {% else %}
-            <span style="color:var(--color-danger)">{% translate "overdue" %}</span>
+            <span class="chip chip-gold">{% translate "overdue" %}</span>
           {% endif %}
         </p>
-        <a class="btn btn-primary btn-sm mt-3"
+        <a class="btn btn-primary btn-sm mt-4"
            href="{% url 'review:review_form' assignment.pk %}">{% translate "Open the review form" %}</a>
       </div>
     {% empty %}
@@ -58,32 +70,35 @@
     {% endfor %}
   </section>
   <section>
-    <div class="section-heading">
-      <h2>{% translate "Completed" %}</h2>
+    <div class="panel">
+      <div class="panel-head">
+        <h2>{% translate "Completed" %}</h2>
+        <span class="meta">{% blocktranslate count counter=completed|length %}{{ counter }} review{% plural %}{{ counter }} reviews{% endblocktranslate %}</span>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>{% translate "Manuscript" %}</th>
+            <th>{% translate "Recommendation" %}</th>
+            <th>{% translate "Submitted" %}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for assignment in completed %}
+            <tr>
+              <td>{{ assignment.round.submission.title|truncatechars:60 }}</td>
+              <td class="meta">{% if assignment.review %}{{ assignment.review.get_recommendation_display }}{% endif %}</td>
+              <td class="meta">{{ assignment.completed_at|date:"j M Y" }}</td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="3">
+                <div class="empty-state">{% translate "No completed reviews yet." %}</div>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>{% translate "Manuscript" %}</th>
-          <th>{% translate "Recommendation" %}</th>
-          <th>{% translate "Submitted" %}</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for assignment in completed %}
-          <tr>
-            <td>{{ assignment.round.submission.title|truncatechars:60 }}</td>
-            <td class="meta">{% if assignment.review %}{{ assignment.review.get_recommendation_display }}{% endif %}</td>
-            <td class="meta">{{ assignment.completed_at|date:"j M Y" }}</td>
-          </tr>
-        {% empty %}
-          <tr>
-            <td colspan="3">
-              <div class="empty-state">{% translate "No completed reviews yet." %}</div>
-            </td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
   </section>
 {% endblock %}

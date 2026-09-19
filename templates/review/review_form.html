@@ -1,29 +1,46 @@
 {% extends "dashboard/_base.html" %}
 {% load i18n %}
-{% block title %}{% translate "Review form" %} · {{ site_settings.journal_name }}{% endblock %}
+{% block title %}{% translate "Review form" %} · {% translate "Editorial console" %}{% endblock %}
 {% block dashboard_content %}
-  <h1 class="text-2xl mb-1">{% translate "Review form" %}</h1>
-  <p class="muted mb-6">{{ manuscript_title }}</p>
+  <div class="page-head">
+    <div class="min-w-0">
+      <p class="page-eyebrow">{% translate "Peer review" %}</p>
+      <h1 class="page-title">{% translate "Review form" %}</h1>
+      <p class="page-sub">{{ manuscript_title }}</p>
+    </div>
+  </div>
   <form method="post" enctype="multipart/form-data" novalidate>
     {% csrf_token %}
-    <fieldset class="card mb-6">
-      <legend class="footer-heading px-1">{% translate "Assessment (1 = poor, 5 = excellent)" %}</legend>
-      {% for field in form %}
-        {% if field.name|slice:":6" == "score_" %}
-          <div class="rule py-3 first:border-0 grid gap-2 sm:grid-cols-[1fr_auto] items-center">
-            <span class="text-sm">{{ field.label }}</span>
-            <div class="flex gap-3">{{ field }}</div>
-            {% for error in field.errors %}<p class="field-error">{{ error }}</p>{% endfor %}
-          </div>
-        {% endif %}
-      {% endfor %}
-    </fieldset>
-    {% for field in form %}
-      {% if field.name|slice:":6" != "score_" %}
-        {% include "includes/form_field.html" with field=field %}
-      {% endif %}
-    {% endfor %}
-    <div class="flex flex-wrap gap-3 mt-6">
+    <div class="panel mb-6">
+      <div class="panel-head">
+        <h2>{% translate "Assessment" %}</h2>
+        <span class="meta">{% translate "1 = poor, 5 = excellent" %}</span>
+      </div>
+      <div class="panel-body">
+        {% for field in form %}
+          {% if field.name|slice:":6" == "score_" %}
+            <div class="rule py-3 first:border-0 grid gap-2 sm:grid-cols-[1fr_auto] items-center">
+              <span class="text-sm">{{ field.label }}</span>
+              <div class="flex gap-3">{{ field }}</div>
+              {% for error in field.errors %}<p class="field-error">{{ error }}</p>{% endfor %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    <div class="panel mb-6">
+      <div class="panel-head">
+        <h2>{% translate "Report" %}</h2>
+      </div>
+      <div class="panel-body">
+        {% for field in form %}
+          {% if field.name|slice:":6" != "score_" %}
+            {% include "includes/form_field.html" with field=field %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    <div class="flex flex-wrap gap-3">
       <button type="submit"
               name="action"
               value="save_draft"

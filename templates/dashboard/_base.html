@@ -1,38 +1,290 @@
-{% extends "base.html" %}
-{% load i18n %}
-{% block main_class %}py-8{% endblock %}
-{% block content %}
-  <div class="container-page grid gap-8 lg:grid-cols-[220px_1fr] items-start">
-    <nav class="lg:sticky lg:top-20"
-         aria-label="{% translate 'Dashboard navigation' %}">
-      <p class="footer-heading">{% translate "Dashboard" %}</p>
-      <a class="footer-link" href="{% url 'dashboard:home' %}">{% translate "Overview" %}</a>
-      <a class="footer-link" href="{% url 'submissions:wizard_start' %}">{% translate "New submission" %}</a>
-      {% if user.is_reviewer %}
-        <a class="footer-link" href="{% url 'review:dashboard' %}">{% translate "My reviews" %}</a>
-      {% endif %}
-      {% if user.is_editorial_staff %}
-        <p class="footer-heading mt-5">{% translate "Editorial" %}</p>
-        <a class="footer-link" href="{% url 'dashboard:queue' 'new' %}">{% translate "New" %}</a>
-        <a class="footer-link" href="{% url 'dashboard:queue' 'screening' %}">{% translate "Screening" %}</a>
-        <a class="footer-link" href="{% url 'dashboard:queue' 'in_review' %}">{% translate "In review" %}</a>
-        <a class="footer-link" href="{% url 'dashboard:queue' 'decision' %}">{% translate "Awaiting decision" %}</a>
-        <a class="footer-link" href="{% url 'dashboard:queue' 'revisions' %}">{% translate "Revisions" %}</a>
-        <a class="footer-link" href="{% url 'dashboard:queue' 'production' %}">{% translate "In production" %}</a>
-        <a class="footer-link" href="{% url 'dashboard:reports' %}">{% translate "Reports" %}</a>
-      {% endif %}
-      {% if user.can_access_production %}
-        <a class="footer-link" href="{% url 'production:queue' %}">{% translate "Production" %}</a>
-      {% endif %}
-      <p class="footer-heading mt-5">{% translate "Account" %}</p>
-      <a class="footer-link" href="{% url 'dashboard:profile' %}">{% translate "Profile" %}</a>
-      <a class="footer-link" href="{% url 'dashboard:two_factor_setup' %}">{% translate "Two-factor authentication" %}</a>
-      {% if user.is_superuser %}
-        <a class="footer-link" href="/admin/">{% translate "Django admin" %}</a>
-      {% endif %}
-    </nav>
-    <div class="min-w-0">
-      {% block dashboard_content %}{% endblock %}
-    </div>
-  </div>
-{% endblock %}
+{% load static i18n %}
+{% comment %}
+  Editorial console shell — "Academic Royal Prestige / White Ink Edition",
+  converted from design/stitch_modern_economic_journal_dashboard/.
+
+  The console is a standalone document rather than an extension of the public
+  base.html: the design gives the dashboard its own white masthead, section
+  tabs, sticky rail and ink footer, none of which belong on the reading site.
+  Everything inside <body class="console"> picks up the royal-ink palette from
+  static/src/css/console.css.
+{% endcomment %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" class="h-full">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>{% block title %}{% translate "Editorial console" %} · {{ site_settings.journal_name }}{% endblock %}</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+    {% if site_settings.favicon %}
+      <link rel="icon" href="{{ site_settings.favicon.url }}">
+    {% else %}
+      <link rel="icon" href="{% static 'img/favicon.svg' %}" type="image/svg+xml">
+    {% endif %}
+    <script src="{% static 'js/htmx.min.js' %}" defer></script>
+    <script src="{% static 'js/alpine.min.js' %}" defer></script>
+    {% block extra_head %}{% endblock %}
+  </head>
+  <body class="console min-h-full flex flex-col"
+        hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+    <a class="skip-link" href="#main">{% translate "Skip to main content" %}</a>
+    {% with ns=request.resolver_match.namespace un=request.resolver_match.url_name %}
+      {# ---------------------------------------------------------------- masthead #}
+      <header class="console-header">
+        <div class="console-page">
+          <div class="console-masthead">
+            <a class="console-brand"
+               href="{% url 'dashboard:home' %}"
+               aria-label="{% translate 'Editorial console' %}">
+              {% if site_settings.logo %}
+                <img class="h-9 w-auto object-contain"
+                     src="{{ site_settings.logo.url }}"
+                     alt=""
+                     width="36"
+                     height="36">
+              {% else %}
+                <span class="console-brand-mark" aria-hidden="true">{{ site_settings.wordmark_name|slice:":1" }}</span>
+              {% endif %}
+              <span class="min-w-0">
+                <span class="console-brand-name truncate">{{ site_settings.wordmark_name }}</span>
+                <span class="console-brand-desc truncate">{% translate "Editorial console" %}</span>
+              </span>
+            </a>
+            <div class="ml-auto flex items-center gap-3">
+              <a class="console-search hidden md:inline-flex"
+                 href="{% url 'search:search' %}">
+                {% include "includes/icon.html" with name="search" size=16 %}
+                <span>{% translate "Search the journal" %}</span>
+                <span class="kbd" aria-hidden="true">/</span>
+              </a>
+              <div class="hidden lg:block">{% include "includes/language_switcher.html" %}</div>
+              <a class="btn btn-primary btn-sm hidden sm:inline-flex"
+                 href="{% url 'submissions:wizard_start' %}">
+                {% include "includes/icon.html" with name="upload" size=14 %}
+                {% translate "Submit" %}
+              </a>
+              <div class="relative" x-data="{ open: false }">
+                <button type="button"
+                        class="console-user"
+                        @click="open = !open"
+                        :aria-expanded="open"
+                        aria-haspopup="true">
+                  <span class="console-avatar" aria-hidden="true">{{ user.get_short_name|slice:":2"|upper }}</span>
+                  <span class="hidden xl:block text-left">
+                    <span class="console-user-name">{{ user.get_full_name|default:user.email|truncatechars:22 }}</span>
+                    <span class="console-user-role">{{ user.role_labels.0|default:_("Member") }}</span>
+                  </span>
+                </button>
+                <div x-show="open"
+                     x-cloak
+                     @click.outside="open = false"
+                     class="console-menu">
+                  <a href="{% url 'journal:home' %}">{% translate "Public site" %}</a>
+                  <a href="{% url 'dashboard:profile' %}">{% translate "Profile" %}</a>
+                  <a href="{% url 'dashboard:two_factor_setup' %}">{% translate "Two-factor authentication" %}</a>
+                  {% if user.is_superuser %}
+                    <a href="/admin/">{% translate "Django admin" %}</a>
+                  {% endif %}
+                  <form method="post" action="{% url 'account_logout' %}">
+                    {% csrf_token %}
+                    <button type="submit">{% translate "Sign out" %}</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          {# ------------------------------------------------------------ tabs #}
+          <nav class="console-tabs" aria-label="{% translate 'Console sections' %}">
+            <a class="console-tab"
+               href="{% url 'dashboard:home' %}"
+               {% if ns == 'dashboard' and un == 'home' %}aria-current="page"{% endif %}>{% translate "Overview" %}</a>
+            {% if user.is_editorial_staff %}
+              <a class="console-tab"
+                 href="{% url 'dashboard:queue' 'new' %}"
+                 {% if ns == 'dashboard' and un in 'queue|submission_detail|decide|reviewer_finder' %}aria-current="page"{% endif %}>{% translate "Editorial desk" %}</a>
+            {% endif %}
+            {% if user.is_reviewer %}
+              <a class="console-tab"
+                 href="{% url 'review:dashboard' %}"
+                 {% if ns == 'review' %}aria-current="page"{% endif %}>{% translate "Peer review" %}</a>
+            {% endif %}
+            {% if user.can_access_production %}
+              <a class="console-tab"
+                 href="{% url 'production:queue' %}"
+                 {% if ns == 'production' %}aria-current="page"{% endif %}>{% translate "Production" %}</a>
+            {% endif %}
+            {% if user.is_editorial_staff %}
+              <a class="console-tab"
+                 href="{% url 'dashboard:reports' %}"
+                 {% if un == 'reports' %}aria-current="page"{% endif %}>{% translate "Reports" %}</a>
+            {% endif %}
+            <a class="console-tab"
+               href="{% url 'dashboard:profile' %}"
+               {% if un == 'profile' or un == 'two_factor_setup' %}aria-current="page"{% endif %}>{% translate "Account" %}</a>
+          </nav>
+        </div>
+      </header>
+      {# ------------------------------------------------------------------ body #}
+      <div class="console-page flex-1 w-full">
+        {% if messages %}
+          <div class="pt-4" role="status" aria-live="polite">
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags|default:'info' }} mb-2">{{ message }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+        <div class="console-shell">
+          {% comment %}
+            Below lg the rail would push the working area a full screen down,
+            so it collapses behind a toggle; the stylesheet forces it open
+            again from lg upwards, whatever Alpine left on the element.
+          {% endcomment %}
+          <aside class="console-rail"
+                 aria-label="{% translate 'Console navigation' %}"
+                 x-data="{ open: false }">
+            <button type="button"
+                    class="rail-toggle"
+                    @click="open = !open"
+                    :aria-expanded="open"
+                    aria-controls="rail-body">
+              {% include "includes/icon.html" with name="menu" size=16 %}
+              {% translate "Console navigation" %}
+            </button>
+            <div id="rail-body" class="rail-body" x-show="open" x-cloak>
+              <div class="rail-group">
+                <p class="rail-heading">{% translate "Workspace" %}</p>
+                <a class="rail-item"
+                   href="{% url 'dashboard:home' %}"
+                   {% if ns == 'dashboard' and un == 'home' %}aria-current="page"{% endif %}>
+                  {% include "includes/icon.html" with name="grid" size=16 %}
+                  {% translate "Overview" %}
+                </a>
+                <a class="rail-item" href="{% url 'submissions:wizard_start' %}">
+                  {% include "includes/icon.html" with name="plus" size=16 %}
+                  {% translate "New submission" %}
+                </a>
+                {% if user.is_reviewer %}
+                  <a class="rail-item"
+                     href="{% url 'review:dashboard' %}"
+                     {% if ns == 'review' %}aria-current="page"{% endif %}>
+                    {% include "includes/icon.html" with name="edit" size=16 %}
+                    {% translate "My reviews" %}
+                  </a>
+                {% endif %}
+              </div>
+              {% if user.is_editorial_staff %}
+                <div class="rail-group">
+                  <p class="rail-heading">{% translate "Editorial desk" %}</p>
+                  <a class="rail-item"
+                     href="{% url 'dashboard:queue' 'new' %}"
+                     {% if queue_key == 'new' %}aria-current="page"{% endif %}>
+                    {% include "includes/icon.html" with name="inbox" size=16 %}
+                    {% translate "New" %}
+                  </a>
+                  <a class="rail-item"
+                     href="{% url 'dashboard:queue' 'screening' %}"
+                     {% if queue_key == 'screening' %}aria-current="page"{% endif %}>
+                    {% include "includes/icon.html" with name="eye" size=16 %}
+                    {% translate "Screening" %}
+                  </a>
+                  <a class="rail-item"
+                     href="{% url 'dashboard:queue' 'in_review' %}"
+                     {% if queue_key == 'in_review' %}aria-current="page"{% endif %}>
+                    {% include "includes/icon.html" with name="users" size=16 %}
+                    {% translate "In review" %}
+                  </a>
+                  <a class="rail-item"
+                     href="{% url 'dashboard:queue' 'decision' %}"
+                     {% if queue_key == 'decision' %}aria-current="page"{% endif %}>
+                    {% include "includes/icon.html" with name="check-circle" size=16 %}
+                    {% translate "Awaiting decision" %}
+                  </a>
+                  <a class="rail-item"
+                     href="{% url 'dashboard:queue' 'revisions' %}"
+                     {% if queue_key == 'revisions' %}aria-current="page"{% endif %}>
+                    {% include "includes/icon.html" with name="clock" size=16 %}
+                    {% translate "Revisions" %}
+                  </a>
+                  <a class="rail-item"
+                     href="{% url 'dashboard:queue' 'production' %}"
+                     {% if queue_key == 'production' %}aria-current="page"{% endif %}>
+                    {% include "includes/icon.html" with name="layers" size=16 %}
+                    {% translate "In production" %}
+                  </a>
+                  <a class="rail-item"
+                     href="{% url 'dashboard:reports' %}"
+                     {% if un == 'reports' %}aria-current="page"{% endif %}>
+                    {% include "includes/icon.html" with name="chart" size=16 %}
+                    {% translate "Reports" %}
+                  </a>
+                </div>
+              {% endif %}
+              {% if user.can_access_production %}
+                <div class="rail-group">
+                  <p class="rail-heading">{% translate "Production" %}</p>
+                  <a class="rail-item"
+                     href="{% url 'production:queue' %}"
+                     {% if ns == 'production' %}aria-current="page"{% endif %}>
+                    {% include "includes/icon.html" with name="book" size=16 %}
+                    {% translate "Production queue" %}
+                  </a>
+                </div>
+              {% endif %}
+              <div class="rail-group">
+                <p class="rail-heading">{% translate "Account" %}</p>
+                <a class="rail-item"
+                   href="{% url 'dashboard:profile' %}"
+                   {% if un == 'profile' %}aria-current="page"{% endif %}>
+                  {% include "includes/icon.html" with name="user" size=16 %}
+                  {% translate "Profile" %}
+                </a>
+                <a class="rail-item"
+                   href="{% url 'dashboard:two_factor_setup' %}"
+                   {% if un == 'two_factor_setup' %}aria-current="page"{% endif %}>
+                  {% include "includes/icon.html" with name="key" size=16 %}
+                  {% translate "Two-factor" %}
+                </a>
+                {% if user.is_superuser %}
+                  <a class="rail-item" href="/admin/">
+                    {% include "includes/icon.html" with name="settings" size=16 %}
+                    {% translate "Django admin" %}
+                  </a>
+                {% endif %}
+                <form method="post" action="{% url 'account_logout' %}">
+                  {% csrf_token %}
+                  <button type="submit" class="rail-item w-full">
+                    {% include "includes/icon.html" with name="logout" size=16 %}
+                    {% translate "Sign out" %}
+                  </button>
+                </form>
+              </div>
+            </div>
+          </aside>
+          <main id="main" class="min-w-0">
+            {% block dashboard_content %}{% endblock %}
+          </main>
+        </div>
+      </div>
+    {% endwith %}
+    {# ------------------------------------------------------------------ footer #}
+    <footer class="console-footer">
+      <div class="console-page flex flex-wrap items-center justify-between gap-3">
+        <p class="mono">{{ site_settings.journal_name }} — e-ISSN {{ site_settings.eissn|default:_("pending") }} · DOI {{ site_settings.doi_prefix_display }}</p>
+        <div class="flex items-center gap-4">
+          <a href="{% url 'journal:home' %}">{% translate "Public site" %}</a>
+          <a href="{% url 'core:contact' %}">{% translate "Editorial office" %}</a>
+          <div class="lg:hidden">{% include "includes/language_switcher.html" %}</div>
+        </div>
+      </div>
+    </footer>
+    <div id="toast-stack" class="toast-stack" aria-live="polite"></div>
+    <div id="modal-root"></div>
+    {% block extra_js %}{% endblock %}
+  </body>
+</html>

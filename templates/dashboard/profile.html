@@ -1,26 +1,40 @@
 {% extends "dashboard/_base.html" %}
 {% load i18n %}
-{% block title %}{% translate "Profile" %} · {% translate "Dashboard" %}{% endblock %}
+{% block title %}{% translate "Profile" %} · {% translate "Editorial console" %}{% endblock %}
 {% block dashboard_content %}
-  <h1 class="text-2xl mb-6">{% translate "Profile" %}</h1>
+  <div class="page-head">
+    <div class="min-w-0">
+      <p class="page-eyebrow">{% translate "Account" %}</p>
+      <h1 class="page-title">{% translate "Profile" %}</h1>
+      <p class="page-sub">{% translate "The name, affiliation and ORCID that appear on everything you publish here." %}</p>
+    </div>
+    <div class="page-actions">
+      {% for role in user.role_labels %}<span class="chip">{{ role }}</span>{% endfor %}
+    </div>
+  </div>
   <form method="post" novalidate>
     {% csrf_token %}
-    <fieldset class="card mb-6">
-      <legend class="footer-heading px-1">{% translate "Account" %}</legend>
-      <div class="grid gap-3 sm:grid-cols-2">
+    <div class="panel mb-6">
+      <div class="panel-head">
+        <h2>{% translate "Account" %}</h2>
+      </div>
+      <div class="panel-body grid gap-4 sm:grid-cols-2">
         {% for field in user_form %}
           {% include "includes/form_field.html" with field=field %}
         {% endfor %}
       </div>
-    </fieldset>
-    <fieldset class="card mb-6">
-      <legend class="footer-heading px-1">{% translate "Scholarly profile" %}</legend>
-      <div class="grid gap-3 sm:grid-cols-2">
+    </div>
+    <div class="panel mb-6">
+      <div class="panel-head">
+        <h2>{% translate "Scholarly profile" %}</h2>
+        <span class="meta">ORCID · {% translate "affiliation" %} · {% translate "expertise" %}</span>
+      </div>
+      <div class="panel-body grid gap-4 sm:grid-cols-2">
         {% for field in profile_form %}
           {% include "includes/form_field.html" with field=field %}
         {% endfor %}
       </div>
-    </fieldset>
+    </div>
     <button type="submit" class="btn btn-primary">{% translate "Save profile" %}</button>
   </form>
 {% endblock %}

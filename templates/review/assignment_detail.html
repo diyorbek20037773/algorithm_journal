@@ -1,41 +1,61 @@
 {% extends "dashboard/_base.html" %}
 {% load i18n %}
-{% block title %}{% translate "Manuscript for review" %} · {{ site_settings.journal_name }}{% endblock %}
+{% block title %}{% translate "Manuscript for review" %} · {% translate "Editorial console" %}{% endblock %}
 {% block dashboard_content %}
+  <div class="page-head">
+    <div class="min-w-0">
+      <p class="page-eyebrow">{{ section_name }} · {{ article_type }}</p>
+      <h1 class="page-title">{{ manuscript_title }}</h1>
+      <p class="page-sub">{% translate "Round" %} {{ round_number }} · {% translate "Due" %} {{ due_at|date:"j F Y" }}</p>
+    </div>
+    <div class="page-actions">
+      <span class="chip chip-green">{% translate "Double-blind" %}</span>
+    </div>
+  </div>
   <div class="alert alert-info mb-6">
     {% translate "This review is double-blind. The manuscript below contains no information identifying the authors, and the authors will not learn your identity." %}
   </div>
-  <p class="eyebrow">{{ section_name }} · {{ article_type }}</p>
-  <h1 class="text-2xl mt-1 mb-4">{{ manuscript_title }}</h1>
-  <dl class="dl-meta card-muted mb-6">
-    <dt>{% translate "Round" %}</dt><dd class="meta">{{ round_number }}</dd>
-    <dt>{% translate "Language" %}</dt><dd>{{ manuscript_language }}</dd>
-    <dt>{% translate "Word count" %}</dt><dd class="meta">{{ word_count }}</dd>
-    <dt>{% translate "Due" %}</dt><dd class="meta">{{ due_at|date:"j F Y" }}</dd>
-    <dt>{% translate "Keywords" %}</dt>
-    <dd class="flex flex-wrap gap-1.5">{% for keyword in manuscript_keywords %}<span class="chip">{{ keyword }}</span>{% endfor %}</dd>
-    <dt>{% translate "JEL codes" %}</dt>
-    <dd class="flex flex-wrap gap-1.5">{% for jel in jel_codes %}<span class="chip chip-jel">{{ jel.code }}</span>{% endfor %}</dd>
-  </dl>
-  <section class="mb-6">
-    <div class="section-heading">
+  <div class="panel mb-6">
+    <div class="panel-head">
+      <h2>{% translate "Manuscript record" %}</h2>
+    </div>
+    <div class="panel-body">
+      <dl class="dl-meta">
+        <dt>{% translate "Round" %}</dt><dd class="meta">{{ round_number }}</dd>
+        <dt>{% translate "Language" %}</dt><dd>{{ manuscript_language }}</dd>
+        <dt>{% translate "Word count" %}</dt><dd class="meta">{{ word_count }}</dd>
+        <dt>{% translate "Due" %}</dt><dd class="meta">{{ due_at|date:"j F Y" }}</dd>
+        <dt>{% translate "Keywords" %}</dt>
+        <dd class="flex flex-wrap gap-1.5">{% for keyword in manuscript_keywords %}<span class="chip">{{ keyword }}</span>{% endfor %}</dd>
+        <dt>{% translate "JEL codes" %}</dt>
+        <dd class="flex flex-wrap gap-1.5">{% for jel in jel_codes %}<span class="chip chip-jel">{{ jel.code }}</span>{% endfor %}</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="panel mb-6">
+    <div class="panel-head">
       <h2>{% translate "Abstract" %}</h2>
     </div>
-    <div class="prose-journal text-sm">{{ manuscript_abstract|linebreaks }}</div>
-  </section>
-  <section class="mb-6">
-    <div class="section-heading">
+    <div class="panel-body">
+      <div class="prose-journal text-sm">{{ manuscript_abstract|linebreaks }}</div>
+    </div>
+  </div>
+  <div class="panel mb-6">
+    <div class="panel-head">
       <h2>{% translate "Files" %}</h2>
     </div>
-    <ul class="space-y-2">
+    <div class="panel-body flex flex-wrap gap-2">
       {% for file in files %}
-        <li><a class="btn btn-secondary btn-sm"
-   href="{% url 'review:download_file' file.pk %}">{{ file.get_kind_display }} (v{{ file.version }})</a></li>
+        <a class="btn btn-secondary btn-sm"
+           href="{% url 'review:download_file' file.pk %}">
+          {% include "includes/icon.html" with name="download" size=14 %}
+          {{ file.get_kind_display }} (v{{ file.version }})
+        </a>
       {% empty %}
-        <li class="muted">{% translate "No files are available." %}</li>
+        <p class="muted text-sm">{% translate "No files are available." %}</p>
       {% endfor %}
-    </ul>
-  </section>
+    </div>
+  </div>
   <div class="flex flex-wrap gap-2">
     {% if assignment.status == "invited" %}
       <form method="post"

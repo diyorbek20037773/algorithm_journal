@@ -1,31 +1,62 @@
 {% extends "dashboard/_base.html" %}
 {% load i18n %}
-{% block title %}{% translate "Editorial decision" %} · {% translate "Dashboard" %}{% endblock %}
+{% block title %}{% translate "Editorial decision" %} · {% translate "Editorial console" %}{% endblock %}
 {% block dashboard_content %}
-  <h1 class="text-2xl mb-2">{% translate "Editorial decision" %}</h1>
-  <p class="muted mb-6">{{ submission.reference }} — {{ submission.title }}</p>
+  <div class="page-head">
+    <div class="min-w-0">
+      <p class="page-eyebrow">{% translate "Editorial desk" %} · {{ submission.reference }}</p>
+      <h1 class="page-title">{% translate "Editorial decision" %}</h1>
+      <p class="page-sub">{{ submission.title }}</p>
+    </div>
+    <div class="page-actions">
+      <a class="btn btn-ghost btn-sm"
+         href="{% url 'dashboard:submission_detail' submission.pk %}">{% translate "Back to the manuscript" %}</a>
+    </div>
+  </div>
   {% if reviews %}
     <section class="mb-8">
-      <div class="section-heading">
-        <h2>{% translate "Reviews in this round" %}</h2>
-      </div>
-      {% for review in reviews %}
-        <div class="card mb-3">
-          <p class="font-medium">{% translate "Reviewer" %} {{ forloop.counter }} — {{ review.get_recommendation_display }}</p>
-          <p class="meta">{% translate "Average score" %}: {{ review.average_score|default:"—" }}</p>
+      <div class="panel">
+        <div class="panel-head">
+          <h2>{% translate "Reviews in this round" %}</h2>
+          <span class="meta">{% blocktranslate count counter=reviews|length %}{{ counter }} review{% plural %}{{ counter }} reviews{% endblocktranslate %}</span>
         </div>
-      {% endfor %}
+        <table class="table">
+          <thead>
+            <tr>
+              <th>{% translate "Reviewer" %}</th>
+              <th>{% translate "Recommendation" %}</th>
+              <th class="table-numeric">{% translate "Average score" %}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for review in reviews %}
+              <tr>
+                <td>{% translate "Reviewer" %} {{ forloop.counter }}</td>
+                <td>
+                  <span class="chip">{{ review.get_recommendation_display }}</span>
+                </td>
+                <td class="meta table-numeric">{{ review.average_score|default:"—" }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
     </section>
   {% endif %}
-  <form method="post">
-    {% csrf_token %}
-    {% for field in form %}
-      {% include "includes/form_field.html" with field=field %}
-    {% endfor %}
-    <div class="flex gap-3">
-      <button type="submit" class="btn btn-primary">{% translate "Record the decision and notify the author" %}</button>
-      <a class="btn btn-secondary"
-         href="{% url 'dashboard:submission_detail' submission.pk %}">{% translate "Cancel" %}</a>
+  <div class="panel">
+    <div class="panel-head">
+      <h2>{% translate "Record the decision" %}</h2>
     </div>
-  </form>
+    <form method="post" class="panel-body">
+      {% csrf_token %}
+      {% for field in form %}
+        {% include "includes/form_field.html" with field=field %}
+      {% endfor %}
+      <div class="flex flex-wrap gap-3">
+        <button type="submit" class="btn btn-primary">{% translate "Record the decision and notify the author" %}</button>
+        <a class="btn btn-secondary"
+           href="{% url 'dashboard:submission_detail' submission.pk %}">{% translate "Cancel" %}</a>
+      </div>
+    </form>
+  </div>
 {% endblock %}

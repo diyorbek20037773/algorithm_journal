@@ -308,6 +308,45 @@ permissions); full suite 459 passed; a 4-article demo issue built in 1.7 s
 
 ---
 
+## Editorial console re-skin ✅ (2026-09-19)
+
+**Done** — the dashboard now follows
+`design/stitch_modern_economic_journal_dashboard/` (Academic Royal Prestige,
+White Ink Edition) instead of the public site's Mint Glass.
+
+- `static/src/css/console.css` (imported by `input.css`): the design's tokens —
+  `#2A164D` primary, `#6C28D6` secondary, `#FAF9FD` paper, `#E7E0F2` hairlines,
+  2–8 px radii, Merriweather headlines over Inter interface text — scoped to
+  `body.console`, where they also re-point the shared Mint Glass tokens so every
+  existing component class (`.card`, `.btn`, `.table`, `.chip`, `.progress`…)
+  follows without template edits. The public site is untouched.
+- `templates/dashboard/_base.html` rebuilt as a standalone console shell: white
+  masthead (brand, journal search, language switcher, submit, user menu),
+  role-aware section tabs, sticky navigation rail with icons and active states,
+  ink footer carrying e-ISSN and DOI prefix. `noindex`.
+- All fifteen console pages converted to the design's panel / stat-tile /
+  hairline-table idiom: overview, queue, manuscript record (tabs), decision,
+  reviewer finder, reports, profile, two-factor, reviewer dashboard, assignment,
+  review form, production queue, production submission, article record, issue
+  builder — plus the queue, reviewer and submission-card partials.
+- `templates/includes/icon.html` gained the console icons (grid, inbox, layers,
+  chart, settings, key, logout, plus, alert, users, edit).
+- Below `lg` the rail collapses behind a toggle; `[x-cloak]` now has a rule, so
+  the user menu and the mobile nav no longer flash open before Alpine boots.
+
+**Verified** — `djlint templates apps --check` and `--lint` clean (the one
+remaining lint error, `H005` in `templates/emails/base_email.html`, predates
+this work and is not in `make lint`'s `--check` run); `manage.py check` clean;
+all twenty console templates compile and render; every `{% url %}` name in them
+resolves; screenshots at 1440 px and 390 px in `docs/screenshots/console-*.png`.
+
+**Not verified here** — `pytest` did not run: Docker Desktop is down on this
+machine and Postgres is unreachable on `localhost:5452`, so the suite cannot
+start. Run `make test` once the stack is up. No Python was changed, only
+templates, CSS and the compiled `static/css/output.css`.
+
+---
+
 ## Deferred (Phase 2 of the project — see HANDOFF.md)
 
 - DOCX → JATS/HTML full-text conversion.

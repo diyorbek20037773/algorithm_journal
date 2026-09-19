@@ -2,10 +2,17 @@
 {% load i18n %}
 {% block title %}{% translate "Production" %} — {{ submission.reference }}{% endblock %}
 {% block dashboard_content %}
-  <p class="meta">{{ submission.reference }}</p>
-  <h1 class="text-2xl mt-1 mb-6">{{ submission.title }}</h1>
-  <section class="mb-8">
-    <div class="section-heading">
+  <div class="page-head">
+    <div class="min-w-0">
+      <p class="page-eyebrow">{% translate "Production" %} · {{ submission.reference }}</p>
+      <h1 class="page-title">{{ submission.title }}</h1>
+    </div>
+    <div class="page-actions">
+      <a class="btn btn-ghost btn-sm" href="{% url 'production:queue' %}">{% translate "Back to the queue" %}</a>
+    </div>
+  </div>
+  <div class="panel mb-6">
+    <div class="panel-head">
       <h2>{% translate "Production checklist" %}</h2>
     </div>
     <table class="table">
@@ -21,9 +28,11 @@
         {% for task in tasks %}
           <tr>
             <td>{{ task.get_stage_display }}</td>
-            <td class="meta">{{ task.get_status_display }}</td>
-            <td class="meta">{{ task.due_at|date:"j M Y"|default:"—" }}</td>
             <td>
+              <span class="chip {% if task.status == 'done' %}chip-green{% endif %}">{{ task.get_status_display }}</span>
+            </td>
+            <td class="meta">{{ task.due_at|date:"j M Y"|default:"—" }}</td>
+            <td class="text-right">
               {% if task.status != "done" %}
                 <form method="post" action="{% url 'production:complete_task' task.pk %}">
                   {% csrf_token %}
@@ -32,32 +41,40 @@
               {% endif %}
             </td>
           </tr>
+        {% empty %}
+          <tr>
+            <td colspan="4">
+              <div class="empty-state">{% translate "No production tasks yet." %}</div>
+            </td>
+          </tr>
         {% endfor %}
       </tbody>
     </table>
-  </section>
-  <section class="mb-8">
-    <div class="section-heading">
+  </div>
+  <div class="panel mb-6">
+    <div class="panel-head">
       <h2>{% translate "Stage actions" %}</h2>
     </div>
-    <div class="flex flex-wrap gap-2">
+    <div class="panel-body flex flex-wrap gap-2">
       {% for transition in transitions %}
         <form method="post" action="{% url 'production:advance' submission.pk %}">
           {% csrf_token %}
           <input type="hidden" name="transition" value="{{ transition.name }}">
           <button type="submit" class="btn btn-secondary btn-sm">{{ transition.label }}</button>
         </form>
+      {% empty %}
+        <p class="muted text-sm">{% translate "No transition is available at this stage." %}</p>
       {% endfor %}
     </div>
-  </section>
-  <section class="mb-8">
-    <div class="section-heading">
+  </div>
+  <div class="panel mb-6">
+    <div class="panel-head">
       <h2>{% translate "Files" %}</h2>
     </div>
     <form method="post"
           action="{% url 'production:upload_file' submission.pk %}"
           enctype="multipart/form-data"
-          class="card grid gap-3 sm:grid-cols-[1fr_1fr_auto] items-end">
+          class="panel-body grid gap-3 sm:grid-cols-[1fr_1fr_auto] items-end">
       {% csrf_token %}
       <div>
         <label class="field-label" for="file-kind">{% translate "Kind" %}</label>
@@ -73,20 +90,26 @@
       </div>
       <button type="submit" class="btn btn-secondary">{% translate "Upload" %}</button>
     </form>
-    <ul class="mt-4 space-y-1">
-      {% for file in files %}
-        <li class="meta">{{ file.get_kind_display }} v{{ file.version }} — {{ file.created_at|date:"j M Y" }}</li>
-      {% endfor %}
-    </ul>
-  </section>
+    {% if files %}
+      <div class="panel-foot">
+        <ul class="space-y-1">
+          {% for file in files %}
+            <li class="meta">{{ file.get_kind_display }} v{{ file.version }} — {{ file.created_at|date:"j M Y" }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  </div>
   {% if article %}
-    <section>
-      <div class="section-heading">
+    <div class="panel">
+      <div class="panel-head">
         <h2>{% translate "Article record" %}</h2>
       </div>
-      <p class="muted mb-3">{% translate "Metadata, galleys, DOI and issue scheduling are managed on the article page." %}</p>
-      <a class="btn btn-primary"
-         href="{% url 'production:article' article.pk %}">{% translate "Open the article record" %}</a>
-    </section>
+      <div class="panel-body">
+        <p class="page-sub mb-4">{% translate "Metadata, galleys, DOI and issue scheduling are managed on the article page." %}</p>
+        <a class="btn btn-primary"
+           href="{% url 'production:article' article.pk %}">{% translate "Open the article record" %}</a>
+      </div>
+    </div>
   {% endif %}
 {% endblock %}

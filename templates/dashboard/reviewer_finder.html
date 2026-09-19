@@ -1,32 +1,47 @@
 {% extends "dashboard/_base.html" %}
 {% load i18n %}
-{% block title %}{% translate "Find reviewers" %} · {% translate "Dashboard" %}{% endblock %}
+{% block title %}{% translate "Find reviewers" %} · {% translate "Editorial console" %}{% endblock %}
 {% block dashboard_content %}
-  <h1 class="text-2xl mb-2">{% translate "Find reviewers" %}</h1>
-  <p class="muted mb-6">{{ submission.reference }} — {{ submission.title }}</p>
-  <form class="flex gap-2 mb-6"
-        method="get"
-        hx-get="{% url 'dashboard:reviewer_finder' submission.pk %}"
-        hx-target="#finder-results">
-    <label class="visually-hidden" for="finder-q">{% translate "Search reviewers" %}</label>
-    <input class="input"
-           id="finder-q"
-           type="search"
-           name="q"
-           value="{{ query }}"
-           placeholder="{% translate 'Name, expertise, affiliation' %}">
-    <button type="submit" class="btn btn-secondary">{% translate "Search" %}</button>
-  </form>
-  <div id="finder-results">{% include "dashboard/partials/reviewer_finder.html" %}</div>
-  <section class="mt-10">
-    <div class="section-heading">
+  <div class="page-head">
+    <div class="min-w-0">
+      <p class="page-eyebrow">{% translate "Editorial desk" %} · {{ submission.reference }}</p>
+      <h1 class="page-title">{% translate "Find reviewers" %}</h1>
+      <p class="page-sub">{{ submission.title }}</p>
+    </div>
+    <div class="page-actions">
+      <a class="btn btn-ghost btn-sm"
+         href="{% url 'dashboard:submission_detail' submission.pk %}">{% translate "Back to the manuscript" %}</a>
+    </div>
+  </div>
+  <div class="panel mb-8">
+    <div class="panel-head">
+      <h2>{% translate "Reviewer pool" %}</h2>
+      <form class="flex items-center gap-2"
+            method="get"
+            hx-get="{% url 'dashboard:reviewer_finder' submission.pk %}"
+            hx-target="#finder-results">
+        <label class="visually-hidden" for="finder-q">{% translate "Search reviewers" %}</label>
+        <input class="input w-64"
+               id="finder-q"
+               type="search"
+               name="q"
+               value="{{ query }}"
+               placeholder="{% translate 'Name, expertise, affiliation' %}">
+        <button type="submit" class="btn btn-secondary btn-sm">{% translate "Search" %}</button>
+      </form>
+    </div>
+    <div id="finder-results">{% include "dashboard/partials/reviewer_finder.html" %}</div>
+  </div>
+  <div class="panel">
+    <div class="panel-head">
       <h2>{% translate "Invite someone by e-mail" %}</h2>
+      <span class="meta">{% translate "creates a reviewer account" %}</span>
     </div>
     <form method="post"
           action="{% url 'dashboard:invite_reviewer' submission.pk %}"
-          class="card">
+          class="panel-body">
       {% csrf_token %}
-      <div class="grid gap-3 sm:grid-cols-2">
+      <div class="grid gap-4 sm:grid-cols-2">
         {% include "includes/form_field.html" with field=invite_form.email %}
         {% include "includes/form_field.html" with field=invite_form.first_name %}
         {% include "includes/form_field.html" with field=invite_form.last_name %}
@@ -34,5 +49,5 @@
       </div>
       <button type="submit" class="btn btn-primary">{% translate "Send the invitation" %}</button>
     </form>
-  </section>
+  </div>
 {% endblock %}
