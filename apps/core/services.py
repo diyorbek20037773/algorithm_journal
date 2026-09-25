@@ -12,8 +12,9 @@ from django.db import OperationalError, ProgrammingError
 from django.http import HttpRequest
 from django.template.loader import render_to_string
 from django.utils import translation
+from django.utils.functional import Promise
 
-from apps.core.markdown import render_markdown, strip_markdown
+from apps.core.markdown import markdown_to_text, render_markdown
 from apps.core.models import AuditLog, EmailTemplate, SiteSettings
 from apps.core.observability import audit_event
 
@@ -116,6 +117,14 @@ def send_templated_email(
     subject = fallback_subject
     body_md = fallback_body
     with translation.override(language):
+        # Values that depend on the language — a modeltranslation title, a
+        # section name, a choice label — may be passed as callables or lazy
+        # strings; they are resolved here, in the recipient's language, and not
+        # in the worker's default English.
+        context = {
+            key: value() if callable(value) else str(value) if isinstance(value, Promise) else value
+            for key, value in context.items()
+        }
         try:
             template = EmailTemplate.objects.filter(event=event, is_active=True).first()
         except (OperationalError, ProgrammingError):  # pragma: no cover - pre-migrate
@@ -137,7 +146,7 @@ def send_templated_email(
                 **context,
             },
         )
-        text = strip_markdown(rendered_body)
+        text = markdown_to_text(rendered_body)
 
     message = EmailMultiAlternatives(
         subject=rendered_subject,

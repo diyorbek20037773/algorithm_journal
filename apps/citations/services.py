@@ -125,7 +125,7 @@ def _render_fallback(article, style: str) -> str:
 
     title = article.title_en or article.title
     if style == "apa":
-        parts = [f"{apa_authors()} ({year}).", f"{title}.", f"{journal}"]
+        parts = [f"{apa_authors()} ({year}). {title}. {journal}"]
         if volume:
             parts.append(f", {volume}({number})" if number else f", {volume}")
         if pages:
@@ -135,7 +135,7 @@ def _render_fallback(article, style: str) -> str:
             parts.append(f" {doi}")
         return "".join(parts).replace(" .", ".")
     if style == "mla":
-        base = f'{plain_authors()}. "{title}." {journal}'
+        base = f'{plain_authors().rstrip(".")}. "{title}." {journal}'
         if volume:
             base += f", vol. {volume}"
         if number:
@@ -146,7 +146,7 @@ def _render_fallback(article, style: str) -> str:
         base += "."
         return base + (f" {doi}" if doi else "")
     if style == "chicago":
-        base = f'{plain_authors()}. {year}. "{title}." {journal} {volume}'
+        base = f'{plain_authors().rstrip(".")}. {year}. "{title}." {journal} {volume}'
         if number:
             base += f" ({number})"
         if pages:
@@ -162,7 +162,7 @@ def _render_fallback(article, style: str) -> str:
         base += "."
         return base + (f" {doi}" if doi else "")
     if style == "vancouver":
-        base = f"{plain_authors()}. {title}. {journal}. {year}"
+        base = f"{plain_authors().rstrip('.')}. {title}. {journal}. {year}"
         if volume:
             base += f";{volume}"
         if number:
@@ -172,7 +172,7 @@ def _render_fallback(article, style: str) -> str:
         base += "."
         return base + (f" {doi}" if doi else "")
     # GOST R 7.0.5-2008
-    base = f"{plain_authors(' , ')} {title} // {journal}. {year}."
+    base = f"{plain_authors()} {title} // {journal}. {year}."
     if volume:
         base += f" Т. {volume}."
     if number:

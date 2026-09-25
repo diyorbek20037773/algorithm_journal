@@ -575,7 +575,7 @@ class Command(BaseCommand):
                 article.article_number = None
             article.save()
 
-            article.doi = f"10.00000/arer.2026.{article.pk:04d}"
+            article.doi = f"10.00000/{SiteSettings.load().short_code.lower()}.2026.{article.pk:04d}"
             article.doi_status = Article.DOIStatus.REGISTERED
             article.save(update_fields=["doi", "doi_status", "updated_at"])
 

@@ -18,6 +18,15 @@ class AccountAdapter(DefaultAccountAdapter):
         """Send users to their role dashboard after signing in."""
         return f"/{translation.get_language() or 'en'}/dashboard/"
 
+    def get_signup_redirect_url(self, request: HttpRequest) -> str:
+        """Keep a new author in the language they signed up in.
+
+        allauth falls back to the unprefixed ``LOGIN_REDIRECT_URL``, which the
+        locale middleware then resolved from the browser — an author signing up
+        on ``/uz/`` landed on ``/en/dashboard/``.
+        """
+        return self.get_login_redirect_url(request)
+
     def send_mail(self, template_prefix: str, email: str, context: dict[str, Any]) -> None:
         """Send the account mails through the journal's branded HTML layout.
 

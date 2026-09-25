@@ -385,6 +385,56 @@ machine and Postgres is unreachable. No Python changed; CI runs the suite.
 
 ---
 
+## End-to-end editorial run and "real journal" pass ✅ (2026-09-25)
+
+**Done** — a real manuscript (Q. E. Ergashev, "Oʻzbekistonda chegaralararo
+turizmni rivojlantirishda bojxona xizmatlarini takomillashtirish istiqbollari")
+was driven through the running site in the Uzbek interface with Playwright:
+sign-up → profile → five-step wizard (PDF manuscript + title page) → EIC
+similarity check, editor assignment, send to review → two reviewers invited from
+the reviewer finder, accepting via the e-mailed link (Mailpit) → two structured
+reviews → awaiting decision → accept → copyediting, proof, typesetting →
+PDF galley, DOI `10.00000/mrer.2026.0016` → **Online First**. Screenshots:
+`docs/screenshots/e2e-*.png`, `journal-*.png`.
+
+Look: designed issue covers (`includes/issue_cover.html`) on the archive, the
+issue page and the home masthead (D65).
+
+Defects the run exposed, all fixed and pinned in
+`tests/test_editorial_run_regressions.py`:
+
+- modeltranslation: the wizard and the production service assigned the bare
+  `title`/`abstract`/`keyword.name`, which writes the *active* language — an
+  author working in Uzbek had the English title stored as the Uzbek one, and
+  the public Uzbek page showed English.
+- workflow button labels were translated once at import (`gettext`); now
+  `gettext_lazy`, and the strings are back in the catalogues.
+- production page could "publish" without DOI/PDF (D67).
+- reviewer finder returned nobody when JEL codes did not match exactly (D68).
+- e-mail text part had `&amp;` and no URLs for "Accept / Decline"
+  (`markdown_to_text`); e-mail context (title, section, decision) was rendered
+  in English instead of the recipient's language.
+- sign-up on `/uz/` redirected to `/en/dashboard/`.
+- console badge showed "Author" for the Editor-in-Chief.
+- APA citation "(2026).Title" / "Data.Journal", GOST "D. , N.", "M.." in MLA,
+  Chicago, Vancouver.
+- DOI suffix hard-coded `arer.` (D66).
+- step 3 of the wizard: validation errors hid in inactive language tabs; the
+  tab with an error (else the manuscript language) now opens, tabs are marked.
+- review invitation "accepted" page told a signed-in reviewer to sign in.
+- 54 console strings were missing or fuzzy in every catalogue ("Editorial
+  console", "Workspace", "Record", …); all four catalogues are 100 %.
+
+**Verified** — full suite with test settings: 471 passed (e2e browser tests
+need `playwright install` in the container); ruff, ruff-format, djlint
+`--check` clean; `makemigrations --check` clean; `check_translations` complete.
+
+**Note** — run pytest in the dev container with `--ds=config.settings.test`:
+the container exports `DJANGO_SETTINGS_MODULE=config.settings.dev`, which
+otherwise wins over `pyproject.toml` and makes Celery non-eager and Axes active.
+
+---
+
 ## Deferred (Phase 2 of the project — see HANDOFF.md)
 
 - DOCX → JATS/HTML full-text conversion.

@@ -196,10 +196,27 @@ def wizard_step3(request: HttpRequest, pk: int) -> HttpResponse:
         form = MetadataForm(initial=initial)
         formset = AuthorFormSet(queryset=authors_queryset, prefix="authors")
 
+    # The three language tabs hide two of the three field groups, so open the
+    # first tab holding an error — otherwise an author sees only "please fix
+    # the errors" with nothing highlighted — and by default the tab of the
+    # manuscript's own language.
+    tab_errors = {
+        code: any(form.errors.get(f"{name}_{code}") for name in ("title", "abstract", "keywords"))
+        for code in ("en", "uz", "ru")
+    }
+    first_error = next((code for code, has_error in tab_errors.items() if has_error), None)
+    active_tab = first_error or (submission.language if submission.language in tab_errors else "en")
     return TemplateResponse(
         request,
         "submissions/wizard_step3.html",
-        _wizard_context(submission, 3, form=form, formset=formset),
+        _wizard_context(
+            submission,
+            3,
+            form=form,
+            formset=formset,
+            tab_errors=tab_errors,
+            active_tab=active_tab,
+        ),
     )
 
 
@@ -224,16 +241,17 @@ def _save_metadata(submission: Submission, form: MetadataForm) -> None:
             line.strip() for line in data.get("references", "").splitlines() if line.strip()
         ],
     }
+    # Set every language column explicitly and never the bare ``title`` /
+    # ``abstract``: modeltranslation routes those to the *active* language, so
+    # an author working in Uzbek had the English title written over the Uzbek.
     submission.title_en = titles["en"]
     submission.title_uz = titles["uz"]
     submission.title_uz_cyrl = titles["uz-cyrl"]
     submission.title_ru = titles["ru"]
-    submission.title = titles["en"]
     submission.abstract_en = abstracts["en"]
     submission.abstract_uz = abstracts["uz"]
     submission.abstract_uz_cyrl = abstracts["uz-cyrl"]
     submission.abstract_ru = abstracts["ru"]
-    submission.abstract = abstracts["en"]
     submission.keywords_text = ", ".join(keywords["en"])
     submission.funding_statement = data.get("funding_statement", "")
     submission.conflict_of_interest_statement = data.get("conflict_of_interest_statement", "")

@@ -8,100 +8,109 @@
 {% block content %}
   {% comment %}Hero & masthead — design/home.html "Hero & Masthead Section"{% endcomment %}
   <section class="masthead">
-    <div class="container-page py-10 md:py-12 flex flex-col gap-6">
-      <ul class="credibility">
-        <li class="is-official">
-          {% include "includes/icon.html" with name="verified" size=15 %}
-          {% blocktranslate with publisher=site_settings.publisher_name %}Published by {{ publisher }}{% endblocktranslate %}
-        </li>
-        <li>
-          {% include "includes/icon.html" with name="unlock" size=14 %}
-          {% translate "Diamond open access · no APC" %}
-        </li>
-        <li>DOI: <strong>{{ site_settings.doi_prefix_display }}</strong></li>
-        <li>e-ISSN: <strong>{{ site_settings.eissn|default:_("pending") }}</strong></li>
-      </ul>
-      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
-        <div class="max-w-3xl flex flex-col gap-3 min-w-0">
-          <h1 class="leading-none">
-            <span class="masthead-name block text-4xl md:text-[2.75rem]">{{ site_settings.wordmark_name }}{% if site_settings.wordmark_descriptor %}:{% endif %}</span>
-            {% if site_settings.wordmark_descriptor %}
-              <span class="masthead-descriptor block mt-2 text-2xl md:text-[2rem]">{{ site_settings.wordmark_descriptor }}</span>
+    <div class="container-page py-10 md:py-12 grid gap-10 lg:grid-cols-[minmax(0,1fr)_232px] items-center">
+      <div class="flex flex-col gap-6 min-w-0">
+        <ul class="credibility">
+          <li class="is-official">
+            {% include "includes/icon.html" with name="verified" size=15 %}
+            {% blocktranslate with publisher=site_settings.publisher_name %}Published by {{ publisher }}{% endblocktranslate %}
+          </li>
+          <li>
+            {% include "includes/icon.html" with name="unlock" size=14 %}
+            {% translate "Diamond open access · no APC" %}
+          </li>
+          <li>DOI: <strong>{{ site_settings.doi_prefix_display }}</strong></li>
+          <li>e-ISSN: <strong>{{ site_settings.eissn|default:_("pending") }}</strong></li>
+        </ul>
+        <div class="flex flex-col gap-5">
+          <div class="max-w-3xl flex flex-col gap-3 min-w-0">
+            <h1 class="leading-none">
+              <span class="masthead-name block text-4xl md:text-[2.75rem]">{{ site_settings.wordmark_name }}{% if site_settings.wordmark_descriptor %}:{% endif %}</span>
+              {% if site_settings.wordmark_descriptor %}
+                <span class="masthead-descriptor block mt-2 text-2xl md:text-[2rem]">{{ site_settings.wordmark_descriptor }}</span>
+              {% endif %}
+            </h1>
+            {% if site_settings.journal_subtitle %}
+              <p class="masthead-lede max-w-2xl">{{ site_settings.journal_subtitle }}</p>
             {% endif %}
-          </h1>
-          {% if site_settings.journal_subtitle %}
-            <p class="masthead-lede max-w-2xl">{{ site_settings.journal_subtitle }}</p>
-          {% endif %}
-        </div>
-        <div class="flex flex-wrap items-center gap-2 shrink-0">
-          <a class="btn btn-primary" href="{% url 'submissions:wizard_start' %}">
-            {% include "includes/icon.html" with name="upload" size=16 %}
-            {% translate "Submit your manuscript" %}
-            {% include "includes/icon.html" with name="arrow" size=14 %}
-          </a>
-          <a class="btn btn-tonal" href="{% url 'core:author_guidelines' %}">
-            {% include "includes/icon.html" with name="book" size=16 %}
-            {% translate "Author guidelines" %}
-          </a>
-          {% if current_issue and current_issue.full_issue_pdf %}
-            <a class="btn btn-secondary"
-               href="{{ current_issue.full_issue_pdf.url }}">
-              {% include "includes/icon.html" with name="pdf" size=16 %}
-              {{ current_issue.label }} (PDF)
+          </div>
+          <div class="flex flex-wrap items-center gap-2 shrink-0">
+            <a class="btn btn-primary" href="{% url 'submissions:wizard_start' %}">
+              {% include "includes/icon.html" with name="upload" size=16 %}
+              {% translate "Submit your manuscript" %}
+              {% include "includes/icon.html" with name="arrow" size=14 %}
             </a>
+            <a class="btn btn-tonal" href="{% url 'core:author_guidelines' %}">
+              {% include "includes/icon.html" with name="book" size=16 %}
+              {% translate "Author guidelines" %}
+            </a>
+            {% if current_issue and current_issue.full_issue_pdf %}
+              <a class="btn btn-secondary"
+                 href="{{ current_issue.full_issue_pdf.url }}">
+                {% include "includes/icon.html" with name="pdf" size=16 %}
+                {{ current_issue.label }} (PDF)
+              </a>
+            {% endif %}
+          </div>
+        </div>
+        {% comment %}Fact strip: every value is real or omitted — no invented metrics (CLAUDE.md §8).{% endcomment %}
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+          <div class="fact-tile">
+            <span class="fact-label">{% translate "Publishing model" %}</span>
+            <span class="fact-value">{% translate "Diamond OA" %}
+              {% include "includes/icon.html" with name="verified" size=14 %}
+            </span>
+            <span class="fact-note">{% translate "No author or reader fees" %}</span>
+          </div>
+          <div class="fact-tile">
+            <span class="fact-label">{% translate "Peer review" %}</span>
+            <span class="fact-value">{% translate "Double-blind" %}</span>
+            <span class="fact-note">
+              {% if kpis and kpis.median_days_to_first_decision %}
+                {% blocktranslate with days=kpis.median_days_to_first_decision %}Median {{ days }} days to first decision{% endblocktranslate %}
+              {% else %}
+                {% translate "Two independent reviewers" %}
+              {% endif %}
+            </span>
+          </div>
+          {% if kpis and kpis.acceptance_rate %}
+            <div class="fact-tile">
+              <span class="fact-label">{% translate "Acceptance rate" %}</span>
+              <span class="fact-value">{{ kpis.acceptance_rate }}%</span>
+              <span class="fact-note">{% translate "last 12 months" %}</span>
+            </div>
+          {% endif %}
+          <div class="fact-tile">
+            <span class="fact-label">{% translate "Cadence" %}</span>
+            <span class="fact-value">{{ site_settings.frequency_short }}</span>
+            <span class="fact-note">{% translate "plus Online First" %}</span>
+          </div>
+          <div class="fact-tile">
+            <span class="fact-label">{% translate "Published articles" %}</span>
+            <span class="fact-value">{{ published_count }}</span>
+            <span class="fact-note">{% blocktranslate with year=site_settings.founded_year %}since {{ year }}{% endblocktranslate %}</span>
+          </div>
+          <div class="fact-tile">
+            <span class="fact-label">{% translate "Languages" %}</span>
+            <span class="fact-value">4</span>
+            <span class="fact-note">EN · UZ · ЎЗ · RU</span>
+          </div>
+          {% if not kpis or not kpis.acceptance_rate %}
+            <div class="fact-tile">
+              <span class="fact-label">{% translate "Licence" %}</span>
+              <span class="fact-value">CC BY 4.0</span>
+              <span class="fact-note">{% translate "Authors retain copyright" %}</span>
+            </div>
           {% endif %}
         </div>
       </div>
-      {% comment %}Fact strip: every value is real or omitted — no invented metrics (CLAUDE.md §8).{% endcomment %}
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
-        <div class="fact-tile">
-          <span class="fact-label">{% translate "Publishing model" %}</span>
-          <span class="fact-value">{% translate "Diamond OA" %}
-            {% include "includes/icon.html" with name="verified" size=14 %}
-          </span>
-          <span class="fact-note">{% translate "No author or reader fees" %}</span>
-        </div>
-        <div class="fact-tile">
-          <span class="fact-label">{% translate "Peer review" %}</span>
-          <span class="fact-value">{% translate "Double-blind" %}</span>
-          <span class="fact-note">
-            {% if kpis and kpis.median_days_to_first_decision %}
-              {% blocktranslate with days=kpis.median_days_to_first_decision %}Median {{ days }} days to first decision{% endblocktranslate %}
-            {% else %}
-              {% translate "Two independent reviewers" %}
-            {% endif %}
-          </span>
-        </div>
-        {% if kpis and kpis.acceptance_rate %}
-          <div class="fact-tile">
-            <span class="fact-label">{% translate "Acceptance rate" %}</span>
-            <span class="fact-value">{{ kpis.acceptance_rate }}%</span>
-            <span class="fact-note">{% translate "last 12 months" %}</span>
-          </div>
-        {% endif %}
-        <div class="fact-tile">
-          <span class="fact-label">{% translate "Cadence" %}</span>
-          <span class="fact-value">{{ site_settings.frequency_short }}</span>
-          <span class="fact-note">{% translate "plus Online First" %}</span>
-        </div>
-        <div class="fact-tile">
-          <span class="fact-label">{% translate "Published articles" %}</span>
-          <span class="fact-value">{{ published_count }}</span>
-          <span class="fact-note">{% blocktranslate with year=site_settings.founded_year %}since {{ year }}{% endblocktranslate %}</span>
-        </div>
-        <div class="fact-tile">
-          <span class="fact-label">{% translate "Languages" %}</span>
-          <span class="fact-value">4</span>
-          <span class="fact-note">EN · UZ · ЎЗ · RU</span>
-        </div>
-        {% if not kpis or not kpis.acceptance_rate %}
-          <div class="fact-tile">
-            <span class="fact-label">{% translate "Licence" %}</span>
-            <span class="fact-value">CC BY 4.0</span>
-            <span class="fact-note">{% translate "Authors retain copyright" %}</span>
-          </div>
-        {% endif %}
-      </div>
+      {% if current_issue %}
+        <a class="hidden lg:flex flex-col gap-2 no-underline"
+           href="{{ current_issue.get_absolute_url }}">
+          {% include "includes/issue_cover.html" with issue=current_issue %}
+          <span class="label-caps text-center">{% translate "Current issue" %} · {{ current_issue.label }}</span>
+        </a>
+      {% endif %}
     </div>
   </section>
   <div class="container-page py-8 flex flex-col gap-8">

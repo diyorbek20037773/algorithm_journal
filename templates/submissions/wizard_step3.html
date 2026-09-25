@@ -5,35 +5,52 @@
   <div class="container-page max-w-[960px]">
     <h1 class="text-3xl mb-6">{% translate "Metadata" %}</h1>
     {% include "includes/wizard_steps.html" %}
-    <form method="post" novalidate x-data="{ lang: 'en' }">
+    <form method="post" novalidate x-data="{ lang: '{{ active_tab }}' }">
       {% csrf_token %}
       <div class="flex gap-1 mb-4" role="tablist">
         <button type="button"
                 class="btn btn-ghost btn-sm"
                 :class="lang === 'en' ? 'font-semibold underline' : ''"
-                @click="lang = 'en'">{% translate "English" %}</button>
+                role="tab"
+                :aria-selected="lang === 'en'"
+                @click="lang = 'en'">
+          {% translate "English" %}
+          {% if tab_errors.en %}<span class="text-[--color-danger]"
+      aria-label="{% translate 'has errors' %}">●</span>{% endif %}
+        </button>
         <button type="button"
                 class="btn btn-ghost btn-sm"
                 :class="lang === 'uz' ? 'font-semibold underline' : ''"
-                @click="lang = 'uz'">{% translate "Uzbek" %}</button>
+                role="tab"
+                :aria-selected="lang === 'uz'"
+                @click="lang = 'uz'">
+          {% translate "Uzbek" %}
+          {% if tab_errors.uz %}<span class="text-[--color-danger]"
+      aria-label="{% translate 'has errors' %}">●</span>{% endif %}
+        </button>
         <button type="button"
                 class="btn btn-ghost btn-sm"
                 :class="lang === 'ru' ? 'font-semibold underline' : ''"
-                @click="lang = 'ru'">{% translate "Russian" %}</button>
+                role="tab"
+                :aria-selected="lang === 'ru'"
+                @click="lang = 'ru'">
+          {% translate "Russian" %}
+          {% if tab_errors.ru %}<span class="text-[--color-danger]"
+      aria-label="{% translate 'has errors' %}">●</span>{% endif %}
+        </button>
         <span class="meta ml-auto self-center">{% translate "The Uzbek Cyrillic version is generated automatically." %}</span>
       </div>
-      {% for code in "en,uz,ru"|slice:":0" %}{% endfor %}
-      <div x-show="lang === 'en'">
+      <div x-show="lang === 'en'" {% if active_tab != "en" %}x-cloak{% endif %}>
         {% include "includes/form_field.html" with field=form.title_en %}
         {% include "includes/form_field.html" with field=form.abstract_en %}
         {% include "includes/form_field.html" with field=form.keywords_en %}
       </div>
-      <div x-show="lang === 'uz'" x-cloak>
+      <div x-show="lang === 'uz'" {% if active_tab != "uz" %}x-cloak{% endif %}>
         {% include "includes/form_field.html" with field=form.title_uz %}
         {% include "includes/form_field.html" with field=form.abstract_uz %}
         {% include "includes/form_field.html" with field=form.keywords_uz %}
       </div>
-      <div x-show="lang === 'ru'" x-cloak>
+      <div x-show="lang === 'ru'" {% if active_tab != "ru" %}x-cloak{% endif %}>
         {% include "includes/form_field.html" with field=form.title_ru %}
         {% include "includes/form_field.html" with field=form.abstract_ru %}
         {% include "includes/form_field.html" with field=form.keywords_ru %}

@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import functools
+import html
+import re
 
 import nh3
 from markdown_it import MarkdownIt
@@ -116,3 +118,33 @@ def strip_markdown(text: str | None, limit: int | None = None) -> str:
     if limit and len(plain) > limit:
         plain = plain[: limit - 1].rsplit(" ", 1)[0] + "…"
     return plain
+
+
+_LINK_RE = re.compile(r'<a\s[^>]*href="([^"]*)"[^>]*>(.*?)</a>', re.IGNORECASE | re.DOTALL)
+_BLOCK_END_RE = re.compile(r"</(p|h[1-6]|li|blockquote|tr|div)>|<br\s*/?>", re.IGNORECASE)
+
+
+def markdown_to_text(text: str | None) -> str:
+    """Render Markdown as the plain-text part of an e-mail.
+
+    Unlike :func:`strip_markdown` (one line, for meta descriptions) this keeps
+    paragraph breaks, writes every link as ``label: URL`` so that a reader in a
+    text-only mail client can still act on it, and decodes HTML entities.
+    """
+    if not text:
+        return ""
+    rendered = _parser().render(text)
+
+    def _link(match: re.Match[str]) -> str:
+        href = html.unescape(match.group(1))
+        label = nh3.clean(match.group(2), tags=set()).strip()
+        if not label or html.unescape(label) == href:
+            return href
+        return f"{label}: {href}"
+
+    rendered = _LINK_RE.sub(_link, rendered)
+    rendered = re.sub(r"<li[^>]*>", "- ", rendered, flags=re.IGNORECASE)
+    rendered = _BLOCK_END_RE.sub("\n", rendered)
+    plain = html.unescape(nh3.clean(rendered, tags=set()))
+    lines = [" ".join(line.split()) for line in plain.splitlines()]
+    return re.sub(r"\n{3,}", "\n\n", "\n".join(lines)).strip()

@@ -408,7 +408,7 @@ def test_issue_page_has_sidebar_navigation(client_anon, article, about_pages) ->
     html = client_anon.get(article.issue.get_absolute_url()).content.decode()
     assert "Issues in this volume" in html
     assert "Issue metrics" in html
-    assert 'class="issue-cover w-full' in html
+    assert 'class="jcover' in html
 
 
 def test_site_settings_short_helpers(site_settings) -> None:

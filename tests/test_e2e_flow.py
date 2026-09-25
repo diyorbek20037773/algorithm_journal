@@ -171,7 +171,7 @@ def test_full_editorial_flow(
     # --- 9. DOI reservation ----------------------------------------------
     doi = production.reserve_doi(article, user=production_user)
     article.refresh_from_db()
-    assert doi == f"10.00000/arer.{article.accepted_at.year}.{article.pk:04d}"
+    assert doi == f"10.00000/mrer.{article.accepted_at.year}.{article.pk:04d}"
     assert article.doi_status == Article.DOIStatus.RESERVED
 
     assert production.completeness_blockers(article) == [], production.completeness_blockers(

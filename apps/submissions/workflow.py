@@ -19,7 +19,9 @@ from django.conf import settings
 from django.core.exceptions import PermissionDenied, ValidationError
 from django.db import transaction
 from django.utils import timezone
+from django.utils.functional import Promise
 from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy
 
 from apps.accounts.models import Role
 from apps.core.models import AuditLog
@@ -50,119 +52,123 @@ class Transition:
     sources: tuple[str, ...]
     target: str
     roles: tuple[str, ...]
-    label: str
+    label: str | Promise
 
 
 TRANSITIONS: dict[str, Transition] = {
     t.name: t
     for t in [
         Transition(
-            "submit", (SubmissionStatus.DRAFT,), SubmissionStatus.SUBMITTED, (), _("Submit")
+            "submit",
+            (SubmissionStatus.DRAFT,),
+            SubmissionStatus.SUBMITTED,
+            (),
+            gettext_lazy("Submit"),
         ),
         Transition(
             "assign_editor",
             (SubmissionStatus.SUBMITTED,),
             SubmissionStatus.SCREENING,
             EDITOR_ROLES,
-            _("Assign editor"),
+            gettext_lazy("Assign editor"),
         ),
         Transition(
             "desk_reject",
             (SubmissionStatus.SCREENING, SubmissionStatus.SUBMITTED),
             SubmissionStatus.REJECTED,
             EDITOR_ROLES,
-            _("Desk reject"),
+            gettext_lazy("Desk reject"),
         ),
         Transition(
             "send_to_review",
             (SubmissionStatus.SCREENING, SubmissionStatus.RESUBMITTED),
             SubmissionStatus.UNDER_REVIEW,
             EDITOR_ROLES,
-            _("Send to review"),
+            gettext_lazy("Send to review"),
         ),
         Transition(
             "reviews_complete",
             (SubmissionStatus.UNDER_REVIEW,),
             SubmissionStatus.AWAITING_DECISION,
             EDITOR_ROLES,
-            _("All reviews received"),
+            gettext_lazy("All reviews received"),
         ),
         Transition(
             "request_minor_revision",
             (SubmissionStatus.AWAITING_DECISION,),
             SubmissionStatus.REVISION_REQUESTED,
             EDITOR_ROLES,
-            _("Request minor revision"),
+            gettext_lazy("Request minor revision"),
         ),
         Transition(
             "request_major_revision",
             (SubmissionStatus.AWAITING_DECISION,),
             SubmissionStatus.REVISION_REQUESTED,
             EDITOR_ROLES,
-            _("Request major revision"),
+            gettext_lazy("Request major revision"),
         ),
         Transition(
             "resubmit",
             (SubmissionStatus.REVISION_REQUESTED,),
             SubmissionStatus.RESUBMITTED,
             (),
-            _("Submit revision"),
+            gettext_lazy("Submit revision"),
         ),
         Transition(
             "accept",
             (SubmissionStatus.AWAITING_DECISION, SubmissionStatus.RESUBMITTED),
             SubmissionStatus.ACCEPTED,
             EDITOR_ROLES,
-            _("Accept"),
+            gettext_lazy("Accept"),
         ),
         Transition(
             "reject",
             (SubmissionStatus.AWAITING_DECISION, SubmissionStatus.RESUBMITTED),
             SubmissionStatus.REJECTED,
             EDITOR_ROLES,
-            _("Reject"),
+            gettext_lazy("Reject"),
         ),
         Transition(
             "start_copyediting",
             (SubmissionStatus.ACCEPTED,),
             SubmissionStatus.COPYEDITING,
             PRODUCTION_ROLES,
-            _("Start copyediting"),
+            gettext_lazy("Start copyediting"),
         ),
         Transition(
             "send_proof",
             (SubmissionStatus.COPYEDITING,),
             SubmissionStatus.AUTHOR_PROOF,
             PRODUCTION_ROLES,
-            _("Send proof to author"),
+            gettext_lazy("Send proof to author"),
         ),
         Transition(
             "start_typesetting",
             (SubmissionStatus.AUTHOR_PROOF,),
             SubmissionStatus.TYPESETTING,
             PRODUCTION_ROLES,
-            _("Start typesetting"),
+            gettext_lazy("Start typesetting"),
         ),
         Transition(
             "mark_ready",
             (SubmissionStatus.TYPESETTING,),
             SubmissionStatus.READY_TO_PUBLISH,
             PRODUCTION_ROLES,
-            _("Mark ready to publish"),
+            gettext_lazy("Mark ready to publish"),
         ),
         Transition(
             "publish_online_first",
             (SubmissionStatus.READY_TO_PUBLISH,),
             SubmissionStatus.PUBLISHED_ONLINE_FIRST,
             PRODUCTION_ROLES,
-            _("Publish Online First"),
+            gettext_lazy("Publish Online First"),
         ),
         Transition(
             "publish",
             (SubmissionStatus.READY_TO_PUBLISH, SubmissionStatus.PUBLISHED_ONLINE_FIRST),
             SubmissionStatus.PUBLISHED,
             PRODUCTION_ROLES,
-            _("Publish in issue"),
+            gettext_lazy("Publish in issue"),
         ),
         Transition(
             "withdraw",
@@ -177,7 +183,7 @@ TRANSITIONS: dict[str, Transition] = {
             ),
             SubmissionStatus.WITHDRAWN,
             (),
-            _("Withdraw"),
+            gettext_lazy("Withdraw"),
         ),
     ]
 }

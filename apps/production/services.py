@@ -78,12 +78,13 @@ def create_article_from_submission(submission: Submission) -> Article:
             setattr(article, f"title_{language}", title)
         if abstract:
             setattr(article, f"abstract_{language}", abstract)
+    # Only the per-language columns: the bare ``title``/``abstract`` would be
+    # routed by modeltranslation to whatever language the production editor
+    # happens to be browsing in, overwriting that translation.
     if not article.title_en:
-        article.title_en = submission.title
-    article.title = article.title_en
+        article.title_en = submission.title_en or submission.title
     if not article.abstract_en:
-        article.abstract_en = submission.abstract
-    article.abstract = article.abstract_en
+        article.abstract_en = submission.abstract_en or submission.abstract
     article.save()
 
     for order, author in enumerate(submission.authors.order_by("order"), start=1):
@@ -134,7 +135,6 @@ def _copy_keywords(article: Article, keywords: dict[str, list[str]], fallback: l
             values = keywords.get(code) or []
             if position < len(values):
                 setattr(keyword, f"name_{code.replace('-', '_')}", values[position])
-        keyword.name = name_en
         keyword.save()
         article.keywords.add(keyword)
 
@@ -154,7 +154,7 @@ def reserve_doi(article: Article, *, user=None, request=None) -> str:
     site = get_site_settings()
     prefix = site.doi_prefix or settings.DOI_PREFIX
     year = (article.accepted_at or timezone.now().date()).year
-    article.doi = f"{prefix}/arer.{year}.{article.pk:04d}"
+    article.doi = f"{prefix}/{site.short_code.lower()}.{year}.{article.pk:04d}"
     article.doi_status = Article.DOIStatus.RESERVED
     article.save(update_fields=["doi", "doi_status", "updated_at"])
     log_action(
@@ -280,6 +280,9 @@ def publish_online_first(article: Article, *, user=None, request=None) -> Articl
     if submission is not None:
         submission.status = SubmissionStatus.PUBLISHED_ONLINE_FIRST
         submission.save(update_fields=["status", "updated_at"])
+        from apps.submissions.tasks import notify_published
+
+        notify_published.delay(submission.pk)
 
     log_action(
         AuditLog.Action.PUBLISH,

@@ -17,7 +17,7 @@ def test_reserve_doi_is_issue_independent(article, site_settings) -> None:
     article.doi = ""
     article.save()
     doi = services.reserve_doi(article)
-    assert doi == f"10.00000/arer.{article.accepted_at.year}.{article.pk:04d}"
+    assert doi == f"10.00000/mrer.{article.accepted_at.year}.{article.pk:04d}"
     article.refresh_from_db()
     assert article.doi_status == Article.DOIStatus.RESERVED
 

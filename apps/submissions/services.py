@@ -9,7 +9,7 @@ from typing import Any
 
 from django.conf import settings
 from django.core.exceptions import ValidationError
-from django.db.models import Avg, Count, Q
+from django.db.models import Avg, Count, Q, Value
 from django.utils import timezone
 from django.utils.translation import gettext as _
 
@@ -227,8 +227,21 @@ def find_reviewers(
             | Q(profile__expertise__icontains=query)
             | Q(profile__affiliation__icontains=query)
         )
-    if jel_codes:
-        queryset = queryset.filter(profile__jel_codes__code__in=jel_codes).distinct()
+    # JEL overlap ranks candidates; it does not filter them. A hard filter left
+    # the editor with an empty pool whenever nobody's profile carried exactly
+    # the manuscript's codes — a pool of reviewers is still worth showing.
+    # Codes match on their two-character stem, so a reviewer listed under F13
+    # counts for a manuscript classified F1 and vice versa.
+    stems = sorted({code[:2] for code in jel_codes or []})
+    if stems:
+        jel_match = Q()
+        for stem in stems:
+            jel_match |= Q(profile__jel_codes__code__startswith=stem)
+        queryset = queryset.annotate(
+            jel_overlap=Count("profile__jel_codes", filter=jel_match, distinct=True)
+        )
+    else:
+        queryset = queryset.annotate(jel_overlap=Value(0))
 
     queryset = queryset.annotate(
         active_reviews=Count(
@@ -247,11 +260,12 @@ def find_reviewers(
             distinct=True,
         ),
         quality=Avg("review_assignments__review__quality_rating"),
-    ).order_by("active_reviews", "-completed_reviews")[:limit]
+    ).order_by("-jel_overlap", "active_reviews", "-completed_reviews")[:limit]
 
     return [
         {
             "user": user,
+            "jel_overlap": user.jel_overlap,
             "active_reviews": user.active_reviews,
             "completed_reviews": user.completed_reviews,
             "quality": round(user.quality, 1) if user.quality else None,

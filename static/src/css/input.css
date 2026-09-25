@@ -1550,6 +1550,141 @@
     color: var(--color-ink-2);
   }
 
+  /* --- designed journal cover (includes/issue_cover.html) --- */
+  .jcover {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+    border-radius: var(--radius-card);
+    background:
+      radial-gradient(120% 70% at 85% 10%, rgb(166 127 253 / 0.28), transparent 60%),
+      linear-gradient(160deg, #2a164d 0%, var(--color-navy-deep) 62%, #140a26 100%);
+    color: var(--color-on-dark);
+    box-shadow:
+      0 1px 2px rgb(31 20 53 / 0.18),
+      0 14px 32px -12px rgb(31 20 53 / 0.45);
+    display: flex;
+    flex-direction: column;
+    padding: 7% 8%;
+    container-type: inline-size;
+  }
+
+  .jcover::before {
+    /* spine highlight, like a bound print issue */
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 4%;
+    background: linear-gradient(to right, rgb(255 255 255 / 0.14), transparent);
+  }
+
+  .jcover-image {
+    padding: 0;
+    background: var(--color-paper);
+  }
+
+  .jcover-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .jcover-art {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--color-mint-bright);
+  }
+
+  .jcover > div {
+    position: relative;
+  }
+
+  .jcover-top,
+  .jcover-foot {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: max(7px, 4.2cqi);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-on-dark-muted);
+  }
+
+  .jcover-top {
+    border-bottom: 1px solid var(--color-on-dark-line);
+    padding-bottom: 3cqi;
+  }
+
+  .jcover-title {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10cqi;
+  }
+
+  .jcover-name {
+    font-family: var(--font-serif);
+    font-weight: 900;
+    font-size: 17cqi;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+  }
+
+  .jcover-desc {
+    margin-top: 3.5cqi;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 6.2cqi;
+    line-height: 1.25;
+    color: var(--color-on-dark-muted);
+    max-width: 85%;
+  }
+
+  .jcover-issue {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5cqi;
+    border-left: 3px solid var(--color-mint-bright);
+    padding-left: 4cqi;
+    margin-bottom: 5cqi;
+  }
+
+  .jcover-vol {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 7.5cqi;
+  }
+
+  .jcover-date {
+    font-family: var(--font-sans);
+    font-size: 5.2cqi;
+    text-transform: capitalize;
+    color: var(--color-on-dark-muted);
+  }
+
+  .jcover-foot {
+    border-top: 1px solid var(--color-on-dark-line);
+    padding-top: 3cqi;
+  }
+
+  a:hover .jcover,
+  a:focus-visible .jcover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 1px 2px rgb(31 20 53 / 0.18),
+      0 20px 40px -14px rgb(31 20 53 / 0.55);
+  }
+
+  .jcover {
+    transition:
+      transform 200ms ease,
+      box-shadow 200ms ease;
+  }
+
   /* compact navy cover used in the current-issue banner */
   .issue-cover-mini {
     flex: none;

@@ -133,9 +133,19 @@ class User(AbstractUser):
 
         The dashboard used to print raw group slugs — ``editor_in_chief`` — to
         the person signed in. Superusers are labelled as such, since that is
-        the highest level in the system and not a group at all.
+        the highest level in the system and not a group at all. The most
+        senior role comes first, because the console badge shows only the
+        first one — an Editor-in-Chief who has also submitted a paper is
+        badged "Editor-in-Chief", not "Author".
         """
-        order = [choice[0] for choice in Role.choices]
+        order = [
+            Role.ADMIN,
+            Role.EDITOR_IN_CHIEF,
+            Role.SECTION_EDITOR,
+            Role.PRODUCTION_EDITOR,
+            Role.REVIEWER,
+            Role.AUTHOR,
+        ]
         names = sorted(self.role_names, key=lambda n: order.index(n) if n in order else 99)
         labels = [str(dict(Role.choices).get(name, name)) for name in names]
         if self.is_superuser:

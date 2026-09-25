@@ -33,9 +33,9 @@ def notify_submission_received(submission_id: int) -> str:
     site = get_site_settings()
     context = {
         "reference": submission.reference,
-        "title": submission.title,
-        "journal": site.journal_name,
-        "section": submission.section.name,
+        "title": lambda: submission.title,
+        "journal": lambda: site.journal_name,
+        "section": lambda: submission.section.name,
         "dashboard_url": absolute_url(reverse("dashboard:home")),
     }
     send_templated_email(
@@ -83,7 +83,7 @@ def notify_editor_assigned(submission_id: int) -> str:
         to=[submission.assigned_editor.email],
         context={
             "reference": submission.reference,
-            "title": submission.title,
+            "title": lambda: submission.title,
             "detail_url": absolute_url(submission.get_absolute_url()),
         },
         language=_language(submission.assigned_editor),
@@ -114,13 +114,13 @@ def send_reviewer_invitation(assignment_id: int) -> str:
         "reviewer_invite",
         to=[assignment.reviewer.email],
         context={
-            "title": submission.title,
+            "title": lambda: submission.title,
             "abstract": submission.abstract,
-            "section": submission.section.name,
+            "section": lambda: submission.section.name,
             "due_date": assignment.due_at.date().isoformat(),
             "accept_url": accept_url,
             "decline_url": decline_url,
-            "journal": site.journal_name,
+            "journal": lambda: site.journal_name,
         },
         language=_language(assignment.reviewer),
         fallback_subject=_("Invitation to review for %(journal)s") % {"journal": site.journal_name},
@@ -144,7 +144,7 @@ def send_review_thanks(assignment_id: int) -> str:
         "reviewer_thanks",
         to=[assignment.reviewer.email],
         context={
-            "title": assignment.round.submission.title,
+            "title": lambda: assignment.round.submission.title,
             "certificate_url": absolute_url(reverse("review:certificate")),
         },
         language=_language(assignment.reviewer),
@@ -167,8 +167,8 @@ def send_decision_email(decision_id: int) -> str:
         to=[submission.submitter.email],
         context={
             "reference": submission.reference,
-            "title": submission.title,
-            "decision": decision.get_decision_display(),
+            "title": lambda: submission.title,
+            "decision": decision.get_decision_display,
             "letter": decision.letter,
             "dashboard_url": absolute_url(reverse("dashboard:home")),
         },
@@ -199,9 +199,9 @@ def notify_published(submission_id: int) -> str:
             "published",
             to=[email],
             context={
-                "title": article.title,
+                "title": lambda: article.title,
                 "doi": article.doi,
-                "url": article.canonical_url,
+                "url": lambda: absolute_url(article.get_absolute_url()),
             },
             language=_language(submission.submitter),
             fallback_subject=_("Your article is published"),
@@ -250,7 +250,7 @@ def send_review_reminders() -> str:
                 "reviewer_reminder",
                 to=[assignment.reviewer.email],
                 context={
-                    "title": assignment.round.submission.title,
+                    "title": lambda assignment=assignment: assignment.round.submission.title,
                     "due_date": assignment.due_at.date().isoformat(),
                     "review_url": absolute_url(assignment.get_absolute_url()),
                     "kind": kind,
@@ -298,7 +298,7 @@ def send_revision_reminders() -> str:
             to=[submission.submitter.email],
             context={
                 "reference": submission.reference,
-                "title": submission.title,
+                "title": lambda submission=submission: submission.title,
                 "due_date": request_obj.due_at.date().isoformat(),
                 "dashboard_url": absolute_url(reverse("dashboard:home")),
             },
@@ -324,7 +324,7 @@ def send_proof_request(submission_id: int) -> str:
         to=[submission.submitter.email],
         context={
             "reference": submission.reference,
-            "title": submission.title,
+            "title": lambda: submission.title,
             "dashboard_url": absolute_url(reverse("dashboard:home")),
             "deadline": (timezone.now() + timedelta(days=5)).date().isoformat(),
         },

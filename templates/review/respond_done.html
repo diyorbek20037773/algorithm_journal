@@ -8,11 +8,20 @@
       <p class="muted">{% translate "This invitation has already been answered. Open your dashboard to see the details." %}</p>
     {% elif answer == "accept" %}
       <h1 class="text-2xl mb-3">{% translate "Thank you for accepting" %}</h1>
-      <p class="muted">{% translate "Sign in to read the manuscript and complete the review form." %}</p>
+      {% if user.is_authenticated and user.pk == assignment.reviewer_id %}
+        <p class="muted">{% translate "The anonymised manuscript and the review form are ready for you." %}</p>
+      {% else %}
+        <p class="muted">{% translate "Sign in to read the manuscript and complete the review form." %}</p>
+      {% endif %}
     {% else %}
       <h1 class="text-2xl mb-3">{% translate "Invitation declined" %}</h1>
       <p class="muted">{% translate "Thank you for letting us know. We will approach another reviewer." %}</p>
     {% endif %}
-    <a class="btn btn-primary mt-6" href="{% url 'review:dashboard' %}">{% translate "Go to my reviews" %}</a>
+    {% if answer == "accept" and user.is_authenticated and user.pk == assignment.reviewer_id %}
+      <a class="btn btn-primary mt-6"
+         href="{% url 'review:assignment_detail' assignment.pk %}">{% translate "Open the manuscript" %}</a>
+    {% else %}
+      <a class="btn btn-primary mt-6" href="{% url 'review:dashboard' %}">{% translate "Go to my reviews" %}</a>
+    {% endif %}
   </div>
 {% endblock %}

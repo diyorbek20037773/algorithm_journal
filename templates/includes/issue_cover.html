@@ -1,0 +1,66 @@
+{% load i18n %}
+{% comment %}
+  Designed issue cover. Usage:
+    {% include "includes/issue_cover.html" with issue=issue %}
+  An uploaded Issue.cover image wins; otherwise the cover is typeset from
+  SiteSettings (name, ISSN) and the issue (volume, number, month) over a
+  royal-ink ground with a chart-and-network artwork. Nothing is hard-coded.
+{% endcomment %}
+{% if issue.cover %}
+  <figure class="jcover jcover-image">
+    <img src="{{ issue.cover.url }}"
+         alt="{% blocktranslate with label=issue.label %}Cover of {{ label }}{% endblocktranslate %}"
+         loading="lazy"
+         width="600"
+         height="800">
+  </figure>
+{% else %}
+  <figure class="jcover"
+          role="img"
+          aria-label="{% blocktranslate with label=issue.label %}Cover of {{ label }}{% endblocktranslate %}">
+    <svg class="jcover-art"
+         viewBox="0 0 300 400"
+         preserveAspectRatio="xMidYMid slice"
+         aria-hidden="true"
+         focusable="false">
+      <g fill="none" stroke="currentColor">
+      <path d="M0 330 C40 318 60 300 90 296 S140 250 170 242 S220 190 250 176 S290 128 300 118" stroke-width="1.4" opacity=".55" />
+      <path d="M0 356 C50 350 80 332 120 330 S180 300 210 292 S260 262 300 250" stroke-width="1" opacity=".3" />
+      <g stroke-width=".6" opacity=".22">
+      <path d="M0 250H300M0 290H300M0 330H300M0 370H300" />
+      <path d="M60 230V400M120 230V400M180 230V400M240 230V400" />
+      </g>
+      <g stroke-width=".8" opacity=".35">
+      <path d="M210 40 262 78 236 132 180 104Z M262 78 292 30 M180 104 150 58 210 40 M236 132 290 150" />
+      </g>
+      </g>
+      <g fill="currentColor" opacity=".7">
+      <circle cx="210" cy="40" r="2.6" />
+      <circle cx="262" cy="78" r="3.4" />
+      <circle cx="236" cy="132" r="2.4" />
+      <circle cx="180" cy="104" r="2.8" />
+      <circle cx="150" cy="58" r="1.8" />
+      <circle cx="292" cy="30" r="1.8" />
+      <circle cx="290" cy="150" r="1.8" />
+      <circle cx="170" cy="242" r="2.6" />
+      <circle cx="250" cy="176" r="2.6" />
+      </g>
+    </svg>
+    <div class="jcover-top">
+      <span>{% translate "Open access" %}</span>
+      <span>{% translate "Peer-reviewed" %}</span>
+    </div>
+    <div class="jcover-title">
+      <span class="jcover-name">{{ site_settings.wordmark_name }}</span>
+      {% if site_settings.wordmark_descriptor %}<span class="jcover-desc">{{ site_settings.wordmark_descriptor }}</span>{% endif %}
+    </div>
+    <div class="jcover-issue">
+      <span class="jcover-vol">{% translate "Vol." %} {{ issue.volume.number }} · № {{ issue.number }}</span>
+      {% if issue.published_at %}<span class="jcover-date">{{ issue.published_at|date:"F Y" }}</span>{% endif %}
+    </div>
+    <div class="jcover-foot">
+      <span>{% if site_settings.eissn %}e-ISSN {{ site_settings.eissn }}{% else %}{{ site_settings.short_code }}{% endif %}</span>
+      <span>{{ issue.volume.year }}</span>
+    </div>
+  </figure>
+{% endif %}

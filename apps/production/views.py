@@ -67,6 +67,11 @@ class ProductionQueueView(ProductionRequiredMixin, TemplateView):
         return context
 
 
+#: Workflow moves that only the publication services may make (see
+#: ``services.publish_online_first`` and ``services.publish_issue``).
+PUBLICATION_TRANSITIONS: frozenset[str] = frozenset({"publish_online_first", "publish"})
+
+
 @login_required
 def submission_production(request: HttpRequest, pk: int) -> HttpResponse:
     """Production detail page for one accepted submission."""
@@ -87,7 +92,11 @@ def submission_production(request: HttpRequest, pk: int) -> HttpResponse:
         "blockers": services.completeness_blockers(article) if article else [],
         "galleys": article.galleys.all() if article else [],
         "issues": Issue.objects.filter(is_published=False).select_related("volume"),
-        "transitions": workflow.available_transitions(submission, request.user),
+        "transitions": [
+            t
+            for t in workflow.available_transitions(submission, request.user)
+            if t.name not in PUBLICATION_TRANSITIONS
+        ],
     }
     return TemplateResponse(request, "production/submission_detail.html", context)
 
@@ -98,6 +107,16 @@ def advance_stage(request: HttpRequest, pk: int) -> HttpResponse:
     """Run a production workflow transition."""
     submission = get_object_or_404(Submission, pk=pk)
     transition = request.POST.get("transition", "")
+    if transition in PUBLICATION_TRANSITIONS:
+        # Publishing goes through the article record, where the metadata
+        # completeness check, the DOI and the PDF galley are enforced. Running
+        # the bare transition marked the manuscript "published" while its
+        # article stayed a draft with no DOI and no PDF.
+        messages.error(
+            request,
+            _("Publish from the article record, where the DOI and PDF galley are checked."),
+        )
+        return redirect("production:submission", pk=submission.pk)
     try:
         workflow.perform(submission, transition, request.user, request=request)
         messages.success(request, _("The manuscript has moved to the next stage."))
