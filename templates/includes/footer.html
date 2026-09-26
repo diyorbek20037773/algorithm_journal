@@ -15,8 +15,10 @@
             <br>
             ISSN: {{ site_settings.pissn }}
           {% endif %}
-          <br>
-          DOI: {{ site_settings.doi_prefix_display }}
+          {% if site_settings.has_doi_prefix %}
+            <br>
+            DOI: {{ site_settings.doi_prefix_display }}
+          {% endif %}
           {% if site_settings.registration_certificate_number %}
             <br>
             {% translate "Certificate" %}: {{ site_settings.registration_certificate_number }}

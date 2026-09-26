@@ -233,9 +233,14 @@ class SiteSettings(TimeStampedModel, AutoTranslitMixin):
         return self.doi_prefix or settings.DOI_PREFIX
 
     @property
+    def has_doi_prefix(self) -> bool:
+        """True once a real Crossref prefix replaces the ``10.00000`` placeholder."""
+        return self.doi_prefix_display != "10.00000"
+
+    @property
     def has_identifiers(self) -> bool:
         """True when both e-ISSN and DOI prefix are real (not placeholders)."""
-        return bool(self.eissn) and self.doi_prefix_display != "10.00000"
+        return bool(self.eissn) and self.has_doi_prefix
 
 
 class IndexingService(TimeStampedModel):

@@ -426,3 +426,15 @@ def test_article_affiliations_display_is_distinct(article) -> None:
     labels = article.affiliations_display()
     parts = labels.split(" · ") if labels else []
     assert len(parts) == len(set(parts))
+
+
+def test_placeholder_doi_prefix_is_not_advertised(client_anon, site_settings, about_pages) -> None:
+    """The header and footer show the DOI prefix only once a real one is set."""
+    html = client_anon.get("/en/about/").content.decode()
+    assert "DOI: 10.00000" not in html
+    site_settings.doi_prefix = "10.12345"
+    site_settings.save()
+    from django.core.cache import cache
+
+    cache.clear()
+    assert "DOI: 10.12345" in client_anon.get("/en/about/").content.decode()

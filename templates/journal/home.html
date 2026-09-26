@@ -19,7 +19,9 @@
             {% include "includes/icon.html" with name="unlock" size=14 %}
             {% translate "Diamond open access · no APC" %}
           </li>
-          <li>DOI: <strong>{{ site_settings.doi_prefix_display }}</strong></li>
+          {% if site_settings.has_doi_prefix %}
+            <li>DOI: <strong>{{ site_settings.doi_prefix_display }}</strong></li>
+          {% endif %}
           <li>e-ISSN: <strong>{{ site_settings.eissn|default:_("pending") }}</strong></li>
         </ul>
         <div class="flex flex-col gap-5">

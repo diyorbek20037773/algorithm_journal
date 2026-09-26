@@ -17,8 +17,10 @@
         <span class="sep" aria-hidden="true">|</span>
         <span class="whitespace-nowrap">ISSN: {{ site_settings.pissn }}</span>
       {% endif %}
-      <span class="sep hidden lg:inline" aria-hidden="true">|</span>
-      <span class="hidden lg:inline whitespace-nowrap">DOI: {{ site_settings.doi_prefix_display }}</span>
+      {% if site_settings.has_doi_prefix %}
+        <span class="sep hidden lg:inline" aria-hidden="true">|</span>
+        <span class="hidden lg:inline whitespace-nowrap">DOI: {{ site_settings.doi_prefix_display }}</span>
+      {% endif %}
     </div>
     <div class="flex items-center gap-3 whitespace-nowrap">
       <span class="hidden lg:inline">{{ site_settings.frequency_short }}</span>
