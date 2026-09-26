@@ -497,6 +497,32 @@ in-text citation tooltips, appendices, EPUB galleys, and an Altmetric badge.
 
 ---
 
+## Rankings section ✅ (2026-09-26)
+
+**Done** — `/rankings/`, built to the client's banner + side-rail brief.
+
+- Sticky section sub-nav, a rotating featured-institution banner (8s,
+  cross-fade, pauses on hover, dot indicators) and a navy field behind a
+  floating white content panel.
+- Two sticky side rails of institution stat badges (big number, uppercase
+  lines, monogram, name), rotating every 10s with manual arrows; the
+  institutions are split between the rails so the same one never shows twice.
+- Below 1280px the rails give way to a horizontal scroll-snap strip under the
+  banner; the banner stacks below 768px.
+- Content panel: intro, three wide feature cards linking to the statistics and
+  JEL pages, and a table of every institution.
+- Data in `apps/core/data/institutions.json`, read through
+  `apps/core/rankings.py`; five invented institutions, all flagged `demo`, and
+  the page shows a "DEMO — replace" banner while any remain.
+- Reduced motion turns every rotation off and leaves the arrows.
+
+**Verified** — rendered and screenshotted at 1920, 1440, 1024 and 390px
+(`docs/screenshots/site-rankings-*.png`); rails computed `display: block` at
+1920/1440 and `none` at 1024/390, with the strip the other way round.
+`manage.py check`, `ruff` and `djlint --check` clean.
+
+---
+
 ## Deferred (Phase 2 of the project — see HANDOFF.md)
 
 - DOCX → JATS/HTML full-text conversion.

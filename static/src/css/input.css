@@ -3,6 +3,9 @@
 /* Article-page furniture (breadcrumb, journal block, tabs, reading grid). */
 @import "./article.css";
 
+/* Rankings section (banner, side rails, white panel). */
+@import "./rankings.css";
+
 /* Editorial console skin (dashboard only) — see console.css. */
 @import "./console.css";
 

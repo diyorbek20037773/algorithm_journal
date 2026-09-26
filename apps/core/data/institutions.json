@@ -1,0 +1,110 @@
+{
+  "_comment": "DEMO DATA — replace before launch. Invented institutions and invented standings, used to build the Rankings section. Nothing here is a real ranking; every entry renders with a visible DEMO marker (CLAUDE.md §8 forbids presenting invented metrics as real).",
+  "institutions": [
+    {
+      "id": "tashkent-economics",
+      "name": "Tashkent Institute of Applied Economics",
+      "nameAlt": "Toshkent amaliy iqtisodiyot instituti",
+      "monogram": "TAE",
+      "href": "/en/statistics/",
+      "demo": true,
+      "banner": {
+        "leftTop": "Among the",
+        "leftHighlight": "top 20",
+        "leftBottom": "contributing institutions",
+        "leftSub": "(by articles published in the journal)",
+        "rightTop": "A research community of",
+        "rightHighlight": "38 authors"
+      },
+      "badges": [
+        { "number": "#1", "lines": ["in Uzbekistan", "for monetary", "economics"] },
+        { "number": "#4", "lines": ["in Central Asia", "by published", "articles"] },
+        { "number": "#12", "lines": ["globally for", "transition", "economies"] }
+      ]
+    },
+    {
+      "id": "samarkand-policy",
+      "name": "Samarkand School of Public Policy",
+      "nameAlt": "Samarqand davlat siyosati maktabi",
+      "monogram": "SPP",
+      "href": "/en/statistics/",
+      "demo": true,
+      "banner": {
+        "leftTop": "Ranked in the",
+        "leftHighlight": "top 5",
+        "leftBottom": "for public finance research",
+        "leftSub": "(three-year citation window)",
+        "rightTop": "Co-authors from",
+        "rightHighlight": "14 countries"
+      },
+      "badges": [
+        { "number": "#2", "lines": ["in Uzbekistan", "for public", "finance"] },
+        { "number": "#7", "lines": ["in Central Asia", "for policy", "research"] },
+        { "number": "#31", "lines": ["globally for", "fiscal", "studies"] }
+      ]
+    },
+    {
+      "id": "bukhara-trade",
+      "name": "Bukhara University of International Trade",
+      "nameAlt": "Buxoro xalqaro savdo universiteti",
+      "monogram": "BIT",
+      "href": "/en/statistics/",
+      "demo": true,
+      "banner": {
+        "leftTop": "Rising",
+        "leftHighlight": "fastest",
+        "leftBottom": "among regional institutions",
+        "leftSub": "(submissions, year on year)",
+        "rightTop": "Growth of",
+        "rightHighlight": "+64% submissions"
+      },
+      "badges": [
+        { "number": "#3", "lines": ["in Uzbekistan", "for trade", "economics"] },
+        { "number": "#9", "lines": ["in Central Asia", "for applied", "econometrics"] },
+        { "number": "#48", "lines": ["globally for", "customs", "microdata"] }
+      ]
+    },
+    {
+      "id": "fergana-agri",
+      "name": "Fergana Institute of Agricultural Economics",
+      "nameAlt": "Fargʻona qishloq xoʻjaligi iqtisodiyoti instituti",
+      "monogram": "FAE",
+      "href": "/en/statistics/",
+      "demo": true,
+      "banner": {
+        "leftTop": "Leading in",
+        "leftHighlight": "agricultural",
+        "leftBottom": "and resource economics",
+        "leftSub": "(by accepted manuscripts)",
+        "rightTop": "Field studies across",
+        "rightHighlight": "9 provinces"
+      },
+      "badges": [
+        { "number": "#1", "lines": ["in Uzbekistan", "for agricultural", "economics"] },
+        { "number": "#6", "lines": ["in Central Asia", "for resource", "policy"] },
+        { "number": "#55", "lines": ["globally for", "irrigation", "economics"] }
+      ]
+    },
+    {
+      "id": "nukus-development",
+      "name": "Nukus Centre for Development Studies",
+      "nameAlt": "Nukus taraqqiyot tadqiqotlari markazi",
+      "monogram": "NCD",
+      "href": "/en/statistics/",
+      "demo": true,
+      "banner": {
+        "leftTop": "Recognised for",
+        "leftHighlight": "regional",
+        "leftBottom": "development research",
+        "leftSub": "(Aral basin economies)",
+        "rightTop": "Datasets released:",
+        "rightHighlight": "22 open sets"
+      },
+      "badges": [
+        { "number": "#2", "lines": ["in Uzbekistan", "for development", "economics"] },
+        { "number": "#8", "lines": ["in Central Asia", "for open", "data"] },
+        { "number": "#63", "lines": ["globally for", "regional", "inequality"] }
+      ]
+    }
+  ]
+}

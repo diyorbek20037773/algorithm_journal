@@ -188,6 +188,29 @@ def contact(request: HttpRequest) -> HttpResponse:
     return TemplateResponse(request, "core/contact.html", context)
 
 
+def rankings(request: HttpRequest) -> HttpResponse:
+    """The Rankings section: featured institutions and the journal's standings.
+
+    The institution list comes from ``apps.core.rankings``; the two side rails
+    each take half of it so the page never shows the same institution twice at
+    the same moment.
+    """
+    from apps.core import rankings as rankings_data
+
+    left, right = rankings_data.rail_split()
+    context = {
+        "featured": rankings_data.featured(),
+        "rail_left": left,
+        "rail_right": right,
+        "institutions": rankings_data.all_institutions(),
+        "is_demo": rankings_data.has_demo_entries(),
+        "meta_description": _(
+            "Institutional standings and featured institutions publishing in the journal."
+        ),
+    }
+    return TemplateResponse(request, "core/rankings.html", context)
+
+
 def statistics(request: HttpRequest) -> HttpResponse:
     """Public statistics page (SPEC §6.9)."""
     from apps.metrics.services import public_statistics

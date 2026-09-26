@@ -1,0 +1,404 @@
+/* =========================================================================
+   Rankings section — the banner / side-rail "wallpaper" layout.
+   A navy field runs behind the page; a white panel floats in the middle and
+   two sticky rails stand either side of it showing institutions. Below
+   1280px the rails become a horizontal strip under the banner.
+   Colours come from the site tokens: the accent on navy is the green, not a
+   new red, so the section stays inside the journal's palette.
+   ========================================================================= */
+@layer components {
+  .rank-field {
+    background:
+      linear-gradient(135deg, var(--color-navy-midnight) 0%, var(--color-accent) 100%);
+    color: var(--color-on-dark);
+  }
+
+  /* --- section sub-nav ---------------------------------------------------- */
+  .subnav {
+    position: sticky;
+    top: 0;
+    z-index: 39;
+    background: var(--color-paper);
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .subnav-inner {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+    min-height: 56px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .subnav-inner::-webkit-scrollbar {
+    display: none;
+  }
+
+  .subnav-title {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    white-space: nowrap;
+  }
+
+  .subnav-link {
+    font-size: 1rem;
+    color: #3a3a3a;
+    text-decoration: none;
+    white-space: nowrap;
+    padding-block: 1rem;
+  }
+
+  .subnav-link:hover {
+    color: var(--color-accent);
+  }
+
+  .subnav-link[aria-current="page"] {
+    font-weight: 700;
+    color: var(--color-ink);
+    box-shadow: inset 0 -2px 0 var(--color-ink);
+  }
+
+  /* --- top banner --------------------------------------------------------- */
+  .rank-banner {
+    position: relative;
+    min-height: 190px;
+    display: block;
+    text-decoration: none;
+    color: var(--color-on-dark);
+  }
+
+  .rank-banner-row {
+    display: grid;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1.75rem 0;
+  }
+
+  @media (min-width: 768px) {
+    .rank-banner-row {
+      grid-template-columns: 1.2fr auto 1fr;
+      padding-inline: 1rem;
+    }
+  }
+
+  .banner-statement {
+    font-size: 1.5rem;
+    line-height: 1.25;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--color-on-dark);
+  }
+
+  .banner-statement b {
+    color: var(--color-mint);
+    font-weight: 800;
+  }
+
+  .banner-sub {
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--color-on-dark-muted);
+    margin-top: 0.35rem;
+    text-transform: none;
+  }
+
+  .banner-name {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--color-on-dark);
+  }
+
+  .banner-name-alt {
+    font-size: 1.05rem;
+    color: var(--color-on-dark-muted);
+  }
+
+  .banner-stat-top {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    color: var(--color-on-dark-muted);
+  }
+
+  .banner-stat {
+    font-size: 2.5rem;
+    line-height: 1.1;
+    font-weight: 800;
+    color: var(--color-mint);
+  }
+
+  .banner-dots {
+    position: absolute;
+    right: 1rem;
+    bottom: 0.75rem;
+    display: flex;
+    gap: 0.4rem;
+  }
+
+  .banner-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    border: 0;
+    padding: 0;
+    background: rgb(255 255 255 / 0.4);
+    cursor: pointer;
+  }
+
+  .banner-dot[aria-current="true"] {
+    background: #ffffff;
+  }
+
+  /* --- the monogram that stands in for an institution logo ---------------- */
+  .inst-mark {
+    display: grid;
+    place-items: center;
+    width: 64px;
+    height: 64px;
+    border: 2px solid var(--color-on-dark);
+    border-radius: var(--radius-control);
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--color-on-dark);
+  }
+
+  .inst-mark-lg {
+    width: 90px;
+    height: 90px;
+    font-size: 1.5rem;
+  }
+
+  /* --- the wallpaper grid -------------------------------------------------- */
+  .rank-shell {
+    position: relative;
+  }
+
+  .rank-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  @media (min-width: 1280px) {
+    .rank-grid {
+      grid-template-columns: 160px minmax(0, 1fr) 160px;
+      gap: 1rem;
+    }
+  }
+
+  @media (min-width: 1900px) {
+    .rank-grid {
+      grid-template-columns: 200px minmax(0, 1fr) 200px;
+    }
+  }
+
+  .rank-rail {
+    display: none;
+  }
+
+  @media (min-width: 1280px) {
+    .rank-rail {
+      display: block;
+      position: sticky;
+      top: 3.5rem;
+      height: calc(100vh - 3.5rem);
+      padding-block: 2rem;
+      overflow: hidden;
+      text-decoration: none;
+      color: var(--color-on-dark);
+    }
+  }
+
+  .rail-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3.5rem;
+    height: 100%;
+    text-align: center;
+    transition: opacity 500ms ease, transform 500ms ease;
+  }
+
+  .badge-number {
+    display: block;
+    font-size: 3.5rem;
+    line-height: 1;
+    font-weight: 800;
+    color: var(--color-mint);
+  }
+
+  .badge-lines {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 1.0625rem;
+    line-height: 1.15;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--color-on-dark);
+  }
+
+  .badge-lines span:last-child {
+    color: var(--color-mint);
+  }
+
+  .rail-foot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-on-dark);
+  }
+
+  .rail-arrows {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+
+  .rail-arrows button {
+    background: transparent;
+    border: 0;
+    color: rgb(255 255 255 / 0.6);
+    font-size: 1.25rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0.25rem 0.4rem;
+  }
+
+  .rail-arrows button:hover {
+    color: #ffffff;
+  }
+
+  /* --- the white content panel -------------------------------------------- */
+  .rank-panel {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    padding: 3rem 1.25rem;
+  }
+
+  @media (min-width: 1024px) {
+    .rank-panel {
+      padding: 4rem 2rem;
+    }
+  }
+
+  .rank-panel h1 {
+    font-size: clamp(2rem, 1.4rem + 2.2vw, 3.5rem);
+    line-height: 1.15;
+    margin-bottom: 2rem;
+  }
+
+  .rank-intro {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: #232323;
+    max-width: 70ch;
+  }
+
+  .rank-panel h2 {
+    font-size: clamp(1.6rem, 1.2rem + 1.2vw, 2.5rem);
+    margin-top: 4rem;
+  }
+
+  /* wide feature cards */
+  .feature-card {
+    display: grid;
+    gap: 0;
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    margin-top: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .feature-card {
+      grid-template-columns: 1fr 1fr;
+      min-height: 260px;
+    }
+  }
+
+  .feature-art {
+    display: grid;
+    place-items: center;
+    min-height: 200px;
+    background: linear-gradient(135deg, var(--color-accent-soft), #dfe3f7);
+    color: var(--color-accent);
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+
+  .feature-text {
+    padding: 2rem;
+  }
+
+  .feature-text h3 {
+    font-size: 1.5rem;
+  }
+
+  .feature-text p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--color-ink-2);
+    margin-top: 0.5rem;
+  }
+
+  /* --- the mobile strip that replaces the rails ---------------------------- */
+  .inst-strip {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 1rem;
+    min-height: 120px;
+    align-items: center;
+    scrollbar-width: none;
+  }
+
+  @media (min-width: 1280px) {
+    .inst-strip {
+      display: none;
+    }
+  }
+
+  .inst-strip::-webkit-scrollbar {
+    display: none;
+  }
+
+  .strip-item {
+    flex: none;
+    scroll-snap-align: start;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: var(--color-on-dark);
+  }
+
+  .strip-item .badge-number {
+    font-size: 2rem;
+  }
+
+  .strip-item .badge-lines {
+    font-size: 0.75rem;
+    margin-top: 0;
+  }
+
+  /* --- motion ------------------------------------------------------------- */
+  @media (prefers-reduced-motion: reduce) {
+    .rail-inner,
+    .rank-banner-row {
+      transition: none;
+    }
+  }
+}

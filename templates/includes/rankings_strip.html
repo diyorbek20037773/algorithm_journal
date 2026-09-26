@@ -1,0 +1,26 @@
+{% load i18n %}
+{% comment %}
+  The same institution badges as the side rails, for screens too narrow to
+  carry them: a horizontal scroll-snap strip under the banner. It scrolls by
+  hand rather than on a timer — an auto-running marquee next to body text is
+  hard to read and impossible to use with a screen reader.
+{% endcomment %}
+{% if institutions %}
+  <div class="inst-strip"
+       role="region"
+       aria-label="{% translate 'Featured universities' %}">
+    {% for item in institutions %}
+      {% for badge in item.badges|slice:":1" %}
+        <a class="strip-item"
+           href="{{ item.href }}"
+           aria-label="{% blocktranslate with number=badge.number lines=badge.lines|join:' ' name=item.name %}Ranked {{ number }} {{ lines }} — {{ name }}{% endblocktranslate %}">
+          <span class="badge-number" aria-hidden="true">{{ badge.number }}</span>
+          <span class="badge-lines" aria-hidden="true">
+            {% for line in badge.lines|slice:":2" %}<span class="block">{{ line }}</span>{% endfor %}
+          </span>
+          <span class="inst-mark" aria-hidden="true">{{ item.monogram }}</span>
+        </a>
+      {% endfor %}
+    {% endfor %}
+  </div>
+{% endif %}

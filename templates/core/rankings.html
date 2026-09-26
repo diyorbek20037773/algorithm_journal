@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Rankings" %} · {{ site_settings.journal_name }}{% endblock %}
+{% block main_class %}py-0{% endblock %}
+{% block content %}
+  {# --- section sub-nav ---------------------------------------------------- #}
+  <nav class="subnav" aria-label="{% translate 'Rankings section' %}">
+    <div class="container-page subnav-inner">
+      <span class="subnav-title">{% translate "Rankings" %}</span>
+      <a class="subnav-link"
+         href="{% url 'core:rankings' %}"
+         aria-current="page">{% translate "Overview" %}</a>
+      <a class="subnav-link" href="{% url 'core:statistics' %}">{% translate "Journal statistics" %}</a>
+      <a class="subnav-link" href="{% url 'journal:archive' %}">{% translate "All issues" %}</a>
+      <a class="subnav-link" href="{% url 'core:indexing' %}">{% translate "Indexing & abstracting" %}</a>
+      <a class="subnav-link ml-auto"
+         href="{% url 'search:search' %}"
+         aria-label="{% translate 'Search' %}">{% include "includes/icon.html" with name="search" size=20 %}</a>
+    </div>
+  </nav>
+  <div class="rank-field">
+    {# --- top banner: featured institutions, cross-fading ------------------- #}
+    {% if featured %}
+      <section role="region"
+               aria-label="{% translate 'Featured institution' %}"
+               class="relative"
+               x-data="{
+                 i: 0,
+                 total: {{ featured|length }},
+                 timer: null,
+                 start() {
+                   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+                   this.timer = setInterval(() => this.i = (this.i + 1) % this.total, 8000)
+                 },
+                 stop() { clearInterval(this.timer) }
+               }"
+               x-init="start()"
+               @mouseenter="stop()"
+               @mouseleave="start()">
+        {% for item in featured %}
+          <a class="rank-banner"
+             href="{{ item.href }}"
+             x-show="i === {{ forloop.counter0 }}"
+             x-transition.opacity.duration.600ms
+             {% if not forloop.first %}x-cloak{% endif %}>
+            <div class="container-page rank-banner-row">
+              <p class="banner-statement">
+                {{ item.banner.leftTop }} <b>{{ item.banner.leftHighlight }}</b> {{ item.banner.leftBottom }}
+                <span class="banner-sub block">{{ item.banner.leftSub }}</span>
+              </p>
+              <div class="flex items-center gap-4">
+                <span class="inst-mark inst-mark-lg" aria-hidden="true">{{ item.monogram }}</span>
+                <span>
+                  {% if item.nameAlt %}<span class="banner-name-alt block">{{ item.nameAlt }}</span>{% endif %}
+                  <span class="banner-name block">{{ item.name }}</span>
+                </span>
+              </div>
+              <p>
+                <span class="banner-stat-top block">{{ item.banner.rightTop }}</span>
+                <span class="banner-stat block">{{ item.banner.rightHighlight }}</span>
+              </p>
+            </div>
+          </a>
+        {% endfor %}
+        <div class="banner-dots"
+             role="tablist"
+             aria-label="{% translate 'Featured institutions' %}">
+          {% for item in featured %}
+            <button type="button"
+                    class="banner-dot"
+                    role="tab"
+                    :aria-current="i === {{ forloop.counter0 }} ? 'true' : 'false'"
+                    aria-label="{{ item.name }}"
+                    @click="i = {{ forloop.counter0 }}"></button>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+    {# --- below 1280px the rails become this strip -------------------------- #}
+    {% include "includes/rankings_strip.html" %}
+    {# --- rails + white panel ----------------------------------------------- #}
+    <div class="rank-shell">
+      <div class="container-page rank-grid">
+        {% include "includes/rankings_rail.html" with entries=rail_left side="left" %}
+        <div class="rank-panel">
+          {% if is_demo %}
+            <p class="alert alert-warning mb-6">
+              <strong>{% translate "DEMO — replace." %}</strong>
+              {% translate "The institutions and standings on this page are placeholders shipped with the site. They are not real rankings; the editorial office replaces them in apps/core/data/institutions.json before launch." %}
+            </p>
+          {% endif %}
+          <h1>{% translate "Institutional rankings" %}</h1>
+          <p class="rank-intro">
+            {% blocktranslate with journal=site_settings.journal_name %}Which institutions publish in {{ journal }}, how their output is developing, and where their research sits in the region. Standings are compiled from the journal's own record of accepted and published articles — they are not a general league table of universities.{% endblocktranslate %}
+          </p>
+          <h2>{% translate "Rankings and reports" %}</h2>
+          <article class="feature-card">
+            <div class="feature-art" aria-hidden="true">01</div>
+            <div class="feature-text">
+              <h3>{% translate "Contributing institutions 2026" %}</h3>
+              <p>{% translate "Institutions ranked by the number of articles published in the journal over the last twelve months, with the share that passed peer review at the first attempt." %}</p>
+              <p class="mt-4">
+                <a class="btn btn-outline btn-sm" href="{% url 'core:statistics' %}">{% translate "View ranking" %} →</a>
+              </p>
+            </div>
+          </article>
+          <article class="feature-card">
+            <div class="feature-art" aria-hidden="true">02</div>
+            <div class="feature-text">
+              <h3>{% translate "Where the authors are" %}</h3>
+              <p>{% translate "Submitting authors by country and province, with the share of international co-authorship on published work." %}</p>
+              <p class="mt-4">
+                <a class="btn btn-outline btn-sm" href="{% url 'core:statistics' %}">{% translate "View ranking" %} →</a>
+              </p>
+            </div>
+          </article>
+          <article class="feature-card">
+            <div class="feature-art" aria-hidden="true">03</div>
+            <div class="feature-text">
+              <h3>{% translate "Subject areas by JEL classification" %}</h3>
+              <p>{% translate "Which JEL categories the journal publishes most in, and which are open for submissions." %}</p>
+              <p class="mt-4">
+                <a class="btn btn-outline btn-sm" href="{% url 'journal:jel_index' %}">{% translate "View ranking" %} →</a>
+              </p>
+            </div>
+          </article>
+          <h2>{% translate "All institutions" %}</h2>
+          <table class="table mt-4">
+            <thead>
+              <tr>
+                <th>{% translate "Institution" %}</th>
+                <th>{% translate "Standing" %}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in institutions %}
+                <tr>
+                  <td>
+                    <a href="{{ item.href }}">{{ item.name }}</a>
+                    {% if item.nameAlt %}<br><span class="meta">{{ item.nameAlt }}</span>{% endif %}
+                  </td>
+                  <td class="meta">
+                    {% for badge in item.badges %}
+                      {{ badge.number }} {{ badge.lines|join:" " }}{% if not forloop.last %} · {% endif %}
+                    {% endfor %}
+                  </td>
+                </tr>
+              {% empty %}
+                <tr>
+                  <td colspan="2">
+                    <div class="empty-state">{% translate "No institutions have been added yet." %}</div>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        {% include "includes/rankings_rail.html" with entries=rail_right side="right" %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

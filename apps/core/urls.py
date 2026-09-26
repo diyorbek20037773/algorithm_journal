@@ -47,4 +47,5 @@ urlpatterns = [
     path("announcements/", views.announcement_list, name="announcement_list"),
     path("announcements/<slug:slug>/", views.announcement_detail, name="announcement_detail"),
     path("statistics/", views_pages.statistics, name="statistics"),
+    path("rankings/", views_pages.rankings, name="rankings"),
 ]

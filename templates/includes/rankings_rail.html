@@ -1,0 +1,61 @@
+{% load i18n %}
+{% comment %}
+  One side rail. It cycles through the institutions it was given, showing that
+  institution's stat badges, its monogram and its name. Rotation is paused on
+  hover and turned off entirely when the reader asks for reduced motion; the
+  arrows always work.
+
+  Expects: entries (list of institutions), side ("left" | "right").
+{% endcomment %}
+{% if entries %}
+  <aside class="rank-rail"
+         aria-label="{% translate 'Featured universities' %}"
+         x-data="{
+           i: 0,
+           total: {{ entries|length }},
+           timer: null,
+           go(step) { this.i = (this.i + step + this.total) % this.total },
+           start() {
+             if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+             if (this.total < 2) return;
+             this.timer = setInterval(() => this.go(1), 10000)
+           },
+           stop() { clearInterval(this.timer) }
+         }"
+         x-init="start()"
+         @mouseenter="stop()"
+         @mouseleave="start()">
+    {% for item in entries %}
+      <div class="rail-inner"
+           x-show="i === {{ forloop.counter0 }}"
+           x-transition:enter-start="opacity-0 translate-y-6"
+           x-transition:enter-end="opacity-100 translate-y-0"
+           {% if not forloop.first %}x-cloak{% endif %}>
+        {% for badge in item.badges %}
+          <p aria-label="{% blocktranslate with number=badge.number lines=badge.lines|join:' ' name=item.name %}Ranked {{ number }} {{ lines }} — {{ name }}{% endblocktranslate %}">
+            <span class="badge-number" aria-hidden="true">{{ badge.number }}</span>
+            <span class="badge-lines" aria-hidden="true">
+              {% for line in badge.lines %}<span class="block">{{ line }}</span>{% endfor %}
+            </span>
+          </p>
+        {% endfor %}
+        <a class="rail-foot" href="{{ item.href }}">
+          <span class="inst-mark" aria-hidden="true">{{ item.monogram }}</span>
+          <span>{{ item.name }}</span>
+        </a>
+      </div>
+    {% endfor %}
+    {% if entries|length > 1 %}
+      <div class="rail-arrows justify-center">
+        <button type="button"
+                @click="stop(); go(-1)"
+                aria-label="{% translate 'Previous institution' %}">‹</button>
+        <button type="button"
+                @click="stop(); go(1)"
+                aria-label="{% translate 'Next institution' %}">›</button>
+      </div>
+    {% endif %}
+  </aside>
+{% else %}
+  <div class="rank-rail" aria-hidden="true"></div>
+{% endif %}
