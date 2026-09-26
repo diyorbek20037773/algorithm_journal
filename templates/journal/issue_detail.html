@@ -80,6 +80,29 @@
         </div>
       </div>
     </section>
+    {% comment %}Volume and issue navigator (TEXNIK TOPSHIRIQ §5.3).{% endcomment %}
+    <nav class="panel-body-bordered flex flex-wrap items-center gap-x-4 gap-y-2"
+         aria-label="{% translate 'Issues in this volume' %}">
+      <span class="font-semibold">{% translate "Volume" %} {{ issue.volume.number }}, {{ issue.volume.year }}</span>
+      <span class="sep" aria-hidden="true">|</span>
+      {% for item in volume_issues %}
+        {% if item.pk == issue.pk %}
+          <span class="panel-tab" aria-current="page">{% translate "Issue" %} {{ item.number }}</span>
+        {% else %}
+          <a class="panel-tab" href="{{ item.get_absolute_url }}">{% translate "Issue" %} {{ item.number }}</a>
+        {% endif %}
+      {% endfor %}
+      <a class="to-top-link ml-auto" href="{% url 'journal:archive' %}">{% translate "All volumes and issues" %} ›</a>
+    </nav>
+    {% comment %}
+      The tick boxes on the cards below belong to this form through their
+      `form` attribute, so the list itself stays a plain list.
+    {% endcomment %}
+    <form id="issue-download"
+          method="post"
+          action="{% url 'journal:issue_download_selected' issue.pk %}">
+      {% csrf_token %}
+    </form>
     <div class="grid gap-8 lg:grid-cols-12 items-start">
       <div class="lg:col-span-8 flex flex-col gap-8 min-w-0">
         {% for group in grouped_articles %}
@@ -90,7 +113,7 @@
             </div>
             <div class="flex flex-col gap-4">
               {% for article in group.articles %}
-                {% include "journal/partials/article_card.html" with article=article show_abstract=True show_jel=True %}
+                {% include "journal/partials/issue_article_card.html" with article=article %}
               {% endfor %}
             </div>
           </section>
@@ -99,6 +122,11 @@
             <p>{% translate "This issue has no articles." %}</p>
           </div>
         {% endfor %}
+        {% if grouped_articles %}
+          <p>
+            <button type="submit" class="btn btn-outline btn-sm" form="issue-download">{% translate "Download selected articles (ZIP)" %}</button>
+          </p>
+        {% endif %}
       </div>
       {% comment %}Sidebar — design/issue.html "issue-utilities-sidebar"{% endcomment %}
       <aside class="lg:col-span-4 flex flex-col gap-5 min-w-0">

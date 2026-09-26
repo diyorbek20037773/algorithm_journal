@@ -1,0 +1,61 @@
+{% load i18n %}
+{% comment %}
+  One article on the issue table of contents (TEXNIK TOPSHIRIQ §5.3): a tick
+  box for the bulk download, the article type, the title, authors, pages and
+  date, the row of links, and the metrics column on the right.
+{% endcomment %}
+<article class="list-card">
+  <div class="min-w-0">
+    <div class="flex items-start gap-3">
+      <input class="mt-1"
+             type="checkbox"
+             name="articles"
+             form="issue-download"
+             value="{{ article.pk }}"
+             aria-label="{% blocktranslate with title=article.title %}Select “{{ title }}” for download{% endblocktranslate %}">
+      <div class="min-w-0">
+        <p class="meta">{{ article.get_article_type_display }}</p>
+        <a class="list-card-title" href="{{ article.get_absolute_url }}">{{ article.title }} ›</a>
+        <p class="text-sm mt-1">{{ article.authors_display }}</p>
+        <p class="meta mt-1">
+          {% if article.pages %}
+            {% translate "Pages" %}: {{ article.pages }} |
+          {% endif %}
+          {% translate "Published online" %}: {{ article.display_date|date:"j M Y" }}
+        </p>
+        <p class="list-card-links">
+          <a href="{{ article.get_absolute_url }}">{% translate "Abstract" %}</a>
+          {% if article.html_galley %}
+            <span class="sep" aria-hidden="true">|</span>
+            <a href="{{ article.get_absolute_url }}#full-text">{% translate "Full text" %}</a>
+          {% endif %}
+          <span class="sep" aria-hidden="true">|</span>
+          <a href="{% url 'journal:article_references' article.pk %}">{% translate "References" %}</a>
+          {% if article.primary_galley %}
+            <span class="sep" aria-hidden="true">|</span>
+            <a href="{{ article.pdf_url }}">PDF ({{ article.primary_galley.size_display }})</a>
+          {% endif %}
+          <span class="sep" aria-hidden="true">|</span>
+          <a href="{% url 'journal:article_metrics' article.pk %}">{% translate "Metrics" %}</a>
+        </p>
+        <p class="mt-2">
+          <span class="oa-flag">
+            {% include "includes/icon.html" with name="unlock" size=14 %}
+            {% translate "Open access" %}
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="card-metrics">
+    <div>
+      <b>{{ article.views_count }}</b> {% translate "Views" %}
+    </div>
+    <div>
+      <b>{{ article.downloads_count }}</b> {% translate "Downloads" %}
+    </div>
+    <div>
+      <b>{{ article.cited_by_count }}</b> {% translate "CrossRef" %}
+    </div>
+  </div>
+</article>

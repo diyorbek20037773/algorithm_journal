@@ -17,6 +17,11 @@ urlpatterns = [
     # Issues -----------------------------------------------------------------
     path("issues/", cached(views.ArchiveView.as_view()), name="archive"),
     path("issues/current/", views.current_issue, name="issue_current"),
+    path(
+        "issues/<int:pk>/download/",
+        views.issue_download_selected,
+        name="issue_download_selected",
+    ),
     path("issues/online-first/", cached(views.OnlineFirstView.as_view()), name="online_first"),
     path(
         "issues/<int:volume>/<int:issue>/",

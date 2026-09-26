@@ -10,7 +10,7 @@ from django.http import Http404, HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.template.response import TemplateResponse
 from django.utils.translation import gettext as _
-from django.views.decorators.http import require_GET
+from django.views.decorators.http import require_GET, require_POST
 from django.views.generic import DetailView, ListView, TemplateView
 
 from apps.core.models import Announcement
@@ -611,5 +611,48 @@ def article_view_beacon(request: HttpRequest, pk: int) -> HttpResponse:
     article = get_object_or_404(Article.objects.public(), pk=pk)
     record_access(request, article, kind="view")
     response = HttpResponse(status=204)
+    response["Cache-Control"] = "no-store, private"
+    return response
+
+
+@require_POST
+def issue_download_selected(request: HttpRequest, pk: int) -> HttpResponse:
+    """Zip the PDFs the reader ticked on the issue table of contents.
+
+    The contents page lets a reader select articles and take them in one go
+    (TEXNIK TOPSHIRIQ §5.3). Only published articles of this issue are
+    included, and only the ones that actually have a PDF galley.
+    """
+    import zipfile
+    from io import BytesIO
+
+    from apps.core.services import get_site_settings
+    from apps.metrics.services import record_access
+
+    issue = get_object_or_404(Issue.objects.published().select_related("volume"), pk=pk)
+    wanted = request.POST.getlist("articles")
+    ids = [int(value) for value in wanted if value.isdigit()][:100]
+    if not ids:
+        return redirect(issue.get_absolute_url())
+
+    articles = list(Article.objects.public().filter(issue=issue, pk__in=ids).with_related())
+    buffer = BytesIO()
+    written = 0
+    with zipfile.ZipFile(buffer, "w", zipfile.ZIP_DEFLATED) as bundle:
+        for article in articles:
+            galley = article.primary_galley
+            if galley is None or not galley.file:
+                continue
+            with galley.file.open("rb") as handle:
+                bundle.writestr(f"{article.pk}-{article.slug or 'article'}.pdf", handle.read())
+            written += 1
+            record_access(request, article, kind="download")
+    if not written:
+        return redirect(issue.get_absolute_url())
+
+    site = get_site_settings()
+    name = f"{site.short_code}-vol{issue.volume.number}-no{issue.number}-selected.zip"
+    response = HttpResponse(buffer.getvalue(), content_type="application/zip")
+    response["Content-Disposition"] = f'attachment; filename="{name}"'
     response["Cache-Control"] = "no-store, private"
     return response

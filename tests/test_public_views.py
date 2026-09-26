@@ -412,6 +412,42 @@ def test_primary_navigation_marks_the_active_tab(client_anon, article, about_pag
     )
 
 
+def test_issue_toc_lists_articles_in_the_brief_shape(client_anon, article, about_pages) -> None:
+    """Each entry carries its links and its own metrics column (§5.3)."""
+    html = client_anon.get(article.issue.get_absolute_url()).content.decode()
+    assert 'class="list-card"' in html
+    assert 'class="card-metrics"' in html
+    assert 'name="articles"' in html, "each row needs a tick box for the bulk download"
+    assert "Download selected articles" in html
+    # the volume / issue navigator
+    assert "All volumes and issues" in html
+
+
+def test_issue_download_selected_returns_a_zip_of_the_ticked_pdfs(
+    client_anon, article, about_pages
+) -> None:
+    """The tick boxes lead somewhere: a ZIP with the chosen PDFs in it."""
+    import io
+    import zipfile
+
+    url = f"/en/issues/{article.issue.pk}/download/"
+    response = client_anon.post(url, {"articles": [str(article.pk)]})
+    assert response.status_code == 200
+    assert response["Content-Type"] == "application/zip"
+    bundle = zipfile.ZipFile(io.BytesIO(response.content))
+    assert bundle.namelist(), "the ZIP should not be empty"
+    assert bundle.read(bundle.namelist()[0]).startswith(b"%PDF")
+
+
+def test_issue_download_selected_ignores_an_empty_or_foreign_selection(
+    client_anon, article, about_pages
+) -> None:
+    """Nothing ticked, or an id from another issue, sends the reader back."""
+    url = f"/en/issues/{article.issue.pk}/download/"
+    assert client_anon.post(url, {}).status_code == 302
+    assert client_anon.post(url, {"articles": ["999999"]}).status_code == 302
+
+
 def test_issue_page_has_sidebar_navigation(client_anon, article, about_pages) -> None:
     """The issue TOC carries the volume list and metrics sidebar."""
     html = client_anon.get(article.issue.get_absolute_url()).content.decode()

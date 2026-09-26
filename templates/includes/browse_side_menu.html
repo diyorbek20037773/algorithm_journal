@@ -1,0 +1,30 @@
+{% load i18n %}
+{% comment %}
+  "Browse the journal" side menu (TEXNIK TOPSHIRIQ §5.2). The same list on
+  every browsing page; `browse_current` names the active entry.
+{% endcomment %}
+<nav class="side-menu" aria-label="{% translate 'Browse the journal' %}">
+  <h2>{% translate "Browse the journal" %}</h2>
+  <a href="{% url 'journal:home' %}"
+     {% if browse_current == "home" %}aria-current="page"{% endif %}>{% translate "Journal homepage" %}</a>
+  <a href="{% url 'journal:online_first' %}"
+     {% if browse_current == "online_first" %}aria-current="page"{% endif %}>{% translate "Latest articles" %}</a>
+  <a href="{% url 'journal:issue_current' %}"
+     {% if browse_current == "current" %}aria-current="page"{% endif %}>{% translate "Current issue" %}</a>
+  <a href="{% url 'journal:archive' %}"
+     {% if browse_current == "archive" %}aria-current="page"{% endif %}>{% translate "List of issues" %}</a>
+  <a href="{% url 'journal:jel_index' %}"
+     {% if browse_current == "jel" %}aria-current="page"{% endif %}>{% translate "Browse by JEL code" %}</a>
+  <a href="{% url 'search:search' %}?sort=views"
+     {% if browse_current == "most_read" %}aria-current="page"{% endif %}>{% translate "Most read" %}</a>
+  <a href="{% url 'core:statistics' %}"
+     {% if browse_current == "statistics" %}aria-current="page"{% endif %}>{% translate "Journal statistics" %}</a>
+</nav>
+<a class="promo mt-4"
+   href="{% url 'core:contact' %}?subject={% translate 'Table-of-contents alert' %}">
+  <span class="promo-head">{% translate "Follow this journal" %}</span>
+  <span class="promo-body">
+    {% translate "Get an e-mail when an issue goes online, or subscribe to the feed." %}
+    <span class="block mt-2">{% translate "New content alerts" %} →</span>
+  </span>
+</a>

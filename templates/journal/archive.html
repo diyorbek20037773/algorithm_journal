@@ -1,43 +1,67 @@
 {% extends "base.html" %}
 {% load i18n %}
-{% block title %}{% translate "Archive" %} · {{ site_settings.journal_name }}{% endblock %}
+{% block title %}{% translate "List of issues" %} · {{ site_settings.journal_name }}{% endblock %}
 {% block content %}
   {% include "includes/journal_chrome.html" with chrome_section="browse" %}
-  <div class="container-page">
-    <h1 class="text-3xl mb-2">{% translate "Archive" %}</h1>
-    <p class="muted mb-8">{% translate "Every issue published by the journal, newest first." %}</p>
-    {% if years %}
-      <div class="flex flex-wrap gap-2 mb-8">
-        <a class="chip {% if not selected_year %}chip-navy{% endif %}"
-           href="{% url 'journal:archive' %}">{% translate "All years" %}</a>
-        {% for year in years %}
-          <a class="chip {% if selected_year == year %}chip-navy{% endif %}"
-             href="?year={{ year }}">{{ year }}</a>
-        {% endfor %}
-      </div>
-    {% endif %}
-    {% for volume in volumes %}
-      <section class="mb-12">
-        <div class="section-heading">
-          <h2>{% translate "Volume" %} {{ volume.number }} ({{ volume.year }})</h2>
-          <span class="meta">{{ volume.issues.all|length }} {% translate "issues" %}</span>
+  <div class="container-page py-8">
+    <div class="grid gap-8 lg:grid-cols-[230px_minmax(0,1fr)] items-start">
+      {% include "includes/browse_side_menu.html" with browse_current="archive" %}
+      <div class="min-w-0">
+        <h1 class="mb-2">{% translate "List of issues" %}</h1>
+        <p class="muted mb-6">{% translate "Every issue published by the journal, newest first." %}</p>
+        {# --- the two top-level tabs (§5.2) --- #}
+        <div class="panel-tabs" role="tablist">
+          <a class="panel-tab"
+             role="tab"
+             aria-current="page"
+             href="{% url 'journal:archive' %}">{% translate "All issues" %}</a>
+          <a class="panel-tab" role="tab" href="{% url 'journal:online_first' %}">{% translate "Online First" %} ›</a>
         </div>
-        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {% for issue in volume.issues.all %}
-            <a class="block no-underline group" href="{{ issue.get_absolute_url }}">
-              <div class="w-full max-w-[220px]">{% include "includes/issue_cover.html" with issue=issue %}</div>
-              <p class="font-semibold mt-3 text-[--color-accent] group-hover:text-[--color-gold]">{% translate "Issue" %} {{ issue.number }}{% if issue.title %} — {{ issue.title }}{% endif %}</p>
-              <p class="meta">{% blocktranslate count counter=issue.article_count %}{{ counter }} article{% plural %}{{ counter }} articles{% endblocktranslate %}</p>
-            </a>
-          {% endfor %}
+        <div class="panel-body-bordered">
+          {% if years %}
+            <div class="flex flex-wrap gap-2 mb-5">
+              <a class="chip {% if not selected_year %}chip-navy{% endif %}"
+                 href="{% url 'journal:archive' %}">{% translate "All years" %}</a>
+              {% for year in years %}
+                <a class="chip {% if selected_year == year %}chip-navy{% endif %}"
+                   href="?year={{ year }}">{{ year }}</a>
+              {% endfor %}
+            </div>
+          {% endif %}
+          {# --- volumes as an accordion (§5.2) --- #}
+          <div class="accordion">
+            {% for volume in volumes %}
+              <details {% if forloop.first %}open{% endif %}>
+                <summary>
+                  <span>
+                    {% translate "Volume" %} {{ volume.number }} <span class="muted">{{ volume.year }}</span>
+                  </span>
+                </summary>
+                <div class="accordion-body">
+                  <p class="meta mb-3">{% blocktranslate count counter=volume.issues.all|length %}{{ counter }} issue{% plural %}{{ counter }} issues{% endblocktranslate %}</p>
+                  <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                    {% for issue in volume.issues.all %}
+                      <a class="block no-underline group" href="{{ issue.get_absolute_url }}">
+                        <div class="w-full max-w-[200px]">{% include "includes/issue_cover.html" with issue=issue %}</div>
+                        <p class="list-card-title mt-3 block">{% translate "Issue" %} {{ issue.number }}{% if issue.title %} — {{ issue.title }}{% endif %} ›</p>
+                        <p class="meta">{% blocktranslate count counter=issue.article_count %}{{ counter }} article{% plural %}{{ counter }} articles{% endblocktranslate %}</p>
+                      </a>
+                    {% endfor %}
+                  </div>
+                </div>
+              </details>
+            {% empty %}
+              <div class="empty-state">
+                <p>{% translate "No issues have been published yet." %}</p>
+                <a class="btn btn-outline mt-4" href="{% url 'journal:online_first' %}">{% translate "See Online First articles" %}</a>
+              </div>
+            {% endfor %}
+          </div>
         </div>
-      </section>
-    {% empty %}
-      <div class="empty-state">
-        <p>{% translate "No issues have been published yet." %}</p>
-        <a class="btn btn-secondary mt-4"
-           href="{% url 'journal:online_first' %}">{% translate "See Online First articles" %}</a>
+        <p class="mt-6">
+          <a class="to-top-link" href="#top">↑ {% translate "Back to top" %}</a>
+        </p>
       </div>
-    {% endfor %}
+    </div>
   </div>
 {% endblock %}
