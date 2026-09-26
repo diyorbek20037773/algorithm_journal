@@ -449,5 +449,10 @@ def build_decision_letter(submission: Submission, decision: str) -> str:
 
 
 def normalise_keywords(text: str) -> list[str]:
-    """Split a comma-separated keyword string into a clean list."""
-    return [re.sub(r"\s+", " ", part).strip() for part in (text or "").split(",") if part.strip()]
+    """Split a keyword string into a clean list.
+
+    Commas are the documented separator, but authors paste keyword lines from
+    their manuscripts, which use semicolons as often as commas.
+    """
+    parts = re.split(r"[,;\n]", text or "")
+    return [re.sub(r"\s+", " ", part).strip() for part in parts if part.strip()]

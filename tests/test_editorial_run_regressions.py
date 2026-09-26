@@ -180,3 +180,32 @@ def test_doi_suffix_uses_the_journal_short_code(article, site_settings) -> None:
     doi = production.reserve_doi(article)
     assert f"/{site_settings.short_code.lower()}." in doi
     assert Article.objects.get(pk=article.pk).doi == doi
+
+
+# --- 2026-09-26: Railway-style run (no Redis) through the real UI -------------
+
+
+def test_keywords_accept_semicolons_and_new_lines() -> None:
+    """Authors paste keyword lines separated by semicolons; count them correctly."""
+    from apps.submissions.services import normalise_keywords
+
+    assert normalise_keywords("digital payments; saving;  financial   inclusion") == [
+        "digital payments",
+        "saving",
+        "financial inclusion",
+    ]
+    assert normalise_keywords("a, b\nc;") == ["a", "b", "c"]
+
+
+def test_first_author_row_is_prefilled_from_the_account(author_user, section) -> None:
+    """Step 3 of a fresh submission starts with the submitter as first author."""
+    from apps.submissions.models import Submission
+
+    author_user.first_name, author_user.last_name = "Bekzod", "Toshmatov"
+    author_user.save()
+    draft = Submission.objects.create(submitter=author_user, section=section, wizard_step=3)
+    client = Client()
+    client.force_login(author_user)
+    html = client.get(f"/en/submit/{draft.pk}/step-3/").content.decode()
+    assert 'name="authors-0-given_name" value="Bekzod"' in html
+    assert 'name="authors-0-family_name" value="Toshmatov"' in html

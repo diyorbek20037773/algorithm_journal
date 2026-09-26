@@ -31,6 +31,7 @@ from apps.submissions.models import (
     SubmissionFile,
     SubmissionStatus,
 )
+from apps.submissions.services import normalise_keywords
 
 WIZARD_STEPS = [
     (1, _("Start")),
@@ -194,7 +195,11 @@ def wizard_step3(request: HttpRequest, pk: int) -> HttpResponse:
             return redirect("submissions:wizard_step4", pk=submission.pk)
     else:
         form = MetadataForm(initial=initial)
-        formset = AuthorFormSet(queryset=authors_queryset, prefix="authors")
+        formset = AuthorFormSet(
+            queryset=authors_queryset,
+            prefix="authors",
+            initial=[] if authors_queryset.exists() else [_submitter_as_author(request.user)],
+        )
 
     # The three language tabs hide two of the three field groups, so open the
     # first tab holding an error — otherwise an author sees only "please fix
@@ -220,15 +225,28 @@ def wizard_step3(request: HttpRequest, pk: int) -> HttpResponse:
     )
 
 
+def _submitter_as_author(user) -> dict[str, Any]:
+    """First author row pre-filled from the submitting account and its profile."""
+    profile = getattr(user, "profile", None)
+    return {
+        "order": 1,
+        "given_name": user.first_name,
+        "family_name": user.last_name,
+        "email": user.email,
+        "orcid": getattr(profile, "orcid", ""),
+        "affiliation": getattr(profile, "affiliation", ""),
+        "city": getattr(profile, "city", ""),
+        "country": getattr(profile, "country", ""),
+        "is_corresponding": True,
+    }
+
+
 def _save_metadata(submission: Submission, form: MetadataForm) -> None:
     """Copy the metadata form into the submission, filling the Cyrillic variant."""
     data = form.cleaned_data
     titles = {code: data[f"title_{code}"] for code in ("en", "uz", "ru")}
     abstracts = {code: data[f"abstract_{code}"] for code in ("en", "uz", "ru")}
-    keywords = {
-        code: [k.strip() for k in data[f"keywords_{code}"].split(",") if k.strip()]
-        for code in ("en", "uz", "ru")
-    }
+    keywords = {code: normalise_keywords(data[f"keywords_{code}"]) for code in ("en", "uz", "ru")}
     titles["uz-cyrl"] = to_cyrillic(titles["uz"])
     abstracts["uz-cyrl"] = to_cyrillic(abstracts["uz"])
     keywords["uz-cyrl"] = [to_cyrillic(k) for k in keywords["uz"]]

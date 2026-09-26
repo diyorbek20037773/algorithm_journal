@@ -192,15 +192,29 @@ else:
 # Cache / Celery
 # -----------------------------------------------------------------------------
 REDIS_URL = env("REDIS_URL", default="redis://localhost:6379/0")
-CACHES = {
-    "default": {
-        # Degrades to "no cache" (with one logged error) when Redis is down,
-        # instead of turning every public page into a 500.
-        "BACKEND": "apps.core.cache_backend.ResilientRedisCache",
-        "LOCATION": REDIS_URL,
-        "KEY_PREFIX": "arer",
+# A single-service deploy (Railway without the Redis plugin, a bare `docker run`)
+# has no Redis at all. It then gets a database-backed cache, which every
+# gunicorn worker shares, so a publish invalidates the public pages for all of
+# them, and Celery tasks run in-process (see CELERY_TASK_ALWAYS_EAGER below).
+REDIS_CONFIGURED = bool(env("REDIS_URL", default="")) or bool(env("CELERY_BROKER_URL", default=""))
+if REDIS_CONFIGURED:
+    CACHES = {
+        "default": {
+            # Degrades to "no cache" (with one logged error) when Redis is down,
+            # instead of turning every public page into a 500.
+            "BACKEND": "apps.core.cache_backend.ResilientRedisCache",
+            "LOCATION": REDIS_URL,
+            "KEY_PREFIX": "arer",
+        }
     }
-}
+else:
+    CACHES = {
+        "default": {
+            "BACKEND": "django.core.cache.backends.db.DatabaseCache",
+            "LOCATION": "arer_cache",
+            "KEY_PREFIX": "arer",
+        }
+    }
 
 
 def _redis_db(url: str, db: int) -> str:
@@ -215,8 +229,10 @@ def _redis_db(url: str, db: int) -> str:
 # databases from it unless they are configured explicitly.
 CELERY_BROKER_URL = env("CELERY_BROKER_URL", default=_redis_db(REDIS_URL, 1))
 CELERY_RESULT_BACKEND = env("CELERY_RESULT_BACKEND", default=_redis_db(REDIS_URL, 2))
-CELERY_TASK_ALWAYS_EAGER = env.bool("CELERY_TASK_ALWAYS_EAGER", default=False)
-CELERY_TASK_EAGER_PROPAGATES = True
+# Without a broker there is no worker either: run tasks inside the request.
+CELERY_TASK_ALWAYS_EAGER = env.bool("CELERY_TASK_ALWAYS_EAGER", default=not REDIS_CONFIGURED)
+# Tests propagate task errors; a live site logs them and carries on.
+CELERY_TASK_EAGER_PROPAGATES = env.bool("CELERY_TASK_EAGER_PROPAGATES", default=False)
 
 # Issue PDF / offprints (apps.production.issue_print)
 # Points trimmed from every side of a galley page before it is fitted into the
@@ -280,7 +296,7 @@ ACCOUNT_RATE_LIMITS = {
     "signup": "3/h",
     "reset_password": "3/h",
 }
-ACCOUNT_EMAIL_SUBJECT_PREFIX = "[ARER] "
+ACCOUNT_EMAIL_SUBJECT_PREFIX = "[MEZON] "
 SOCIALACCOUNT_EMAIL_VERIFICATION = "none"
 SOCIALACCOUNT_QUERY_EMAIL = True
 SOCIALACCOUNT_STORE_TOKENS = False
@@ -320,8 +336,9 @@ AXES_ENABLED = True
 AXES_LOCKOUT_TEMPLATE = "errors/lockout.html"
 
 # --- OTP / 2FA ---
-OTP_TOTP_ISSUER = "ARER Editorial System"
-STAFF_2FA_REQUIRED = True
+OTP_TOTP_ISSUER = env("OTP_TOTP_ISSUER", default="MEZON Editorial System")
+# SPEC §11: mandatory for editorial roles. A staging demo may switch it off.
+STAFF_2FA_REQUIRED = env.bool("STAFF_2FA_REQUIRED", default=True)
 
 # -----------------------------------------------------------------------------
 # Internationalisation

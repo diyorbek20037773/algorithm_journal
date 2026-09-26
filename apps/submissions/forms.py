@@ -17,7 +17,12 @@ from apps.submissions.models import (
     SubmissionAuthor,
     SubmissionFile,
 )
-from apps.submissions.services import ALLOWED_EXTENSIONS, count_words, validate_upload
+from apps.submissions.services import (
+    ALLOWED_EXTENSIONS,
+    count_words,
+    normalise_keywords,
+    validate_upload,
+)
 
 TEXT_INPUT = {"class": "input"}
 TEXTAREA = {"class": "textarea"}
@@ -221,7 +226,7 @@ class MetadataForm(forms.Form):
                     )
             keywords = cleaned.get(f"keywords_{code}")
             if keywords:
-                count = len([k for k in keywords.split(",") if k.strip()])
+                count = len(normalise_keywords(keywords))
                 if not (settings.KEYWORDS_MIN <= count <= settings.KEYWORDS_MAX):
                     self.add_error(
                         f"keywords_{code}",

@@ -7,6 +7,35 @@ affiliations — to be stored on servers in Uzbekistan, and Railway has no regio
 there. Use it for staging with demo data; put production on a VPS in Uzbekistan
 per [`DEPLOYMENT.md`](DEPLOYMENT.md).
 
+## Minimum to test the editorial flow (one service + Postgres)
+
+Since D69 the site runs the whole workflow — submit, invite a reviewer, review,
+decide, publish Online First — with **only** the `web` service and the Postgres
+plugin. Without `REDIS_URL` it caches in Postgres and sends e-mail inside the
+request; `worker` and `beat` are not needed for a demo.
+
+On the `web` service, *Variables*:
+
+```
+DATABASE_URL=${{Postgres.DATABASE_URL}}
+DJANGO_SECRET_KEY=<generate>
+SEED_DEMO_ON_START=true          # demo accounts + articles (staging only)
+```
+
+Redeploy. The log should show `Seeding MEZON demonstration data … Seed complete`,
+and `/healthz/` should answer `{"status": "ok", …}`. Sign in with the demo
+accounts from `README.md` (password `Algorithm2026!`).
+
+Do **not** set `REDIS_URL` to a Redis that is not there: a configured but
+unreachable Redis means "no cache" and falls back to in-request tasks with an
+error logged on every call. Either add the Redis plugin and reference it, or
+leave the variable out.
+
+Editorial accounts (EIC, editor, production, admin) must enrol an
+authenticator app (Google Authenticator, Microsoft Authenticator, …) at first
+sign-in; the page shows a QR code. For a throw-away demo only,
+`STAFF_2FA_REQUIRED=false` switches that off.
+
 ## Why the first deploy failed
 
 ```

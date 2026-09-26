@@ -40,6 +40,15 @@ EOF
 
 prepare_database() {
   python manage.py migrate --noinput
+  # Only used when no REDIS_URL is configured (database-backed cache); a no-op otherwise.
+  python manage.py createcachetable
+  # Optional first administrator for platforms without a shell. Django reads
+  # DJANGO_SUPERUSER_EMAIL / DJANGO_SUPERUSER_PASSWORD; an existing account is left alone.
+  if [ -n "${DJANGO_SUPERUSER_EMAIL:-}" ] && [ -n "${DJANGO_SUPERUSER_PASSWORD:-}" ]; then
+    python manage.py createsuperuser --noinput >/dev/null 2>&1 \
+      && echo "[entrypoint] created superuser ${DJANGO_SUPERUSER_EMAIL}" \
+      || echo "[entrypoint] superuser ${DJANGO_SUPERUSER_EMAIL} already exists"
+  fi
   # A freshly created database has no policy pages, sections or JEL codes,
   # so every footer link would 404. Seed that content once; it is flagged
   # "needs editorial review" and carries no accounts. SEED_DEMO_ON_START=true

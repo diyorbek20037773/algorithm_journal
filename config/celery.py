@@ -2,15 +2,52 @@
 
 from __future__ import annotations
 
+import logging
 import os
+from typing import Any
 
-from celery import Celery
+from celery import Celery, Task
 from celery.schedules import crontab
 from celery.signals import worker_process_init
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.prod")
 
-app = Celery("arer")
+logger = logging.getLogger(__name__)
+
+
+def _is_broker_outage(exc: BaseException) -> bool:
+    """True for the errors an unreachable broker or result backend raises."""
+    from kombu.exceptions import OperationalError
+
+    try:
+        import redis.exceptions as rexc
+
+        redis_errors: tuple[type[BaseException], ...] = (rexc.ConnectionError, rexc.TimeoutError)
+    except ImportError:  # pragma: no cover - redis is always installed
+        redis_errors = ()
+    return isinstance(exc, (OperationalError, OSError, *redis_errors))
+
+
+class ResilientTask(Task):
+    """Task whose ``delay()`` runs in-process when the broker is unreachable.
+
+    Editorial actions (submit, invite a reviewer, record a decision) queue an
+    e-mail. A broker outage or a deploy without Redis must not turn those
+    actions into a server error: the work is done in the request instead, and
+    the outage is logged.
+    """
+
+    def apply_async(self, args: Any = None, kwargs: Any = None, **options: Any):
+        try:
+            return super().apply_async(args, kwargs, **options)
+        except Exception as exc:
+            if not _is_broker_outage(exc):
+                raise
+            logger.error("Broker unavailable (%s); running %s in-process", exc, self.name)
+            return self.apply(args, kwargs, throw=False)
+
+
+app = Celery("arer", task_cls=ResilientTask)
 app.config_from_object("django.conf:settings", namespace="CELERY")
 app.autodiscover_tasks()
 

@@ -49,6 +49,7 @@ from seed.demo_submissions import create_demo_submissions
 from seed.jel_loader import load_jel
 
 DEMO_PASSWORD = "Algorithm2026!"
+DEMO_ADMIN_EMAIL = "admin@mezon-journal.uz"
 LANGS = ("en", "uz", "ru")
 
 
@@ -104,7 +105,7 @@ class Command(BaseCommand):
         self.rng = random.Random(20260904)
         self.stdout.write(self.style.MIGRATE_HEADING("Seeding MEZON demonstration data"))
 
-        if options["if_empty"] and Page.objects.exists():
+        if options["if_empty"] and self._already_seeded(content_only=options["content_only"]):
             self.stdout.write("Site already has content; nothing to seed.")
             return
 
@@ -141,6 +142,19 @@ class Command(BaseCommand):
                 "Seed complete. Sign in with admin@mezon-journal.uz / Algorithm2026!"
             )
         )
+
+    @staticmethod
+    def _already_seeded(*, content_only: bool) -> bool:
+        """Whether an ``--if-empty`` run has nothing left to do.
+
+        The content seed is done once policy pages exist. The demonstration
+        seed is judged separately: a deploy that first started content-only and
+        later turned ``SEED_DEMO_ON_START`` on still has pages but no demo
+        accounts or articles, and must get them.
+        """
+        if content_only:
+            return Page.objects.exists()
+        return Article.objects.exists() or User.objects.filter(email=DEMO_ADMIN_EMAIL).exists()
 
     # ------------------------------------------------------------------ reset
     def _reset_content(self) -> None:
