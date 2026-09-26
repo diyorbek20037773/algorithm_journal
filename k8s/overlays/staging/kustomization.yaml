@@ -15,7 +15,7 @@ labels:
 images:
   - name: arer-web
     newName: ghcr.io/diyorbek20037773/algorithm_journal
-    newTag: sha-2494c3f8888b
+    newTag: sha-fd7aaa12f164
 patches:
   - target:
       kind: ConfigMap
