@@ -433,6 +433,28 @@ need `playwright install` in the container); ruff, ruff-format, djlint
 the container exports `DJANGO_SETTINGS_MODULE=config.settings.dev`, which
 otherwise wins over `pyproject.toml` and makes Celery non-eager and Axes active.
 
+
+## 2026-09-26 — Railway: the editorial flow works on a single service
+
+The flow could not be tested on Railway: `/healthz/` reported the cache down,
+every `.delay()` (submit, invite, decide) raised without a broker, and the demo
+accounts never existed because the site had first started content-only.
+
+Fixed (D69–D71): shared database cache + in-process tasks when no Redis is
+configured, `ResilientTask` fallback on a broker outage, `seed_demo --if-empty`
+no longer skips the demo seed, optional superuser from env, configurable
+`STAFF_2FA_REQUIRED`, semicolon-separated keywords, first author pre-filled,
+placeholder DOI prefix hidden from header/footer.
+
+Verified: the production image, started with **only Postgres** (no Redis, no
+worker), was driven through the real UI in Chromium — author submits (a real
+12-page PDF) → EIC assigns, records similarity, sends to review → invites
+reviewer1 → reviewer accepts and submits → EIC accepts → production uploads the
+galley, reserves the DOI, publishes Online First → an anonymous reader sees the
+article on `/en/issues/online-first/` and its page. After the push Railway
+redeployed and `/healthz/` turned `ok`. Railway still needs
+`SEED_DEMO_ON_START=true` for the demo accounts (`docs/RAILWAY.md`).
+
 ---
 
 ## Deferred (Phase 2 of the project — see HANDOFF.md)
