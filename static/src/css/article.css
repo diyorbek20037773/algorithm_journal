@@ -260,6 +260,10 @@
     gap: 0;
     overflow-x: auto;
     scrollbar-width: none;
+    /* As a flex item its default min-width is auto, which lets the tabs push
+       the row — and the page — wider than the phone. */
+    min-width: 0;
+    max-width: 100%;
   }
 
   .tab-row::-webkit-scrollbar {
@@ -522,6 +526,9 @@
     padding: 0.6rem 0;
     border-bottom: 1px solid var(--color-line);
     line-height: 1.6;
+    /* a reference carries a DOI URL with no break opportunity in it, which
+       otherwise pushes the whole page sideways on a narrow phone */
+    overflow-wrap: anywhere;
   }
 
   .ref-list i,
