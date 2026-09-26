@@ -523,6 +523,29 @@ in-text citation tooltips, appendices, EPUB galleys, and an Altmetric badge.
 
 ---
 
+## Local run against real data ✅ (2026-09-26)
+
+**Done** — the site was finally run end to end on the build machine, against a
+seeded database, and the full suite ran with it: **481 passed, 0 failed**.
+
+Three defects only a real run could show, all fixed:
+
+- The article template printed `highwire_tags` as a value instead of looping
+  over it, so the Google Scholar citation metadata landed in the page as text
+  and no `<meta>` tag was emitted. Caught on the first screenshot.
+- The demo HTML galley repeated the abstract, which the page already prints
+  above the full text — two abstracts and two contents-rail entries.
+- `/en/article/<pk>/` scrolled sideways at 320px: the tab row is a flex item,
+  so `min-width: auto` defeated its `overflow-x: auto`, and reference DOIs have
+  no break opportunity. `tests/test_e2e_flow.py` caught this one.
+
+Also measured: with `REDIS_URL` set but no Redis running, every cache call
+waits ~8s for the connection and the article page takes **66 seconds**. On the
+database cache the same page is **0.19s**. Both are environment, not code — but
+worth knowing before diagnosing a slow page.
+
+---
+
 ## Deferred (Phase 2 of the project — see HANDOFF.md)
 
 - DOCX → JATS/HTML full-text conversion.
@@ -533,9 +556,29 @@ in-text citation tooltips, appendices, EPUB galleys, and an Altmetric badge.
 
 ## Notes for the next engineer
 
-- The build machine's `C:` drive filled up during Phase 7, which repeatedly
-  crashed Docker Desktop. Nothing in the project caused it and nothing depends
-  on it; if Docker misbehaves, check free disk space first.
+- The build machine's `C:` drive is full (0 bytes), so Docker Desktop cannot
+  start at all. Nothing in the project caused it and nothing depends on it.
+  Until it is cleared, run the stack against a native cluster instead — the
+  machine already has PostgreSQL 18 installed, and its binaries can host a
+  second cluster on a disk that has room:
+
+  ```bash
+  # once
+  "C:/Program Files/PostgreSQL/18/bin/initdb" -D D:/pgdata-arer -U arer --auth=trust -E UTF8
+  "C:/Program Files/PostgreSQL/18/bin/pg_ctl" -D D:/pgdata-arer -o "-p 5452" -l D:/pgdata-arer/server.log start
+  "C:/Program Files/PostgreSQL/18/bin/createdb" -h localhost -p 5452 -U arer arer
+  # every time — REDIS_URL empty puts Django on the database cache (base.py
+  # switches automatically); with Redis absent but configured, every cache call
+  # waits ~8s for a connection and the article page takes over a minute.
+  REDIS_URL= CELERY_BROKER_URL= python manage.py migrate
+  REDIS_URL= CELERY_BROKER_URL= python manage.py createcachetable
+  REDIS_URL= CELERY_BROKER_URL= python manage.py seed_demo
+  REDIS_URL= CELERY_BROKER_URL= python manage.py runserver 127.0.0.1:8000
+  REDIS_URL= CELERY_BROKER_URL= python -m pytest -q
+  ```
+
+  The cluster listens on localhost only and trusts local connections, which is
+  why it is fine without a password — do not use this recipe on a server.
 - `.mo` files are **not** committed. `compilemessages` runs in the Dockerfile,
   in `scripts/entrypoint.sh` and in `scripts/deploy.sh`; on a bare-metal
   checkout run `make compile` or the `/uz-cyrl/` pages fall back to English.
