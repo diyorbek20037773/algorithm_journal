@@ -253,10 +253,10 @@ def build_article_html(article: Any) -> bytes:
     """
     from html import escape
 
+    # The article page prints the abstract itself, above the full text, so the
+    # galley starts at the introduction — repeating it would show the abstract
+    # twice and put two "Abstract" entries in the contents rail.
     parts: list[str] = []
-    abstract = getattr(article, "abstract_en", "") or getattr(article, "abstract", "")
-    if abstract:
-        parts.append(f"<h2>Abstract</h2>\n<p>{escape(str(abstract))}</p>")
     for heading, text in BODY_SECTIONS:
         parts.append(f"<h2>{escape(heading)}</h2>\n<p>{escape(text)}</p>")
     parts.append(

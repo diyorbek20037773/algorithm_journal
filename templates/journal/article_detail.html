@@ -6,7 +6,11 @@
 {% block twitter_title %}{{ article.title }}{% endblock %}
 {% block canonical %}{{ site_url }}{{ article.get_absolute_url }}{% endblock %}
 {% block extra_meta %}
-  {{ highwire_tags|safe }}
+  {% comment %}
+    Highwire Press tags, the pair Google Scholar indexes on. One <meta> per
+    entry — printing the list itself would dump it into the page as text.
+  {% endcomment %}
+  {% for tag in highwire_tags %}<meta name="{{ tag.name }}" content="{{ tag.content }}">{% endfor %}
 {% endblock %}
 {% block structured_data %}
   <script type="application/ld+json">{{ json_ld|safe }}</script>
