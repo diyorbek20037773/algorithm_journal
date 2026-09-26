@@ -2,6 +2,7 @@
 {% load i18n %}
 {% block title %}{% translate "Archive" %} · {{ site_settings.journal_name }}{% endblock %}
 {% block content %}
+  {% include "includes/journal_chrome.html" with chrome_section="browse" %}
   <div class="container-page">
     <h1 class="text-3xl mb-2">{% translate "Archive" %}</h1>
     <p class="muted mb-8">{% translate "Every issue published by the journal, newest first." %}</p>

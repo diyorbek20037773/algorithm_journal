@@ -3,6 +3,7 @@
 {% block title %}{{ page.title }} · {{ site_settings.journal_name }}{% endblock %}
 {% block main_class %}py-0{% endblock %}
 {% block content %}
+  {% include "includes/journal_chrome.html" with chrome_section="about" %}
   {% comment %}Title band with breadcrumb — design/about.html "breadcrumb-and-lead"{% endcomment %}
   <section class="page-hero">
     <div class="container-page py-6 flex flex-col gap-3">

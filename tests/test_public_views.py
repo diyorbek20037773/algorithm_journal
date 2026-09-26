@@ -395,12 +395,21 @@ def test_home_presents_a_lead_article_and_the_issue_banner(
 
 
 def test_primary_navigation_marks_the_active_tab(client_anon, article, about_pages) -> None:
-    """The tab of the current section carries aria-current."""
+    """The reader can see which section they are in.
+
+    The header carries three dropdowns rather than a flat tab row, so browsing
+    pages are marked on the journal menu under the banner; About keeps its own
+    top-level tab and is marked there as well.
+    """
     html = client_anon.get("/en/issues/").content.decode()
-    match = re.search(r'<a class="nav-tab"\s+href="/en/issues/"\s+aria-current="page"', html)
-    assert match, "Archive tab should be marked current on the archive page"
+    assert re.search(r'class="jm-link"[^>]*aria-current="page"[^>]*>\s*Browse', html), (
+        "the Browse menu should be marked current on the list of issues"
+    )
     html = client_anon.get("/en/about/").content.decode()
     assert re.search(r'href="/en/about/"\s+aria-current="page"', html)
+    assert re.search(r'class="jm-link"\s+href="/en/about/"', html), (
+        "the journal menu should link to the About page"
+    )
 
 
 def test_issue_page_has_sidebar_navigation(client_anon, article, about_pages) -> None:

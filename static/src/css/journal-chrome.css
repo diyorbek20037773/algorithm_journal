@@ -1,0 +1,418 @@
+/* =========================================================================
+   Journal chrome and the shared UI patterns of the inner pages
+   (TEXNIK TOPSHIRIQ §5 and §5.7): the navy banner with its search box, the
+   sticky section menu under it, side menus, tab panels, cards, promo blocks,
+   accordions and the back-to-top control.
+   ========================================================================= */
+@layer components {
+  /* --- the banner + menu pair, sticky together ---------------------------- */
+  .journal-chrome {
+    position: sticky;
+    top: 0;
+    z-index: 38;
+  }
+
+  .journal-banner {
+    background: var(--color-accent);
+    color: var(--color-on-dark);
+  }
+
+  .journal-banner-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-serif);
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: var(--color-on-dark);
+    text-decoration: none;
+    min-width: 0;
+  }
+
+  .journal-banner-title:hover {
+    color: var(--color-on-dark);
+    text-decoration: underline;
+  }
+
+  .journal-banner-search {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    align-items: stretch;
+    min-width: 0;
+  }
+
+  .journal-banner-search .input {
+    min-height: 36px;
+    width: 15rem;
+    max-width: 100%;
+    font-size: 0.875rem;
+  }
+
+  .journal-banner-search .select {
+    min-height: 36px;
+    width: 10rem;
+    font-size: 0.875rem;
+  }
+
+  .journal-banner-links {
+    font-size: 0.8125rem;
+    color: var(--color-on-dark-muted);
+  }
+
+  .journal-banner-links a {
+    color: var(--color-on-dark);
+    text-decoration: none;
+  }
+
+  .journal-banner-links a:hover {
+    text-decoration: underline;
+    color: var(--color-on-dark);
+  }
+
+  .journal-banner-links .sep {
+    padding-inline: 0.4rem;
+  }
+
+  /* --- the section menu --------------------------------------------------- */
+  .journal-menu {
+    background: var(--color-navy-midnight);
+    color: var(--color-on-dark);
+  }
+
+  .jm-item {
+    position: relative;
+  }
+
+  .jm-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.6rem 0.9rem;
+    background: transparent;
+    border: 0;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-on-dark);
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .jm-link:hover,
+  .jm-link[aria-expanded="true"] {
+    background: rgb(255 255 255 / 0.12);
+    color: var(--color-on-dark);
+  }
+
+  .jm-link[aria-current="page"] {
+    background: rgb(255 255 255 / 0.18);
+    box-shadow: inset 0 -3px 0 var(--color-mint);
+  }
+
+  .jm-panel {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    min-width: 15rem;
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    box-shadow: var(--shadow-menu);
+    padding: 0.35rem;
+    z-index: 50;
+  }
+
+  .jm-panel a {
+    display: block;
+    padding: 0.45rem 0.6rem;
+    font-size: 0.875rem;
+    color: var(--color-ink);
+    text-decoration: none;
+  }
+
+  .jm-panel a:hover {
+    background: var(--color-paper-2);
+    color: var(--color-accent);
+  }
+
+  /* --- header dropdowns (§3.1) -------------------------------------------- */
+  .nav-drop {
+    position: relative;
+  }
+
+  .nav-drop-panel {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    margin-top: 0.25rem;
+    min-width: 15rem;
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    box-shadow: var(--shadow-menu);
+    padding: 0.35rem;
+    z-index: 50;
+  }
+
+  .nav-drop-panel a {
+    display: block;
+    padding: 0.45rem 0.6rem;
+    font-size: 0.875rem;
+    color: var(--color-ink);
+    text-decoration: none;
+  }
+
+  .nav-drop-panel a:hover {
+    background: var(--color-paper-2);
+    color: var(--color-accent);
+  }
+
+  /* --- side menu (§5.2, §5.4, §5.7) --------------------------------------- */
+  .side-menu {
+    border: 1px solid var(--color-line);
+  }
+
+  @media (min-width: 1024px) {
+    .side-menu {
+      position: sticky;
+      top: 9rem;
+    }
+  }
+
+  .side-menu h2 {
+    font-size: 0.9375rem;
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid var(--color-line);
+    background: var(--color-paper-2);
+  }
+
+  .side-menu a {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    color: var(--color-accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .side-menu a:last-child {
+    border-bottom: 0;
+  }
+
+  .side-menu a::before {
+    content: "› ";
+    color: var(--color-ink-2);
+  }
+
+  .side-menu a:hover {
+    background: var(--color-paper-2);
+    text-decoration: underline;
+  }
+
+  .side-menu a[aria-current="page"],
+  .side-menu a.is-current {
+    background: var(--color-paper-2);
+    font-weight: 700;
+  }
+
+  /* --- tab panel (§5.7): navy when active --------------------------------- */
+  .panel-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+  }
+
+  .panel-tab {
+    padding: 0.5rem 0.9rem;
+    background: var(--color-paper-2);
+    border: 1px solid var(--color-line);
+    border-bottom: 0;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-ink-2);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .panel-tab:hover {
+    color: var(--color-accent);
+  }
+
+  .panel-tab[aria-selected="true"],
+  .panel-tab[aria-current="page"] {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-on-dark);
+  }
+
+  .panel-body-bordered {
+    border: 1px solid var(--color-line);
+    padding: 1.25rem;
+    background: var(--color-paper);
+  }
+
+  /* --- list card (§5.3, §5.7) --------------------------------------------- */
+  .list-card {
+    display: grid;
+    gap: 1rem;
+    border: 1px solid var(--color-line);
+    padding: 1rem 1.15rem;
+    background: var(--color-paper);
+  }
+
+  @media (min-width: 900px) {
+    .list-card {
+      grid-template-columns: minmax(0, 1fr) 150px;
+    }
+  }
+
+  .list-card + .list-card {
+    margin-top: 0.75rem;
+  }
+
+  .list-card-title {
+    font-family: var(--font-serif);
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .list-card-title:hover {
+    text-decoration: underline;
+  }
+
+  .list-card-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.6rem;
+    font-size: 0.8125rem;
+  }
+
+  .list-card-links .sep {
+    color: var(--color-line-2);
+  }
+
+  .card-metrics {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.8125rem;
+    color: var(--color-ink-2);
+  }
+
+  @media (min-width: 900px) {
+    .card-metrics {
+      display: block;
+      border-left: 1px solid var(--color-line);
+      padding-left: 1rem;
+    }
+
+    .card-metrics > * + * {
+      margin-top: 0.4rem;
+      border-top: 1px solid var(--color-line);
+      padding-top: 0.4rem;
+    }
+  }
+
+  .card-metrics b {
+    display: block;
+    font-size: 1.05rem;
+    color: var(--color-ink);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* --- promo block (§5.7) -------------------------------------------------- */
+  .promo {
+    display: block;
+    border: 1px solid var(--color-line);
+    text-decoration: none;
+  }
+
+  .promo-head {
+    background: var(--color-accent);
+    color: var(--color-on-dark);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    padding: 0.55rem 0.75rem;
+  }
+
+  .promo-body {
+    padding: 0.85rem 0.75rem;
+    font-size: 0.875rem;
+    color: var(--color-ink-2);
+  }
+
+  /* --- accordion (§5.2, §5.7) --------------------------------------------- */
+  .accordion > details {
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .accordion > details > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.75rem 0.25rem;
+    font-family: var(--font-serif);
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .accordion > details > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .accordion > details > summary::after {
+    content: "⊕";
+    color: var(--color-accent);
+    font-size: 1.1rem;
+  }
+
+  .accordion > details[open] > summary::after {
+    content: "⊖";
+  }
+
+  .accordion-body {
+    padding: 0 0.25rem 0.9rem;
+  }
+
+  /* --- "ready to submit?" panel (§5.1, §5.5) ------------------------------ */
+  .submit-panel {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    background: var(--color-paper-2);
+    border: 1px solid var(--color-line);
+    padding: 1.25rem;
+  }
+
+  /* --- back to top (§5.7) -------------------------------------------------- */
+  .to-top-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  /* --- subject columns under the footer (§5.1) ---------------------------- */
+  .subject-grid {
+    display: grid;
+    gap: 0.5rem 2rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    font-size: 0.875rem;
+  }
+
+  @media (min-width: 1024px) {
+    .subject-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+}

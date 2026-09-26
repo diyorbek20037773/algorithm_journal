@@ -12,6 +12,7 @@
 {% endblock %}
 {% block main_class %}py-8{% endblock %}
 {% block content %}
+  {% include "includes/journal_chrome.html" with chrome_section="browse" %}
   <div class="container-page flex flex-col gap-8">
     <nav aria-label="{% translate 'Breadcrumb' %}" class="breadcrumb">
       <a href="{% url 'journal:home' %}">{% translate "Home" %}</a>

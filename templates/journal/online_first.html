@@ -2,6 +2,7 @@
 {% load i18n %}
 {% block title %}{% translate "Online First" %} · {{ site_settings.journal_name }}{% endblock %}
 {% block content %}
+  {% include "includes/journal_chrome.html" with chrome_section="browse" %}
   <div class="container-page">
     <h1 class="text-3xl mb-2">{% translate "Online First" %}</h1>
     <p class="muted mb-8 max-w-[70ch]">

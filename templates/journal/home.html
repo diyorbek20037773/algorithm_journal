@@ -6,6 +6,7 @@
   <script type="application/ld+json">{{ periodical_json_ld|safe }}</script>
 {% endblock %}
 {% block content %}
+  {% include "includes/journal_chrome.html" %}
   {% comment %}Hero & masthead — design/home.html "Hero & Masthead Section"{% endcomment %}
   <section class="masthead">
     <div class="container-page py-10 md:py-12 grid gap-10 lg:grid-cols-[minmax(0,1fr)_232px] items-center">

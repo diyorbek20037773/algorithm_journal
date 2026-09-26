@@ -3,6 +3,9 @@
 /* Article-page furniture (breadcrumb, journal block, tabs, reading grid). */
 @import "./article.css";
 
+/* Journal chrome and the shared patterns of the inner pages. */
+@import "./journal-chrome.css";
+
 /* Rankings section (banner, side rails, white panel). */
 @import "./rankings.css";
 
