@@ -1,140 +1,106 @@
-# Academic Royal Prestige — MEZON dizayn tizimi
+# MEZON dizayn tizimi
 
-> Loyihada **"Academic Royal Prestige / White Ink Edition"** dizayn tizimi amal qiladi.
-> Manba: `design/stitch_modern_economic_journal_dashboard/academic_royal_prestige/DESIGN.md`
-> va oʻsha papkadagi uchta maket. Bitta palitra butun saytga — ommaviy oʻqish qismiga ham,
-> tahririyat konsoliga (dashboard) ham — tegishli.
-> Kod: `static/src/css/input.css` (`@theme` tokenlari + `@layer components`),
-> konsolga xos mebel: `static/src/css/console.css`.
-
----
-
-## 0. Kod yozuvchi uchun qoidalar (oʻzgartirmang)
-
-1. Rangni hech qachon toʻgʻridan-toʻgʻri yozmang (hex/rgb). Faqat `--color-*` tokenlari yoki
-   ularning Tailwind utilitalari (`bg-paper-2`, `text-ink-2`, `border-[--color-line]` …).
-2. Yangi rang qoʻshmang. Palitra yopiq: fon qatlamlari, qirol siyohi + binafsha, uchta semantik rang.
-3. Soya — faqat tizimdagi uchta token (`--shadow-card`, `--shadow-hover`, `--shadow-menu`).
-   Hajm soya bilan emas, **1px `--color-line` chizigʻi va tonal qatlam** bilan beriladi.
-4. Har qanday ajratilgan blok — `.card` (oq varaq). Yangi karta turini oʻylab topmang.
-5. Sarlavhalar — **Merriweather** (`--font-serif`), interfeys va matn — **Inter** (`--font-sans`),
-   identifikatorlar (DOI, ISSN, JEL, sana) — **JetBrains Mono** (`--font-mono`).
-6. Yumaloq "pill" shakllar taqiqlangan: radius 2px (shtamp), 4px (boshqaruv, karta), 8px (panel).
-7. Sahifa 400px kenglikda gorizontal scrollsiz ishlashi shart.
+> Manba: mijoz bergan **TEXNIK TOPSHIRIQ** (ilmiy jurnal veb-sayti, maqola
+> sahifasi). Namuna sifatida Taylor & Francis Online maqola sahifasining
+> tuzilishi va ishlash mantigʻi olingan; **logotip, nom, brend va matnlar
+> bizniki** — T&F belgilari ishlatilmaydi.
+> Kod: `static/src/css/input.css` (`@theme` + `@layer components`),
+> maqola sahifasi mebeli: `static/src/css/article.css`,
+> tahririyat konsoli: `static/src/css/console.css`.
 
 ---
 
-## 1. Falsafa
+## 0. Kod yozuvchi uchun qoidalar
 
-| Gʻoya | Amalda |
-|---|---|
-| Toza qogʻoz kanvasi | Fon `#faf9fd` — gradient ham, nur ham yoʻq; varaqlar toza `#ffffff` |
-| Chuqur akademik siyoh | Sarlavhalar `#1f1435`, matn `#2d2245` — qora emas, qirol siyohi |
-| Ilmiy qatʼiylik | 1px `#e7e0f2` hairline chiziqlar, oʻtkir 2–4px burchaklar |
-| Tipografik keskinlik | Klassik serif sarlavha + analitik sans interfeys |
-| Bitta urgʻu | `#2a164d` toʻldirish, `#6c28d6` ikkilamchi — ikkalasi ham binafsha-siyoh |
-| Bitta palitra | Tungi (dark) tema yoʻq: bu "White Ink Edition", `color-scheme: light` |
+1. Rangni qattiq yozmang — faqat `--color-*` tokenlari.
+2. Palitra yopiq: navy, yashil aksent, ochiq kirish uchun toʻq sariq, uchta semantik rang.
+3. Sarlavhalar **PT Serif**, interfeys va matn **Open Sans**.
+4. Radius 4px (tugma, karta), 2px (belgi). Yumaloq pill yoʻq.
+5. Sahifa 400px kenglikda gorizontal scrollsiz ishlashi shart.
+
+---
+
+## 1. Tokenlar (TEXNIK TOPSHIRIQ §2)
+
+| Token | Qiymat | Vazifa |
+|---|---|---|
+| `--color-accent` | `#10147e` | navy: havola, breadcrumb, sticky panel, footer, tugma |
+| `--color-navy-midnight` | `#0a0d5c` | footer ustidagi toʻqroq qator |
+| `--color-mint` | `#6cd775` | yashil aksent: "Maqola yuborish", "PDF koʻrish", faol tab |
+| `--color-mint-text` | `#2f7a37` | oq fonda oʻqiladigan yashil (4.6:1) |
+| `--color-ink` | `#333333` | asosiy matn |
+| `--color-ink-2` | `#666666` | sana, sahifalar, metama'lumot |
+| `--color-surface` / `--color-paper` | `#ffffff` | sahifa va varaq |
+| `--color-paper-2` | `#f5f5f5` | maqola sarlavhasi bloki, tonal toʻldirish |
+| `--color-gold-bright` | `#f29100` | Open Access qulfi va burchak belgisi |
+| `--color-gold` | `#b06a00` | oʻsha rangning matn uchun qoraytirilgani (4.6:1) |
+| `--color-line` / `-2` | `#e0e0e0` / `#cccccc` | chegaralar |
+
+Oʻlchov: konteyner `--container-page 1280px`, oʻqish ustuni 680px,
+radius `--radius-control 4px`, `--radius-badge 2px`.
+
+Eski nomlar (`mint*`, `gold*`, `glass*`) saqlangan va yangi qiymatlarga
+yoʻnaltirilgan — shuning uchun 80 dan ortiq shablon markup tahririsiz yangi
+koʻrinishni oldi.
 
 ---
 
 ## 2. Shrift
 
-- **Merriweather** 400/600/700 — masthead, maqola sarlavhalari, boʻlim sarlavhalari (`--font-serif`).
-- **Inter** 400–700 — interfeys, matn, jadval, muallif satrlari, filtrlar (`--font-sans`).
-- **JetBrains Mono** — identifikatorlar: DOI, ISSN, JEL, sana, metama'lumot (`.meta`, `.doi-line`).
-- Yorliqlar (`.eyebrow`, `.chip`, `.nav-tab`, `.stat-label`) — **UPPERCASE**, tracking +0.04…+0.06em:
-  arxiv kartotekasi shtampi taassuroti.
-- Raqamlar ustunda: `font-variant-numeric: tabular-nums`.
-- Oʻqiladigan paragraf: `max-width: 64ch` (`.prose-journal`, `.masthead-lede`).
-
-| Rol | Klass / qoida | Shrift | Ogʻirlik | letter-spacing |
-|---|---|---|---|---|
-| Hero h1 | `.masthead-name` | Merriweather | 700 | −0.02em |
-| h2 | `h2`, `.section-heading h2` | Merriweather | 700 | −0.015em |
-| h3 / karta sarlavhasi | `h3`, `.article-title` | Merriweather | 600 | −0.01em |
-| Sahifa sarlavhasi (konsol) | `.page-title` | Merriweather 32/42 | 700 | −0.015em |
-| Katta raqam | `.stat-value`, `.queue-count` | Inter | 700 | 0 |
-| Matn | `body`, `.prose-journal p` | Inter 15/24 | 400 | 0 |
-| Eyebrow / chip | `.eyebrow`, `.chip` | Inter 11px UPPERCASE | 600 | +0.05em |
-
----
-
-## 3. Tokenlar
-
-| Token | Qiymat | Vazifa |
+| Rol | Shrift | Oʻlcham |
 |---|---|---|
-| `--color-surface` | `#faf9fd` | sahifa foni (arxiv qogʻozi) |
-| `--color-paper` | `#ffffff` | varaq: karta, input, menyu |
-| `--color-paper-2` | `#f7f5fc` | tonal toʻldirish: inset panel, izoh bloki |
-| `--color-paper-3` | `#ede9f5` | chuqurroq katak (kbd, hover) |
-| `--color-glass*` | `#ffffff` / `#f4f1fa` | eski "shisha" nomlari — endi qattiq varaq va hover |
-| `--color-line` / `-2` | `#e7e0f2` / `#d8d1e5` | hairline chegaralar |
-| `--color-ink` | `#1f1435` | sarlavha (royal ink) |
-| `--color-ink-2` | `#2d2245` | matn (plum body) |
-| `--color-ink-3` | `#554d68` | izoh, meta (≥4.5:1) |
-| `--color-accent` | `#2a164d` | **toʻldirish**: asosiy tugma, masthead, faol indeks |
-| `--color-accent-2` | `#6c28d6` | ikkilamchi: havola, faol tab, iqtibos asboblari |
-| `--color-accent-soft` | `#ede9fe` | eyebrow foni, faol rail elementi |
-| `--color-mint` → `#2a164d` | `--color-mint-ink` `#ffffff` | eski nomlar: toʻldirish va ustidagi matn |
-| `--color-mint-text` | `#4a1d7a` | **matn** sifatidagi urgʻu (oqda 7.4:1) |
-| `--color-mint-bright` | `#a67ffd` | qorongʻu langar ustidagi yorugʻ binafsha |
-| `--color-gold*` | `#9c5700` / `#fef7ed` / `#fcd9bd` | iqtibos-amber shtampi: "Peer-reviewed", CFP, Online First |
-| `--color-success*` | `#1b6e4a` / `#ebf7f1` / `#b8e5d1` | ochiq kirish (open access) yashili |
-| `--color-navy-deep` | `#1f103a` | qorongʻu langar: footer, `.card-navy` |
-| `--color-on-dark(-muted)` | `#ffffff` / 72% | langar ustidagi matn |
-| `--color-danger` | `#ba1a1a` | xato |
-
-Eski nomlar (`mint*`, `gold*`, `glass*`) shablonlar buzilmasligi uchun saqlangan va yangi
-qiymatlarga yoʻnaltirilgan — shuning uchun 80 dan ortiq shablon bitta ham oʻzgarishsiz yangi
-koʻrinishga oʻtdi.
-
-Oʻlchovlar: `--radius-badge 2px`, `--radius-control 4px`, `--radius-card 4px`,
-`--radius-panel 8px`, `--radius-pill 4px` (pill qasddan oʻchirilgan);
-konteyner `--container-page 1360px`, oʻqish ustuni 760px.
-
-Soyalar: `--shadow-card` `0 1px 2px rgb(42 22 77/.04)`,
-`--shadow-hover` `0 4px 16px -2px rgb(42 22 77/.08)`,
-`--shadow-menu` `0 20px 28px -6px rgb(31 20 53/.14)`.
+| H1 | PT Serif 700 | 34px |
+| H2 | PT Serif 700 | 22px |
+| H3 | PT Serif 700 | 18px |
+| Matn | Open Sans 400 | 16px / 1.6 |
+| Abstrakt | Open Sans 400 | 17.6px / 1.7 |
+| Mayda (breadcrumb, tab, meta) | Open Sans | 13–14px |
 
 ---
 
-## 4. Komponentlar
+## 3. Maqola sahifasi (TEXNIK TOPSHIRIQ §3)
 
-| Komponent | Klass | Eslatma |
+| Boʻlak | Klass | Izoh |
 |---|---|---|
-| Masthead | `.site-header > .container-page > .nav-pill` | oq sticky satr, pastda 1px hairline; tab qatori ikkinchi qator |
-| Tab | `.nav-tab` | UPPERCASE label; faol holatda 2px `--color-accent-2` chizigʻi |
-| Utility bar | `.utility-bar` | `#f3effb` tasma: ISSN, DOI, litsenziya, til |
-| Karta | `.card`, `.article-card`, `.section-card`, `.fact-tile` | oq varaq + 1px hairline + `--shadow-card` |
-| Panel | `.panel`, `.console` (bosh sahifadagi qidiruv) | radius 8px |
-| Qorongʻu langar | `.card-navy`, `.site-footer` | `#1f103a`; ichida `.eyebrow` va tugmalar teskari rangda |
-| Asosiy tugma | `.btn .btn-primary` | siyoh toʻldirish, hover `#3b1e6d`. **Ekranda bitta** |
-| Ikkilamchi | `.btn-secondary` | oq fon + 1px siyoh chegara; `.btn-tonal`, `.btn-ghost` — tinchroq |
-| Eyebrow | `.eyebrow` | `#ede9fe` shtamp, 2px radius |
-| Chip | `.chip`, `.chip-green` (OA), `.chip-gold` (amber), `.chip-jel` (mono) | |
-| Jadval | `.table` | 1px gorizontal chiziq, vertikal chiziq yoʻq, UPPERCASE ustun sarlavhasi |
-| Konsol mebeli | `.console-header`, `.console-tab`, `.console-rail`, `.rail-item`, `.panel-head`, `.stat-tile`, `.attention-row` | faqat `body.editorial-console` ichida, `console.css` |
+| Breadcrumb tasmasi | `.crumb-bar` | navy fon, oq 13px matn, `›` ajratgich |
+| Jurnal bloki | `.journal-strip`, `.journal-cover` | muqova 80×130, jurnal nomi, jild/son, yashil + navy tugma, qidiruv |
+| Sarlavha bloki | `.article-band` | och kulrang `#f5f5f5`, tepasida uchburchak koʻrsatkich |
+| Metrikalar ustuni | `.band-metrics`, `.band-metric` | katta raqam + kichik yozuv, orasida chiziq |
+| Open Access belgisi | `.oa-flag` | toʻq sariq qulf |
+| Tab qatori | `.tab-bar`, `.tab-item` | faol tab navy fon + oq matn; har tab oʻz URL'i |
+| Scroll paneli | `.scroll-bar` | 320px dan pastga aylantirilganda navy panel |
+| 3 ustunli layout | `.read-grid` | 180px mundarija · maqola · 280px tavsiyalar |
+| Mundarija | `.toc-rail`, `.toc-list` | scroll-spy, navy vertikal chiziq, faol boʻlim kulrang fonda |
+| Rasm/jadval | `.figure-block`, `.figure-caption` | "Figure 1." izohi va yuklab olish havolalari |
+| Adabiyotlar | `.ref-list`, `.ref-links` | har manba ostida Crossref / Google Scholar |
+| Tavsiyalar paneli | `.related-panel`, `.related-tab`, `.related-card` | 3 tab, kartochka tepasida navy chiziq, OA burchagi |
+| Footer | `.site-footer`, `.footer-top` | navy, 5 ustun, obuna va ijtimoiy ikonkalar |
+
+Tab manzillari: `/article/<pk>/`, `…/figures/`, `…/references/`,
+`…/citations/`, `…/metrics/`, `…/licensing/` — hammasi bitta shablon,
+`ArticleDetailView.tab` bilan farqlanadi.
+
+Mundarija va rasm/jadval roʻyxati toʻliq matn HTML'idan avtomatik olinadi:
+`apps/journal/fulltext.py` (`outline`, `with_anchors`, `floats`).
 
 ---
 
-## 5. Harakat
+## 4. Responsiv (TEXNIK TOPSHIRIQ §7)
 
-- Tugma hover: rang + `--shadow-hover` (koʻtarilish yoʻq); karta hover: soya + chegara.
-- Davomiylik 160–200ms, `ease`.
-- `prefers-reduced-motion: reduce` — barcha animatsiya va transition oʻchadi.
-- Taqiqlangan: parallax, aylanuvchi gradient, doimiy pulsatsiya, slayderlar, karusel.
+- **≥1200px** — 3 ustun.
+- **768–1199px** — tavsiyalar paneli yashiriladi, mundarija chapda qoladi.
+- **<768px** — mundarija "☰ Ushbu maqolada" tugmasi ostida, tablar gorizontal
+  scroll, metrikalar bir qatorda.
 
 ---
 
-## 6. Tekshiruv roʻyxati
+## 5. Tekshiruv roʻyxati
 
-- [ ] Shablon va komponentlarda qattiq yozilgan hex yoʻq — faqat `@theme` tokenlari
-- [ ] Bir ekranda bitta `.btn-primary`
-- [ ] Soya faqat tizim tokenlaridan; hajm hairline bilan beriladi
-- [ ] Sarlavhalar Merriweather, interfeys Inter, identifikatorlar JetBrains Mono
-- [ ] Yorliqlar UPPERCASE + tracking
-- [ ] Karta radiusi 4px, panel 8px, shtamp 2px; pill yoʻq
+- [ ] Shablonlarda qattiq yozilgan hex yoʻq
+- [ ] Bir ekranda bitta yashil `.btn-primary`
+- [ ] Sarlavhalar PT Serif, matn Open Sans 16px `#333`
+- [ ] Radius 4px; pill yoʻq
 - [ ] 400px'da gorizontal scroll yoʻq
-- [ ] `:focus-visible` — 2px `--color-accent` kontur
+- [ ] `:focus-visible` — 2px navy kontur
+- [ ] Kontrast ≥ 4.5:1 (yashil matn `#2f7a37`, toʻq sariq matn `#b06a00`)
 - [ ] `prefers-reduced-motion` hisobga olingan
-- [ ] Rasmlar `alt` ga ega; kontrast ≥ 4.5:1

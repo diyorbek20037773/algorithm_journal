@@ -457,6 +457,46 @@ redeployed and `/healthz/` turned `ok`. Railway still needs
 
 ---
 
+## T&F-style skin and the tabbed article page ✅ (2026-09-26)
+
+**Done** — the site follows the client's TEXNIK TOPSHIRIQ, written from a
+Taylor & Francis article page. Structure and conventions only: the logo, name
+and wording stay MEZON's.
+
+- `input.css` `@theme`: navy `#10147E`, green `#6CD775`, open-access orange
+  `#F29100`, text `#333` / `#666`, white page with a `#F5F5F5` article band,
+  PT Serif over Open Sans, 4px radii, 1280px container. Token names unchanged,
+  so every template followed without markup edits.
+- `article.css` (new): the page furniture — navy breadcrumb band, journal block
+  with cover and search, grey article header band with its metrics column and
+  open-access flag, the tab row and the navy bar it becomes on scroll, the
+  three-column reading grid, contents rail, figure blocks, reference list with
+  Crossref / Google Scholar links, related-research panel, footer bands.
+- Article page split into six tabs, each with its own URL and all rendered by
+  `ArticleDetailView` with a `tab` attribute: Full Article, Figures & data,
+  References, Citations, Metrics, Licensing.
+- `apps/journal/fulltext.py` (new): derives the contents rail (`outline`), the
+  heading anchors (`with_anchors`) and the figure/table list (`floats`) from
+  the stored full-text HTML.
+- Contents rail is scroll-spied with an IntersectionObserver and collapses
+  behind a toggle below `md`.
+- Footer gained the darker top band and a fifth column with the
+  table-of-contents alert; the alert opens the contact page pre-filled, which
+  the contact view now supports.
+
+**Verified** — `ruff check` / `ruff format --check` clean; `djlint --check`
+clean; `manage.py check` clean; `fulltext.py` exercised on a sample document
+(outline, anchors, figure and table numbering, empty input). Screenshots at
+1440px and 390px in `docs/screenshots/site-article-*.png` and `site-*.png`.
+
+**Not verified here** — `pytest` still cannot run on this machine (Docker down,
+Postgres unreachable); CI runs the suite on push.
+
+**Still open from the brief** — header dropdown menus, figure lightbox,
+in-text citation tooltips, appendices, EPUB galleys, and an Altmetric badge.
+
+---
+
 ## Deferred (Phase 2 of the project — see HANDOFF.md)
 
 - DOCX → JATS/HTML full-text conversion.

@@ -1,0 +1,21 @@
+{% load i18n %}
+<h2>{% translate "Citations" %}</h2>
+{% if article.cited_by_count %}
+  <p class="muted text-sm mt-1">
+    {% blocktranslate count counter=article.cited_by_count %}{{ counter }} work cites this article according to Crossref.{% plural %}{{ counter }} works cite this article according to Crossref.{% endblocktranslate %}
+    {% if article.cited_by_updated_at %}
+      {% blocktranslate with date=article.cited_by_updated_at|date:"j F Y" %}Last checked {{ date }}.{% endblocktranslate %}
+    {% endif %}
+  </p>
+  <div class="card mt-4">
+    <p class="text-sm">{% translate "The list of citing works is maintained by Crossref. Open the live record to see it in full." %}</p>
+    <a class="btn btn-outline btn-sm mt-3"
+       href="https://search.crossref.org/?q={{ article.doi|urlencode }}"
+       rel="noopener nofollow">{% translate "Open the Crossref record" %}</a>
+  </div>
+{% else %}
+  <div class="empty-state mt-4">
+    <p>{% translate "No citations have been recorded yet." %}</p>
+    <p class="muted text-sm mt-2">{% translate "Counts come from Crossref and are refreshed nightly." %}</p>
+  </div>
+{% endif %}

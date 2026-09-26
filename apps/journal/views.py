@@ -220,10 +220,17 @@ class IssueDetailView(DetailView):
 
 
 class ArticleDetailView(DetailView):
-    """The article landing page — the most important page of the site."""
+    """The article landing page — the most important page of the site.
+
+    The page is split into the tabs the brief asks for (full article, figures
+    and data, references, citations, metrics, licensing). Each tab is its own
+    URL so it can be linked, indexed and bookmarked; they all render this one
+    template and differ only in which panel is shown.
+    """
 
     template_name = "journal/article_detail.html"
     context_object_name = "article"
+    tab = "full"
 
     def get_queryset(self):
         """Only publicly visible articles, with everything prefetched."""
@@ -249,6 +256,7 @@ class ArticleDetailView(DetailView):
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         """Add related articles, translated abstracts and citation metadata."""
         from apps.citations.services import available_styles
+        from apps.journal.fulltext import floats, outline, with_anchors
         from apps.journal.metadata import highwire_tags, json_ld
 
         context = super().get_context_data(**kwargs)
@@ -265,7 +273,60 @@ class ArticleDetailView(DetailView):
         context["title_translations"] = self._title_translations(article)
         context["related_articles"] = self._related(article)
         context["meta_description"] = article.abstract_plain[:300]
+        context["tab"] = self.tab
+        context["article_tabs"] = self._tabs(article, context)
+        context["outline"] = outline(context["full_text"])
+        context["full_text"] = with_anchors(context["full_text"])
+        if self.tab == "figures":
+            context["floats"] = floats(context["full_text"])
+        if self.tab == "metrics":
+            context["monthly_views"] = self._monthly_views(article)
         return context
+
+    def _tabs(self, article: Article, context: dict[str, Any]) -> list[dict[str, Any]]:
+        """The tab row: label, URL and whether the tab has anything in it."""
+        base = article.get_absolute_url().rstrip("/")
+        rows = [
+            ("full", _("Full Article"), f"{base}/", True),
+            ("figures", _("Figures & data"), f"{base}/figures/", bool(context["full_text"])),
+            ("references", _("References"), f"{base}/references/", bool(context["references"])),
+            ("citations", _("Citations"), f"{base}/citations/", True),
+            ("metrics", _("Metrics"), f"{base}/metrics/", True),
+            ("licensing", _("Licensing"), f"{base}/licensing/", True),
+        ]
+        return [
+            {"key": key, "label": label, "url": url, "enabled": enabled, "current": key == self.tab}
+            for key, label, url, enabled in rows
+        ]
+
+    @staticmethod
+    def _monthly_views(article: Article) -> list[dict[str, Any]]:
+        """Views and downloads per month for the last year, for the chart."""
+        from django.db.models import Sum
+        from django.db.models.functions import TruncMonth
+
+        from apps.metrics.models import DailyArticleStat
+
+        rows = (
+            DailyArticleStat.objects.filter(article=article)
+            .annotate(month=TruncMonth("date"))
+            .values("month")
+            .annotate(views=Sum("views"), downloads=Sum("downloads"))
+            .order_by("month")[:12]
+        )
+        data = [
+            {
+                "label": row["month"].strftime("%b %Y"),
+                "views": row["views"] or 0,
+                "downloads": row["downloads"] or 0,
+            }
+            for row in rows
+        ]
+        peak = max((row["views"] for row in data), default=0) or 1
+        for row in data:
+            row["views_pct"] = round(row["views"] * 100 / peak)
+            row["downloads_pct"] = round(row["downloads"] * 100 / peak)
+        return data
 
     @staticmethod
     def _abstract_translations(article: Article) -> list[dict[str, str]]:

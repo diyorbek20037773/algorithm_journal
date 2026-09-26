@@ -25,6 +25,32 @@ urlpatterns = [
     ),
     # Articles ---------------------------------------------------------------
     path("article/<int:pk>/", cached(views.ArticleDetailView.as_view()), name="article_detail"),
+    # One URL per article tab (TEXNIK TOPSHIRIQ §4.2); they share a template.
+    path(
+        "article/<int:pk>/figures/",
+        cached(views.ArticleDetailView.as_view(tab="figures")),
+        name="article_figures",
+    ),
+    path(
+        "article/<int:pk>/references/",
+        cached(views.ArticleDetailView.as_view(tab="references")),
+        name="article_references",
+    ),
+    path(
+        "article/<int:pk>/citations/",
+        cached(views.ArticleDetailView.as_view(tab="citations")),
+        name="article_citations",
+    ),
+    path(
+        "article/<int:pk>/metrics/",
+        cached(views.ArticleDetailView.as_view(tab="metrics")),
+        name="article_metrics",
+    ),
+    path(
+        "article/<int:pk>/licensing/",
+        cached(views.ArticleDetailView.as_view(tab="licensing")),
+        name="article_licensing",
+    ),
     path("article/<int:pk>/cite/", views.article_cite, name="article_cite"),
     path("article/<int:pk>/view/", views.article_view_beacon, name="article_view_beacon"),
     path("article/<int:pk>/export/<str:fmt>/", views.article_export, name="article_export"),

@@ -1,0 +1,8 @@
+{% load i18n %}
+<h2>{% translate "References" %}</h2>
+{% if references %}
+  <p class="muted text-sm mt-1">{% blocktranslate count counter=references|length %}{{ counter }} reference.{% plural %}{{ counter }} references.{% endblocktranslate %}</p>
+  {% include "journal/partials/reference_list.html" %}
+{% else %}
+  <div class="empty-state mt-4">{% translate "No reference list has been deposited for this article." %}</div>
+{% endif %}

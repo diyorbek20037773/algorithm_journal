@@ -1,0 +1,696 @@
+/* =========================================================================
+   Article page furniture — TEXNIK TOPSHIRIQ §3.
+   Navy breadcrumb, journal block, grey article header band with its metrics
+   column, the sticky tab row and its navy scroll bar, the three-column
+   reading layout (contents rail · article · related research) and the footer
+   bands. The palette itself lives in input.css.
+   ========================================================================= */
+@layer components {
+  /* --- 3.2 breadcrumb band ------------------------------------------------ */
+  .crumb-bar {
+    background: var(--color-accent);
+    color: var(--color-on-dark);
+    font-size: 0.8125rem;
+  }
+
+  .crumb-bar ol {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem;
+    list-style: none;
+    margin: 0;
+    padding: 0.5rem 0;
+  }
+
+  .crumb-bar a {
+    color: var(--color-on-dark);
+    text-decoration: none;
+  }
+
+  .crumb-bar a:hover {
+    color: var(--color-on-dark);
+    text-decoration: underline;
+  }
+
+  .crumb-bar li[aria-current="page"] {
+    color: var(--color-on-dark-muted);
+    max-width: 32ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .crumb-sep {
+    color: var(--color-on-dark-muted);
+  }
+
+  /* --- 3.3 journal block -------------------------------------------------- */
+  .journal-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: 1.25rem 0;
+  }
+
+  .journal-cover {
+    flex: none;
+    width: 80px;
+    height: 130px;
+    object-fit: cover;
+    border: 1px solid var(--color-line);
+    background: var(--color-paper-2);
+  }
+
+  /* a stand-in cover when the office has not uploaded artwork yet */
+  .journal-cover-fallback {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0.5rem 0.4rem;
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-on-dark);
+    font-family: var(--font-serif);
+    font-size: 0.6875rem;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .journal-title-link {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .journal-title-link:hover {
+    text-decoration: underline;
+  }
+
+  .journal-volume {
+    font-size: 0.875rem;
+    color: var(--color-ink-2);
+    margin-top: 0.15rem;
+  }
+
+  .journal-search {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    align-items: stretch;
+  }
+
+  .journal-search .input,
+  .journal-search .select {
+    min-height: 38px;
+    font-size: 0.875rem;
+  }
+
+  /* --- 3.4 article header band -------------------------------------------- */
+  .article-band {
+    position: relative;
+    background: var(--color-paper-2);
+    border-top: 1px solid var(--color-line);
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  /* the pointer that drops out of the journal block, as in the brief */
+  .article-band::before {
+    content: "";
+    position: absolute;
+    top: -9px;
+    left: 3rem;
+    width: 18px;
+    height: 18px;
+    background: var(--color-paper-2);
+    border-left: 1px solid var(--color-line);
+    border-top: 1px solid var(--color-line);
+    transform: rotate(45deg);
+  }
+
+  .article-band-grid {
+    display: grid;
+    gap: 1.5rem;
+    padding: 1.5rem 0 1.75rem;
+  }
+
+  @media (min-width: 1024px) {
+    .article-band-grid {
+      grid-template-columns: 150px minmax(0, 1fr) auto;
+    }
+  }
+
+  /* metrics column: a big number over a small caption, hairline between */
+  .band-metrics {
+    display: flex;
+    gap: 1.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  @media (min-width: 1024px) {
+    .band-metrics {
+      display: block;
+      border-right: 1px solid var(--color-line-2);
+      padding-right: 1.25rem;
+    }
+  }
+
+  .band-metric + .band-metric {
+    padding-top: 0.6rem;
+  }
+
+  @media (min-width: 1024px) {
+    .band-metric + .band-metric {
+      margin-top: 0.6rem;
+      border-top: 1px solid var(--color-line);
+    }
+  }
+
+  .band-metric b {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .band-metric span {
+    font-size: 0.8125rem;
+    color: var(--color-ink-2);
+  }
+
+  .article-type {
+    font-size: 0.8125rem;
+    color: var(--color-ink-2);
+  }
+
+  .article-band h1 {
+    margin-top: 0.35rem;
+  }
+
+  .author-line {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-ink);
+    margin-top: 0.75rem;
+  }
+
+  .author-line a {
+    color: var(--color-accent);
+  }
+
+  .author-line a:hover {
+    text-decoration: underline;
+  }
+
+  .author-mark {
+    display: inline-flex;
+    vertical-align: text-bottom;
+    margin-left: 0.15rem;
+  }
+
+  .orcid-mark {
+    color: var(--color-orcid);
+  }
+
+  .article-dates {
+    font-size: 0.8125rem;
+    color: var(--color-ink-2);
+    margin-top: 0.6rem;
+  }
+
+  .article-tools {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.75rem;
+    font-size: 0.875rem;
+  }
+
+  .oa-flag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-gold);
+    white-space: nowrap;
+  }
+
+  .oa-flag svg {
+    color: var(--color-gold-bright);
+  }
+
+  /* --- 3.5 tab row --------------------------------------------------------- */
+  .tab-bar {
+    border-bottom: 1px solid var(--color-line);
+    background: var(--color-paper);
+  }
+
+  .tab-row {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .tab-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tab-item {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    padding: 0.6rem 0.9rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+  }
+
+  .tab-item:hover {
+    background: var(--color-paper-2);
+    text-decoration: none;
+  }
+
+  .tab-item[aria-current="page"] {
+    background: var(--color-accent);
+    color: var(--color-on-dark);
+    border-bottom-color: var(--color-accent);
+  }
+
+  .tab-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.6rem 0;
+  }
+
+  /* the navy bar that replaces the header once the page is scrolled */
+  .scroll-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 45;
+    background: var(--color-accent);
+    color: var(--color-on-dark);
+    box-shadow: 0 1px 6px rgb(0 0 0 / 0.2);
+  }
+
+  .scroll-bar .tab-item {
+    color: var(--color-on-dark);
+    border-bottom-color: transparent;
+    padding-block: 0.7rem;
+  }
+
+  .scroll-bar .tab-item:hover {
+    background: rgb(255 255 255 / 0.12);
+  }
+
+  .scroll-bar .tab-item[aria-current="page"] {
+    background: rgb(255 255 255 / 0.18);
+    border-bottom-color: var(--color-mint);
+  }
+
+  .scroll-bar-title {
+    font-size: 0.8125rem;
+    color: var(--color-on-dark-muted);
+    max-width: 46ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .to-top {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-on-dark);
+    text-decoration: none;
+  }
+
+  /* --- 3.6 three-column reading layout ------------------------------------ */
+  .read-grid {
+    display: grid;
+    gap: 2rem;
+    align-items: start;
+    padding: 1.75rem 0 3rem;
+  }
+
+  @media (min-width: 768px) {
+    .read-grid {
+      grid-template-columns: 180px minmax(0, 1fr);
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .read-grid {
+      grid-template-columns: 180px minmax(0, 1fr) 280px;
+    }
+  }
+
+  /* left: "In this article" contents rail with scroll-spy */
+  .toc-rail {
+    font-size: 0.8125rem;
+  }
+
+  @media (min-width: 768px) {
+    .toc-rail {
+      position: sticky;
+      top: 4.5rem;
+      max-height: calc(100vh - 6rem);
+      overflow-y: auto;
+    }
+  }
+
+  .toc-title {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .toc-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-right: 2px solid var(--color-accent);
+  }
+
+  .toc-list a {
+    display: block;
+    padding: 0.35rem 0.6rem 0.35rem 0;
+    color: var(--color-ink);
+    text-decoration: none;
+    line-height: 1.4;
+  }
+
+  .toc-list a:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+
+  .toc-list a.is-current {
+    background: var(--color-paper-2);
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  .toc-list .toc-sub a {
+    padding-left: 0.75rem;
+    color: var(--color-ink-2);
+  }
+
+  /* the mobile disclosure for the same rail */
+  .toc-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.55rem 0.75rem;
+    background: var(--color-paper-2);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-control);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    cursor: pointer;
+  }
+
+  @media (min-width: 768px) {
+    .toc-toggle {
+      display: none;
+    }
+
+    /* beats both the inline display:none that Alpine's x-show leaves behind
+       and the [x-cloak] rule that applies until Alpine boots */
+    .toc-body,
+    .toc-body[x-cloak] {
+      display: block !important;
+    }
+  }
+
+  /* centre: the article itself */
+  .article-body {
+    max-width: 44rem;
+  }
+
+  .article-body h2 {
+    margin-top: 2rem;
+    margin-bottom: 0.6rem;
+    scroll-margin-top: 5rem;
+  }
+
+  .article-body h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.4rem;
+    scroll-margin-top: 5rem;
+  }
+
+  .abstract-block {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--color-ink);
+  }
+
+  .keyword-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.4rem;
+    margin-top: 1rem;
+  }
+
+  .keyword-row > b {
+    font-size: 0.875rem;
+  }
+
+  /* figures and tables */
+  .figure-block {
+    margin: 1.5rem 0;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .figure-block img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--color-line);
+  }
+
+  .figure-caption {
+    font-size: 0.875rem;
+    color: var(--color-ink);
+    margin-top: 0.5rem;
+  }
+
+  .figure-caption b {
+    color: var(--color-accent);
+  }
+
+  .figure-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+    font-size: 0.8125rem;
+  }
+
+  /* reference list with its per-entry index links */
+  .ref-list {
+    list-style: decimal;
+    margin: 0;
+    padding-left: 1.35rem;
+    font-size: 0.9375rem;
+  }
+
+  .ref-list > li {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--color-line);
+    line-height: 1.6;
+  }
+
+  .ref-list i,
+  .ref-list em {
+    font-style: italic;
+  }
+
+  .ref-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.3rem;
+    font-size: 0.8125rem;
+  }
+
+  .ref-links .sep {
+    color: var(--color-line-2);
+  }
+
+  /* right: related research */
+  .related-panel {
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-card);
+  }
+
+  @media (min-width: 1200px) {
+    .related-panel {
+      position: sticky;
+      top: 4.5rem;
+      max-height: calc(100vh - 6rem);
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .related-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .related-head h2 {
+    font-size: 1rem;
+  }
+
+  .related-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .related-tab {
+    flex: 1;
+    padding: 0.45rem 0.4rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--color-accent);
+    background: var(--color-paper);
+    border: 0;
+    border-right: 1px solid var(--color-line);
+    cursor: pointer;
+  }
+
+  .related-tab:last-child {
+    border-right: 0;
+  }
+
+  .related-tab[aria-selected="true"] {
+    background: var(--color-mint);
+    color: var(--color-mint-ink);
+  }
+
+  .related-body {
+    padding: 0.5rem;
+    overflow-y: auto;
+  }
+
+  .related-card {
+    position: relative;
+    display: block;
+    padding: 0.7rem 0.6rem;
+    border-top: 3px solid var(--color-accent);
+    border-bottom: 1px solid var(--color-line);
+    margin-bottom: 0.5rem;
+    text-decoration: none;
+  }
+
+  .related-card:last-child {
+    margin-bottom: 0;
+  }
+
+  .related-card strong {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    line-height: 1.4;
+  }
+
+  .related-card:hover strong {
+    text-decoration: underline;
+  }
+
+  .related-card span {
+    display: block;
+    font-size: 0.8125rem;
+    color: var(--color-ink-2);
+    margin-top: 0.2rem;
+  }
+
+  /* the open-access corner flag on a related card */
+  .related-card .oa-corner {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 22px 22px;
+    border-color: transparent transparent var(--color-gold-bright) transparent;
+  }
+
+  /* --- 3.7 footer bands ---------------------------------------------------- */
+  .footer-top {
+    background: var(--color-navy-midnight);
+    color: var(--color-on-dark);
+    font-size: 0.875rem;
+  }
+
+  .newsletter-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+  }
+
+  .newsletter-form .input {
+    min-height: 36px;
+    font-size: 0.875rem;
+    background: var(--color-on-dark-soft);
+    border-color: var(--color-on-dark-line);
+    color: var(--color-on-dark);
+  }
+
+  .newsletter-form .input::placeholder {
+    color: var(--color-on-dark-muted);
+  }
+
+  .social-row {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.85rem;
+  }
+
+  .social-row a {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--color-on-dark-line);
+    border-radius: var(--radius-control);
+    color: var(--color-on-dark);
+  }
+
+  .social-row a:hover {
+    background: var(--color-on-dark-soft);
+  }
+}

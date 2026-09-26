@@ -1,0 +1,18 @@
+{% load i18n %}
+<h2>{% translate "Licensing" %}</h2>
+<div class="card-muted mt-4">
+  <p class="text-sm">
+    {% blocktranslate with holder=article.copyright_holder %}© {{ holder }}.{% endblocktranslate %}
+    {% translate "This is an open access article distributed under the terms of the" %}
+    <a href="{{ article.license.url|default:'https://creativecommons.org/licenses/by/4.0/' }}"
+       rel="license noopener">{{ article.license.name|default:"Creative Commons Attribution 4.0 International License" }}</a>,
+    {% translate "which permits unrestricted use, distribution and reproduction in any medium, provided the original work is properly cited." %}
+  </p>
+</div>
+<h3 class="mt-8">{% translate "Reprints and permissions" %}</h3>
+<p class="muted text-sm mt-2">
+  {% translate "No permission is required to reuse this article: it is published under CC BY 4.0, so you may copy, redistribute and adapt it, including commercially, as long as you credit the authors and the journal." %}
+</p>
+<p class="mt-4">
+  <a class="btn btn-outline btn-sm" href="{% url 'core:open_access' %}">{% translate "Open access statement" %}</a>
+</p>

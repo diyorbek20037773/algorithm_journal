@@ -174,7 +174,15 @@ def contact(request: HttpRequest) -> HttpResponse:
             messages.success(request, _("Thank you — your message has been sent."))
             return redirect("core:contact")
     else:
-        form = ContactForm()
+        # The footer's alert box sends the reader here with their address and a
+        # subject already chosen, so the page opens part-filled rather than blank.
+        form = ContactForm(
+            initial={
+                key: value
+                for key, value in request.GET.items()
+                if key in {"email", "subject"} and value
+            }
+        )
 
     context["form"] = form
     return TemplateResponse(request, "core/contact.html", context)

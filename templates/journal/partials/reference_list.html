@@ -1,0 +1,15 @@
+{% load i18n %}
+<ol class="ref-list mt-4">
+  {% for reference in references %}
+    <li itemprop="citation">
+      {{ reference.raw_text }}
+      <span class="ref-links">
+        {% if reference.doi %}
+          <a href="{{ reference.doi_url }}" rel="noopener">{% translate "Crossref" %}</a>
+          <span class="sep" aria-hidden="true">|</span>
+        {% endif %}
+        <a href="{{ reference.scholar_url }}" rel="noopener nofollow">{% translate "Google Scholar" %}</a>
+      </span>
+    </li>
+  {% endfor %}
+</ol>

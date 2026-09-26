@@ -1,0 +1,56 @@
+{% load i18n %}
+<h2>{% translate "Metrics" %}</h2>
+<div class="grid gap-3 sm:grid-cols-3 mt-4">
+  <div class="card">
+    <p class="footer-heading">{% translate "Views" %}</p>
+    <p class="text-2xl font-bold tabular-nums">{{ article.views_count }}</p>
+  </div>
+  <div class="card">
+    <p class="footer-heading">{% translate "Downloads" %}</p>
+    <p class="text-2xl font-bold tabular-nums">{{ article.downloads_count }}</p>
+  </div>
+  <div class="card">
+    <p class="footer-heading">{% translate "CrossRef citations" %}</p>
+    <p class="text-2xl font-bold tabular-nums">{{ article.cited_by_count }}</p>
+  </div>
+</div>
+<h3 class="mt-8">{% translate "Usage by month" %}</h3>
+{% if monthly_views %}
+  <table class="table mt-3">
+    <thead>
+      <tr>
+        <th>{% translate "Month" %}</th>
+        <th>{% translate "Views" %}</th>
+        <th>{% translate "Downloads" %}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in monthly_views %}
+        <tr>
+          <td>{{ row.label }}</td>
+          <td>
+            <span class="inline-flex items-center gap-2">
+              <span class="tabular-nums w-10 text-right">{{ row.views }}</span>
+              <span class="inline-block h-2"
+                    style="width: {{ row.views_pct }}%;
+                           min-width: 2px;
+                           background: var(--color-accent)"></span>
+            </span>
+          </td>
+          <td>
+            <span class="inline-flex items-center gap-2">
+              <span class="tabular-nums w-10 text-right">{{ row.downloads }}</span>
+              <span class="inline-block h-2"
+                    style="width: {{ row.downloads_pct }}%;
+                           min-width: 2px;
+                           background: var(--color-mint)"></span>
+            </span>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <div class="empty-state mt-3">{% translate "No usage has been recorded for this article yet." %}</div>
+{% endif %}
+<p class="muted text-sm mt-4">{% translate "Views and downloads are counted once per reader per day, with known crawlers filtered out. Citation counts come from Crossref." %}</p>

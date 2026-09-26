@@ -1,7 +1,15 @@
 {% load i18n %}
 <footer class="site-footer">
+  {# The darker band the brief puts above the columns. #}
+  <div class="footer-top">
+    <div class="container-page py-3 flex flex-wrap items-center justify-between gap-3">
+      <p>{% translate "New issues, calls for papers and policy changes — straight to your inbox." %}</p>
+      <a class="btn btn-primary btn-sm"
+         href="{% url 'core:announcement_list' %}">{% translate "See the announcements" %}</a>
+    </div>
+  </div>
   <div class="container-page py-12">
-    <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+    <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr_1fr]">
       <div class="min-w-0">
         <a class="wordmark"
            href="{% url 'journal:home' %}"
@@ -60,6 +68,32 @@
         <a class="footer-link" href="{{ site_url }}/feed/rss/">{% translate "RSS feed" %}</a>
         <a class="footer-link" href="{{ site_url }}/sitemap.xml">{% translate "Sitemap" %}</a>
         <a class="footer-link" href="{% url 'core:statistics' %}">{% translate "Journal statistics" %}</a>
+      </div>
+      <div>
+        <p class="footer-heading">{% translate "Keep up to date" %}</p>
+        <p class="text-sm">{% translate "Subscribe to the table-of-contents alert and hear when an issue goes online." %}</p>
+        <form class="newsletter-form"
+              method="get"
+              action="{% url 'core:contact' %}">
+          <label class="visually-hidden" for="footer-email">{% translate "E-mail address" %}</label>
+          <input class="input w-full"
+                 id="footer-email"
+                 type="email"
+                 name="email"
+                 autocomplete="email"
+                 placeholder="{% translate 'you@university.edu' %}"
+                 required>
+          <input type="hidden"
+                 name="subject"
+                 value="{% translate 'Table-of-contents alert' %}">
+          <button type="submit" class="btn btn-primary btn-sm">{% translate "Subscribe" %}</button>
+        </form>
+        <div class="social-row">
+          <a href="{{ site_url }}/feed/rss/"
+             aria-label="{% translate 'RSS feed' %}">{% include "includes/icon.html" with name="share" size=16 %}</a>
+          <a href="mailto:{{ site_settings.contact_email }}"
+             aria-label="{% translate 'E-mail the editorial office' %}">{% include "includes/icon.html" with name="mail" size=16 %}</a>
+        </div>
       </div>
     </div>
     <div class="footer-bottom mt-10 pt-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
