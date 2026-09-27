@@ -82,7 +82,12 @@ class SiteSettings(TimeStampedModel, AutoTranslitMixin):
     )
 
     publisher_name = models.CharField(
-        _("publisher"), max_length=255, default="Founder organisation (to be confirmed)"
+        # Left empty on purpose: a field the office has not filled in is hidden
+        # by the templates rather than shown as "(to be confirmed)".
+        _("publisher"),
+        max_length=255,
+        blank=True,
+        default="",
     )
     publisher_address = models.TextField(_("publisher address"), blank=True)
     founded_year = models.PositiveIntegerField(_("founded year"), default=2026)

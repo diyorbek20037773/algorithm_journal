@@ -15,9 +15,7 @@
         <div class="prose-journal mt-3">{{ announcement.body_html|striptags|truncatewords:45 }}</div>
       </article>
     {% empty %}
-      <div class="empty-state">
-        <p>{% translate "There are no announcements at the moment." %}</p>
-      </div>
+      {% include "includes/empty_state.html" with icon="bell" title=_("No announcements yet") text=_("Calls for papers and policy changes are posted here.") %}
     {% endfor %}
   </div>
 {% endblock %}

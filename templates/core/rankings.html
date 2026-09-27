@@ -3,6 +3,7 @@
 {% block title %}{% translate "Rankings" %} · {{ site_settings.journal_name }}{% endblock %}
 {% block main_class %}py-0{% endblock %}
 {% block content %}
+  {% include "includes/journal_chrome.html" with chrome_section="browse" %}
   {# --- section sub-nav ---------------------------------------------------- #}
   <nav class="subnav" aria-label="{% translate 'Rankings section' %}">
     <div class="container-page subnav-inner">

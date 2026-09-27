@@ -39,7 +39,7 @@
         {% else %}
           <span class="fact-label">{% translate "Founded" %}</span>
           <span class="fact-value">{{ site_settings.founded_year }}</span>
-          <span class="fact-note">{{ site_settings.publisher_name }}</span>
+          {% if site_settings.publisher_name %}<span class="fact-note">{{ site_settings.publisher_name }}</span>{% endif %}
         {% endif %}
       </div>
     </div>
@@ -234,7 +234,7 @@
       <dt>{% translate "Short code" %}</dt><dd class="meta">{{ site_settings.short_code }}</dd>
       <dt>e-ISSN</dt>
       <dd class="meta">
-        {{ site_settings.eissn|default:_("pending") }}
+        {{ site_settings.eissn|default:"—" }}
       </dd>
       {% if site_settings.pissn %}<dt>ISSN</dt><dd class="meta">{{ site_settings.pissn }}</dd>{% endif %}
       <dt>{% translate "DOI prefix" %}</dt><dd class="meta">{{ site_settings.doi_prefix_display }}</dd>

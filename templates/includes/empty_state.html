@@ -1,0 +1,17 @@
+{% load i18n %}
+{% comment %}
+  A designed empty state (audit §5): an icon, a heading, one sentence and a
+  way forward. Usage:
+
+    {% include "includes/empty_state.html" with icon="book" title=… text=… action_url=… action_label=… %}
+
+  `text` and the action are optional; the heading is not.
+{% endcomment %}
+<div class="empty-state">
+  <span class="empty-state-icon" aria-hidden="true">{% include "includes/icon.html" with name=icon|default:"file" size=20 %}</span>
+  <p class="empty-state-title">{{ title }}</p>
+  {% if text %}<p>{{ text }}</p>{% endif %}
+  {% if action_url and action_label %}
+    <a class="btn btn-outline btn-sm mt-2" href="{{ action_url }}">{{ action_label }}</a>
+  {% endif %}
+</div>

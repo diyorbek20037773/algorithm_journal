@@ -4,41 +4,45 @@
   a navy band carrying the journal name and a search box, and under it a navy
   row of section menus. The pair sticks to the top of the viewport together.
 
-  Set `chrome_section` in the view or the template to mark the active item:
-  "submit", "about", "browse" or "subscribe".
+  Set `chrome_section` to mark the active item ("submit", "about", "browse"
+  or "subscribe"). Pass `chrome_banner=False` on a page that has its own hero
+  and search — the home page — so the reader is not offered two search boxes
+  (audit §1).
 {% endcomment %}
 <div class="journal-chrome">
-  <div class="journal-banner">
-    <div class="container-page flex flex-wrap items-center gap-4 py-3">
-      <a class="journal-banner-title" href="{% url 'journal:home' %}">
-        {% include "includes/icon.html" with name="book" size=20 %}
-        <span>{{ site_settings.journal_name }}</span>
-      </a>
-      <form class="journal-banner-search ml-auto"
-            method="get"
-            action="{% url 'search:search' %}"
-            role="search">
-        <label class="visually-hidden" for="chrome-q">{% translate "Search" %}</label>
-        <input class="input"
-               id="chrome-q"
-               type="search"
-               name="q"
-               value="{{ request.GET.q|default:'' }}"
-               placeholder="{% translate 'Keyword, author, DOI…' %}">
-        <label class="visually-hidden" for="chrome-scope">{% translate "Search scope" %}</label>
-        <select class="select" id="chrome-scope" name="scope">
-          <option value="journal">{% translate "In this journal" %}</option>
-          <option value="all">{% translate "Everywhere" %}</option>
-        </select>
-        <button type="submit" class="btn btn-primary btn-sm">{% translate "Search" %}</button>
-      </form>
-      <p class="journal-banner-links w-full">
-        <a href="{% url 'search:search' %}">{% translate "Advanced search" %}</a>
-        <span class="sep" aria-hidden="true">·</span>
-        <a href="{% url 'journal:jel_index' %}">{% translate "Browse by JEL code" %}</a>
-      </p>
+  {% if chrome_banner|default_if_none:True %}
+    <div class="journal-banner">
+      <div class="container-page flex flex-wrap items-center gap-4 py-3">
+        <a class="journal-banner-title" href="{% url 'journal:home' %}">
+          {% include "includes/icon.html" with name="book" size=20 %}
+          <span>{{ site_settings.journal_name }}</span>
+        </a>
+        <form class="journal-banner-search ml-auto"
+              method="get"
+              action="{% url 'search:search' %}"
+              role="search">
+          <label class="visually-hidden" for="chrome-q">{% translate "Search" %}</label>
+          <input class="input"
+                 id="chrome-q"
+                 type="search"
+                 name="q"
+                 value="{{ request.GET.q|default:'' }}"
+                 placeholder="{% translate 'Keyword, author, DOI…' %}">
+          <label class="visually-hidden" for="chrome-scope">{% translate "Search scope" %}</label>
+          <select class="select" id="chrome-scope" name="scope">
+            <option value="journal">{% translate "In this journal" %}</option>
+            <option value="all">{% translate "Everywhere" %}</option>
+          </select>
+          <button type="submit" class="btn btn-primary btn-sm">{% translate "Search" %}</button>
+        </form>
+        <p class="journal-banner-links w-full">
+          <a href="{% url 'search:search' %}">{% translate "Advanced search" %}</a>
+          <span class="sep" aria-hidden="true">·</span>
+          <a href="{% url 'journal:jel_index' %}">{% translate "Browse by JEL code" %}</a>
+        </p>
+      </div>
     </div>
-  </div>
+  {% endif %}
   <nav class="journal-menu"
        aria-label="{% translate 'Journal sections' %}"
        x-data="{ open: '' }"
@@ -77,6 +81,7 @@
           <a href="{% url 'core:rankings' %}">{% translate "Institutional rankings" %}</a>
         </div>
       </div>
+      <a class="jm-link" href="{% url 'search:search' %}">{% translate "Search" %}</a>
       <div class="jm-item" @mouseleave="open = ''">
         <button type="button"
                 class="jm-link"

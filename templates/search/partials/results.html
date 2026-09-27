@@ -27,10 +27,7 @@
     </div>
   </article>
 {% empty %}
-  <div class="empty-state">
-    <p>{% translate "Nothing matched your search." %}</p>
-    <p class="text-sm mt-2">{% translate "Try fewer words, a different language, or browse the archive." %}</p>
-    <a class="btn btn-secondary mt-4" href="{% url 'journal:archive' %}">{% translate "Browse the archive" %}</a>
-  </div>
+  {% url 'journal:archive' as archive_url %}
+  {% include "includes/empty_state.html" with icon="search" title=_("Nothing matched your search") text=_("Try fewer words, a different language, or browse the issues.") action_url=archive_url action_label=_("Browse the archive") %}
 {% endfor %}
 {% include "journal/partials/pagination.html" %}

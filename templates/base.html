@@ -75,6 +75,19 @@
       {% block content %}{% endblock %}
     </main>
     {% include "includes/footer.html" %}
+    {% comment %}
+      Back to top, once the reader is well down the page (audit §10). Alpine
+      only; with JavaScript off nothing is shown rather than a dead control.
+    {% endcomment %}
+    <div x-data="{ shown: false }"
+         @scroll.window.throttle.200ms="shown = window.scrollY > 800">
+      <button type="button"
+              class="to-top-fab"
+              x-show="shown"
+              x-cloak
+              x-transition.opacity
+              @click="window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })">↑ {% translate "Top" %}</button>
+    </div>
     <div id="toast-stack" class="toast-stack" aria-live="polite"></div>
     <div id="modal-root"></div>
     {% block extra_js %}{% endblock %}

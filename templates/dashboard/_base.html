@@ -276,7 +276,9 @@
     {# ------------------------------------------------------------------ footer #}
     <footer class="console-footer">
       <div class="console-page flex flex-wrap items-center justify-between gap-3">
-        <p class="mono">{{ site_settings.journal_name }} — e-ISSN {{ site_settings.eissn|default:_("pending") }} · DOI {{ site_settings.doi_prefix_display }}</p>
+        <p class="mono">
+          {{ site_settings.journal_name }}{% if site_settings.eissn %} — e-ISSN {{ site_settings.eissn }}{% endif %}{% if site_settings.has_doi_prefix %} · DOI {{ site_settings.doi_prefix_display }}{% endif %}
+        </p>
         <div class="flex items-center gap-4">
           <a href="{% url 'journal:home' %}">{% translate "Public site" %}</a>
           <a href="{% url 'core:contact' %}">{% translate "Editorial office" %}</a>

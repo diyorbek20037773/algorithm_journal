@@ -194,18 +194,18 @@ class Command(BaseCommand):
             site,
             "publisher_name",
             {
-                "en": "Founder organisation (to be confirmed)",
-                "uz": "Muassis tashkilot (tasdiqlanishi kerak)",
-                "ru": "Организация-учредитель (подлежит уточнению)",
+                "en": "",
+                "uz": "",
+                "ru": "",
             },
         )
         set_translated(
             site,
             "publisher_address",
             {
-                "en": "Editorial office, Tashkent, Uzbekistan\n(postal address to be confirmed)",
-                "uz": "Tahririyat, Toshkent, Oʻzbekiston\n(pochta manzili tasdiqlanishi kerak)",
-                "ru": "Редакция, Ташкент, Узбекистан\n(почтовый адрес подлежит уточнению)",
+                "en": "Editorial office, Tashkent, Uzbekistan",
+                "uz": "Tahririyat, Toshkent, Oʻzbekiston",
+                "ru": "",
             },
         )
         set_translated(
@@ -230,9 +230,9 @@ class Command(BaseCommand):
             site,
             "registration_authority",
             {
-                "en": "Registration authority (to be confirmed)",
-                "uz": "Roʻyxatga oluvchi organ (tasdiqlanishi kerak)",
-                "ru": "Регистрирующий орган (подлежит уточнению)",
+                "en": "",
+                "uz": "",
+                "ru": "",
             },
         )
         site.short_code = "MRER"

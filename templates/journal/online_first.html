@@ -11,9 +11,8 @@
     {% for article in articles %}
       {% include "journal/partials/article_card.html" with article=article show_abstract=True %}
     {% empty %}
-      <div class="empty-state">
-        <p>{% translate "There are no Online First articles at the moment." %}</p>
-      </div>
+      {% url 'journal:archive' as archive_url %}
+      {% include "includes/empty_state.html" with icon="clock" title=_("Nothing ahead of print right now") text=_("Accepted articles appear here with a DOI as soon as production finishes, before they are assigned to an issue.") action_url=archive_url action_label=_("Browse published issues") %}
     {% endfor %}
     {% include "journal/partials/pagination.html" %}
   </div>

@@ -11,8 +11,10 @@
         <span class="dot-live" aria-hidden="true"></span>
         {% translate "Open access · double-blind peer review" %}
       </span>
-      <span class="sep" aria-hidden="true">|</span>
-      <span class="whitespace-nowrap">e-ISSN: {{ site_settings.eissn|default:_("pending") }}</span>
+      {% if site_settings.eissn %}
+        <span class="sep" aria-hidden="true">|</span>
+        <span class="whitespace-nowrap">e-ISSN: {{ site_settings.eissn }}</span>
+      {% endif %}
       {% if site_settings.pissn %}
         <span class="sep" aria-hidden="true">|</span>
         <span class="whitespace-nowrap">ISSN: {{ site_settings.pissn }}</span>
@@ -38,62 +40,6 @@
       <a class="wordmark min-w-0"
          href="{% url 'journal:home' %}"
          aria-label="{{ site_settings.journal_name }}">{% include "includes/wordmark.html" %}</a>
-      {% comment %}
-        Three dropdown menus (TEXNIK TOPSHIRIQ §3.1). The publisher's original
-        has "Journals"; this is one journal, so that menu browses its own
-        content instead. Hover opens them on a pointer, click on a touch
-        screen, Escape closes.
-      {% endcomment %}
-      <nav class="hidden lg:flex items-center gap-1 flex-1 min-w-0"
-           aria-label="{% translate 'Primary' %}"
-           x-data="{ open: '' }"
-           @keydown.escape="open = ''"
-           @click.outside="open = ''">
-        <div class="nav-drop" @mouseleave="open = ''">
-          <button type="button"
-                  class="nav-tab"
-                  :aria-expanded="open === 'browse'"
-                  @click="open = open === 'browse' ? '' : 'browse'"
-                  @mouseenter="open = 'browse'">{% translate "Browse" %} ▾</button>
-          <div class="nav-drop-panel" x-show="open === 'browse'" x-cloak>
-            <a href="{% url 'journal:issue_current' %}">{% translate "Current Issue" %}</a>
-            <a href="{% url 'journal:archive' %}">{% translate "List of issues" %}</a>
-            <a href="{% url 'journal:online_first' %}">{% translate "Online First" %}</a>
-            <a href="{% url 'journal:jel_index' %}">{% translate "JEL classification" %}</a>
-            <a href="{% url 'core:rankings' %}">{% translate "Institutional rankings" %}</a>
-          </div>
-        </div>
-        <div class="nav-drop" @mouseleave="open = ''">
-          <button type="button"
-                  class="nav-tab"
-                  :aria-expanded="open === 'search'"
-                  @click="open = open === 'search' ? '' : 'search'"
-                  @mouseenter="open = 'search'">{% translate "Search" %} ▾</button>
-          <div class="nav-drop-panel" x-show="open === 'search'" x-cloak>
-            <a href="{% url 'search:search' %}">{% translate "Search articles" %}</a>
-            <a href="{% url 'journal:jel_index' %}">{% translate "Browse by JEL code" %}</a>
-            <a href="{% url 'core:statistics' %}">{% translate "Journal statistics" %}</a>
-          </div>
-        </div>
-        <div class="nav-drop" @mouseleave="open = ''">
-          <button type="button"
-                  class="nav-tab"
-                  :aria-expanded="open === 'publish'"
-                  @click="open = open === 'publish' ? '' : 'publish'"
-                  @mouseenter="open = 'publish'">{% translate "Publish" %} ▾</button>
-          <div class="nav-drop-panel" x-show="open === 'publish'" x-cloak>
-            <a href="{% url 'submissions:wizard_start' %}">{% translate "Submit a manuscript" %}</a>
-            <a href="{% url 'core:author_guidelines' %}">{% translate "Author Guidelines" %}</a>
-            <a href="{% url 'core:checklist' %}">{% translate "Pre-submission checklist" %}</a>
-            <a href="{% url 'core:templates' %}">{% translate "Manuscript template" %}</a>
-            <a href="{% url 'core:for_reviewers' %}">{% translate "For Reviewers" %}</a>
-            <a href="{% url 'core:fees' %}">{% translate "Article processing charges" %}</a>
-          </div>
-        </div>
-        <a class="nav-tab"
-           href="{% url 'core:about' %}"
-           {% if active_nav == "about" %}aria-current="page"{% endif %}>{% translate "About" %}</a>
-      </nav>
       <div class="ml-auto flex items-center gap-2 lg:gap-3 shrink-0">
         <a class="header-search"
            href="{% url 'search:search' %}"

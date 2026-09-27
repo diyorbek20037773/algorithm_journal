@@ -6,29 +6,34 @@
   <script type="application/ld+json">{{ periodical_json_ld|safe }}</script>
 {% endblock %}
 {% block content %}
-  {% include "includes/journal_chrome.html" %}
+  {% include "includes/journal_chrome.html" with chrome_banner=False %}
   {% comment %}Hero & masthead — design/home.html "Hero & Masthead Section"{% endcomment %}
   <section class="masthead">
     <div class="container-page py-10 md:py-12 grid gap-10 lg:grid-cols-[minmax(0,1fr)_232px] items-center">
       <div class="flex flex-col gap-6 min-w-0">
+        {% comment %}
+          Three stamps at most (audit §6); everything else lives in the fact
+          strip. A stamp whose value the office has not filled in is dropped
+          rather than shown as a placeholder (audit §2).
+        {% endcomment %}
         <ul class="credibility">
           <li class="is-official">
-            {% include "includes/icon.html" with name="verified" size=15 %}
-            {% blocktranslate with publisher=site_settings.publisher_name %}Published by {{ publisher }}{% endblocktranslate %}
-          </li>
-          <li>
             {% include "includes/icon.html" with name="unlock" size=14 %}
             {% translate "Diamond open access · no APC" %}
           </li>
-          {% if site_settings.has_doi_prefix %}
-            <li>DOI: <strong>{{ site_settings.doi_prefix_display }}</strong></li>
-          {% endif %}
-          <li>e-ISSN: <strong>{{ site_settings.eissn|default:_("pending") }}</strong></li>
+          <li>
+            {% include "includes/icon.html" with name="award" size=14 %}
+            CC BY 4.0
+          </li>
+          <li>
+            {% include "includes/icon.html" with name="clock" size=14 %}
+            {{ site_settings.frequency_short }}
+          </li>
         </ul>
         <div class="flex flex-col gap-5">
           <div class="max-w-3xl flex flex-col gap-3 min-w-0">
             <h1 class="leading-none">
-              <span class="masthead-name block text-4xl md:text-[2.75rem]">{{ site_settings.wordmark_name }}{% if site_settings.wordmark_descriptor %}:{% endif %}</span>
+              <span class="masthead-name block text-4xl md:text-[2.75rem]">{{ site_settings.wordmark_name }}</span>
               {% if site_settings.wordmark_descriptor %}
                 <span class="masthead-descriptor block mt-2 text-2xl md:text-[2rem]">{{ site_settings.wordmark_descriptor }}</span>
               {% endif %}
@@ -56,17 +61,24 @@
             {% endif %}
           </div>
         </div>
-        {% comment %}Fact strip: every value is real or omitted — no invented metrics (CLAUDE.md §8).{% endcomment %}
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+        {% comment %}
+          Fact strip: every value is real or the card is dropped — no invented
+          metrics (CLAUDE.md §8) and no zeroes (audit §3).
+        {% endcomment %}
+        <div class="fact-strip">
           <div class="fact-tile">
-            <span class="fact-label">{% translate "Publishing model" %}</span>
-            <span class="fact-value">{% translate "Diamond OA" %}
-              {% include "includes/icon.html" with name="verified" size=14 %}
+            <span class="fact-label">
+              {% include "includes/icon.html" with name="unlock" size=16 %}
+              {% translate "Publishing model" %}
             </span>
+            <span class="fact-value">{% translate "Diamond OA" %}</span>
             <span class="fact-note">{% translate "No author or reader fees" %}</span>
           </div>
           <div class="fact-tile">
-            <span class="fact-label">{% translate "Peer review" %}</span>
+            <span class="fact-label">
+              {% include "includes/icon.html" with name="shield" size=16 %}
+              {% translate "Peer review" %}
+            </span>
             <span class="fact-value">{% translate "Double-blind" %}</span>
             <span class="fact-note">
               {% if kpis and kpis.median_days_to_first_decision %}
@@ -76,33 +88,48 @@
               {% endif %}
             </span>
           </div>
-          {% if kpis and kpis.acceptance_rate %}
-            <div class="fact-tile">
-              <span class="fact-label">{% translate "Acceptance rate" %}</span>
-              <span class="fact-value">{{ kpis.acceptance_rate }}%</span>
-              <span class="fact-note">{% translate "last 12 months" %}</span>
-            </div>
-          {% endif %}
           <div class="fact-tile">
-            <span class="fact-label">{% translate "Cadence" %}</span>
+            <span class="fact-label">
+              {% include "includes/icon.html" with name="clock" size=16 %}
+              {% translate "Cadence" %}
+            </span>
             <span class="fact-value">{{ site_settings.frequency_short }}</span>
             <span class="fact-note">{% translate "plus Online First" %}</span>
           </div>
           <div class="fact-tile">
-            <span class="fact-label">{% translate "Published articles" %}</span>
-            <span class="fact-value">{{ published_count }}</span>
-            <span class="fact-note">{% blocktranslate with year=site_settings.founded_year %}since {{ year }}{% endblocktranslate %}</span>
-          </div>
-          <div class="fact-tile">
-            <span class="fact-label">{% translate "Languages" %}</span>
+            <span class="fact-label">
+              {% include "includes/icon.html" with name="globe" size=16 %}
+              {% translate "Languages" %}
+            </span>
             <span class="fact-value">4</span>
             <span class="fact-note">EN · UZ · ЎЗ · RU</span>
           </div>
-          {% if not kpis or not kpis.acceptance_rate %}
+          <div class="fact-tile">
+            <span class="fact-label">
+              {% include "includes/icon.html" with name="award" size=16 %}
+              {% translate "Licence" %}
+            </span>
+            <span class="fact-value">CC BY 4.0</span>
+            <span class="fact-note">{% translate "Authors retain copyright" %}</span>
+          </div>
+          {% if published_count %}
             <div class="fact-tile">
-              <span class="fact-label">{% translate "Licence" %}</span>
-              <span class="fact-value">CC BY 4.0</span>
-              <span class="fact-note">{% translate "Authors retain copyright" %}</span>
+              <span class="fact-label">
+                {% include "includes/icon.html" with name="book" size=16 %}
+                {% translate "Published articles" %}
+              </span>
+              <span class="fact-value">{{ published_count }}</span>
+              <span class="fact-note">{% blocktranslate with year=site_settings.founded_year %}since {{ year }}{% endblocktranslate %}</span>
+            </div>
+          {% endif %}
+          {% if kpis and kpis.acceptance_rate %}
+            <div class="fact-tile">
+              <span class="fact-label">
+                {% include "includes/icon.html" with name="chart" size=16 %}
+                {% translate "Acceptance rate" %}
+              </span>
+              <span class="fact-value">{{ kpis.acceptance_rate }}%</span>
+              <span class="fact-note">{% translate "last 12 months" %}</span>
             </div>
           {% endif %}
         </div>
@@ -116,7 +143,7 @@
       {% endif %}
     </div>
   </section>
-  <div class="container-page py-8 flex flex-col gap-8">
+  <div class="container-page py-10 stack-sections">
     {% comment %}Discovery console — search, section filters, JEL taxonomy{% endcomment %}
     <section class="console flex flex-col gap-4"
              aria-label="{% translate 'Search' %}">
@@ -143,7 +170,7 @@
           {% endfor %}
         </div>
       </div>
-      <div class="scroll-row" aria-label="{% translate 'JEL classification' %}">
+      <div class="chip-row" aria-label="{% translate 'JEL classification' %}">
         <span class="label-caps mr-1">JEL:</span>
         {% for jel in jel_top_level %}
           <a class="chip chip-jel" href="{{ jel.get_absolute_url }}">{{ jel.code }}: {{ jel.label }}</a>
@@ -208,9 +235,8 @@
             </div>
           {% endif %}
         {% else %}
-          <div class="empty-state">
-            <p>{% translate "The first issue is being prepared. Accepted articles appear as Online First." %}</p>
-          </div>
+          {% url 'core:contact' as alert_url %}
+          {% include "includes/empty_state.html" with icon="book" title=_("The first issue is being prepared") text=_("Accepted articles appear as Online First, with a DOI, as soon as production finishes.") action_url=alert_url action_label=_("Subscribe to new content alerts") %}
         {% endif %}
       </div>
       {% comment %}Right column: Online First, editorial hub{% endcomment %}
@@ -330,15 +356,15 @@
               {% endfor %}
             </ul>
           {% else %}
-            <p class="text-sm muted">{% translate "There are no announcements at the moment." %}</p>
+            {% include "includes/empty_state.html" with icon="bell" title=_("No announcements yet") text=_("Calls for papers and policy changes are posted here.") %}
           {% endif %}
         </section>
-        <section class="card flex flex-col gap-3">
-          <div class="flex items-center justify-between gap-2">
-            <h2 class="text-lg">{% translate "Most read" %}</h2>
-            <span class="meta">{% translate "last 30 days" %}</span>
-          </div>
-          {% if most_read %}
+        {% if most_read %}
+          <section class="card flex flex-col gap-3">
+            <div class="flex items-center justify-between gap-2">
+              <h2 class="text-lg">{% translate "Most read" %}</h2>
+              <span class="meta">{% translate "last 30 days" %}</span>
+            </div>
             <ol class="rail-list">
               {% for article in most_read %}
                 <li class="grid grid-cols-[1.5rem_1fr] gap-2">
@@ -353,10 +379,8 @@
                 </li>
               {% endfor %}
             </ol>
-          {% else %}
-            <p class="text-sm muted">{% translate "Usage statistics will appear once articles are published." %}</p>
-          {% endif %}
-        </section>
+          </section>
+        {% endif %}
       </aside>
     </div>
   </div>

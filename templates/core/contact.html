@@ -7,7 +7,9 @@
       <h1 class="text-3xl mb-6">{{ page.title }}</h1>
       <div class="prose-journal">{{ page.body_html|safe }}</div>
       <dl class="dl-meta card-muted mt-8">
-        <dt>{% translate "Publisher" %}</dt><dd>{{ site_settings.publisher_name }}</dd>
+        {% if site_settings.publisher_name %}
+          <dt>{% translate "Publisher" %}</dt><dd>{{ site_settings.publisher_name }}</dd>
+        {% endif %}
         {% if site_settings.contact_address %}
           <dt>{% translate "Address" %}</dt><dd>{{ site_settings.contact_address|linebreaksbr }}</dd>
         {% endif %}

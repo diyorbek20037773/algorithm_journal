@@ -2,7 +2,7 @@
 {% load i18n %}
 {% block title %}{% translate "Search" %} · {{ site_settings.journal_name }}{% endblock %}
 {% block content %}
-  {% include "includes/journal_chrome.html" %}
+  {% include "includes/journal_chrome.html" with chrome_section="browse" %}
   <div class="container-page">
     <h1 class="text-3xl mb-6">{% translate "Search" %}</h1>
     <form method="get"

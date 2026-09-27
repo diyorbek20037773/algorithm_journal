@@ -155,3 +155,33 @@ def test_month_names_are_cyrillic_on_cyrillic_pages(client_anon, article, site_s
     with translation.override("uz"):
         latin = dateformat.format(published, "F Y")
     assert latin.isascii()
+
+
+def test_english_catalogue_translates_every_string_to_itself() -> None:
+    """locale/en must be the identity map.
+
+    The source strings are English, so a msgstr that differs from its msgid is
+    a mistranslation the English pages would render — which is exactly what
+    happened when gettext's fuzzy guesses were accepted wholesale ("Download
+    selected articles (ZIP)" came out as "Download certificate").
+    """
+    import re
+    from pathlib import Path
+
+    from django.conf import settings
+
+    path = Path(settings.BASE_DIR) / "locale" / "en" / "LC_MESSAGES" / "django.po"
+    quoted = re.compile('"(.*)"')
+    mismatched = []
+
+    for block in path.read_text(encoding="utf-8").split("\n\n"):
+        msgid = re.search('^msgid ((?:".*"\n?)+)', block, re.M)
+        msgstr = re.search('^msgstr ((?:".*"\n?)+)', block, re.M)
+        if not msgid or not msgstr:
+            continue
+        source = "".join(quoted.findall(msgid.group(1)))
+        target = "".join(quoted.findall(msgstr.group(1)))
+        if source and target != source:
+            mismatched.append(source[:60])
+
+    assert not mismatched, f"English catalogue drifted from its source: {mismatched[:5]}"

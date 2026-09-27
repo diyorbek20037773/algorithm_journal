@@ -546,6 +546,51 @@ worth knowing before diagnosing a slow page.
 
 ---
 
+## UI/UX audit pass ✅ (2026-09-27)
+
+**Done** — the eleven findings the client raised after reviewing the live site.
+
+- **Header** cut from four stacked bars to three: the white bar keeps identity,
+  search, Submit and Sign in | Register; navigation is only in the navy section
+  menu; the navy search band is suppressed on the home page, which has its own
+  hero. Header height 69px.
+- **Placeholders gone.** `publisher_name` and the registration authority now
+  default to empty (migration `0007`), the seed no longer writes
+  "(to be confirmed)" in any language, the values already in the database were
+  cleaned, and the templates drop an empty field instead of printing it. No
+  more "e-ISSN: pending" or `you@university.edu`.
+- **No zero statistics.** A fact card is rendered only when its value is real;
+  the strip is a flex row so the cards always fill it evenly, each with an icon.
+- **i18n finished.** 41 untranslated strings *and* 62 fuzzy entries — fuzzy
+  entries are ignored at runtime, so they rendered in English too, and several
+  of gettext's guesses were wrong ("Citations" → "Takliflar"). All written by
+  hand for uz and ru; uz_Cyrl generated from uz with `apps/core/translit.py`.
+  `check_translations.py`: 1601/1601 in all four catalogues, 0 fuzzy.
+- **Empty states** redesigned as icon + heading + one sentence + a way forward
+  (home, Online First, announcements, no-issue, search). "Most read" hides
+  entirely until there is something to rank.
+- **Hero**: H1 is "MEZON" without the trailing colon, three stamps at most, the
+  current issue cover on the right.
+- **Rhythm and chips**: sections at 64px / 40px; the JEL row wraps instead of
+  clipping; filter links and chips share one geometry; buttons on a 32/40/48
+  scale; 150ms transitions throughout.
+- **Micro-UX**: reading-progress line on the article page, floating back-to-top
+  past 800px, skeleton class, keyboard-dismissable dropdowns, and every
+  animation still respects `prefers-reduced-motion`.
+- **SEO**: `lang` follows the active language, hreflang for all four plus
+  x-default, Open Graph, favicon, `font-display: swap` — all verified on the
+  rendered page; the remaining images got `loading="lazy"`.
+
+**Verified** — no horizontal scroll at 375 / 768 / 1280px on the home, issues,
+issue, article, rankings and about pages, in Uzbek and English; full suite
+green; `ruff`, `djlint` and `makemigrations --check` clean.
+
+**One defect this pass introduced and fixed**: clearing the fuzzy flags left
+gettext's guesses in the English catalogue, so English pages rendered the wrong
+label. `tests/test_i18n.py` now asserts locale/en is the identity map.
+
+---
+
 ## Deferred (Phase 2 of the project — see HANDOFF.md)
 
 - DOCX → JATS/HTML full-text conversion.

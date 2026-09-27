@@ -22,6 +22,23 @@
         hx-trigger="load"
         hx-swap="none"
         aria-hidden="true"></span>
+  {% comment %}
+    Reading progress under the sticky bar (audit §10) — decorative, so it is
+    hidden from assistive technology and does nothing without JavaScript.
+  {% endcomment %}
+  <div class="scroll-progress"
+       aria-hidden="true"
+       x-data
+       x-init="
+         const bar = $el;
+         const paint = () => {
+           const h = document.documentElement.scrollHeight - window.innerHeight;
+           bar.style.width = h > 0 ? (window.scrollY / h * 100) + '%' : '0';
+         };
+         paint();
+         window.addEventListener('scroll', paint, { passive: true });
+         window.addEventListener('resize', paint);
+       "></div>
   {# --- 3.2 breadcrumb band ------------------------------------------------ #}
   <nav class="crumb-bar" aria-label="{% translate 'Breadcrumb' %}">
     <div class="container-page">
@@ -57,6 +74,8 @@
     <div class="journal-strip">
       {% if article.issue and article.issue.cover %}
         <img class="journal-cover"
+             loading="lazy"
+             decoding="async"
              src="{{ article.issue.cover.url }}"
              alt="{% blocktranslate with issue=article.issue.label %}Cover of {{ issue }}{% endblocktranslate %}"
              width="80"
